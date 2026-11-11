@@ -1,7 +1,7 @@
 """Builds the public (GitHub Pages) copies from the artifact pages. Run: python3 build.py"""
 import os
 HERE = os.path.dirname(os.path.abspath(__file__))
-BASE = 'https://biancalemay85-ops.github.io/ilusioninvites'
+BASE = 'https://ilusioninvites.com'
 PAGES = [
     ('../website/index.html', '', 'Ilusión Invites · Invitaciones digitales de lujo',
      'Invitaciones digitales que se abren como un sobre con sello: bodas, XV años, baby showers y cumpleaños. México y Canadá.'),
