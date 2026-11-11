@@ -226,6 +226,98 @@ h2 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.08; }
 .copy { margin: 26px 0 0; text-align: center; font-size: 13px; color: var(--muted); }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ===== v4: envelope opening, falling petals, layered flowers ===== */
+html.locked, html.locked body { overflow: hidden; }
+#intro { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; overflow: hidden; background: #1E0916; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); transition: opacity 1s ease, transform 1.3s cubic-bezier(.5,0,.2,1); }
+#intro[hidden] { display: none; }
+#intro .iv-velvet { position: absolute; inset: -3%; background: url("img/terciopelo-vino.webp") center / cover; filter: hue-rotate(-18deg) saturate(.8) brightness(.56) contrast(1.1); }
+#intro .iv-tint { position: absolute; inset: 0; background: #4B1535; mix-blend-mode: multiply; opacity: .5; }
+#intro .iv-vig { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 45% at 50% 50%, rgba(255,210,230,.08), transparent 70%), radial-gradient(ellipse 110% 85% at 50% 50%, transparent 40%, rgba(8,2,6,.75) 100%); }
+.iv-stage { position: relative; width: min(500px, 84vw); display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3.4vh, 30px); }
+.iv-eyebrow { margin: 0; font: 500 12px/1.4 var(--f-caps); letter-spacing: .42em; color: var(--gold-text); text-align: center; }
+.iv-title { margin: -8px 0 0; font: italic 500 clamp(19px, 2.6vw, 23px)/1.3 var(--f-display); color: #E9D9CC; text-align: center; }
+.env { position: relative; width: 100%; aspect-ratio: 1.45; perspective: 1600px; }
+.env > * { position: absolute; }
+.env-back { inset: 0; border-radius: 4px; background: #EFE3D2 url("img/papel-algodon.webp") center / 420px; box-shadow: 0 46px 70px -24px rgba(0,0,0,.85), 0 12px 24px rgba(0,0,0,.45); }
+.env-liner { left: 3%; right: 3%; top: 0; height: 58%; clip-path: polygon(0 0, 100% 0, 50% 100%); background: #3a0f2a url("img/terciopelo-vino.webp") center / 360px; filter: brightness(.7) saturate(.85); }
+.env-letter { left: 7%; right: 7%; top: 7%; height: 86%; z-index: 1; border-radius: 2px; background: #FBF5EC url("img/papel-algodon.webp") center / 380px; box-shadow: 0 2px 8px rgba(60,20,30,.25); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; transition: transform 1.3s cubic-bezier(.3,.7,.2,1); }
+.env-letter::before { content: ""; position: absolute; inset: 7px; border: 1px solid rgba(158,109,70,.55); pointer-events: none; }
+.env-letter b { font: 400 clamp(40px, 7vw, 58px)/1 var(--f-script); background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 6px; filter: drop-shadow(0 1px 0 rgba(90,50,20,.35)); }
+.env-letter small { font: 500 10px/1.2 var(--f-caps); letter-spacing: .5em; color: #9E6D46; }
+.env-letter i { width: 40%; height: 1px; margin: 8px 0 6px; background: linear-gradient(90deg, transparent, #B07A44, transparent); }
+.env-letter span { font: italic 500 clamp(14px, 2vw, 17px)/1.3 var(--f-display); color: #5A3E4E; padding: 0 12px; }
+.env-front { inset: 0; z-index: 2; border-radius: 4px; clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%); background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(120,80,60,.10)), #EDE0CD url("img/papel-algodon.webp") center / 420px; }
+.env-front::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top right, transparent 49.6%, rgba(110,70,50,.18) 50%, transparent 51%), linear-gradient(to top left, transparent 49.6%, rgba(110,70,50,.18) 50%, transparent 51%); }
+.env-flap { left: 0; right: 0; top: 0; height: 60%; z-index: 3; transform-origin: 50% 0; transform-style: preserve-3d; transition: transform 1s cubic-bezier(.45,.05,.3,1); }
+.env-flap > div { position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.env-flap .fl-out { background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(110,70,50,.14)), #F2E7D8 url("img/papel-algodon.webp") center / 420px; filter: drop-shadow(0 4px 4px rgba(80,40,30,.25)); }
+.env-flap .fl-in { transform: rotateX(180deg); background: #3a0f2a url("img/terciopelo-vino.webp") center / 360px; filter: brightness(.8); }
+.env-seal { left: 50%; top: 60%; width: 31%; aspect-ratio: 1; z-index: 4; transform: translate(-50%, -50%); border: 0; padding: 0; background: none; cursor: pointer; border-radius: 50%; }
+.env-seal { filter: drop-shadow(0 8px 10px rgba(40,10,20,.55)) drop-shadow(0 2px 2px rgba(40,10,20,.4)); }
+.env-seal img { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform 1s cubic-bezier(.3,.6,.3,1), opacity .9s ease; }
+.env-seal .h1 { clip-path: polygon(0 0, 52% 0, 47% 18%, 55% 34%, 46% 52%, 54% 70%, 48% 86%, 52% 100%, 0 100%); }
+.env-seal .h2 { clip-path: polygon(52% 0, 100% 0, 100% 100%, 52% 100%, 48% 86%, 54% 70%, 46% 52%, 55% 34%, 47% 18%); }
+.env-seal::after { content: ""; position: absolute; inset: -14%; border-radius: 50%; box-shadow: 0 0 0 1px rgba(242,207,142,.0); animation: sealPulse 2.4s ease-out infinite; pointer-events: none; }
+@keyframes sealPulse { 0% { box-shadow: 0 0 0 0 rgba(242,207,142,.45); } 100% { box-shadow: 0 0 0 26px rgba(242,207,142,0); } }
+.env-deco { height: auto; pointer-events: none; filter: drop-shadow(0 18px 22px rgba(0,0,0,.6)); transition: transform 1.4s cubic-bezier(.3,.6,.2,1), opacity 1s; }
+.env-deco.d1 { width: 44%; left: -21%; top: -26%; z-index: 5; transform: rotate(-6deg); }
+.env-deco.d2 { width: 38%; right: -16%; bottom: -24%; z-index: 5; transform: rotate(-24deg); }
+.env-deco.d3 { width: 22%; right: -9%; top: -14%; z-index: 0; transform: rotate(12deg); }
+.iv-hint { margin: 0; display: flex; align-items: center; gap: 14px; font: 500 11.5px/1 var(--f-caps); letter-spacing: .34em; color: var(--gold-text); }
+.iv-hint i { width: 40px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.iv-hint i:last-child { transform: scaleX(-1); }
+.iv-skip { position: absolute; right: max(18px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 2; background: none; border: 0; color: #B9A3B1; font: 400 13px var(--f-body); letter-spacing: .08em; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+/* opening sequence */
+#intro.s1 .env-seal { cursor: default; }
+#intro.s1 .env-seal::after { animation: none; }
+#intro.s1 .env-seal .h1 { transform: translate(-38%, 90%) rotate(-28deg); opacity: 0; }
+#intro.s1 .env-seal .h2 { transform: translate(40%, 100%) rotate(24deg); opacity: 0; }
+#intro.s2 .env-flap { transform: rotateX(180deg); }
+#intro.s3 .env-flap { z-index: 0; }
+#intro.s3 .env-letter { transform: translateY(-62%); }
+#intro.s4 .env-letter { z-index: 6; transform: translateY(-8%) scale(1.04); }
+#intro.s4 .env-front, #intro.s4 .env-back, #intro.s4 .env-liner, #intro.s4 .env-flap { transform: translateY(18%); opacity: 0; transition: transform 1s ease, opacity .8s ease; }
+#intro.s4 .env-deco.d1 { transform: translate(-30%, -20%) rotate(-14deg); opacity: 0; }
+#intro.s4 .env-deco.d2 { transform: translate(30%, 30%) rotate(-30deg); opacity: 0; }
+#intro.s4 .env-deco.d3 { opacity: 0; }
+#intro.s4 .iv-hint, #intro.s1 .iv-hint, #intro.s1 .iv-skip { opacity: 0; transition: opacity .4s; }
+#intro.s5 { opacity: 0; transform: scale(1.12); }
+
+/* petals + gold dust */
+#petals { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 61; }
+
+/* layered flowers around the hero */
+.hero { position: relative; overflow: hidden; }
+.hero .wrap { position: relative; z-index: 2; }
+.hero-decor { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.hd { position: absolute; display: block; height: auto; filter: drop-shadow(0 22px 26px rgba(0,0,0,.55)); will-change: transform; }
+.hd-arr { width: clamp(150px, 24vw, 340px); left: -3%; top: -2%; }
+.hd-gyp { width: clamp(110px, 15vw, 210px); left: 1%; bottom: 4%; opacity: .9; }
+.hd-leaf { width: clamp(120px, 17vw, 240px); right: 4%; top: 2%; transform: rotate(18deg); }
+.hd-peony { width: clamp(120px, 17vw, 250px); right: -4%; top: 30%; }
+.hd-rose { width: clamp(150px, 22vw, 330px); right: -7%; bottom: -10%; filter: blur(3px) drop-shadow(0 22px 26px rgba(0,0,0,.55)); }
+.hero-seal { display: block; height: auto; width: 78%; margin: 6% auto 0; filter: drop-shadow(0 34px 34px rgba(0,0,0,.6)) drop-shadow(0 6px 8px rgba(0,0,0,.4)); }
+@media (max-width: 700px) {
+  .hd-arr { left: -14%; top: -4%; width: 42vw; }
+  .hd-leaf { right: -6%; width: 30vw; }
+  .hd-peony { right: -16%; top: 22%; width: 34vw; }
+  .hd-rose { right: -20%; bottom: -6%; width: 44vw; }
+  .hd-gyp { left: -8%; width: 30vw; }
+  .env-deco.d1 { width: 50%; left: -16%; top: -30%; }
+  .env-deco.d2 { right: -10%; }
+}
+/* gold baroque corners framing the contact section */
+.contact { position: relative; }
+.corner { position: absolute; width: clamp(90px, 13vw, 170px); height: auto !important; pointer-events: none; opacity: .92; filter: drop-shadow(0 8px 10px rgba(0,0,0,.45)); }
+.corner.c-tl { left: max(10px, 2vw); top: 18px; }
+.corner.c-br { right: max(10px, 2vw); bottom: 18px; }
+.music-btn { position: fixed; z-index: 58; left: max(16px, env(safe-area-inset-left, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--hair); background: rgba(30,9,22,.7); color: var(--gold-light); cursor: pointer; display: grid; place-items: center; backdrop-filter: blur(6px); }
+.music-btn[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  #intro, .env-letter, .env-flap, .env-seal img, .env-deco { transition: opacity .4s !important; }
+  .env-seal::after { animation: none; }
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -280,6 +372,29 @@ h2 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.08; }
 
 <div class="velvet" aria-hidden="true"></div>
 
+<div id="intro" role="dialog" aria-label="Invitación de Ilusión Invites" hidden>
+  <div class="iv-velvet"></div><div class="iv-tint"></div><div class="iv-vig"></div>
+  <div class="iv-stage">
+    <p class="iv-eyebrow" data-en="YOU'RE INVITED">TIENES UNA INVITACIÓN</p>
+    <p class="iv-title" data-en="to discover Ilusión Invites">a conocer Ilusión Invites</p>
+    <div class="env" id="env">
+      <img class="env-deco d3" src="img/ramita-hojas-doradas.webp" alt="" width="640" height="660">
+      <div class="env-back"></div>
+      <div class="env-liner"></div>
+      <div class="env-letter"><b>Ilusión</b><small>INVITES</small><i></i><span data-en="An invitation you'll never forget">Una invitación que nunca olvidarás</span></div>
+      <div class="env-front"></div>
+      <div class="env-flap"><div class="fl-out"></div><div class="fl-in"></div></div>
+      <button class="env-seal" id="seal" type="button" aria-label="Romper el sello y abrir"><img class="h1" src="img/sello-ilusion-vino.webp" alt="" width="520" height="526"><img class="h2" src="img/sello-ilusion-vino.webp" alt="" width="520" height="526"></button>
+      <img class="env-deco d1" src="img/arreglo-esquina-vino.webp" alt="" width="760" height="1010">
+      <img class="env-deco d2" src="img/peonia-vino.webp" alt="" width="640" height="576">
+    </div>
+    <p class="iv-hint"><i></i><span data-en="TAP THE SEAL">TOCA EL SELLO</span><i></i></p>
+  </div>
+  <button class="iv-skip" id="iv-skip" type="button" data-en="Skip">Entrar sin abrir</button>
+</div>
+<canvas id="petals" aria-hidden="true"></canvas>
+<button class="music-btn" id="music-btn" type="button" aria-label="Música" aria-pressed="true" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></button>
+
 <header class="top band">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Ilusión Invites, inicio">
@@ -304,8 +419,15 @@ h2 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.08; }
 
 <main>
   <section id="inicio" class="hero band">
+    <div class="hero-decor" aria-hidden="true">
+      <img class="hd hd-arr" src="img/arreglo-esquina-vino.webp" alt="" width="760" height="1010" data-depth="0.18">
+      <img class="hd hd-gyp" src="img/nube-gypsophila.webp" alt="" width="640" height="640" data-depth="0.1">
+      <img class="hd hd-leaf" src="img/ramita-hojas-doradas.webp" alt="" width="640" height="660" data-depth="0.12">
+      <img class="hd hd-peony" src="img/peonia-vino.webp" alt="" width="640" height="576" data-depth="0.3">
+      <img class="hd hd-rose" src="img/rosa-marfil.webp" alt="" width="640" height="584" data-depth="0.5">
+    </div>
     <div class="wrap">
-      <div class="hero-logo"><img class="logo-img" src="img/ilusion-logo.jpg" alt="Sello de cera color ciruela con laurel dorado y el nombre Ilusión Invites" width="440" height="440"></div>
+      <div class="hero-logo"><img class="hero-seal" src="img/sello-ilusion-vino.webp" alt="Sello de cera color ciruela con laurel dorado y el nombre Ilusión Invites" width="520" height="526" data-depth="-0.08"></div>
       <p class="eyebrow" data-en="Luxury digital invitations">Invitaciones digitales de lujo</p>
       <h1 data-en-html="An invitation you'll <em>never forget</em>">Una invitación que <em>nunca olvidarás</em></h1>
       <div class="ornament" aria-hidden="true"><i></i><b></b><i></i></div>
@@ -487,6 +609,8 @@ h2 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.08; }
   </section>
 
   <section id="contacto" class="contact band">
+    <img class="corner c-tl" src="img/esquina-dorada-1.webp" alt="" width="520" height="504" loading="lazy">
+    <img class="corner c-br" src="img/esquina-dorada-2.webp" alt="" width="450" height="520" loading="lazy">
     <div class="wrap">
       <img class="logo-img big-logo" src="img/ilusion-logo.jpg" alt="" width="200" height="200">
       <h2 data-en-html="Ready to create your <em>invitation</em>?">¿Lista para crear tu <em>ilusión</em>?</h2>
@@ -544,6 +668,108 @@ h2 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.08; }
   var saved = null;
   try { saved = localStorage.getItem('ilusion-lang'); } catch (e) {}
   setLang(saved === 'en' ? 'en' : 'es');
+})();
+</script>
+
+<script>
+(function () {
+  'use strict';
+  var MUSIC_SRC = '';            // e.g. 'audio/musica.mp3' — plays after the seal is tapped
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement, intro = document.getElementById('intro');
+  var seen = false; try { seen = sessionStorage.getItem('ilu-opened') === '1'; } catch (e) {}
+  if (location.hash && location.hash.length > 1) seen = true;
+
+  /* ---------- petals + gold dust ---------- */
+  var cv = document.getElementById('petals'), ctx = cv.getContext('2d');
+  var imgs = ['img/petalo-vino-1.webp', 'img/petalo-vino-3.webp'].map(function (src) { var i = new Image(); i.decoding = 'async'; i.src = src; return i; });
+  var W = 0, H = 0, dpr = 1, petals = [], dust = [], running = false, last = 0, wind = 0, ptr = { x: -999, y: -999 };
+  function resize() { dpr = Math.min(window.devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+  function petal(x, y, burst) {
+    var z = .55 + Math.random() * .9;
+    return { x: x != null ? x : Math.random() * W, y: y != null ? y : -40 - Math.random() * H * .6, z: z, s: (16 + Math.random() * 22) * z,
+      vy: (22 + Math.random() * 26) * z, vx: burst ? (Math.random() - .5) * 260 : 0, sway: 18 + Math.random() * 30, ph: Math.random() * 6.28,
+      rot: Math.random() * 6.28, vr: (Math.random() - .5) * 1.6, flip: Math.random() * 6.28, vf: .8 + Math.random() * 1.6, img: imgs[(Math.random() * imgs.length) | 0], a: .78 + Math.random() * .22 };
+  }
+  function seed() {
+    var n = W < 700 ? 9 : 16; petals = []; for (var i = 0; i < n; i++) petals.push(petal());
+    dust = []; var m = W < 700 ? 18 : 34; for (var j = 0; j < m; j++) dust.push({ x: Math.random() * W, y: Math.random() * H, r: .5 + Math.random() * 1.3, ph: Math.random() * 6.28, sp: .4 + Math.random() * 1.2, vy: -(3 + Math.random() * 7) });
+  }
+  function burst(cx, cy) { for (var i = 0; i < (W < 700 ? 10 : 18); i++) { var p = petal(cx + (Math.random() - .5) * 120, cy + (Math.random() - .5) * 40, true); p.vy = -60 - Math.random() * 120; p.burst = true; petals.push(p); } }
+  function frame(t) {
+    if (!running) return;
+    var dt = Math.min(.05, (t - (last || t)) / 1000); last = t;
+    ctx.clearRect(0, 0, W, H);
+    wind *= .96;
+    var heroEl = document.getElementById('inicio'), heroBottom = heroEl ? heroEl.getBoundingClientRect().bottom : H;
+    for (var j = 0; j < dust.length; j++) {
+      var d = dust[j]; d.ph += dt * d.sp; d.y += d.vy * dt; if (d.y < -10) { d.y = H + 10; d.x = Math.random() * W; }
+      if (d.y > heroBottom && intro.hidden) continue;
+      ctx.globalAlpha = .25 + .55 * Math.abs(Math.sin(d.ph)); ctx.fillStyle = '#F2CF8E'; ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 6.283); ctx.fill();
+    }
+    for (var i = petals.length - 1; i >= 0; i--) {
+      var p = petals[i];
+      if (p.burst) { p.vy += 140 * dt; p.vx *= .985; if (p.vy > 30 * p.z) { p.vy = (22 + Math.random() * 26) * p.z; p.burst = false; } }
+      p.ph += dt * 1.1; p.rot += p.vr * dt; p.flip += p.vf * dt;
+      var dx = p.x - ptr.x, dy = p.y - ptr.y, dd = dx * dx + dy * dy;
+      if (dd < 14400) { var f = (1 - dd / 14400) * 90; p.x += (dx > 0 ? f : -f) * dt; }
+      p.x += (p.vx + Math.sin(p.ph) * p.sway + wind * p.z) * dt; p.y += p.vy * dt;
+      if (p.y > H + 60 || p.x < -80 || p.x > W + 80) { if (petals.length > (W < 700 ? 9 : 16)) { petals.splice(i, 1); continue; } var q = petal(); q.y = -40; petals[i] = q; continue; }
+      if (!p.img.complete || !p.img.naturalWidth) continue;
+      var w = p.s, h = p.s * p.img.naturalHeight / p.img.naturalWidth;
+      ctx.save(); ctx.globalAlpha = p.a; ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.scale(1, .35 + .65 * Math.abs(Math.cos(p.flip)));
+      ctx.drawImage(p.img, -w / 2, -h / 2, w, h); ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+  function start() { if (reduce || running) return; running = true; last = 0; requestAnimationFrame(frame); }
+  function stop() { running = false; }
+  resize(); seed();
+  addEventListener('resize', function () { resize(); });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+  addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') { if (ptr.x > -900) wind += (e.clientX - ptr.x) * .4; ptr.x = e.clientX; ptr.y = e.clientY; } }, { passive: true });
+
+  /* ---------- music (optional) ---------- */
+  var audio = null, mbtn = document.getElementById('music-btn');
+  function startMusic() {
+    if (!MUSIC_SRC) return;
+    audio = new Audio(MUSIC_SRC); audio.loop = true; audio.volume = .55;
+    audio.play().then(function () { mbtn.hidden = false; }, function () {});
+  }
+  mbtn.addEventListener('click', function () { if (!audio) return; if (audio.paused) { audio.play(); mbtn.setAttribute('aria-pressed', 'true'); } else { audio.pause(); mbtn.setAttribute('aria-pressed', 'false'); } });
+
+  /* ---------- envelope ---------- */
+  function finish() {
+    intro.hidden = true; root.classList.remove('locked');
+    try { sessionStorage.setItem('ilu-opened', '1'); } catch (e) {}
+  }
+  if (!seen) {
+    intro.hidden = false; root.classList.add('locked'); start();
+    var opened = false;
+    function open() {
+      if (opened) return; opened = true; startMusic();
+      if (reduce) { intro.style.opacity = 0; setTimeout(finish, 400); return; }
+      var r = document.getElementById('seal').getBoundingClientRect();
+      intro.classList.add('s1'); burst(r.left + r.width / 2, r.top + r.height / 2);
+      [[450, 's2'], [1250, 's3'], [2500, 's4'], [3500, 's5']].forEach(function (s) { setTimeout(function () { intro.classList.add(s[1]); }, s[0]); });
+      setTimeout(finish, 4500);
+    }
+    document.getElementById('seal').addEventListener('click', open);
+    document.getElementById('env').addEventListener('click', open);
+    document.getElementById('iv-skip').addEventListener('click', function () { opened = true; finish(); });
+  } else { start(); }
+
+  /* ---------- layered depth (scroll + pointer) ---------- */
+  var layers = Array.prototype.slice.call(document.querySelectorAll('[data-depth]')), tick = false, mx = 0, my = 0;
+  function apply() {
+    tick = false; var sy = scrollY;
+    if (sy > innerHeight * 1.5) return;
+    layers.forEach(function (el) { var d = +el.getAttribute('data-depth'); el.style.translate = (mx * d * 40).toFixed(1) + 'px ' + (sy * d * -0.6 + my * d * 30).toFixed(1) + 'px'; });
+  }
+  function req() { if (!tick && !reduce) { tick = true; requestAnimationFrame(apply); } }
+  addEventListener('scroll', req, { passive: true });
+  addEventListener('pointermove', function (e) { if (e.pointerType !== 'mouse') return; mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; req(); }, { passive: true });
 })();
 </script>
 
