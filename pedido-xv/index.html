@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Llena los datos de los XV años y armamos su invitación digital.">
+<meta property="og:title" content="Pedido XV Años · Ilusión Invites">
+<meta property="og:description" content="Llena los datos de los XV años y armamos su invitación digital.">
+<meta property="og:image" content="https://biancalemay85-ops.github.io/ilusioninvites/pedido-xv/img/ilusion-logo.jpg">
+<meta property="og:url" content="https://biancalemay85-ops.github.io/ilusioninvites/pedido-xv/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1E0916">
+<link rel="icon" href="img/ilusion-logo.jpg">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Pedido XV Años Ilusión</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: ivory paper sheets (numbered in the order the questions are asked) floating on the brand's plum velvet, with the wax-seal logo on top and a review card that turns the answers into a WhatsApp message. Single theme on purpose, to match the Ilusión brand. */
+:root {
+  color-scheme: light;
+  --ivory: #F8F3EE;
+  --paper: #FFFDF9;
+  --linen: #F3EBE0;
+  --ink: #2B2135;
+  --muted: #5C5266;
+  --line: #E3D6C4;
+  --plum: #4B1535;
+  --velvet: #1E0916;
+  --ivory-text: #F6EDE4;
+  --gold-light: #F2CF8E;
+  --gold: #D4AF6A;
+  --gold-text: #7A5A24;
+  --blush: #F6E7EA;
+  --error: #A3283F;
+  --wa: #1F7A4D;
+  --f-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --f-script: 'Great Vibes', 'Snell Roundhand', cursive;
+  --f-caps: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --f-body: 'Jost', 'Avenir Next', 'Helvetica Neue', sans-serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--velvet) url("img/terciopelo.jpg") center / cover fixed; color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.55; }
+.page { max-width: 760px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 22px; }
+
+/* Header */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ivory-text); }
+.brand img { width: 54px; height: 54px; border-radius: 50%; -webkit-mask: radial-gradient(circle closest-side, #000 84%, transparent 99%); mask: radial-gradient(circle closest-side, #000 84%, transparent 99%); }
+.brand b { font-family: var(--f-script); font-weight: 400; font-size: 30px; line-height: 1; display: block; }
+.brand small { font-family: var(--f-caps); font-size: 9px; letter-spacing: .5em; color: var(--gold-light); display: block; }
+.brand b { color: var(--gold-light); }
+.lang { display: flex; border: 1px solid rgba(242,207,142,.45); border-radius: 999px; overflow: hidden; background: rgba(30,9,22,.5); }
+.lang button { border: 0; background: transparent; font: 500 13px var(--f-body); letter-spacing: .08em; padding: 7px 13px; color: #E3D3D9; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: #D0965F; color: #2A0A1C; }
+
+.intro { text-align: center; padding-block: 10px 4px; }
+.intro h1 { color: var(--ivory-text); margin: 0; font-family: var(--f-display); font-weight: 500; font-size: clamp(34px, 7vw, 48px); line-height: 1.1; text-wrap: balance; }
+.intro h1 em { font-family: var(--f-script); font-style: normal; font-weight: 400; color: var(--gold-light); font-size: 1.2em; }
+.intro p { margin: 12px auto 0; max-width: 56ch; color: #E3D3D9; }
+.intro .meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: 13px; color: var(--gold-light); letter-spacing: .04em; }
+.intro .meta .req { color: var(--gold-light); }
+
+/* Sheets */
+.sheet { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 26px clamp(18px, 4vw, 34px) 30px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 1px 0 rgba(122,90,36,.06), 0 14px 30px -24px rgba(43,33,53,.35); }
+.sheet-head { display: flex; align-items: baseline; gap: 14px; border-bottom: 1px solid var(--line); padding-bottom: 14px; }
+.sheet-head .num { font-family: var(--f-caps); color: var(--gold-text); font-size: 15px; letter-spacing: .1em; min-width: 2ch; }
+.sheet-head h2 { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 26px; line-height: 1.15; }
+.sheet-head p { margin: 2px 0 0; font-size: 14px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 18px; }
+.grid > .wide { grid-column: 1 / -1; }
+
+.field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.field > label, .field > .legend { font-size: 14px; font-weight: 500; letter-spacing: .01em; }
+.req { color: var(--gold-text); margin-left: 3px; }
+.hint { font-size: 13px; color: var(--muted); margin: -2px 0 0; }
+input[type=text], input[type=tel], input[type=email], input[type=date], input[type=time], input[type=number], input[type=url], textarea {
+  width: 100%; min-width: 0; font: 400 16px var(--f-body); color: var(--ink); background: #FFFFFF; border: 1px solid var(--line); border-radius: 3px; padding: 11px 12px; transition: border-color .15s, box-shadow .15s;
+}
+textarea { min-height: 92px; resize: vertical; line-height: 1.5; }
+input::placeholder, textarea::placeholder { color: #A89DB0; }
+input:focus, textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,106,.25); }
+.field.bad input, .field.bad textarea, .field.bad .chips { border-color: var(--error); }
+.err { font-size: 13px; color: var(--error); }
+
+.prefix { display: flex; align-items: stretch; border: 1px solid var(--line); border-radius: 3px; background: #fff; overflow: hidden; }
+.prefix span { padding: 11px 0 11px 12px; color: var(--muted); font-size: 15px; white-space: nowrap; }
+.prefix input { border: 0; padding-left: 2px; }
+.prefix:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,106,.25); }
+
+/* Chips */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; border: 1px solid transparent; border-radius: 4px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chip span { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 14.5px; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+.chip input:checked + span { background: var(--plum); border-color: var(--plum); color: #F8F3EE; }
+.chip input:focus-visible + span { outline: 2px solid var(--gold-text); outline-offset: 2px; }
+
+/* Event cards */
+.events { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px; border: 1px solid transparent; border-radius: 4px; }
+.ev { position: relative; }
+.ev input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.ev .card { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px 12px; border: 1px solid var(--line); border-radius: 4px; background: #fff; text-align: center; cursor: pointer; transition: border-color .15s, background .15s; }
+.ev svg { width: 54px; height: 54px; filter: drop-shadow(1px 3px 3px rgba(80,40,30,.3)); }
+.ev .name { font-family: var(--f-display); font-weight: 600; font-size: 18px; line-height: 1.1; }
+.ev input:checked + .card { border-color: var(--gold); background: var(--blush); box-shadow: inset 0 0 0 1px var(--gold); }
+.ev input:focus-visible + .card { outline: 2px solid var(--gold-text); outline-offset: 2px; }
+
+.includes { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px auto 0; max-width: 640px; padding: 0; list-style: none; }
+.includes li { font-size: 13px; color: var(--ivory-text); border: 1px solid rgba(242,207,142,.35); border-radius: 999px; padding: 5px 12px; background: rgba(30,9,22,.35); }
+.pick-first { font-style: italic; font-family: var(--f-display); font-size: 19px; color: var(--muted); margin: 0; }
+
+/* Submit + review */
+.actions { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding-top: 4px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 999px; padding: 14px 28px; font: 500 15px var(--f-body); letter-spacing: .06em; cursor: pointer; text-decoration: none; }
+.btn-plum { background: linear-gradient(180deg, #F2CF8E, #D0965F 60%, #9E6D46); color: #2A0A1C; box-shadow: inset 0 1px 0 rgba(255,245,215,.6), 0 10px 22px rgba(0,0,0,.35); }
+.btn-plum:hover { filter: brightness(1.05); }
+.btn-wa { background: var(--wa); color: #fff; }
+.btn-wa:hover { background: #18663f; }
+.btn-line { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn:focus-visible { outline: 2px solid var(--gold-text); outline-offset: 3px; }
+.small { font-size: 13px; color: #E3D3D9; margin: 0; }
+.missing { color: #FFB3C0; font-size: 14px; margin: 0; }
+
+.review { border: 1px solid rgba(242,207,142,.35); background: rgba(30,9,22,.82); color: #F8F3EE; border-radius: 4px; padding: 28px clamp(18px, 4vw, 34px); display: flex; flex-direction: column; gap: 16px; }
+.review h2 { margin: 0; font-family: var(--f-display); font-weight: 500; font-size: 30px; }
+.review h2 em { font-family: var(--f-script); font-style: normal; color: #E9CF95; font-size: 1.15em; }
+.review p { margin: 0; color: #CFC4D9; }
+.msg { background: #FFFDF9; color: var(--ink); border-radius: 3px; padding: 16px 18px; font: 400 14.5px/1.55 var(--f-body); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 420px; overflow-y: auto; }
+.review .row { display: flex; flex-wrap: wrap; gap: 10px; }
+.review .btn-line { color: #F8F3EE; border-color: rgba(248,243,238,.35); }
+.copied { font-size: 14px; color: #E9CF95; min-height: 1.2em; }
+.steps { margin: 0; padding-left: 20px; color: #CFC4D9; font-size: 14.5px; display: flex; flex-direction: column; gap: 4px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="blob" d="M231.7 120.0 L232.0 124.9 L230.9 129.7 L228.5 134.3 L225.1 138.5 L221.2 142.4 L217.3 146.1 L214.0 149.6 L211.6 153.3 L210.3 157.4 L209.9 161.9 L210.1 166.9 L210.3 172.1 L210.1 177.4 L209.1 182.4 L207.0 186.7 L203.8 190.3 L199.6 193.0 L194.9 194.9 L189.9 196.3 L185.0 197.5 L180.4 198.8 L176.2 200.3 L172.4 202.3 L169.0 204.8 L165.7 207.8 L162.5 211.1 L159.2 214.7 L155.8 218.4 L152.1 221.9 L148.2 225.2 L143.9 227.9 L139.4 229.8 L134.6 230.7 L129.7 230.4 L124.8 229.0 L120.0 226.6 L115.5 223.5 L111.2 220.3 L107.2 217.4 L103.2 215.3 L99.1 214.2 L94.8 214.2 L90.0 215.0 L85.0 216.2 L79.7 217.3 L74.4 217.7 L69.5 217.0 L65.1 215.1 L61.5 211.8 L58.6 207.7 L56.4 202.9 L54.5 198.1 L52.6 193.6 L50.4 189.6 L47.8 186.2 L44.5 183.3 L40.7 180.8 L36.5 178.4 L32.2 175.9 L27.9 173.1 L24.0 170.0 L20.6 166.4 L17.8 162.3 L15.8 157.9 L14.7 153.2 L14.4 148.3 L15.0 143.3 L16.4 138.3 L18.3 133.4 L20.4 128.7 L22.3 124.3 L23.7 120.0 L24.2 115.8 L23.7 111.6 L22.3 107.1 L20.3 102.4 L18.1 97.4 L16.4 92.2 L15.6 87.1 L16.1 82.2 L18.1 77.8 L21.4 74.0 L25.6 70.8 L30.2 68.1 L34.7 65.7 L38.7 63.1 L42.0 60.1 L44.4 56.6 L46.3 52.5 L47.8 47.8 L49.4 43.0 L51.3 38.2 L53.8 33.7 L56.9 29.9 L60.7 26.9 L65.0 24.7 L69.7 23.3 L74.6 22.6 L79.6 22.5 L84.7 22.9 L89.6 23.6 L94.4 24.3 L98.9 24.8 L103.2 25.0 L107.4 24.5 L111.5 23.2 L115.7 21.2 L120.0 18.6 L124.6 15.7 L129.4 13.1 L134.3 11.2 L139.3 10.4 L144.1 11.1 L148.6 13.2 L152.6 16.6 L156.1 20.8 L159.3 25.2 L162.3 29.2 L165.5 32.5 L169.1 34.9 L173.2 36.4 L177.9 37.3 L183.0 37.9 L188.2 38.8 L193.1 40.2 L197.5 42.5 L201.1 45.7 L203.9 49.6 L205.7 54.2 L206.9 59.1 L207.6 64.2 L208.1 69.1 L208.5 73.9 L209.1 78.5 L210.0 82.7 L211.3 86.8 L213.0 90.7 L215.3 94.5 L218.1 98.3 L221.2 102.2 L224.5 106.2 L227.6 110.6 L230.1 115.2Z"></path>
+
+    <!-- Wax seals: the shape is drawn in greys as a height map (white = raised rim, grey = pressed face, dark grey = engraved letters), then lit like real metal-flecked wax. -->
+    <filter id="waxGold" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h0"></feColorMatrix>
+      <feGaussianBlur in="h0" stdDeviation="1.4" result="b1"></feGaussianBlur>
+      <feGaussianBlur in="h0" stdDeviation="5" result="b2"></feGaussianBlur>
+      <feComposite in="b1" in2="b2" operator="arithmetic" k2="0.62" k3="0.38" result="hb"></feComposite>
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7" result="noise"></feTurbulence>
+      <feComposite in="hb" in2="noise" operator="arithmetic" k2="1" k3="0.03" result="h"></feComposite>
+      <feDiffuseLighting in="h" surfaceScale="9" diffuseConstant="1.25" lighting-color="#DDB466" result="diff"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feDiffuseLighting>
+      <feSpecularLighting in="h" surfaceScale="9" specularConstant="1.1" specularExponent="30" lighting-color="#FFF3D2" result="spec"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feSpecularLighting>
+      <feComposite in="diff" in2="spec" operator="arithmetic" k2="1" k3="0.85" result="lit"></feComposite>
+      <feFlood flood-color="#8A6428" result="amb"></feFlood><feComposite in="lit" in2="amb" operator="arithmetic" k2="1" k3="0.38" result="lit2"></feComposite><feComposite in="lit2" in2="h0" operator="in"></feComposite>
+    </filter>
+    <filter id="waxSage" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h0"></feColorMatrix>
+      <feGaussianBlur in="h0" stdDeviation="1.4" result="b1"></feGaussianBlur>
+      <feGaussianBlur in="h0" stdDeviation="5" result="b2"></feGaussianBlur>
+      <feComposite in="b1" in2="b2" operator="arithmetic" k2="0.62" k3="0.38" result="h"></feComposite>
+      <feDiffuseLighting in="h" surfaceScale="9" diffuseConstant="1.2" lighting-color="#8E9B74" result="diff"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feDiffuseLighting>
+      <feSpecularLighting in="h" surfaceScale="9" specularConstant="0.7" specularExponent="26" lighting-color="#F2F4E6" result="spec"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feSpecularLighting>
+      <feComposite in="diff" in2="spec" operator="arithmetic" k2="1" k3="0.7" result="lit"></feComposite>
+      <feFlood flood-color="#4E5A3E" result="amb"></feFlood><feComposite in="lit" in2="amb" operator="arithmetic" k2="1" k3="0.38" result="lit2"></feComposite><feComposite in="lit2" in2="h0" operator="in"></feComposite>
+    </filter>
+    <filter id="waxWine" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h0"></feColorMatrix>
+      <feGaussianBlur in="h0" stdDeviation="1.4" result="b1"></feGaussianBlur>
+      <feGaussianBlur in="h0" stdDeviation="5" result="b2"></feGaussianBlur>
+      <feComposite in="b1" in2="b2" operator="arithmetic" k2="0.62" k3="0.38" result="h"></feComposite>
+      <feDiffuseLighting in="h" surfaceScale="9" diffuseConstant="1.2" lighting-color="#A3283F" result="diff"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feDiffuseLighting>
+      <feSpecularLighting in="h" surfaceScale="9" specularConstant="0.8" specularExponent="28" lighting-color="#FFE3E8" result="spec"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feSpecularLighting>
+      <feComposite in="diff" in2="spec" operator="arithmetic" k2="1" k3="0.7" result="lit"></feComposite>
+      <feFlood flood-color="#5A0F1E" result="amb"></feFlood><feComposite in="lit" in2="amb" operator="arithmetic" k2="1" k3="0.38" result="lit2"></feComposite><feComposite in="lit2" in2="h0" operator="in"></feComposite>
+    </filter>
+    <filter id="waxBlush" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h0"></feColorMatrix>
+      <feGaussianBlur in="h0" stdDeviation="1.4" result="b1"></feGaussianBlur>
+      <feGaussianBlur in="h0" stdDeviation="5" result="b2"></feGaussianBlur>
+      <feComposite in="b1" in2="b2" operator="arithmetic" k2="0.62" k3="0.38" result="h"></feComposite>
+      <feDiffuseLighting in="h" surfaceScale="9" diffuseConstant="1.2" lighting-color="#E3A9B5" result="diff"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feDiffuseLighting>
+      <feSpecularLighting in="h" surfaceScale="9" specularConstant="0.8" specularExponent="28" lighting-color="#FFFFFF" result="spec"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feSpecularLighting>
+      <feComposite in="diff" in2="spec" operator="arithmetic" k2="1" k3="0.7" result="lit"></feComposite>
+      <feFlood flood-color="#A86A78" result="amb"></feFlood><feComposite in="lit" in2="amb" operator="arithmetic" k2="1" k3="0.38" result="lit2"></feComposite><feComposite in="lit2" in2="h0" operator="in"></feComposite>
+    </filter>
+  </defs>
+</svg>
+
+<div class="page">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Ilusión Invites">
+      <img src="img/ilusion-logo.jpg" alt="">
+      <span><b>Ilusión</b><small>INVITES</small></span>
+    </a>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" id="lang-es" aria-pressed="true">ES</button>
+      <button type="button" id="lang-en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <section class="intro" id="top">
+    <h1 data-i18n="title">Los <em>XV años</em> de tu princesa</h1>
+    <p data-i18n="lead">Con estos datos armamos su invitación completa. Llena lo que sepas: lo que dejes en blanco no aparece en la invitación, y lo que aún no esté decidido lo vemos juntos por WhatsApp.</p>
+    <ul class="includes" id="includes"></ul>
+    <div class="meta"><span data-i18n="meta1">Toma unos 10 minutos</span><span data-i18n="meta2">Se guarda solo mientras escribes</span><span data-i18n="meta3"><span class="req">*</span> obligatorio</span></div>
+  </section>
+
+  <form id="order" novalidate></form>
+
+  <div class="actions" id="actions">
+    <button type="button" class="btn btn-plum" id="review-btn" data-i18n="reviewBtn">Revisar mi pedido</button>
+    <p class="missing" id="missing" hidden></p>
+    <p class="small" data-i18n="noPay">Aún no pagas nada. Primero te confirmamos precio y fecha de entrega.</p>
+  </div>
+
+  <section class="review" id="review" hidden aria-live="polite">
+    <h2 data-i18n="revTitle">¡Listo! Tu <em>pedido</em></h2>
+    <p data-i18n="revLead">Así nos llegará tu mensaje. Revisa que todo esté bien y envíalo.</p>
+    <div class="msg" id="msg" tabindex="0"></div>
+    <div class="row">
+      <a class="btn btn-wa" id="wa-btn" href="https://wa.me/" target="_blank" rel="noopener" data-i18n="waBtn">Enviar por WhatsApp</a>
+      <button type="button" class="btn btn-line" id="copy-btn" data-i18n="copyBtn">Copiar mensaje</button>
+      <button type="button" class="btn btn-line" id="edit-btn" data-i18n="editBtn">Editar respuestas</button>
+    </div>
+    <p class="copied" id="copied" role="status"></p>
+    <ol class="steps">
+      <li data-i18n="next1">Envía el mensaje por WhatsApp.</li>
+      <li data-i18n="next2">Después mándanos tus fotos en el mismo chat.</li>
+      <li data-i18n="next3">Te respondemos con el precio y tu fecha de entrega.</li>
+    </ol>
+  </section>
+</div>
+
+<script>
+(function () {
+  // Put your WhatsApp number here with country code, digits only (México: 52 + 10 digits, Canada: 1 + 10 digits).
+  // While it is empty, WhatsApp opens and lets the person choose the chat.
+  var WHATSAPP_NUMBER = '';
+
+  var lang = 'es';
+  try { if (localStorage.getItem('ilusion-lang') === 'en') lang = 'en'; } catch (e) {}
+
+  var UI = {
+    title: ['Los <em>XV años</em> de tu princesa', 'Her <em>quinceañera</em> invitation'],
+    lead: ['Con estos datos armamos su invitación completa. Llena lo que sepas: lo que dejes en blanco no aparece en la invitación, y lo que aún no esté decidido lo vemos juntos por WhatsApp.', 'With these details we build her complete invitation. Fill in what you know: anything left blank won\'t appear on the invitation, and anything still undecided we\'ll sort out together on WhatsApp.'],
+    meta1: ['Toma unos 10 minutos', 'Takes about 10 minutes'],
+    includes: [['Sobre con sello que se abre', 'Música de fondo', 'Cuenta regresiva', 'Itinerario del día', 'Ubicación con mapa', 'Código de vestimenta', 'Mesa de regalos', 'Galería de fotos', 'Confirmación por WhatsApp', 'Español e inglés'], ['Envelope with a seal that opens', 'Background music', 'Countdown', 'Schedule of the day', 'Location with map', 'Dress code', 'Gift registry', 'Photo gallery', 'RSVP by WhatsApp', 'Spanish and English']],
+    meta2: ['Se guarda solo mientras escribes', 'Saves on its own as you type'],
+    meta3: ['<span class="req">*</span> obligatorio', '<span class="req">*</span> required'],
+    reviewBtn: ['Revisar mi pedido', 'Review my order'],
+    noPay: ['Aún no pagas nada. Primero te confirmamos precio y fecha de entrega.', 'You don\'t pay anything yet. We confirm the price and delivery date first.'],
+    revTitle: ['¡Listo! Tu <em>pedido</em>', 'All set! Your <em>order</em>'],
+    revLead: ['Así nos llegará tu mensaje. Revisa que todo esté bien y envíalo.', 'This is the message we\'ll receive. Check that everything looks right, then send it.'],
+    waBtn: ['Enviar por WhatsApp', 'Send on WhatsApp'],
+    copyBtn: ['Copiar mensaje', 'Copy message'],
+    editBtn: ['Editar respuestas', 'Edit answers'],
+    next1: ['Envía el mensaje por WhatsApp.', 'Send the message on WhatsApp.'],
+    next2: ['Después mándanos las fotos, la canción y la lista de invitados en el mismo chat.', 'Then send us the photos, the song and the guest list in the same chat.'],
+    next3: ['Te respondemos con el precio y tu fecha de entrega.', 'We reply with the price and your delivery date.'],
+    copied: ['Mensaje copiado. Pégalo en WhatsApp.', 'Message copied. Paste it into WhatsApp.'],
+    copyFail: ['No se pudo copiar solo. Selecciona el texto y cópialo.', 'Couldn\'t copy automatically. Select the text and copy it.'],
+    needed: ['Falta este dato', 'This is needed'],
+    noPermiso: ['Sin autorización no podemos usar fotos. Elige "Sin fotos" arriba o autoriza su uso.', 'Without authorization we can\'t use photos. Choose "No photos" above or authorize their use.'],
+    missingN: ['Faltan {n} datos obligatorios. Están marcados en rojo.', '{n} required answers are missing. They are marked in red.'],
+    missing1: ['Falta 1 dato obligatorio. Está marcado en rojo.', '1 required answer is missing. It is marked in red.'],
+    pickFirst: ['Primero elige tu tipo de evento en el paso 1.', 'First choose your event type in step 1.'],
+    msgTitle: ['✨ PEDIDO XV AÑOS · Ilusión Invites ✨', '✨ QUINCEAÑERA ORDER · Ilusión Invites ✨'],
+    msgEnd: ['Enseguida les mando las fotos. ¡Gracias!', 'I\'ll send the photos right after this. Thank you!'],
+    msgList: ['Enseguida les mando la lista de invitados.', 'I\'ll send the guest list right after this.']
+  };
+
+  function t(o) { return o ? (Array.isArray(o) ? o[lang === 'es' ? 0 : 1] : o) : ''; }
+  function L(es, en) { return [es, en]; }
+
+  var EVENTS = [
+    { v: 'boda', l: L('Boda', 'Wedding'), f: 'waxSage', m: 'B' },
+    { v: 'xv', l: L('XV Años', 'Quinceañera'), f: 'waxWine', m: 'XV' },
+    { v: 'baby', l: L('Baby Shower', 'Baby Shower'), f: 'waxBlush', m: 'B' },
+    { v: 'cumple', l: L('Cumpleaños', 'Birthday'), f: 'waxGold', m: 'C' },
+    { v: 'otro', l: L('Otro evento', 'Other event'), f: 'waxGold', m: '✦' }
+  ];
+  function is() { var types = arguments; return function (s) { for (var i = 0; i < types.length; i++) if (s.tipo === types[i]) return true; return false; }; }
+  var YESNO = [{ v: 'si', l: L('Sí', 'Yes') }, { v: 'no', l: L('No', 'No') }];
+
+  var SECTIONS = [
+    { title: L('La invitación', 'The invitation'), sub: L('Cómo te la imaginas.', 'How you picture it.'), fields: [
+      { id: 'paquete', type: 'chips', label: L('Paquete', 'Package'), options: [
+        { v: 'esencial', l: L('Esencial', 'Essential') }, { v: 'ilusion', l: L('Ilusión', 'Ilusión') }, { v: 'gala', l: L('Gala', 'Gala') }, { v: 'nose', l: L('Aún no sé', 'Not sure yet') } ] },
+      { id: 'idioma', type: 'chips', label: L('Idioma (Español e inglés)', 'Language (Spanish and English)'), options: [
+        { v: 'es', l: L('Español', 'Spanish') }, { v: 'en', l: L('Inglés', 'English') }, { v: 'ambos', l: L('Los dos, con botón', 'Both, with a button') } ] },
+      { id: 'diseno', type: 'chips', wide: true, label: L('Estilo de diseño', 'Design style'), hint: L('Puedes ver ejemplos en nuestra página e Instagram.', 'You can see examples on our website and Instagram.'), options: [
+        { v: 'princesa', l: L('Princesa · tiara y brillos', 'Princess · tiara and sparkle') }, { v: 'vino', l: L('Vino · terciopelo y oro', 'Wine · velvet and gold') }, { v: 'rosa', l: L('Rosa · flores y perlas', 'Blush · flowers and pearls') }, { v: 'jardin', l: L('Jardín · flores blancas', 'Garden · white flowers') }, { v: 'tematica', l: L('Temática', 'Themed') }, { v: 'ayuda', l: L('Ayúdenme a elegir', 'Help me choose') } ] },
+      { id: 'colores', type: 'text', label: L('Colores de la fiesta', 'Party colors'), ph: L('Rosa palo y dorado', 'Blush pink and gold') },
+      { id: 'vestido', type: 'text', label: L('Color del vestido de la quinceañera', 'Color of her dress'), hint: L('Nos ayuda a combinar el diseño.', 'Helps us match the design.'), ph: L('Rosa palo con pedrería', 'Blush with beading') },
+      { id: 'cancion', type: 'text', wide: true, label: L('Música de fondo: canción y artista', 'Background music: song and artist'), hint: L('Suena al abrir el sobre. Puede ser la del vals. Si no tienen una, elegimos una elegante.', 'It plays when the envelope opens. It can be her waltz song. If you don\'t have one, we\'ll pick an elegant one.'), ph: L('Tiempo de vals · Chayanne', 'Tiempo de vals · Chayanne') }
+    ]},
+    { title: L('La quinceañera', 'The quinceañera'), sub: L('Su nombre, su sello y su frase.', 'Her name, her seal and her quote.'), fields: [
+      { id: 'festejada', type: 'text', req: true, label: L('Nombre completo como debe aparecer', 'Full name as it should appear'), ph: L('Valentina Ruiz García', 'Valentina Ruiz García') },
+      { id: 'nombre_corto', type: 'text', label: L('Nombre grande en el diseño', 'Name shown big in the design'), hint: L('Normalmente su primer nombre.', 'Usually her first name.'), ph: L('Valentina', 'Valentina') },
+      { id: 'sello', type: 'text', label: L('Letras del sello de cera', 'Letters on the wax seal'), hint: L('Va en el sobre que se abre.', 'It goes on the envelope that opens.'), ph: L('V · XV', 'V · XV') },
+      { id: 'sello_color', type: 'chips', label: L('Color del sello', 'Seal color'), options: [
+        { v: 'dorado', l: L('Dorado', 'Gold') }, { v: 'rosa', l: L('Rosa', 'Pink') }, { v: 'vino', l: L('Vino', 'Wine') }, { v: 'marfil', l: L('Marfil', 'Ivory') }, { v: 'plata', l: L('Plata', 'Silver') }, { v: 'ayuda', l: L('El que combine', 'Whatever matches') } ] },
+      { id: 'frase', type: 'textarea', wide: true, label: L('Frase o mensaje especial', 'Special quote or message'), hint: L('Si prefieren, nosotros la escribimos.', 'If you prefer, we\'ll write one.'), ph: L('"Hoy cumplo un sueño: dejar de ser niña para convertirme en mujer…"', '"Today a dream comes true…"') }
+    ]},
+    { title: L('Familia y corte de honor', 'Family and court of honor'), sub: L('Escríbelos tal como quieren aparecer.', 'Write them exactly as they should appear.'), fields: [
+      { id: 'padres', type: 'textarea', wide: true, label: L('Papás', 'Parents'), ph: L('Sr. Carlos Ruiz Pérez y Sra. Mariana García López', 'Mr. Carlos Ruiz Pérez & Mrs. Mariana García López') },
+      { id: 'padrinos', type: 'textarea', wide: true, label: L('Padrinos (opcional)', 'Godparents (optional)'), hint: L('Uno por renglón, con el tipo de padrino.', 'One per line, with the type of godparent.'), ph: L('Padrinos de honor: …\nPadrinos de velación: …\nPadrinos de anillo: …\nPadrinos de medalla o Biblia: …\nPadrinos de última muñeca: …\nPadrinos de brindis: …', 'Godparents of honor: …\nRing: …\nMedal or Bible: …\nLast doll: …\nToast: …') },
+      { id: 'chambelanes', type: 'textarea', wide: true, label: L('Chambelán de honor y chambelanes (opcional)', 'Escort of honor and chambelanes (optional)'), ph: L('Chambelán de honor: Diego Martínez\nChambelanes: …', 'Escort of honor: Diego Martínez\nChambelanes: …') },
+      { id: 'memoria', type: 'text', wide: true, label: L('Agradecimiento o en memoria de (opcional)', 'Thanks or in memory of (optional)'), ph: L('En memoria de mi abuelita Rosa', 'In loving memory of my grandma Rosa') }
+    ]},
+    { title: L('Fecha y lugares', 'Date and places'), sub: L('Para la cuenta regresiva y los botones de mapa.', 'For the countdown and the map buttons.'), fields: [
+      { id: 'fecha', type: 'date', req: true, label: L('Fecha de los XV', 'Date of the quinceañera'), hint: L('La cuenta regresiva cuenta hasta este día.', 'The countdown counts down to this day.') },
+      { id: 'misa', type: 'chips', label: L('¿Hay misa de acción de gracias?', 'Is there a thanksgiving mass?'), options: YESNO },
+      { id: 'misa_lugar', type: 'text', show: function (s) { return s.misa === 'si'; }, label: L('Iglesia o parroquia', 'Church'), ph: L('Parroquia de San José', 'St. Joseph\'s Parish') },
+      { id: 'misa_hora', type: 'time', show: function (s) { return s.misa === 'si'; }, label: L('Hora de la misa', 'Mass time') },
+      { id: 'misa_dir', type: 'text', wide: true, show: function (s) { return s.misa === 'si'; }, label: L('Ubicación de la misa: link de Google Maps o dirección', 'Mass location: Google Maps link or address'), hint: L('Con el link de Maps, el botón lleva directo al lugar.', 'With the Maps link, the button goes straight to the place.'), ph: L('https://maps.app.goo.gl/… · o calle, número, colonia, ciudad', 'https://maps.app.goo.gl/… · or street, number, city') },
+      { id: 'fiesta_lugar', type: 'text', req: true, label: L('Salón o lugar de la fiesta', 'Party venue'), ph: L('Salón Versalles', 'Versailles Hall') },
+      { id: 'fiesta_hora', type: 'time', req: true, label: L('Hora de la fiesta', 'Party time') },
+      { id: 'fiesta_dir', type: 'text', req: true, wide: true, label: L('Ubicación de la fiesta: link de Google Maps o dirección', 'Party location: Google Maps link or address'), ph: L('https://maps.app.goo.gl/… · o calle, número, colonia, ciudad', 'https://maps.app.goo.gl/… · or street, number, city') },
+      { id: 'hospedaje', type: 'textarea', wide: true, label: L('Hospedaje para invitados de fuera (opcional)', 'Hotels for out-of-town guests (optional)'), ph: L('Hotel Fiesta Inn · código XVVALENTINA', 'Fiesta Inn · code XVVALENTINA') }
+    ]},
+    { title: L('Itinerario y vestimenta', 'Schedule and dress code'), sub: L('Lo que pasará ese día y cómo vestir.', 'What happens that day and what to wear.'), fields: [
+      { id: 'itinerario', type: 'textarea', wide: true, label: L('Itinerario del día', 'Schedule of the day'), hint: L('Una actividad por renglón, con su hora.', 'One activity per line, with its time.'), ph: L('6:00 pm Misa\n8:00 pm Recepción\n9:00 pm Entrada de la quinceañera\n9:30 pm Vals\n10:00 pm Cena\n11:00 pm Baile sorpresa\n12:00 am ¡Fiesta!', '6:00 pm Mass\n8:00 pm Reception\n9:00 pm Her grand entrance\n9:30 pm Waltz\n10:00 pm Dinner\n11:00 pm Surprise dance\n12:00 am Party!') },
+      { id: 'vestimenta', type: 'chips', wide: true, label: L('Código de vestimenta', 'Dress code'), options: [
+        { v: 'etiqueta', l: L('Etiqueta', 'Black tie') }, { v: 'formal', l: L('Formal', 'Formal') }, { v: 'coctel', l: L('Cóctel', 'Cocktail') }, { v: 'casual', l: L('Casual elegante', 'Smart casual') }, { v: 'tematica', l: L('Temática', 'Themed') }, { v: 'sin', l: L('Sin código', 'No dress code') } ] },
+      { id: 'tema_vestimenta', type: 'text', show: function (s) { return s.vestimenta === 'tematica'; }, label: L('¿Cuál es la temática?', 'What is the theme?'), ph: L('Noche en París', 'A night in Paris') },
+      { id: 'color_reservado', type: 'text', label: L('Color reservado para la quinceañera', 'Color reserved for her'), hint: L('Pediremos a los invitados que no lo usen.', 'We\'ll ask guests not to wear it.'), ph: L('Rosa palo', 'Blush pink') },
+      { id: 'ninos', type: 'chips', label: L('¿Niños bienvenidos?', 'Are children welcome?'), options: [
+        { v: 'si', l: L('Sí', 'Yes') }, { v: 'no', l: L('Solo adultos', 'Adults only') }, { v: 'familia', l: L('Solo los de la familia', 'Family only') } ] }
+    ]},
+    { title: L('Regalos y fotos', 'Gifts and photos'), sub: L('Mesa de regalos y galería de fotos.', 'Gift registry and photo gallery.'), fields: [
+      { id: 'regalos', type: 'textarea', wide: true, label: L('Mesa de regalos', 'Gift registry'), hint: L('Por seguridad, no escribas números de cuenta aquí. Esos los vemos por WhatsApp.', 'For safety, don\'t write bank account numbers here. We handle those on WhatsApp.'), ph: L('Liverpool · evento 51234567\nAmazon: link de la lista', 'Amazon registry link') },
+      { id: 'sobres', type: 'chips', label: L('¿Lluvia de sobres?', 'Cash envelopes?'), options: YESNO },
+      { id: 'fotos', type: 'chips', wide: true, label: L('Galería de fotos', 'Photo gallery'), hint: L('Lo ideal son de 4 a 10 fotos en buena calidad: sesión de XV, vestido o recuerdos de niña.', '4 to 10 good-quality photos work best: her photo shoot, the dress, or childhood memories.'), options: [
+        { v: 'whatsapp', l: L('Las mando por WhatsApp', 'I\'ll send them on WhatsApp') }, { v: 'drive', l: L('Link de Google Drive o iCloud', 'Google Drive or iCloud link') }, { v: 'fotografo', l: L('Las tiene el fotógrafo', 'The photographer has them') }, { v: 'despues', l: L('Aún no las tengo', 'I don\'t have them yet') }, { v: 'sin', l: L('Sin fotos', 'No photos') } ] },
+      { id: 'fotos_link', type: 'text', wide: true, show: function (s) { return s.fotos === 'drive'; }, label: L('Link de las fotos', 'Photos link'), ph: L('https://drive.google.com/…', 'https://drive.google.com/…') },
+      { id: 'fotografo', type: 'text', show: function (s) { return s.fotos && s.fotos !== 'sin'; }, label: L('Crédito del fotógrafo (opcional)', 'Photographer credit (optional)'), ph: L('@estudioluz', '@studioluz') },
+      { id: 'permiso', type: 'chips', req: true, wide: true, show: function (s) { return s.fotos && s.fotos !== 'sin'; }, label: L('Soy mamá, papá o tutor(a) y autorizo usar estas fotos en su invitación', 'I am her parent or guardian and I authorize using these photos in her invitation'), hint: L('La quinceañera es menor de edad, por eso lo pedimos.', 'She is a minor, which is why we ask.'), options: [
+        { v: 'si', l: L('Sí, autorizo', 'Yes, I authorize') }, { v: 'no', l: L('No', 'No') } ] },
+      { id: 'portafolio', type: 'chips', wide: true, label: L('¿Podemos mostrar su invitación como ejemplo en nuestras redes?', 'May we show her invitation as an example on our social media?'), options: [
+        { v: 'no', l: L('No', 'No') }, { v: 'sin_fotos', l: L('Sí, pero sin fotos ni nombre', 'Yes, but without photos or name') }, { v: 'si', l: L('Sí, completa', 'Yes, all of it') } ] }
+    ]},
+    { title: L('Invitados y confirmación', 'Guests and RSVP'), sub: L('Confirmación por WhatsApp y el nombre en cada sobre.', 'RSVP by WhatsApp and the name on each envelope.'), fields: [
+      { id: 'rsvp_num', type: 'tel', req: true, label: L('WhatsApp donde recibirán las confirmaciones', 'WhatsApp number that receives RSVPs'), ph: L('+52 33 1234 5678', '+1 416 123 4567') },
+      { id: 'rsvp_nombre', type: 'text', label: L('¿A nombre de quién?', 'Whose number is it?'), ph: L('Mariana (mamá)', 'Mariana (mom)') },
+      { id: 'rsvp_fecha', type: 'date', label: L('Confirmar antes del', 'RSVP by') },
+      { id: 'pases', type: 'chips', wide: true, label: L('¿Cada invitación lleva su nombre y número de pases?', 'Does each invitation show the guest\'s name and number of seats?'), hint: L('Ej. en el sobre: "Para: Familia Pérez" y adentro "Válido para 4 personas".', 'E.g. on the envelope: "For: The Pérez family", inside: "Valid for 4 people".'), options: [
+        { v: 'si', l: L('Sí, una por familia', 'Yes, one per family') }, { v: 'no', l: L('No, una sola para todos', 'No, one for everyone') } ] },
+      { id: 'lista', type: 'chips', wide: true, show: function (s) { return s.pases === 'si'; }, label: L('¿Cómo nos mandas la lista de invitados?', 'How will you send the guest list?'), options: [
+        { v: 'whatsapp', l: L('Por WhatsApp', 'On WhatsApp') }, { v: 'excel', l: L('Excel o Google Sheets', 'Excel or Google Sheets') }, { v: 'aqui', l: L('La escribo aquí', 'I\'ll type it here') } ] },
+      { id: 'lista_texto', type: 'textarea', wide: true, show: function (s) { return s.pases === 'si' && s.lista === 'aqui'; }, label: L('Lista de invitados', 'Guest list'), hint: L('Un renglón por invitación: nombre como va en el sobre — número de pases.', 'One line per invitation: name as it goes on the envelope — number of seats.'), ph: L('Familia Pérez — 4\nTía Lupita — 2\nAna y Jorge — 2', 'The Pérez family — 4\nAunt Lupita — 2') },
+      { id: 'num_invitados', type: 'number', label: L('¿Cuántos invitados en total, más o menos?', 'About how many guests in total?'), ph: L('200', '200') },
+      { id: 'hashtag', type: 'text', label: L('Hashtag (opcional)', 'Hashtag (optional)'), ph: L('#MisXVValentina', '#ValentinaXV') }
+    ]},
+    { title: L('Tu link y tus datos', 'Your link and your details'), sub: L('Para enviarte la invitación lista.', 'So we can send you the finished invitation.'), fields: [
+      { id: 'link', type: 'link', wide: true, label: L('¿Cómo quieres el link?', 'How do you want the link?'), hint: L('Solo letras, números y guiones. Lo confirmamos contigo.', 'Letters, numbers and dashes only. We\'ll confirm it with you.') },
+      { id: 'cliente', type: 'text', req: true, label: L('Tu nombre', 'Your name'), ph: L('Mariana García', 'Mariana García') },
+      { id: 'relacion', type: 'chips', label: L('Eres…', 'You are…'), options: [
+        { v: 'mama', l: L('Mamá', 'Mom') }, { v: 'papa', l: L('Papá', 'Dad') }, { v: 'ella', l: L('La quinceañera', 'The quinceañera') }, { v: 'familia', l: L('Otro familiar', 'Another relative') }, { v: 'organizador', l: L('Organizador(a)', 'Planner') } ] },
+      { id: 'cliente_wa', type: 'tel', req: true, label: L('Tu WhatsApp', 'Your WhatsApp'), ph: L('+52 33 1234 5678', '+1 416 123 4567') },
+      { id: 'correo', type: 'email', label: L('Correo (opcional)', 'Email (optional)'), ph: L('tu@correo.com', 'you@email.com') },
+      { id: 'pais', type: 'chips', label: L('País', 'Country'), options: [
+        { v: 'mx', l: L('México', 'Mexico') }, { v: 'ca', l: L('Canadá', 'Canada') }, { v: 'otro', l: L('Otro', 'Other') } ] },
+      { id: 'entrega', type: 'date', label: L('¿Para cuándo la necesitas?', 'When do you need it by?'), hint: L('Lo ideal es enviarla 6 a 8 semanas antes de la fiesta.', 'Ideally it goes out 6 to 8 weeks before the party.') },
+      { id: 'notas', type: 'textarea', wide: true, label: L('¿Algo más que debamos saber?', 'Anything else we should know?'), ph: L('Ideas, ejemplos que te gustaron, sorpresas…', 'Ideas, examples you liked, surprises…') }
+    ]}
+  ];
+
+  var ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem('ilusion-pedido-xv') || '{}') || {}; } catch (e) { state = {}; }
+
+  var form = document.getElementById('order');
+
+  function el(tag, attrs, html) {
+    var n = document.createElement(tag);
+    if (attrs) for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function sealSvg(ev) {
+    var size = ev.m.length > 1 ? 74 : 110;
+    return '<svg viewBox="0 0 240 240" aria-hidden="true"><g filter="url(#' + ev.f + ')"><use href="#blob" fill="#ffffff"></use><circle cx="120" cy="120" r="85" fill="#b8b8b8"></circle><text x="120" y="124" text-anchor="middle" dominant-baseline="central" font-family="Great Vibes, cursive" font-size="' + size + '" fill="#6a6a6a" stroke="#6a6a6a" stroke-width="1.4">' + ev.m + '</text></g></svg>';
+  }
+
+  function render() {
+    form.innerHTML = '';
+    SECTIONS.forEach(function (sec, i) {
+      var sheet = el('section', { 'class': 'sheet', 'aria-labelledby': 'h-' + i });
+      sheet.appendChild(el('div', { 'class': 'sheet-head' }, '<span class="num">' + ROMAN[i] + '</span><div><h2 id="h-' + i + '">' + esc(t(sec.title)) + '</h2><p>' + esc(t(sec.sub)) + '</p></div>'));
+      if (sec.empty) { var pf = el('p', { 'class': 'pick-first', 'data-pick': '1' }, esc(t(UI.pickFirst))); sheet.appendChild(pf); }
+      var grid = el('div', { 'class': 'grid' });
+      sec.fields.forEach(function (f) { grid.appendChild(renderField(f)); });
+      sheet.appendChild(grid);
+      form.appendChild(sheet);
+    });
+    document.querySelectorAll('[data-i18n]').forEach(function (n) { n.innerHTML = t(UI[n.getAttribute('data-i18n')]); });
+    document.getElementById('includes').innerHTML = t(UI.includes).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
+    document.documentElement.lang = lang;
+    document.getElementById('lang-es').setAttribute('aria-pressed', lang === 'es');
+    document.getElementById('lang-en').setAttribute('aria-pressed', lang === 'en');
+    refresh();
+  }
+
+  function renderField(f) {
+    var wrap = el('div', { 'class': 'field' + (f.wide ? ' wide' : ''), 'data-field': f.id });
+    var star = f.req ? '<span class="req" aria-hidden="true">*</span>' : '';
+    var val = state[f.id] || '';
+    if (f.type === 'chips' || f.type === 'events') {
+      wrap.setAttribute('role', 'radiogroup');
+      wrap.setAttribute('aria-labelledby', 'lg-' + f.id);
+      wrap.appendChild(el('span', { 'class': 'legend', id: 'lg-' + f.id }, esc(t(f.label)) + star));
+      if (f.hint) wrap.appendChild(el('p', { 'class': 'hint' }, esc(t(f.hint))));
+      var box = el('div', { 'class': f.type === 'events' ? 'events' : 'chips' });
+      (f.type === 'events' ? EVENTS : f.options).forEach(function (o) {
+        var id = f.id + '-' + o.v;
+        var lab = el('label', { 'class': f.type === 'events' ? 'ev' : 'chip', 'for': id });
+        var inp = el('input', { type: 'radio', name: f.id, id: id, value: o.v });
+        if (val === o.v) inp.checked = true;
+        lab.appendChild(inp);
+        lab.appendChild(f.type === 'events'
+          ? el('span', { 'class': 'card' }, sealSvg(o) + '<span class="name">' + esc(t(o.l)) + '</span>')
+          : el('span', null, esc(t(o.l))));
+        box.appendChild(lab);
+      });
+      wrap.appendChild(box);
+    } else {
+      wrap.appendChild(el('label', { 'for': 'f-' + f.id }, esc(t(f.label)) + star));
+      if (f.hint) wrap.appendChild(el('p', { 'class': 'hint' }, esc(t(f.hint))));
+      var input;
+      if (f.type === 'textarea') { input = el('textarea', { id: 'f-' + f.id, name: f.id, rows: '3' }); input.value = val; }
+      else {
+        var type = f.type === 'link' ? 'text' : f.type;
+        input = el('input', { id: 'f-' + f.id, name: f.id, type: type });
+        if (f.type === 'tel') input.setAttribute('autocomplete', 'tel');
+        if (f.type === 'email') input.setAttribute('autocomplete', 'email');
+        if (f.id === 'cliente') input.setAttribute('autocomplete', 'name');
+        if (f.type === 'number') { input.setAttribute('inputmode', 'numeric'); input.setAttribute('min', '0'); }
+        input.value = val;
+      }
+      if (f.ph) input.setAttribute('placeholder', t(f.ph));
+      if (f.type === 'link') {
+        var pre = el('div', { 'class': 'prefix' }, '<span>ilusioninvites.com/</span>');
+        input.setAttribute('autocapitalize', 'off');
+        input.setAttribute('spellcheck', 'false');
+        pre.appendChild(input);
+        wrap.appendChild(pre);
+      } else wrap.appendChild(input);
+    }
+    return wrap;
+  }
+
+  function slug(s) {
+    return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim().split(/\s+/)[0].replace(/[^a-z0-9]/g, '');
+  }
+  function suggestLink() { return (slug(state.nombre_corto) || slug(state.festejada) || 'valentina') + '-xv'; }
+
+  function visible(f) { return !f.show || f.show(state); }
+
+  function refresh() {
+    SECTIONS.forEach(function (sec) {
+      sec.fields.forEach(function (f) {
+        var w = form.querySelector('[data-field="' + f.id + '"]');
+        if (w) w.hidden = !visible(f);
+      });
+    });
+    var link = document.getElementById('f-link');
+    if (link) link.setAttribute('placeholder', suggestLink());
+  }
+
+  function save() { try { localStorage.setItem('ilusion-pedido-xv', JSON.stringify(state)); } catch (e) {} }
+
+  form.addEventListener('input', onChange);
+  form.addEventListener('change', onChange);
+  function onChange(e) {
+    var n = e.target;
+    if (!n.name) return;
+    var v = n.value;
+    if (n.name === 'link') { v = v.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''); if (v !== n.value) n.value = v; }
+    state[n.name] = v;
+    var w = n.closest('.field');
+    if (w && v) { w.classList.remove('bad'); var er = w.querySelector('.err'); if (er) er.remove(); }
+    save();
+    refresh();
+  }
+  form.addEventListener('submit', function (e) { e.preventDefault(); });
+
+  // Review
+  function findField(id) { for (var i = 0; i < SECTIONS.length; i++) for (var j = 0; j < SECTIONS[i].fields.length; j++) if (SECTIONS[i].fields[j].id === id) return SECTIONS[i].fields[j]; }
+  function display(f, v) {
+    if (!v) return '';
+    if (f.type === 'events') { for (var i = 0; i < EVENTS.length; i++) if (EVENTS[i].v === v) return t(EVENTS[i].l); }
+    if (f.type === 'chips') { for (var k = 0; k < f.options.length; k++) if (f.options[k].v === v) return t(f.options[k].l); }
+    if (f.type === 'date') {
+      var p = v.split('-'); if (p.length !== 3) return v;
+      var d = new Date(+p[0], +p[1] - 1, +p[2]);
+      try { return d.toLocaleDateString(lang === 'es' ? 'es-MX' : 'en-CA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) { return v; }
+    }
+    if (f.type === 'time') {
+      var h = v.split(':'); var dt = new Date(2000, 0, 1, +h[0], +h[1]);
+      try { return dt.toLocaleTimeString(lang === 'es' ? 'es-MX' : 'en-CA', { hour: 'numeric', minute: '2-digit' }); } catch (e) { return v; }
+    }
+    if (f.type === 'link') return 'ilusioninvites.com/' + v;
+    return String(v).trim();
+  }
+
+  function buildMessage() {
+    var out = [t(UI.msgTitle), ''];
+    SECTIONS.forEach(function (sec) {
+      var lines = [];
+      sec.fields.forEach(function (f) {
+        if (!visible(f)) return;
+        var v = display(f, state[f.id]);
+        if (!v) return;
+        var label = t(f.label).replace(/\s*\((opcional|optional)\)\s*$/i, '').replace(/\?$/, '').replace(/^¿/, '');
+        if (v.indexOf('\n') > -1) lines.push('• *' + label + ':*\n' + v);
+        else lines.push('• *' + label + ':* ' + v);
+      });
+      if (lines.length) { out.push('*' + t(sec.title).toUpperCase() + '*'); out = out.concat(lines); out.push(''); }
+    });
+    if (state.fotos === 'whatsapp') out.push(t(UI.msgEnd));
+    if (state.pases === 'si' && (state.lista === 'whatsapp' || state.lista === 'excel')) out.push(t(UI.msgList));
+    return out.join('\n').trim();
+  }
+
+  function validate() {
+    var bad = [];
+    form.querySelectorAll('.err').forEach(function (n) { n.remove(); });
+    form.querySelectorAll('.bad').forEach(function (n) { n.classList.remove('bad'); });
+    SECTIONS.forEach(function (sec) {
+      sec.fields.forEach(function (f) {
+        if (!f.req || !visible(f)) return;
+        if (String(state[f.id] || '').trim()) return;
+        var w = form.querySelector('[data-field="' + f.id + '"]');
+        if (!w) return;
+        w.classList.add('bad');
+        w.appendChild(el('span', { 'class': 'err' }, esc(t(UI.needed))));
+        bad.push(w);
+      });
+    });
+    if (visible(findField('permiso')) && state.permiso === 'no') {
+      var pw = form.querySelector('[data-field="permiso"]');
+      if (pw) { pw.classList.add('bad'); pw.appendChild(el('span', { 'class': 'err' }, esc(t(UI.noPermiso)))); bad.push(pw); }
+    }
+    return bad;
+  }
+
+  var reviewBox = document.getElementById('review');
+  var missing = document.getElementById('missing');
+  document.getElementById('review-btn').addEventListener('click', function () {
+    var bad = validate();
+    if (bad.length) {
+      missing.textContent = bad.length === 1 ? t(UI.missing1) : t(UI.missingN).replace('{n}', bad.length);
+      missing.hidden = false;
+      reviewBox.hidden = true;
+      bad[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var focusable = bad[0].querySelector('input, textarea');
+      if (focusable) setTimeout(function () { focusable.focus({ preventScroll: true }); }, 350);
+      return;
+    }
+    missing.hidden = true;
+    showReview();
+    reviewBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  function showReview() {
+    var msg = buildMessage();
+    document.getElementById('msg').textContent = msg;
+    document.getElementById('wa-btn').href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+    document.getElementById('copied').textContent = '';
+    reviewBox.hidden = false;
+  }
+
+  document.getElementById('edit-btn').addEventListener('click', function () {
+    reviewBox.hidden = true;
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('copy-btn').addEventListener('click', function () {
+    var msg = document.getElementById('msg');
+    var note = document.getElementById('copied');
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(msg);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      note.textContent = t(UI.copyFail);
+    }
+    try {
+      navigator.clipboard.writeText(msg.textContent).then(function () { note.textContent = t(UI.copied); }, fallback);
+    } catch (e) { fallback(); }
+  });
+
+  function setLang(l) {
+    lang = l;
+    try { localStorage.setItem('ilusion-lang', l); } catch (e) {}
+    render();
+    if (!reviewBox.hidden) showReview();
+    if (!missing.hidden) { var bad = validate(); missing.textContent = bad.length === 1 ? t(UI.missing1) : t(UI.missingN).replace('{n}', bad.length); }
+  }
+  document.getElementById('lang-es').addEventListener('click', function () { setLang('es'); });
+  document.getElementById('lang-en').addEventListener('click', function () { setLang('en'); });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
