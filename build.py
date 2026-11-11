@@ -3,11 +3,14 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = 'https://biancalemay85-ops.github.io/ilusioninvites'
 PAGES = [
+    ('../website/index.html', '', 'Ilusión Invites · Invitaciones digitales de lujo',
+     'Invitaciones digitales que se abren como un sobre con sello: bodas, XV años, baby showers y cumpleaños. México y Canadá.'),
     # (source artifact file, output folder, title, description)
     ('../website/pedido-xv.html', 'pedido-xv', 'Pedido XV Años · Ilusión Invites',
      'Llena los datos de los XV años y armamos su invitación digital.'),
 ]
 for src, out, title, desc in PAGES:
+    sub = (out + '/') if out else ''
     body = open(os.path.join(HERE, src), encoding='utf-8').read()
     head = f'''<!doctype html>
 <html lang="es">
@@ -17,8 +20,8 @@ for src, out, title, desc in PAGES:
 <meta name="description" content="{desc}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{BASE}/{out}/img/ilusion-logo.jpg">
-<meta property="og:url" content="{BASE}/{out}/">
+<meta property="og:image" content="{BASE}/{sub}img/ilusion-logo.jpg">
+<meta property="og:url" content="{BASE}/{(out + '/') if out else ''}">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#1E0916">
 <link rel="icon" href="img/ilusion-logo.jpg">
@@ -28,4 +31,4 @@ for src, out, title, desc in PAGES:
 '''
     os.makedirs(os.path.join(HERE, out), exist_ok=True)
     open(os.path.join(HERE, out, 'index.html'), 'w', encoding='utf-8').write(head + body + '\n</body>\n</html>\n')
-    print('built', out)
+    print('built', out or '(root)')

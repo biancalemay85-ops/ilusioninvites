@@ -1,5 +1,551 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ilusión Invites</title><meta http-equiv="refresh" content="0; url=pedido-xv/"></head>
-<body style="background:#1E0916;color:#F6EDE4;font-family:Georgia,serif;text-align:center;padding:40px 16px">
-<p><a style="color:#F2CF8E" href="pedido-xv/">Ilusión Invites · Pedido XV Años</a></p></body></html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Invitaciones digitales que se abren como un sobre con sello: bodas, XV años, baby showers y cumpleaños. México y Canadá.">
+<meta property="og:title" content="Ilusión Invites · Invitaciones digitales de lujo">
+<meta property="og:description" content="Invitaciones digitales que se abren como un sobre con sello: bodas, XV años, baby showers y cumpleaños. México y Canadá.">
+<meta property="og:image" content="https://biancalemay85-ops.github.io/ilusioninvites/img/ilusion-logo.jpg">
+<meta property="og:url" content="https://biancalemay85-ops.github.io/ilusioninvites/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1E0916">
+<link rel="icon" href="img/ilusion-logo.jpg">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Ilusión Invites</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
+<style>
+/* Layout: the whole page lies on draped plum velvet (fixed behind everything). Content sits in centered 1200px columns; gold hairlines frame sections like a jewelry box. Ivory appears only on things that are "paper": phone screens, envelopes, the featured package. Single dark theme on purpose, taken from the brand logo. */
+:root {
+  color-scheme: dark;
+  --velvet: #1E0916;
+  --velvet-deep: #12050C;
+  --wax: #4B1535;
+  --wax-light: #7A385C;
+  --ivory: #F6EDE4;
+  --ivory-soft: #DCCBD4;
+  --muted: #B9A3B1;
+  --gold: #D0965F;
+  --gold-light: #F2CF8E;
+  --gold-deep: #9E6D46;
+  --gold-text: #E2B970;
+  --hair: rgba(208,150,95,.38);
+  --glass: rgba(30,9,22,.55);
+  --paper: #FBF5EC;
+  --ink: #2A1020;
+  --ink-soft: #5A3E4E;
+  --gold-grad: linear-gradient(180deg, #F7DDA4 0%, #E2B26E 45%, #B07A44 75%, #E9C384 100%);
+  --f-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --f-script: 'Great Vibes', 'Snell Roundhand', cursive;
+  --f-names: 'Pinyon Script', 'Snell Roundhand', cursive;
+  --f-caps: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --f-body: 'Jost', 'Avenir Next', 'Helvetica Neue', sans-serif;
+}
+body { background: var(--velvet); color: var(--ivory); font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
+.velvet { position: fixed; inset: 0; z-index: -1; background: var(--velvet) url("img/terciopelo.jpg") center / cover no-repeat; }
+.velvet::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0) 0%, rgba(10,2,7,.55) 100%); }
+a { color: var(--gold-text); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+.band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1200px; margin: 0 auto; }
+.eyebrow { margin: 0; font-family: var(--f-caps); font-size: 13px; letter-spacing: 0.32em; color: var(--gold-text); text-transform: uppercase; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 500; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.08; }
+.goldtext, h1 em, h2 em { font-style: italic; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lead { margin: 0; font-size: 18px; color: var(--ivory-soft); max-width: 60ch; }
+.center { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.ornament { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.ornament i { width: 90px; height: 1px; background: linear-gradient(90deg, rgba(208,150,95,0), var(--gold)); }
+.ornament i:last-child { transform: scaleX(-1); }
+.ornament b { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 30px; border-radius: 999px; font-family: var(--f-body); font-size: 15px; font-weight: 500; letter-spacing: .06em; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, filter .2s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn-dark, .btn-gold { background: linear-gradient(180deg, #F2CF8E 0%, #D0965F 55%, #B07A44 100%); color: #2A1020; box-shadow: inset 0 1px 0 rgba(255,240,210,.7), 0 8px 22px rgba(0,0,0,.35); }
+.btn-dark:hover, .btn-gold:hover { filter: brightness(1.06); }
+.btn-line, .btn-line-gold { border-color: var(--hair); color: var(--ivory); background: rgba(30,9,22,.35); }
+.btn-line:hover, .btn-line-gold:hover { border-color: var(--gold); }
+
+/* paper grain (used on envelopes) */
+.grain { position: relative; }
+.grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; opacity: .55; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.32  0 0 0 0 0.32  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+/* the logo photo: a soft round mask lets its own velvet melt into the page velvet */
+.logo-img { display: block; aspect-ratio: 1; object-fit: cover; -webkit-mask-image: radial-gradient(circle closest-side, #000 84%, transparent 99%); mask-image: radial-gradient(circle closest-side, #000 84%, transparent 99%); }
+
+/* header */
+.top { padding-block: 14px; border-bottom: 1px solid rgba(208,150,95,.18); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ivory); }
+.brand .logo-img { width: 62px; }
+.brand-name { display: flex; flex-direction: column; line-height: 1; }
+.brand-name b { font-family: var(--f-script); font-weight: 400; font-size: 34px; color: var(--gold-light); }
+.brand-name small { font-family: var(--f-caps); font-size: 10px; letter-spacing: .5em; color: var(--gold); margin-top: 2px; }
+.nav { display: flex; flex-wrap: wrap; gap: 6px 26px; font-size: 14px; letter-spacing: .08em; }
+.nav a { color: var(--ivory-soft); text-decoration: none; }
+.nav a:hover { color: var(--gold-light); }
+.top-actions { display: flex; align-items: center; gap: 12px; }
+.lang { display: flex; border: 1px solid var(--hair); border-radius: 999px; overflow: hidden; }
+.lang button { border: 0; background: transparent; color: var(--ivory-soft); min-width: 44px; height: 38px; font: 500 13px var(--f-body); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: #2A1020; }
+
+/* hero */
+.hero { padding-block: 34px 84px; }
+.hero .wrap { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+.hero-logo { position: relative; width: min(440px, 86vw); }
+.hero-logo::before { content: ""; position: absolute; inset: 8%; border-radius: 50%; background: radial-gradient(circle, rgba(242,207,142,.22) 0%, rgba(242,207,142,0) 70%); filter: blur(30px); z-index: -1; }
+.hero-logo .logo-img { width: 100%; filter: drop-shadow(0 30px 40px rgba(0,0,0,.55)); }
+.hero h1 { font-size: clamp(42px, 6vw, 76px); line-height: 1.02; color: var(--ivory); margin-top: 4px; }
+.hero .lead { margin-inline: auto; }
+.hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 6px; }
+.hero-note { margin: 0; font-size: 13px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+
+/* envelope */
+.envelope { position: relative; width: 100%; max-width: 560px; aspect-ratio: 1.5; border-radius: 6px; background: linear-gradient(180deg, #F2D8D6 0%, #E4BFBD 100%); box-shadow: 0 30px 60px rgba(0,0,0,.4), 0 2px 4px rgba(0,0,0,.25); }
+.envelope .flap-shade, .envelope .flap { position: absolute; left: 0; top: 0; width: 100%; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+.envelope .flap-shade { height: 62%; background: rgba(150,90,90,.5); filter: blur(2px); }
+.envelope .flap { height: 59%; background: linear-gradient(180deg, #F6E0DE 0%, #EAC9C7 100%); }
+.envelope .seal { position: absolute; left: 50%; top: 59%; width: 46%; transform: translate(-50%, -50%); filter: drop-shadow(3px 7px 6px rgba(80,40,30,.40)) drop-shadow(0 1px 1px rgba(80,40,30,.35)); }
+
+/* features */
+.features { background: rgba(12,3,8,.45); border-block: 1px solid var(--hair); padding-block: 34px; }
+.features .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 24px 16px; }
+.feat { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.feat svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1.3; }
+.feat b { font-weight: 500; font-size: 14px; color: var(--ivory); }
+.feat span { font-size: 12px; color: var(--muted); }
+
+/* collections */
+.section { padding-block: 96px; }
+.section > .wrap { display: flex; flex-direction: column; gap: 48px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+.card { display: flex; flex-direction: column; border-radius: 4px; overflow: hidden; background: var(--glass); border: 1px solid var(--hair); text-decoration: none; color: var(--ivory); box-shadow: 0 20px 40px rgba(0,0,0,.35); transition: transform .25s ease, border-color .25s ease; }
+.card:hover { transform: translateY(-4px); border-color: var(--gold); }
+.card-art { height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
+.card-art .envelope { max-width: 210px; box-shadow: 0 16px 26px rgba(30,20,20,.35); }
+.card-art .envelope .seal { width: 40%; }
+.card-art .name { margin: 0; font-family: var(--f-script); font-size: 34px; line-height: 1.1; }
+.card-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 4px; }
+.card-body h3 { font-size: 28px; }
+.card-body p { margin: 0; font-size: 14px; color: var(--muted); }
+.card-body .more { margin-top: 8px; font-size: 14px; font-weight: 500; letter-spacing: .06em; color: var(--gold-text); }
+.art-sage { background: radial-gradient(ellipse at 50% 40%, #B5BFA2 0%, #8C9A78 75%); }
+.art-sage .envelope { background: linear-gradient(180deg, #FBF6EF, #EADFD0); }
+.art-sage .flap { background: linear-gradient(180deg, #F7F0E6, #ECE0CF); }
+.art-sage .name { color: #FBF7EE; }
+.art-wine { background: radial-gradient(ellipse at 50% 40%, #8E2A3D 0%, #5E1424 75%); }
+.art-wine .envelope { background: linear-gradient(180deg, #F6E9CF, #E3CFA6); }
+.art-wine .flap { background: linear-gradient(180deg, #F3E4C4, #E6D2A8); }
+.art-wine .name { font-family: var(--f-names); color: #F3E2B8; }
+.art-baby { background: linear-gradient(160deg, #F4DCDF 0%, #DCE5EE 100%); }
+.art-baby .envelope { background: linear-gradient(180deg, #FFFFFF, #F3EEEA); }
+.art-baby .flap { background: linear-gradient(180deg, #FFFFFF, #F2ECE8); }
+.art-baby .name { color: #5A3B4A; }
+.art-night { background: radial-gradient(ellipse at 50% 40%, #6A2450 0%, #2E0C22 75%); }
+.art-night .envelope { background: linear-gradient(180deg, #FBF6EF, #EADFD0); }
+.art-night .flap { background: linear-gradient(180deg, #F7F0E6, #ECE0CF); }
+.art-night .name { color: var(--gold-light); }
+
+/* steps */
+.steps-band { background: rgba(12,3,8,.35); border-block: 1px solid rgba(208,150,95,.2); }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.step { padding: 34px 30px; border-radius: 4px; background: var(--glass); border: 1px solid var(--hair); display: flex; flex-direction: column; gap: 10px; }
+.step .num { margin: 0; font-family: var(--f-script); font-size: 64px; line-height: 1; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.step h3 { font-size: 28px; }
+.step p { margin: 0; color: var(--ivory-soft); }
+
+/* details */
+.details .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; }
+.phones { flex: 1 1 420px; min-width: 0; display: flex; justify-content: center; gap: 18px; }
+.phone { width: min(250px, 46vw); aspect-ratio: 250 / 520; border-radius: 38px; background: #0E0509; padding: 9px; box-sizing: border-box; box-shadow: 0 0 0 1px rgba(208,150,95,.35), 0 30px 60px rgba(0,0,0,.5); flex-shrink: 0; }
+.phone:nth-child(2) { margin-top: 48px; }
+.screen { width: 100%; height: 100%; border-radius: 30px; overflow: hidden; background: linear-gradient(180deg, #FFFDF9, #F5EEE4); color: var(--ink); padding: 26px 18px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.arch { width: 72%; aspect-ratio: 150 / 178; border-radius: 999px 999px 8px 8px; background: linear-gradient(160deg, #F3D9DE, #CDB6C9); border: 3px solid #fff; box-shadow: 0 0 0 1px var(--gold); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; box-sizing: border-box; font-size: 10px; letter-spacing: .2em; color: #6B5566; }
+.screen .cap { margin: 4px 0 0; font-family: var(--f-caps); font-size: 9px; letter-spacing: .35em; color: #7A5A24; }
+.screen .who { margin: 0; font-family: var(--f-names); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; }
+.screen .date { margin: 0; font-family: var(--f-display); font-size: 16px; letter-spacing: .15em; }
+.count { display: flex; gap: 5px; }
+.count div { width: 40px; padding: 5px 0; border-radius: 8px; background: #F0E6D8; display: flex; flex-direction: column; font-variant-numeric: tabular-nums; }
+.count b { font-family: var(--f-display); font-size: 17px; font-weight: 500; }
+.count small { font-size: 9px; color: var(--ink-soft); }
+.pill { margin-top: auto; padding: 9px 16px; border-radius: 999px; background: var(--wax); color: var(--ivory); font-size: 10px; letter-spacing: .15em; }
+.timeline { align-self: stretch; text-align: left; border-left: 1px solid var(--gold); margin-left: 8px; padding-left: 16px; display: flex; flex-direction: column; gap: 12px; }
+.timeline b { display: block; font-family: var(--f-display); font-size: 19px; font-weight: 500; line-height: 1.1; }
+.timeline span { font-size: 11px; color: var(--ink-soft); }
+.rule { align-self: stretch; height: 1px; background: #E3D6C4; margin: 6px 0; }
+.dress { margin: 0; font-family: var(--f-display); font-style: italic; font-size: 19px; }
+.mini-btns { align-self: stretch; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: auto; }
+.mini-btns span { border: 1px solid var(--ink); border-radius: 999px; padding: 8px 0; font-size: 10px; }
+.mini-btns span:last-child { grid-column: 1 / -1; background: var(--wax); color: var(--ivory); border-color: var(--wax); letter-spacing: .15em; }
+.details-copy { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px 24px; margin: 0; padding: 0; list-style: none; color: var(--ivory-soft); }
+.checks li { display: flex; gap: 10px; align-items: baseline; }
+.checks li::before { content: ""; flex: 0 0 8px; height: 8px; transform: translateY(-2px) rotate(45deg); background: var(--gold); }
+
+/* packages */
+.packages-band { background: rgba(12,3,8,.35); border-top: 1px solid rgba(208,150,95,.2); }
+.packs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; }
+.pack { padding: 38px 32px; border-radius: 4px; border: 1px solid var(--hair); background: var(--glass); display: flex; flex-direction: column; gap: 14px; position: relative; }
+.pack h3 { font-size: 32px; }
+.pack .sub { margin: 0; font-size: 14px; color: var(--muted); }
+.pack .price { margin: 0; font-family: var(--f-display); font-size: 38px; font-weight: 500; color: var(--gold-light); }
+.pack ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; color: var(--ivory-soft); font-size: 15px; }
+.pack li::before { content: "✓  "; color: var(--gold); }
+.pack .btn { margin-top: auto; }
+.pack.featured { background: var(--paper); color: var(--ink); border-color: var(--gold); box-shadow: 0 0 0 6px rgba(208,150,95,.18), 0 30px 60px rgba(0,0,0,.45); }
+.pack.featured h3 { font-family: var(--f-script); font-weight: 400; font-size: 46px; color: #8A5A2B; line-height: 1; }
+.pack.featured .sub { color: var(--ink-soft); }
+.pack.featured .price { color: var(--ink); }
+.pack .price-q { font-size: 25px; font-style: italic; line-height: 1.2; }
+.pack.featured ul { color: var(--ink-soft); }
+.pack.featured li::before { color: #9E6D46; }
+.pack.featured .btn-gold { background: var(--wax); color: var(--ivory); box-shadow: 0 8px 20px rgba(75,21,53,.35); }
+.tag { position: absolute; top: 18px; right: 20px; margin: 0; padding: 5px 11px; border-radius: 999px; background: var(--wax); color: var(--gold-light); font-size: 11px; letter-spacing: .15em; font-weight: 500; }
+
+/* contact */
+.contact { padding-block: 96px; }
+.contact .wrap { max-width: 860px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; padding: 56px clamp(18px, 5vw, 56px); border: 1px solid var(--hair); outline: 1px solid rgba(208,150,95,.18); outline-offset: 8px; background: rgba(12,3,8,.4); }
+.contact .big-logo { width: 200px; filter: drop-shadow(0 18px 26px rgba(0,0,0,.55)); }
+.contact p { margin: 0; color: var(--ivory-soft); font-size: 18px; }
+.contact .row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+.contact .num { font-size: 15px; color: var(--muted); }
+
+/* footer */
+.foot { background: rgba(8,2,5,.7); border-top: 1px solid var(--hair); color: var(--ivory-soft); padding-block: 56px 28px; }
+.foot .wrap { display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center; }
+.foot-brand { display: flex; flex-direction: column; align-items: center; }
+.foot-logo { width: 130px; margin-bottom: 6px; }
+.foot .tagline { margin: 14px 0 0; font-family: var(--f-display); font-style: italic; font-size: 20px; }
+.foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; font-size: 14px; letter-spacing: .06em; }
+.foot nav a, .foot nav span { white-space: nowrap; }
+.foot a { color: var(--ivory-soft); text-decoration: none; }
+.foot a:hover { color: var(--gold-light); }
+.copy { margin: 26px 0 0; text-align: center; font-size: 13px; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="blob" d="M231.7 120.0 L232.0 124.9 L230.9 129.7 L228.5 134.3 L225.1 138.5 L221.2 142.4 L217.3 146.1 L214.0 149.6 L211.6 153.3 L210.3 157.4 L209.9 161.9 L210.1 166.9 L210.3 172.1 L210.1 177.4 L209.1 182.4 L207.0 186.7 L203.8 190.3 L199.6 193.0 L194.9 194.9 L189.9 196.3 L185.0 197.5 L180.4 198.8 L176.2 200.3 L172.4 202.3 L169.0 204.8 L165.7 207.8 L162.5 211.1 L159.2 214.7 L155.8 218.4 L152.1 221.9 L148.2 225.2 L143.9 227.9 L139.4 229.8 L134.6 230.7 L129.7 230.4 L124.8 229.0 L120.0 226.6 L115.5 223.5 L111.2 220.3 L107.2 217.4 L103.2 215.3 L99.1 214.2 L94.8 214.2 L90.0 215.0 L85.0 216.2 L79.7 217.3 L74.4 217.7 L69.5 217.0 L65.1 215.1 L61.5 211.8 L58.6 207.7 L56.4 202.9 L54.5 198.1 L52.6 193.6 L50.4 189.6 L47.8 186.2 L44.5 183.3 L40.7 180.8 L36.5 178.4 L32.2 175.9 L27.9 173.1 L24.0 170.0 L20.6 166.4 L17.8 162.3 L15.8 157.9 L14.7 153.2 L14.4 148.3 L15.0 143.3 L16.4 138.3 L18.3 133.4 L20.4 128.7 L22.3 124.3 L23.7 120.0 L24.2 115.8 L23.7 111.6 L22.3 107.1 L20.3 102.4 L18.1 97.4 L16.4 92.2 L15.6 87.1 L16.1 82.2 L18.1 77.8 L21.4 74.0 L25.6 70.8 L30.2 68.1 L34.7 65.7 L38.7 63.1 L42.0 60.1 L44.4 56.6 L46.3 52.5 L47.8 47.8 L49.4 43.0 L51.3 38.2 L53.8 33.7 L56.9 29.9 L60.7 26.9 L65.0 24.7 L69.7 23.3 L74.6 22.6 L79.6 22.5 L84.7 22.9 L89.6 23.6 L94.4 24.3 L98.9 24.8 L103.2 25.0 L107.4 24.5 L111.5 23.2 L115.7 21.2 L120.0 18.6 L124.6 15.7 L129.4 13.1 L134.3 11.2 L139.3 10.4 L144.1 11.1 L148.6 13.2 L152.6 16.6 L156.1 20.8 L159.3 25.2 L162.3 29.2 L165.5 32.5 L169.1 34.9 L173.2 36.4 L177.9 37.3 L183.0 37.9 L188.2 38.8 L193.1 40.2 L197.5 42.5 L201.1 45.7 L203.9 49.6 L205.7 54.2 L206.9 59.1 L207.6 64.2 L208.1 69.1 L208.5 73.9 L209.1 78.5 L210.0 82.7 L211.3 86.8 L213.0 90.7 L215.3 94.5 L218.1 98.3 L221.2 102.2 L224.5 106.2 L227.6 110.6 L230.1 115.2Z"></path>
+
+    <!-- Wax seals: the shape is drawn in greys as a height map (white = raised rim, grey = pressed face, dark grey = engraved letters), then lit like real metal-flecked wax. -->
+    <filter id="waxGold" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h0"></feColorMatrix>
+      <feGaussianBlur in="h0" stdDeviation="1.4" result="b1"></feGaussianBlur>
+      <feGaussianBlur in="h0" stdDeviation="5" result="b2"></feGaussianBlur>
+      <feComposite in="b1" in2="b2" operator="arithmetic" k2="0.62" k3="0.38" result="hb"></feComposite>
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7" result="noise"></feTurbulence>
+      <feComposite in="hb" in2="noise" operator="arithmetic" k2="1" k3="0.03" result="h"></feComposite>
+      <feDiffuseLighting in="h" surfaceScale="9" diffuseConstant="1.25" lighting-color="#DDB466" result="diff"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feDiffuseLighting>
+      <feSpecularLighting in="h" surfaceScale="9" specularConstant="1.1" specularExponent="30" lighting-color="#FFF3D2" result="spec"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feSpecularLighting>
+      <feComposite in="diff" in2="spec" operator="arithmetic" k2="1" k3="0.85" result="lit"></feComposite>
+      <feFlood flood-color="#8A6428" result="amb"></feFlood><feComposite in="lit" in2="amb" operator="arithmetic" k2="1" k3="0.38" result="lit2"></feComposite><feComposite in="lit2" in2="h0" operator="in"></feComposite>
+    </filter>
+    <filter id="waxSage" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h0"></feColorMatrix>
+      <feGaussianBlur in="h0" stdDeviation="1.4" result="b1"></feGaussianBlur>
+      <feGaussianBlur in="h0" stdDeviation="5" result="b2"></feGaussianBlur>
+      <feComposite in="b1" in2="b2" operator="arithmetic" k2="0.62" k3="0.38" result="h"></feComposite>
+      <feDiffuseLighting in="h" surfaceScale="9" diffuseConstant="1.2" lighting-color="#8E9B74" result="diff"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feDiffuseLighting>
+      <feSpecularLighting in="h" surfaceScale="9" specularConstant="0.7" specularExponent="26" lighting-color="#F2F4E6" result="spec"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feSpecularLighting>
+      <feComposite in="diff" in2="spec" operator="arithmetic" k2="1" k3="0.7" result="lit"></feComposite>
+      <feFlood flood-color="#4E5A3E" result="amb"></feFlood><feComposite in="lit" in2="amb" operator="arithmetic" k2="1" k3="0.38" result="lit2"></feComposite><feComposite in="lit2" in2="h0" operator="in"></feComposite>
+    </filter>
+    <filter id="waxWine" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h0"></feColorMatrix>
+      <feGaussianBlur in="h0" stdDeviation="1.4" result="b1"></feGaussianBlur>
+      <feGaussianBlur in="h0" stdDeviation="5" result="b2"></feGaussianBlur>
+      <feComposite in="b1" in2="b2" operator="arithmetic" k2="0.62" k3="0.38" result="h"></feComposite>
+      <feDiffuseLighting in="h" surfaceScale="9" diffuseConstant="1.2" lighting-color="#A3283F" result="diff"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feDiffuseLighting>
+      <feSpecularLighting in="h" surfaceScale="9" specularConstant="0.8" specularExponent="28" lighting-color="#FFE3E8" result="spec"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feSpecularLighting>
+      <feComposite in="diff" in2="spec" operator="arithmetic" k2="1" k3="0.7" result="lit"></feComposite>
+      <feFlood flood-color="#5A0F1E" result="amb"></feFlood><feComposite in="lit" in2="amb" operator="arithmetic" k2="1" k3="0.38" result="lit2"></feComposite><feComposite in="lit2" in2="h0" operator="in"></feComposite>
+    </filter>
+    <filter id="waxBlush" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h0"></feColorMatrix>
+      <feGaussianBlur in="h0" stdDeviation="1.4" result="b1"></feGaussianBlur>
+      <feGaussianBlur in="h0" stdDeviation="5" result="b2"></feGaussianBlur>
+      <feComposite in="b1" in2="b2" operator="arithmetic" k2="0.62" k3="0.38" result="h"></feComposite>
+      <feDiffuseLighting in="h" surfaceScale="9" diffuseConstant="1.2" lighting-color="#E3A9B5" result="diff"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feDiffuseLighting>
+      <feSpecularLighting in="h" surfaceScale="9" specularConstant="0.8" specularExponent="28" lighting-color="#FFFFFF" result="spec"><feDistantLight azimuth="225" elevation="48"></feDistantLight></feSpecularLighting>
+      <feComposite in="diff" in2="spec" operator="arithmetic" k2="1" k3="0.7" result="lit"></feComposite>
+      <feFlood flood-color="#A86A78" result="amb"></feFlood><feComposite in="lit" in2="amb" operator="arithmetic" k2="1" k3="0.38" result="lit2"></feComposite><feComposite in="lit2" in2="h0" operator="in"></feComposite>
+    </filter>
+  </defs>
+</svg>
+
+<div class="velvet" aria-hidden="true"></div>
+
+<header class="top band">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Ilusión Invites, inicio">
+      <img class="logo-img" src="img/ilusion-logo.jpg" alt="" width="62" height="62">
+      <span class="brand-name"><b>Ilusión</b><small>INVITES</small></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#disenos" data-en="Designs">Diseños</a>
+      <a href="#como-funciona" data-en="How it works">Cómo funciona</a>
+      <a href="#paquetes" data-en="Packages">Paquetes</a>
+      <a href="#contacto" data-en="Contact">Contacto</a>
+    </nav>
+    <div class="top-actions">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" id="lang-es" aria-pressed="true">ES</button>
+        <button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-dark" href="#paquetes" data-en="Create my invitation">Crear mi invitación</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="inicio" class="hero band">
+    <div class="wrap">
+      <div class="hero-logo"><img class="logo-img" src="img/ilusion-logo.jpg" alt="Sello de cera color ciruela con laurel dorado y el nombre Ilusión Invites" width="440" height="440"></div>
+      <p class="eyebrow" data-en="Luxury digital invitations">Invitaciones digitales de lujo</p>
+      <h1 data-en-html="An invitation you'll <em>never forget</em>">Una invitación que <em>nunca olvidarás</em></h1>
+      <div class="ornament" aria-hidden="true"><i></i><b></b><i></i></div>
+      <p class="lead" data-en="Elegant designs with an envelope that opens, music, a countdown and RSVP. For weddings, quinceañeras, baby showers and birthdays, in Spanish and English.">Diseños elegantes con un sobre que se abre, música, cuenta regresiva y confirmación de asistencia. Para bodas, XV años, baby showers y cumpleaños, en español e inglés.</p>
+      <div class="hero-ctas">
+          <a class="btn btn-dark" href="#disenos" data-en="See designs">Ver diseños</a>
+          <a class="btn btn-line" href="#como-funciona" data-en="How it works">Cómo funciona</a>
+        </div>
+      <p class="hero-note" data-en="Delivered in 24–72 h · Made for you · Mexico &amp; Canada">Entrega en 24–72 h · Hecha a tu medida · México &amp; Canadá</p>
+    </div>
+  </section>
+
+  <section class="features band" aria-label="Lo que incluye">
+    <div class="wrap">
+      <div class="feat"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><b data-en="Animated envelope">Sobre animado</b><span>Envelope</span></div>
+      <div class="feat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg><b data-en="Music">Música</b><span>Music</span></div>
+      <div class="feat"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l3 2M9 2h6"></path></svg><b data-en="Countdown">Cuenta regresiva</b><span>Countdown</span></div>
+      <div class="feat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><b data-en="Map">Mapa</b><span>Live map</span></div>
+      <div class="feat"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.5 2.5L16 9.5"></path></svg><b data-en="RSVP">Confirmación</b><span>RSVP</span></div>
+      <div class="feat"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5-9 9"></path></svg><b data-en="Gallery">Galería</b><span>Photo gallery</span></div>
+      <div class="feat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11v8H8l-4 3z"></path><path d="M15 9h5v8l-3-2h-6v-2"></path></svg><b data-en="Bilingual">Bilingüe</b><span>ES / EN</span></div>
+      <div class="feat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg><b data-en="Named link">Link con nombre</b><span>Personal link</span></div>
+    </div>
+  </section>
+
+  <section id="disenos" class="section band">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow" data-en="Collections">Colecciones</p>
+        <h2 data-en="A design for every celebration">Un diseño para cada <em>ilusión</em></h2>
+        <p class="lead" data-en="Choose your collection, your colors and your details. We bring it to life.">Elige tu colección, tus colores y tus detalles. Nosotros la hacemos realidad.</p>
+      </div>
+      <div class="cards">
+        <a class="card" href="#paquetes">
+          <div class="card-art art-sage">
+            <div class="envelope grain"><div class="flap-shade"></div><div class="flap"></div>
+              <svg class="seal" viewBox="0 0 240 240" aria-hidden="true"><g filter="url(#waxSage)"><use href="#blob" fill="#ffffff"></use><circle cx="120" cy="120" r="85" fill="#b8b8b8"></circle><text x="120" y="122" text-anchor="middle" dominant-baseline="central" font-family="Great Vibes, cursive" font-size="92" fill="#6a6a6a" stroke="#6a6a6a" stroke-width="1.4">I&amp;J</text></g></svg>
+            </div>
+            <p class="name">Isabella &amp; Julián</p>
+          </div>
+          <div class="card-body"><h3 data-en="Weddings">Bodas</h3><p data-en="Sage, ivory, emerald, champagne">Salvia, marfil, esmeralda, champán</p><p class="more" data-en="See designs →">Ver diseños →</p></div>
+        </a>
+        <a class="card" href="#paquetes">
+          <div class="card-art art-wine">
+            <div class="envelope grain"><div class="flap-shade"></div><div class="flap"></div>
+              <svg class="seal" viewBox="0 0 240 240" aria-hidden="true"><g filter="url(#waxWine)"><use href="#blob" fill="#ffffff"></use><circle cx="120" cy="120" r="85" fill="#b8b8b8"></circle><text x="120" y="120" text-anchor="middle" dominant-baseline="central" font-family="Great Vibes, cursive" font-size="140" fill="#6a6a6a" stroke="#6a6a6a" stroke-width="1.6">V</text></g></svg>
+            </div>
+            <p class="name">Valentina</p>
+          </div>
+          <div class="card-body"><h3 data-en="Quinceañeras">XV Años</h3><p data-en="Burgundy, gold, blush, lilac">Vino, dorado, rubor, lila</p><p class="more" data-en="See designs →">Ver diseños →</p></div>
+        </a>
+        <a class="card" href="#paquetes">
+          <div class="card-art art-baby">
+            <div class="envelope grain"><div class="flap-shade"></div><div class="flap"></div>
+              <svg class="seal" viewBox="0 0 240 240" aria-hidden="true"><g filter="url(#waxBlush)"><use href="#blob" fill="#ffffff"></use><circle cx="120" cy="120" r="85" fill="#b8b8b8"></circle><text x="120" y="120" text-anchor="middle" dominant-baseline="central" font-family="Great Vibes, cursive" font-size="140" fill="#6a6a6a" stroke="#6a6a6a" stroke-width="1.6">M</text></g></svg>
+            </div>
+            <p class="name">Baby Mía</p>
+          </div>
+          <div class="card-body"><h3>Baby Shower</h3><p data-en="Blush, powder blue, cream">Rosa, azul cielo, crema</p><p class="more" data-en="See designs →">Ver diseños →</p></div>
+        </a>
+        <a class="card" href="#paquetes">
+          <div class="card-art art-night">
+            <div class="envelope grain"><div class="flap-shade"></div><div class="flap"></div>
+              <svg class="seal" viewBox="0 0 240 240" aria-hidden="true"><g filter="url(#waxGold)"><use href="#blob" fill="#ffffff"></use><circle cx="120" cy="120" r="85" fill="#b8b8b8"></circle><text x="120" y="120" text-anchor="middle" dominant-baseline="central" font-family="Great Vibes, cursive" font-size="140" fill="#6a6a6a" stroke="#6a6a6a" stroke-width="1.6">S</text></g></svg>
+            </div>
+            <p class="name">Sofía · 30</p>
+          </div>
+          <div class="card-body"><h3 data-en="Birthdays">Cumpleaños</h3><p data-en="Midnight, gold, champagne">Noche, dorado, champán</p><p class="more" data-en="See designs →">Ver diseños →</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="section steps-band band">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow" data-en="How it works">Cómo funciona</p>
+        <h2 data-en="Three steps and it's ready">Tres pasos y lista</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><p class="num">1</p><h3 data-en="Choose your design">Elige tu diseño</h3><p data-en="Browse the collections and pick the style you fall in love with.">Explora las colecciones y escoge el estilo que te enamore.</p></div>
+        <div class="step"><p class="num">2</p><h3 data-en="Send your details">Envía tus detalles</h3><p data-en="Names, date, venue, photos and your favorite song, in one simple form.">Nombres, fecha, lugar, fotos y tu canción favorita en un formulario sencillo.</p></div>
+        <div class="step"><p class="num">3</p><h3 data-en="Get your link">Recibe tu link</h3><p data-en="In 24 to 72 hours, ready to share on WhatsApp. Changes included.">En 24 a 72 horas, lista para compartir por WhatsApp. Cambios incluidos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section details band">
+    <div class="wrap">
+      <div class="phones" aria-label="Ejemplo de invitación en el celular">
+        <div class="phone"><div class="screen">
+          <div class="arch" data-en="YOUR PHOTO">TU FOTO</div>
+          <p class="cap" data-en="MY QUINCEAÑERA">MIS XV AÑOS</p>
+          <p class="who">Valentina</p>
+          <p class="date">20 · 03 · 2027</p>
+          <div class="count"><div><b>131</b><small data-en="days">días</small></div><div><b>05</b><small data-en="hrs">horas</small></div><div><b>26</b><small>min</small></div></div>
+          <span class="pill" data-en="RSVP">CONFIRMAR</span>
+        </div></div>
+        <div class="phone"><div class="screen">
+          <p class="cap" data-en="SCHEDULE">ITINERARIO</p>
+          <div class="timeline">
+            <div><b data-en="Ceremony">Ceremonia</b><span>5:00 pm · Parroquia</span></div>
+            <div><b data-en="Reception">Recepción</b><span>7:00 pm · Salón</span></div>
+            <div><b data-en="Waltz">Vals</b><span>9:00 pm</span></div>
+          </div>
+          <div class="rule"></div>
+          <p class="cap" data-en="DRESS CODE">VESTIMENTA</p>
+          <p class="dress" data-en="Formal · Black tie">Formal · Etiqueta</p>
+          <div class="mini-btns"><span data-en="Map">Ubicación</span><span data-en="Gifts">Regalos</span><span data-en="RSVP">CONFIRMAR</span></div>
+        </div></div>
+      </div>
+      <div class="details-copy">
+        <p class="eyebrow" data-en="Every detail">Cada detalle</p>
+        <h2 data-en="Everything your guests need, in one link">Todo lo que tus invitados necesitan, en un solo link</h2>
+        <ul class="checks">
+          <li data-en="Envelope with a seal that opens">Sobre con sello que se abre</li>
+          <li data-en="Background music">Música de fondo</li>
+          <li data-en="Countdown">Cuenta regresiva</li>
+          <li data-en="Schedule of the day">Itinerario del día</li>
+          <li data-en="Location with map">Ubicación con mapa</li>
+          <li data-en="Dress code">Código de vestimenta</li>
+          <li data-en="Gift registry">Mesa de regalos</li>
+          <li data-en="Photo gallery">Galería de fotos</li>
+          <li data-en="RSVP by WhatsApp">Confirmación por WhatsApp</li>
+          <li data-en="Spanish &amp; English">Español e inglés</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="paquetes" class="section packages-band band">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow" data-en="Packages">Paquetes</p>
+        <h2 data-en="Choose your package">Elige tu <em>ilusión</em></h2>
+      </div>
+      <div class="packs">
+        <div class="pack">
+          <h3 data-en="Essential">Esencial</h3>
+          <p class="sub" data-en="The beautiful basics">Lo esencial, hermoso</p>
+          <p class="price price-q" data-en="Ask for a quote on WhatsApp">Cotiza por WhatsApp</p>
+          <ul>
+            <li data-en="Web invitation with animated envelope">Invitación web con sobre animado</li>
+            <li data-en="Countdown and map">Cuenta regresiva y mapa</li>
+            <li data-en="RSVP by WhatsApp">Confirmación por WhatsApp</li>
+            <li data-en="1 round of changes">1 ronda de cambios</li>
+          </ul>
+          <a class="btn btn-line" href="#contacto" data-en="Choose Essential">Elegir Esencial</a>
+        </div>
+        <div class="pack featured">
+          <p class="tag" data-en="RECOMMENDED">RECOMENDADO</p>
+          <h3>Ilusión</h3>
+          <p class="sub" data-en="Our signature package">Nuestro paquete estrella</p>
+          <p class="price price-q" data-en="Ask for a quote on WhatsApp">Cotiza por WhatsApp</p>
+          <ul>
+            <li data-en="Everything in Essential">Todo lo de Esencial</li>
+            <li data-en="Music, gallery and schedule">Música, galería e itinerario</li>
+            <li data-en="Gift registry and dress code">Mesa de regalos y vestimenta</li>
+            <li data-en="Bilingual Spanish / English">Bilingüe español / inglés</li>
+            <li data-en="2 rounds of changes">2 rondas de cambios</li>
+          </ul>
+          <a class="btn btn-gold" href="#contacto" data-en="Choose Ilusión">Elegir Ilusión</a>
+        </div>
+        <div class="pack">
+          <h3>Gala</h3>
+          <p class="sub" data-en="The full experience">La experiencia completa</p>
+          <p class="price price-q" data-en="Ask for a quote on WhatsApp">Cotiza por WhatsApp</p>
+          <ul>
+            <li data-en="Everything in Ilusión">Todo lo de Ilusión</li>
+            <li data-en="Video invitation for WhatsApp and Reels">Video invitación para WhatsApp y Reels</li>
+            <li data-en="A link with each guest's name">Link con el nombre de cada invitado</li>
+            <li data-en="Guest list of who's coming">Lista de confirmados para ti</li>
+            <li data-en="Priority delivery in 24 h">Entrega prioritaria en 24 h</li>
+          </ul>
+          <a class="btn btn-line" href="#contacto" data-en="Choose Gala">Elegir Gala</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contact band">
+    <div class="wrap">
+      <img class="logo-img big-logo" src="img/ilusion-logo.jpg" alt="" width="200" height="200">
+      <h2 data-en-html="Ready to create your <em>invitation</em>?">¿Lista para crear tu <em>ilusión</em>?</h2>
+      <p data-en="Write to us and we'll help you choose. We reply in Spanish or English.">Escríbenos y te ayudamos a elegir. Respondemos en español o inglés.</p>
+      <div class="row">
+        <a class="btn btn-gold" href="https://wa.me/16048391163?text=Hola%20Ilusi%C3%B3n%20Invites%2C%20me%20interesa%20una%20invitaci%C3%B3n%20%E2%9C%A8" target="_blank" rel="noopener" data-en="Message us on WhatsApp">Escríbenos por WhatsApp</a>
+        <a class="btn btn-line-gold" href="#disenos" data-en="See designs">Ver diseños</a>
+      </div>
+      <p class="num">WhatsApp: +1 604 839 1163</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot band">
+  <div class="wrap">
+    <div class="foot-brand">
+      <img class="logo-img foot-logo" src="img/ilusion-logo.jpg" alt="Ilusión Invites" width="130" height="130">
+      <div class="ornament" aria-hidden="true"><i></i><b></b><i></i></div>
+      <p class="tagline" data-en="An invitation you'll never forget">Una invitación que nunca olvidarás</p>
+    </div>
+    <nav aria-label="Pie de página">
+      <a href="#disenos" data-en="Designs">Diseños</a>
+      <a href="#como-funciona" data-en="How it works">Cómo funciona</a>
+      <a href="#paquetes" data-en="Packages">Paquetes</a>
+      <a href="https://instagram.com/ilusioninvites">@ilusioninvites</a>
+      <a href="#contacto">WhatsApp</a>
+      <span data-en="Mexico &amp; Canada">México &amp; Canadá</span>
+    </nav>
+  </div>
+  <p class="copy">© 2026 Ilusión Invites</p>
+</footer>
+
+<script>
+(function () {
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-en], [data-en-html]'));
+  nodes.forEach(function (el) { el.setAttribute('data-es-html', el.innerHTML); });
+  var esBtn = document.getElementById('lang-es');
+  var enBtn = document.getElementById('lang-en');
+  function setLang(lang) {
+    nodes.forEach(function (el) {
+      if (lang === 'en') {
+        if (el.hasAttribute('data-en-html')) el.innerHTML = el.getAttribute('data-en-html');
+        else el.textContent = el.getAttribute('data-en');
+      } else {
+        el.innerHTML = el.getAttribute('data-es-html');
+      }
+    });
+    document.documentElement.lang = lang;
+    esBtn.setAttribute('aria-pressed', String(lang === 'es'));
+    enBtn.setAttribute('aria-pressed', String(lang === 'en'));
+    try { localStorage.setItem('ilusion-lang', lang); } catch (e) {}
+  }
+  esBtn.addEventListener('click', function () { setLang('es'); });
+  enBtn.addEventListener('click', function () { setLang('en'); });
+  var saved = null;
+  try { saved = localStorage.getItem('ilusion-lang'); } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'es');
+})();
+</script>
+
+</body>
+</html>
