@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Elige tu diseño, agrega tus fotos y cuéntanos tu idea. Creamos tu invitación digital contigo.">
+<meta property="og:title" content="Crea tu invitación · Ilusión Invites">
+<meta property="og:description" content="Elige tu diseño, agrega tus fotos y cuéntanos tu idea. Creamos tu invitación digital contigo.">
+<meta property="og:image" content="https://ilusioninvites.com/nuevo/crear/img/ilusion-logo.jpg">
+<meta property="og:url" content="https://ilusioninvites.com/nuevo/crear/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1E0916">
+<link rel="icon" href="img/ilusion-logo.jpg">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Crea tu invitación · Ilusión Invites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* "Crea la tuya": a guided, playful order form. Questions on the left, a card on the right that builds itself with their names, date, colour and their own cover photo. Ends by sending everything through WhatsApp (text first, then photos through the phone's share sheet). Nothing is uploaded to a server. */
+:root {
+  color-scheme: light;
+  --ivory: #FBF6EF; --ink: #3A2A26; --ink2: #6E5B54; --ink3: #9A877F; --gold: #B68A4E; --gold-l: #E9CF95;
+  --foil: linear-gradient(100deg, #9C7038 0%, #E9CF95 24%, #C29452 46%, #F3DFA9 64%, #B68A4E 82%, #E2C489 100%);
+  --f-script: "Great Vibes", "Snell Roundhand", cursive; --f-caps: "Cinzel", "Trajan Pro", Georgia, serif; --f-serif: "Cormorant Garamond", Georgia, serif; --f-body: "Jost", "Avenir Next", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { overflow-x: clip; }
+body { margin: 0; color: var(--ink); font: 400 16px/1.6 var(--f-body); background: radial-gradient(ellipse 60% 50% at 75% 30%, #F6ECDF, rgba(246,236,223,0) 75%), radial-gradient(ellipse 50% 45% at 15% 75%, #F8F0E6, rgba(248,240,230,0) 70%), var(--ivory); min-height: 100vh; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+
+/* top bar */
+.top { position: sticky; top: 0; z-index: 30; background: rgba(251,246,239,.84); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(182,138,78,.22); padding-top: env(safe-area-inset-top, 0px); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; }
+.home { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--ink2); }
+.home svg { width: 16px; height: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { width: 40px; height: auto; filter: drop-shadow(0 4px 6px rgba(90,60,30,.25)); }
+.brand b { font: 400 28px/1.1 var(--f-script); color: #A87B3F; padding: 0 .08em 0 .16em; }
+.lang { display: flex; border: 1px solid rgba(182,138,78,.45); border-radius: 999px; overflow: hidden; }
+.lang button { border: 0; background: none; padding: 6px 12px; font: 500 12.5px var(--f-body); color: var(--ink2); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: #fff; }
+@media (max-width: 560px) { .home span { display: none; } .brand b { font-size: 24px; } .brand img { width: 34px; } }
+
+.intro { text-align: center; padding: clamp(28px, 5vw, 56px) 16px clamp(18px, 3vw, 30px); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.eyebrow { font: 500 12px var(--f-caps); letter-spacing: .4em; color: var(--gold); }
+h1 { margin: 0; font: 500 clamp(34px, 5vw, 58px)/1.08 var(--f-serif); text-wrap: balance; }
+h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .08em; }
+.intro p { margin: 4px 0 0; color: var(--ink2); max-width: 54ch; }
+.flour { display: flex; align-items: center; gap: 10px; width: min(300px, 64vw); margin: 8px 0 2px; }
+.flour i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); } .flour i:last-child { transform: scaleX(-1); }
+.flour b { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
+
+/* layout */
+.cr { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(26px, 4.5vw, 64px); align-items: start; padding-bottom: 90px; }
+.panel { position: relative; padding: clamp(22px, 3.2vw, 40px); border-radius: 30px; background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,252,247,.64)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.22), 0 40px 70px -50px rgba(90,60,40,.45); }
+.panel::before { content: ""; position: absolute; inset: 8px; border-radius: 23px; border: 1px solid rgba(182,138,78,.13); pointer-events: none; }
+.prog { list-style: none; display: flex; justify-content: center; margin: 0 0 6px; padding: 0; }
+.prog li { display: flex; align-items: center; }
+.prog li + li::before { content: ""; width: clamp(16px, 4vw, 40px); height: 1px; background: rgba(182,138,78,.3); }
+.prog li.done::before, .prog li.done + li::before { background: var(--gold); }
+.prog button { width: 24px; height: 24px; padding: 0; border: 0; background: none; display: grid; place-items: center; cursor: pointer; }
+.prog i { width: 8px; height: 8px; transform: rotate(45deg); border: 1px solid var(--gold); transition: background .4s, transform .4s, box-shadow .4s; }
+.prog li.done i { background: var(--gold); }
+.prog li.now i { background: var(--gold); transform: rotate(45deg) scale(1.35); box-shadow: 0 0 0 4px rgba(233,207,149,.35); }
+.stepno { margin: 0 0 16px; text-align: center; font: 500 10.5px var(--f-caps); letter-spacing: .3em; color: var(--ink3); }
+.st { border: 0; margin: 0; padding: 0; min-width: 0; display: none; }
+.st.on { display: block; animation: in .7s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes in { from { opacity: 0; transform: translateY(10px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+.st legend { display: block; width: 100%; padding: 0; margin: 0 0 4px; text-align: center; font: 500 clamp(26px, 3vw, 36px)/1.15 var(--f-serif); outline: none; }
+.st legend em { font-style: italic; color: var(--gold); }
+.hint { margin: 0 0 20px; text-align: center; color: var(--ink2); font-size: 15px; }
+.sub { margin: 24px 0 10px; font: 500 10.5px var(--f-caps); letter-spacing: .26em; color: var(--ink2); text-align: center; }
+
+/* options */
+.opts { display: grid; gap: 10px; }
+.c2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.c4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.opt { position: relative; display: block; cursor: pointer; }
+.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opt > span { position: relative; display: flex; align-items: center; gap: 12px; height: 100%; min-height: 52px; padding: 9px 14px; border-radius: 16px; background: rgba(255,255,255,.72); box-shadow: inset 0 0 0 1px rgba(182,138,78,.22); transition: box-shadow .35s, background .35s, transform .35s; }
+.opt:hover > span { box-shadow: inset 0 0 0 1px rgba(182,138,78,.5), 0 10px 22px -16px rgba(120,85,45,.5); transform: translateY(-1px); }
+.opt input:checked + span { background: linear-gradient(180deg, #FFFDF8, #FBF1E1); box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 4px rgba(233,207,149,.28), 0 12px 24px -16px rgba(140,95,40,.55); }
+.opt input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 3px; }
+.opt b { font: 500 16.5px/1.2 var(--f-serif); }
+.opt small { display: block; font-size: 12.5px; line-height: 1.35; color: var(--ink3); margin-top: 2px; }
+.th { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, #fff, #F4EADC); box-shadow: inset 0 0 0 1px rgba(182,138,78,.25); overflow: hidden; }
+.th svg { width: 21px; height: 21px; color: var(--gold); }
+.th img { width: 120%; height: 120%; object-fit: contain; }
+.chip > span { justify-content: center; text-align: center; border-radius: 999px; min-height: 44px; padding: 8px 12px; }
+.chip b { font: 400 14.5px var(--f-body); }
+.seal-o > span { flex-direction: column; justify-content: center; gap: 6px; padding: 12px 6px 10px; text-align: center; }
+.seal-o img { width: 50px; height: auto; filter: drop-shadow(0 6px 8px rgba(90,60,40,.25)); transition: transform .4s; }
+.seal-o input:checked + span img { transform: scale(1.08) rotate(-6deg); }
+.seal-o b { font: 500 10.5px var(--f-caps); letter-spacing: .16em; }
+/* design picks */
+.dz > span { flex-direction: column; gap: 8px; padding: 12px 10px 12px; text-align: center; }
+.mini { width: 64%; aspect-ratio: 1 / 2; border-radius: 16px; padding: 4px; background: linear-gradient(145deg, #3b3236, #121012 40%, #2a2326 70%, #0d0b0c); box-shadow: 0 16px 24px -14px rgba(40,25,20,.55); }
+.mini img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 12px; display: block; }
+.mini.own { display: grid; place-items: center; background: radial-gradient(circle at 50% 35%, #fff, #F3E7D6); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 16px 24px -14px rgba(90,60,40,.4); }
+.mini.own svg { width: 34%; color: var(--gold); }
+.dz .see { font: 500 10px var(--f-caps); letter-spacing: .2em; color: var(--gold); text-decoration: none; position: relative; z-index: 2; }
+.none { text-align: center; color: var(--ink3); font-size: 14px; margin: 10px 0 0; }
+
+/* fields */
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.fields label { display: flex; flex-direction: column; gap: 6px; font: 500 10.5px var(--f-caps); letter-spacing: .2em; color: var(--ink2); }
+.fields .full { grid-column: 1 / -1; }
+.fields input, .fields textarea { font: 400 16px var(--f-body); color: var(--ink); letter-spacing: 0; padding: 12px 15px; border-radius: 14px; border: 0; background: rgba(255,255,255,.88); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); width: 100%; min-width: 0; transition: box-shadow .3s; }
+.fields textarea { resize: vertical; min-height: 88px; line-height: 1.5; }
+.fields input:focus, .fields textarea:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 4px rgba(233,207,149,.3); }
+.fields ::placeholder { color: #B5A59C; }
+.opt-tag { font: 400 11px var(--f-body); letter-spacing: 0; text-transform: none; color: var(--ink3); }
+
+/* photos */
+.drop { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 150px; padding: 22px; border-radius: 22px; text-align: center; cursor: pointer; background: radial-gradient(ellipse at 50% 30%, #fff, rgba(251,244,234,.8)); box-shadow: inset 0 0 0 1.5px rgba(182,138,78,.35); transition: box-shadow .3s, background .3s; }
+.drop:hover, .drop.over { box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 5px rgba(233,207,149,.3); }
+.drop input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.drop svg { width: 34px; height: 34px; color: var(--gold); }
+.drop b { font: 500 20px var(--f-serif); }
+.drop small { color: var(--ink3); font-size: 13px; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(82px, 1fr)); gap: 10px; margin-top: 14px; }
+.thumbs:empty { display: none; }
+.thumb { position: relative; aspect-ratio: 1; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 16px -10px rgba(90,60,40,.5), inset 0 0 0 1px rgba(182,138,78,.3); animation: pop .5s cubic-bezier(.2,.9,.3,1.3) both; }
+@keyframes pop { from { transform: scale(.6); opacity: 0; } }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb .x { position: absolute; top: 4px; right: 4px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); color: var(--ink); font: 500 15px/1 var(--f-body); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+.thumb .cv { position: absolute; left: 0; right: 0; bottom: 0; padding: 3px; text-align: center; font: 500 9px var(--f-caps); letter-spacing: .16em; color: #fff; background: linear-gradient(transparent, rgba(60,40,20,.7)); }
+.check { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; font-size: 14px; color: var(--ink2); cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--gold); margin-top: 2px; flex: none; }
+
+/* review */
+.sum { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.sum li { display: grid; grid-template-columns: 9.5em minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 10px 2px; border-bottom: 1px solid rgba(182,138,78,.18); }
+.sum li:last-child { border-bottom: 0; }
+.sum span { font: 500 10px var(--f-caps); letter-spacing: .2em; color: var(--ink3); }
+.sum b { font: 500 17px/1.35 var(--f-serif); overflow-wrap: anywhere; }
+.sum b.miss { color: #B5A59C; font-style: italic; font-weight: 400; }
+.sum button { border: 0; background: none; font: 500 10px var(--f-caps); letter-spacing: .18em; color: var(--gold); cursor: pointer; padding: 4px; }
+.send { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
+.send .row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 18px; background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px rgba(182,138,78,.22); }
+.send .num { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: italic 500 18px var(--f-serif); color: var(--gold); box-shadow: inset 0 0 0 1px rgba(182,138,78,.5); background: #fff; }
+.send .row.done .num { background: var(--gold); color: #fff; }
+.send .txt { flex: 1; min-width: 0; font-size: 14.5px; color: var(--ink2); }
+.send .txt b { display: block; font: 500 17px var(--f-serif); color: var(--ink); }
+.send .btn { flex: none; }
+.note { margin: 10px 0 0; text-align: center; font-size: 13px; color: var(--ink3); }
+
+.nav { display: flex; align-items: center; gap: 14px; margin-top: 24px; }
+.backb { border: 0; background: none; padding: 10px 4px; font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--ink2); cursor: pointer; }
+.nav .btn { margin-left: auto; min-width: 170px; }
+
+/* buttons (same epoxy look as the home page) */
+.btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; font: 600 15px var(--f-body); letter-spacing: .04em; text-decoration: none; cursor: pointer; border: 0; transition: box-shadow .35s, transform .35s; -webkit-font-smoothing: antialiased; }
+.btn:hover { transform: translateY(-1px); }
+.btn::before { content: ""; position: absolute; z-index: -1; left: 7%; right: 7%; top: 2px; height: 58%; border-radius: 999px; background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(255,255,255,.72), rgba(255,255,255,.22) 52%, rgba(255,255,255,0) 78%); pointer-events: none; }
+.btn-gold { background: linear-gradient(180deg, #F7E4B4 0%, #EBC988 34%, #D6A963 70%, #C4914D 100%); color: #3A2210; box-shadow: inset 0 0 0 1px rgba(170,120,55,.3), inset 0 -8px 16px rgba(160,105,40,.22), 0 10px 24px -12px rgba(140,95,40,.55), 0 0 20px rgba(236,204,140,.45); }
+.btn-line { background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,250,242,.65)); color: var(--ink); box-shadow: inset 0 0 0 1px rgba(182,138,78,.45), 0 8px 20px -12px rgba(120,85,45,.4); font-weight: 500; }
+.btn-sm { min-height: 40px; padding: 0 16px; font-size: 13.5px; }
+
+/* live card */
+.side { position: sticky; top: 86px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.card { --bg: #FBF6EF; --cink: #3A2A26; --acc: #B68A4E; position: relative; width: min(100%, 370px); aspect-ratio: .66; border-radius: 50% 50% 18px 18px / 33% 33% 18px 18px; background: radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%), linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 88%, var(--acc))); color: var(--cink); box-shadow: 0 50px 70px -40px rgba(90,60,40,.5), 0 6px 16px -8px rgba(90,60,40,.25), inset 0 0 0 1px color-mix(in srgb, var(--acc) 30%, transparent); transition: background .8s, color .8s; }
+.card::before { content: ""; position: absolute; inset: 12px; border-radius: 50% 50% 12px 12px / 32% 32% 12px 12px; border: 1px solid color-mix(in srgb, var(--acc) 55%, transparent); pointer-events: none; z-index: 2; }
+.c-photo { position: absolute; left: 50%; top: 7%; width: 52%; aspect-ratio: .8; transform: translateX(-50%); border-radius: 50% 50% 10px 10px / 40% 40% 10px 10px; overflow: hidden; box-shadow: 0 0 0 3px color-mix(in srgb, var(--bg) 90%, #fff), 0 0 0 4px color-mix(in srgb, var(--acc) 55%, transparent), 0 16px 26px -14px rgba(60,40,20,.6); opacity: 0; transition: opacity .8s; }
+.c-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card.has-photo .c-photo { opacity: 1; }
+.c-in { position: absolute; inset: 14% 11% 16%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 5px; transition: inset .8s; }
+.card.has-photo .c-in { inset: 52% 10% 13%; justify-content: flex-start; gap: 3px; }
+.c-eye { font: 500 10.5px var(--f-caps); letter-spacing: .4em; padding-left: .4em; color: var(--acc); }
+.c-pre { font: italic 400 14.5px/1.3 var(--f-serif); opacity: .8; }
+.c-names { font: 400 clamp(34px, 4vw, 46px)/1.05 var(--f-script); margin: 4px 0 2px; text-wrap: balance; overflow-wrap: anywhere; }
+.card.has-photo .c-names { font-size: clamp(28px, 3.2vw, 36px); }
+.c-names.empty { opacity: .35; }
+.c-rule { display: flex; align-items: center; gap: 8px; width: 60%; margin: 4px 0; }
+.c-rule i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--acc)); } .c-rule i:last-child { transform: scaleX(-1); }
+.c-rule b { width: 6px; height: 6px; transform: rotate(45deg); background: var(--acc); }
+.c-date { font: 500 11px var(--f-caps); letter-spacing: .22em; }
+.c-place { font: italic 400 16px/1.3 var(--f-serif); }
+.c-in > :empty { display: none; }
+.c-seal { position: absolute; left: 50%; bottom: 0; width: 70px; height: auto; transform: translate(-50%, 42%); filter: drop-shadow(0 10px 12px rgba(90,60,40,.3)); z-index: 3; }
+.c-design { margin: 26px 0 0; font: 500 10.5px var(--f-caps); letter-spacing: .24em; color: var(--ink3); text-align: center; }
+.c-design b { color: var(--gold); font-weight: 500; }
+.card.pulse { animation: pulse .9s ease; }
+@keyframes pulse { 40% { box-shadow: 0 50px 70px -40px rgba(90,60,40,.5), 0 0 40px rgba(240,210,150,.75), inset 0 0 0 1px color-mix(in srgb, var(--acc) 50%, transparent); } }
+
+/* thanks */
+.thanks { text-align: center; padding: 20px 0 6px; }
+.thanks .big { font: 400 clamp(46px, 6vw, 64px)/1 var(--f-script); color: var(--gold); }
+.thanks p { color: var(--ink2); max-width: 44ch; margin: 10px auto 0; }
+#spark { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 60; }
+
+@media (max-width: 900px) {
+  .cr { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .side { position: relative; top: 0; order: -1; }
+  .card { width: min(60vw, 230px); }
+  .c-names { font-size: 32px; } .card.has-photo .c-names { font-size: 26px; } .c-pre { font-size: 12.5px; } .c-eye, .c-date { font-size: 9px; } .c-place { font-size: 13px; }
+  .c-seal { width: 54px; } .c-design { margin-top: 18px; }
+}
+@media (max-width: 560px) {
+  .panel { padding: 22px 14px; border-radius: 24px; }
+  .c4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .c3.seals { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .fields { grid-template-columns: minmax(0, 1fr); }
+  .opt > span { padding: 8px 11px; gap: 10px; } .th { width: 34px; height: 34px; }
+  .sum li { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; } .sum li span { grid-column: 1 / -1; }
+  .send .row { flex-wrap: wrap; } .send .btn { width: 100%; }
+  .nav .btn { flex: 1; min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .st.on, .thumb, .card.pulse { animation: none; } html { scroll-behavior: auto; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="home" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span data-en="Home">Inicio</span></a>
+    <a class="brand" href="../" aria-label="Ilusión Invites"><img src="../img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><b>Ilusión</b></a>
+    <div class="lang" role="group" aria-label="Idioma"><button type="button" id="es" aria-pressed="true">ES</button><button type="button" id="en" aria-pressed="false">EN</button></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <span class="eyebrow" data-en="CREATE YOURS">CREA LA TUYA</span>
+    <h1 data-en-html="Let's make your invitation <em>together</em>">Hagamos tu invitación <em>juntos</em></h1>
+    <div class="flour" aria-hidden="true"><i></i><b></b><i></i></div>
+    <p data-en="Five little steps. You dream, we design. Watch it come to life as you go.">Cinco pasitos. Tú sueñas, nosotros diseñamos. Mírala cobrar vida mientras avanzas.</p>
+  </div>
+
+  <div class="cr">
+    <form class="panel" id="f" novalidate>
+      <ol class="prog" id="prog"></ol>
+      <p class="stepno" id="stepno" aria-live="polite"></p>
+
+      <fieldset class="st" data-k="diseno">
+        <legend tabindex="-1" data-en-html="Your celebration and <em>design</em>">Tu celebración y <em>diseño</em></legend>
+        <p class="hint" data-en="Choose what you're celebrating, then the design you love.">Elige qué celebras y después el diseño que te enamore.</p>
+        <div class="opts c4" id="o-evento"></div>
+        <p class="sub" data-en="CHOOSE A DESIGN">ELIGE UN DISEÑO</p>
+        <div class="opts c3" id="o-diseno"></div>
+        <p class="none" id="d-none" hidden data-en="New designs for this collection are on the way. We'll create yours from scratch, just for you.">Estamos creando más diseños para esta colección. La tuya la hacemos desde cero, a tu medida.</p>
+      </fieldset>
+
+      <fieldset class="st" data-k="datos">
+        <legend tabindex="-1" data-en-html="The <em>details</em>">Los <em>detalles</em></legend>
+        <p class="hint" data-en="Fill in what you know. Everything can change later.">Llena lo que ya sepas. Todo se puede cambiar después.</p>
+        <div class="fields">
+          <label class="full"><span id="l-quien"></span><input name="quien" maxlength="80" autocomplete="off"></label>
+          <label><span data-en="Date">Fecha</span><input name="fecha" type="date"></label>
+          <label><span data-en="Time">Hora</span><input name="hora" type="time"></label>
+          <label class="full" data-show="ceremonia"><span data-en="Ceremony (place and time)">Ceremonia (lugar y hora)</span><input name="ceremonia" maxlength="140" placeholder="Parroquia San José, 5:00 pm" data-en-ph="St. Joseph's Church, 5:00 pm"></label>
+          <label class="full"><span data-en="Celebration venue">Lugar de la celebración</span><input name="lugar" maxlength="120" placeholder="Hacienda Los Olivos" data-en-ph="The Rose Garden Hall"></label>
+          <label class="full"><span data-en="Address or Google Maps link">Dirección o link de Google Maps</span><input name="direccion" maxlength="300" autocomplete="off"></label>
+          <label class="full" data-show="familia"><span data-en="Parents and sponsors">Padres y padrinos</span><textarea name="familia" maxlength="600" placeholder="Padres: … · Padrinos de anillos: …" data-en-ph="Parents: … · Sponsors: …"></textarea></label>
+          <label><span data-en="Dress code">Código de vestimenta</span><input name="vestimenta" maxlength="80" placeholder="Formal" data-en-ph="Black tie"></label>
+          <label><span data-en="Guests (approx.)">Invitados (aprox.)</span><input name="invitados" type="number" min="1" max="5000" inputmode="numeric"></label>
+          <label class="full"><span data-en="RSVP by">Confirmar antes del</span><input name="rsvp" type="date"></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="st" data-k="fotos">
+        <legend tabindex="-1" data-en-html="Your photos and <em>music</em>">Tus fotos y <em>música</em></legend>
+        <p class="hint" data-en="The first photo becomes the cover. Watch the card!">La primera foto será la portada. ¡Mira la tarjeta!</p>
+        <label class="drop" id="drop">
+          <input type="file" id="files" accept="image/*" multiple>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg>
+          <b data-en="Add your photos">Agrega tus fotos</b>
+          <small data-en="Tap to choose or drag them here · up to 12">Toca para elegir o arrástralas aquí · hasta 12</small>
+        </label>
+        <div class="thumbs" id="thumbs"></div>
+        <label class="check" id="perm-wrap" hidden><input type="checkbox" id="perm"><span id="perm-txt"></span></label>
+        <div class="fields" style="margin-top:20px">
+          <label class="full"><span data-en="Song for your invitation">Canción para tu invitación</span><input name="cancion" maxlength="120" placeholder="Perfect · Ed Sheeran" data-en-ph="Perfect · Ed Sheeran"></label>
+          <label class="full"><span><span data-en="Inspiration link">Link de inspiración</span> <span class="opt-tag" data-en="(Pinterest, Instagram…)">(Pinterest, Instagram…)</span></span><input name="inspiracion" maxlength="300" inputmode="url" autocomplete="off"></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="st" data-k="idea">
+        <legend tabindex="-1" data-en-html="Your <em>idea</em>">Tu <em>idea</em></legend>
+        <p class="hint" data-en="The feeling, the colors and the little details.">El ambiente, los colores y los detalles.</p>
+        <div class="opts c2" id="o-ambiente"></div>
+        <p class="sub" data-en="YOUR COLORS">TUS COLORES</p>
+        <div class="opts c3 seals" id="o-color"></div>
+        <p class="sub" data-en="WHAT CAN'T BE MISSING">LO QUE NO PUEDE FALTAR</p>
+        <div class="opts c2" id="o-incluir"></div>
+        <div class="fields" style="margin-top:20px">
+          <label class="full"><span data-en="Tell us your dream">Cuéntanos tu sueño</span><textarea name="sueno" maxlength="900" placeholder="Me imagino algo romántico, con flores blancas, luces cálidas y un vals al atardecer…" data-en-ph="I imagine something romantic, with white flowers, warm lights and a sunset first dance…"></textarea></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="st" data-k="enviar">
+        <legend tabindex="-1" data-en-html="Review and <em>send</em>">Revisa y <em>envía</em></legend>
+        <p class="hint" data-en="Everything look right? Send it and we'll write back with your proposal.">¿Todo bien? Envíalo y te escribimos con tu propuesta.</p>
+        <ul class="sum" id="sum"></ul>
+        <div class="fields" style="margin-top:16px">
+          <label class="full"><span data-en="Your name">Tu nombre</span><input name="contacto" maxlength="80" autocomplete="name"></label>
+        </div>
+        <div class="send" id="send">
+          <div class="row" id="r1"><span class="num">1</span><span class="txt"><b data-en="Send your details">Envía tus datos</b><span data-en="WhatsApp opens with everything written.">Se abre WhatsApp con todo escrito.</span></span><a class="btn btn-gold btn-sm" id="b-wa" href="#" target="_blank" rel="noopener" data-en="Send on WhatsApp">Enviar por WhatsApp</a></div>
+          <div class="row" id="r2" hidden><span class="num">2</span><span class="txt"><b data-en="Send your photos">Envía tus fotos</b><span id="r2-txt"></span></span><button type="button" class="btn btn-line btn-sm" id="b-ph" data-en="Share photos">Compartir fotos</button></div>
+        </div>
+        <div class="thanks" id="thanks" hidden><div class="big" data-en="Thank you!">¡Gracias!</div><p data-en="As soon as your message arrives, we start designing. We'll write back soon with your proposal.">En cuanto llegue tu mensaje empezamos a diseñar. Te escribimos pronto con tu propuesta.</p></div>
+      </fieldset>
+
+      <div class="nav">
+        <button type="button" class="backb" id="back" data-en="← Back">← Atrás</button>
+        <button type="button" class="btn btn-gold" id="next" data-en="Next">Siguiente</button>
+      </div>
+    </form>
+
+    <div class="side">
+      <div class="card" id="card" role="img" aria-label="Vista previa" data-en-aria="Preview">
+        <div class="c-photo"><img id="c-photo" alt=""></div>
+        <div class="c-in" aria-hidden="true">
+          <span class="c-eye" id="c-eye"></span>
+          <span class="c-pre" id="c-pre"></span>
+          <b class="c-names" id="c-names"></b>
+          <span class="c-rule"><i></i><b></b><i></i></span>
+          <span class="c-date" id="c-date"></span>
+          <span class="c-place" id="c-place"></span>
+        </div>
+        <img class="c-seal" id="c-seal" src="../img/sello-ilusion-oro-s.webp" alt="" width="140" height="139">
+      </div>
+      <p class="c-design" id="c-design"></p>
+    </div>
+  </div>
+</main>
+<canvas id="spark" aria-hidden="true"></canvas>
+
+<script type="application/json" id="col-data">{"colecciones": [{"slug": "bodas", "frame": "arco", "img": "cat-bodas", "deco": "rosa-marfil", "decoPos": "bl", "es": {"nombre": "Bodas", "script": "Para siempre", "intro": "Seda marfil, flores románticas y luz de velas. Invitaciones atemporales para el día en que comienza su historia."}, "en": {"nombre": "Weddings", "script": "Forever", "intro": "Ivory silk, romantic florals and candlelight. Timeless invitations for the day your story begins."}, "disenos": [{"id": "jardin-blanco", "nombre": "Jardín Blanco", "pareja": "Ana Sofía & Emiliano", "poster": "disenos/jardin-blanco.webp", "url": "../../../demos/boda-jardin-blanco/", "nota": "Flores blancas reales en capas, sobre de algodón y sello marfil."}, {"id": "terciopelo-vino", "nombre": "Terciopelo Vino", "pareja": "Isabella & Julián", "poster": "disenos/terciopelo-vino.webp", "url": "../../../demos/boda-isabella-julian/", "nota": "Sobre de terciopelo, borde dorado y flores que florecen."}, {"id": "encaje-perlas", "nombre": "Encaje y Perlas", "pareja": "Camila & Sebastián", "poster": "disenos/encaje-perlas.webp", "url": "../../../demos/boda-camila-sebastian/", "nota": "Encaje, listón rosa y broche de perlas."}]}, {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "mariposa-cristal-1", "decoPos": "tr", "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}, "disenos": []}, {"slug": "cumpleanos", "frame": "arco", "img": "cat-cumpleanos", "deco": "rosa-rubor", "decoPos": "bl", "es": {"nombre": "Cumpleaños", "script": "Celebra tu día", "intro": "Expresivos, hermosos y a tu medida: desde una cena íntima hasta una gran fiesta con globos y pastel."}, "en": {"nombre": "Birthdays", "script": "Celebrate your day", "intro": "Expressive, beautiful and made for you, from an intimate dinner to a big party with balloons and cake."}, "disenos": []}, {"slug": "baby-shower", "frame": "rect", "img": "cat-baby-shower", "deco": "nube-gypsophila", "decoPos": "br", "es": {"nombre": "Baby Shower", "script": "Entre nubes", "intro": "Luz natural, texturas suaves y tonos pastel para dar la bienvenida a alguien muy esperado."}, "en": {"nombre": "Baby Showers", "script": "Among the clouds", "intro": "Soft natural light, delicate textures and pastel tones to welcome someone long awaited."}, "disenos": []}, {"slug": "navidad", "frame": "ovalo", "img": "cat-navidad-posadas", "deco": "ramita-hojas-doradas", "decoPos": "bl", "es": {"nombre": "Posada · Navidad", "script": "Calidez de fiesta", "intro": "Luz cálida, verde profundo, terciopelo y oro champaña. Para posadas, cenas navideñas y fiestas de fin de año."}, "en": {"nombre": "Christmas", "script": "Festive warmth", "intro": "Warm light, deep evergreen, velvet and champagne gold. For posadas, Christmas dinners and holiday parties."}, "disenos": []}, {"slug": "ano-nuevo", "frame": "arco", "img": "cat-ano-nuevo", "deco": "cristal-1", "decoPos": "tr", "es": {"nombre": "Año Nuevo", "script": "Brindemos", "intro": "Ambiente de medianoche: negro, oro champaña y destellos metálicos para recibir el año con estilo."}, "en": {"nombre": "New Year's Eve", "script": "Let's toast", "intro": "A midnight atmosphere of black, champagne gold and metallic sparkle to welcome the year in style."}, "disenos": []}, {"slug": "empresas", "frame": "rect", "img": "cat-gala-empresa", "deco": "", "decoPos": "", "es": {"nombre": "Empresas · Gala", "script": "Noche de gala", "intro": "Elegancia arquitectónica y estilo sobrio para cenas de gala, lanzamientos y eventos corporativos."}, "en": {"nombre": "Corporate Events", "script": "An evening of gala", "intro": "Architectural elegance and refined, minimal styling for galas, launches and corporate events."}, "disenos": []}, {"slug": "otras", "frame": "ovalo", "img": "cat-otras", "deco": "mariposa-dorada-1", "decoPos": "tr", "es": {"nombre": "Otras celebraciones", "script": "Todo es posible", "intro": "Bautizos, comuniones, graduaciones, aniversarios o lo que estés soñando. Lo creamos contigo."}, "en": {"nombre": "Other Celebrations", "script": "Anything is possible", "intro": "Baptisms, communions, graduations, anniversaries or whatever you are dreaming of. We create it with you."}, "disenos": []}]}</script>
+<script>
+(function () {
+  'use strict';
+  var COLS = JSON.parse(document.getElementById('col-data').textContent || '{"colecciones":[]}').colecciones;
+  var WA_NUM = '16048391163';
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (id) { return document.getElementById(id); }, f = $('f');
+  function e2(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function L() { return document.documentElement.lang === 'en' ? 'en' : 'es'; }
+  function find(list, k, v) { for (var i = 0; i < list.length; i++) if (list[i][k] === v) return list[i]; return null; }
+
+  var IC = {
+    bodas: '<circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M10.5 6.5L12 4l1.5 2.5L12 8.5z"/>',
+    'xv-anos': '<path d="M4 17l1.8-8 4.2 5 2-8 2 8 4.2-5L20 17z"/><path d="M4 20h16"/>',
+    cumpleanos: '<rect x="5" y="11" width="14" height="8" rx="1.5"/><path d="M5 15c2.3 1.5 4.7 1.5 7 0s4.7-1.5 7 0"/><path d="M12 11V8.5"/><path d="M12 4.5c.9.8.9 2.2 0 3-.9-.8-.9-2.2 0-3z"/>',
+    'baby-shower': '<path d="M7.5 18h9.5a3.8 3.8 0 0 0 .3-7.6 5.2 5.2 0 0 0-10-1A4.3 4.3 0 0 0 7.5 18z"/>',
+    navidad: '<path d="M12 4l-6.5 14h13z"/><path d="M12 18v2.5"/><path d="M9 13.5h6"/>',
+    'ano-nuevo': '<path d="M6 3h4.5l-.6 5.5a1.6 1.6 0 0 1-3.3 0z"/><path d="M8.2 10v9.5M6.2 19.5h4"/><path d="M13.5 3H18l-.6 5.5a1.6 1.6 0 0 1-3.3 0z"/><path d="M15.7 10v9.5M13.7 19.5h4"/>',
+    empresas: '<path d="M4 9l8-5 8 5"/><path d="M6.5 10.5v7M10 10.5v7M14 10.5v7M17.5 10.5v7"/><path d="M4 20h16"/>',
+    otras: '<path d="M12 3.5c.6 4 2.6 6 6.5 6.6-3.9.6-5.9 2.6-6.5 6.6-.6-4-2.6-6-6.5-6.6 3.9-.6 5.9-2.6 6.5-6.6z"/>',
+    pluma: '<path d="M20 4c-6 1-11 6-13 13l-2 3"/><path d="M8 15c3 0 6-1 8-4"/><path d="M11 9c2 0 4-.5 6-2"/>',
+    linea: '<path d="M4 12h16"/><path d="M12 9.5l2.5 2.5-2.5 2.5L9.5 12z"/>'
+  };
+  function svg(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[k] + '</svg>'; }
+
+  /* event wording: [short label, card line, who-label, who-placeholder] */
+  var EV = {
+    bodas: { es: ['Boda', 'Nos casamos', 'Los novios', 'Ana Sofía & Emiliano'], en: ['Wedding', "We're getting married", 'The couple', 'Ana Sofía & Emiliano'], cer: 1, fam: 1 },
+    'xv-anos': { es: ['XV Años', 'Mis XV años', 'La quinceañera', 'Valentina'], en: ['Quinceañera', 'My quinceañera', 'The quinceañera', 'Valentina'], cer: 1, fam: 1 },
+    cumpleanos: { es: ['Cumpleaños', 'Celebremos juntos', 'Quién cumple años', 'Mariana · 30 años'], en: ['Birthday', "Let's celebrate", 'Birthday person', 'Mariana · 30'] },
+    'baby-shower': { es: ['Baby Shower', 'Viene en camino', 'Para quién es', 'Bebé Sofía · Familia López'], en: ['Baby Shower', 'On the way', 'Who it is for', 'Baby Sofía · The Lopez family'], fam: 1 },
+    navidad: { es: ['Posada · Navidad', 'Celebremos la Navidad', 'Anfitriones', 'Familia Hernández'], en: ['Christmas', "Let's celebrate Christmas", 'Hosts', 'The Hernández family'] },
+    'ano-nuevo': { es: ['Año Nuevo', 'Recibamos juntos el año', 'Anfitriones', 'Familia Ruiz'], en: ["New Year's Eve", 'Ring in the new year', 'Hosts', 'The Ruiz family'] },
+    empresas: { es: ['Empresa · Gala', 'Tenemos el honor de invitarle', 'Empresa o evento', 'Gala anual Grupo Aurora'], en: ['Corporate · Gala', 'You are cordially invited', 'Company or event', 'Aurora Group Annual Gala'] },
+    otras: { es: ['Otra celebración', 'Te invitamos a celebrar', '¿Qué celebramos?', 'Bautizo de Mateo'], en: ['Something else', 'Join us to celebrate', 'What are we celebrating?', "Mateo's baptism"], cer: 1, fam: 1 }
+  };
+  var AMB = [
+    { v: 'romantico', img: 'rosa-marfil', es: ['Romántico y clásico', 'Seda, velas y flores blancas'], en: ['Romantic & classic', 'Silk, candlelight and white flowers'] },
+    { v: 'jardin', img: 'hortensia-marfil', es: ['Jardín en flor', 'Flores frescas y luz de día'], en: ['Garden in bloom', 'Fresh flowers and daylight'] },
+    { v: 'cuento', img: 'mariposa-cristal-1', es: ['Cuento de hadas', 'Cristal, tul y mariposas'], en: ['Fairytale', 'Crystal, tulle and butterflies'] },
+    { v: 'glamour', img: 'cristal-1', es: ['Glamour de noche', 'Brillo, terciopelo y oro'], en: ['Evening glamour', 'Sparkle, velvet and gold'] },
+    { v: 'natural', img: 'ramita-hojas-doradas', es: ['Bohemio y natural', 'Ramas, lino y tonos tierra'], en: ['Boho & natural', 'Branches, linen and earthy tones'] },
+    { v: 'minimal', ic: 'linea', es: ['Moderno y minimalista', 'Líneas limpias y mucho aire'], en: ['Modern & minimal', 'Clean lines and lots of air'] }
+  ];
+  var COL = [
+    { v: 'marfil', seal: 'sello-marfil', t: ['#FBF6EF', '#3A2A26', '#B68A4E'], es: 'Marfil', en: 'Ivory' },
+    { v: 'rubor', seal: 'sello-rubor', t: ['#FCF1F1', '#4A2633', '#B8798A'], es: 'Rubor', en: 'Blush' },
+    { v: 'oro', seal: 'sello-ilusion-oro-s', t: ['#FAF2E2', '#3A2A1A', '#B08440'], es: 'Champaña', en: 'Champagne' },
+    { v: 'vino', seal: 'sello-vino', t: ['#F8EDEE', '#4A1626', '#8E3A4E'], es: 'Vino', en: 'Wine' },
+    { v: 'esmeralda', seal: 'sello-esmeralda', t: ['#F0F5F0', '#1F3A2E', '#3F6B55'], es: 'Esmeralda', en: 'Emerald' },
+    { v: 'marino', seal: 'sello-marino', t: ['#EFF2F7', '#1E2B45', '#3E5680'], es: 'Marino', en: 'Navy' }
+  ];
+  var INC = [
+    { v: 'musica', es: 'Música', en: 'Music' }, { v: 'cuenta', es: 'Cuenta regresiva', en: 'Countdown' },
+    { v: 'mapa', es: 'Mapa y ubicación', en: 'Map & location' }, { v: 'rsvp', es: 'Confirmar asistencia', en: 'RSVP' },
+    { v: 'galeria', es: 'Galería de fotos', en: 'Photo gallery' }, { v: 'regalos', es: 'Mesa de regalos', en: 'Gift registry' },
+    { v: 'vestimenta', es: 'Código de vestimenta', en: 'Dress code' }, { v: 'itinerario', es: 'Itinerario del día', en: 'Schedule of the day' }
+  ];
+  var KEYS = ['diseno', 'datos', 'fotos', 'idea', 'enviar'];
+  var NAMES = { es: ['Diseño', 'Detalles', 'Fotos', 'Idea', 'Enviar'], en: ['Design', 'Details', 'Photos', 'Idea', 'Send'] };
+  var TEXT = ['quien', 'fecha', 'hora', 'ceremonia', 'lugar', 'direccion', 'familia', 'vestimenta', 'invitados', 'rsvp', 'cancion', 'inspiracion', 'sueno', 'contacto'];
+
+  /* state: saved in this browser only (photos stay in memory) */
+  var st = { step: 0, evento: '', diseno: '', ambiente: '', color: '', incluir: [] };
+  TEXT.forEach(function (k) { st[k] = ''; });
+  try { var sv = JSON.parse(localStorage.getItem('ilu-crear') || 'null'); if (sv) for (var k in st) if (k in sv) st[k] = sv[k]; } catch (e) {}
+  if (!Array.isArray(st.incluir)) st.incluir = [];
+  /* carry over the "Imagina tu invitación" answers from the home page */
+  try {
+    var im = JSON.parse(localStorage.getItem('ilu-imagina') || 'null');
+    if (im) {
+      var map = { boda: 'bodas', xv: 'xv-anos', cumple: 'cumpleanos', baby: 'baby-shower', navidad: 'navidad', nuevo: 'ano-nuevo', empresa: 'empresas', otra: 'otras' };
+      if (!st.evento && map[im.evento]) st.evento = map[im.evento];
+      if (!st.ambiente && im.ambiente) st.ambiente = im.ambiente;
+      if (!st.color && im.color) st.color = im.color;
+      if (!st.incluir.length && Array.isArray(im.incluir)) st.incluir = im.incluir.filter(function (v) { return v !== 'padrinos'; });
+      if (!st.quien && im.nombres) st.quien = im.nombres;
+      if (!st.fecha && im.fecha) st.fecha = im.fecha;
+      if (!st.sueno && im.sueno) st.sueno = im.sueno;
+    }
+  } catch (e) {}
+  /* a design picked on a collection page */
+  var qs = new URLSearchParams(location.search);
+  if (qs.get('c') && EV[qs.get('c')]) { if (st.evento !== qs.get('c')) st.diseno = ''; st.evento = qs.get('c'); st.step = 0; }
+  if (qs.get('d')) { st.diseno = qs.get('d'); if (st.evento) st.step = 1; }
+  st.step = Math.max(0, Math.min(KEYS.length - 1, +st.step || 0));
+  var photos = []; /* {file, url} */
+  function save() { try { localStorage.setItem('ilu-crear', JSON.stringify(st)); } catch (e) {} }
+
+  var steps = [].slice.call(f.querySelectorAll('.st'));
+  function col() { return find(COLS, 'slug', st.evento); }
+  function designs() { var c = col(); return (c && c.disenos) || []; }
+
+  function radio(name, v, on) { return '<input type="radio" name="' + name + '" value="' + v + '"' + (on ? ' checked' : '') + '>'; }
+  function renderOpts() {
+    var l = L();
+    $('o-evento').innerHTML = COLS.map(function (c) { var w = EV[c.slug] || EV.otras; return '<label class="opt">' + radio('evento', c.slug, st.evento === c.slug) + '<span><span class="th">' + svg(IC[c.slug] ? c.slug : 'otras') + '</span><b>' + e2(w[l][0]) + '</b></span></label>'; }).join('');
+    var ds = designs();
+    $('o-diseno').innerHTML = ds.map(function (d) {
+      return '<label class="opt dz">' + radio('diseno', d.id, st.diseno === d.id) + '<span><span class="mini"><img src="../img/' + d.poster + '" alt="" loading="lazy"></span><b>' + e2(d.nombre) + '</b><a class="see" href="' + d.url.replace('../../../', '../../') + '?c=' + st.evento + '&amp;d=' + d.id + '" target="_blank" rel="noopener">' + (l === 'en' ? 'VIEW ↗' : 'VER ↗') + '</a></span></label>';
+    }).join('') + '<label class="opt dz">' + radio('diseno', 'medida', st.diseno === 'medida' || (!ds.length && !!st.evento)) + '<span><span class="mini own">' + svg('pluma') + '</span><b>' + (l === 'en' ? 'Made to measure' : 'A mi medida') + '</b><small>' + (l === 'en' ? 'Designed from scratch with your idea' : 'Diseñada desde cero con tu idea') + '</small></span></label>';
+    if (!ds.length && st.evento) st.diseno = 'medida';
+    $('d-none').hidden = !(st.evento && !ds.length);
+    $('o-ambiente').innerHTML = AMB.map(function (a) { var th = a.img ? '<span class="th"><img src="../img/' + a.img + '.webp" alt="" loading="lazy"></span>' : '<span class="th">' + svg(a.ic) + '</span>'; return '<label class="opt">' + radio('ambiente', a.v, st.ambiente === a.v) + '<span>' + th + '<span><b>' + e2(a[l][0]) + '</b><small>' + e2(a[l][1]) + '</small></span></span></label>'; }).join('');
+    $('o-color').innerHTML = COL.map(function (c) { return '<label class="opt seal-o">' + radio('color', c.v, st.color === c.v) + '<span><img src="../img/' + c.seal + '.webp" alt="" width="300" height="300" loading="lazy"><b>' + e2(c[l]) + '</b></span></label>'; }).join('');
+    $('o-incluir').innerHTML = INC.map(function (o) { return '<label class="opt chip"><input type="checkbox" name="incluir" value="' + o.v + '"' + (st.incluir.indexOf(o.v) > -1 ? ' checked' : '') + '><span><b>' + e2(o[l]) + '</b></span></label>'; }).join('');
+    f.querySelectorAll('[data-en-ph]').forEach(function (el) { if (!el.dataset.esPh) el.dataset.esPh = el.placeholder; el.placeholder = l === 'en' ? el.dataset.enPh : el.dataset.esPh; });
+  }
+  function renderFields() {
+    var l = L(), w = EV[st.evento] || EV.otras;
+    $('l-quien').textContent = w[l][2];
+    f.elements.quien.placeholder = w[l][3];
+    f.querySelector('[data-show="ceremonia"]').hidden = !w.cer;
+    f.querySelector('[data-show="familia"]').hidden = !w.fam;
+    var xv = st.evento === 'xv-anos';
+    $('perm-txt').textContent = xv
+      ? (l === 'en' ? 'I am her parent or guardian, or I have their permission to share these photos.' : 'Soy su mamá, papá o tutor, o tengo su permiso para compartir estas fotos.')
+      : (l === 'en' ? 'I have permission to share these photos for the invitation.' : 'Tengo permiso para compartir estas fotos en la invitación.');
+  }
+  function filled(i) {
+    var k = KEYS[i];
+    if (k === 'diseno') return !!(st.evento && st.diseno);
+    if (k === 'datos') return !!(st.quien && st.fecha);
+    if (k === 'fotos') return photos.length > 0 || !!st.cancion;
+    if (k === 'idea') return !!(st.ambiente || st.color || st.sueno);
+    return false;
+  }
+  function renderNav() {
+    var l = L(), n = NAMES[l];
+    $('prog').innerHTML = KEYS.map(function (k, i) { return '<li class="' + (i === st.step ? 'now' : filled(i) ? 'done' : '') + '"><button type="button" data-step="' + i + '" aria-label="' + (l === 'en' ? 'Step ' : 'Paso ') + (i + 1) + ': ' + n[i] + '"' + (i === st.step ? ' aria-current="step"' : '') + '><i></i></button></li>'; }).join('');
+    $('stepno').textContent = (l === 'en' ? 'STEP ' : 'PASO ') + (st.step + 1) + (l === 'en' ? ' OF 5 · ' : ' DE 5 · ') + n[st.step].toUpperCase();
+    steps.forEach(function (s, i) { s.classList.toggle('on', i === st.step); });
+    $('back').style.visibility = st.step === 0 ? 'hidden' : 'visible';
+    $('next').hidden = st.step === KEYS.length - 1;
+    if (st.step === KEYS.length - 1) renderSummary();
+  }
+  function fmtDate(v, short) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); if (!m) return '';
+    var d = new Date(+m[1], +m[2] - 1, +m[3]);
+    try { return d.toLocaleDateString(L() === 'en' ? 'en-CA' : 'es-MX', short ? { day: 'numeric', month: 'long', year: 'numeric' } : { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) { return v; }
+  }
+  function fmtTime(v) { var m = /^(\d{2}):(\d{2})$/.exec(v || ''); if (!m) return ''; var h = +m[1], ap = h >= 12 ? 'pm' : 'am'; h = h % 12 || 12; return h + ':' + m[2] + ' ' + ap; }
+  var lastSig = '';
+  function renderCard() {
+    var l = L(), w = EV[st.evento], c = find(COL, 'v', st.color) || COL[2], card = $('card');
+    $('c-eye').textContent = w ? w[l][0].toUpperCase() : (l === 'en' ? 'YOUR CELEBRATION' : 'TU CELEBRACIÓN');
+    $('c-pre').textContent = w ? w[l][1] : (l === 'en' ? 'Join us to celebrate' : 'Te invitamos a celebrar');
+    var nm = $('c-names'); nm.textContent = st.quien || (w ? w[l][3] : (l === 'en' ? 'Your name here' : 'Tu nombre aquí')); nm.classList.toggle('empty', !st.quien);
+    $('c-date').textContent = [fmtDate(st.fecha), fmtTime(st.hora)].filter(Boolean).join(' · ');
+    $('c-place').textContent = st.lugar;
+    card.style.setProperty('--bg', c.t[0]); card.style.setProperty('--cink', c.t[1]); card.style.setProperty('--acc', c.t[2]);
+    var src = '../img/' + c.seal + '.webp'; if ($('c-seal').getAttribute('src') !== src) $('c-seal').src = src;
+    if (photos[0]) { if ($('c-photo').src !== photos[0].url) $('c-photo').src = photos[0].url; card.classList.add('has-photo'); } else card.classList.remove('has-photo');
+    var d = find(designs(), 'id', st.diseno);
+    $('c-design').innerHTML = st.diseno ? (l === 'en' ? 'DESIGN · ' : 'DISEÑO · ') + '<b>' + e2(d ? d.nombre : (l === 'en' ? 'MADE TO MEASURE' : 'A MI MEDIDA')) + '</b>' : '';
+    var sig = [st.evento, st.color, st.diseno, photos[0] ? photos[0].url : ''].join('|');
+    if (lastSig && sig !== lastSig && !reduce) { card.classList.remove('pulse'); void card.offsetWidth; card.classList.add('pulse'); }
+    lastSig = sig;
+  }
+  function rows() {
+    var l = L(), en = l === 'en', w = EV[st.evento], d = find(designs(), 'id', st.diseno), a = find(AMB, 'v', st.ambiente), c = find(COL, 'v', st.color);
+    var R = [
+      [0, en ? 'Celebration' : 'Celebración', w ? w[l][0] : ''],
+      [0, en ? 'Design' : 'Diseño', st.diseno ? (d ? d.nombre : (en ? 'Made to measure' : 'A mi medida')) : ''],
+      [1, w ? w[l][2] : (en ? 'Who' : 'Quién'), st.quien],
+      [1, en ? 'Date' : 'Fecha', [fmtDate(st.fecha), fmtTime(st.hora)].filter(Boolean).join(' · ')]
+    ];
+    if (w && w.cer) R.push([1, en ? 'Ceremony' : 'Ceremonia', st.ceremonia, 1]);
+    R.push([1, en ? 'Venue' : 'Lugar', st.lugar], [1, en ? 'Address' : 'Dirección', st.direccion, 1]);
+    if (w && w.fam) R.push([1, en ? 'Parents & sponsors' : 'Padres y padrinos', st.familia, 1]);
+    R.push([1, en ? 'Dress code' : 'Vestimenta', st.vestimenta, 1], [1, en ? 'Guests' : 'Invitados', st.invitados, 1], [1, en ? 'RSVP by' : 'Confirmar antes del', fmtDate(st.rsvp, 1), 1],
+      [2, en ? 'Photos' : 'Fotos', photos.length ? photos.length + (en ? ' photo' : ' foto') + (photos.length > 1 ? 's' : '') : '', 1],
+      [2, en ? 'Song' : 'Canción', st.cancion, 1], [2, en ? 'Inspiration' : 'Inspiración', st.inspiracion, 1],
+      [3, en ? 'Atmosphere' : 'Ambiente', a ? a[l][0] : '', 1], [3, en ? 'Colors' : 'Colores', c ? c[l] : '', 1],
+      [3, en ? 'Must have' : 'Incluir', st.incluir.map(function (v) { var o = find(INC, 'v', v); return o ? o[l] : ''; }).filter(Boolean).join(', '), 1],
+      [3, en ? 'Dream' : 'Sueño', st.sueno, 1]);
+    return R;
+  }
+  function renderSummary() {
+    var l = L(), en = l === 'en';
+    $('sum').innerHTML = rows().filter(function (r) { return r[2] || !r[3]; }).map(function (r) {
+      return '<li><span>' + e2(r[1].toUpperCase()) + '</span><b' + (r[2] ? '' : ' class="miss"') + '>' + e2(r[2] || (en ? 'Missing' : 'Falta')) + '</b><button type="button" data-step="' + r[0] + '">' + (en ? 'EDIT' : 'EDITAR') + '</button></li>';
+    }).join('');
+    $('b-wa').href = 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(message());
+    var canShare = false; try { canShare = !!(photos.length && navigator.canShare && navigator.canShare({ files: [photos[0].file] })); } catch (e) {}
+    $('r2').hidden = !photos.length;
+    $('b-ph').hidden = !canShare;
+    $('r2-txt').textContent = canShare
+      ? (en ? 'Then choose WhatsApp and our chat to send your ' + photos.length + ' photos.' : 'Después elige WhatsApp y nuestro chat para mandar tus ' + photos.length + ' fotos.')
+      : (en ? 'In the WhatsApp chat, attach your ' + photos.length + ' photos (paperclip icon, or drag them in).' : 'En el chat de WhatsApp adjunta tus ' + photos.length + ' fotos (con el clip o arrastrándolas).');
+  }
+  function message() {
+    var en = L() === 'en', out = [en ? 'Hi Ilusión Invites ✨ I want to create my invitation:' : 'Hola Ilusión Invites ✨ quiero crear mi invitación:'];
+    rows().forEach(function (r) { if (r[2]) out.push('• ' + r[1] + ': ' + r[2]); });
+    if (photos.length) out.push(en ? '📷 I will send you my photos right after this message.' : '📷 En seguida te mando mis fotos.');
+    if (st.contacto) out.push((en ? 'My name: ' : 'Mi nombre: ') + st.contacto);
+    return out.join('\n');
+  }
+  function go(i, focus) {
+    st.step = Math.max(0, Math.min(KEYS.length - 1, i)); save(); renderNav();
+    if (focus) { var lg = steps[st.step].querySelector('legend'); try { lg.focus({ preventScroll: true }); } catch (e) {}
+      var r = f.getBoundingClientRect(); if (r.top < 60) scrollTo({ top: scrollY + r.top - 80, behavior: reduce ? 'auto' : 'smooth' }); }
+  }
+
+  /* photos */
+  function addFiles(list) {
+    [].slice.call(list || []).forEach(function (file) { if (photos.length < 12 && /^image\//.test(file.type)) photos.push({ file: file, url: URL.createObjectURL(file) }); });
+    renderPhotos(); renderCard(); renderNav();
+  }
+  function renderPhotos() {
+    var l = L();
+    $('thumbs').innerHTML = photos.map(function (p, i) { return '<div class="thumb"><img src="' + p.url + '" alt=""><button type="button" class="x" data-rm="' + i + '" aria-label="' + (l === 'en' ? 'Remove photo ' : 'Quitar foto ') + (i + 1) + '">×</button>' + (i === 0 ? '<span class="cv">' + (l === 'en' ? 'COVER' : 'PORTADA') + '</span>' : '') + '</div>'; }).join('');
+    $('perm-wrap').hidden = !photos.length;
+  }
+  $('files').addEventListener('change', function (e) { addFiles(e.target.files); e.target.value = ''; });
+  var drop = $('drop');
+  ['dragenter', 'dragover'].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave', 'drop'].forEach(function (t) { drop.addEventListener(t, function () { drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function (e) { e.preventDefault(); addFiles(e.dataTransfer.files); });
+  $('thumbs').addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (!b) return; var p = photos.splice(+b.getAttribute('data-rm'), 1)[0]; if (p) URL.revokeObjectURL(p.url); renderPhotos(); renderCard(); renderNav(); });
+
+  /* inputs */
+  var tapAt = 0, timer = 0;
+  f.addEventListener('pointerdown', function () { tapAt = Date.now(); });
+  f.addEventListener('change', function (e) {
+    var t = e.target, n = t.name;
+    if (n === 'incluir') st.incluir = [].slice.call(f.querySelectorAll('input[name="incluir"]:checked')).map(function (x) { return x.value; });
+    else if (n === 'evento') { st.evento = t.value; st.diseno = ''; renderOpts(); renderFields(); }
+    else if (n === 'diseno' || n === 'ambiente' || n === 'color') st[n] = t.value;
+    else return;
+    save(); renderCard(); renderNav();
+    if (n === 'diseno' && Date.now() - tapAt < 900) { clearTimeout(timer); timer = setTimeout(function () { if (st.step === 0) go(1, true); }, 700); }
+  });
+  f.addEventListener('input', function (e) { var n = e.target.name; if (TEXT.indexOf(n) > -1) { st[n] = e.target.value; save(); renderCard(); if (st.step === KEYS.length - 1) $('b-wa').href = 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(message()); } });
+  f.addEventListener('submit', function (e) { e.preventDefault(); });
+  $('next').addEventListener('click', function () { go(st.step + 1, true); });
+  $('back').addEventListener('click', function () { go(st.step - 1, true); });
+  f.addEventListener('click', function (e) { var b = e.target.closest('button[data-step]'); if (b) go(+b.getAttribute('data-step'), true); });
+
+  /* sending */
+  function thanks() { $('thanks').hidden = false; sparkle(); }
+  $('b-wa').addEventListener('click', function () {
+    $('r1').classList.add('done');
+    if (!photos.length || $('b-ph').hidden) setTimeout(thanks, 400);
+  });
+  $('b-ph').addEventListener('click', function () {
+    var files = photos.map(function (p) { return p.file; });
+    navigator.share({ files: files, title: 'Ilusión Invites' }).then(function () { $('r2').classList.add('done'); thanks(); }).catch(function () {});
+  });
+
+  /* a little burst of gold when they finish */
+  function sparkle() {
+    if (reduce) return;
+    var c = $('spark'), x = c.getContext('2d'), W = innerWidth, H = innerHeight, d = Math.min(devicePixelRatio || 1, 2);
+    c.width = W * d; c.height = H * d; x.setTransform(d, 0, 0, d, 0, 0);
+    var P = []; for (var i = 0; i < 90; i++) { var a = Math.random() * 6.283, s = 120 + Math.random() * 380; P.push({ x: W / 2, y: H * .45, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 160, r: .8 + Math.random() * 2.4, ph: Math.random() * 6 }); }
+    var t0 = 0; (function fr(t) { if (!t0) t0 = t; var e = (t - t0) / 1000; if (e > 2.6) { x.clearRect(0, 0, W, H); return; } x.clearRect(0, 0, W, H);
+      P.forEach(function (p) { p.vy += 260 * .016; p.vx *= .985; p.x += p.vx * .016; p.y += p.vy * .016; var al = Math.max(0, 1 - e / 2.6) * (.5 + .5 * Math.abs(Math.sin(p.ph + e * 6)));
+        var g = x.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4); g.addColorStop(0, 'rgba(255,232,170,' + al + ')'); g.addColorStop(1, 'rgba(214,170,98,0)'); x.fillStyle = g; x.beginPath(); x.arc(p.x, p.y, p.r * 4, 0, 6.283); x.fill(); });
+      requestAnimationFrame(fr); })(performance.now());
+  }
+
+  /* language */
+  var nodes = [].slice.call(document.querySelectorAll('[data-en],[data-en-html]'));
+  nodes.forEach(function (el) { el.setAttribute('data-es-html', el.innerHTML); });
+  function setLang(l) {
+    nodes.forEach(function (el) { if (l === 'en') { if (el.hasAttribute('data-en-html')) el.innerHTML = el.getAttribute('data-en-html'); else el.textContent = el.getAttribute('data-en'); } else el.innerHTML = el.getAttribute('data-es-html'); });
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-en-aria]').forEach(function (el) { if (!el.dataset.esAria) el.dataset.esAria = el.getAttribute('aria-label'); el.setAttribute('aria-label', l === 'en' ? el.dataset.enAria : el.dataset.esAria); });
+    $('es').setAttribute('aria-pressed', String(l === 'es')); $('en').setAttribute('aria-pressed', String(l === 'en'));
+    try { localStorage.setItem('ilu-lang', l); } catch (e) {}
+    renderOpts(); renderFields(); renderPhotos(); renderNav(); renderCard();
+  }
+  $('es').addEventListener('click', function () { setLang('es'); });
+  $('en').addEventListener('click', function () { setLang('en'); });
+  TEXT.forEach(function (k) { if (f.elements[k]) f.elements[k].value = st[k] || ''; });
+  var saved = null; try { saved = localStorage.getItem('ilu-lang'); } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'es');
+  save();
+})();
+</script>
+
+</body>
+</html>

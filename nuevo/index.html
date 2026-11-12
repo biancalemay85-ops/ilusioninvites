@@ -366,7 +366,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     </nav>
     <div class="actions">
       <div class="lang" role="group" aria-label="Idioma"><button type="button" id="es" aria-pressed="true">ES</button><button type="button" id="en" aria-pressed="false">EN</button></div>
-      <a class="btn btn-gold btn-sm" href="#imagina" data-en="Create my invitation">Crear mi invitación</a>
+      <a class="btn btn-gold btn-sm" href="crear/" data-en="Create my invitation">Crear mi invitación</a>
     </div>
   </div>
 </header>
@@ -426,6 +426,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             <a class="btn btn-gold" id="im-send" href="#" target="_blank" rel="noopener" hidden data-en="Send my idea on WhatsApp">Enviar mi idea por WhatsApp</a>
           </div>
           <p class="im-note" id="im-note" hidden data-en="WhatsApp opens with your idea ready. You decide when to send it.">Se abre WhatsApp con tu idea lista. Tú decides cuándo enviarla.</p>
+          <p class="im-more" id="im-go" hidden><a class="btn btn-line btn-sm" href="crear/" data-en="Continue and create mine →">Continuar y crear la mía →</a></p>
           <p class="im-more" id="im-more" hidden><a href="#" id="im-col"></a></p>
         </form>
         <div class="im-side">
@@ -755,7 +756,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       steps.forEach(function (f, i) { f.classList.toggle('on', i === st.step); });
       back.hidden = st.step === 0;
       var last = st.step === KEYS.length - 1;
-      next.hidden = last; send.hidden = !last; note.hidden = !last;
+      next.hidden = last; send.hidden = !last; note.hidden = !last; document.getElementById('im-go').hidden = !last;
       var ev = find(Q.evento, st.evento);
       more.hidden = !(last && ev);
       if (ev) { colA.href = 'coleccion/' + ev.slug + '/'; colA.textContent = (l === 'en' ? 'SEE THE ' : 'VER LA COLECCIÓN ') + ev[l][0].toUpperCase() + (l === 'en' ? ' COLLECTION →' : ' →'); }

@@ -112,6 +112,46 @@ html.arrive .hero-img { animation: dreamIn 2s cubic-bezier(.2,.7,.2,1) both, slo
 .soon h3 { margin: 0 0 8px; font: 500 30px var(--f-serif); }
 .soon p { margin: 0 0 20px; color: var(--ink2); }
 
+/* live preview: the invitation plays inside a phone, without leaving the page */
+button.phone { display: block; border: 0; cursor: pointer; font: inherit; color: inherit; }
+.phone .play { position: absolute; left: 50%; bottom: 9%; transform: translateX(-50%); z-index: 2; display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px 9px 10px; border-radius: 999px; white-space: nowrap; background: rgba(255,252,246,.86); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 10px 22px -10px rgba(40,25,20,.55), inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent); font: 500 10px var(--f-caps); letter-spacing: .2em; color: #3A2A26; transition: transform .4s, box-shadow .4s; }
+.phone .play i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(180deg, #F7E4B4, #D6A963); box-shadow: 0 0 0 4px rgba(233,207,149,.35); animation: ping 2.4s ease-out infinite; }
+.phone .play i::after { content: ""; margin-left: 3px; border-left: 8px solid #3A2210; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(233,207,149,.6); } 100% { box-shadow: 0 0 0 12px rgba(233,207,149,0); } }
+.design:hover .phone .play { transform: translateX(-50%) scale(1.05); }
+.pv { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 20px; }
+.pv-bg { position: absolute; inset: 0; background: color-mix(in srgb, var(--bg) 70%, rgba(30,20,15,.35)); -webkit-backdrop-filter: blur(16px) saturate(1.1); backdrop-filter: blur(16px) saturate(1.1); animation: pvFade .5s ease both; }
+.pv-in { position: relative; display: flex; align-items: center; gap: clamp(28px, 5vw, 64px); animation: pvIn .7s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes pvFade { from { opacity: 0; } }
+@keyframes pvIn { from { opacity: 0; transform: translateY(24px) scale(.94); filter: blur(4px); } }
+.pv.out .pv-bg { animation: pvFade .35s ease reverse forwards; } .pv.out .pv-in { animation: pvIn .35s ease reverse forwards; }
+.pv-phone { position: relative; border-radius: 40px; padding: 10px; background: linear-gradient(145deg, #3b3236, #121012 40%, #2a2326 70%, #0d0b0c); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent), 0 60px 90px -40px rgba(40,25,20,.7), 0 0 60px color-mix(in srgb, var(--accent) 25%, transparent); }
+.pv-screen { position: relative; overflow: hidden; border-radius: 31px; background: #fff; }
+.pv-screen iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #fff; }
+.pv-side { width: min(320px, 34vw); display: flex; flex-direction: column; gap: 12px; color: var(--ink); }
+.pv-side .eyebrow { font: 500 11px var(--f-caps); letter-spacing: .4em; color: var(--accent); }
+.pv-side h3 { margin: 0; font: 500 clamp(34px, 3.6vw, 46px)/1.05 var(--f-serif); }
+.pv-side .who { font: italic 500 19px var(--f-serif); color: var(--ink2); }
+.pv-side p { margin: 0; color: var(--ink2); font-size: 15px; }
+.pv-side .tip { display: flex; align-items: center; gap: 10px; font: 500 10.5px var(--f-caps); letter-spacing: .2em; color: var(--ink3); }
+.pv-side .tip i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: ping 2s ease-out infinite; }
+.pv-side .btns { justify-content: flex-start; flex-direction: column; align-items: stretch; margin-top: 8px; }
+.pv-x { position: absolute; top: max(14px, env(safe-area-inset-top, 0px)); right: 14px; z-index: 3; width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: rgba(255,252,246,.9); box-shadow: 0 8px 20px -8px rgba(40,25,20,.5), inset 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent); color: #3A2A26; }
+.pv-x svg { width: 18px; height: 18px; }
+.pv-bar { display: none; }
+@media (max-width: 700px) {
+  .pv { padding: 0; place-items: stretch; }
+  .pv-in { flex-direction: column; align-items: stretch; gap: 0; width: 100%; height: 100%; }
+  .pv-x { right: auto; left: 12px; top: max(12px, env(safe-area-inset-top, 0px)); width: 42px; height: 42px; }
+  .pv-phone { flex: 1; width: 100%; border-radius: 0; padding: 0; background: #fff; box-shadow: none; }
+  .pv-screen { border-radius: 0; width: 100% !important; height: 100% !important; }
+  .pv-side { display: none; }
+  .pv-bar { display: flex; gap: 10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); background: color-mix(in srgb, var(--bg) 92%, #fff); box-shadow: 0 -1px 0 color-mix(in srgb, var(--accent) 30%, transparent); }
+  .pv-bar .btn { flex: 1; padding: 0 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .pv-bg, .pv-in, .phone .play i, .pv-side .tip i { animation: none; } }
+.cta-row { display: flex; justify-content: center; margin-top: clamp(28px, 4vw, 44px); }
+
 /* steps */
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 3vw, 40px); }
 @media (max-width: 820px) { .steps { grid-template-columns: minmax(0, 1fr); } }
@@ -181,6 +221,7 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     <div class="wrap">
       <div class="head rv"><span class="eyebrow" data-i18n="pasosEyebrow"></span><h2 data-i18n-html="pasosTitle"></h2></div>
       <div class="steps" id="steps"></div>
+      <div class="cta-row rv"><a class="btn btn-gold" id="cta-crear" href="../../crear/"></a></div>
     </div>
   </section>
 
@@ -193,7 +234,7 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
 </main>
 <footer>ILUSIÓN INVITES · MÉXICO &amp; CANADÁ</footer>
 
-<script type="application/json" id="data">{"actual": {"slug": "bodas", "frame": "arco", "img": "cat-bodas", "deco": "rosa-marfil", "decoPos": "bl", "es": {"nombre": "Bodas", "script": "Para siempre", "intro": "Seda marfil, flores románticas y luz de velas. Invitaciones atemporales para el día en que comienza su historia."}, "en": {"nombre": "Weddings", "script": "Forever", "intro": "Ivory silk, romantic florals and candlelight. Timeless invitations for the day your story begins."}, "tema": {"bg": "#FBF6EF", "bg2": "#F2E7D8", "ink": "#3A2A26", "accent": "#B68A4E", "soft": "#E9D9C3"}, "disenos": [{"nombre": "Jardín Blanco", "pareja": "Ana Sofía & Emiliano", "poster": "disenos/jardin-blanco.webp", "url": "../../../demos/boda-jardin-blanco/", "nota": "Flores blancas reales en capas, sobre de algodón y sello marfil."}, {"nombre": "Terciopelo Vino", "pareja": "Isabella & Julián", "poster": "disenos/terciopelo-vino.webp", "url": "../../../demos/boda-isabella-julian/", "nota": "Sobre de terciopelo, borde dorado y flores que florecen."}, {"nombre": "Encaje y Perlas", "pareja": "Camila & Sebastián", "poster": "disenos/encaje-perlas.webp", "url": "../../../demos/boda-camila-sebastian/", "nota": "Encaje, listón rosa y broche de perlas."}]}, "todas": [{"slug": "bodas", "frame": "arco", "img": "cat-bodas", "deco": "rosa-marfil", "decoPos": "bl", "es": {"nombre": "Bodas", "script": "Para siempre", "intro": "Seda marfil, flores románticas y luz de velas. Invitaciones atemporales para el día en que comienza su historia."}, "en": {"nombre": "Weddings", "script": "Forever", "intro": "Ivory silk, romantic florals and candlelight. Timeless invitations for the day your story begins."}}, {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "mariposa-cristal-1", "decoPos": "tr", "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}}, {"slug": "cumpleanos", "frame": "arco", "img": "cat-cumpleanos", "deco": "rosa-rubor", "decoPos": "bl", "es": {"nombre": "Cumpleaños", "script": "Celebra tu día", "intro": "Expresivos, hermosos y a tu medida: desde una cena íntima hasta una gran fiesta con globos y pastel."}, "en": {"nombre": "Birthdays", "script": "Celebrate your day", "intro": "Expressive, beautiful and made for you, from an intimate dinner to a big party with balloons and cake."}}, {"slug": "baby-shower", "frame": "rect", "img": "cat-baby-shower", "deco": "nube-gypsophila", "decoPos": "br", "es": {"nombre": "Baby Shower", "script": "Entre nubes", "intro": "Luz natural, texturas suaves y tonos pastel para dar la bienvenida a alguien muy esperado."}, "en": {"nombre": "Baby Showers", "script": "Among the clouds", "intro": "Soft natural light, delicate textures and pastel tones to welcome someone long awaited."}}, {"slug": "navidad", "frame": "ovalo", "img": "cat-navidad-posadas", "deco": "ramita-hojas-doradas", "decoPos": "bl", "es": {"nombre": "Posada · Navidad", "script": "Calidez de fiesta", "intro": "Luz cálida, verde profundo, terciopelo y oro champaña. Para posadas, cenas navideñas y fiestas de fin de año."}, "en": {"nombre": "Christmas", "script": "Festive warmth", "intro": "Warm light, deep evergreen, velvet and champagne gold. For posadas, Christmas dinners and holiday parties."}}, {"slug": "ano-nuevo", "frame": "arco", "img": "cat-ano-nuevo", "deco": "cristal-1", "decoPos": "tr", "es": {"nombre": "Año Nuevo", "script": "Brindemos", "intro": "Ambiente de medianoche: negro, oro champaña y destellos metálicos para recibir el año con estilo."}, "en": {"nombre": "New Year's Eve", "script": "Let's toast", "intro": "A midnight atmosphere of black, champagne gold and metallic sparkle to welcome the year in style."}}, {"slug": "empresas", "frame": "rect", "img": "cat-gala-empresa", "deco": "", "decoPos": "", "es": {"nombre": "Empresas · Gala", "script": "Noche de gala", "intro": "Elegancia arquitectónica y estilo sobrio para cenas de gala, lanzamientos y eventos corporativos."}, "en": {"nombre": "Corporate Events", "script": "An evening of gala", "intro": "Architectural elegance and refined, minimal styling for galas, launches and corporate events."}}, {"slug": "otras", "frame": "ovalo", "img": "cat-otras", "deco": "mariposa-dorada-1", "decoPos": "tr", "es": {"nombre": "Otras celebraciones", "script": "Todo es posible", "intro": "Bautizos, comuniones, graduaciones, aniversarios o lo que estés soñando. Lo creamos contigo."}, "en": {"nombre": "Other Celebrations", "script": "Anything is possible", "intro": "Baptisms, communions, graduations, anniversaries or whatever you are dreaming of. We create it with you."}}]}</script>
+<script type="application/json" id="data">{"actual": {"slug": "bodas", "frame": "arco", "img": "cat-bodas", "deco": "rosa-marfil", "decoPos": "bl", "es": {"nombre": "Bodas", "script": "Para siempre", "intro": "Seda marfil, flores románticas y luz de velas. Invitaciones atemporales para el día en que comienza su historia."}, "en": {"nombre": "Weddings", "script": "Forever", "intro": "Ivory silk, romantic florals and candlelight. Timeless invitations for the day your story begins."}, "tema": {"bg": "#FBF6EF", "bg2": "#F2E7D8", "ink": "#3A2A26", "accent": "#B68A4E", "soft": "#E9D9C3"}, "disenos": [{"id": "jardin-blanco", "nombre": "Jardín Blanco", "pareja": "Ana Sofía & Emiliano", "poster": "disenos/jardin-blanco.webp", "url": "../../../demos/boda-jardin-blanco/", "nota": "Flores blancas reales en capas, sobre de algodón y sello marfil."}, {"id": "terciopelo-vino", "nombre": "Terciopelo Vino", "pareja": "Isabella & Julián", "poster": "disenos/terciopelo-vino.webp", "url": "../../../demos/boda-isabella-julian/", "nota": "Sobre de terciopelo, borde dorado y flores que florecen."}, {"id": "encaje-perlas", "nombre": "Encaje y Perlas", "pareja": "Camila & Sebastián", "poster": "disenos/encaje-perlas.webp", "url": "../../../demos/boda-camila-sebastian/", "nota": "Encaje, listón rosa y broche de perlas."}]}, "todas": [{"slug": "bodas", "frame": "arco", "img": "cat-bodas", "deco": "rosa-marfil", "decoPos": "bl", "es": {"nombre": "Bodas", "script": "Para siempre", "intro": "Seda marfil, flores románticas y luz de velas. Invitaciones atemporales para el día en que comienza su historia."}, "en": {"nombre": "Weddings", "script": "Forever", "intro": "Ivory silk, romantic florals and candlelight. Timeless invitations for the day your story begins."}}, {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "mariposa-cristal-1", "decoPos": "tr", "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}}, {"slug": "cumpleanos", "frame": "arco", "img": "cat-cumpleanos", "deco": "rosa-rubor", "decoPos": "bl", "es": {"nombre": "Cumpleaños", "script": "Celebra tu día", "intro": "Expresivos, hermosos y a tu medida: desde una cena íntima hasta una gran fiesta con globos y pastel."}, "en": {"nombre": "Birthdays", "script": "Celebrate your day", "intro": "Expressive, beautiful and made for you, from an intimate dinner to a big party with balloons and cake."}}, {"slug": "baby-shower", "frame": "rect", "img": "cat-baby-shower", "deco": "nube-gypsophila", "decoPos": "br", "es": {"nombre": "Baby Shower", "script": "Entre nubes", "intro": "Luz natural, texturas suaves y tonos pastel para dar la bienvenida a alguien muy esperado."}, "en": {"nombre": "Baby Showers", "script": "Among the clouds", "intro": "Soft natural light, delicate textures and pastel tones to welcome someone long awaited."}}, {"slug": "navidad", "frame": "ovalo", "img": "cat-navidad-posadas", "deco": "ramita-hojas-doradas", "decoPos": "bl", "es": {"nombre": "Posada · Navidad", "script": "Calidez de fiesta", "intro": "Luz cálida, verde profundo, terciopelo y oro champaña. Para posadas, cenas navideñas y fiestas de fin de año."}, "en": {"nombre": "Christmas", "script": "Festive warmth", "intro": "Warm light, deep evergreen, velvet and champagne gold. For posadas, Christmas dinners and holiday parties."}}, {"slug": "ano-nuevo", "frame": "arco", "img": "cat-ano-nuevo", "deco": "cristal-1", "decoPos": "tr", "es": {"nombre": "Año Nuevo", "script": "Brindemos", "intro": "Ambiente de medianoche: negro, oro champaña y destellos metálicos para recibir el año con estilo."}, "en": {"nombre": "New Year's Eve", "script": "Let's toast", "intro": "A midnight atmosphere of black, champagne gold and metallic sparkle to welcome the year in style."}}, {"slug": "empresas", "frame": "rect", "img": "cat-gala-empresa", "deco": "", "decoPos": "", "es": {"nombre": "Empresas · Gala", "script": "Noche de gala", "intro": "Elegancia arquitectónica y estilo sobrio para cenas de gala, lanzamientos y eventos corporativos."}, "en": {"nombre": "Corporate Events", "script": "An evening of gala", "intro": "Architectural elegance and refined, minimal styling for galas, launches and corporate events."}}, {"slug": "otras", "frame": "ovalo", "img": "cat-otras", "deco": "mariposa-dorada-1", "decoPos": "tr", "es": {"nombre": "Otras celebraciones", "script": "Todo es posible", "intro": "Bautizos, comuniones, graduaciones, aniversarios o lo que estés soñando. Lo creamos contigo."}, "en": {"nombre": "Other Celebrations", "script": "Anything is possible", "intro": "Baptisms, communions, graduations, anniversaries or whatever you are dreaming of. We create it with you."}}]}</script>
 <script>
 (function () {
   'use strict';
@@ -203,20 +244,22 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
   var T = {
     es: { back: 'Todas las celebraciones', coleccion: 'COLECCIÓN', ver: 'VER DISEÑOS', disenosEyebrow: 'LOS DISEÑOS', disenosTitle: 'Invitaciones de <em>esta colección</em>',
       pasosEyebrow: 'HAZLA TUYA', pasosTitle: 'Así la <em>personalizas</em>', otrosEyebrow: 'SIGUE SOÑANDO', otrosTitle: 'Otros <em>mundos</em>',
-      verInv: 'Ver invitación', personalizar: 'Personalizar', soonT: 'Esta colección se está creando', soonP: 'Estamos diseñando las primeras invitaciones de este mundo. Mientras tanto, creamos la tuya a tu medida.',
+      verInv: 'Ver cómo se abre', personalizar: 'Quiero este diseño', play: 'VER CÓMO SE ABRE', full: 'Pantalla completa', tip: 'TOCA EL SELLO PARA ABRIRLA', disEyebrow: 'DISEÑO', cerrar: 'Cerrar', crear: 'Crear la mía', soonT: 'Esta colección se está creando', soonP: 'Estamos diseñando las primeras invitaciones de este mundo. Mientras tanto, creamos la tuya a tu medida.',
       soonBtn: 'Pedir mi invitación', formBtn: 'Llenar el formulario',
       pasos: [['Elige tu diseño', 'Escoge el que te enamore o cuéntanos tu idea.'], ['Cuéntanos los detalles', 'Nombres, fecha, lugar, fotos y música. Lo llenas en minutos.'], ['Recíbela y compártela', 'Tu link con sobre, música, mapa y confirmación, listo para enviar.']],
       msgDis: function (d) { return 'Hola Ilusión Invites ✨ me encanta el diseño "' + d + '" de la colección ' + C.es.nombre + '. ¿Me ayudan a personalizarlo?'; },
       msgCol: function () { return 'Hola Ilusión Invites ✨ me interesa una invitación de la colección ' + C.es.nombre + '.'; } },
     en: { back: 'All celebrations', coleccion: 'COLLECTION', ver: 'SEE THE DESIGNS', disenosEyebrow: 'THE DESIGNS', disenosTitle: 'Invitations in <em>this collection</em>',
       pasosEyebrow: 'MAKE IT YOURS', pasosTitle: 'How to <em>personalize it</em>', otrosEyebrow: 'KEEP DREAMING', otrosTitle: 'Other <em>worlds</em>',
-      verInv: 'View invitation', personalizar: 'Personalize', soonT: 'This collection is being created', soonP: 'We are designing the first invitations for this world. In the meantime, we will create yours just for you.',
+      verInv: 'See it open', personalizar: 'I want this design', play: 'SEE IT OPEN', full: 'Full screen', tip: 'TAP THE SEAL TO OPEN IT', disEyebrow: 'DESIGN', cerrar: 'Close', crear: 'Create mine', soonT: 'This collection is being created', soonP: 'We are designing the first invitations for this world. In the meantime, we will create yours just for you.',
       soonBtn: 'Request my invitation', formBtn: 'Fill in the form',
       pasos: [['Choose your design', 'Pick the one you love or tell us your idea.'], ['Tell us the details', 'Names, date, venue, photos and music. It takes minutes.'], ['Receive it and share it', 'Your link with envelope, music, map and RSVP, ready to send.']],
       msgDis: function (d) { return 'Hi Ilusión Invites ✨ I love the "' + d + '" design from the ' + C.en.nombre + ' collection. Can you help me personalize it?'; },
       msgCol: function () { return 'Hi Ilusión Invites ✨ I am interested in an invitation from the ' + C.en.nombre + ' collection.'; } }
   };
   var lang = 'es';
+  function crearUrl(d) { return '../../crear/?c=' + C.slug + (d ? '&d=' + d.id : ''); }
+  function demoUrl(d, pv) { return d.url + '?c=' + C.slug + '&d=' + d.id + (pv ? '&pv=1' : ''); }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function render() {
     var L = T[lang], t = C[lang] || C.es;
@@ -231,15 +274,16 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     if (C.disenos && C.disenos.length) {
       box.className = 'designs';
       box.innerHTML = C.disenos.map(function (d, i) {
-        return '<article class="design rv" style="transition-delay:' + (i * .18) + 's"><div class="phone"><img src="../../img/' + d.poster + '" alt="' + esc(d.nombre) + '" width="520" height="1040" loading="lazy"></div>' +
+        return '<article class="design rv" style="transition-delay:' + (i * .18) + 's"><button type="button" class="phone" data-pv="' + i + '" aria-label="' + esc(L.verInv + ': ' + d.nombre) + '"><img src="../../img/' + d.poster + '" alt="" width="520" height="1040" loading="lazy"><span class="play"><i></i>' + L.play + '</span></button>' +
           '<h3>' + esc(d.nombre) + '</h3><span class="who">' + esc(d.pareja) + '</span><p class="note">' + esc(d.nota) + '</p>' +
-          '<div class="btns"><a class="btn btn-line" href="' + d.url + '" target="_blank" rel="noopener">' + L.verInv + '</a><a class="btn btn-gold" href="' + WA + encodeURIComponent(L.msgDis(d.nombre)) + '" target="_blank" rel="noopener">' + L.personalizar + '</a></div></article>';
+          '<div class="btns"><button type="button" class="btn btn-line" data-pv="' + i + '">' + L.verInv + '</button><a class="btn btn-gold" href="' + crearUrl(d) + '">' + L.personalizar + '</a></div></article>';
       }).join('');
     } else {
       box.className = '';
-      box.innerHTML = '<div class="soon rv"><h3>' + L.soonT + '</h3><p>' + L.soonP + '</p><div class="btns">' + (C.form ? '<a class="btn btn-gold" href="' + C.form + '">' + L.formBtn + '</a>' : '') +
-        '<a class="btn ' + (C.form ? 'btn-line' : 'btn-gold') + '" href="' + WA + encodeURIComponent(L.msgCol()) + '" target="_blank" rel="noopener">' + L.soonBtn + '</a></div></div>';
+      box.innerHTML = '<div class="soon rv"><h3>' + L.soonT + '</h3><p>' + L.soonP + '</p><div class="btns"><a class="btn btn-gold" href="' + crearUrl() + '">' + L.crear + '</a>' +
+        '<a class="btn btn-line" href="' + WA + encodeURIComponent(L.msgCol()) + '" target="_blank" rel="noopener">' + L.soonBtn + '</a></div></div>';
     }
+    var cc = document.getElementById('cta-crear'); cc.href = crearUrl(); cc.textContent = L.crear;
     document.getElementById('steps').innerHTML = L.pasos.map(function (p, i) { return '<div class="step rv" style="transition-delay:' + (i * .15) + 's"><div class="n">' + (i + 1) + '</div><h3>' + p[0] + '</h3><p>' + p[1] + '</p></div>'; }).join('');
     document.getElementById('others').innerHTML = ALL.filter(function (o) { return o.slug !== C.slug; }).map(function (o) {
       var m = 'url(../../img/ventana-' + o.frame + '.png)';
@@ -249,6 +293,41 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     document.getElementById('en').setAttribute('aria-pressed', String(lang === 'en'));
     observe();
   }
+  /* live preview: the real invitation plays inside a phone; close, full screen or "I want this design" */
+  var pv = null, lastFocus = null;
+  function pvSize() {
+    if (!pv) return; var sc = pv.querySelector('.pv-screen'), fr = pv.querySelector('iframe');
+    if (innerWidth <= 700) { sc.style.width = ''; sc.style.height = ''; fr.style.width = sc.offsetWidth + 'px'; fr.style.height = sc.offsetHeight + 'px'; fr.style.transform = 'none'; return; }
+    var H = Math.round(Math.min(innerHeight * .86, 800) - 20), W = Math.round(H / 2.05), k = W / 390;
+    sc.style.width = W + 'px'; sc.style.height = H + 'px'; fr.style.width = '390px'; fr.style.height = Math.round(H / k) + 'px'; fr.style.transform = 'scale(' + k + ')';
+  }
+  function openPv(i) {
+    var d = (C.disenos || [])[i]; if (!d || pv) return; var L = T[lang];
+    lastFocus = document.activeElement;
+    pv = document.createElement('div'); pv.className = 'pv'; pv.setAttribute('role', 'dialog'); pv.setAttribute('aria-modal', 'true'); pv.setAttribute('aria-label', d.nombre);
+    pv.innerHTML = '<div class="pv-bg"></div><div class="pv-in"><div class="pv-phone"><div class="pv-screen"><iframe title="' + esc(d.nombre) + '" src="' + demoUrl(d, 1) + '" allow="autoplay; fullscreen"></iframe></div></div>' +
+      '<div class="pv-side"><span class="eyebrow">' + L.disEyebrow + '</span><h3>' + esc(d.nombre) + '</h3><span class="who">' + esc(d.pareja) + '</span><p>' + esc(d.nota) + '</p><span class="tip"><i></i>' + L.tip + '</span>' +
+      '<div class="btns"><a class="btn btn-gold" href="' + crearUrl(d) + '">' + L.personalizar + '</a><a class="btn btn-line" href="' + demoUrl(d) + '">' + L.full + '</a></div></div>' +
+      '<div class="pv-bar"><a class="btn btn-gold" href="' + crearUrl(d) + '">' + L.personalizar + '</a></div></div>' +
+      '<button type="button" class="pv-x" aria-label="' + L.cerrar + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+    document.body.appendChild(pv); document.documentElement.style.overflow = 'hidden';
+    pvSize(); requestAnimationFrame(pvSize);
+    pv.querySelector('.pv-x').focus();
+    pv.querySelector('.pv-bg').addEventListener('click', closePv);
+    pv.querySelector('.pv-x').addEventListener('click', closePv);
+  }
+  function closePv() {
+    if (!pv) return; var el = pv; pv = null; el.classList.add('out');
+    setTimeout(function () { el.remove(); document.documentElement.style.overflow = ''; if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }, 340);
+  }
+  document.getElementById('designs').addEventListener('click', function (e) { var b = e.target.closest('[data-pv]'); if (b) openPv(+b.getAttribute('data-pv')); });
+  addEventListener('resize', pvSize);
+  addEventListener('keydown', function (e) {
+    if (!pv) return;
+    if (e.key === 'Escape') { closePv(); return; }
+    if (e.key === 'Tab') { var q = [].slice.call(pv.querySelectorAll('a[href], button, iframe')).filter(function (x) { return x.offsetParent !== null; }); if (!q.length) return; var a = q[0], z = q[q.length - 1];
+      if (e.shiftKey && document.activeElement === a) { z.focus(); e.preventDefault(); } else if (!e.shiftKey && document.activeElement === z) { a.focus(); e.preventDefault(); } }
+  });
   /* reveals */
   var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .15 }) : null;
   function observe() { document.querySelectorAll('.rv:not(.in)').forEach(function (el) { if (io && !el.closest('.hero')) io.observe(el); }); }

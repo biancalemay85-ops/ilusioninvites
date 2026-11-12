@@ -40,3 +40,11 @@ s = open(home, encoding='utf-8').read()
 s = s.replace('__COLECCIONES__', json.dumps({'colecciones': lite}, ensure_ascii=False).replace('</', '<\\/'))
 open(home, 'w', encoding='utf-8').write(s)
 print('home: collections injected')
+
+crear = os.path.join(HERE, 'nuevo', 'crear', 'index.html')
+if os.path.exists(crear):
+    s = open(crear, encoding='utf-8').read()
+    full = [dict(l, disenos=c.get('disenos', [])) for l, c in zip(lite, cols)]
+    s = s.replace('__CREAR__', json.dumps({'colecciones': full}, ensure_ascii=False).replace('</', '<\\/'))
+    open(crear, 'w', encoding='utf-8').write(s)
+    print('crear: collections injected')
