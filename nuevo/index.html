@@ -63,7 +63,7 @@ a { color: inherit; }
 /* hero: marble + silk, floral margins in depth layers, the gold seal */
 .hero { position: relative; overflow: hidden; background: #F3ECE2 url("img/marmol.webp?v=2") center / cover no-repeat; padding-top: 92px; }
 @media (max-width: 760px) { .hero { background-image: url("img/marmol-m.webp?v=2"); } }
-.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(251,246,239,0), var(--ivory)); }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(251,246,239,0) 0%, rgba(251,246,239,.55) 45%, rgba(251,246,239,.9) 75%, var(--ivory) 100%); }
 .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 42% 60% at 50% 55%, rgba(253,250,245,.9), rgba(253,250,245,.5) 60%, rgba(253,250,245,0) 85%); }
 .hero-in { text-shadow: 0 1px 12px rgba(253,250,245,.9); z-index: 7 !important; }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
@@ -111,8 +111,18 @@ h2 { margin: 0; font: 500 clamp(32px, 4.4vw, 52px)/1.1 var(--f-serif); text-wrap
 h2 em { font-style: italic; }
 .head p { margin: 0; color: var(--ink2); max-width: 58ch; }
 
+/* seam between hero and collections: silk ribbon + floral sprays crossing the edge */
+html, body { overflow-x: clip; }
+.seam { position: relative; height: 0; z-index: 5; pointer-events: none; }
+.seam img { position: absolute; height: auto; will-change: transform; }
+.seam .ribbon { width: 116vw; left: -8vw; top: -16vw; opacity: .95; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 72%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 72%, transparent 100%); mask-composite: intersect; }
+.seam .spray-l { width: clamp(220px, 28vw, 440px); left: -3vw; top: -19vw; filter: drop-shadow(0 18px 22px rgba(90,60,40,.28)); }
+.seam .spray-r { width: clamp(160px, 18vw, 300px); right: -2vw; top: -12vw; transform: scaleX(-1) rotate(-6deg); filter: blur(1.5px) drop-shadow(0 14px 18px rgba(90,60,40,.22)); opacity: .92; }
+@media (max-width: 760px) { .seam .ribbon { width: 160vw; left: -30vw; top: -24vw; } .seam .spray-l { width: 52vw; left: -10vw; top: -30vw; } .seam .spray-r { width: 36vw; right: -8vw; top: -14vw; } .dream { padding-top: 120px; } }
+.divisor { display: block; width: min(360px, 66vw); height: auto; margin: 4px auto 2px; opacity: .95; }
+
 /* dream gallery: framed worlds on a horizontal track */
-.dream { position: relative; padding-top: clamp(56px, 8vw, 100px); background: linear-gradient(180deg, var(--ivory) 0%, #F7EFE4 45%, var(--ivory) 100%); }
+.dream { position: relative; padding-top: clamp(130px, 15vw, 230px); background: linear-gradient(180deg, var(--ivory) 0%, #F7EFE4 45%, var(--ivory) 100%); }
 .dream .head { margin-bottom: 0; }
 .dream .head h2 { font-size: clamp(36px, 5vw, 64px); }
 .dream-pin { position: relative; }
@@ -228,7 +238,6 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <img class="lay back b2" src="img/hortensia-marfil.webp" alt="" width="640" height="640" data-depth="-0.05">
     <img class="lay mid m1" src="img/ramita-hojas-doradas.webp" alt="" width="640" height="670" data-depth="0.18">
     <img class="lay mid m2" src="img/rosa-rubor.webp" alt="" width="640" height="600" data-depth="0.16">
-    <img class="lay front f1" src="img/peonia-vino.webp" alt="" width="640" height="578" data-depth="0.42">
     <img class="lay front f2" src="img/rosa-marfil.webp" alt="" width="640" height="586" data-depth="0.38">
     <canvas id="dust" aria-hidden="true"></canvas>
     <div class="hero-in">
@@ -245,7 +254,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
   </section>
 
   <section class="dream" id="eventos" aria-labelledby="dream-title">
-    <div class="wrap head"><span class="eyebrow" data-en="THE COLLECTIONS">LAS COLECCIONES</span><h2 id="dream-title" data-en-html="Every celebration begins <em>with a dream</em>">Cada celebración comienza <em>con un sueño</em></h2><p data-en="Discover invitations designed for life's unforgettable moments.">Descubre invitaciones creadas para los momentos inolvidables de la vida.</p></div>
+    <div class="seam" aria-hidden="true"><img class="ribbon" src="img/cinta-seda.webp?v=2" alt="" width="1800" height="280"><img class="spray-l" src="img/ramo-ramas.webp" alt="" width="900" height="382" data-depth="0.04"><img class="spray-r" src="img/ramo-ramas.webp" alt="" width="900" height="382" data-depth="0.03"></div>
+    <div class="wrap head"><span class="eyebrow" data-en="THE COLLECTIONS">LAS COLECCIONES</span><h2 id="dream-title" data-en-html="Every celebration begins <em>with a dream</em>">Cada celebración comienza <em>con un sueño</em></h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60"><p data-en="Discover invitations designed for life's unforgettable moments.">Descubre invitaciones creadas para los momentos inolvidables de la vida.</p></div>
     <div class="dream-pin" id="dream-pin">
       <div class="dream-stage"><div class="track" id="track"></div></div>
     </div>
@@ -254,7 +264,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 
   <section class="sec seals-band">
     <div class="wrap">
-      <div class="head"><span class="eyebrow" data-en="THE FINISHING TOUCH">EL TOQUE FINAL</span><h2 data-en-html="Every invitation, <em>sealed</em> for you">Cada invitación, <em>sellada</em> para ti</h2><p data-en="Your invitation opens like a real letter. Choose the color of your wax seal.">Tu invitación se abre como una carta de verdad. Elige el color de tu sello de cera.</p></div>
+      <div class="head"><span class="eyebrow" data-en="THE FINISHING TOUCH">EL TOQUE FINAL</span><h2 data-en-html="Every invitation, <em>sealed</em> for you">Cada invitación, <em>sellada</em> para ti</h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"><p data-en="Your invitation opens like a real letter. Choose the color of your wax seal.">Tu invitación se abre como una carta de verdad. Elige el color de tu sello de cera.</p></div>
       <div class="seals">
         <figure><img src="img/sello-vino.webp" alt="Sello vino" width="300" height="300" loading="lazy"><figcaption data-en="WINE">VINO</figcaption></figure>
         <figure><img src="img/sello-marfil.webp" alt="Sello marfil" width="300" height="300" loading="lazy"><figcaption data-en="IVORY">MARFIL</figcaption></figure>
@@ -268,7 +278,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 
   <section class="sec" id="como">
     <div class="wrap">
-      <div class="head"><span class="eyebrow" data-en="HOW IT WORKS">CÓMO FUNCIONA</span><h2 data-en-html="Three steps to your <em>invitation</em>">Tres pasos para tu <em>invitación</em></h2></div>
+      <div class="head"><span class="eyebrow" data-en="HOW IT WORKS">CÓMO FUNCIONA</span><h2 data-en-html="Three steps to your <em>invitation</em>">Tres pasos para tu <em>invitación</em></h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"></div>
       <div class="steps">
         <div class="step"><span class="n foil">1</span><h3 data-en="Choose your event">Elige tu evento</h3><p data-en="Pick your celebration and the style you love.">Escoge tu celebración y el estilo que te enamora.</p></div>
         <div class="step"><span class="n foil">2</span><h3 data-en="Tell us the details">Cuéntanos los detalles</h3><p data-en="Fill in a short form or write to us on WhatsApp. You can share photos and ideas.">Llena un formulario corto o escríbenos por WhatsApp. Puedes compartir fotos e ideas.</p></div>
