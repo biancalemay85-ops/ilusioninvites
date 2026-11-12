@@ -69,7 +69,7 @@ a { color: inherit; }
 /* hero: marble + silk, floral margins in depth layers, the gold seal */
 .hero { position: relative; overflow: hidden; background: #F3ECE2 url("img/marmol.webp?v=2") center / cover no-repeat; padding-top: 92px; }
 @media (max-width: 760px) { .hero { background-image: url("img/marmol-m.webp?v=2"); } }
-.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(251,246,239,0) 0%, rgba(251,246,239,.55) 45%, rgba(251,246,239,.9) 75%, var(--ivory) 100%); }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(251,246,239,0) 0%, rgba(251,246,239,.55) 45%, rgba(251,246,239,.9) 75%, var(--ivory) 100%); }
 .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 42% 60% at 50% 55%, rgba(253,250,245,.9), rgba(253,250,245,.5) 60%, rgba(253,250,245,0) 85%); }
 .hero-in { text-shadow: 0 1px 12px rgba(253,250,245,.9); z-index: 7 !important; }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
@@ -94,7 +94,7 @@ a { color: inherit; }
   .b1, .b2, .m2 { display: none; } .m1 { left: 2%; bottom: 4%; width: 90px; }
   .f1 { width: 150px; left: -60px; bottom: -40px; } .f2 { width: 140px; right: -50px; top: -30px; }
 }
-.hero-in { position: relative; z-index: 4; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 18px 18px clamp(70px, 9vw, 110px); max-width: min(760px, 64vw); margin: 0 auto; }
+.hero-in { position: relative; z-index: 4; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 18px 18px clamp(40px, 5vw, 64px); max-width: min(760px, 64vw); margin: 0 auto; }
 @media (max-width: 760px) { .hero-in { max-width: 100%; padding-inline: 34px; } }
 .seal { width: clamp(230px, 30vw, 400px); height: auto; filter: drop-shadow(0 28px 30px rgba(90,60,40,.35)) drop-shadow(0 6px 8px rgba(90,60,40,.25)); margin-bottom: 14px; }
 .seal-wrap { position: relative; }
@@ -129,15 +129,15 @@ html, body { overflow-x: clip; }
 .dream-view::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 55% at 50% 52%, rgba(251,246,239,.82), rgba(251,246,239,.35) 70%, rgba(251,246,239,.15)); }
 #glints { position: absolute; inset: 0; width: 100%; height: 100%; }
 .dream-bg::before, .dream-bg::after { content: ""; position: absolute; left: 0; right: 0; z-index: 2; }
-.dream-bg::before { top: 0; height: 26vh; background: linear-gradient(180deg, var(--ivory), rgba(251,246,239,0)); }
+.dream-bg::before { top: 0; height: 12vh; background: linear-gradient(180deg, var(--ivory), rgba(251,246,239,0)); }
 .dream-bg::after { bottom: 0; height: 34vh; background: linear-gradient(0deg, var(--ivory), rgba(251,246,239,0)); }
 .dream > :not(.dream-bg) { position: relative; z-index: 1; }
-@media (max-width: 760px) { .org { background-image: url(img/organza-m.webp); } .dream-bg::before { height: 10vh; } .dream { padding-top: 120px; } }
+@media (max-width: 760px) { .org { background-image: url(img/organza-m.webp); } .dream-bg::before { height: 10vh; } .dream { padding-top: 44px; } }
 @media (prefers-reduced-motion: reduce) { .org-a, .org-b { animation: none; } }
 .divisor { display: block; width: min(360px, 66vw); height: auto; margin: 4px auto 2px; opacity: .95; }
 
 /* collections showcase: one world at a time, centred; neighbours wait softly behind */
-.dream { position: relative; padding-top: clamp(110px, 12vw, 190px); padding-bottom: clamp(40px, 6vw, 80px); background: linear-gradient(180deg, var(--ivory) 0%, #F7EFE4 45%, var(--ivory) 100%); }
+.dream { position: relative; padding-top: clamp(30px, 4vw, 64px); padding-bottom: clamp(40px, 6vw, 80px); background: linear-gradient(180deg, var(--ivory) 0%, #F7EFE4 45%, var(--ivory) 100%); }
 .dream .head { margin-bottom: 0; }
 .dream .head h2 { font-size: clamp(36px, 5vw, 64px); }
 .show { position: relative; height: clamp(520px, 74vh, 760px); margin-top: clamp(8px, 2vw, 24px); touch-action: pan-y; user-select: none; -webkit-user-select: none; }
