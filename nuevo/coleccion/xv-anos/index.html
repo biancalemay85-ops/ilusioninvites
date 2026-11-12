@@ -161,9 +161,9 @@ button.phone { display: block; border: 0; cursor: pointer; font: inherit; color:
 .step p { margin: 0; color: var(--ink2); font-size: 15px; }
 
 /* other worlds */
-.others { display: flex; gap: 22px; overflow-x: auto; padding: 10px 4px 26px; scroll-snap-type: x mandatory; scrollbar-width: none; justify-content: safe center; }
+.others { display: flex; overflow-x: auto; padding: 10px 0 26px; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); }
 .others::-webkit-scrollbar { display: none; }
-.other { flex: none; width: 150px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; scroll-snap-align: center; }
+.other { flex: none; width: 150px; margin-right: 28px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; }
 .other .fb { position: relative; height: 210px; aspect-ratio: var(--ar); }
 .other .win { position: absolute; inset: 0; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; overflow: hidden; }
 .other .win img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
@@ -285,14 +285,17 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     }
     var cc = document.getElementById('cta-crear'); cc.href = crearUrl(); cc.textContent = L.crear;
     document.getElementById('steps').innerHTML = L.pasos.map(function (p, i) { return '<div class="step rv" style="transition-delay:' + (i * .15) + 's"><div class="n">' + (i + 1) + '</div><h3>' + p[0] + '</h3><p>' + p[1] + '</p></div>'; }).join('');
-    document.getElementById('others').innerHTML = ALL.filter(function (o) { return o.slug !== C.slug; }).map(function (o) {
-      var m = 'url(../../img/ventana-' + o.frame + '.png)';
-      return '<a class="other" href="../' + o.slug + '/"><div class="fb" style="--ar:' + FR[o.frame] + '"><div class="win" style="-webkit-mask-image:' + m + ';mask-image:' + m + '"><img src="../../img/' + o.img + '.webp" alt="" loading="lazy"></div><img class="fr" src="../../img/marco-' + o.frame + '.webp" alt="" loading="lazy"></div><b>' + esc((o[lang] || o.es).nombre) + '</b></a>';
+    /* the row is drawn twice so it can keep sliding in a seamless loop (the copy is hidden from screen readers) */
+    var oth = ALL.filter(function (o) { return o.slug !== C.slug; });
+    document.getElementById('others').innerHTML = oth.concat(oth).map(function (o, k) {
+      var m = 'url(../../img/ventana-' + o.frame + '.png)', copy = k >= oth.length;
+      return '<a class="other" href="../' + o.slug + '/"' + (copy ? ' tabindex="-1" aria-hidden="true"' : '') + '><div class="fb" style="--ar:' + FR[o.frame] + '"><div class="win" style="-webkit-mask-image:' + m + ';mask-image:' + m + '"><img src="../../img/' + o.img + '.webp" alt="" loading="lazy"></div><img class="fr" src="../../img/marco-' + o.frame + '.webp" alt="" loading="lazy"></div><b>' + esc((o[lang] || o.es).nombre) + '</b></a>';
     }).join('');
     document.getElementById('es').setAttribute('aria-pressed', String(lang === 'es'));
     document.getElementById('en').setAttribute('aria-pressed', String(lang === 'en'));
     observe();
   }
+  var reduceMo = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   /* live preview: the real invitation plays inside a phone; close, full screen or "I want this design" */
   var pv = null, lastFocus = null;
   function pvSize() {
@@ -337,6 +340,29 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
   try { if (localStorage.getItem('ilu-lang') === 'en') lang = 'en'; } catch (e) {}
   render();
 
+  /* other worlds: an endless, slow carousel. Pauses on hover, touch or keyboard focus; can still be swiped by hand */
+  (function () {
+    var el = document.getElementById('others'); if (!el || reduceMo) return;
+    var pos = 0, run = false, paused = false, vis = false, last = 0, resumeT = 0, SPEED = 30;
+    function half() { return el.scrollWidth / 2; }
+    function wrap() { var h = half(); if (h <= 0) return; if (el.scrollLeft >= h) el.scrollLeft -= h; else if (el.scrollLeft <= 0) el.scrollLeft += h; }
+    function tick(t) {
+      if (!run) return; var dt = Math.min(.05, (t - (last || t)) / 1000); last = t;
+      if (!paused && vis) { pos += SPEED * dt; var h = half(); if (pos >= h) pos -= h; el.scrollLeft = pos; }
+      requestAnimationFrame(tick);
+    }
+    el.addEventListener('scroll', function () { if (Math.abs(el.scrollLeft - pos) > 2) { wrap(); pos = el.scrollLeft; } }, { passive: true });
+    function pause() { paused = true; clearTimeout(resumeT); }
+    function resume(ms) { clearTimeout(resumeT); resumeT = setTimeout(function () { pos = el.scrollLeft; paused = false; }, ms || 0); }
+    el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') pause(); });
+    el.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') resume(300); });
+    el.addEventListener('touchstart', pause, { passive: true });
+    el.addEventListener('touchend', function () { resume(2500); }, { passive: true });
+    el.addEventListener('focusin', pause);
+    el.addEventListener('focusout', function () { resume(600); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; }).observe(el); else vis = true;
+    run = true; requestAnimationFrame(tick);
+  })();
   /* arrival: continue the portal from the home page, or a gentle intro when opened directly */
   var fromPortal = false; try { fromPortal = sessionStorage.getItem('ilu-portal') === C.slug; sessionStorage.removeItem('ilu-portal'); } catch (e) {}
   function revealHero(now) {
