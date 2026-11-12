@@ -30,7 +30,7 @@
   --f-script: "Great Vibes", "Snell Roundhand", cursive; --f-caps: "Cinzel", "Trajan Pro", Georgia, serif; --f-serif: "Cormorant Garamond", Georgia, serif; --f-body: "Jost", "Avenir Next", system-ui, sans-serif;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 body { margin: 0; background: var(--ivory); color: var(--ink); font: 400 16px/1.6 var(--f-body); }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
@@ -39,16 +39,22 @@ a { color: inherit; }
 .caps { font-family: var(--f-caps); letter-spacing: .32em; text-transform: uppercase; }
 
 /* header */
-.top { position: absolute; z-index: 20; left: 0; right: 0; top: 0; padding-top: env(safe-area-inset-top, 0px); background: linear-gradient(180deg, rgba(251,246,239,.92), rgba(251,246,239,.55) 70%, rgba(251,246,239,0)); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; padding-block: 12px; flex-wrap: wrap; }
+.top { position: fixed; z-index: 40; left: 0; right: 0; top: 0; padding-top: env(safe-area-inset-top, 0px); background: linear-gradient(180deg, rgba(251,246,239,.9), rgba(251,246,239,.5) 70%, rgba(251,246,239,0)); transition: transform .5s cubic-bezier(.2,.7,.2,1), background-color .4s ease, box-shadow .4s ease; }
+.top.scrolled { background: rgba(251,246,239,.84); -webkit-backdrop-filter: blur(14px) saturate(1.15); backdrop-filter: blur(14px) saturate(1.15); box-shadow: 0 1px 0 rgba(182,138,78,.28), 0 12px 30px rgba(90,60,40,.08); }
+.top.away { transform: translateY(-110%); }
+.top .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px 24px; padding-block: 10px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.brand img { width: 52px; height: auto; filter: drop-shadow(0 4px 6px rgba(90,60,30,.25)); }
+.brand img { width: 50px; height: auto; filter: drop-shadow(0 4px 6px rgba(90,60,30,.25)); }
 .brand span { display: flex; flex-direction: column; align-items: center; line-height: 1; }
 .brand b { font: 400 34px/1 var(--f-script); }
 .brand small { font: 500 9.5px var(--f-caps); letter-spacing: .55em; padding-left: .55em; color: var(--gold); margin-top: 2px; }
-.nav { display: flex; align-items: center; gap: 22px; font-size: 14.5px; letter-spacing: .08em; }
-.nav a { text-decoration: none; color: var(--ink2); }
-.nav a:hover { color: var(--ink); }
+.links { display: flex; justify-content: center; align-items: center; gap: clamp(18px, 3vw, 40px); }
+.links a { position: relative; padding: 8px 0; text-decoration: none; color: var(--ink2); font: 500 11.5px var(--f-caps); letter-spacing: .26em; white-space: nowrap; transition: color .3s ease; }
+.links a::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: 3px; height: 1px; background: var(--gold); transition: left .4s ease, right .4s ease; }
+.links a:hover, .links a[aria-current="true"] { color: var(--ink); }
+.links a:hover::after, .links a[aria-current="true"]::after { left: 0; right: .26em; }
+.links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 3px; }
+.actions { display: flex; align-items: center; gap: 14px; }
 .lang { display: flex; border: 1px solid rgba(182,138,78,.45); border-radius: 999px; overflow: hidden; background: rgba(251,246,239,.6); }
 .lang button { border: 0; background: none; padding: 7px 13px; font: 500 12.5px var(--f-body); color: var(--ink2); cursor: pointer; }
 .lang button[aria-pressed="true"] { background: var(--gold); color: #fff; }
@@ -57,8 +63,8 @@ a { color: inherit; }
 .btn-gold { background: linear-gradient(180deg, #E9CF95, #C29452 60%, #A8783E); color: #fff; box-shadow: inset 0 1px 0 rgba(255,245,220,.7), 0 10px 24px rgba(150,105,50,.28); text-shadow: 0 1px 1px rgba(90,60,20,.35); }
 .btn-line { border-color: rgba(182,138,78,.6); color: var(--ink); background: rgba(251,246,239,.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .btn-sm { min-height: 42px; padding: 0 20px; font-size: 14px; }
-@media (max-width: 900px) { .nav .hide-m { display: none; } }
-@media (max-width: 560px) { .top .btn-sm { display: none; } .brand img { width: 42px; } .brand b { font-size: 28px; } }
+@media (max-width: 860px) { .top .wrap { grid-template-columns: 1fr auto; gap: 2px 12px; padding-block: 8px 4px; } .links { grid-column: 1 / -1; grid-row: 2; gap: 22px; } .links a { font-size: 10.5px; letter-spacing: .2em; } }
+@media (max-width: 560px) { .top .btn-sm { display: none; } .brand img { width: 40px; } .brand b { font-size: 27px; } .links { justify-content: space-between; gap: 8px; } .links a { font-size: 10px; letter-spacing: .16em; } }
 
 /* hero: marble + silk, floral margins in depth layers, the gold seal */
 .hero { position: relative; overflow: hidden; background: #F3ECE2 url("img/marmol.webp?v=2") center / cover no-repeat; padding-top: 92px; }
@@ -181,11 +187,11 @@ html, body { overflow-x: clip; }
 .deco.fade { -webkit-mask-image: linear-gradient(150deg, transparent 4%, #000 26%); mask-image: linear-gradient(150deg, transparent 4%, #000 26%); }
 .deco.bl { width: 52%; left: -24%; bottom: -5%; }
 .deco.tr { width: 38%; right: -14%; top: 7%; }
-.nav { position: absolute; z-index: 4; top: 50%; width: 52px; height: 52px; margin-top: -26px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: var(--gold); background: radial-gradient(120% 90% at 50% 10%, rgba(255,255,255,.9), rgba(251,246,239,.55)); border: 1px solid rgba(182,138,78,.45); box-shadow: inset 0 1px 0 #fff, 0 8px 22px rgba(120,85,45,.16); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: transform .3s ease, box-shadow .3s ease; }
-.nav:hover { transform: scale(1.06); box-shadow: inset 0 1px 0 #fff, 0 10px 28px rgba(120,85,45,.24); }
-.nav:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-.nav svg { width: 18px; height: 18px; }
-.nav.prev { left: max(16px, calc(50% - 250px)); } .nav.next { right: max(16px, calc(50% - 250px)); }
+.arrow { position: absolute; z-index: 4; top: 50%; width: 52px; height: 52px; margin-top: -26px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: var(--gold); background: radial-gradient(120% 90% at 50% 10%, rgba(255,255,255,.9), rgba(251,246,239,.55)); border: 1px solid rgba(182,138,78,.45); box-shadow: inset 0 1px 0 #fff, 0 8px 22px rgba(120,85,45,.16); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: transform .3s ease, box-shadow .3s ease; }
+.arrow:hover { transform: scale(1.06); box-shadow: inset 0 1px 0 #fff, 0 10px 28px rgba(120,85,45,.24); }
+.arrow:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.arrow svg { width: 18px; height: 18px; }
+.arrow.prev { left: max(16px, calc(50% - 250px)); } .arrow.next { right: max(16px, calc(50% - 250px)); }
 .tabs { position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 2px; margin: clamp(8px, 1.6vw, 20px) auto 0; max-width: 980px; padding: 0 16px; }
 .tabs button { appearance: none; border: 0; background: none; cursor: pointer; padding: 8px 12px; font: 500 10.5px var(--f-caps); letter-spacing: .26em; color: var(--ink3); position: relative; transition: color .4s ease; }
 .tabs button::after { content: ""; position: absolute; left: 50%; bottom: 2px; width: 0; height: 1px; background: var(--gold); transition: width .5s ease, left .5s ease; }
@@ -200,8 +206,8 @@ html, body { overflow-x: clip; }
   .world[data-pos="1"] { --x: 70vw; --s: .55; --o: .35; }
   .world[data-pos="-1"] { --x: -70vw; --s: .55; --o: .35; }
   .cinta-l { width: 70vw; left: -24vw; top: 12%; } .cinta-r { width: 70vw; right: -24vw; top: 70%; }
-  .nav { top: auto; bottom: -6px; margin-top: 0; width: 46px; height: 46px; }
-  .nav.prev { left: calc(50% - 96px); } .nav.next { right: calc(50% - 96px); }
+  .arrow { top: auto; bottom: -6px; margin-top: 0; width: 46px; height: 46px; }
+  .arrow.prev { left: calc(50% - 96px); } .arrow.next { right: calc(50% - 96px); }
   .count { display: block; position: absolute; z-index: 4; left: 0; right: 0; bottom: 8px; text-align: center; font: 500 11px var(--f-caps); letter-spacing: .3em; color: var(--ink2); }
   .tabs { display: none; }
   .deco.br { right: -18%; } .deco.bl { left: -16%; } .deco.tr { right: -8%; }
@@ -262,16 +268,18 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 .btn-line:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), 0 12px 24px -12px rgba(120,85,45,.45), 0 0 26px rgba(240,222,186,.7) !important; }
 </style>
 
-<header class="top">
+<header class="top" id="top">
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Ilusión Invites"><img src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><span><b class="foil">Ilusión</b><small>INVITES</small></span></a>
-    <nav class="nav" aria-label="Principal">
-      <a class="hide-m" href="#eventos" data-en="Events">Eventos</a>
-      <a class="hide-m" href="#como" data-en="How it works">Cómo funciona</a>
-      <a class="hide-m" href="#contacto" data-en="Contact">Contacto</a>
+    <nav class="links" aria-label="Principal">
+      <a href="#eventos" data-en="Collections">Colecciones</a>
+      <a href="#como" data-en="How it works">Cómo funciona</a>
+      <a href="#contacto" data-en="Contact">Contacto</a>
+    </nav>
+    <div class="actions">
       <div class="lang" role="group" aria-label="Idioma"><button type="button" id="es" aria-pressed="true">ES</button><button type="button" id="en" aria-pressed="false">EN</button></div>
       <a class="btn btn-gold btn-sm" href="#eventos" data-en="Create my invitation">Crear mi invitación</a>
-    </nav>
+    </div>
   </div>
 </header>
 
@@ -303,8 +311,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       <img class="cinta cinta-l" src="img/cinta-fina.webp" alt="" aria-hidden="true" width="1600" height="507">
       <img class="cinta cinta-r" src="img/cinta-fina.webp" alt="" aria-hidden="true" width="1600" height="507">
       <div class="stage" id="track" aria-live="polite"></div>
-      <button class="nav prev" id="prev" type="button" aria-label="Colección anterior" data-en-aria="Previous collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button class="nav next" id="next" type="button" aria-label="Siguiente colección" data-en-aria="Next collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <button class="arrow prev" id="prev" type="button" aria-label="Colección anterior" data-en-aria="Previous collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="arrow next" id="next" type="button" aria-label="Siguiente colección" data-en-aria="Next collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       <p class="count" id="count" aria-hidden="true"></p>
     </div>
     <div class="tabs" id="tabs" role="group" aria-label="Elige una colección"></div>
@@ -481,6 +489,27 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
   if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) start(); else run = false; }); }).observe(document.getElementById('inicio')); else start();
 
 
+
+  /* header: hides while reading down, slides back on the way up; marks the section you are in */
+  (function () {
+    var top = document.getElementById('top'), last = scrollY, acc = 0, tk = false;
+    function upd() {
+      tk = false; var y = Math.max(0, scrollY), d = y - last; last = y;
+      top.classList.toggle('scrolled', y > 30);
+      if (y < 80) { top.classList.remove('away'); acc = 0; return; }
+      if (top.contains(document.activeElement) && document.activeElement !== document.body) { top.classList.remove('away'); return; }
+      acc = (d > 0) === (acc > 0) ? acc + d : d;
+      if (acc > 24) top.classList.add('away'); else if (acc < -12) top.classList.remove('away');
+    }
+    addEventListener('scroll', function () { if (!tk) { tk = true; requestAnimationFrame(upd); } }, { passive: true });
+    top.addEventListener('focusin', function () { top.classList.remove('away'); });
+    upd();
+    var links = Array.prototype.slice.call(top.querySelectorAll('.links a'));
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); }); }); }, { rootMargin: '-45% 0px -50% 0px' });
+      ['inicio', 'eventos', 'como', 'contacto'].forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+    }
+  })();
   /* soft glints drifting over the organza */
   (function () {
     var gc = document.getElementById('glints'); if (!gc) return;
