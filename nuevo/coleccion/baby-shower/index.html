@@ -77,13 +77,10 @@ html.arrive .hero-img { animation: dreamIn 2s cubic-bezier(.2,.7,.2,1) both, slo
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* gold title (XV): solid polished gold, like the gold letters but clean */
 .titulo-oro .hero-text h1 { font-weight: 600; letter-spacing: .01em; background: linear-gradient(180deg, #FCF0C8 0%, #EDCB82 20%, #C79747 42%, #8E5F24 54%, #C9994F 66%, #F2D99A 84%, #B2803A 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 1px 0 rgba(110,72,28,.85)) drop-shadow(0 2px 1px rgba(90,55,20,.35)) drop-shadow(0 10px 16px rgba(70,30,40,.25)); padding: 0 .06em .06em; }
-/* butterflies that drift across the screen now and then */
-.bf { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; will-change: transform; }
-.bf img { display: block; width: 100%; height: auto; filter: drop-shadow(0 8px 10px rgba(60,25,35,.25)); }
-.bf .flap-x { animation: flapX .2s ease-in-out infinite alternate; }
-.bf .flap-y { animation: flapY .2s ease-in-out infinite alternate; }
-@keyframes flapX { from { transform: scaleX(1); } to { transform: scaleX(.32); } }
-@keyframes flapY { from { transform: scaleY(1) skewX(0deg); } to { transform: scaleY(.42) skewX(-8deg); } }
+/* magic sparkle reveal (XV): a gold wand trail sweeps over the title and reveals it */
+#magic { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+.magic-on .hero-text h1.mask-line > span { transform: none !important; transition: none !important; }
+.magic-hide { -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--rv, -100px) - 90px), transparent var(--rv, -100px)); mask-image: linear-gradient(90deg, #000 calc(var(--rv, -100px) - 90px), transparent var(--rv, -100px)); }
 .hero-text p { margin: 14px auto 0; max-width: 54ch; color: var(--ink2); font-size: clamp(16px, 1.6vw, 18.5px); }
 .cue { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 26px; font: 500 10.5px var(--f-caps); letter-spacing: .34em; color: var(--ink3); text-decoration: none; }
 .cue i { width: 1px; height: 34px; background: linear-gradient(var(--accent), transparent); animation: cue 2.2s ease-in-out infinite; }
@@ -376,54 +373,82 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; }).observe(el); else vis = true;
     run = true; requestAnimationFrame(tick);
   })();
-  /* butterflies (XV): now and then one drifts across the screen, above or below the title, and flies away */
-  (function () {
-    if (!C.mariposas || reduceMo) return;
-    var hero = document.querySelector('.hero'), vis = true, n = 0;
-    var KINDS = [{ src: 'mariposa-perfil-2', cls: 'flap-y', face: 1, r: .875 }, { src: 'mariposa-cristal-1', cls: 'flap-x', face: 0, r: .9 }, { src: 'mariposa-perfil-6', cls: 'flap-y', face: 1, r: .9 }];
-    /* the area the words really cover (not the full-width boxes around them) */
-    function textBox() {
-      var ht = document.getElementById('hero-text'), box = null;
-      function add(r) { if (!r || !r.width) return; box = box ? { left: Math.min(box.left, r.left), top: Math.min(box.top, r.top), right: Math.max(box.right, r.right), bottom: Math.max(box.bottom, r.bottom) } : { left: r.left, top: r.top, right: r.right, bottom: r.bottom }; }
-      ht.querySelectorAll('.eyebrow > span, #h-nombre, #h-script, .cue').forEach(function (el) { add(el.getBoundingClientRect()); });
-      var pe = document.getElementById('h-intro'); if (pe && pe.firstChild) { var rg = document.createRange(); rg.selectNodeContents(pe); add(rg.getBoundingClientRect()); }
-      return box || ht.getBoundingClientRect();
+  /* magic (XV): like the opening of a fairy-tale film. A glowing gold wand trail arcs over the title,
+     revealing it as it passes, leaving glitter and star flares that drift and fade. Then soft twinkles
+     keep the title alive, and now and then a smaller trail sweeps by again. */
+  var MAGIC = !!(C.magia && !reduceMo);
+  if (MAGIC) { document.documentElement.classList.add('magic-on'); document.getElementById('h-nombre').parentNode.classList.add('magic-hide'); }
+  function startMagic(delay) {
+    if (!MAGIC) return;
+    var hero = document.querySelector('.hero'), h1 = document.getElementById('h-nombre').parentNode;
+    var cv = document.createElement('canvas'); cv.id = 'magic'; cv.setAttribute('aria-hidden', 'true'); hero.appendChild(cv);
+    var x = cv.getContext('2d'), W = 0, H = 0, P = [], sweeps = [], vis = true, run = false, last = 0, small = innerWidth < 700;
+    function size() { var d = Math.min(devicePixelRatio || 1, 2); W = hero.clientWidth; H = hero.clientHeight; cv.width = W * d; cv.height = H * d; x.setTransform(d, 0, 0, d, 0, 0); }
+    size(); addEventListener('resize', size);
+    function rel(r) { var hr = hero.getBoundingClientRect(); return { l: r.left - hr.left, t: r.top - hr.top, r: r.right - hr.left, b: r.bottom - hr.top, w: r.width, h: r.height }; }
+    function titleBox() { return rel(document.getElementById('h-nombre').getBoundingClientRect()); }
+    function bez(p, t) { var u = 1 - t; return [u * u * u * p[0][0] + 3 * u * u * t * p[1][0] + 3 * u * t * t * p[2][0] + t * t * t * p[3][0], u * u * u * p[0][1] + 3 * u * u * t * p[1][1] + 3 * u * t * t * p[2][1] + t * t * t * p[3][1]]; }
+    function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function sweep(reveal, dur, rate) {
+      var b = titleBox(), lift = Math.max(b.h * .9, 50);
+      var pts = [[b.l - b.w * .28, b.b + b.h * .25], [b.l + b.w * .05, b.t - lift * 1.5], [b.r - b.w * .05, b.t - lift * 1.5], [b.r + b.w * .22, b.b - b.h * .05]];
+      sweeps.push({ pts: pts, t0: 0, dur: dur, rate: rate, reveal: reveal, b: b, done: false });
     }
-    function fly() {
-      if (!vis || document.hidden) return;
-      var k = KINDS[n % KINDS.length], ltr = n % 2 === 0; n++;
-      var W = hero.clientWidth, H = hero.clientHeight, w = Math.round(Math.max(44, Math.min(86, W * (.045 + Math.random() * .02))));
-      /* stay clear of the title block: fly only through open space (above/below it, or up the sides) */
-      var hr = hero.getBoundingClientRect(), tr = textBox(), gap = Math.max(60, W * .04);
-      var tT = tr.top - hr.top, tB = tr.bottom - hr.top, tL = tr.left - hr.left, tR = tr.right - hr.left, paths = [];
-      [[Math.max(70, H * .1), tT - gap - w], [tB + gap, H * .93 - w]].forEach(function (z) { if (z[1] - z[0] > 24) paths.push({ h: 1, a: z[0], b: z[1] }); });
-      [[24, tL - gap - w], [tR + gap, W - 24 - w]].forEach(function (z) { if (z[1] - z[0] > 30) paths.push({ v: 1, a: z[0], b: z[1] }); });
-      if (!paths.length) return;
-      var p = paths[Math.floor(Math.random() * paths.length)], amp = Math.min(p.h ? H * .03 : 46, (p.b - p.a) / 2), c = p.a + amp + Math.random() * Math.max(0, p.b - p.a - 2 * amp);
-      var el = document.createElement('div'); el.className = 'bf'; el.setAttribute('aria-hidden', 'true'); el.style.width = w + 'px';
-      var flip = k.face && !ltr;
-      el.innerHTML = '<div' + (flip ? ' style="transform:scaleX(-1)"' : '') + '><img class="' + k.cls + '" src="../../img/' + k.src + '.webp" alt="" width="360" height="315"></div>';
-      hero.appendChild(el);
-      var steps = 8, frames = [], up = Math.random() < .7;
-      for (var i = 0; i <= steps; i++) {
-        var t = i / steps, wob = Math.sin(t * Math.PI * 3 + n) * amp, x, y;
-        if (p.h) { x = ltr ? -w * 1.5 + (W + w * 2) * t : W + w * .5 - (W + w * 2) * t; y = c + wob; }
-        else { y = up ? H + w * .2 - (H + w * 1.6) * t : -w * 1.4 + (H + w * 1.6) * t; x = c + wob; }
-        frames.push({ transform: 'translate(' + x.toFixed(0) + 'px,' + y.toFixed(0) + 'px) rotate(' + ((ltr ? 1 : -1) * Math.sin(t * Math.PI * 3 + n + 1) * 8).toFixed(1) + 'deg)', opacity: i === 0 || i === steps ? 0 : 1 });
-      }
-      var a = el.animate(frames, { duration: 9000 + Math.random() * 4000, easing: 'linear' });
-      a.onfinish = function () { el.remove(); };
+    function spark(px, py, k) {
+      var a = Math.random() * 6.283, sp = (k === 'burst' ? 60 + Math.random() * 160 : 8 + Math.random() * 38);
+      var star = Math.random() < (k === 'burst' ? .08 : .035);
+      P.push({ x: px, y: py, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 6, g: 14 + Math.random() * 22, life: 0, max: star ? 1.6 + Math.random() * 1.4 : .9 + Math.random() * 1.8,
+        r: star ? 3 + Math.random() * 4 : .5 + Math.random() * 1.9, star: star, ph: Math.random() * 6.3, hue: Math.random() });
     }
-    function loop() { fly(); setTimeout(loop, 5500 + Math.random() * 4500); }
-    setTimeout(loop, 1800);
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; }).observe(hero);
-  })();
+    function flare(px, py, R, a) {
+      x.save(); x.globalCompositeOperation = 'lighter';
+      var g = x.createRadialGradient(px, py, 0, px, py, R * 2.4); g.addColorStop(0, 'rgba(255,250,232,' + a + ')'); g.addColorStop(.25, 'rgba(255,224,160,' + a * .45 + ')'); g.addColorStop(1, 'rgba(255,200,120,0)');
+      x.fillStyle = g; x.beginPath(); x.arc(px, py, R * 2.4, 0, 6.283); x.fill();
+      x.strokeStyle = 'rgba(255,246,220,' + a + ')'; x.lineCap = 'round';
+      [[R * 7, 1.3], [R * 4.2, .8]].forEach(function (s, i) { var L = s[0], ang = i ? Math.PI / 4 : 0; x.lineWidth = s[1];
+        x.beginPath(); x.moveTo(px - Math.cos(ang) * L, py - Math.sin(ang) * L); x.lineTo(px + Math.cos(ang) * L, py + Math.sin(ang) * L); x.moveTo(px + Math.sin(ang) * L, py - Math.cos(ang) * L); x.lineTo(px - Math.sin(ang) * L, py + Math.cos(ang) * L); x.stroke(); });
+      x.restore();
+    }
+    function frame(t) {
+      if (!run) return; var dt = Math.min(.05, (t - (last || t)) / 1000); last = t;
+      x.clearRect(0, 0, W, H);
+      sweeps.forEach(function (s) {
+        if (s.done) return; if (!s.t0) s.t0 = t; var k = Math.min(1, (t - s.t0) / s.dur), e = ease(k), hd = bez(s.pts, e);
+        var n = Math.round(s.rate * (small ? .6 : 1)); for (var i = 0; i < n; i++) { var back = bez(s.pts, Math.max(0, e - Math.random() * .04)), sp = 6 + Math.random() * 14; spark(back[0] + (Math.random() - .5) * sp, back[1] + (Math.random() - .5) * sp); }
+        flare(hd[0], hd[1], small ? 4 : 5.5, 1);
+        if (s.reveal) h1.style.setProperty('--rv', Math.max(-100, hd[0] - (h1.getBoundingClientRect().left - hero.getBoundingClientRect().left) + 40) + 'px');
+        if (k >= 1) { s.done = true; for (var j = 0; j < (small ? 40 : 70); j++) spark(hd[0], hd[1], 'burst');
+          if (s.reveal) { h1.classList.remove('magic-hide'); var bb = s.b; for (var q = 0; q < 4; q++) twinkleAt(bb.l + Math.random() * bb.w, bb.t + Math.random() * bb.h * .8, 1.4); } }
+      });
+      sweeps = sweeps.filter(function (s) { return !s.done; });
+      x.save(); x.globalCompositeOperation = 'lighter';
+      for (var i = P.length - 1; i >= 0; i--) { var p = P[i]; p.life += dt; if (p.life > p.max) { P.splice(i, 1); continue; }
+        p.vx *= .97; p.vy = p.vy * .97 + p.g * dt; p.x += p.vx * dt; p.y += p.vy * dt;
+        var f = p.life / p.max, a = (f < .15 ? f / .15 : 1 - (f - .15) / .85) * (.55 + .45 * Math.abs(Math.sin(p.ph + p.life * 9)));
+        if (p.star) { x.restore(); flare(p.x, p.y, p.r * .5, a * .9); x.save(); x.globalCompositeOperation = 'lighter'; continue; }
+        var c = p.hue < .6 ? '255,214,140' : p.hue < .85 ? '255,240,205' : '255,190,150';
+        var g = x.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3); g.addColorStop(0, 'rgba(' + c + ',' + a + ')'); g.addColorStop(1, 'rgba(' + c + ',0)');
+        x.fillStyle = g; x.beginPath(); x.arc(p.x, p.y, p.r * 3, 0, 6.283); x.fill(); }
+      x.restore();
+      if (Math.random() < dt * (small ? .8 : 1.2)) { var bx = titleBox(); twinkleAt(bx.l - bx.w * .15 + Math.random() * bx.w * 1.3, bx.t - bx.h * .4 + Math.random() * bx.h * 1.5, 1); }
+      requestAnimationFrame(frame);
+    }
+    function twinkleAt(px, py, big) { P.push({ x: px, y: py, vx: 0, vy: -4, g: 0, life: 0, max: 1.2 + Math.random() * 1.2, r: (2.5 + Math.random() * 3) * big, star: true, ph: Math.random() * 6.3 }); }
+    function start() { if (run || !vis) return; run = true; last = 0; requestAnimationFrame(frame); }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; if (vis) start(); else run = false; }).observe(hero);
+    setTimeout(function () { sweep(true, 2300, 16); start(); }, delay);
+    (function again() { setTimeout(function () { if (vis && !document.hidden) sweep(false, 2600, 7); again(); }, 13000 + Math.random() * 6000); })();
+  }
   /* arrival: continue the portal from the home page, or a gentle intro when opened directly */
   var fromPortal = false; try { fromPortal = sessionStorage.getItem('ilu-portal') === C.slug; sessionStorage.removeItem('ilu-portal'); } catch (e) {}
   function revealHero(now) {
     var ht = document.getElementById('hero-text');
     var items = [].slice.call(ht.querySelectorAll('.mask-line, .rv'));
     var wait = fromPortal ? 650 : 250;
+    if (MAGIC && !now) { /* eyebrow first, the wand reveals the title, then the rest follows */
+      items.forEach(function (el, i) { setTimeout(function () { el.classList.add('in'); }, i === 0 ? wait : wait + 2300 + i * 170); });
+      startMagic(wait + 250); return;
+    }
     items.forEach(function (el, i) { setTimeout(function () { el.classList.add('in'); }, now ? 0 : wait + i * 170); });
   }
   if (!fromPortal) document.querySelector('.hero-img').animate([{ transform: 'scale(1.12)', opacity: .2 }, { transform: 'scale(1)', opacity: 1 }], { duration: 1400, easing: 'cubic-bezier(.2,.7,.2,1)' });
