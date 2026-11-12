@@ -73,27 +73,6 @@ a { color: inherit; }
 .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 42% 60% at 50% 55%, rgba(253,250,245,.9), rgba(253,250,245,.5) 60%, rgba(253,250,245,0) 85%); }
 .hero-in { text-shadow: 0 1px 12px rgba(253,250,245,.9); z-index: 7 !important; }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
-.lay { position: absolute; pointer-events: none; height: auto; will-change: transform; }
-.lay.casc { width: clamp(150px, 19vw, 300px); top: -6%; filter: drop-shadow(0 20px 26px rgba(90,60,40,.28)); z-index: 2; }
-.lay.casc.l { left: clamp(-90px, -4vw, -30px); }
-.lay.casc.r { right: clamp(-90px, -4vw, -30px); top: 4%; transform: scaleX(-1); }
-.lay.casc { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 84%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 84%, transparent 100%); }
-.lay.casc.l2 { left: clamp(-110px, -5vw, -40px); top: auto; bottom: -14%; transform: rotate(180deg) scaleX(-1); width: clamp(140px, 16vw, 260px); }
-.lay.casc.r2 { right: clamp(-110px, -5vw, -40px); top: auto; bottom: -22%; transform: rotate(180deg); width: clamp(130px, 15vw, 240px); }
-.lay.back { z-index: 1; filter: blur(2.5px) saturate(.9) drop-shadow(0 10px 14px rgba(90,60,40,.15)); opacity: .9; }
-.lay.front { z-index: 6; filter: blur(4px) drop-shadow(0 26px 30px rgba(90,60,40,.3)); }
-.lay.mid { z-index: 3; filter: drop-shadow(0 16px 20px rgba(90,60,40,.28)); }
-.b1 { width: clamp(110px, 10vw, 170px); left: 13%; top: 2%; transform: rotate(-20deg); }
-.b2 { width: clamp(100px, 9vw, 160px); right: 12%; top: 66%; transform: rotate(25deg); }
-.m1 { width: clamp(80px, 7vw, 120px); left: 11%; bottom: 8%; transform: rotate(14deg); }
-.m2 { width: clamp(80px, 7vw, 120px); right: 12%; top: 8%; transform: rotate(-18deg); }
-.f1 { width: clamp(150px, 15vw, 260px); left: -5%; bottom: -10%; }
-.f2 { width: clamp(130px, 13vw, 230px); right: -4%; top: -8%; transform: rotate(160deg); }
-@media (max-width: 760px) {
-  .lay.casc { width: 120px; top: 2%; } .lay.casc.l { left: -64px; } .lay.casc.r { right: -64px; top: 40%; } .lay.casc.l2, .lay.casc.r2 { display: none; }
-  .b1, .b2, .m2 { display: none; } .m1 { left: 2%; bottom: 4%; width: 90px; }
-  .f1 { width: 150px; left: -60px; bottom: -40px; } .f2 { width: 140px; right: -50px; top: -30px; }
-}
 .hero-in { position: relative; z-index: 4; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 18px 18px clamp(40px, 5vw, 64px); max-width: min(760px, 64vw); margin: 0 auto; }
 @media (max-width: 760px) { .hero-in { max-width: 100%; padding-inline: 34px; } }
 .seal { width: clamp(230px, 30vw, 400px); height: auto; filter: drop-shadow(0 28px 30px rgba(90,60,40,.35)) drop-shadow(0 6px 8px rgba(90,60,40,.25)); margin-bottom: 14px; }
@@ -397,11 +376,6 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 
 <main>
   <section class="hero" id="inicio">
-    <img class="lay back b1" src="img/rosa-marfil.webp" alt="" width="640" height="586" data-depth="-0.06">
-    <img class="lay back b2" src="img/hortensia-marfil.webp" alt="" width="640" height="640" data-depth="-0.05">
-    <img class="lay mid m1" src="img/ramita-hojas-doradas.webp" alt="" width="640" height="670" data-depth="0.18">
-    <img class="lay mid m2" src="img/rosa-rubor.webp" alt="" width="640" height="600" data-depth="0.16">
-    <img class="lay front f2" src="img/rosa-marfil.webp" alt="" width="640" height="586" data-depth="0.38">
     <canvas id="dust" aria-hidden="true"></canvas>
     <div class="hero-in">
       <div class="seal-wrap"><img class="seal" src="img/sello-ilusion-oro.webp" alt="Sello de cera dorado con la palabra Ilusión en letra cursiva, laurel y la palabra Invites" width="760" height="752" data-depth="-0.04"></div>
