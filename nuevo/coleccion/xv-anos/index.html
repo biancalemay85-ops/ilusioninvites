@@ -72,7 +72,23 @@ html.arrive .hero-img { animation: dreamIn 2s cubic-bezier(.2,.7,.2,1) both, slo
 .hero-text .eyebrow { font: 600 12.5px var(--f-caps); letter-spacing: .5em; padding-left: .5em; color: color-mix(in srgb, var(--accent) 80%, var(--ink)); }
 .hero-text h1 { margin: 8px 0 0; font: 500 clamp(52px, 9vw, 116px)/1 var(--f-serif); color: var(--ink); text-wrap: balance; }
 .hero-text .script { display: block; margin-top: 2px; font: 400 clamp(30px, 3.6vw, 48px)/1.25 var(--f-script); padding-bottom: .1em; }
-.hero-text .script > span { background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .15em; }
+.hero-text .script > span { background: linear-gradient(100deg, #7A5022 0%, #B9873F 28%, #8A5C26 50%, #C99A52 72%, #80552A 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .15em; filter: drop-shadow(0 1px 0 rgba(255,250,240,.6)) drop-shadow(0 3px 10px rgba(70,30,40,.3)); }
+.oscuro .hero-text .script > span { background: var(--foil); -webkit-background-clip: text; background-clip: text; filter: none; }
+/* XV: gold flower letters for the initials, the rest in the serif */
+.mono { display: inline-flex; align-items: flex-end; margin-right: .08em; vertical-align: -.1em; }
+.hero-text h1:has(.mono) { margin-top: .32em; }
+@media (max-width: 560px) { .hero-text h1:has(.mono) { font-size: 64px; margin-top: .62em; } }
+.mono img { height: 1.1em; width: auto; }
+.mono img + img { margin-left: -.12em; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* butterflies that fly in and settle on the title */
+.bf { position: absolute; left: 0; top: 0; z-index: 6; pointer-events: none; will-change: transform; opacity: 0; }
+.bf-flip { width: 100%; }
+.bf img { display: block; width: 100%; height: auto; filter: drop-shadow(0 8px 10px rgba(60,25,35,.28)); }
+.bf .fly { animation: flap .16s ease-in-out infinite alternate; }
+.bf .rest { animation: rest 7s ease-in-out infinite; }
+@keyframes flap { from { transform: scaleY(1) skewX(0deg); } to { transform: scaleY(.42) skewX(-8deg); } }
+@keyframes rest { 0%, 78%, 100% { transform: none; } 82% { transform: scaleY(.62) skewX(-5deg); } 86% { transform: none; } 90% { transform: scaleY(.7) skewX(-4deg); } 94% { transform: none; } }
 .hero-text p { margin: 14px auto 0; max-width: 54ch; color: var(--ink2); font-size: clamp(16px, 1.6vw, 18.5px); }
 .cue { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 26px; font: 500 10.5px var(--f-caps); letter-spacing: .34em; color: var(--ink3); text-decoration: none; }
 .cue i { width: 1px; height: 34px; background: linear-gradient(var(--accent), transparent); animation: cue 2.2s ease-in-out infinite; }
@@ -200,7 +216,7 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
   <section class="hero" id="top">
     <img class="hero-img" src="../../img/hero-xv.webp" alt="" width="1600" height="2133" fetchpriority="high">
     <canvas id="dust" aria-hidden="true"></canvas>
-    <img class="deco d1" src="../../img/mariposa-cristal-1.webp" alt=""><img class="deco d2" src="../../img/mariposa-cristal-1.webp" alt="">
+    
     <div class="hero-text" id="hero-text">
       <span class="eyebrow mask-line"><span data-i18n="coleccion"></span></span>
       <h1 class="mask-line"><span id="h-nombre"></span></h1>
@@ -234,7 +250,7 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
 </main>
 <footer>ILUSIÓN INVITES · MÉXICO &amp; CANADÁ</footer>
 
-<script type="application/json" id="data">{"actual": {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "mariposa-cristal-1", "decoPos": "tr", "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}, "tema": {"bg": "#FCF3F4", "bg2": "#F4DDE3", "ink": "#4A2633", "accent": "#B8798A", "soft": "#F1D3DB"}, "form": "../../../pedido-xv/"}, "todas": [{"slug": "bodas", "frame": "arco", "img": "cat-bodas", "deco": "rosa-marfil", "decoPos": "bl", "es": {"nombre": "Bodas", "script": "Para siempre", "intro": "Seda marfil, flores románticas y luz de velas. Invitaciones atemporales para el día en que comienza su historia."}, "en": {"nombre": "Weddings", "script": "Forever", "intro": "Ivory silk, romantic florals and candlelight. Timeless invitations for the day your story begins."}}, {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "mariposa-cristal-1", "decoPos": "tr", "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}}, {"slug": "cumpleanos", "frame": "arco", "img": "cat-cumpleanos", "deco": "rosa-rubor", "decoPos": "bl", "es": {"nombre": "Cumpleaños", "script": "Celebra tu día", "intro": "Expresivos, hermosos y a tu medida: desde una cena íntima hasta una gran fiesta con globos y pastel."}, "en": {"nombre": "Birthdays", "script": "Celebrate your day", "intro": "Expressive, beautiful and made for you, from an intimate dinner to a big party with balloons and cake."}}, {"slug": "baby-shower", "frame": "rect", "img": "cat-baby-shower", "deco": "nube-gypsophila", "decoPos": "br", "es": {"nombre": "Baby Shower", "script": "Entre nubes", "intro": "Luz natural, texturas suaves y tonos pastel para dar la bienvenida a alguien muy esperado."}, "en": {"nombre": "Baby Showers", "script": "Among the clouds", "intro": "Soft natural light, delicate textures and pastel tones to welcome someone long awaited."}}, {"slug": "navidad", "frame": "ovalo", "img": "cat-navidad-posadas", "deco": "ramita-hojas-doradas", "decoPos": "bl", "es": {"nombre": "Posada · Navidad", "script": "Calidez de fiesta", "intro": "Luz cálida, verde profundo, terciopelo y oro champaña. Para posadas, cenas navideñas y fiestas de fin de año."}, "en": {"nombre": "Christmas", "script": "Festive warmth", "intro": "Warm light, deep evergreen, velvet and champagne gold. For posadas, Christmas dinners and holiday parties."}}, {"slug": "ano-nuevo", "frame": "arco", "img": "cat-ano-nuevo", "deco": "cristal-1", "decoPos": "tr", "es": {"nombre": "Año Nuevo", "script": "Brindemos", "intro": "Ambiente de medianoche: negro, oro champaña y destellos metálicos para recibir el año con estilo."}, "en": {"nombre": "New Year's Eve", "script": "Let's toast", "intro": "A midnight atmosphere of black, champagne gold and metallic sparkle to welcome the year in style."}}, {"slug": "empresas", "frame": "rect", "img": "cat-gala-empresa", "deco": "", "decoPos": "", "es": {"nombre": "Empresas · Gala", "script": "Noche de gala", "intro": "Elegancia arquitectónica y estilo sobrio para cenas de gala, lanzamientos y eventos corporativos."}, "en": {"nombre": "Corporate Events", "script": "An evening of gala", "intro": "Architectural elegance and refined, minimal styling for galas, launches and corporate events."}}, {"slug": "otras", "frame": "ovalo", "img": "cat-otras", "deco": "mariposa-dorada-1", "decoPos": "tr", "es": {"nombre": "Otras celebraciones", "script": "Todo es posible", "intro": "Bautizos, comuniones, graduaciones, aniversarios o lo que estés soñando. Lo creamos contigo."}, "en": {"nombre": "Other Celebrations", "script": "Anything is possible", "intro": "Baptisms, communions, graduations, anniversaries or whatever you are dreaming of. We create it with you."}}]}</script>
+<script type="application/json" id="data">{"actual": {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "", "decoPos": "", "letras": "XV", "mariposas": true, "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}, "tema": {"bg": "#FCF3F4", "bg2": "#F4DDE3", "ink": "#4A2633", "accent": "#B8798A", "soft": "#F1D3DB"}, "form": "../../../pedido-xv/"}, "todas": [{"slug": "bodas", "frame": "arco", "img": "cat-bodas", "deco": "rosa-marfil", "decoPos": "bl", "es": {"nombre": "Bodas", "script": "Para siempre", "intro": "Seda marfil, flores románticas y luz de velas. Invitaciones atemporales para el día en que comienza su historia."}, "en": {"nombre": "Weddings", "script": "Forever", "intro": "Ivory silk, romantic florals and candlelight. Timeless invitations for the day your story begins."}}, {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "", "decoPos": "", "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}}, {"slug": "cumpleanos", "frame": "arco", "img": "cat-cumpleanos", "deco": "rosa-rubor", "decoPos": "bl", "es": {"nombre": "Cumpleaños", "script": "Celebra tu día", "intro": "Expresivos, hermosos y a tu medida: desde una cena íntima hasta una gran fiesta con globos y pastel."}, "en": {"nombre": "Birthdays", "script": "Celebrate your day", "intro": "Expressive, beautiful and made for you, from an intimate dinner to a big party with balloons and cake."}}, {"slug": "baby-shower", "frame": "rect", "img": "cat-baby-shower", "deco": "nube-gypsophila", "decoPos": "br", "es": {"nombre": "Baby Shower", "script": "Entre nubes", "intro": "Luz natural, texturas suaves y tonos pastel para dar la bienvenida a alguien muy esperado."}, "en": {"nombre": "Baby Showers", "script": "Among the clouds", "intro": "Soft natural light, delicate textures and pastel tones to welcome someone long awaited."}}, {"slug": "navidad", "frame": "ovalo", "img": "cat-navidad-posadas", "deco": "ramita-hojas-doradas", "decoPos": "bl", "es": {"nombre": "Posada · Navidad", "script": "Calidez de fiesta", "intro": "Luz cálida, verde profundo, terciopelo y oro champaña. Para posadas, cenas navideñas y fiestas de fin de año."}, "en": {"nombre": "Christmas", "script": "Festive warmth", "intro": "Warm light, deep evergreen, velvet and champagne gold. For posadas, Christmas dinners and holiday parties."}}, {"slug": "ano-nuevo", "frame": "arco", "img": "cat-ano-nuevo", "deco": "cristal-1", "decoPos": "tr", "es": {"nombre": "Año Nuevo", "script": "Brindemos", "intro": "Ambiente de medianoche: negro, oro champaña y destellos metálicos para recibir el año con estilo."}, "en": {"nombre": "New Year's Eve", "script": "Let's toast", "intro": "A midnight atmosphere of black, champagne gold and metallic sparkle to welcome the year in style."}}, {"slug": "empresas", "frame": "rect", "img": "cat-gala-empresa", "deco": "", "decoPos": "", "es": {"nombre": "Empresas · Gala", "script": "Noche de gala", "intro": "Elegancia arquitectónica y estilo sobrio para cenas de gala, lanzamientos y eventos corporativos."}, "en": {"nombre": "Corporate Events", "script": "An evening of gala", "intro": "Architectural elegance and refined, minimal styling for galas, launches and corporate events."}}, {"slug": "otras", "frame": "ovalo", "img": "cat-otras", "deco": "mariposa-dorada-1", "decoPos": "tr", "es": {"nombre": "Otras celebraciones", "script": "Todo es posible", "intro": "Bautizos, comuniones, graduaciones, aniversarios o lo que estés soñando. Lo creamos contigo."}, "en": {"nombre": "Other Celebrations", "script": "Anything is possible", "intro": "Baptisms, communions, graduations, anniversaries or whatever you are dreaming of. We create it with you."}}]}</script>
 <script>
 (function () {
   'use strict';
@@ -266,7 +282,10 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = L[el.getAttribute('data-i18n')]; });
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) { el.innerHTML = L[el.getAttribute('data-i18n-html')]; });
-    document.getElementById('h-nombre').textContent = t.nombre;
+    var hn = document.getElementById('h-nombre'), ini = C.letras || '';
+    if (ini && t.nombre.indexOf(ini) === 0) hn.innerHTML = '<span class="mono" aria-hidden="true">' + ini.split('').map(function (ch) { return '<img src="../../img/letras/' + ch + '.webp" alt="" width="640" height="660">'; }).join('') + '</span><span class="sr">' + esc(ini) + '</span>' + esc(t.nombre.slice(ini.length));
+    else hn.textContent = t.nombre;
+    if (C.tema && C.tema.oscuro) document.documentElement.classList.add('oscuro');
     document.getElementById('h-script').textContent = t.script;
     document.getElementById('h-intro').textContent = t.intro;
     document.title = t.nombre + ' · Ilusión Invites';
@@ -362,6 +381,53 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     el.addEventListener('focusout', function () { resume(600); });
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; }).observe(el); else vis = true;
     run = true; requestAnimationFrame(tick);
+  })();
+  /* XV: two crystal butterflies fly in, flutter around, and settle in profile on the X and on the "o" */
+  (function () {
+    if (!C.mariposas || reduceMo) return;
+    var hero = document.querySelector('.hero'), h1 = document.getElementById('h-nombre');
+    var B = [
+      { src: 'mariposa-perfil-2', ax: .62, ay: .93, flip: false, size: [58, 8.4, 118], delay: 2100, dur: 4800, from: [-.12, .18] },
+      { src: 'mariposa-perfil-6', ax: .72, ay: .93, flip: true, size: [50, 7, 100], delay: 2900, dur: 5200, from: [1.1, .78] }
+    ];
+    B.forEach(function (b) {
+      var el = document.createElement('div'); el.className = 'bf'; el.setAttribute('aria-hidden', 'true');
+      el.innerHTML = '<div class="bf-flip"' + (b.flip ? ' style="transform:scaleX(-1)"' : '') + '><img class="fly" src="../../img/' + b.src + '.webp" alt="" width="360" height="315"></div>';
+      hero.appendChild(el); b.el = el; b.img = el.querySelector('img');
+      b.img.style.transformOrigin = (b.ax * 100) + '% ' + (b.ay * 100) + '%';
+    });
+    function width(b) { return Math.max(b.size[0], Math.min(b.size[2], innerWidth * b.size[1] / 100)); }
+    function target(i) {
+      var hr = hero.getBoundingClientRect(), r;
+      if (i === 0) { var x = h1.querySelector('.mono img'); if (x) { r = x.getBoundingClientRect(); return [r.left + r.width * .84 - hr.left, r.top + r.height * .035 - hr.top]; } }
+      var tn = null; for (var n = h1.lastChild; n; n = n.previousSibling) if (n.nodeType === 3) { tn = n; break; }
+      if (!tn) { r = h1.getBoundingClientRect(); return [r.right - r.width * .2 - hr.left, r.top + r.height * .35 - hr.top]; }
+      var txt = tn.textContent, k = txt.lastIndexOf('o'); if (k < 0) k = Math.max(0, Math.floor(txt.length * .7));
+      var rg = document.createRange(); rg.setStart(tn, k); rg.setEnd(tn, k + 1); r = rg.getBoundingClientRect();
+      var fs = parseFloat(getComputedStyle(h1).fontSize);
+      return [r.left + r.width * .5 - hr.left, r.bottom - fs * .62 - hr.top];
+    }
+    function spot(b, i) { var w = width(b), t = target(i), ax = b.flip ? 1 - b.ax : b.ax; b.el.style.width = w + 'px'; return [t[0] - ax * w, t[1] - b.ay * w * .875]; }
+    function tf(x, y, r) { return 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) rotate(' + (r || 0) + 'deg)'; }
+    B.forEach(function (b, i) {
+      setTimeout(function () {
+        var hr = hero.getBoundingClientRect(), W = hr.width, H = hr.height, end = spot(b, i), sx = b.from[0] * W, sy = b.from[1] * H, s = b.flip ? -1 : 1;
+        var k = [
+          { transform: tf(sx, sy, -10 * s), opacity: 0 },
+          { transform: tf(sx + (end[0] - sx) * .3 + 40 * s, sy + (end[1] - sy) * .2 - 70, 8 * s), opacity: 1, offset: .22 },
+          { transform: tf(sx + (end[0] - sx) * .62 - 50 * s, sy + (end[1] - sy) * .55 + 40, -6 * s), opacity: 1, offset: .5 },
+          { transform: tf(end[0] + 36 * s, end[1] - 70, 6 * s), opacity: 1, offset: .74 },
+          { transform: tf(end[0] - 10 * s, end[1] - 26, -4 * s), opacity: 1, offset: .9 },
+          { transform: tf(end[0], end[1], 0), opacity: 1 }
+        ];
+        var a = b.el.animate(k, { duration: b.dur, easing: 'cubic-bezier(.45,.05,.35,1)', fill: 'forwards' });
+        setTimeout(function () { b.img.style.animationDuration = '.32s'; }, b.dur * .86);
+        a.onfinish = function () { b.landed = true; a.cancel(); b.el.style.opacity = 1; b.el.style.transform = tf(end[0], end[1], 0); b.img.className = 'rest'; b.img.style.animationDuration = ''; b.img.style.animationDelay = (-i * 3) + 's'; };
+      }, b.delay);
+    });
+    function settle() { B.forEach(function (b, i) { if (b.landed) { var p = spot(b, i); b.el.style.transform = tf(p[0], p[1], 0); } }); }
+    addEventListener('resize', settle);
+    ['es', 'en'].forEach(function (id) { document.getElementById(id).addEventListener('click', function () { setTimeout(settle, 60); setTimeout(settle, 1300); }); });
   })();
   /* arrival: continue the portal from the home page, or a gentle intro when opened directly */
   var fromPortal = false; try { fromPortal = sessionStorage.getItem('ilu-portal') === C.slug; sessionStorage.removeItem('ilu-portal'); } catch (e) {}
