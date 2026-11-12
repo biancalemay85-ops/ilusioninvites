@@ -14,7 +14,7 @@
 <link rel="preload" as="image" href="../../img/hero-cumpleanos.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap">
 <script>try { if (sessionStorage.getItem('ilu-portal')) document.documentElement.classList.add('arrive'); } catch (e) {}</script>
 <style>
 /* One collection "world": full-bleed hero that continues the portal from the home page, then the designs, then how to personalize, then the other worlds. Colours come from the collection's theme. */
@@ -74,21 +74,16 @@ html.arrive .hero-img { animation: dreamIn 2s cubic-bezier(.2,.7,.2,1) both, slo
 .hero-text .script { display: block; margin-top: 2px; font: 400 clamp(30px, 3.6vw, 48px)/1.25 var(--f-script); padding-bottom: .1em; }
 .hero-text .script > span { background: linear-gradient(100deg, #7A5022 0%, #B9873F 28%, #8A5C26 50%, #C99A52 72%, #80552A 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .15em; filter: drop-shadow(0 1px 0 rgba(255,250,240,.6)) drop-shadow(0 3px 10px rgba(70,30,40,.3)); }
 .oscuro .hero-text .script > span { background: var(--foil); -webkit-background-clip: text; background-clip: text; filter: none; }
-/* XV: gold flower letters for the initials, the rest in the serif */
-.mono { display: inline-flex; align-items: flex-end; margin-right: .08em; vertical-align: -.1em; }
-.hero-text h1:has(.mono) { margin-top: .32em; }
-@media (max-width: 560px) { .hero-text h1:has(.mono) { font-size: 64px; margin-top: .62em; } }
-.mono img { height: 1.1em; width: auto; }
-.mono img + img { margin-left: -.12em; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-/* butterflies that fly in and settle on the title */
-.bf { position: absolute; left: 0; top: 0; z-index: 6; pointer-events: none; will-change: transform; opacity: 0; }
-.bf-flip { width: 100%; }
-.bf img { display: block; width: 100%; height: auto; filter: drop-shadow(0 8px 10px rgba(60,25,35,.28)); }
-.bf .fly { animation: flap .16s ease-in-out infinite alternate; }
-.bf .rest { animation: rest 7s ease-in-out infinite; }
-@keyframes flap { from { transform: scaleY(1) skewX(0deg); } to { transform: scaleY(.42) skewX(-8deg); } }
-@keyframes rest { 0%, 78%, 100% { transform: none; } 82% { transform: scaleY(.62) skewX(-5deg); } 86% { transform: none; } 90% { transform: scaleY(.7) skewX(-4deg); } 94% { transform: none; } }
+/* gold title (XV): solid polished gold, like the gold letters but clean */
+.titulo-oro .hero-text h1 { font-weight: 600; letter-spacing: .01em; background: linear-gradient(180deg, #FCF0C8 0%, #EDCB82 20%, #C79747 42%, #8E5F24 54%, #C9994F 66%, #F2D99A 84%, #B2803A 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 1px 0 rgba(110,72,28,.85)) drop-shadow(0 2px 1px rgba(90,55,20,.35)) drop-shadow(0 10px 16px rgba(70,30,40,.25)); padding: 0 .06em .06em; }
+/* butterflies that drift across the screen now and then */
+.bf { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; will-change: transform; }
+.bf img { display: block; width: 100%; height: auto; filter: drop-shadow(0 8px 10px rgba(60,25,35,.25)); }
+.bf .flap-x { animation: flapX .2s ease-in-out infinite alternate; }
+.bf .flap-y { animation: flapY .2s ease-in-out infinite alternate; }
+@keyframes flapX { from { transform: scaleX(1); } to { transform: scaleX(.32); } }
+@keyframes flapY { from { transform: scaleY(1) skewX(0deg); } to { transform: scaleY(.42) skewX(-8deg); } }
 .hero-text p { margin: 14px auto 0; max-width: 54ch; color: var(--ink2); font-size: clamp(16px, 1.6vw, 18.5px); }
 .cue { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 26px; font: 500 10.5px var(--f-caps); letter-spacing: .34em; color: var(--ink3); text-decoration: none; }
 .cue i { width: 1px; height: 34px; background: linear-gradient(var(--accent), transparent); animation: cue 2.2s ease-in-out infinite; }
@@ -282,10 +277,9 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = L[el.getAttribute('data-i18n')]; });
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) { el.innerHTML = L[el.getAttribute('data-i18n-html')]; });
-    var hn = document.getElementById('h-nombre'), ini = C.letras || '';
-    if (ini && t.nombre.indexOf(ini) === 0) hn.innerHTML = '<span class="mono" aria-hidden="true">' + ini.split('').map(function (ch) { return '<img src="../../img/letras/' + ch + '.webp" alt="" width="640" height="660">'; }).join('') + '</span><span class="sr">' + esc(ini) + '</span>' + esc(t.nombre.slice(ini.length));
-    else hn.textContent = t.nombre;
+    document.getElementById('h-nombre').textContent = t.nombre;
     if (C.tema && C.tema.oscuro) document.documentElement.classList.add('oscuro');
+    if (C.titulo === 'oro') document.documentElement.classList.add('titulo-oro');
     document.getElementById('h-script').textContent = t.script;
     document.getElementById('h-intro').textContent = t.intro;
     document.title = t.nombre + ' · Ilusión Invites';
@@ -382,52 +376,29 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; }).observe(el); else vis = true;
     run = true; requestAnimationFrame(tick);
   })();
-  /* XV: two crystal butterflies fly in, flutter around, and settle in profile on the X and on the "o" */
+  /* butterflies (XV): now and then one drifts across the screen, above or below the title, and flies away */
   (function () {
     if (!C.mariposas || reduceMo) return;
-    var hero = document.querySelector('.hero'), h1 = document.getElementById('h-nombre');
-    var B = [
-      { src: 'mariposa-perfil-2', ax: .62, ay: .93, flip: false, size: [58, 8.4, 118], delay: 2100, dur: 4800, from: [-.12, .18] },
-      { src: 'mariposa-perfil-6', ax: .72, ay: .93, flip: true, size: [50, 7, 100], delay: 2900, dur: 5200, from: [1.1, .78] }
-    ];
-    B.forEach(function (b) {
-      var el = document.createElement('div'); el.className = 'bf'; el.setAttribute('aria-hidden', 'true');
-      el.innerHTML = '<div class="bf-flip"' + (b.flip ? ' style="transform:scaleX(-1)"' : '') + '><img class="fly" src="../../img/' + b.src + '.webp" alt="" width="360" height="315"></div>';
-      hero.appendChild(el); b.el = el; b.img = el.querySelector('img');
-      b.img.style.transformOrigin = (b.ax * 100) + '% ' + (b.ay * 100) + '%';
-    });
-    function width(b) { return Math.max(b.size[0], Math.min(b.size[2], innerWidth * b.size[1] / 100)); }
-    function target(i) {
-      var hr = hero.getBoundingClientRect(), r;
-      if (i === 0) { var x = h1.querySelector('.mono img'); if (x) { r = x.getBoundingClientRect(); return [r.left + r.width * .84 - hr.left, r.top + r.height * .035 - hr.top]; } }
-      var tn = null; for (var n = h1.lastChild; n; n = n.previousSibling) if (n.nodeType === 3) { tn = n; break; }
-      if (!tn) { r = h1.getBoundingClientRect(); return [r.right - r.width * .2 - hr.left, r.top + r.height * .35 - hr.top]; }
-      var txt = tn.textContent, k = txt.lastIndexOf('o'); if (k < 0) k = Math.max(0, Math.floor(txt.length * .7));
-      var rg = document.createRange(); rg.setStart(tn, k); rg.setEnd(tn, k + 1); r = rg.getBoundingClientRect();
-      var fs = parseFloat(getComputedStyle(h1).fontSize);
-      return [r.left + r.width * .5 - hr.left, r.bottom - fs * .62 - hr.top];
+    var hero = document.querySelector('.hero'), vis = true, n = 0;
+    var KINDS = [{ src: 'mariposa-perfil-2', cls: 'flap-y', face: 1, r: .875 }, { src: 'mariposa-cristal-1', cls: 'flap-x', face: 0, r: .9 }, { src: 'mariposa-perfil-6', cls: 'flap-y', face: 1, r: .9 }];
+    function fly() {
+      if (!vis || document.hidden) return;
+      var k = KINDS[n % KINDS.length], ltr = n % 2 === 0; n++;
+      var W = hero.clientWidth, H = hero.clientHeight, w = Math.round(Math.max(44, Math.min(86, W * (.045 + Math.random() * .02))));
+      var band = Math.random() < .55 ? [.1, .26] : [.74, .88], y0 = H * (band[0] + Math.random() * (band[1] - band[0])), y1 = Math.min(H * .92, Math.max(H * .08, y0 + (Math.random() - .5) * H * .16));
+      var el = document.createElement('div'); el.className = 'bf'; el.setAttribute('aria-hidden', 'true'); el.style.width = w + 'px';
+      var flip = k.face && !ltr;
+      el.innerHTML = '<div' + (flip ? ' style="transform:scaleX(-1)"' : '') + '><img class="' + k.cls + '" src="../../img/' + k.src + '.webp" alt="" width="360" height="315"></div>';
+      hero.appendChild(el);
+      var x0 = ltr ? -w * 1.5 : W + w * .5, x1 = ltr ? W + w * .5 : -w * 1.5, steps = 7, frames = [];
+      for (var i = 0; i <= steps; i++) { var t = i / steps, x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * t + Math.sin(t * Math.PI * 3 + n) * H * .035;
+        frames.push({ transform: 'translate(' + x.toFixed(0) + 'px,' + y.toFixed(0) + 'px) rotate(' + ((ltr ? 1 : -1) * Math.sin(t * Math.PI * 3 + n + 1) * 8).toFixed(1) + 'deg)', opacity: i === 0 || i === steps ? 0 : 1 }); }
+      var a = el.animate(frames, { duration: 9000 + Math.random() * 4000, easing: 'linear' });
+      a.onfinish = function () { el.remove(); };
     }
-    function spot(b, i) { var w = width(b), t = target(i), ax = b.flip ? 1 - b.ax : b.ax; b.el.style.width = w + 'px'; return [t[0] - ax * w, t[1] - b.ay * w * .875]; }
-    function tf(x, y, r) { return 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) rotate(' + (r || 0) + 'deg)'; }
-    B.forEach(function (b, i) {
-      setTimeout(function () {
-        var hr = hero.getBoundingClientRect(), W = hr.width, H = hr.height, end = spot(b, i), sx = b.from[0] * W, sy = b.from[1] * H, s = b.flip ? -1 : 1;
-        var k = [
-          { transform: tf(sx, sy, -10 * s), opacity: 0 },
-          { transform: tf(sx + (end[0] - sx) * .3 + 40 * s, sy + (end[1] - sy) * .2 - 70, 8 * s), opacity: 1, offset: .22 },
-          { transform: tf(sx + (end[0] - sx) * .62 - 50 * s, sy + (end[1] - sy) * .55 + 40, -6 * s), opacity: 1, offset: .5 },
-          { transform: tf(end[0] + 36 * s, end[1] - 70, 6 * s), opacity: 1, offset: .74 },
-          { transform: tf(end[0] - 10 * s, end[1] - 26, -4 * s), opacity: 1, offset: .9 },
-          { transform: tf(end[0], end[1], 0), opacity: 1 }
-        ];
-        var a = b.el.animate(k, { duration: b.dur, easing: 'cubic-bezier(.45,.05,.35,1)', fill: 'forwards' });
-        setTimeout(function () { b.img.style.animationDuration = '.32s'; }, b.dur * .86);
-        a.onfinish = function () { b.landed = true; a.cancel(); b.el.style.opacity = 1; b.el.style.transform = tf(end[0], end[1], 0); b.img.className = 'rest'; b.img.style.animationDuration = ''; b.img.style.animationDelay = (-i * 3) + 's'; };
-      }, b.delay);
-    });
-    function settle() { B.forEach(function (b, i) { if (b.landed) { var p = spot(b, i); b.el.style.transform = tf(p[0], p[1], 0); } }); }
-    addEventListener('resize', settle);
-    ['es', 'en'].forEach(function (id) { document.getElementById(id).addEventListener('click', function () { setTimeout(settle, 60); setTimeout(settle, 1300); }); });
+    function loop() { fly(); setTimeout(loop, 5500 + Math.random() * 4500); }
+    setTimeout(loop, 1800);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; }).observe(hero);
   })();
   /* arrival: continue the portal from the home page, or a gentle intro when opened directly */
   var fromPortal = false; try { fromPortal = sessionStorage.getItem('ilu-portal') === C.slug; sessionStorage.removeItem('ilu-portal'); } catch (e) {}
