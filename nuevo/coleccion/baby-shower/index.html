@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap">
+<script>try { if (sessionStorage.getItem('ilu-portal')) document.documentElement.classList.add('arrive'); } catch (e) {}</script>
 <style>
 /* One collection "world": full-bleed hero that continues the portal from the home page, then the designs, then how to personalize, then the other worlds. Colours come from the collection's theme. */
 :root {
@@ -31,6 +32,11 @@ a { color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .wrap { max-width: 1180px; margin: 0 auto; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
 @view-transition { navigation: auto; }
+/* arriving from the home portal: the page starts in the same warm light and clears softly */
+html.arrive body::after { content: ""; position: fixed; inset: 0; z-index: 200; pointer-events: none; background: radial-gradient(circle at 50% 50%, rgba(255,250,238,1) 0%, rgba(255,244,222,.92) 38%, rgba(251,240,220,.85) 100%); animation: lightOut 1.3s cubic-bezier(.4,0,.2,1) .05s forwards; }
+@keyframes lightOut { to { opacity: 0; visibility: hidden; } }
+html.arrive .hero-img { animation: dreamIn 2s cubic-bezier(.2,.7,.2,1) both, slowzoom 22s ease-in-out 2s infinite alternate; }
+@keyframes dreamIn { from { filter: blur(10px) brightness(1.15); transform: scale(1.06); } to { filter: none; transform: scale(1); } }
 
 /* top bar */
 .bar { position: fixed; z-index: 30; left: 0; right: 0; top: 0; padding-top: env(safe-area-inset-top, 0px); transition: background .4s, box-shadow .4s; }
@@ -50,18 +56,18 @@ a { color: inherit; }
 @media (max-width: 560px) { .brand b { display: none; } .back span { display: none; } }
 
 /* hero */
-.hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
+.hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 45%; animation: slowzoom 22s ease-in-out infinite alternate; }
 @keyframes slowzoom { from { transform: scale(1); } to { transform: scale(1.08); } }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 45%, color-mix(in srgb, var(--bg) 55%, transparent) 78%, var(--bg) 100%); pointer-events: none; }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
 .hero .deco { position: absolute; z-index: 3; height: auto; pointer-events: none; filter: drop-shadow(0 18px 22px rgba(0,0,0,.3)); animation: drift 7s ease-in-out infinite alternate; }
 @keyframes drift { from { translate: 0 0; } to { translate: 0 -12px; } }
-.hero .deco { -webkit-mask-image: linear-gradient(150deg, transparent 3%, #000 24%); mask-image: linear-gradient(150deg, transparent 3%, #000 24%); }
+.hero .deco { -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); }
 .hero .deco.d1 { width: clamp(140px, 18vw, 280px); left: -3%; top: 16%; }
 .hero .deco.d2 { width: clamp(120px, 14vw, 220px); right: -2%; bottom: 26%; transform: scaleX(-1); }
-.hero-text::before { content: ""; position: absolute; left: 50%; top: 55%; width: 140%; height: 120%; transform: translate(-50%, -50%); background: radial-gradient(closest-side, color-mix(in srgb, var(--bg) 82%, transparent), color-mix(in srgb, var(--bg) 40%, transparent) 60%, transparent); z-index: -1; pointer-events: none; }
-.hero-text { position: relative; z-index: 4; text-align: center; padding: 0 22px clamp(56px, 9vh, 96px); max-width: 860px; }
+.hero-text::before { content: ""; position: absolute; left: 50%; top: 52%; width: 140%; height: 120%; transform: translate(-50%, -50%); background: radial-gradient(closest-side, color-mix(in srgb, var(--bg) 90%, transparent), color-mix(in srgb, var(--bg) 66%, transparent) 55%, color-mix(in srgb, var(--bg) 20%, transparent) 85%, transparent); z-index: -1; pointer-events: none; }
+.hero-text { position: relative; z-index: 4; text-align: center; padding: 64px 22px 0; max-width: 860px; }
 .hero-text .eyebrow { font: 600 12.5px var(--f-caps); letter-spacing: .5em; padding-left: .5em; color: color-mix(in srgb, var(--accent) 80%, var(--ink)); }
 .hero-text h1 { margin: 8px 0 0; font: 500 clamp(52px, 9vw, 116px)/1 var(--f-serif); color: var(--ink); text-wrap: balance; }
 .hero-text .script { display: block; margin-top: 2px; font: 400 clamp(30px, 3.6vw, 48px)/1.25 var(--f-script); padding-bottom: .1em; }
@@ -124,7 +130,7 @@ a { color: inherit; }
 .other:hover .win img { transform: scale(1.1); }
 .other b { font: 500 18px var(--f-serif); text-align: center; }
 footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom, 0px) + 36px); font: 500 11px var(--f-caps); letter-spacing: .3em; color: var(--ink3); }
-@media (prefers-reduced-motion: reduce) { .hero-img, .hero .deco, .phone, .cue i { animation: none; } .rv, .mask-line > span { transition: none; opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) { .hero-img, .hero .deco, .phone, .cue i { animation: none; } html.arrive body::after { display: none; } .rv, .mask-line > span { transition: none; opacity: 1; transform: none; } html { scroll-behavior: auto; } }
 
 /* ===== Epoxy buttons (one style for the whole site) ===== */
 .btn { position: relative; isolation: isolate; overflow: hidden; text-shadow: none !important; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; filter: none !important; transition: box-shadow .35s ease, transform .35s ease; }
@@ -256,7 +262,8 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
   function revealHero(now) {
     var ht = document.getElementById('hero-text');
     var items = [].slice.call(ht.querySelectorAll('.mask-line, .rv'));
-    items.forEach(function (el, i) { setTimeout(function () { el.classList.add('in'); }, now ? 0 : 250 + i * 180); });
+    var wait = fromPortal ? 650 : 250;
+    items.forEach(function (el, i) { setTimeout(function () { el.classList.add('in'); }, now ? 0 : wait + i * 170); });
   }
   if (!fromPortal) document.querySelector('.hero-img').animate([{ transform: 'scale(1.12)', opacity: .2 }, { transform: 'scale(1)', opacity: 1 }], { duration: 1400, easing: 'cubic-bezier(.2,.7,.2,1)' });
   revealHero(false);

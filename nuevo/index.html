@@ -196,15 +196,12 @@ html, body { overflow-x: clip; }
   .world[data-frame="ovalo"] .inside .cta { font-size: 9px; letter-spacing: .22em; padding-left: 6px; gap: 6px; }
   .world[data-frame="ovalo"] .inside .cta i { width: 14px; }
 }
-/* portal transition */
-.portal-img { position: fixed; object-fit: cover; }
-.portal-ov { position: fixed; z-index: 100; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; pointer-events: none; }
-.portal-veil { position: fixed; inset: 0; z-index: 99; background: var(--ivory); opacity: 0; transition: opacity .7s ease; pointer-events: none; }
-.portal-veil.on { opacity: 1; }
-.portal-title { position: fixed; z-index: 101; left: 0; right: 0; bottom: 18vh; text-align: center; color: #fff; pointer-events: none; opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; text-shadow: 0 2px 24px rgba(0,0,0,.45); }
-.portal-title.on { opacity: 1; transform: none; }
-.portal-title small { display: block; font: 500 12px var(--f-caps); letter-spacing: .5em; }
-.portal-title b { display: block; font: 500 clamp(48px, 8vw, 104px)/1 var(--f-serif); margin-top: 6px; }
+/* portal transition: the chosen world blooms open with soft, feathered edges, gold dust and warm light */
+.portal-veil { position: fixed; inset: 0; z-index: 99; background: rgba(251,246,239,.55); -webkit-backdrop-filter: blur(0px); backdrop-filter: blur(0px); opacity: 0; transition: opacity .9s ease, -webkit-backdrop-filter .9s ease, backdrop-filter .9s ease; pointer-events: none; }
+.portal-veil.on { opacity: 1; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.portal-img { position: fixed; z-index: 100; object-fit: cover; pointer-events: none; -webkit-mask-image: radial-gradient(closest-side, #000 40%, rgba(0,0,0,.55) 70%, transparent 100%); mask-image: radial-gradient(closest-side, #000 40%, rgba(0,0,0,.55) 70%, transparent 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+.portal-glow { position: fixed; inset: 0; z-index: 101; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 50%, rgba(255,250,238,1) 0%, rgba(255,244,222,.92) 38%, rgba(251,240,220,.85) 100%); }
+.portal-dust { position: fixed; inset: 0; z-index: 102; pointer-events: none; width: 100%; height: 100%; }
 @view-transition { navigation: auto; }
 
 /* imagine your invitation: a few gentle questions on the left, the card composing itself on the right */
@@ -553,25 +550,37 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     if (reduceM) return;
     e.preventDefault();
     var win = w.querySelector('.win'), r = win.getBoundingClientRect(), hero = 'img/hero-' + w.dataset.img.replace('cat-', '') + '.webp';
-    var c = COLS.filter(function (x) { return x.slug === w.dataset.slug; })[0], t = c[lang] || c.es;
+    var c = COLS.filter(function (x) { return x.slug === w.dataset.slug; })[0];
+    var VW = innerWidth, VH = innerHeight, cx = r.left + r.width / 2, cy = r.top + r.height / 2;
     var veil = document.createElement('div'); veil.className = 'portal-veil'; document.body.appendChild(veil);
-    var ov = document.createElement('div'); ov.className = 'portal-ov';
-    var mask = 'url(img/ventana-' + w.dataset.frame + '.png)';
-    ov.style.cssText = 'left:' + r.left + 'px;top:' + r.top + 'px;width:' + r.width + 'px;height:' + r.height + 'px;-webkit-mask-image:' + mask + ';mask-image:' + mask + ';-webkit-mask-size:100% 100%;mask-size:100% 100%';
     var oi = document.createElement('img'); oi.className = 'portal-img'; oi.alt = ''; oi.src = 'img/' + c.img + '.webp';
     var hi = new Image(); hi.onload = function () { oi.src = hero; }; hi.src = hero;
-    ov.appendChild(oi); document.body.appendChild(ov);
-    var ttl = document.createElement('div'); ttl.className = 'portal-title'; ttl.innerHTML = '<small>' + (lang === 'en' ? 'COLLECTION' : 'COLECCIÓN') + '</small><b>' + esc(t.nombre) + '</b>'; document.body.appendChild(ttl);
+    oi.style.cssText = 'left:0;top:0;width:' + VW + 'px;height:' + VH + 'px';
+    document.body.appendChild(oi);
+    var glow = document.createElement('div'); glow.className = 'portal-glow'; document.body.appendChild(glow);
+    var dc = document.createElement('canvas'); dc.className = 'portal-dust'; document.body.appendChild(dc);
     requestAnimationFrame(function () { veil.classList.add('on'); });
-    var big = Math.max(innerWidth, innerHeight) * 2.8, ease = 'cubic-bezier(.7,0,.2,1)', dur = 1150;
-    var from = { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px' };
-    ov.animate([from, { left: (innerWidth - big) / 2 + 'px', top: (innerHeight - big) / 2 + 'px', width: big + 'px', height: big + 'px' }], { duration: dur, easing: ease, fill: 'forwards' });
-    oi.animate([from, { left: '0px', top: '0px', width: innerWidth + 'px', height: innerHeight + 'px' }], { duration: dur, easing: ease, fill: 'forwards' });
-    setTimeout(function () { ttl.classList.add('on'); }, 520);
+    var big = Math.hypot(VW, VH) * 2.4, ease = 'cubic-bezier(.65,0,.25,1)', dur = 1500;
+    var sw = r.width * 1.15, sh = r.height * 1.15;
+    function mk(w, h, x, y, extra) { var o = { maskSize: w + 'px ' + h + 'px', maskPosition: x + 'px ' + y + 'px', webkitMaskSize: w + 'px ' + h + 'px', webkitMaskPosition: x + 'px ' + y + 'px' }; for (var k in extra) o[k] = extra[k]; return o; }
+    oi.animate([
+      mk(sw, sh, cx - sw / 2, cy - sh / 2, { opacity: 0, filter: 'blur(4px) brightness(1.05)' }),
+      mk(sw * 1.25, sh * 1.25, cx - sw * .625, cy - sh * .625, { opacity: 1, filter: 'blur(2px) brightness(1.05)', offset: .22 }),
+      mk(big, big, VW / 2 - big / 2, VH / 2 - big / 2, { opacity: 1, filter: 'blur(3px) brightness(1.18)' })
+    ], { duration: dur, easing: ease, fill: 'forwards' });
+    glow.animate([{ opacity: 0 }, { opacity: 0, offset: .38 }, { opacity: .55, offset: .75 }, { opacity: 1 }], { duration: dur + 120, fill: 'forwards' });
+    /* gold dust drifting out of the frame */
+    var dx = dc.getContext('2d'), dpr = Math.min(devicePixelRatio || 1, 2); dc.width = VW * dpr; dc.height = VH * dpr; dx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var D = []; for (var q = 0; q < (VW < 700 ? 60 : 110); q++) { var ang = Math.random() * 6.283, sp = 40 + Math.random() * 260; D.push({ x: cx + (Math.random() - .5) * r.width * .7, y: cy + (Math.random() - .5) * r.height * .7, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 30, r: .6 + Math.random() * 2.2, ph: Math.random() * 6.3, st: Math.random() < .25 }); }
+    var t0 = 0; (function dust(t) { if (!t0) t0 = t; var e = (t - t0) / 1000; if (e > 2.4) return; dx.clearRect(0, 0, VW, VH);
+      D.forEach(function (p) { var k = Math.exp(-e * 1.4); p.x += p.vx * .016 * k; p.y += p.vy * .016 * k - .15; var a = Math.min(1, e * 3) * (.45 + .55 * Math.abs(Math.sin(p.ph + e * 4))) * (e > 1.6 ? Math.max(0, 1 - (e - 1.6) / .8) : 1);
+        var g = dx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5); g.addColorStop(0, 'rgba(255,236,186,' + a + ')'); g.addColorStop(1, 'rgba(232,196,128,0)'); dx.fillStyle = g; dx.beginPath(); dx.arc(p.x, p.y, p.r * 5, 0, 6.283); dx.fill();
+        if (p.st && a > .5) { dx.strokeStyle = 'rgba(255,246,220,' + a * .8 + ')'; dx.lineWidth = .7; var L = p.r * 6; dx.beginPath(); dx.moveTo(p.x - L, p.y); dx.lineTo(p.x + L, p.y); dx.moveTo(p.x, p.y - L); dx.lineTo(p.x, p.y + L); dx.stroke(); } });
+      requestAnimationFrame(dust); })(performance.now());
     try { sessionStorage.setItem('ilu-portal', w.dataset.slug); } catch (x) {}
-    setTimeout(function () { location.href = w.getAttribute('href'); }, 1500);
+    setTimeout(function () { location.href = w.getAttribute('href'); }, dur + 180);
   });
-  addEventListener('pageshow', function (e) { if (e.persisted) document.querySelectorAll('.portal-ov,.portal-veil,.portal-title').forEach(function (n) { n.remove(); }); });
+  addEventListener('pageshow', function (e) { if (e.persisted) document.querySelectorAll('.portal-img,.portal-veil,.portal-glow,.portal-dust').forEach(function (n) { n.remove(); }); });
 
   /* language */
   var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-en],[data-en-html]'));
