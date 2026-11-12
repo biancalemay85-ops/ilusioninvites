@@ -63,9 +63,9 @@ a { color: inherit; }
 /* hero: marble + silk, floral margins in depth layers, the gold seal */
 .hero { position: relative; overflow: hidden; background: #F3ECE2 url("img/marmol.webp") center / cover no-repeat; padding-top: 92px; }
 @media (max-width: 760px) { .hero { background-image: url("img/marmol-m.webp"); } }
-.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22%; z-index: 4; pointer-events: none; background: linear-gradient(180deg, rgba(251,246,239,0), var(--ivory)); }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(251,246,239,0), var(--ivory)); }
 .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 42% 60% at 50% 55%, rgba(253,250,245,.9), rgba(253,250,245,.5) 60%, rgba(253,250,245,0) 85%); }
-.hero-in { text-shadow: 0 1px 12px rgba(253,250,245,.9); }
+.hero-in { text-shadow: 0 1px 12px rgba(253,250,245,.9); z-index: 7 !important; }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
 .lay { position: absolute; pointer-events: none; height: auto; will-change: transform; }
 .lay.casc { width: clamp(150px, 19vw, 300px); top: -6%; filter: drop-shadow(0 20px 26px rgba(90,60,40,.28)); z-index: 2; }
@@ -193,6 +193,20 @@ h2 em { font-style: italic; }
 .contact .num { font: 500 14px var(--f-body); letter-spacing: .12em; color: var(--ink2); }
 footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text-align: center; font-size: 13px; color: var(--ink3); letter-spacing: .1em; }
 @media (prefers-reduced-motion: reduce) { .deco, .win .sp { animation: none; } html { scroll-behavior: auto; } .win img, .frame-box { transition: none; } }
+
+/* ===== Epoxy buttons (one style for the whole site) ===== */
+.btn { position: relative; isolation: isolate; overflow: hidden; text-shadow: none !important; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; filter: none !important; transition: box-shadow .35s ease, transform .35s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn::before { content: ""; position: absolute; z-index: -1; left: 7%; right: 7%; top: 2px; height: 58%; border-radius: 999px; pointer-events: none;
+  background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.22) 52%, rgba(255,255,255,0) 78%); }
+.btn::after { content: ""; position: absolute; z-index: -1; left: 18%; right: 18%; bottom: 0; height: 40%; border-radius: 999px; pointer-events: none;
+  background: radial-gradient(ellipse 70% 90% at 50% 100%, rgba(255,244,214,.45), rgba(255,244,214,0) 72%); }
+.btn-gold { background: linear-gradient(180deg, #F7E4B4 0%, #EBC988 34%, #D6A963 70%, #C4914D 100%) !important; color: #3A2210 !important; font-weight: 600 !important; border: 0 !important;
+  box-shadow: inset 0 0 0 1px rgba(170,120,55,.30), inset 0 -8px 16px rgba(160,105,40,.22), 0 10px 24px -12px rgba(140,95,40,.55), 0 0 20px rgba(236,204,140,.45) !important; }
+.btn-gold:hover { box-shadow: inset 0 0 0 1px rgba(170,120,55,.30), inset 0 -8px 16px rgba(160,105,40,.22), 0 14px 28px -12px rgba(140,95,40,.6), 0 0 30px rgba(240,210,150,.7) !important; }
+.btn-line { background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,250,242,.62)) !important; color: #3A2A26 !important; border: 1px solid rgba(182,138,78,.42) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), 0 8px 20px -12px rgba(120,85,45,.4), 0 0 16px rgba(240,222,186,.4) !important; }
+.btn-line:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), 0 12px 24px -12px rgba(120,85,45,.45), 0 0 26px rgba(240,222,186,.7) !important; }
 </style>
 
 <header class="top">
