@@ -6,6 +6,8 @@ PAGES = [
     ('../website/index.html', '', 'Ilusión Invites · Invitaciones digitales de lujo',
      'Invitaciones digitales que se abren como un sobre con sello: bodas, XV años, baby showers y cumpleaños. México y Canadá.'),
     # (source artifact file, output folder, title, description)
+    ('../website/inicio-claro.html', 'nuevo', 'Ilusión Invites · Invitaciones digitales',
+     'Invitaciones digitales de lujo para bodas, XV años, baby showers, cumpleaños, galas, posadas y Año Nuevo. México y Canadá.'),
     ('../website/pedido-xv.html', 'pedido-xv', 'Pedido XV Años · Ilusión Invites',
      'Llena los datos de los XV años y armamos su invitación digital.'),
 ]
