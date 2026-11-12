@@ -381,18 +381,36 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     if (!C.mariposas || reduceMo) return;
     var hero = document.querySelector('.hero'), vis = true, n = 0;
     var KINDS = [{ src: 'mariposa-perfil-2', cls: 'flap-y', face: 1, r: .875 }, { src: 'mariposa-cristal-1', cls: 'flap-x', face: 0, r: .9 }, { src: 'mariposa-perfil-6', cls: 'flap-y', face: 1, r: .9 }];
+    /* the area the words really cover (not the full-width boxes around them) */
+    function textBox() {
+      var ht = document.getElementById('hero-text'), box = null;
+      function add(r) { if (!r || !r.width) return; box = box ? { left: Math.min(box.left, r.left), top: Math.min(box.top, r.top), right: Math.max(box.right, r.right), bottom: Math.max(box.bottom, r.bottom) } : { left: r.left, top: r.top, right: r.right, bottom: r.bottom }; }
+      ht.querySelectorAll('.eyebrow > span, #h-nombre, #h-script, .cue').forEach(function (el) { add(el.getBoundingClientRect()); });
+      var pe = document.getElementById('h-intro'); if (pe && pe.firstChild) { var rg = document.createRange(); rg.selectNodeContents(pe); add(rg.getBoundingClientRect()); }
+      return box || ht.getBoundingClientRect();
+    }
     function fly() {
       if (!vis || document.hidden) return;
       var k = KINDS[n % KINDS.length], ltr = n % 2 === 0; n++;
       var W = hero.clientWidth, H = hero.clientHeight, w = Math.round(Math.max(44, Math.min(86, W * (.045 + Math.random() * .02))));
-      var band = Math.random() < .55 ? [.1, .26] : [.74, .88], y0 = H * (band[0] + Math.random() * (band[1] - band[0])), y1 = Math.min(H * .92, Math.max(H * .08, y0 + (Math.random() - .5) * H * .16));
+      /* stay clear of the title block: fly only through open space (above/below it, or up the sides) */
+      var hr = hero.getBoundingClientRect(), tr = textBox(), gap = Math.max(60, W * .04);
+      var tT = tr.top - hr.top, tB = tr.bottom - hr.top, tL = tr.left - hr.left, tR = tr.right - hr.left, paths = [];
+      [[Math.max(70, H * .1), tT - gap - w], [tB + gap, H * .93 - w]].forEach(function (z) { if (z[1] - z[0] > 24) paths.push({ h: 1, a: z[0], b: z[1] }); });
+      [[24, tL - gap - w], [tR + gap, W - 24 - w]].forEach(function (z) { if (z[1] - z[0] > 30) paths.push({ v: 1, a: z[0], b: z[1] }); });
+      if (!paths.length) return;
+      var p = paths[Math.floor(Math.random() * paths.length)], amp = Math.min(p.h ? H * .03 : 46, (p.b - p.a) / 2), c = p.a + amp + Math.random() * Math.max(0, p.b - p.a - 2 * amp);
       var el = document.createElement('div'); el.className = 'bf'; el.setAttribute('aria-hidden', 'true'); el.style.width = w + 'px';
       var flip = k.face && !ltr;
       el.innerHTML = '<div' + (flip ? ' style="transform:scaleX(-1)"' : '') + '><img class="' + k.cls + '" src="../../img/' + k.src + '.webp" alt="" width="360" height="315"></div>';
       hero.appendChild(el);
-      var x0 = ltr ? -w * 1.5 : W + w * .5, x1 = ltr ? W + w * .5 : -w * 1.5, steps = 7, frames = [];
-      for (var i = 0; i <= steps; i++) { var t = i / steps, x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * t + Math.sin(t * Math.PI * 3 + n) * H * .035;
-        frames.push({ transform: 'translate(' + x.toFixed(0) + 'px,' + y.toFixed(0) + 'px) rotate(' + ((ltr ? 1 : -1) * Math.sin(t * Math.PI * 3 + n + 1) * 8).toFixed(1) + 'deg)', opacity: i === 0 || i === steps ? 0 : 1 }); }
+      var steps = 8, frames = [], up = Math.random() < .7;
+      for (var i = 0; i <= steps; i++) {
+        var t = i / steps, wob = Math.sin(t * Math.PI * 3 + n) * amp, x, y;
+        if (p.h) { x = ltr ? -w * 1.5 + (W + w * 2) * t : W + w * .5 - (W + w * 2) * t; y = c + wob; }
+        else { y = up ? H + w * .2 - (H + w * 1.6) * t : -w * 1.4 + (H + w * 1.6) * t; x = c + wob; }
+        frames.push({ transform: 'translate(' + x.toFixed(0) + 'px,' + y.toFixed(0) + 'px) rotate(' + ((ltr ? 1 : -1) * Math.sin(t * Math.PI * 3 + n + 1) * 8).toFixed(1) + 'deg)', opacity: i === 0 || i === steps ? 0 : 1 });
+      }
       var a = el.animate(frames, { duration: 9000 + Math.random() * 4000, easing: 'linear' });
       a.onfinish = function () { el.remove(); };
     }
