@@ -43,10 +43,10 @@ a { color: inherit; }
 .top.scrolled { background: rgba(251,246,239,.84); -webkit-backdrop-filter: blur(14px) saturate(1.15); backdrop-filter: blur(14px) saturate(1.15); box-shadow: 0 1px 0 rgba(182,138,78,.28), 0 12px 30px rgba(90,60,40,.08); }
 .top.away { transform: translateY(-110%); }
 .top .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px 24px; padding-block: 10px; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .brand img { width: 50px; height: auto; filter: drop-shadow(0 4px 6px rgba(90,60,30,.25)); }
 .brand span { display: flex; flex-direction: column; align-items: center; line-height: 1; }
-.brand b { font: 400 34px/1 var(--f-script); }
+.brand b { font: 400 34px/1.1 var(--f-script); color: #A87B3F; padding: 0 .08em 0 .16em; text-shadow: 0 1px 0 rgba(255,250,240,.6); }
 .brand small { font: 500 9.5px var(--f-caps); letter-spacing: .55em; padding-left: .55em; color: var(--gold); margin-top: 2px; }
 .links { display: flex; justify-content: center; align-items: center; gap: clamp(18px, 3vw, 40px); }
 .links a { position: relative; padding: 8px 0; text-decoration: none; color: var(--ink2); font: 500 11.5px var(--f-caps); letter-spacing: .26em; white-space: nowrap; transition: color .3s ease; }
@@ -357,7 +357,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 
 <header class="top" id="top">
   <div class="wrap">
-    <a class="brand" href="#inicio" aria-label="Ilusión Invites"><img src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><span><b class="foil">Ilusión</b><small>INVITES</small></span></a>
+    <a class="brand" href="#inicio" aria-label="Ilusión Invites"><img src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><span><b>Ilusión</b><small>INVITES</small></span></a>
     <nav class="links" aria-label="Principal">
       <a href="#eventos" data-en="Collections">Colecciones</a>
       <a href="#imagina" data-en="Imagine">Imagina</a>
