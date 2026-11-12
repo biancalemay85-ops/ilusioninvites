@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>XV Años · Ilusión Invites</title>
+<meta name="description" content="Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida.">
+<meta property="og:title" content="XV Años · Ilusión Invites">
+<meta property="og:description" content="Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida.">
+<meta property="og:image" content="https://ilusioninvites.com/nuevo/img/cat-xv.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FCF3F4">
+<link rel="icon" href="../../img/sello-ilusion-oro-s.webp">
+<link rel="preload" as="image" href="../../img/hero-xv.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* One collection "world": full-bleed hero that continues the portal from the home page, then the designs, then how to personalize, then the other worlds. Colours come from the collection's theme. */
+:root {
+  --bg: #FCF3F4; --bg2: #F4DDE3; --ink: #4A2633; --accent: #B8798A; --soft: #F1D3DB;
+  --ink2: color-mix(in srgb, var(--ink) 72%, var(--bg)); --ink3: color-mix(in srgb, var(--ink) 50%, var(--bg));
+  --foil: linear-gradient(100deg, #9C7038 0%, #E9CF95 24%, #C29452 46%, #F3DFA9 64%, #B68A4E 82%, #E2C489 100%);
+  --f-caps: "Cinzel", Georgia, serif; --f-serif: "Cormorant Garamond", Georgia, serif; --f-script: "Great Vibes", cursive; --f-body: "Jost", "Avenir Next", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--f-body); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+@view-transition { navigation: auto; }
+
+/* top bar */
+.bar { position: fixed; z-index: 30; left: 0; right: 0; top: 0; padding-top: env(safe-area-inset-top, 0px); transition: background .4s, box-shadow .4s; }
+.bar.solid { background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 12px; }
+.back { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 500 12px var(--f-caps); letter-spacing: .24em; color: #fff; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
+.bar.solid .back { color: var(--ink); text-shadow: none; }
+.back svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+.brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.brand img { width: 38px; height: auto; filter: drop-shadow(0 3px 5px rgba(0,0,0,.25)); }
+.brand b { font: 400 26px/1 var(--f-script); background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lang { display: flex; border: 1px solid rgba(255,255,255,.55); border-radius: 999px; overflow: hidden; background: rgba(0,0,0,.12); }
+.bar.solid .lang { border-color: color-mix(in srgb, var(--accent) 50%, transparent); background: transparent; }
+.lang button { border: 0; background: none; padding: 6px 12px; font: 500 12px var(--f-body); color: #fff; cursor: pointer; }
+.bar.solid .lang button { color: var(--ink2); }
+.lang button[aria-pressed="true"] { background: var(--accent); color: #fff !important; }
+@media (max-width: 560px) { .brand b { display: none; } .back span { display: none; } }
+
+/* hero */
+.hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 45%; animation: slowzoom 22s ease-in-out infinite alternate; }
+@keyframes slowzoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 45%, color-mix(in srgb, var(--bg) 55%, transparent) 78%, var(--bg) 100%); pointer-events: none; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+.hero .deco { position: absolute; z-index: 3; height: auto; pointer-events: none; filter: drop-shadow(0 18px 22px rgba(0,0,0,.3)); animation: drift 7s ease-in-out infinite alternate; }
+@keyframes drift { from { translate: 0 0; } to { translate: 0 -12px; } }
+.hero .deco { -webkit-mask-image: linear-gradient(150deg, transparent 3%, #000 24%); mask-image: linear-gradient(150deg, transparent 3%, #000 24%); }
+.hero .deco.d1 { width: clamp(140px, 18vw, 280px); left: -3%; top: 16%; }
+.hero .deco.d2 { width: clamp(120px, 14vw, 220px); right: -2%; bottom: 26%; transform: scaleX(-1); }
+.hero-text::before { content: ""; position: absolute; left: 50%; top: 55%; width: 140%; height: 120%; transform: translate(-50%, -50%); background: radial-gradient(closest-side, color-mix(in srgb, var(--bg) 82%, transparent), color-mix(in srgb, var(--bg) 40%, transparent) 60%, transparent); z-index: -1; pointer-events: none; }
+.hero-text { position: relative; z-index: 4; text-align: center; padding: 0 22px clamp(56px, 9vh, 96px); max-width: 860px; }
+.hero-text .eyebrow { font: 600 12.5px var(--f-caps); letter-spacing: .5em; padding-left: .5em; color: color-mix(in srgb, var(--accent) 80%, var(--ink)); }
+.hero-text h1 { margin: 8px 0 0; font: 500 clamp(52px, 9vw, 116px)/1 var(--f-serif); color: var(--ink); text-wrap: balance; }
+.hero-text .script { display: block; margin-top: 2px; font: 400 clamp(30px, 3.6vw, 48px)/1.25 var(--f-script); padding-bottom: .1em; }
+.hero-text .script > span { background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .15em; }
+.hero-text p { margin: 14px auto 0; max-width: 54ch; color: var(--ink2); font-size: clamp(16px, 1.6vw, 18.5px); }
+.cue { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 26px; font: 500 10.5px var(--f-caps); letter-spacing: .34em; color: var(--ink3); text-decoration: none; }
+.cue i { width: 1px; height: 34px; background: linear-gradient(var(--accent), transparent); animation: cue 2.2s ease-in-out infinite; }
+@keyframes cue { 0%, 100% { transform: scaleY(.4); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } }
+/* reveal */
+.rv { opacity: 0; transform: translateY(26px); transition: opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1); }
+.rv.in { opacity: 1; transform: none; }
+.mask-line { display: block; overflow: hidden; }
+.mask-line > span { display: inline-block; transform: translateY(105%); transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.in .mask-line > span, .mask-line.in > span { transform: none; }
+
+/* designs */
+.sec { padding-block: clamp(70px, 10vw, 120px); }
+.head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: clamp(36px, 5vw, 60px); }
+.head .eyebrow { font: 500 12px var(--f-caps); letter-spacing: .42em; color: var(--accent); }
+.head h2 { margin: 0; font: 500 clamp(34px, 4.6vw, 56px)/1.08 var(--f-serif); text-wrap: balance; }
+.head h2 em { font-style: italic; }
+.head p { margin: 0; color: var(--ink2); max-width: 56ch; }
+.designs { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(30px, 5vw, 70px); }
+.design { width: min(300px, 80vw); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+.design:nth-child(2) { margin-top: clamp(0px, 5vw, 60px); }
+.phone { position: relative; width: 100%; aspect-ratio: 1 / 2; border-radius: 34px; padding: 9px; background: linear-gradient(145deg, #3b3236, #121012 40%, #2a2326 70%, #0d0b0c); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent), 0 40px 60px -26px rgba(40,25,20,.6), 0 14px 22px rgba(40,25,20,.25); transition: transform .8s cubic-bezier(.2,.7,.2,1); animation: float 6s ease-in-out infinite alternate; }
+.design:nth-child(2) .phone { animation-delay: -2s; } .design:nth-child(3) .phone { animation-delay: -4s; }
+@keyframes float { from { translate: 0 0; } to { translate: 0 -10px; } }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 26px; display: block; }
+.phone::after { content: ""; position: absolute; inset: 9px; border-radius: 26px; background: linear-gradient(115deg, rgba(255,255,255,.16), transparent 34%); pointer-events: none; }
+.design:hover .phone { transform: rotate(-2deg) translateY(-6px); }
+.design h3 { margin: 12px 0 0; font: 500 28px/1.1 var(--f-serif); }
+.design .who { font: italic 500 17px var(--f-serif); color: var(--ink2); margin-top: -6px; }
+.design .note { margin: 0; font-size: 14.5px; color: var(--ink2); }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 999px; font: 500 14px var(--f-body); letter-spacing: .04em; text-decoration: none; border: 1px solid transparent; transition: transform .2s, filter .2s; }
+.btn:hover { transform: translateY(-1px); }
+.btn-gold { background: linear-gradient(180deg, #E9CF95, #C29452 60%, #A8783E); color: #fff; text-shadow: 0 1px 1px rgba(90,60,20,.35); box-shadow: 0 10px 22px -10px rgba(150,105,50,.6); }
+.btn-line { border-color: color-mix(in srgb, var(--accent) 60%, transparent); color: var(--ink); }
+.soon { max-width: 640px; margin: 0 auto; text-align: center; padding: clamp(30px, 5vw, 52px); border-radius: 14px; background: radial-gradient(ellipse 62% 68% at 50% 48%, color-mix(in srgb, var(--soft) 75%, transparent), transparent 100%); }
+.soon h3 { margin: 0 0 8px; font: 500 30px var(--f-serif); }
+.soon p { margin: 0 0 20px; color: var(--ink2); }
+
+/* steps */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 3vw, 40px); }
+@media (max-width: 820px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+.step { text-align: center; padding: 10px; }
+.step .n { font: italic 500 52px/1 var(--f-serif); background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.step h3 { margin: 8px 0 4px; font: 500 24px var(--f-serif); }
+.step p { margin: 0; color: var(--ink2); font-size: 15px; }
+
+/* other worlds */
+.others { display: flex; gap: 22px; overflow-x: auto; padding: 10px 4px 26px; scroll-snap-type: x mandatory; scrollbar-width: none; justify-content: safe center; }
+.others::-webkit-scrollbar { display: none; }
+.other { flex: none; width: 150px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; scroll-snap-align: center; }
+.other .fb { position: relative; height: 210px; aspect-ratio: var(--ar); }
+.other .win { position: absolute; inset: 0; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; overflow: hidden; }
+.other .win img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+.other .fr { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 10px 12px rgba(40,25,20,.3)); }
+.other:hover .win img { transform: scale(1.1); }
+.other b { font: 500 18px var(--f-serif); text-align: center; }
+footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom, 0px) + 36px); font: 500 11px var(--f-caps); letter-spacing: .3em; color: var(--ink3); }
+@media (prefers-reduced-motion: reduce) { .hero-img, .hero .deco, .phone, .cue i { animation: none; } .rv, .mask-line > span { transition: none; opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="bar" id="bar">
+  <div class="wrap">
+    <a class="back" href="../../#eventos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span data-i18n="back"></span></a>
+    <a class="brand" href="../../" aria-label="Ilusión Invites"><img src="../../img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><b>Ilusión</b></a>
+    <div class="lang" role="group" aria-label="Idioma"><button type="button" id="es" aria-pressed="true">ES</button><button type="button" id="en" aria-pressed="false">EN</button></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <img class="hero-img" src="../../img/hero-xv.webp" alt="" width="1600" height="2133" fetchpriority="high">
+    <canvas id="dust" aria-hidden="true"></canvas>
+    <img class="deco d1" src="../../img/mariposa-cristal-1.webp" alt=""><img class="deco d2" src="../../img/mariposa-cristal-1.webp" alt="">
+    <div class="hero-text" id="hero-text">
+      <span class="eyebrow mask-line"><span data-i18n="coleccion"></span></span>
+      <h1 class="mask-line"><span id="h-nombre"></span></h1>
+      <span class="script mask-line"><span id="h-script"></span></span>
+      <p class="rv" id="h-intro"></p>
+      <a class="cue rv" href="#disenos"><span data-i18n="ver"></span><i></i></a>
+    </div>
+  </section>
+
+  <section class="sec" id="disenos">
+    <div class="wrap">
+      <div class="head rv"><span class="eyebrow" data-i18n="disenosEyebrow"></span><h2 data-i18n-html="disenosTitle"></h2></div>
+      <div id="designs"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="head rv"><span class="eyebrow" data-i18n="pasosEyebrow"></span><h2 data-i18n-html="pasosTitle"></h2></div>
+      <div class="steps" id="steps"></div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="head rv"><span class="eyebrow" data-i18n="otrosEyebrow"></span><h2 data-i18n-html="otrosTitle"></h2></div>
+      <nav class="others" id="others" aria-label="Otras colecciones"></nav>
+    </div>
+  </section>
+</main>
+<footer>ILUSIÓN INVITES · MÉXICO &amp; CANADÁ</footer>
+
+<script type="application/json" id="data">{"actual": {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "mariposa-cristal-1", "decoPos": "tr", "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}, "tema": {"bg": "#FCF3F4", "bg2": "#F4DDE3", "ink": "#4A2633", "accent": "#B8798A", "soft": "#F1D3DB"}, "form": "../../../pedido-xv/"}, "todas": [{"slug": "bodas", "frame": "arco", "img": "cat-bodas", "deco": "arreglo", "decoPos": "br", "es": {"nombre": "Bodas", "script": "Para siempre", "intro": "Seda marfil, flores románticas y luz de velas. Invitaciones atemporales para el día en que comienza su historia."}, "en": {"nombre": "Weddings", "script": "Forever", "intro": "Ivory silk, romantic florals and candlelight. Timeless invitations for the day your story begins."}}, {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "mariposa-cristal-1", "decoPos": "tr", "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}}, {"slug": "cumpleanos", "frame": "arco", "img": "cat-cumpleanos", "deco": "rosa-rubor", "decoPos": "bl", "es": {"nombre": "Cumpleaños", "script": "Celebra tu día", "intro": "Expresivos, hermosos y a tu medida: desde una cena íntima hasta una gran fiesta con globos y pastel."}, "en": {"nombre": "Birthdays", "script": "Celebrate your day", "intro": "Expressive, beautiful and made for you, from an intimate dinner to a big party with balloons and cake."}}, {"slug": "baby-shower", "frame": "rect", "img": "cat-baby-shower", "deco": "nube-gypsophila", "decoPos": "br", "es": {"nombre": "Baby Shower", "script": "Entre nubes", "intro": "Luz natural, texturas suaves y tonos pastel para dar la bienvenida a alguien muy esperado."}, "en": {"nombre": "Baby Showers", "script": "Among the clouds", "intro": "Soft natural light, delicate textures and pastel tones to welcome someone long awaited."}}, {"slug": "navidad", "frame": "ovalo", "img": "cat-navidad-posadas", "deco": "ramita-hojas-doradas", "decoPos": "bl", "es": {"nombre": "Posada · Navidad", "script": "Calidez de fiesta", "intro": "Luz cálida, verde profundo, terciopelo y oro champaña. Para posadas, cenas navideñas y fiestas de fin de año."}, "en": {"nombre": "Christmas", "script": "Festive warmth", "intro": "Warm light, deep evergreen, velvet and champagne gold. For posadas, Christmas dinners and holiday parties."}}, {"slug": "ano-nuevo", "frame": "arco", "img": "cat-ano-nuevo", "deco": "cristal-1", "decoPos": "tr", "es": {"nombre": "Año Nuevo", "script": "Brindemos", "intro": "Ambiente de medianoche: negro, oro champaña y destellos metálicos para recibir el año con estilo."}, "en": {"nombre": "New Year's Eve", "script": "Let's toast", "intro": "A midnight atmosphere of black, champagne gold and metallic sparkle to welcome the year in style."}}, {"slug": "empresas", "frame": "rect", "img": "cat-gala-empresa", "deco": "", "decoPos": "", "es": {"nombre": "Empresas · Gala", "script": "Noche de gala", "intro": "Elegancia arquitectónica y estilo sobrio para cenas de gala, lanzamientos y eventos corporativos."}, "en": {"nombre": "Corporate Events", "script": "An evening of gala", "intro": "Architectural elegance and refined, minimal styling for galas, launches and corporate events."}}, {"slug": "otras", "frame": "ovalo", "img": "cat-otras", "deco": "mariposa-dorada-1", "decoPos": "tr", "es": {"nombre": "Otras celebraciones", "script": "Todo es posible", "intro": "Bautizos, comuniones, graduaciones, aniversarios o lo que estés soñando. Lo creamos contigo."}, "en": {"nombre": "Other Celebrations", "script": "Anything is possible", "intro": "Baptisms, communions, graduations, anniversaries or whatever you are dreaming of. We create it with you."}}]}</script>
+<script>
+(function () {
+  'use strict';
+  var D = JSON.parse(document.getElementById('data').textContent), C = D.actual, ALL = D.todas;
+  var FR = { arco: '718 / 1100', ovalo: '482 / 1100', rect: '696 / 1100' };
+  var WA = 'https://wa.me/16048391163?text=';
+  var T = {
+    es: { back: 'Todas las celebraciones', coleccion: 'COLECCIÓN', ver: 'VER DISEÑOS', disenosEyebrow: 'LOS DISEÑOS', disenosTitle: 'Invitaciones de <em>esta colección</em>',
+      pasosEyebrow: 'HAZLA TUYA', pasosTitle: 'Así la <em>personalizas</em>', otrosEyebrow: 'SIGUE SOÑANDO', otrosTitle: 'Otros <em>mundos</em>',
+      verInv: 'Ver invitación', personalizar: 'Personalizar', soonT: 'Esta colección se está creando', soonP: 'Estamos diseñando las primeras invitaciones de este mundo. Mientras tanto, creamos la tuya a tu medida.',
+      soonBtn: 'Pedir mi invitación', formBtn: 'Llenar el formulario',
+      pasos: [['Elige tu diseño', 'Escoge el que te enamore o cuéntanos tu idea.'], ['Cuéntanos los detalles', 'Nombres, fecha, lugar, fotos y música. Lo llenas en minutos.'], ['Recíbela y compártela', 'Tu link con sobre, música, mapa y confirmación, listo para enviar.']],
+      msgDis: function (d) { return 'Hola Ilusión Invites ✨ me encanta el diseño "' + d + '" de la colección ' + C.es.nombre + '. ¿Me ayudan a personalizarlo?'; },
+      msgCol: function () { return 'Hola Ilusión Invites ✨ me interesa una invitación de la colección ' + C.es.nombre + '.'; } },
+    en: { back: 'All celebrations', coleccion: 'COLLECTION', ver: 'SEE THE DESIGNS', disenosEyebrow: 'THE DESIGNS', disenosTitle: 'Invitations in <em>this collection</em>',
+      pasosEyebrow: 'MAKE IT YOURS', pasosTitle: 'How to <em>personalize it</em>', otrosEyebrow: 'KEEP DREAMING', otrosTitle: 'Other <em>worlds</em>',
+      verInv: 'View invitation', personalizar: 'Personalize', soonT: 'This collection is being created', soonP: 'We are designing the first invitations for this world. In the meantime, we will create yours just for you.',
+      soonBtn: 'Request my invitation', formBtn: 'Fill in the form',
+      pasos: [['Choose your design', 'Pick the one you love or tell us your idea.'], ['Tell us the details', 'Names, date, venue, photos and music. It takes minutes.'], ['Receive it and share it', 'Your link with envelope, music, map and RSVP, ready to send.']],
+      msgDis: function (d) { return 'Hi Ilusión Invites ✨ I love the "' + d + '" design from the ' + C.en.nombre + ' collection. Can you help me personalize it?'; },
+      msgCol: function () { return 'Hi Ilusión Invites ✨ I am interested in an invitation from the ' + C.en.nombre + ' collection.'; } }
+  };
+  var lang = 'es';
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function render() {
+    var L = T[lang], t = C[lang] || C.es;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = L[el.getAttribute('data-i18n')]; });
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) { el.innerHTML = L[el.getAttribute('data-i18n-html')]; });
+    document.getElementById('h-nombre').textContent = t.nombre;
+    document.getElementById('h-script').textContent = t.script;
+    document.getElementById('h-intro').textContent = t.intro;
+    document.title = t.nombre + ' · Ilusión Invites';
+    var box = document.getElementById('designs');
+    if (C.disenos && C.disenos.length) {
+      box.className = 'designs';
+      box.innerHTML = C.disenos.map(function (d, i) {
+        return '<article class="design rv" style="transition-delay:' + (i * .18) + 's"><div class="phone"><img src="../../img/' + d.poster + '" alt="' + esc(d.nombre) + '" width="520" height="1040" loading="lazy"></div>' +
+          '<h3>' + esc(d.nombre) + '</h3><span class="who">' + esc(d.pareja) + '</span><p class="note">' + esc(d.nota) + '</p>' +
+          '<div class="btns"><a class="btn btn-line" href="' + d.url + '" target="_blank" rel="noopener">' + L.verInv + '</a><a class="btn btn-gold" href="' + WA + encodeURIComponent(L.msgDis(d.nombre)) + '" target="_blank" rel="noopener">' + L.personalizar + '</a></div></article>';
+      }).join('');
+    } else {
+      box.className = '';
+      box.innerHTML = '<div class="soon rv"><h3>' + L.soonT + '</h3><p>' + L.soonP + '</p><div class="btns">' + (C.form ? '<a class="btn btn-gold" href="' + C.form + '">' + L.formBtn + '</a>' : '') +
+        '<a class="btn ' + (C.form ? 'btn-line' : 'btn-gold') + '" href="' + WA + encodeURIComponent(L.msgCol()) + '" target="_blank" rel="noopener">' + L.soonBtn + '</a></div></div>';
+    }
+    document.getElementById('steps').innerHTML = L.pasos.map(function (p, i) { return '<div class="step rv" style="transition-delay:' + (i * .15) + 's"><div class="n">' + (i + 1) + '</div><h3>' + p[0] + '</h3><p>' + p[1] + '</p></div>'; }).join('');
+    document.getElementById('others').innerHTML = ALL.filter(function (o) { return o.slug !== C.slug; }).map(function (o) {
+      var m = 'url(../../img/ventana-' + o.frame + '.png)';
+      return '<a class="other" href="../' + o.slug + '/"><div class="fb" style="--ar:' + FR[o.frame] + '"><div class="win" style="-webkit-mask-image:' + m + ';mask-image:' + m + '"><img src="../../img/' + o.img + '.webp" alt="" loading="lazy"></div><img class="fr" src="../../img/marco-' + o.frame + '.webp" alt="" loading="lazy"></div><b>' + esc((o[lang] || o.es).nombre) + '</b></a>';
+    }).join('');
+    document.getElementById('es').setAttribute('aria-pressed', String(lang === 'es'));
+    document.getElementById('en').setAttribute('aria-pressed', String(lang === 'en'));
+    observe();
+  }
+  /* reveals */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .15 }) : null;
+  function observe() { document.querySelectorAll('.rv:not(.in)').forEach(function (el) { if (io && !el.closest('.hero')) io.observe(el); }); }
+  function setLang(l) { lang = l; try { localStorage.setItem('ilu-lang', l); } catch (e) {} render(); revealHero(true); }
+  document.getElementById('es').addEventListener('click', function () { setLang('es'); });
+  document.getElementById('en').addEventListener('click', function () { setLang('en'); });
+  try { if (localStorage.getItem('ilu-lang') === 'en') lang = 'en'; } catch (e) {}
+  render();
+
+  /* arrival: continue the portal from the home page, or a gentle intro when opened directly */
+  var fromPortal = false; try { fromPortal = sessionStorage.getItem('ilu-portal') === C.slug; sessionStorage.removeItem('ilu-portal'); } catch (e) {}
+  function revealHero(now) {
+    var ht = document.getElementById('hero-text');
+    var items = [].slice.call(ht.querySelectorAll('.mask-line, .rv'));
+    items.forEach(function (el, i) { setTimeout(function () { el.classList.add('in'); }, now ? 0 : 250 + i * 180); });
+  }
+  if (!fromPortal) document.querySelector('.hero-img').animate([{ transform: 'scale(1.12)', opacity: .2 }, { transform: 'scale(1)', opacity: 1 }], { duration: 1400, easing: 'cubic-bezier(.2,.7,.2,1)' });
+  revealHero(false);
+
+  /* bar turns solid after the hero */
+  var bar = document.getElementById('bar');
+  addEventListener('scroll', function () { bar.classList.toggle('solid', scrollY > innerHeight * .6); }, { passive: true });
+
+  /* golden dust */
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, cv = document.getElementById('dust'), ctx = cv.getContext('2d'), W = 0, H = 0, P = [], last = 0;
+  function size() { var d = Math.min(devicePixelRatio || 1, 2), r = cv.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0); P = []; for (var i = 0; i < (W < 700 ? 26 : 50); i++) P.push({ x: Math.random() * W, y: Math.random() * H, r: .6 + Math.random() * 1.6, vy: -(4 + Math.random() * 9), ph: Math.random() * 6.3, sp: .6 + Math.random() * 1.4 }); }
+  function draw(t) { var dt = Math.min(.05, (t - (last || t)) / 1000); last = t; ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < P.length; i++) { var p = P[i]; p.ph += dt * p.sp; p.y += p.vy * dt; if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; } ctx.fillStyle = 'rgba(242,214,158,' + (.25 + .6 * Math.abs(Math.sin(p.ph))) + ')'; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill(); }
+    if (scrollY < innerHeight) requestAnimationFrame(draw); else { last = 0; waiting = true; } }
+  var waiting = false;
+  addEventListener('scroll', function () { if (waiting && scrollY < innerHeight && !reduce) { waiting = false; requestAnimationFrame(draw); } }, { passive: true });
+  size(); addEventListener('resize', size); if (!reduce) requestAnimationFrame(draw);
+  addEventListener('pageshow', function (e) { if (e.persisted) revealHero(true); });
+})();
+</script>
+</body>
+</html>

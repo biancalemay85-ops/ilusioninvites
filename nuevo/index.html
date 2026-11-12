@@ -63,6 +63,7 @@ a { color: inherit; }
 /* hero: marble + silk, floral margins in depth layers, the gold seal */
 .hero { position: relative; overflow: hidden; background: #F3ECE2 url("img/marmol.webp") center / cover no-repeat; padding-top: 92px; }
 @media (max-width: 760px) { .hero { background-image: url("img/marmol-m.webp"); } }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22%; z-index: 4; pointer-events: none; background: linear-gradient(180deg, rgba(251,246,239,0), var(--ivory)); }
 .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 42% 60% at 50% 55%, rgba(253,250,245,.9), rgba(253,250,245,.5) 60%, rgba(253,250,245,0) 85%); }
 .hero-in { text-shadow: 0 1px 12px rgba(253,250,245,.9); }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
@@ -110,26 +111,66 @@ h2 { margin: 0; font: 500 clamp(32px, 4.4vw, 52px)/1.1 var(--f-serif); text-wrap
 h2 em { font-style: italic; }
 .head p { margin: 0; color: var(--ink2); max-width: 58ch; }
 
-/* event portals */
-.portals { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 14px; }
-@media (max-width: 1100px) and (min-width: 681px) { .portals { display: flex; flex-wrap: wrap; justify-content: center; } .portals .portal { width: calc((100% - 42px) / 4); } }
-@media (max-width: 680px) { .portals { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding-bottom: 12px; margin-inline: calc(-1 * max(18px, env(safe-area-inset-left, 0px))); padding-inline: max(18px, env(safe-area-inset-left, 0px)); scrollbar-width: none; } .portal { flex: 0 0 62vw; scroll-snap-align: center; } }
-.portal { display: flex; flex-direction: column; gap: 12px; text-decoration: none; color: var(--ink); }
-.pic { position: relative; aspect-ratio: 3 / 4; border-radius: 4px; overflow: hidden; background: var(--champagne); box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 18px 30px -18px rgba(90,60,40,.45); outline: 1px solid rgba(182,138,78,.35); outline-offset: -6px; }
-.pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 60%; animation: breathe 16s ease-in-out infinite alternate; }
-@keyframes breathe { from { transform: scale(1.03) translateY(0); } to { transform: scale(1.12) translateY(-2%); } }
-.pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,250,235,.55) 48%, transparent 62%); transform: translateX(-120%); transition: transform 1.1s ease; }
-.portal:hover .pic::after, .portal:focus-visible .pic::after { transform: translateX(120%); }
-.portal:hover .pic { box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 26px 40px -18px rgba(90,60,40,.55); }
-.pic .sp { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px 3px rgba(255,236,190,.9); opacity: 0; animation: glint 3.2s ease-in-out infinite; }
+/* dream gallery: framed worlds on a horizontal track */
+.dream { position: relative; padding-top: clamp(56px, 8vw, 100px); background: linear-gradient(180deg, var(--ivory) 0%, #F7EFE4 45%, var(--ivory) 100%); }
+.dream .head { margin-bottom: 0; }
+.dream .head h2 { font-size: clamp(36px, 5vw, 64px); }
+.dream-pin { position: relative; }
+.dream-stage { position: relative; overflow: hidden; }
+.track { display: flex; align-items: center; gap: clamp(40px, 6vw, 110px); padding: 40px 12vw 60px; will-change: transform; }
+.world { position: relative; flex: none; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--ink); outline: none; transition: opacity .7s ease, filter .7s ease; }
+.world .glow { position: absolute; left: 50%; top: 42%; width: 150%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, var(--glow, rgba(233,207,149,.45)), transparent 72%); pointer-events: none; opacity: .9; }
+.frame-box { position: relative; height: min(60vh, 600px); aspect-ratio: var(--ar); transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+.win { position: absolute; inset: 0; overflow: hidden; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; background: var(--champagne); }
+.win img { position: absolute; left: -24%; top: -6%; width: 148%; height: 112%; object-fit: cover; transform: translate3d(var(--px, 0px), 0, 0) scale(1.04); transition: transform 1.4s cubic-bezier(.2,.7,.2,1); }
+.win::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 32%, rgba(255,250,235,.5) 48%, transparent 62%); transform: translateX(-130%); transition: transform 1.3s ease; }
+.win .sp { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px 3px rgba(255,236,190,.9); opacity: 0; animation: glint 3.4s ease-in-out infinite; }
 @keyframes glint { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1); } }
-.label { display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center; }
-.label svg { width: 18px; height: 18px; flex: none; stroke: var(--gold); fill: none; stroke-width: 1.3; }
-.label b { font: 500 12.5px var(--f-caps); letter-spacing: .2em; }
-.label-sub { margin-top: -8px; text-align: center; font: italic 500 15px var(--f-serif); color: var(--ink2); }
+.frame-img { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 22px 26px rgba(90,60,40,.32)) drop-shadow(0 3px 4px rgba(90,60,40,.25)); }
+.deco { position: absolute; pointer-events: none; height: auto; z-index: 3; filter: drop-shadow(0 16px 18px rgba(90,60,40,.3)); transform: translate3d(var(--dx, 0px), 0, 0); animation: drift 7s ease-in-out infinite alternate; }
+@keyframes drift { from { translate: 0 0; } to { translate: 0 -10px; } }
+.deco.br { width: 70%; right: -30%; bottom: -10%; }
+.deco.fade { -webkit-mask-image: linear-gradient(150deg, transparent 4%, #000 26%); mask-image: linear-gradient(150deg, transparent 4%, #000 26%); }
+.deco.bl { width: 58%; left: -26%; bottom: -6%; }
+.deco.tr { width: 40%; right: -14%; top: 8%; }
+.cap { position: relative; margin-top: 26px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.cap .num { font: 500 11px var(--f-caps); letter-spacing: .4em; color: var(--gold); }
+.cap h3 { margin: 4px 0 0; font: 500 clamp(28px, 2.6vw, 38px)/1.05 var(--f-serif); }
+.cap .script { font: 400 clamp(22px, 2vw, 28px)/1.2 var(--f-script); color: var(--gold); }
+.cap .cta { margin-top: 10px; display: inline-flex; align-items: center; gap: 10px; font: 500 11.5px var(--f-caps); letter-spacing: .28em; color: var(--ink2); }
+.cap .cta i { width: 26px; height: 1px; background: var(--gold); transition: width .5s ease; }
+.world:hover .win img, .world:focus-visible .win img { transform: translate3d(var(--px, 0px), 0, 0) scale(1.12); }
+.world:hover .win::after, .world:focus-visible .win::after { transform: translateX(130%); }
+.world:hover .frame-box, .world:focus-visible .frame-box { transform: translateY(-8px); }
+.world:hover .cta i, .world:focus-visible .cta i { width: 54px; }
+.world:focus-visible .cap h3 { text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 6px; }
+.dream-hint { text-align: center; font: 500 11px var(--f-caps); letter-spacing: .34em; color: var(--ink3); padding-bottom: 10px; }
+@media (min-width: 901px) {
+  .dream-stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; align-items: center; }
+  .world:nth-child(even) { margin-top: 9vh; }
+  .world:nth-child(odd) { margin-top: -5vh; }
+  .track.ready .world { opacity: .55; filter: saturate(.85); }
+  .track.ready .world.is-on { opacity: 1; filter: none; }
+}
+@media (max-width: 900px) {
+  .track { overflow-x: auto; scroll-snap-type: x mandatory; padding: 30px 13vw 40px; gap: 10vw; scrollbar-width: none; }
+  .track::-webkit-scrollbar { display: none; }
+  .world { scroll-snap-align: center; }
+  .frame-box { height: min(62vh, 116vw); }
+}
+/* portal transition */
+.portal-img { position: fixed; object-fit: cover; }
+.portal-ov { position: fixed; z-index: 100; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; pointer-events: none; }
+.portal-veil { position: fixed; inset: 0; z-index: 99; background: var(--ivory); opacity: 0; transition: opacity .7s ease; pointer-events: none; }
+.portal-veil.on { opacity: 1; }
+.portal-title { position: fixed; z-index: 101; left: 0; right: 0; bottom: 18vh; text-align: center; color: #fff; pointer-events: none; opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; text-shadow: 0 2px 24px rgba(0,0,0,.45); }
+.portal-title.on { opacity: 1; transform: none; }
+.portal-title small { display: block; font: 500 12px var(--f-caps); letter-spacing: .5em; }
+.portal-title b { display: block; font: 500 clamp(48px, 8vw, 104px)/1 var(--f-serif); margin-top: 6px; }
+@view-transition { navigation: auto; }
 
 /* seals */
-.seals-band { background: linear-gradient(180deg, var(--cream), var(--ivory)); border-block: 1px solid rgba(182,138,78,.2); }
+.seals-band { background: radial-gradient(ellipse 70% 60% at 50% 50%, #F5EBDD, rgba(245,235,221,0) 75%), var(--ivory); }
 .seals { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: clamp(10px, 3vw, 34px); }
 .seals figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .seals img { width: clamp(70px, 9vw, 112px); height: auto; filter: drop-shadow(0 10px 12px rgba(90,60,40,.28)); transition: transform .3s; }
@@ -140,18 +181,18 @@ h2 em { font-style: italic; }
 /* steps */
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 @media (max-width: 820px) { .steps { grid-template-columns: minmax(0, 1fr); } }
-.step { background: #fff; border: 1px solid rgba(182,138,78,.25); border-radius: 6px; padding: 28px 26px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 14px 30px -24px rgba(90,60,40,.4); }
+.step { background: rgba(255,255,255,.55); border: 0; backdrop-filter: blur(4px); border-radius: 6px; padding: 28px 26px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 14px 30px -24px rgba(90,60,40,.4); }
 .step .n { font: 500 44px/1 var(--f-serif); font-style: italic; }
 .step h3 { margin: 0; font: 600 22px var(--f-serif); }
 .step p { margin: 0; color: var(--ink2); font-size: 15px; }
 
 /* contact */
-.contact { text-align: center; background: var(--cream) url("img/fondo-luz-m.webp") center / cover; position: relative; }
-.contact::before { content: ""; position: absolute; inset: 0; background: rgba(251,246,239,.72); }
+.contact { text-align: center; position: relative; background: var(--ivory); padding-block: clamp(90px, 12vw, 150px); }
+.contact::before { content: ""; position: absolute; inset: 0; background: url("img/fondo-luz-m.webp") center / cover; opacity: .55; -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); }
 .contact .wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .contact .num { font: 500 14px var(--f-body); letter-spacing: .12em; color: var(--ink2); }
 footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text-align: center; font-size: 13px; color: var(--ink3); letter-spacing: .1em; }
-@media (prefers-reduced-motion: reduce) { .pic img, .star, .pic .sp { animation: none; } html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) { .deco, .win .sp { animation: none; } html { scroll-behavior: auto; } .win img, .frame-box { transition: none; } }
 </style>
 
 <header class="top">
@@ -193,11 +234,12 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     </div>
   </section>
 
-  <section class="sec" id="eventos">
-    <div class="wrap">
-      <div class="head"><span class="eyebrow" data-en="CELEBRATIONS">CELEBRACIONES</span><h2 data-en-html="Choose your <em>celebration</em>">Elige tu <em>celebración</em></h2><p data-en="Each event has its own world: colors, details and an invitation made for that moment.">Cada evento tiene su propio mundo: colores, detalles y una invitación hecha para ese momento.</p></div>
-      <div class="portals" id="portals"></div>
+  <section class="dream" id="eventos" aria-labelledby="dream-title">
+    <div class="wrap head"><span class="eyebrow" data-en="THE COLLECTIONS">LAS COLECCIONES</span><h2 id="dream-title" data-en-html="Every celebration begins <em>with a dream</em>">Cada celebración comienza <em>con un sueño</em></h2><p data-en="Discover invitations designed for life's unforgettable moments.">Descubre invitaciones creadas para los momentos inolvidables de la vida.</p></div>
+    <div class="dream-pin" id="dream-pin">
+      <div class="dream-stage"><div class="track" id="track"></div></div>
     </div>
+    <p class="dream-hint" id="dream-hint" data-en="SCROLL TO DISCOVER EACH WORLD">DESLIZA PARA DESCUBRIR CADA MUNDO</p>
   </section>
 
   <section class="sec seals-band">
@@ -236,30 +278,97 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 </main>
 <footer>ILUSIÓN INVITES · MÉXICO &amp; CANADÁ</footer>
 
+<script type="application/json" id="col-data">{"colecciones": [{"slug": "bodas", "frame": "arco", "img": "cat-bodas", "deco": "arreglo", "decoPos": "br", "es": {"nombre": "Bodas", "script": "Para siempre", "intro": "Seda marfil, flores románticas y luz de velas. Invitaciones atemporales para el día en que comienza su historia."}, "en": {"nombre": "Weddings", "script": "Forever", "intro": "Ivory silk, romantic florals and candlelight. Timeless invitations for the day your story begins."}}, {"slug": "xv-anos", "frame": "ovalo", "img": "cat-xv", "deco": "mariposa-cristal-1", "decoPos": "tr", "es": {"nombre": "XV Años", "script": "Tu noche de princesa", "intro": "Tonos rubor, destellos de cristal y telas que flotan. Elegancia de princesa para una noche que se recuerda toda la vida."}, "en": {"nombre": "Quinceañeras", "script": "Her princess night", "intro": "Blush tones, sparkling crystal and flowing fabrics. Princess-inspired elegance for a night remembered forever."}}, {"slug": "cumpleanos", "frame": "arco", "img": "cat-cumpleanos", "deco": "rosa-rubor", "decoPos": "bl", "es": {"nombre": "Cumpleaños", "script": "Celebra tu día", "intro": "Expresivos, hermosos y a tu medida: desde una cena íntima hasta una gran fiesta con globos y pastel."}, "en": {"nombre": "Birthdays", "script": "Celebrate your day", "intro": "Expressive, beautiful and made for you, from an intimate dinner to a big party with balloons and cake."}}, {"slug": "baby-shower", "frame": "rect", "img": "cat-baby-shower", "deco": "nube-gypsophila", "decoPos": "br", "es": {"nombre": "Baby Shower", "script": "Entre nubes", "intro": "Luz natural, texturas suaves y tonos pastel para dar la bienvenida a alguien muy esperado."}, "en": {"nombre": "Baby Showers", "script": "Among the clouds", "intro": "Soft natural light, delicate textures and pastel tones to welcome someone long awaited."}}, {"slug": "navidad", "frame": "ovalo", "img": "cat-navidad-posadas", "deco": "ramita-hojas-doradas", "decoPos": "bl", "es": {"nombre": "Posada · Navidad", "script": "Calidez de fiesta", "intro": "Luz cálida, verde profundo, terciopelo y oro champaña. Para posadas, cenas navideñas y fiestas de fin de año."}, "en": {"nombre": "Christmas", "script": "Festive warmth", "intro": "Warm light, deep evergreen, velvet and champagne gold. For posadas, Christmas dinners and holiday parties."}}, {"slug": "ano-nuevo", "frame": "arco", "img": "cat-ano-nuevo", "deco": "cristal-1", "decoPos": "tr", "es": {"nombre": "Año Nuevo", "script": "Brindemos", "intro": "Ambiente de medianoche: negro, oro champaña y destellos metálicos para recibir el año con estilo."}, "en": {"nombre": "New Year's Eve", "script": "Let's toast", "intro": "A midnight atmosphere of black, champagne gold and metallic sparkle to welcome the year in style."}}, {"slug": "empresas", "frame": "rect", "img": "cat-gala-empresa", "deco": "", "decoPos": "", "es": {"nombre": "Empresas · Gala", "script": "Noche de gala", "intro": "Elegancia arquitectónica y estilo sobrio para cenas de gala, lanzamientos y eventos corporativos."}, "en": {"nombre": "Corporate Events", "script": "An evening of gala", "intro": "Architectural elegance and refined, minimal styling for galas, launches and corporate events."}}, {"slug": "otras", "frame": "ovalo", "img": "cat-otras", "deco": "mariposa-dorada-1", "decoPos": "tr", "es": {"nombre": "Otras celebraciones", "script": "Todo es posible", "intro": "Bautizos, comuniones, graduaciones, aniversarios o lo que estés soñando. Lo creamos contigo."}, "en": {"nombre": "Other Celebrations", "script": "Anything is possible", "intro": "Baptisms, communions, graduations, anniversaries or whatever you are dreaming of. We create it with you."}}]}</script>
 <script>
 (function () {
   'use strict';
-  var WA = 'https://wa.me/16048391163?text=';
-  var EV = [
-    { k: 'bodas', es: 'BODAS', en: 'WEDDING', subEs: 'Para siempre', subEn: 'Forever', link: null, icon: '<circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M10 5l2 2 2-2"/>' },
-    { k: 'xv', es: 'XV AÑOS', en: 'QUINCEAÑERA', subEs: 'Tu noche de princesa', subEn: 'Her princess night', link: '../pedido-xv/', icon: '<path d="M3 17h18M4 17l-1-9 5 4 4-7 4 7 5-4-1 9"/>' },
-    { k: 'baby-shower', es: 'BABY SHOWER', en: 'BABY SHOWER', subEs: 'Entre nubes', subEn: 'Among the clouds', link: null, icon: '<circle cx="12" cy="13" r="6"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="7" r="2.5"/>' },
-    { k: 'cumpleanos', es: 'CUMPLEAÑOS', en: 'BIRTHDAY', subEs: 'Celebra tu día', subEn: 'Celebrate your day', link: null, icon: '<rect x="5" y="11" width="14" height="9" rx="1"/><path d="M5 15h14M12 11V7M12 4.5v.5"/>' },
-    { k: 'gala-empresa', es: 'EMPRESA · GALA', en: 'CORPORATE · GALA', subEs: 'Noche de gala', subEn: 'An evening of gala', link: null, icon: '<path d="M8 3h8l-1 8a3 3 0 0 1-6 0zM12 14v6M8 20h8"/>' },
-    { k: 'navidad-posadas', es: 'POSADA · NAVIDAD', en: 'POSADA · CHRISTMAS', subEs: 'Calidez de fiesta', subEn: 'Festive warmth', link: null, icon: '<path d="M12 3l6 9h-3l4 6H5l4-6H6zM12 18v3"/>' },
-    { k: 'ano-nuevo', es: 'AÑO NUEVO', en: 'NEW YEAR', subEs: 'Brindemos', subEn: 'Let’s toast', link: null, icon: '<path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M6 18l2-2M16 8l2-2"/>' }
-  ];
-  function msg(name) { return WA + encodeURIComponent('Hola Ilusión Invites ✨ me interesa una invitación para ' + name); }
+  var COLS = JSON.parse(document.getElementById('col-data').textContent || '{"colecciones":[]}').colecciones;
+  var FR = { arco: { ar: '718 / 1100' }, ovalo: { ar: '482 / 1100' }, rect: { ar: '696 / 1100' } };
+  var GLOW = { bodas: 'rgba(240,214,170,.55)', 'xv-anos': 'rgba(240,190,205,.55)', cumpleanos: 'rgba(214,190,226,.5)', 'baby-shower': 'rgba(190,212,236,.55)', navidad: 'rgba(214,120,110,.32)', 'ano-nuevo': 'rgba(210,180,122,.45)', empresas: 'rgba(170,180,200,.45)', otras: 'rgba(240,210,180,.5)' };
   var lang = 'es';
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function renderPortals() {
-    document.getElementById('portals').innerHTML = EV.map(function (e, i) {
-      var name = lang === 'en' ? e.en : e.es, sub = lang === 'en' ? e.subEn : e.subEs;
-      var href = e.link || msg(e.es.toLowerCase()), ext = e.link ? '' : ' target="_blank" rel="noopener"';
-      var sp = ''; for (var s = 0; s < 3; s++) sp += '<i class="sp" style="left:' + (15 + Math.random() * 70).toFixed(0) + '%;top:' + (12 + Math.random() * 60).toFixed(0) + '%;animation-delay:' + (Math.random() * 3).toFixed(2) + 's"></i>';
-      return '<a class="portal" href="' + href + '"' + ext + '><div class="pic"><img src="img/cat-' + e.k + '.webp" alt="" width="720" height="960" loading="lazy" style="animation-delay:-' + (i * 2.3).toFixed(1) + 's">' + sp + '</div>' +
-        '<div class="label"><svg viewBox="0 0 24 24" aria-hidden="true">' + e.icon + '</svg><b>' + name + '</b></div><div class="label-sub">' + sub + '</div></a>';
+    var track = document.getElementById('track'); if (!track) return;
+    track.innerHTML = COLS.map(function (c, i) {
+      var t = c[lang] || c.es, sp = '';
+      for (var k = 0; k < 4; k++) sp += '<i class="sp" style="left:' + (14 + Math.random() * 72).toFixed(0) + '%;top:' + (10 + Math.random() * 70).toFixed(0) + '%;animation-delay:' + (Math.random() * 3.4).toFixed(2) + 's"></i>';
+      var mask = 'url(img/ventana-' + c.frame + '.png)';
+      return '<a class="world" href="coleccion/' + c.slug + '/" data-slug="' + c.slug + '" data-img="' + c.img + '" data-frame="' + c.frame + '" style="--glow:' + (GLOW[c.slug] || 'rgba(233,207,149,.45)') + '">' +
+        '<span class="glow" aria-hidden="true"></span>' +
+        '<div class="frame-box" style="--ar:' + FR[c.frame].ar + '">' +
+          '<div class="win" style="-webkit-mask-image:' + mask + ';mask-image:' + mask + '"><img src="img/' + c.img + '.webp" alt="" width="720" height="960" loading="lazy">' + sp + '</div>' +
+          '<img class="frame-img" src="img/marco-' + c.frame + '.webp" alt="" width="' + FR[c.frame].ar.split(' / ')[0] + '" height="1100" loading="lazy">' +
+          (c.deco ? '<img class="deco ' + c.decoPos + (c.deco === 'arreglo' ? ' fade' : '') + '" src="img/' + c.deco + '.webp" alt="" loading="lazy" style="animation-delay:-' + (i * 1.3).toFixed(1) + 's">' : '') +
+        '</div>' +
+        '<div class="cap"><span class="num">' + (i < 9 ? '0' : '') + (i + 1) + '</span><h3>' + esc(t.nombre) + '</h3><span class="script">' + esc(t.script) + '</span><span class="cta">' + (lang === 'en' ? 'EXPLORE COLLECTION' : 'EXPLORAR COLECCIÓN') + ' <i></i></span></div></a>';
     }).join('');
+    layoutTrack();
   }
+
+  /* horizontal track driven by vertical scroll (desktop), native swipe on phones */
+  var desk = window.matchMedia('(min-width: 901px)'), pin = document.getElementById('dream-pin'), track = null, maxX = 0, ticking = false;
+  var reduceM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function layoutTrack() {
+    track = document.getElementById('track'); if (!track) return;
+    if (desk.matches) { maxX = Math.max(0, track.scrollWidth - innerWidth); pin.style.height = (innerHeight + maxX) + 'px'; track.classList.add('ready'); }
+    else { pin.style.height = ''; track.style.transform = ''; maxX = 0; track.classList.remove('ready'); }
+    onScroll();
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  function update() {
+    ticking = false; if (!track) return;
+    if (desk.matches) {
+      var r = pin.getBoundingClientRect(), total = pin.offsetHeight - innerHeight, p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
+      track.style.transform = 'translate3d(' + (-p * maxX).toFixed(1) + 'px,0,0)';
+    }
+    var mid = innerWidth / 2, best = null, bd = 1e9;
+    Array.prototype.forEach.call(track.children, function (w) {
+      var b = w.getBoundingClientRect(), c = b.left + b.width / 2, d = (c - mid) / innerWidth;
+      if (!reduceM) { w.style.setProperty('--px', Math.max(-40, Math.min(40, -d * 50)).toFixed(1) + 'px'); var dc = w.querySelector('.deco'); if (dc) dc.style.setProperty('--dx', (d * 70).toFixed(1) + 'px'); }
+      if (Math.abs(c - mid) < bd) { bd = Math.abs(c - mid); best = w; }
+    });
+    Array.prototype.forEach.call(track.children, function (w) { w.classList.toggle('is-on', w === best); });
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', function () { layoutTrack(); });
+  document.getElementById('track').addEventListener('scroll', onScroll, { passive: true });
+  /* keyboard: bring the focused world to the centre */
+  document.getElementById('track').addEventListener('focusin', function (e) {
+    var w = e.target.closest('.world'); if (!w || !desk.matches) return;
+    var idx = Array.prototype.indexOf.call(track.children, w), n = track.children.length;
+    var top = pin.getBoundingClientRect().top + scrollY, total = pin.offsetHeight - innerHeight;
+    var center = w.offsetLeft + w.offsetWidth / 2 - innerWidth / 2;
+    window.scrollTo({ top: top + (maxX ? Math.max(0, Math.min(1, center / maxX)) : idx / n) * total, behavior: reduceM ? 'auto' : 'smooth' });
+  });
+
+  /* portal: the chosen world opens to fill the screen, then the collection page continues from the same image */
+  function preload(w) { if (w && !w._pre) { w._pre = 1; var im = new Image(); im.src = 'img/hero-' + w.dataset.img.replace('cat-', '') + '.webp'; } }
+  document.getElementById('track').addEventListener('pointerover', function (e) { preload(e.target.closest('.world')); });
+  document.getElementById('track').addEventListener('touchstart', function (e) { preload(e.target.closest('.world')); }, { passive: true });
+  document.getElementById('track').addEventListener('click', function (e) {
+    var w = e.target.closest('.world'); if (!w || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+    if (reduceM) return;
+    e.preventDefault();
+    var win = w.querySelector('.win'), r = win.getBoundingClientRect(), hero = 'img/hero-' + w.dataset.img.replace('cat-', '') + '.webp';
+    var c = COLS.filter(function (x) { return x.slug === w.dataset.slug; })[0], t = c[lang] || c.es;
+    var veil = document.createElement('div'); veil.className = 'portal-veil'; document.body.appendChild(veil);
+    var ov = document.createElement('div'); ov.className = 'portal-ov';
+    var mask = 'url(img/ventana-' + w.dataset.frame + '.png)';
+    ov.style.cssText = 'left:' + r.left + 'px;top:' + r.top + 'px;width:' + r.width + 'px;height:' + r.height + 'px;-webkit-mask-image:' + mask + ';mask-image:' + mask + ';-webkit-mask-size:100% 100%;mask-size:100% 100%';
+    var oi = document.createElement('img'); oi.className = 'portal-img'; oi.alt = ''; oi.src = 'img/' + c.img + '.webp';
+    var hi = new Image(); hi.onload = function () { oi.src = hero; }; hi.src = hero;
+    ov.appendChild(oi); document.body.appendChild(ov);
+    var ttl = document.createElement('div'); ttl.className = 'portal-title'; ttl.innerHTML = '<small>' + (lang === 'en' ? 'COLLECTION' : 'COLECCIÓN') + '</small><b>' + esc(t.nombre) + '</b>'; document.body.appendChild(ttl);
+    requestAnimationFrame(function () { veil.classList.add('on'); });
+    var big = Math.max(innerWidth, innerHeight) * 2.8, ease = 'cubic-bezier(.7,0,.2,1)', dur = 1150;
+    var from = { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px' };
+    ov.animate([from, { left: (innerWidth - big) / 2 + 'px', top: (innerHeight - big) / 2 + 'px', width: big + 'px', height: big + 'px' }], { duration: dur, easing: ease, fill: 'forwards' });
+    oi.animate([from, { left: '0px', top: '0px', width: innerWidth + 'px', height: innerHeight + 'px' }], { duration: dur, easing: ease, fill: 'forwards' });
+    setTimeout(function () { ttl.classList.add('on'); }, 520);
+    try { sessionStorage.setItem('ilu-portal', w.dataset.slug); } catch (x) {}
+    setTimeout(function () { location.href = w.getAttribute('href'); }, 1500);
+  });
+  addEventListener('pageshow', function (e) { if (e.persisted) document.querySelectorAll('.portal-ov,.portal-veil,.portal-title').forEach(function (n) { n.remove(); }); });
 
   /* language */
   var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-en],[data-en-html]'));

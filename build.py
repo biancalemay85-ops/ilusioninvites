@@ -3,6 +3,9 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = 'https://ilusioninvites.com'
 PAGES = [
+    ('../demos/boda-jardin-blanco/index.html', 'demos/boda-jardin-blanco', 'Ana Sofía & Emiliano · Ilusión Invites', 'Invitación de boda de ejemplo: Jardín Blanco.'),
+    ('../demos/boda-isabella-julian/index.html', 'demos/boda-isabella-julian', 'Isabella & Julián · Ilusión Invites', 'Invitación de boda de ejemplo: terciopelo vino y oro.'),
+    ('../demos/boda-camila-sebastian/index.html', 'demos/boda-camila-sebastian', 'Camila & Sebastián · Ilusión Invites', 'Invitación de boda de ejemplo: encaje.'),
     ('../website/index.html', '', 'Ilusión Invites · Invitaciones digitales de lujo',
      'Invitaciones digitales que se abren como un sobre con sello: bodas, XV años, baby showers y cumpleaños. México y Canadá.'),
     # (source artifact file, output folder, title, description)
