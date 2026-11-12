@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
 <style>
-/* Layout: a bright champagne hero (silk curtains, florals in the corners, the gold wordmark with its star), then the row of seven event portals like the brand board, the seal colors, how it works and contact. Light brand palette from the Event Asset Library board. */
+/* Layout: a bright champagne hero (silk curtains, florals in the corners, the gold wordmark with its star), then the collections showcase, the "imagine your invitation" questionnaire with a live card, how it works and contact. Light brand palette from the Event Asset Library board. */
 :root {
   color-scheme: light;
   --ivory: #FBF6EF; --cream: #F4EBDF; --champagne: #E9D9C3; --blush: #EED5CC; --rose: #C88A97;
@@ -228,22 +228,133 @@ html, body { overflow-x: clip; }
 .portal-title b { display: block; font: 500 clamp(48px, 8vw, 104px)/1 var(--f-serif); margin-top: 6px; }
 @view-transition { navigation: auto; }
 
-/* seals */
-.seals-band { background: radial-gradient(ellipse 70% 60% at 50% 50%, #F5EBDD, rgba(245,235,221,0) 75%), var(--ivory); }
-.seals { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: clamp(10px, 3vw, 34px); }
-.seals figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.seals img { width: clamp(70px, 9vw, 112px); height: auto; filter: drop-shadow(0 10px 12px rgba(90,60,40,.28)); transition: transform .3s; }
-.seals figure:hover img { transform: translateY(-4px) rotate(-6deg); }
-.seals figcaption { font: 500 10.5px var(--f-caps); letter-spacing: .26em; color: var(--ink2); }
-.seals .hero-seal img { width: clamp(100px, 13vw, 160px); }
+/* imagine your invitation: a few gentle questions on the left, the card composing itself on the right */
+.imagina { position: relative; background: radial-gradient(ellipse 60% 55% at 70% 45%, #F6ECDF, rgba(246,236,223,0) 75%), radial-gradient(ellipse 50% 50% at 20% 70%, #F8F0E6, rgba(248,240,230,0) 70%), var(--ivory); }
+.im { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: clamp(28px, 5vw, 72px); align-items: start; max-width: 1120px; margin: 0 auto; }
+.im-q { position: relative; margin: 0; padding: clamp(24px, 3.4vw, 42px); border-radius: 30px; background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,252,247,.6)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.22), 0 40px 70px -50px rgba(90,60,40,.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.im-q::before { content: ""; position: absolute; inset: 8px; border-radius: 23px; border: 1px solid rgba(182,138,78,.14); pointer-events: none; }
+.im-prog { list-style: none; display: flex; align-items: center; justify-content: center; gap: 0; margin: 0 0 6px; padding: 0; }
+.im-prog li { display: flex; align-items: center; }
+.im-prog li + li::before { content: ""; width: clamp(18px, 4vw, 40px); height: 1px; background: rgba(182,138,78,.3); transition: background .5s; }
+.im-prog li.done + li::before, .im-prog li.done::before { background: var(--gold); }
+.im-prog button { width: 22px; height: 22px; padding: 0; border: 0; background: none; display: grid; place-items: center; cursor: pointer; }
+.im-prog button:disabled { cursor: default; }
+.im-prog button i { width: 8px; height: 8px; transform: rotate(45deg); border: 1px solid var(--gold); background: transparent; transition: background .4s, transform .4s, box-shadow .4s; }
+.im-prog li.done button i { background: var(--gold); }
+.im-prog li.now button i { background: var(--gold); transform: rotate(45deg) scale(1.35); box-shadow: 0 0 0 4px rgba(233,207,149,.35); }
+.im-no { margin: 0 0 14px; text-align: center; font: 500 10.5px var(--f-caps); letter-spacing: .3em; color: var(--ink3); }
+.im-step { border: 0; margin: 0; padding: 0; min-width: 0; display: none; }
+.im-step.on { display: block; animation: imIn .7s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes imIn { from { opacity: 0; transform: translateY(10px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+.im-step legend { display: block; width: 100%; padding: 0; margin: 0 0 4px; text-align: center; font: 500 clamp(26px, 3vw, 36px)/1.15 var(--f-serif); color: var(--ink); outline: none; }
+.im-step legend em { font-style: italic; color: var(--gold); }
+.im-hint { margin: 0 0 22px; text-align: center; color: var(--ink2); font-size: 15px; }
+.opts { display: grid; gap: 10px; }
+.opts.c2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.opts.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.opt { position: relative; display: block; cursor: pointer; }
+.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opt > span { position: relative; display: flex; align-items: center; gap: 12px; min-height: 54px; height: 100%; padding: 10px 16px; border-radius: 16px; background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px rgba(182,138,78,.22); transition: box-shadow .35s, background .35s, transform .35s; }
+.opt:hover > span { box-shadow: inset 0 0 0 1px rgba(182,138,78,.5), 0 10px 22px -16px rgba(120,85,45,.5); transform: translateY(-1px); }
+.opt input:checked + span { background: linear-gradient(180deg, #FFFDF8, #FBF1E1); box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 4px rgba(233,207,149,.28), 0 12px 24px -16px rgba(140,95,40,.55); }
+.opt input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 3px; }
+.opt b { font: 500 17px/1.2 var(--f-serif); color: var(--ink); }
+.opt small { display: block; font-size: 13px; line-height: 1.35; color: var(--ink3); margin-top: 2px; }
+.opt .tick { margin-left: auto; flex: none; width: 9px; height: 9px; transform: rotate(45deg); border: 1px solid rgba(182,138,78,.5); transition: background .3s; }
+.opt input:checked + span .tick { background: var(--gold); border-color: var(--gold); }
+.opt .th { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, #fff, #F4EADC); box-shadow: inset 0 0 0 1px rgba(182,138,78,.25); overflow: hidden; }
+.opt .th img { width: 120%; height: 120%; object-fit: contain; }
+.opt .th svg { width: 22px; height: 22px; color: var(--gold); }
+.opt.mood > span { min-height: 70px; }
+.opt.seal-o > span { flex-direction: column; justify-content: center; text-align: center; gap: 8px; padding: 16px 8px 12px; }
+.opt.seal-o img { width: 58px; height: auto; filter: drop-shadow(0 6px 8px rgba(90,60,40,.25)); transition: transform .4s; }
+.opt.seal-o input:checked + span img { transform: scale(1.08) rotate(-6deg); }
+.opt.seal-o b { font: 500 11px var(--f-caps); letter-spacing: .2em; }
+.opt.chip > span { min-height: 46px; justify-content: center; text-align: center; padding: 8px 12px; border-radius: 999px; }
+.opt.chip b { font: 400 14.5px var(--f-body); }
+.opt.chip .tick { display: none; }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.fields label { display: flex; flex-direction: column; gap: 6px; font: 500 10.5px var(--f-caps); letter-spacing: .22em; color: var(--ink2); }
+.fields .full { grid-column: 1 / -1; }
+.fields input, .fields textarea, .fields select { font: 400 16px var(--f-body); color: var(--ink); letter-spacing: 0; padding: 12px 16px; border-radius: 14px; border: 0; background: rgba(255,255,255,.85); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); transition: box-shadow .3s; min-width: 0; width: 100%; }
+.fields textarea { resize: vertical; min-height: 92px; line-height: 1.5; }
+.fields input:focus, .fields textarea:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 4px rgba(233,207,149,.3); }
+.fields ::placeholder { color: #B5A59C; }
+.im-nav { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 24px; flex-wrap: wrap; }
+.im-back { border: 0; background: none; padding: 10px 4px; font: 500 11px var(--f-caps); letter-spacing: .26em; color: var(--ink2); cursor: pointer; }
+.im-nav .btn { min-width: 170px; margin-left: auto; }
+.im-note { margin: 12px 0 0; text-align: center; font-size: 13px; color: var(--ink3); }
+.im-more { margin: 10px 0 0; text-align: center; }
+.im-more a { font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(182,138,78,.4); padding-bottom: 2px; }
 
-/* steps */
-.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-@media (max-width: 820px) { .steps { grid-template-columns: minmax(0, 1fr); } }
-.step { background: rgba(255,255,255,.55); border: 0; backdrop-filter: blur(4px); border-radius: 6px; padding: 28px 26px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 14px 30px -24px rgba(90,60,40,.4); }
-.step .n { font: 500 44px/1 var(--f-serif); font-style: italic; }
-.step h3 { margin: 0; font: 600 22px var(--f-serif); }
-.step p { margin: 0; color: var(--ink2); font-size: 15px; }
+/* the preview card: an arched letter that tints itself */
+.im-side { position: sticky; top: 96px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.card { --bg: #FBF6EF; --cink: #3A2A26; --acc: #B68A4E; position: relative; width: min(100%, 380px); aspect-ratio: .7; border-radius: 50% 50% 18px 18px / 35% 35% 18px 18px; background: radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%), linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 88%, var(--acc))); color: var(--cink); box-shadow: 0 50px 70px -40px rgba(90,60,40,.5), 0 6px 16px -8px rgba(90,60,40,.25), inset 0 0 0 1px color-mix(in srgb, var(--acc) 30%, transparent); transition: background .8s, color .8s, box-shadow .8s; }
+.card::before { content: ""; position: absolute; inset: 12px; border-radius: 50% 50% 12px 12px / 34% 34% 12px 12px; border: 1px solid color-mix(in srgb, var(--acc) 55%, transparent); pointer-events: none; transition: border-color .8s; }
+.card::after { content: ""; position: absolute; inset: 18px; border-radius: 50% 50% 9px 9px / 33.5% 33.5% 9px 9px; border: .5px solid color-mix(in srgb, var(--acc) 30%, transparent); pointer-events: none; }
+.c-in { position: absolute; inset: 15% 12% 17%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; }
+.c-eye { font: 500 11px var(--f-caps); letter-spacing: .42em; padding-left: .42em; color: var(--acc); transition: color .8s; }
+.c-pre { font: italic 400 15px/1.3 var(--f-serif); opacity: .8; }
+.c-names { font: 400 clamp(38px, 4.4vw, 52px)/1.05 var(--f-script); color: var(--cink); margin: 6px 0 2px; text-wrap: balance; overflow-wrap: anywhere; transition: opacity .4s; }
+.c-names.empty { opacity: .35; }
+.c-rule { display: flex; align-items: center; gap: 8px; width: 62%; margin: 6px 0; }
+.c-rule i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--acc)); }
+.c-rule i:last-child { transform: scaleX(-1); }
+.c-rule b { width: 6px; height: 6px; transform: rotate(45deg); background: var(--acc); transition: background .8s; }
+.c-mood { font: italic 400 17px/1.35 var(--f-serif); }
+.c-date { font: 500 11.5px var(--f-caps); letter-spacing: .24em; margin-top: 4px; }
+.c-city { font: 400 14px var(--f-body); opacity: .75; }
+.c-inc { font: 400 12.5px/1.5 var(--f-body); opacity: .7; max-width: 26ch; }
+.c-in > :empty { display: none; }
+.c-seal { position: absolute; left: 50%; bottom: 0; width: 74px; height: auto; transform: translate(-50%, 42%); filter: drop-shadow(0 10px 12px rgba(90,60,40,.3)); transition: opacity .5s; }
+.c-deco { position: absolute; width: 34%; height: auto; pointer-events: none; transition: opacity .8s, transform .8s; opacity: 0; filter: drop-shadow(0 10px 14px rgba(90,60,40,.18)); }
+.c-deco.a { left: -9%; bottom: 6%; transform: rotate(-8deg) scale(.9); }
+.c-deco.b { right: -8%; top: 10%; transform: scaleX(-1) rotate(-14deg) scale(.7); }
+.c-deco.on { opacity: 1; }
+.c-deco.a.on { transform: rotate(-8deg) scale(1); }
+.c-deco.b.on { transform: scaleX(-1) rotate(-14deg) scale(.8); }
+.c-cap { margin: 22px 0 0; font: 400 26px/1 var(--f-script); color: var(--gold); }
+.card.pulse { animation: cardPulse .9s ease; }
+@keyframes cardPulse { 40% { box-shadow: 0 50px 70px -40px rgba(90,60,40,.5), 0 0 40px rgba(240,210,150,.75), inset 0 0 0 1px color-mix(in srgb, var(--acc) 50%, transparent); } }
+@media (max-width: 900px) {
+  .im { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .im-side { position: relative; top: 0; order: -1; }
+  .card { width: min(80vw, 300px); }
+  .c-in { inset: 14% 10% 16%; gap: 4px; } .c-inc { display: none; } .c-deco { width: 27%; }
+  .c-names { font-size: 34px; } .c-mood { font-size: 14.5px; } .c-pre { font-size: 13px; } .c-eye { font-size: 9.5px; } .c-date { font-size: 9.5px; } .c-inc, .c-city { font-size: 11px; }
+  .c-seal { width: 56px; } .c-cap { display: none; }
+}
+@media (max-width: 560px) {
+  .im-q { padding: 22px 16px; border-radius: 24px; }
+  .opts.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .opts.c2.ev { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .opt > span { padding: 9px 12px; gap: 10px; }
+  .opt .th { width: 38px; height: 38px; } .opt .tick { display: none; }
+  .opt b { font-size: 16px; }
+  .opt.seal-o img { width: 46px; } .opt.seal-o b { font-size: 9.5px; letter-spacing: .12em; }
+  .fields { grid-template-columns: minmax(0, 1fr); }
+  .im-nav .btn { flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .im-step.on, .card.pulse { animation: none; } }
+
+/* steps: three arched panels joined by a fine gold line */
+.como { background: linear-gradient(180deg, var(--ivory), #F7EFE4 50%, var(--ivory)); }
+.steps { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 3vw, 40px); max-width: 1060px; margin: 0 auto; padding: 0; list-style: none; }
+.steps::before { content: ""; position: absolute; left: 12%; right: 12%; top: 92px; height: 1px; background: linear-gradient(90deg, rgba(182,138,78,0), rgba(182,138,78,.55) 15%, rgba(182,138,78,.55) 85%, rgba(182,138,78,0)); }
+.step { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 56px clamp(22px, 2.6vw, 34px) 40px; border-radius: 50% 50% 20px 20px / 150px 150px 20px 20px; background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(253,249,243,.78)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.26), 0 40px 60px -44px rgba(90,60,40,.5); transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; }
+.step::before { content: ""; position: absolute; inset: 9px; border-radius: 50% 50% 14px 14px / 142px 142px 14px 14px; border: 1px solid rgba(182,138,78,.16); pointer-events: none; }
+.step:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px rgba(182,138,78,.4), 0 46px 64px -42px rgba(90,60,40,.55), 0 0 40px rgba(240,222,186,.45); }
+.step .n { position: relative; width: 72px; height: 72px; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle at 50% 35%, #fff, #F6ECDD); box-shadow: inset 0 0 0 1px rgba(182,138,78,.55), 0 0 0 6px rgba(251,246,239,.9), 0 0 0 7px rgba(182,138,78,.22), 0 12px 22px -10px rgba(120,85,45,.4); font: italic 500 34px/1 var(--f-serif); margin-bottom: 10px; }
+.step .n span { background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .05em; }
+.step h3 { margin: 0; font: 500 clamp(24px, 2.4vw, 28px)/1.15 var(--f-serif); }
+.step p { margin: 0; color: var(--ink2); font-size: 15px; max-width: 30ch; }
+.step .orn { display: flex; align-items: center; gap: 8px; width: 90px; margin-top: 8px; }
+.step .orn i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.step .orn i:last-child { transform: scaleX(-1); }
+.step .orn b { width: 5px; height: 5px; transform: rotate(45deg); background: var(--gold); }
+.step a { font: 500 10.5px var(--f-caps); letter-spacing: .24em; color: var(--gold); text-decoration: none; margin-top: 4px; }
+.step a:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 820px) { .steps { grid-template-columns: minmax(0, 1fr); max-width: 400px; gap: 22px; } .steps::before { left: 50%; right: auto; top: 60px; bottom: 60px; width: 1px; height: auto; background: linear-gradient(180deg, rgba(182,138,78,0), rgba(182,138,78,.5) 10%, rgba(182,138,78,.5) 90%, rgba(182,138,78,0)); } }
 
 /* contact */
 .contact { text-align: center; position: relative; background: var(--ivory); padding-block: clamp(90px, 12vw, 150px); }
@@ -273,12 +384,13 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <a class="brand" href="#inicio" aria-label="Ilusión Invites"><img src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><span><b class="foil">Ilusión</b><small>INVITES</small></span></a>
     <nav class="links" aria-label="Principal">
       <a href="#eventos" data-en="Collections">Colecciones</a>
+      <a href="#imagina" data-en="Imagine">Imagina</a>
       <a href="#como" data-en="How it works">Cómo funciona</a>
       <a href="#contacto" data-en="Contact">Contacto</a>
     </nav>
     <div class="actions">
       <div class="lang" role="group" aria-label="Idioma"><button type="button" id="es" aria-pressed="true">ES</button><button type="button" id="en" aria-pressed="false">EN</button></div>
-      <a class="btn btn-gold btn-sm" href="#eventos" data-en="Create my invitation">Crear mi invitación</a>
+      <a class="btn btn-gold btn-sm" href="#imagina" data-en="Create my invitation">Crear mi invitación</a>
     </div>
   </div>
 </header>
@@ -318,28 +430,63 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <div class="tabs" id="tabs" role="group" aria-label="Elige una colección"></div>
   </section>
 
-  <section class="sec seals-band">
+  <section class="sec imagina" id="imagina" aria-labelledby="im-title">
     <div class="wrap">
-      <div class="head"><span class="eyebrow" data-en="THE FINISHING TOUCH">EL TOQUE FINAL</span><h2 data-en-html="Every invitation, <em>sealed</em> for you">Cada invitación, <em>sellada</em> para ti</h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"><p data-en="Your invitation opens like a real letter. Choose the color of your wax seal.">Tu invitación se abre como una carta de verdad. Elige el color de tu sello de cera.</p></div>
-      <div class="seals">
-        <figure><img src="img/sello-vino.webp" alt="Sello vino" width="300" height="300" loading="lazy"><figcaption data-en="WINE">VINO</figcaption></figure>
-        <figure><img src="img/sello-marfil.webp" alt="Sello marfil" width="300" height="300" loading="lazy"><figcaption data-en="IVORY">MARFIL</figcaption></figure>
-        <figure class="hero-seal"><img src="img/sello-ilusion-oro.webp" alt="Sello Ilusión" width="760" height="752" loading="lazy"><figcaption>ILUSIÓN</figcaption></figure>
-        <figure><img src="img/sello-esmeralda.webp" alt="Sello esmeralda" width="300" height="300" loading="lazy"><figcaption data-en="EMERALD">ESMERALDA</figcaption></figure>
-        <figure><img src="img/sello-marino.webp" alt="Sello azul marino" width="300" height="300" loading="lazy"><figcaption data-en="NAVY">MARINO</figcaption></figure>
-        <figure><img src="img/sello-rubor.webp" alt="Sello rosa" width="300" height="300" loading="lazy"><figcaption data-en="BLUSH">RUBOR</figcaption></figure>
+      <div class="head"><span class="eyebrow" data-en="YOUR DREAM, STEP BY STEP">TU SUEÑO, PASO A PASO</span><h2 id="im-title" data-en-html="Imagine your <em>invitation</em>">Imagina tu <em>invitación</em></h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"><p data-en="Answer a few questions and watch it come to life. We take care of the rest.">Responde unas preguntas y mírala cobrar vida. Nosotros nos encargamos del resto.</p></div>
+      <div class="im">
+        <form class="im-q" id="im-form" novalidate>
+          <ol class="im-prog" id="im-prog"></ol>
+          <p class="im-no" id="im-no" aria-live="polite"></p>
+          <fieldset class="im-step" data-k="evento"><legend tabindex="-1" data-en-html="What are you <em>celebrating</em>?">¿Qué <em>celebras</em>?</legend><p class="im-hint" data-en="Choose your event.">Elige tu evento.</p><div class="opts c2 ev" data-opts="evento"></div></fieldset>
+          <fieldset class="im-step" data-k="ambiente"><legend tabindex="-1" data-en-html="How do you imagine the <em>atmosphere</em>?">¿Cómo imaginas el <em>ambiente</em>?</legend><p class="im-hint" data-en="The feeling you want your guests to have when they open it.">Lo que quieres que sientan tus invitados al abrirla.</p><div class="opts c2" data-opts="ambiente"></div></fieldset>
+          <fieldset class="im-step" data-k="color"><legend tabindex="-1" data-en-html="Your <em>colors</em>">Tus <em>colores</em></legend><p class="im-hint" data-en="It becomes the wax seal that closes your envelope.">Será también el sello de cera que cierra tu sobre.</p><div class="opts c3" data-opts="color"></div></fieldset>
+          <fieldset class="im-step" data-k="incluir"><legend tabindex="-1" data-en-html="What can't be <em>missing</em>?">¿Qué no puede <em>faltar</em>?</legend><p class="im-hint" data-en="Choose all you like. The envelope that opens is always included.">Elige todo lo que quieras. El sobre que se abre siempre va incluido.</p><div class="opts c2" data-opts="incluir"></div></fieldset>
+          <fieldset class="im-step" data-k="detalles"><legend tabindex="-1" data-en-html="The <em>details</em>">Los <em>detalles</em></legend><p class="im-hint" data-en="Whatever you know so far. Everything can change later.">Lo que ya sepas. Todo se puede cambiar después.</p>
+            <div class="fields">
+              <label class="full"><span data-en="Who is celebrating">Quién celebra</span><input id="im-nombres" name="nombres" autocomplete="off" maxlength="60" placeholder="Ana Sofía &amp; Emiliano" data-en-ph="Ana Sofía &amp; Emiliano"></label>
+              <label><span data-en="Date">Fecha</span><input id="im-fecha" name="fecha" type="date"></label>
+              <label><span data-en="City">Ciudad</span><input id="im-ciudad" name="ciudad" autocomplete="address-level2" maxlength="50" placeholder="Guadalajara" data-en-ph="Vancouver"></label>
+              <label class="full"><span data-en="Tell us your dream">Cuéntanos tu sueño</span><textarea id="im-sueno" name="sueno" maxlength="600" placeholder="Una cena al aire libre con luces colgantes, flores blancas y un vals al atardecer…" data-en-ph="An outdoor dinner with string lights, white flowers and a sunset first dance…"></textarea></label>
+            </div>
+          </fieldset>
+          <div class="im-nav">
+            <button type="button" class="im-back" id="im-back" data-en="← Back">← Atrás</button>
+            <button type="button" class="btn btn-gold" id="im-next" data-en="Next">Siguiente</button>
+            <a class="btn btn-gold" id="im-send" href="#" target="_blank" rel="noopener" hidden data-en="Send my idea on WhatsApp">Enviar mi idea por WhatsApp</a>
+          </div>
+          <p class="im-note" id="im-note" hidden data-en="WhatsApp opens with your idea ready. You decide when to send it.">Se abre WhatsApp con tu idea lista. Tú decides cuándo enviarla.</p>
+          <p class="im-more" id="im-more" hidden><a href="#" id="im-col"></a></p>
+        </form>
+        <div class="im-side">
+          <div class="card" id="im-card" role="img" aria-label="Vista previa de tu invitación" data-en-aria="Preview of your invitation">
+            <img class="c-deco a" id="c-deco-a" alt="">
+            <img class="c-deco b" id="c-deco-b" alt="">
+            <div class="c-in" aria-hidden="true">
+              <span class="c-eye" id="c-eye"></span>
+              <span class="c-pre" id="c-pre"></span>
+              <b class="c-names" id="c-names"></b>
+              <span class="c-rule"><i></i><b></b><i></i></span>
+              <span class="c-mood" id="c-mood"></span>
+              <span class="c-date" id="c-date"></span>
+              <span class="c-city" id="c-city"></span>
+              <span class="c-inc" id="c-inc"></span>
+            </div>
+            <img class="c-seal" id="c-seal" src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139">
+          </div>
+          <p class="c-cap" data-en="Your idea, taking shape">Tu idea, tomando forma</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="como">
+  <section class="sec como" id="como">
     <div class="wrap">
       <div class="head"><span class="eyebrow" data-en="HOW IT WORKS">CÓMO FUNCIONA</span><h2 data-en-html="Three steps to your <em>invitation</em>">Tres pasos para tu <em>invitación</em></h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"></div>
-      <div class="steps">
-        <div class="step"><span class="n foil">1</span><h3 data-en="Choose your event">Elige tu evento</h3><p data-en="Pick your celebration and the style you love.">Escoge tu celebración y el estilo que te enamora.</p></div>
-        <div class="step"><span class="n foil">2</span><h3 data-en="Tell us the details">Cuéntanos los detalles</h3><p data-en="Fill in a short form or write to us on WhatsApp. You can share photos and ideas.">Llena un formulario corto o escríbenos por WhatsApp. Puedes compartir fotos e ideas.</p></div>
-        <div class="step"><span class="n foil">3</span><h3 data-en="Share it">Compártela</h3><p data-en="Receive your link with envelope, music, map and RSVP, ready to send.">Recibe tu link con sobre, música, mapa y confirmación, listo para enviar.</p></div>
-      </div>
+      <ol class="steps">
+        <li class="step"><span class="n" aria-hidden="true"><span>1</span></span><h3 data-en="Imagine it">Imagínala</h3><p data-en="Tell us about your event and the atmosphere you dream of, right here or on WhatsApp.">Cuéntanos tu evento y el ambiente que sueñas, aquí mismo o por WhatsApp.</p><a href="#imagina" data-en="START HERE">EMPIEZA AQUÍ</a><span class="orn" aria-hidden="true"><i></i><b></b><i></i></span></li>
+        <li class="step"><span class="n" aria-hidden="true"><span>2</span></span><h3 data-en="We design it for you">La diseñamos para ti</h3><p data-en="We create it with your photos, music and details, and show you how it looks before we deliver.">La creamos con tus fotos, música y detalles, y te mostramos cómo va quedando antes de entregarla.</p><span class="orn" aria-hidden="true"><i></i><b></b><i></i></span></li>
+        <li class="step"><span class="n" aria-hidden="true"><span>3</span></span><h3 data-en="Share it">Compártela</h3><p data-en="Receive your link with envelope, music, map and RSVP, ready to send.">Recibe tu link con sobre, música, mapa y confirmación, listo para enviar.</p><span class="orn" aria-hidden="true"><i></i><b></b><i></i></span></li>
+      </ol>
     </div>
   </section>
 
@@ -507,7 +654,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     var links = Array.prototype.slice.call(top.querySelectorAll('.links a'));
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); }); }); }, { rootMargin: '-45% 0px -50% 0px' });
-      ['inicio', 'eventos', 'como', 'contacto'].forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+      ['inicio', 'eventos', 'imagina', 'como', 'contacto'].forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
     }
   })();
   /* soft glints drifting over the organza */
@@ -530,6 +677,175 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     function gstart() { if (reduce || grun) return; grun = true; glast = 0; requestAnimationFrame(gdraw); }
     gsize(); addEventListener('resize', gsize);
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) gstart(); else grun = false; }); }).observe(document.getElementById('eventos')); else gstart();
+  })();
+
+  /* imagine your invitation: questions on one side, a card that composes itself on the other */
+  (function () {
+    var form = document.getElementById('im-form'); if (!form) return;
+    var IC = {
+      boda: '<circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M10.5 6.5L12 4l1.5 2.5L12 8.5z"/>',
+      xv: '<path d="M4 17l1.8-8 4.2 5 2-8 2 8 4.2-5L20 17z"/><path d="M4 20h16"/>',
+      cumple: '<rect x="5" y="11" width="14" height="8" rx="1.5"/><path d="M5 15c2.3 1.5 4.7 1.5 7 0s4.7-1.5 7 0"/><path d="M12 11V8.5"/><path d="M12 4.5c.9.8.9 2.2 0 3-.9-.8-.9-2.2 0-3z"/>',
+      baby: '<path d="M7.5 18h9.5a3.8 3.8 0 0 0 .3-7.6 5.2 5.2 0 0 0-10-1A4.3 4.3 0 0 0 7.5 18z"/>',
+      navidad: '<path d="M12 4l-6.5 14h13z"/><path d="M12 18v2.5"/><path d="M9 13.5h6"/>',
+      nuevo: '<path d="M6 3h4.5l-.6 5.5a1.6 1.6 0 0 1-3.3 0z"/><path d="M8.2 10v9.5M6.2 19.5h4"/><path d="M13.5 3H18l-.6 5.5a1.6 1.6 0 0 1-3.3 0z"/><path d="M15.7 10v9.5M13.7 19.5h4"/>',
+      empresa: '<path d="M4 9l8-5 8 5"/><path d="M6.5 10.5v7M10 10.5v7M14 10.5v7M17.5 10.5v7"/><path d="M4 20h16"/>',
+      otra: '<path d="M12 3.5c.6 4 2.6 6 6.5 6.6-3.9.6-5.9 2.6-6.5 6.6-.6-4-2.6-6-6.5-6.6 3.9-.6 5.9-2.6 6.5-6.6z"/><path d="M18.5 16.5c.2 1.4.9 2 2.2 2.2-1.3.2-2 .9-2.2 2.2-.2-1.3-.9-2-2.2-2.2 1.3-.2 2-.8 2.2-2.2z"/>',
+      linea: '<path d="M4 12h16"/><path d="M12 9.5l2.5 2.5-2.5 2.5L9.5 12z"/>'
+    };
+    var Q = {
+      evento: [
+        { v: 'boda', slug: 'bodas', ic: 'boda', es: ['Boda', 'Nos casamos', 'Sus nombres aquí'], en: ['Wedding', "We're getting married", 'Your names here'] },
+        { v: 'xv', slug: 'xv-anos', ic: 'xv', es: ['XV Años', 'Mis XV años', 'Su nombre aquí'], en: ['Quinceañera', 'My quinceañera', 'Her name here'] },
+        { v: 'cumple', slug: 'cumpleanos', ic: 'cumple', es: ['Cumpleaños', 'Celebremos juntos', 'Tu nombre aquí'], en: ['Birthday', "Let's celebrate", 'Your name here'] },
+        { v: 'baby', slug: 'baby-shower', ic: 'baby', es: ['Baby Shower', 'Viene en camino', 'El nombre aquí'], en: ['Baby Shower', 'On the way', 'Name here'] },
+        { v: 'navidad', slug: 'navidad', ic: 'navidad', es: ['Posada · Navidad', 'Celebremos la Navidad', 'Familia o anfitriones'], en: ['Christmas', "Let's celebrate Christmas", 'Family or hosts'] },
+        { v: 'nuevo', slug: 'ano-nuevo', ic: 'nuevo', es: ['Año Nuevo', 'Recibamos juntos el año', 'Anfitriones aquí'], en: ["New Year's Eve", 'Ring in the new year', 'Hosts here'] },
+        { v: 'empresa', slug: 'empresas', ic: 'empresa', es: ['Evento de empresa', 'Tenemos el honor de invitarle', 'Su empresa aquí'], en: ['Corporate event', 'You are cordially invited', 'Your company here'] },
+        { v: 'otra', slug: 'otras', ic: 'otra', es: ['Otra celebración', 'Te invitamos a celebrar', 'Tu nombre aquí'], en: ['Something else', 'Join us to celebrate', 'Your name here'] }
+      ],
+      ambiente: [
+        { v: 'romantico', img: 'rosa-marfil', img2: 'rosa-marfil', es: ['Romántico y clásico', 'Seda, velas y flores blancas', 'romántica y clásica'], en: ['Romantic & classic', 'Silk, candlelight and white flowers', 'romantic, classic'] },
+        { v: 'jardin', img: 'hortensia-marfil', img2: 'rosa-marfil', es: ['Jardín en flor', 'Flores frescas y luz de día', 'como un jardín en flor'], en: ['Garden in bloom', 'Fresh flowers and daylight', 'garden-in-bloom'] },
+        { v: 'cuento', img: 'mariposa-cristal-1', img2: 'mariposa-dorada-1', es: ['Cuento de hadas', 'Cristal, tul y mariposas', 'de cuento de hadas'], en: ['Fairytale', 'Crystal, tulle and butterflies', 'fairytale'] },
+        { v: 'glamour', img: 'cristal-1', img2: 'cristal-1', es: ['Glamour de noche', 'Brillo, terciopelo y oro', 'llena de glamour'], en: ['Evening glamour', 'Sparkle, velvet and gold', 'glamorous'] },
+        { v: 'natural', img: 'ramita-hojas-doradas', img2: 'ramita-hojas-doradas', es: ['Bohemio y natural', 'Ramas, lino y tonos tierra', 'bohemia y natural'], en: ['Boho & natural', 'Branches, linen and earthy tones', 'boho, natural'] },
+        { v: 'minimal', ic: 'linea', es: ['Moderno y minimalista', 'Líneas limpias y mucho aire', 'moderna y minimalista'], en: ['Modern & minimal', 'Clean lines and lots of air', 'modern, minimal'] }
+      ],
+      color: [
+        { v: 'marfil', seal: 'sello-marfil', t: ['#FBF6EF', '#3A2A26', '#B68A4E'], es: ['Marfil', 'en marfil y oro'], en: ['Ivory', 'in ivory and gold'] },
+        { v: 'rubor', seal: 'sello-rubor', t: ['#FCF1F1', '#4A2633', '#B8798A'], es: ['Rubor', 'en tonos rubor'], en: ['Blush', 'in blush tones'] },
+        { v: 'oro', seal: 'sello-ilusion-oro-s', t: ['#FAF2E2', '#3A2A1A', '#B08440'], es: ['Champaña', 'en oro champaña'], en: ['Champagne', 'in champagne gold'] },
+        { v: 'vino', seal: 'sello-vino', t: ['#F8EDEE', '#4A1626', '#8E3A4E'], es: ['Vino', 'en vino y oro'], en: ['Wine', 'in wine and gold'] },
+        { v: 'esmeralda', seal: 'sello-esmeralda', t: ['#F0F5F0', '#1F3A2E', '#3F6B55'], es: ['Esmeralda', 'en verde esmeralda'], en: ['Emerald', 'in emerald green'] },
+        { v: 'marino', seal: 'sello-marino', t: ['#EFF2F7', '#1E2B45', '#3E5680'], es: ['Marino', 'en azul marino y oro'], en: ['Navy', 'in navy and gold'] }
+      ],
+      incluir: [
+        { v: 'musica', es: ['Música'], en: ['Music'] },
+        { v: 'cuenta', es: ['Cuenta regresiva'], en: ['Countdown'] },
+        { v: 'mapa', es: ['Mapa y ubicación'], en: ['Map & location'] },
+        { v: 'rsvp', es: ['Confirmar asistencia'], en: ['RSVP'] },
+        { v: 'galeria', es: ['Galería de fotos'], en: ['Photo gallery'] },
+        { v: 'regalos', es: ['Mesa de regalos'], en: ['Gift registry'] },
+        { v: 'vestimenta', es: ['Código de vestimenta'], en: ['Dress code'] },
+        { v: 'padrinos', es: ['Padrinos y familia'], en: ['Sponsors & family'] }
+      ]
+    };
+    var KEYS = ['evento', 'ambiente', 'color', 'incluir', 'detalles'];
+    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '' };
+    try { var sv = JSON.parse(localStorage.getItem('ilu-imagina') || 'null'); if (sv && typeof sv === 'object') for (var k in st) if (k in sv) st[k] = sv[k]; } catch (e) {}
+    if (!Array.isArray(st.incluir)) st.incluir = [];
+    st.step = Math.max(0, Math.min(4, +st.step || 0));
+    function save() { try { localStorage.setItem('ilu-imagina', JSON.stringify(st)); } catch (e) {} }
+    function L() { return document.documentElement.lang === 'en' ? 'en' : 'es'; }
+    function find(list, v) { for (var i = 0; i < list.length; i++) if (list[i].v === v) return list[i]; return null; }
+    function e2(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    var steps = Array.prototype.slice.call(form.querySelectorAll('.im-step'));
+    var prog = document.getElementById('im-prog'), no = document.getElementById('im-no');
+    var back = document.getElementById('im-back'), next = document.getElementById('im-next'), send = document.getElementById('im-send');
+    var note = document.getElementById('im-note'), more = document.getElementById('im-more'), colA = document.getElementById('im-col');
+    var card = document.getElementById('im-card'), $ = function (id) { return document.getElementById(id); };
+    var NAMES = { es: ['Celebración', 'Ambiente', 'Colores', 'Detalles', 'Datos'], en: ['Celebration', 'Atmosphere', 'Colors', 'Extras', 'Details'] };
+
+    function svg(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[k] + '</svg>'; }
+    function renderOpts() {
+      var l = L();
+      form.querySelectorAll('[data-opts]').forEach(function (box) {
+        var k = box.getAttribute('data-opts'), multi = k === 'incluir';
+        box.innerHTML = Q[k].map(function (o) {
+          var t = o[l], on = multi ? st.incluir.indexOf(o.v) > -1 : st[k] === o.v;
+          var inp = '<input type="' + (multi ? 'checkbox' : 'radio') + '" name="im-' + k + '" value="' + o.v + '"' + (on ? ' checked' : '') + '>';
+          if (k === 'color') return '<label class="opt seal-o">' + inp + '<span><img src="img/' + o.seal + '.webp" alt="" width="300" height="300" loading="lazy"><b>' + e2(t[0]) + '</b></span></label>';
+          if (multi) return '<label class="opt chip">' + inp + '<span><b>' + e2(t[0]) + '</b></span></label>';
+          var th = o.img ? '<span class="th"><img src="img/' + o.img + '.webp" alt="" loading="lazy"></span>' : '<span class="th">' + svg(o.ic) + '</span>';
+          if (k === 'ambiente') return '<label class="opt mood">' + inp + '<span>' + th + '<span><b>' + e2(t[0]) + '</b><small>' + e2(t[1]) + '</small></span><i class="tick"></i></span></label>';
+          return '<label class="opt">' + inp + '<span>' + th + '<b>' + e2(t[0]) + '</b><i class="tick"></i></span></label>';
+        }).join('');
+      });
+      form.querySelectorAll('[data-en-ph]').forEach(function (el) { if (!el.dataset.esPh) el.dataset.esPh = el.placeholder; el.placeholder = l === 'en' ? el.dataset.enPh : el.dataset.esPh; });
+    }
+    function filled(i) { var k = KEYS[i]; if (k === 'incluir') return st.incluir.length > 0; if (k === 'detalles') return !!(st.nombres || st.fecha || st.ciudad || st.sueno); return !!st[k]; }
+    function renderNav() {
+      var l = L(), n = NAMES[l];
+      prog.innerHTML = KEYS.map(function (k, i) { return '<li class="' + (i === st.step ? 'now' : filled(i) ? 'done' : '') + '"><button type="button" data-step="' + i + '" aria-label="' + (l === 'en' ? 'Step ' : 'Paso ') + (i + 1) + ': ' + n[i] + '"' + (i === st.step ? ' aria-current="step"' : '') + '><i></i></button></li>'; }).join('');
+      no.textContent = (l === 'en' ? 'STEP ' : 'PASO ') + (st.step + 1) + (l === 'en' ? ' OF 5 · ' : ' DE 5 · ') + n[st.step].toUpperCase();
+      steps.forEach(function (f, i) { f.classList.toggle('on', i === st.step); });
+      back.hidden = st.step === 0;
+      var last = st.step === KEYS.length - 1;
+      next.hidden = last; send.hidden = !last; note.hidden = !last;
+      var ev = find(Q.evento, st.evento);
+      more.hidden = !(last && ev);
+      if (ev) { colA.href = 'coleccion/' + ev.slug + '/'; colA.textContent = (l === 'en' ? 'SEE THE ' : 'VER LA COLECCIÓN ') + ev[l][0].toUpperCase() + (l === 'en' ? ' COLLECTION →' : ' →'); }
+    }
+    function fmtDate(v) {
+      var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); if (!m) return '';
+      var d = new Date(+m[1], +m[2] - 1, +m[3]);
+      try { return d.toLocaleDateString(L() === 'en' ? 'en-CA' : 'es-MX', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) { return v; }
+    }
+    function moodLine() {
+      var l = L(), mo = find(Q.ambiente, st.ambiente), co = find(Q.color, st.color);
+      if (l === 'en') { if (mo) return 'A ' + mo.en[2] + ' celebration' + (co ? ', ' + co.en[1] : ''); return co ? co.en[1].charAt(0).toUpperCase() + co.en[1].slice(1) : ''; }
+      if (mo) return 'Una celebración ' + mo.es[2] + (co ? ', ' + co.es[1] : ''); return co ? co.es[1].charAt(0).toUpperCase() + co.es[1].slice(1) : '';
+    }
+    var lastSig = '';
+    function renderCard() {
+      var l = L(), ev = find(Q.evento, st.evento), mo = find(Q.ambiente, st.ambiente), co = find(Q.color, st.color) || Q.color[2];
+      $('c-eye').textContent = ev ? ev[l][0].toUpperCase() : (l === 'en' ? 'YOUR CELEBRATION' : 'TU CELEBRACIÓN');
+      $('c-pre').textContent = ev ? ev[l][1] : (l === 'en' ? 'Join us to celebrate' : 'Te invitamos a celebrar');
+      var nm = $('c-names'); nm.textContent = st.nombres || (ev ? ev[l][2] : (l === 'en' ? 'Your name here' : 'Tu nombre aquí')); nm.classList.toggle('empty', !st.nombres);
+      $('c-mood').textContent = moodLine();
+      $('c-date').textContent = fmtDate(st.fecha);
+      $('c-city').textContent = st.ciudad;
+      $('c-inc').textContent = st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : ''; }).filter(Boolean).join(' · ');
+      card.style.setProperty('--bg', co.t[0]); card.style.setProperty('--cink', co.t[1]); card.style.setProperty('--acc', co.t[2]);
+      var seal = $('c-seal'), src = 'img/' + co.seal + '.webp'; if (seal.getAttribute('src') !== src) seal.src = src;
+      ['a', 'b'].forEach(function (x) { var im = $('c-deco-' + x), want = mo && mo.img ? 'img/' + (x === 'a' ? mo.img : mo.img2) + '.webp' : ''; if (want) { if (im.getAttribute('src') !== want) { im.classList.remove('on'); im.onload = function () { im.classList.add('on'); }; im.src = want; } else im.classList.add('on'); } else im.classList.remove('on'); });
+      var sig = [st.evento, st.ambiente, st.color].join('|');
+      if (lastSig && sig !== lastSig && !reduce) { card.classList.remove('pulse'); void card.offsetWidth; card.classList.add('pulse'); }
+      lastSig = sig;
+      send.href = 'https://wa.me/16048391163?text=' + encodeURIComponent(message());
+    }
+    function message() {
+      var l = L(), en = l === 'en', ev = find(Q.evento, st.evento), mo = find(Q.ambiente, st.ambiente), co = find(Q.color, st.color), out = [];
+      out.push(en ? 'Hi Ilusión Invites ✨ I imagined my invitation:' : 'Hola Ilusión Invites ✨ Imaginé mi invitación:');
+      if (ev) out.push((en ? '• Event: ' : '• Celebración: ') + ev[l][0]);
+      if (mo) out.push((en ? '• Atmosphere: ' : '• Ambiente: ') + mo[l][0]);
+      if (co) out.push((en ? '• Colors: ' : '• Colores: ') + co[l][0]);
+      if (st.incluir.length) out.push((en ? '• Must have: ' : '• Quiero incluir: ') + st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : ''; }).filter(Boolean).join(', '));
+      if (st.nombres) out.push((en ? '• Celebrating: ' : '• Quién celebra: ') + st.nombres);
+      if (st.fecha) out.push((en ? '• Date: ' : '• Fecha: ') + fmtDate(st.fecha));
+      if (st.ciudad) out.push((en ? '• City: ' : '• Ciudad: ') + st.ciudad);
+      if (st.sueno) out.push((en ? '• My dream: ' : '• Mi sueño: ') + st.sueno);
+      out.push(en ? 'Can you help me create it?' : '¿Me ayudan a crearla?');
+      return out.join('\n');
+    }
+    function go(i, focus) {
+      st.step = Math.max(0, Math.min(KEYS.length - 1, i)); save(); renderNav();
+      if (focus) {
+        var lg = steps[st.step].querySelector('legend'); try { lg.focus({ preventScroll: true }); } catch (e) {}
+        var r = form.getBoundingClientRect(); if (r.top < 70) scrollTo({ top: scrollY + r.top - 90, behavior: reduce ? 'auto' : 'smooth' });
+      }
+    }
+    var tapAt = 0, timer = 0;
+    form.addEventListener('pointerdown', function () { tapAt = Date.now(); });
+    form.addEventListener('change', function (e) {
+      var t = e.target; if (!t.name || t.name.indexOf('im-') !== 0) return;
+      var k = t.name.slice(3);
+      if (k === 'incluir') st.incluir = Array.prototype.slice.call(form.querySelectorAll('input[name="im-incluir"]:checked')).map(function (x) { return x.value; });
+      else st[k] = t.value;
+      save(); renderCard(); renderNav();
+      if (k !== 'incluir' && Date.now() - tapAt < 900) { clearTimeout(timer); var at = st.step; timer = setTimeout(function () { if (st.step === at) go(at + 1, true); }, 650); }
+    });
+    form.addEventListener('input', function (e) { var t = e.target; if (/^(nombres|fecha|ciudad|sueno)$/.test(t.name)) { st[t.name] = t.value; save(); renderCard(); } });
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
+    next.addEventListener('click', function () { go(st.step + 1, true); });
+    back.addEventListener('click', function () { go(st.step - 1, true); });
+    prog.addEventListener('click', function (e) { var b = e.target.closest('button[data-step]'); if (b) go(+b.getAttribute('data-step'), true); });
+    ['nombres', 'fecha', 'ciudad', 'sueno'].forEach(function (k) { var el = $('im-' + k); if (el) el.value = st[k] || ''; });
+    function all() { renderOpts(); renderNav(); renderCard(); }
+    document.getElementById('es').addEventListener('click', all);
+    document.getElementById('en').addEventListener('click', all);
+    all();
   })();
 
   /* gentle depth on the florals */
