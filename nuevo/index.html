@@ -337,6 +337,52 @@ html, body { overflow-x: clip; }
 .step a:hover { text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 820px) { .steps { grid-template-columns: minmax(0, 1fr); max-width: 400px; gap: 22px; } .steps::before { left: 50%; right: auto; top: 60px; bottom: 60px; width: 1px; height: auto; background: linear-gradient(180deg, rgba(182,138,78,0), rgba(182,138,78,.5) 10%, rgba(182,138,78,.5) 90%, rgba(182,138,78,0)); } }
 
+/* what we sell, said plainly in the hero */
+.lead strong { font-weight: 500; color: var(--ink); }
+.perks { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; margin: -6px 0 22px; padding: 0; }
+.perks li { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; font: 400 13.5px var(--f-body); color: var(--ink2); background: rgba(255,252,246,.7); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); }
+.perks li::before { content: ""; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold); }
+.from { margin: 14px 0 0; font: 400 15px var(--f-body); color: var(--ink2); }
+.from b { font: 500 22px var(--f-serif); color: var(--ink); margin-left: 4px; }
+@media (max-width: 560px) { .perks li { font-size: 12.5px; padding: 6px 11px; } }
+
+/* packages */
+.paquetes { position: relative; background: radial-gradient(ellipse 60% 50% at 50% 55%, #F6ECDF, rgba(246,236,223,0) 75%), var(--ivory); }
+.cur { display: flex; width: max-content; margin: -14px auto 30px; border: 1px solid rgba(182,138,78,.45); border-radius: 999px; overflow: hidden; }
+.cur button { border: 0; background: none; padding: 7px 16px; font: 500 12px var(--f-caps); letter-spacing: .16em; color: var(--ink2); cursor: pointer; }
+.cur button[aria-pressed="true"] { background: var(--gold); color: #fff; }
+.packs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.6vw, 30px); max-width: 1060px; margin: 0 auto; align-items: center; }
+.pack { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 50px clamp(22px, 2.6vw, 32px) 32px; border-radius: 50% 50% 22px 22px / 120px 120px 22px 22px; background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(253,249,243,.8)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.28), 0 40px 60px -44px rgba(90,60,40,.5); transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; }
+.pack::before { content: ""; position: absolute; inset: 9px; border-radius: 50% 50% 15px 15px / 112px 112px 15px 15px; border: 1px solid rgba(182,138,78,.16); pointer-events: none; }
+.pack:hover { transform: translateY(-4px); }
+.pack.star { padding-top: 64px; padding-bottom: 40px; background: linear-gradient(180deg, #FFFDF8, #FBF1E1); box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 6px rgba(233,207,149,.22), 0 50px 70px -40px rgba(140,95,40,.55), 0 0 50px rgba(240,215,160,.4); }
+.pack .ribbon { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); padding: 5px 14px; border-radius: 999px; font: 500 9.5px var(--f-caps); letter-spacing: .26em; white-space: nowrap; color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); box-shadow: 0 6px 14px -6px rgba(140,95,40,.6); }
+.pack h3 { margin: 0; font: 500 clamp(30px, 3vw, 38px)/1.05 var(--f-serif); }
+.pack.star h3 { font-size: clamp(34px, 3.4vw, 44px); }
+.pack .tag { font: 400 22px/1.2 var(--f-script); color: var(--gold); margin-top: 2px; }
+.pack .amt { margin: 14px 0 6px; display: flex; align-items: baseline; gap: 6px; }
+.pack .price { font: 500 clamp(36px, 3.6vw, 46px)/1 var(--f-serif); color: var(--ink); }
+.pack .curl { font: 500 11px var(--f-caps); letter-spacing: .2em; color: var(--ink3); }
+.pack ul { list-style: none; margin: 14px 0 24px; padding: 16px 0 0; border-top: 1px solid rgba(182,138,78,.22); display: flex; flex-direction: column; gap: 9px; width: 100%; text-align: left; }
+.pack li { position: relative; padding-left: 20px; font-size: 14.5px; color: var(--ink2); line-height: 1.45; }
+.pack li::before { content: ""; position: absolute; left: 2px; top: .5em; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold); }
+.pack li:first-child { color: var(--ink); }
+.pack .btn { margin-top: auto; width: 100%; }
+.pk-note { text-align: center; margin: 30px 0 0; font-size: 14px; color: var(--ink3); }
+.pk-note a { color: var(--gold); text-underline-offset: 3px; }
+@media (max-width: 860px) { .packs { grid-template-columns: minmax(0, 1fr); max-width: 400px; } .pack.star { order: -1; } }
+
+/* questions */
+.qs { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.qs details { border-radius: 18px; background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px rgba(182,138,78,.24); transition: box-shadow .3s; }
+.qs details[open] { box-shadow: inset 0 0 0 1px rgba(182,138,78,.5), 0 14px 30px -22px rgba(90,60,40,.4); }
+.qs summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; font: 500 clamp(18px, 1.8vw, 21px)/1.3 var(--f-serif); color: var(--ink); }
+.qs summary::-webkit-details-marker { display: none; }
+.qs summary::after { content: ""; flex: none; width: 9px; height: 9px; border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold); transform: rotate(45deg) translateY(-3px); transition: transform .3s; }
+.qs details[open] summary::after { transform: rotate(-135deg) translateY(-2px); }
+.qs details p { margin: 0; padding: 0 22px 20px; color: var(--ink2); }
+.qs summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 18px; }
+
 /* contact */
 .contact { text-align: center; position: relative; background: var(--ivory); padding-block: clamp(90px, 12vw, 150px); }
 .contact::before { content: ""; position: absolute; inset: 0; background: url("img/fondo-luz-m.webp") center / cover; opacity: .55; -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); }
@@ -365,7 +411,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <a class="brand" href="#inicio" aria-label="Ilusión Invites"><img src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><span><b>Ilusión</b><small>INVITES</small></span></a>
     <nav class="links" aria-label="Principal">
       <a href="#eventos" data-en="Collections">Colecciones</a>
-      <a href="#imagina" data-en="Imagine">Imagina</a>
+      <a href="#paquetes" data-en="Packages">Paquetes</a>
       <a href="#como" data-en="How it works">Cómo funciona</a>
       <a href="#contacto" data-en="Contact">Contacto</a>
     </nav>
@@ -384,11 +430,18 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       <span class="eyebrow" data-en="LUXURY DIGITAL INVITATIONS">INVITACIONES DIGITALES DE LUJO</span>
       <h1 data-en-html="An invitation you'll <em>never forget</em>">Una invitación que <em>nunca olvidarás</em></h1>
       <div class="flour" aria-hidden="true"><i></i><b></b><i></i></div>
-      <p class="lead" data-en="Elegant designs with an envelope that opens, music, a countdown and RSVP. For weddings, quinceañeras, baby showers, birthdays and every celebration, in Spanish and English.">Diseños elegantes con un sobre que se abre, música, cuenta regresiva y confirmación de asistencia. Para bodas, XV años, baby showers, cumpleaños y todas tus celebraciones, en español e inglés.</p>
+      <p class="lead" data-en-html="We design your <strong>digital invitation</strong>: it opens like a real sealed envelope, with music, map and RSVP. Ready to share on WhatsApp, in Spanish and English.">Diseñamos tu <strong>invitación digital</strong>: se abre como un sobre real con sello de cera, con música, mapa y confirmación de asistencia. Lista para compartir por WhatsApp, en español e inglés.</p>
+      <ul class="perks" aria-label="Incluye">
+        <li data-en="Made for you">Hecha a tu medida</li>
+        <li data-en="Opens like an envelope">Sobre que se abre</li>
+        <li data-en="RSVP on WhatsApp">Confirmación por WhatsApp</li>
+        <li data-en="Spanish &amp; English">Español e inglés</li>
+      </ul>
       <div class="ctas">
-        <a class="btn btn-gold" href="#eventos" data-en="Choose your event">Elige tu evento</a>
-        <a class="btn btn-line" href="https://wa.me/16048391163?text=Hola%20Ilusi%C3%B3n%20Invites%20%E2%9C%A8%20me%20interesa%20una%20invitaci%C3%B3n" target="_blank" rel="noopener" data-en="Message us on WhatsApp">Escríbenos por WhatsApp</a>
+        <a class="btn btn-gold" href="#paquetes" data-en="See packages">Ver paquetes</a>
+        <a class="btn btn-line" href="#eventos" data-en="See collections">Ver colecciones</a>
       </div>
+      <p class="from"><span data-en="From">Desde</span> <b class="price-from" data-p="0"></b></p>
     </div>
   </section>
 
@@ -404,6 +457,52 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       <p class="count" id="count" aria-hidden="true"></p>
     </div>
     <div class="tabs" id="tabs" role="group" aria-label="Elige una colección"></div>
+  </section>
+
+  <section class="sec paquetes" id="paquetes" aria-labelledby="pk-title">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-en="PACKAGES">PAQUETES</span><h2 id="pk-title" data-en-html="Choose your <em>ilusión</em>">Elige tu <em>ilusión</em></h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"><p data-en="Every package includes a design made for you and a link ready to share. Choose how much magic you want.">Todos incluyen un diseño hecho para ti y un link listo para compartir. Tú eliges cuánta magia quieres.</p></div>
+      <div class="cur" role="group" aria-label="Moneda" data-en-aria="Currency"><button type="button" data-cur="MXN">MXN</button><button type="button" data-cur="CAD">CAD</button></div>
+      <div class="packs">
+        <article class="pack">
+          <h3>Esencial</h3><span class="tag" data-en="The essentials, beautiful">Lo esencial, hermoso</span>
+          <p class="amt"><b class="price" data-p="0"></b><small class="curl"></small></p>
+          <ul>
+            <li data-en="Web invitation with an envelope that opens">Invitación web con sobre que se abre</li>
+            <li data-en="Countdown and map">Cuenta regresiva y mapa</li>
+            <li data-en="RSVP on WhatsApp">Confirmación por WhatsApp</li>
+            <li data-en="1 round of changes">1 ronda de cambios</li>
+          </ul>
+          <a class="btn btn-line" href="crear/?paquete=esencial" data-en="Choose Esencial">Elegir Esencial</a>
+        </article>
+        <article class="pack star">
+          <span class="ribbon" data-en="MOST CHOSEN">EL FAVORITO</span>
+          <h3>Ilusión</h3><span class="tag" data-en="Our signature package">Nuestro paquete estrella</span>
+          <p class="amt"><b class="price" data-p="1"></b><small class="curl"></small></p>
+          <ul>
+            <li data-en="Everything in Esencial">Todo lo de Esencial</li>
+            <li data-en="Music, gallery and schedule">Música, galería e itinerario</li>
+            <li data-en="Gift registry and dress code">Mesa de regalos y vestimenta</li>
+            <li data-en="Bilingual Spanish / English">Bilingüe español / inglés</li>
+            <li data-en="2 rounds of changes">2 rondas de cambios</li>
+          </ul>
+          <a class="btn btn-gold" href="crear/?paquete=ilusion" data-en="Choose Ilusión">Elegir Ilusión</a>
+        </article>
+        <article class="pack">
+          <h3>Gala</h3><span class="tag" data-en="The complete experience">La experiencia completa</span>
+          <p class="amt"><b class="price" data-p="2"></b><small class="curl"></small></p>
+          <ul>
+            <li data-en="Everything in Ilusión">Todo lo de Ilusión</li>
+            <li data-en="Video invitation for WhatsApp and Reels">Video invitación para WhatsApp y Reels</li>
+            <li data-en="A link with each guest's name">Link con el nombre de cada invitado</li>
+            <li data-en="Guest list of confirmations for you">Lista de confirmados para ti</li>
+            <li data-en="Priority delivery in 24 h">Entrega prioritaria en 24 h</li>
+          </ul>
+          <a class="btn btn-line" href="crear/?paquete=gala" data-en="Choose Gala">Elegir Gala</a>
+        </article>
+      </div>
+      <p class="pk-note"><span data-en="Price per invitation (one event).">Precio por invitación (un evento).</span> <a href="https://wa.me/16048391163?text=Hola%20Ilusi%C3%B3n%20Invites%20%E2%9C%A8%20quiero%20cotizar%20algo%20especial" target="_blank" rel="noopener" data-en="Need something special? Ask us">¿Necesitas algo especial? Pregúntanos</a></p>
+    </div>
   </section>
 
   <section class="sec imagina" id="imagina" aria-labelledby="im-title">
@@ -464,6 +563,20 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         <li class="step"><span class="n" aria-hidden="true"><span>2</span></span><h3 data-en="We design it for you">La diseñamos para ti</h3><p data-en="We create it with your photos, music and details, and show you how it looks before we deliver.">La creamos con tus fotos, música y detalles, y te mostramos cómo va quedando antes de entregarla.</p><span class="orn" aria-hidden="true"><i></i><b></b><i></i></span></li>
         <li class="step"><span class="n" aria-hidden="true"><span>3</span></span><h3 data-en="Share it">Compártela</h3><p data-en="Receive your link with envelope, music, map and RSVP, ready to send.">Recibe tu link con sobre, música, mapa y confirmación, listo para enviar.</p><span class="orn" aria-hidden="true"><i></i><b></b><i></i></span></li>
       </ol>
+    </div>
+  </section>
+
+  <section class="sec faq" id="preguntas" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-en="QUESTIONS">PREGUNTAS</span><h2 id="faq-title" data-en-html="Everything you <em>need to know</em>">Todo lo que <em>necesitas saber</em></h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"></div>
+      <div class="qs">
+        <details><summary data-en="What exactly do I receive?">¿Qué recibo exactamente?</summary><p data-en="A personal link to your invitation. When your guests open it, they see a sealed envelope; they tap the seal and your invitation appears with music, photos, map, countdown and a button to confirm.">Un link personal de tu invitación. Al abrirlo, tus invitados ven un sobre sellado; tocan el sello y aparece tu invitación con música, fotos, mapa, cuenta regresiva y un botón para confirmar.</p></details>
+        <details><summary data-en="How do my guests receive it?">¿Cómo la reciben mis invitados?</summary><p data-en="You share the link by WhatsApp, Instagram, email or text. It opens on any phone, with nothing to download.">Compartes el link por WhatsApp, Instagram, correo o mensaje. Se abre en cualquier celular, sin descargar nada.</p></details>
+        <details><summary data-en="How long does it take?">¿Cuánto tiempo tarda?</summary><p data-en="Once we have your details and photos, we show you a first version in a few days. With the Gala package, in 24 hours.">Cuando tenemos tus datos y fotos, te mostramos una primera versión en pocos días. Con el paquete Gala, en 24 horas.</p></details>
+        <details><summary data-en="Can I make changes?">¿Puedo hacer cambios?</summary><p data-en="Yes. Esencial includes 1 round of changes, Ilusión and Gala include 2. We adjust texts, photos and details until you love it.">Sí. Esencial incluye 1 ronda de cambios; Ilusión y Gala incluyen 2. Ajustamos textos, fotos y detalles hasta que te encante.</p></details>
+        <details><summary data-en="How do I order and pay?">¿Cómo la pido y cómo pago?</summary><p data-en="Choose your package, tell us your idea in a few steps and send it by WhatsApp. We confirm everything with you there and send you the payment details.">Elige tu paquete, cuéntanos tu idea en unos pasos y envíala por WhatsApp. Ahí confirmamos todo contigo y te enviamos los datos de pago.</p></details>
+        <details><summary data-en="Do you work in Mexico and Canada?">¿Trabajan en México y Canadá?</summary><p data-en="Yes. We design for clients in Mexico and Canada, in Spanish, English or both in the same invitation.">Sí. Diseñamos para clientes en México y Canadá, en español, inglés o los dos en la misma invitación.</p></details>
+      </div>
     </div>
   </section>
 
@@ -658,7 +771,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     var links = Array.prototype.slice.call(top.querySelectorAll('.links a'));
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); }); }); }, { rootMargin: '-45% 0px -50% 0px' });
-      ['inicio', 'eventos', 'imagina', 'como', 'contacto'].forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+      ['inicio', 'eventos', 'paquetes', 'imagina', 'como', 'preguntas', 'contacto'].forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
     }
   })();
   /* soft glints drifting over the organza */
@@ -850,6 +963,23 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     document.getElementById('es').addEventListener('click', all);
     document.getElementById('en').addEventListener('click', all);
     all();
+  })();
+
+  /* package prices: one place to change them. Spanish shows pesos, English shows Canadian dollars (or the visitor's choice) */
+  (function () {
+    var PRICES = { MXN: [890, 1490, 2490], CAD: [69, 119, 189] };
+    var chosen = null; try { chosen = localStorage.getItem('ilu-cur'); } catch (e) {}
+    function cur() { return chosen || (document.documentElement.lang === 'en' ? 'CAD' : 'MXN'); }
+    function fmt(n) { return '$' + n.toLocaleString('en-US'); }
+    function paint() {
+      var c = cur();
+      document.querySelectorAll('[data-p]').forEach(function (el) { el.textContent = fmt(PRICES[c][+el.getAttribute('data-p')]) + (el.classList.contains('price-from') ? ' ' + c : ''); });
+      document.querySelectorAll('.pack .curl').forEach(function (el) { el.textContent = c; });
+      document.querySelectorAll('.cur button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-cur') === c)); });
+    }
+    document.querySelectorAll('.cur button').forEach(function (b) { b.addEventListener('click', function () { chosen = b.getAttribute('data-cur'); try { localStorage.setItem('ilu-cur', chosen); } catch (e) {} paint(); }); });
+    document.getElementById('es').addEventListener('click', paint); document.getElementById('en').addEventListener('click', paint);
+    paint();
   })();
 
   /* gentle depth on the florals */
