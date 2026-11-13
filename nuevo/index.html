@@ -149,6 +149,10 @@ html, body { overflow-x: clip; }
 .world[data-frame="ovalo"] .inside h3 { font-size: clamp(26px, 2.4vw, 36px); }
 .world[data-frame="ovalo"] .inside .script { font-size: clamp(18px, 1.6vw, 24px); white-space: nowrap; }
 .world[data-frame="ovalo"] .inside .cta { margin-top: 8px; padding-left: 10px; }
+/* keep the caption inside each frame's opening (rect opening is 68% wide, the oval narrows near the bottom) */
+.world[data-frame="rect"] .inside { width: 60%; }
+.world[data-frame="ovalo"] .inside { width: 60%; }
+.inside h3, .inside .script { max-width: 100%; overflow-wrap: normal; }
 .inside > * { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
 .world[data-pos="0"] .inside > * { opacity: 1; transform: none; }
 .world[data-pos="0"] .inside > :nth-child(2) { transition-delay: .12s; } .world[data-pos="0"] .inside > :nth-child(3) { transition-delay: .22s; } .world[data-pos="0"] .inside > :nth-child(4) { transition-delay: .32s; }
@@ -190,7 +194,8 @@ html, body { overflow-x: clip; }
   .count { display: block; position: absolute; z-index: 4; left: 0; right: 0; bottom: 8px; text-align: center; font: 500 11px var(--f-caps); letter-spacing: .3em; color: var(--ink2); }
   .tabs { display: none; }
   .deco.br { right: -18%; } .deco.bl { left: -16%; } .deco.tr { right: -8%; }
-  .world[data-frame="ovalo"] .inside { width: 88%; bottom: 18%; }
+  .world[data-frame="ovalo"] .inside { width: 62%; bottom: 18%; }
+  .world[data-frame="rect"] .inside { width: 62%; }
   .world[data-frame="ovalo"] .inside h3 { font-size: 25px; }
   .world[data-frame="ovalo"] .inside .script { font-size: 17px; }
   .world[data-frame="ovalo"] .inside .cta { font-size: 9px; letter-spacing: .22em; padding-left: 6px; gap: 6px; }
@@ -484,6 +489,20 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   var cur = 0, N = COLS.length;
   var reduceM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* shrink a caption line until it fits its frame (single long words like "Quinceañeras" cannot wrap) */
+  function fitCaptions() {
+    var run = function () {
+      document.querySelectorAll('#track .inside').forEach(function (box) {
+        ['h3', '.script'].forEach(function (sel) {
+          var el = box.querySelector(sel); if (!el) return; el.style.fontSize = '';
+          var fs = parseFloat(getComputedStyle(el).fontSize), w = box.clientWidth, n = 0;
+          while (el.scrollWidth > w + 1 && fs > 14 && n++ < 40) { fs -= 1; el.style.fontSize = fs + 'px'; }
+        });
+      });
+    };
+    run(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+  }
+  var fitT = 0; addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fitCaptions, 150); });
   function renderPortals() {
     var track = document.getElementById('track'); if (!track) return;
     track.innerHTML = COLS.map(function (c, i) {
@@ -502,6 +521,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     var tabs = document.getElementById('tabs');
     tabs.innerHTML = COLS.map(function (c, i) { var t = c[lang] || c.es; return '<button type="button" data-go="' + i + '">' + esc(t.nombre) + '</button>'; }).join('');
     place(true);
+    fitCaptions();
   }
 
   /* one world at a time: arrows, names, swipe, trackpad and keyboard */
