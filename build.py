@@ -13,6 +13,8 @@ PAGES = [
      'Invitaciones digitales de lujo para bodas, XV años, baby showers, cumpleaños, galas, posadas y Año Nuevo. México y Canadá.'),
     ('../website/crear.html', 'nuevo/crear', 'Crea tu invitación · Ilusión Invites',
      'Elige tu diseño, agrega tus fotos y cuéntanos tu idea. Creamos tu invitación digital contigo.'),
+    ('../website/experiencia-xv.html', 'nuevo/experiencia/xv-anos', 'La experiencia XV · Ilusión Invites',
+     'Link por invitado, lista de confirmados, recordatorios, video de entrada, canción personalizada, marco para Instagram y papelería para tus XV.'),
     ('../website/pedido-xv.html', 'pedido-xv', 'Pedido XV Años · Ilusión Invites',
      'Llena los datos de los XV años y armamos su invitación digital.'),
 ]
