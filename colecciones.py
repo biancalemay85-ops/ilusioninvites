@@ -44,6 +44,9 @@ for c in cols:
 
 home = os.path.join(HERE, 'nuevo', 'index.html')
 s = open(home, encoding='utf-8').read()
+frag = os.path.join(HERE, '_expshow.html')
+if os.path.exists(frag):
+    s = s.replace('__EXPSHOW__', open(frag, encoding='utf-8').read())
 s = s.replace('__COLECCIONES__', json.dumps({'colecciones': lite}, ensure_ascii=False).replace('</', '<\\/'))
 open(home, 'w', encoding='utf-8').write(s)
 print('home: collections injected')

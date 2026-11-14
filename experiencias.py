@@ -411,3 +411,84 @@ ready = [s for s in EXP if all(os.path.exists(os.path.join(HERE, 'nuevo', 'img',
 for slug in ready:
     page(slug, EXP[slug])
     print('built experiencia/' + slug)
+
+
+# ---------------------------------------------------------------- home showcase (Experiencia Ilusión)
+# One block per event, switched on the home page. Reuses the experience photos and designs above.
+XV_SHOW = {
+  'theme': ['#FCF3F4', '#FBEFF0', '#FDF7F6', '#B8798A', '#4A2633', '#7A5560', '#A88893'], 'hero': 'hero-xv', 'seal': 'sello-rubor', 'decos': ['rosa-rubor', 'rosa-marfil', 'mariposa-cristal-1'],
+  'who': ('MIS XV AÑOS · VALENTINA', 'VALENTINA · MY QUINCEAÑERA'), 'para': ('Para: Familia López', 'For: The López Family'),
+  'seats': ('Con mucho cariño reservamos<br><b>4 lugares</b> para ustedes', 'With love, we saved<br><b>4 seats</b> for you'),
+  'btns': [('Confirmar 4 lugares', 'Confirm 4 seats'), ('Seremos menos', 'We will be fewer'), ('No podremos ir', "We can't make it")],
+  'video': {'screen': (('MIS XV AÑOS', 'MY QUINCEAÑERA'), 'Valentina')},
+  'marco': (('MIS XV AÑOS', 'MY QUINCEAÑERA'), 'Valentina', '14 · 03 · 2027'),
+  'sign': (('BIENVENIDOS A LOS XV AÑOS DE', 'WELCOME TO THE QUINCEAÑERA OF'), 'Valentina', ('14 · MARZO · 2027', 'MARCH 14 · 2027')),
+  'piece': {'kind': 'mesa', 'small': ('MESA', 'TABLE'), 'big': ('Tres', 'Three'), 'cap': ('NÚMERO DE MESA', 'TABLE NUMBER')},
+  'imgs': {'pantalla': 'xv-salon-pantalla', 'letrero': 'xv-letrero', 'pieza': 'xv-mesa', 'selfie': 'xv-selfie'},
+  'pos': {'pantalla': [31.6, 38.9, 37.3, 37.9], 'letrero': [34.5, 15, 35, 34], 'pieza': [38.5, 46, 27, 37]},
+}
+SHOW_ORDER = [('bodas', 'Boda', 'Wedding'), ('xv-anos', 'XV Años', 'Quinceañera'), ('cumpleanos', 'Cumpleaños', 'Birthday'), ('baby-shower', 'Baby Shower', 'Baby Shower'),
+              ('navidad', 'Posada', 'Christmas'), ('ano-nuevo', 'Año Nuevo', "New Year's"), ('empresas', 'Empresa', 'Corporate')]
+
+
+def show_block(slug, d, first):
+    pos = d.get('pos') or POS.get(slug, {})
+    imgs = d.get('imgs') or {k: f'exp-{slug}-{k}' for k in ('pantalla', 'letrero', 'pieza', 'selfie')}
+    sc = pos.get('pantalla', [30, 30, 40, 40]); sg = pos.get('letrero', [34, 15, 32, 34]); pc = pos.get('pieza', [38, 40, 26, 36])
+    th, dec, p, sgn = d['theme'], d['decos'], d['piece'], d['sign']
+    rot = f'transform:rotate({pc[4]}deg);' if len(pc) > 4 else ''
+    pstyle = f'--x:{pc[0]}%;--y:{pc[1]}%;--w:{pc[2]}%;--h:{pc[3]}%;{rot}'
+    if p['kind'] == 'loteria':
+        pin = f'<div class="lay lot" style="{pstyle}">{T(*p["small"], "small")}{T(*p["big"], "b")}<div class="grid">' + ''.join(T(a, b) for a, b in p['grid']) + '</div></div>'
+    elif p['kind'] == 'gafete':
+        pin = f'<div class="lay badge" style="{pstyle}"><img class="bseal" src="img/sello-ilusion-oro-s.webp" alt=""><span class="evt">GRUPO AURORA</span><b>{html.escape(p["big"][0])}</b>{T(*p["small"], "small")}</div>'
+    else:
+        big = p['big'][0]
+        fs = ' style="font-size:%.1fcqw"' % min(10, 64 / max(len(big), 1))
+        pin = f'<div class="lay mesa" style="{pstyle}"><img class="bfl" src="img/{dec[2]}.webp" alt="">{T(*p["small"], "small")}{T(*p["big"], "b", "", fs)}</div>'
+    vs = d['video']['screen']; mk = d['marco']
+    card = (f'<span class="qrp"></span>' if d.get('corp') else f'<img class="fl" src="img/{dec[0]}.webp" alt="">') + f'<img class="seal" src="img/{d["seal"]}.webp" alt="">'
+    style = f'--bg:{th[0]};--bg2:{th[1]};--paper:{th[2]};--accent:{th[3]};--ink:{th[4]};--ink2:{th[5]};--ink3:{th[6]}'
+    hidden = '' if first else ' hidden'
+    return f'''<div class="xs-ev" data-ev="{slug}" style="{style}"{hidden}>
+  <figure class="xs-t t-sign"><div class="photo"><img src="img/{imgs['letrero']}.webp" alt="" loading="lazy" width="1200" height="1600">
+    <div class="lay sign" style="--x:{sg[0]}%;--y:{sg[1]}%;--w:{sg[2]}%;--h:{sg[3]}%">{T(*sgn[0], 'small')}<b style="font-size:{min(8, 118 / max(len(sgn[1]), 1)):.1f}cqw">{html.escape(sgn[1])}</b><i class="rl"></i>{T(*sgn[2])}</div></div>
+    {T('Letrero de bienvenida', 'Welcome sign', 'figcaption')}</figure>
+  <div class="xs-col">
+    <figure class="xs-t"><div class="screen"><img src="img/{imgs['pantalla']}.webp" alt="" loading="lazy" width="1600" height="900">
+      <div class="on" style="--sx:{sc[0]}%;--sy:{sc[1]}%;--sw:{sc[2]}%;--sh:{sc[3]}%"><div class="bgx" style="background-image:url(img/{d['hero']}.webp)"></div><div class="tt">{T(*vs[0], 'small')}<b class="gold">{html.escape(vs[1])}</b></div></div></div>
+      {T('Video para la pantalla', 'Video for the big screen', 'figcaption')}</figure>
+    <figure class="xs-t"><div class="photo sq"><img src="img/{imgs['pieza']}.webp" alt="" loading="lazy" width="1200" height="1200">{pin}</div>{T(*p['cap'], 'figcaption')}</figure>
+  </div>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="env">
+    {T(*d['who'], 'span', 'who')}{T(*d['para'], 'span', 'para gold')}<div class="card">{card}</div>{T(*d['seats'], 'p', 'seats')}
+    <div class="btns">{T(*d['btns'][0], 'span', 'y')}{T(*d['btns'][1], 'span', 'n')}</div></div></div></div>
+    {T('Invitación con link por invitado', 'Invitation with a link per guest', 'figcaption')}</figure>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="ig">
+    <div class="ph" style="background-image:url(img/{imgs['selfie']}.webp)"></div>
+    <div class="fr"><img class="f1" src="img/{dec[0]}.webp" alt=""><img class="f2" src="img/{dec[1]}.webp" alt=""></div>
+    <div class="lbl">{T(*mk[0], 'small')}<b>{html.escape(mk[1])}</b><span>{html.escape(mk[2])}</span></div></div></div></div>
+    {T('Fotos de invitados con tu marco', 'Guest photos with your frame', 'figcaption')}</figure>
+</div>'''
+
+
+def scoped_css():
+    keep = ('.phone', '.scr', '.env', '.ig', '.screen', '.photo', '.lay', '.sign', '.mesa', '.gold')
+    out = []
+    clean = re.sub(r'/\*.*?\*/', '', CSS, flags=re.S)
+    for m in re.finditer(r'([^{}@]+)\{([^{}]*)\}', clean):
+        sel, body = m.group(1).strip(), m.group(2)
+        parts = [s.strip() for s in sel.split(',')]
+        if parts and all(any(s.startswith(k) for k in keep) for s in parts):
+            out.append(', '.join('.xs ' + s for s in parts) + ' {' + body + '}')
+    out += [m.group(0) for m in re.finditer(r'@keyframes (kb|up|tw) \{(?:[^{}]*\{[^{}]*\})*[^{}]*\}', CSS)]
+    return '\n'.join(out).replace('@keyframes kb', '@keyframes xkb').replace('@keyframes up', '@keyframes xup').replace('@keyframes tw', '@keyframes xtw').replace('animation: kb ', 'animation: xkb ').replace('animation: up ', 'animation: xup ').replace('animation: tw ', 'animation: xtw ')
+
+
+blocks = []
+for i, (slug, es, en) in enumerate(SHOW_ORDER):
+    d = XV_SHOW if slug == 'xv-anos' else EXP[slug]
+    blocks.append(show_block(slug, d, i == 0))
+tabs = ''.join(f'<button type="button" data-ev="{s}" aria-pressed="{str(i == 0).lower()}" data-en="{html.escape(en)}">{html.escape(es)}</button>' for i, (s, es, en) in enumerate(SHOW_ORDER))
+open(os.path.join(HERE, '_expshow.html'), 'w', encoding='utf-8').write(f'<style>{scoped_css()}</style><div class="xs-tabs" role="group" aria-label="Tipo de evento">{tabs}</div><div class="xs-stage">' + ''.join(blocks) + '</div>')
+print('home showcase: ' + str(len(blocks)) + ' events')

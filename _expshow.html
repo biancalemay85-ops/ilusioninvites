@@ -1,0 +1,192 @@
+<style>.xs .gold { background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.xs .phone { position: relative; width: min(300px, 78vw); aspect-ratio: 9 / 19; border-radius: 42px; padding: 10px; background: linear-gradient(145deg, #3b3236, #121012 40%, #2a2326 70%, #0d0b0c); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent), 0 50px 70px -36px rgba(60,25,35,.6), 0 14px 22px rgba(60,25,35,.2); }
+.xs .phone::before { content: ""; position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 76px; height: 20px; border-radius: 999px; background: #0d0b0c; z-index: 3; }
+.xs .scr { position: relative; width: 100%; height: 100%; border-radius: 33px; overflow: hidden; background: var(--paper); }
+.xs .phone.tilt { transform: rotate(-3deg); }
+.xs .env { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 18px 22px; text-align: center; background: radial-gradient(120% 70% at 50% 0%, #fff, var(--bg2) 70%); }
+.xs .env .who { font: 500 9.5px var(--f-caps); letter-spacing: .3em; color: var(--ink3); }
+.xs .env .para { font: 400 34px/1 var(--f-script); }
+.xs .env .card { position: relative; width: 100%; aspect-ratio: 1.45; border-radius: 6px; background: linear-gradient(160deg, #FFFBF8, var(--bg2)); box-shadow: 0 16px 26px -16px rgba(90,40,50,.5), inset 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent); overflow: hidden; }
+.xs .env .card::before, .xs .env .card::after { content: ""; position: absolute; top: 0; width: 72%; height: 70%; border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+.xs .env .card::before { left: -12%; transform: skewY(28deg); transform-origin: left top; }
+.xs .env .card::after { right: -12%; transform: skewY(-28deg); transform-origin: right top; }
+.xs .env .card img.seal { position: absolute; left: 50%; top: 52%; width: 56px; transform: translate(-50%, -50%); filter: drop-shadow(0 6px 8px rgba(90,40,50,.35)); z-index: 2; }
+.xs .env .card img.fl { position: absolute; width: 46%; right: -8%; top: 22%; z-index: 1; }
+.xs .env .seats { font: italic 500 17px/1.35 var(--f-serif); color: var(--ink); }
+.xs .env .seats b { font: 600 22px var(--f-serif); color: var(--gold); }
+.xs .env .btns { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.xs .env .btns span { padding: 10px; border-radius: 999px; font: 500 12.5px var(--f-body); }
+.xs .env .btns .y { color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); }
+.xs .env .btns .n { color: var(--ink2); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent); }
+.xs .screen { position: relative; width: 100%; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(60,25,35,.6); }
+.xs .screen > img { display: block; width: 100%; height: auto; }
+.xs .screen .on { position: absolute; left: var(--sx, 30%); top: var(--sy, 20%); width: var(--sw, 40%); height: var(--sh, 40%); overflow: hidden; background: #2a0f1a; box-shadow: 0 0 40px rgba(255,220,235,.45); }
+.xs .screen .on .bgx { position: absolute; inset: -6%; background: url(../../img/hero-xv.webp) center 40% / cover; animation: xkb 12s ease-in-out infinite alternate; }
+.xs .screen .on .tt { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: radial-gradient(60% 60% at 50% 55%, color-mix(in srgb, var(--bg) 75%, transparent), color-mix(in srgb, var(--bg) 0%, transparent) 75%); }
+.xs .screen .on .tt small { font: 500 clamp(6px, .8vw, 10px) var(--f-caps); letter-spacing: .4em; color: var(--ink); opacity: 0; animation: xup 6s ease-in-out infinite; }
+.xs .screen .on .tt b { font: 400 clamp(22px, 4vw, 56px)/1 var(--f-script); opacity: 0; animation: xup 6s ease-in-out .5s infinite; }
+.xs .screen .on .sp { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff6e0; box-shadow: 0 0 8px 2px rgba(255,230,180,.9); animation: xtw 2.4s ease-in-out infinite; }
+.xs .ig { position: absolute; inset: 0; background: #111; }
+.xs .ig .ph { position: absolute; inset: 0; background: center / cover no-repeat; }
+.xs .ig .fr { position: absolute; inset: 0; pointer-events: none; }
+.xs .ig .fr::before { content: ""; position: absolute; inset: 12px; border: 1.5px solid rgba(243,217,154,.9); border-radius: 18px; box-shadow: inset 0 0 0 4px rgba(255,255,255,.18); }
+.xs .ig .fr img { position: absolute; }
+.xs .ig .fr .f1 { width: 46%; left: -10%; top: -4%; transform: rotate(-12deg); }
+.xs .ig .fr .f2 { width: 40%; right: -10%; bottom: 16%; transform: scaleX(-1) rotate(-10deg); }
+.xs .ig .fr .bf { width: 22%; right: 8%; top: 9%; transform: rotate(14deg); }
+.xs .ig .lbl { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 10px 18px; text-align: center; background: linear-gradient(180deg, transparent, rgba(60,20,35,.7)); color: #fff; }
+.xs .ig .lbl small { display: block; font: 500 8.5px var(--f-caps); letter-spacing: .32em; }
+.xs .ig .lbl b { display: block; font: 400 34px/1.05 var(--f-script); background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.xs .ig .lbl span { font: 500 8.5px var(--f-caps); letter-spacing: .24em; }
+.xs .ig .bar { position: absolute; top: 34px; left: 14px; right: 14px; height: 2px; margin: 0; background: rgba(255,255,255,.35); }
+.xs .ig .bar i { width: 60%; background: #fff; animation: none; }
+.xs .ig .user { position: absolute; top: 42px; left: 16px; display: flex; align-items: center; gap: 6px; font-size: 11px; color: #fff; font-weight: 500; text-shadow: 0 1px 4px rgba(0,0,0,.4); }
+.xs .ig .user i { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #F7E4B4, #B8798A); box-shadow: 0 0 0 1.5px #fff; }
+.xs .photo { position: relative; container-type: inline-size; width: 100%; max-width: 520px; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(60,25,35,.6); }
+.xs .photo > img { display: block; width: 100%; height: auto; }
+.xs .lay { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--ink); }
+.xs .sign .mono { display: flex; justify-content: center; height: 28%; gap: 0; }
+.xs .sign .mono img { height: 100%; width: auto; margin: 0 -3%; }
+.xs .sign small { font: 500 2.1cqw var(--f-caps); letter-spacing: .34em; color: var(--ink2); margin-top: 4%; }
+.xs .sign b { font: 400 9.6cqw/1 var(--f-script); background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .1em .1em; filter: drop-shadow(0 1px 0 rgba(110,72,28,.4)); }
+.xs .sign .rl { width: 46%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 2% 0; }
+.xs .sign span { font: 500 1.9cqw var(--f-caps); letter-spacing: .26em; color: var(--ink2); }
+.xs .mesa small { font: 500 2.4cqw var(--f-caps); letter-spacing: .3em; color: var(--ink2); }
+.xs .mesa b { font: 400 10cqw/1 var(--f-script); background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .1em .08em; }
+.xs .mesa .bfl { width: 30%; margin-bottom: 2%; }
+@keyframes xkb { from { transform: scale(1); } to { transform: scale(1.12) translateY(-3%); } }
+@keyframes xup { 0%, 8% { opacity: 0; transform: translateY(8px); } 20%, 80% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes xtw { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1); } }</style><div class="xs-tabs" role="group" aria-label="Tipo de evento"><button type="button" data-ev="bodas" aria-pressed="true" data-en="Wedding">Boda</button><button type="button" data-ev="xv-anos" aria-pressed="false" data-en="Quinceañera">XV Años</button><button type="button" data-ev="cumpleanos" aria-pressed="false" data-en="Birthday">Cumpleaños</button><button type="button" data-ev="baby-shower" aria-pressed="false" data-en="Baby Shower">Baby Shower</button><button type="button" data-ev="navidad" aria-pressed="false" data-en="Christmas">Posada</button><button type="button" data-ev="ano-nuevo" aria-pressed="false" data-en="New Year&#x27;s">Año Nuevo</button><button type="button" data-ev="empresas" aria-pressed="false" data-en="Corporate">Empresa</button></div><div class="xs-stage"><div class="xs-ev" data-ev="bodas" style="--bg:#FBF6EF;--bg2:#F3EADD;--paper:#FDFAF5;--accent:#B68A4E;--ink:#3A2A26;--ink2:#6E5B54;--ink3:#9A877F">
+  <figure class="xs-t t-sign"><div class="photo"><img src="img/exp-bodas-letrero.webp" alt="" loading="lazy" width="1200" height="1600">
+    <div class="lay sign" style="--x:35.5%;--y:22.5%;--w:31%;--h:31%"><small data-en-html="WELCOME TO THE WEDDING OF">BIENVENIDOS A LA BODA DE</small><b style="font-size:8.0cqw">Ana &amp; Emiliano</b><i class="rl"></i><span data-en-html="APRIL 17 · 2027">17 · ABRIL · 2027</span></div></div>
+    <figcaption data-en-html="Welcome sign">Letrero de bienvenida</figcaption></figure>
+  <div class="xs-col">
+    <figure class="xs-t"><div class="screen"><img src="img/exp-bodas-pantalla.webp" alt="" loading="lazy" width="1600" height="900">
+      <div class="on" style="--sx:36.5%;--sy:35.6%;--sw:27.3%;--sh:31.5%"><div class="bgx" style="background-image:url(img/hero-bodas.webp)"></div><div class="tt"><small data-en-html="WE&#x27;RE GETTING MARRIED">NOS CASAMOS</small><b class="gold">Ana &amp; Emiliano</b></div></div></div>
+      <figcaption data-en-html="Video for the big screen">Video para la pantalla</figcaption></figure>
+    <figure class="xs-t"><div class="photo sq"><img src="img/exp-bodas-pieza.webp" alt="" loading="lazy" width="1200" height="1200"><div class="lay mesa" style="--x:38%;--y:40.5%;--w:27.5%;--h:38.5%;"><img class="bfl" src="img/cristal-1.webp" alt=""><small data-en-html="TABLE">MESA</small><b style="font-size:10.0cqw" data-en-html="Five">Cinco</b></div></div><figcaption data-en-html="TABLE NUMBER">NÚMERO DE MESA</figcaption></figure>
+  </div>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="env">
+    <span class="who" data-en-html="OUR WEDDING · ANA &amp; EMILIANO">NUESTRA BODA · ANA & EMILIANO</span><span class="para gold" data-en-html="For: The López Family">Para: Familia López</span><div class="card"><img class="fl" src="img/rosa-marfil.webp" alt=""><img class="seal" src="img/sello-marfil.webp" alt=""></div><p class="seats" data-en-html="With love, we saved&lt;br&gt;&lt;b&gt;4 seats&lt;/b&gt; for you">Con mucho cariño reservamos<br><b>4 lugares</b> para ustedes</p>
+    <div class="btns"><span class="y" data-en-html="Confirm 4 seats">Confirmar 4 lugares</span><span class="n" data-en-html="We will be fewer">Seremos menos</span></div></div></div></div>
+    <figcaption data-en-html="Invitation with a link per guest">Invitación con link por invitado</figcaption></figure>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="ig">
+    <div class="ph" style="background-image:url(img/exp-bodas-selfie.webp)"></div>
+    <div class="fr"><img class="f1" src="img/rosa-marfil.webp" alt=""><img class="f2" src="img/hortensia-marfil.webp" alt=""></div>
+    <div class="lbl"><small data-en-html="OUR WEDDING">NUESTRA BODA</small><b>Ana &amp; Emiliano</b><span>17 · 04 · 2027</span></div></div></div></div>
+    <figcaption data-en-html="Guest photos with your frame">Fotos de invitados con tu marco</figcaption></figure>
+</div><div class="xs-ev" data-ev="xv-anos" style="--bg:#FCF3F4;--bg2:#FBEFF0;--paper:#FDF7F6;--accent:#B8798A;--ink:#4A2633;--ink2:#7A5560;--ink3:#A88893" hidden>
+  <figure class="xs-t t-sign"><div class="photo"><img src="img/xv-letrero.webp" alt="" loading="lazy" width="1200" height="1600">
+    <div class="lay sign" style="--x:34.5%;--y:15%;--w:35%;--h:34%"><small data-en-html="WELCOME TO THE QUINCEAÑERA OF">BIENVENIDOS A LOS XV AÑOS DE</small><b style="font-size:8.0cqw">Valentina</b><i class="rl"></i><span data-en-html="MARCH 14 · 2027">14 · MARZO · 2027</span></div></div>
+    <figcaption data-en-html="Welcome sign">Letrero de bienvenida</figcaption></figure>
+  <div class="xs-col">
+    <figure class="xs-t"><div class="screen"><img src="img/xv-salon-pantalla.webp" alt="" loading="lazy" width="1600" height="900">
+      <div class="on" style="--sx:31.6%;--sy:38.9%;--sw:37.3%;--sh:37.9%"><div class="bgx" style="background-image:url(img/hero-xv.webp)"></div><div class="tt"><small data-en-html="MY QUINCEAÑERA">MIS XV AÑOS</small><b class="gold">Valentina</b></div></div></div>
+      <figcaption data-en-html="Video for the big screen">Video para la pantalla</figcaption></figure>
+    <figure class="xs-t"><div class="photo sq"><img src="img/xv-mesa.webp" alt="" loading="lazy" width="1200" height="1200"><div class="lay mesa" style="--x:38.5%;--y:46%;--w:27%;--h:37%;"><img class="bfl" src="img/mariposa-cristal-1.webp" alt=""><small data-en-html="TABLE">MESA</small><b style="font-size:10.0cqw" data-en-html="Three">Tres</b></div></div><figcaption data-en-html="TABLE NUMBER">NÚMERO DE MESA</figcaption></figure>
+  </div>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="env">
+    <span class="who" data-en-html="VALENTINA · MY QUINCEAÑERA">MIS XV AÑOS · VALENTINA</span><span class="para gold" data-en-html="For: The López Family">Para: Familia López</span><div class="card"><img class="fl" src="img/rosa-rubor.webp" alt=""><img class="seal" src="img/sello-rubor.webp" alt=""></div><p class="seats" data-en-html="With love, we saved&lt;br&gt;&lt;b&gt;4 seats&lt;/b&gt; for you">Con mucho cariño reservamos<br><b>4 lugares</b> para ustedes</p>
+    <div class="btns"><span class="y" data-en-html="Confirm 4 seats">Confirmar 4 lugares</span><span class="n" data-en-html="We will be fewer">Seremos menos</span></div></div></div></div>
+    <figcaption data-en-html="Invitation with a link per guest">Invitación con link por invitado</figcaption></figure>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="ig">
+    <div class="ph" style="background-image:url(img/xv-selfie.webp)"></div>
+    <div class="fr"><img class="f1" src="img/rosa-rubor.webp" alt=""><img class="f2" src="img/rosa-marfil.webp" alt=""></div>
+    <div class="lbl"><small data-en-html="MY QUINCEAÑERA">MIS XV AÑOS</small><b>Valentina</b><span>14 · 03 · 2027</span></div></div></div></div>
+    <figcaption data-en-html="Guest photos with your frame">Fotos de invitados con tu marco</figcaption></figure>
+</div><div class="xs-ev" data-ev="cumpleanos" style="--bg:#FBF5F6;--bg2:#EFE3EE;--paper:#FDF9FB;--accent:#A77FA0;--ink:#3B2A3A;--ink2:#6A5568;--ink3:#9C8A9A" hidden>
+  <figure class="xs-t t-sign"><div class="photo"><img src="img/exp-cumpleanos-letrero.webp" alt="" loading="lazy" width="1200" height="1600">
+    <div class="lay sign" style="--x:41%;--y:30%;--w:34%;--h:34%"><small data-en-html="WELCOME TO THE 30TH OF">BIENVENIDOS A LOS 30 DE</small><b style="font-size:8.0cqw">Mariana</b><i class="rl"></i><span data-en-html="AUGUST 22 · 2027">22 · AGOSTO · 2027</span></div></div>
+    <figcaption data-en-html="Welcome sign">Letrero de bienvenida</figcaption></figure>
+  <div class="xs-col">
+    <figure class="xs-t"><div class="screen"><img src="img/exp-cumpleanos-pantalla.webp" alt="" loading="lazy" width="1600" height="900">
+      <div class="on" style="--sx:32.3%;--sy:24.1%;--sw:37.5%;--sh:36.2%"><div class="bgx" style="background-image:url(img/hero-cumpleanos.webp)"></div><div class="tt"><small data-en-html="LET&#x27;S CELEBRATE">CELEBREMOS</small><b class="gold">Mariana · 30</b></div></div></div>
+      <figcaption data-en-html="Video for the big screen">Video para la pantalla</figcaption></figure>
+    <figure class="xs-t"><div class="photo sq"><img src="img/exp-cumpleanos-pieza.webp" alt="" loading="lazy" width="1200" height="1200"><div class="lay mesa" style="--x:34.5%;--y:35.5%;--w:31.5%;--h:46.5%;"><img class="bfl" src="img/mariposa-dorada-1.webp" alt=""><small data-en-html="THE">MESA DE</small><b style="font-size:10.0cqw" data-en-html="Sweets">Dulces</b></div></div><figcaption data-en-html="DESSERT TABLE CARD">TARJETA DE MESA DE DULCES</figcaption></figure>
+  </div>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="env">
+    <span class="who" data-en-html="MARIANA&#x27;S 30TH">MIS 30 AÑOS · MARIANA</span><span class="para gold" data-en-html="For: Sofía &amp; Andrés">Para: Sofía y Andrés</span><div class="card"><img class="fl" src="img/rosa-rubor.webp" alt=""><img class="seal" src="img/sello-rubor.webp" alt=""></div><p class="seats" data-en-html="With love, we saved&lt;br&gt;&lt;b&gt;2 seats&lt;/b&gt; for you">Con mucho cariño reservamos<br><b>2 lugares</b> para ustedes</p>
+    <div class="btns"><span class="y" data-en-html="Confirm 2 seats">Confirmar 2 lugares</span><span class="n" data-en-html="Just me">Iré yo solo</span></div></div></div></div>
+    <figcaption data-en-html="Invitation with a link per guest">Invitación con link por invitado</figcaption></figure>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="ig">
+    <div class="ph" style="background-image:url(img/exp-cumpleanos-selfie.webp)"></div>
+    <div class="fr"><img class="f1" src="img/rosa-rubor.webp" alt=""><img class="f2" src="img/rosa-marfil.webp" alt=""></div>
+    <div class="lbl"><small data-en-html="MY 30TH">MIS 30 AÑOS</small><b>Mariana</b><span>22 · 08 · 2027</span></div></div></div></div>
+    <figcaption data-en-html="Guest photos with your frame">Fotos de invitados con tu marco</figcaption></figure>
+</div><div class="xs-ev" data-ev="baby-shower" style="--bg:#F5F8FB;--bg2:#E6EEF5;--paper:#FAFCFE;--accent:#6F8DB3;--ink:#2E3B4B;--ink2:#5C6B7C;--ink3:#8C9AAA" hidden>
+  <figure class="xs-t t-sign"><div class="photo"><img src="img/exp-baby-shower-letrero.webp" alt="" loading="lazy" width="1200" height="1600">
+    <div class="lay sign" style="--x:41.5%;--y:24%;--w:34.5%;--h:34%"><small data-en-html="WELCOME TO THE BABY SHOWER OF">BIENVENIDOS AL BABY SHOWER DE</small><b style="font-size:8.0cqw">Mateo</b><i class="rl"></i><span data-en-html="APRIL 12 · 2027">12 · ABRIL · 2027</span></div></div>
+    <figcaption data-en-html="Welcome sign">Letrero de bienvenida</figcaption></figure>
+  <div class="xs-col">
+    <figure class="xs-t"><div class="screen"><img src="img/exp-baby-shower-pantalla.webp" alt="" loading="lazy" width="1600" height="900">
+      <div class="on" style="--sx:25.6%;--sy:21.5%;--sw:48.8%;--sh:48.5%"><div class="bgx" style="background-image:url(img/hero-baby-shower.webp)"></div><div class="tt"><small data-en-html="WELCOME">BIENVENIDO</small><b class="gold">Mateo</b></div></div></div>
+      <figcaption data-en-html="Video for the big screen">Video para la pantalla</figcaption></figure>
+    <figure class="xs-t"><div class="photo sq"><img src="img/exp-baby-shower-pieza.webp" alt="" loading="lazy" width="1200" height="1200"><div class="lay lot" style="--x:20%;--y:32%;--w:58%;--h:50%;transform:rotate(-17deg);"><small data-en-html="BABY">LOTERÍA DEL</small><b data-en-html="Bingo">Bebé</b><div class="grid"><span data-en-html="Bottle">Biberón</span><span data-en-html="Pacifier">Chupón</span><span data-en-html="Crib">Cuna</span><span data-en-html="Teddy">Osito</span><span data-en-html="Diaper">Pañal</span><span data-en-html="Rattle">Sonaja</span><span data-en-html="Bib">Babero</span><span data-en-html="Stroller">Carriola</span><span data-en-html="Blanket">Cobija</span></div></div></div><figcaption data-en-html="GAME FOR GUESTS">JUEGO PARA LOS INVITADOS</figcaption></figure>
+  </div>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="env">
+    <span class="who" data-en-html="BABY SHOWER · MATEO">BABY SHOWER · MATEO</span><span class="para gold" data-en-html="For: Aunt Carmen">Para: Tía Carmen</span><div class="card"><img class="fl" src="img/nube-gypsophila.webp" alt=""><img class="seal" src="img/sello-marino.webp" alt=""></div><p class="seats" data-en-html="With love, we saved&lt;br&gt;&lt;b&gt;2 seats&lt;/b&gt; for you">Con mucho cariño reservamos<br><b>2 lugares</b> para ti</p>
+    <div class="btns"><span class="y" data-en-html="Confirm 2 seats">Confirmar 2 lugares</span><span class="n" data-en-html="Just me">Iré yo sola</span></div></div></div></div>
+    <figcaption data-en-html="Invitation with a link per guest">Invitación con link por invitado</figcaption></figure>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="ig">
+    <div class="ph" style="background-image:url(img/exp-baby-shower-selfie.webp)"></div>
+    <div class="fr"><img class="f1" src="img/nube-gypsophila.webp" alt=""><img class="f2" src="img/rosa-marfil.webp" alt=""></div>
+    <div class="lbl"><small data-en-html="BABY SHOWER">BABY SHOWER</small><b>Mateo</b><span>12 · 04 · 2027</span></div></div></div></div>
+    <figcaption data-en-html="Guest photos with your frame">Fotos de invitados con tu marco</figcaption></figure>
+</div><div class="xs-ev" data-ev="navidad" style="--bg:#F6F4EE;--bg2:#EAE6DA;--paper:#FBFAF6;--accent:#2F5A43;--ink:#1F2E25;--ink2:#4D5C52;--ink3:#7F8A82" hidden>
+  <figure class="xs-t t-sign"><div class="photo"><img src="img/exp-navidad-letrero.webp" alt="" loading="lazy" width="1200" height="1600">
+    <div class="lay sign" style="--x:37.5%;--y:14%;--w:30%;--h:29%"><small data-en-html="WELCOME TO THE CHRISTMAS PARTY OF THE">BIENVENIDOS A LA POSADA DE LA</small><b style="font-size:6.9cqw">Familia Hernández</b><i class="rl"></i><span data-en-html="DECEMBER 16 · 2027">16 · DICIEMBRE · 2027</span></div></div>
+    <figcaption data-en-html="Welcome sign">Letrero de bienvenida</figcaption></figure>
+  <div class="xs-col">
+    <figure class="xs-t"><div class="screen"><img src="img/exp-navidad-pantalla.webp" alt="" loading="lazy" width="1600" height="900">
+      <div class="on" style="--sx:25.8%;--sy:20.2%;--sw:49.3%;--sh:48.4%"><div class="bgx" style="background-image:url(img/hero-navidad-posadas.webp)"></div><div class="tt"><small data-en-html="CHRISTMAS PARTY">POSADA NAVIDEÑA</small><b class="gold">Familia Hernández</b></div></div></div>
+      <figcaption data-en-html="Video for the big screen">Video para la pantalla</figcaption></figure>
+    <figure class="xs-t"><div class="photo sq"><img src="img/exp-navidad-pieza.webp" alt="" loading="lazy" width="1200" height="1200"><div class="lay mesa" style="--x:39.5%;--y:17.5%;--w:24.5%;--h:35%;"><img class="bfl" src="img/cristal-1.webp" alt=""><small data-en-html="YOUR SEAT">TU LUGAR</small><b style="font-size:6.4cqw" data-en-html="Aunt Carmen">Tía Carmen</b></div></div><figcaption data-en-html="PLACE CARD">TARJETA DE LUGAR</figcaption></figure>
+  </div>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="env">
+    <span class="who" data-en-html="CHRISTMAS PARTY · THE HERNÁNDEZ FAMILY">POSADA · FAMILIA HERNÁNDEZ</span><span class="para gold" data-en-html="For: The Ruiz Family">Para: Familia Ruiz</span><div class="card"><img class="fl" src="img/ramita-hojas-doradas.webp" alt=""><img class="seal" src="img/sello-esmeralda.webp" alt=""></div><p class="seats" data-en-html="With love, we saved&lt;br&gt;&lt;b&gt;5 seats&lt;/b&gt; for you">Con mucho cariño reservamos<br><b>5 lugares</b> para ustedes</p>
+    <div class="btns"><span class="y" data-en-html="Confirm 5 seats">Confirmar 5 lugares</span><span class="n" data-en-html="We will be fewer">Seremos menos</span></div></div></div></div>
+    <figcaption data-en-html="Invitation with a link per guest">Invitación con link por invitado</figcaption></figure>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="ig">
+    <div class="ph" style="background-image:url(img/exp-navidad-selfie.webp)"></div>
+    <div class="fr"><img class="f1" src="img/ramita-hojas-doradas.webp" alt=""><img class="f2" src="img/peonia-vino.webp" alt=""></div>
+    <div class="lbl"><small data-en-html="CHRISTMAS PARTY">POSADA NAVIDEÑA</small><b>Familia Hernández</b><span>16 · 12 · 2027</span></div></div></div></div>
+    <figcaption data-en-html="Guest photos with your frame">Fotos de invitados con tu marco</figcaption></figure>
+</div><div class="xs-ev" data-ev="ano-nuevo" style="--bg:#F7F4EE;--bg2:#ECE5D8;--paper:#FCFAF6;--accent:#9A7A3E;--ink:#1C1B20;--ink2:#4F4B52;--ink3:#85808A" hidden>
+  <figure class="xs-t t-sign"><div class="photo"><img src="img/exp-ano-nuevo-letrero.webp" alt="" loading="lazy" width="1200" height="1600">
+    <div class="lay sign" style="--x:34%;--y:24%;--w:38%;--h:36%"><small data-en-html="WELCOME TO">BIENVENIDOS A RECIBIR EL</small><b style="font-size:8.0cqw">2028</b><i class="rl"></i><span data-en-html="DECEMBER 31 · 2027">31 · DICIEMBRE · 2027</span></div></div>
+    <figcaption data-en-html="Welcome sign">Letrero de bienvenida</figcaption></figure>
+  <div class="xs-col">
+    <figure class="xs-t"><div class="screen"><img src="img/exp-ano-nuevo-pantalla.webp" alt="" loading="lazy" width="1600" height="900">
+      <div class="on" style="--sx:24%;--sy:17.5%;--sw:52.5%;--sh:44.5%"><div class="bgx" style="background-image:url(img/hero-ano-nuevo.webp)"></div><div class="tt"><small data-en-html="HAPPY">FELIZ</small><b class="gold">2028</b></div></div></div>
+      <figcaption data-en-html="Video for the big screen">Video para la pantalla</figcaption></figure>
+    <figure class="xs-t"><div class="photo sq"><img src="img/exp-ano-nuevo-pieza.webp" alt="" loading="lazy" width="1200" height="1200"><div class="lay mesa" style="--x:33%;--y:29%;--w:35.5%;--h:52%;"><img class="bfl" src="img/cristal-1.webp" alt=""><small data-en-html="MIDNIGHT">BRINDIS DE</small><b style="font-size:6.4cqw" data-en-html="Toast">Medianoche</b></div></div><figcaption data-en-html="TOAST CARD">TARJETA PARA EL BRINDIS</figcaption></figure>
+  </div>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="env">
+    <span class="who" data-en-html="NEW YEAR&#x27;S EVE · VALERIA &amp; ANDRÉS">AÑO NUEVO · VALERIA & ANDRÉS</span><span class="para gold" data-en-html="For: Sofía &amp; Daniel">Para: Sofía y Daniel</span><div class="card"><img class="fl" src="img/cristal-1.webp" alt=""><img class="seal" src="img/sello-ilusion-oro-s.webp" alt=""></div><p class="seats" data-en-html="With love, we saved&lt;br&gt;&lt;b&gt;2 seats&lt;/b&gt; for you">Con mucho cariño reservamos<br><b>2 lugares</b> para ustedes</p>
+    <div class="btns"><span class="y" data-en-html="Confirm 2 seats">Confirmar 2 lugares</span><span class="n" data-en-html="Just me">Iré yo solo</span></div></div></div></div>
+    <figcaption data-en-html="Invitation with a link per guest">Invitación con link por invitado</figcaption></figure>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="ig">
+    <div class="ph" style="background-image:url(img/exp-ano-nuevo-selfie.webp)"></div>
+    <div class="fr"><img class="f1" src="img/cristal-1.webp" alt=""><img class="f2" src="img/ramita-hojas-doradas.webp" alt=""></div>
+    <div class="lbl"><small data-en-html="NEW YEAR&#x27;S EVE">AÑO NUEVO</small><b>2028</b><span>VALERIA &amp; ANDRÉS</span></div></div></div></div>
+    <figcaption data-en-html="Guest photos with your frame">Fotos de invitados con tu marco</figcaption></figure>
+</div><div class="xs-ev" data-ev="empresas" style="--bg:#F4F5F8;--bg2:#E4E7EE;--paper:#FAFBFC;--accent:#2E3F66;--ink:#1E2633;--ink2:#4E586A;--ink3:#8890A0" hidden>
+  <figure class="xs-t t-sign"><div class="photo"><img src="img/exp-empresas-letrero.webp" alt="" loading="lazy" width="1200" height="1600">
+    <div class="lay sign" style="--x:36%;--y:22%;--w:30%;--h:29%"><small data-en-html="WELCOME TO THE ANNUAL GALA">BIENVENIDOS A LA GALA ANUAL</small><b style="font-size:8.0cqw">Grupo Aurora</b><i class="rl"></i><span data-en-html="NOVEMBER 15 · 2027">15 · NOVIEMBRE · 2027</span></div></div>
+    <figcaption data-en-html="Welcome sign">Letrero de bienvenida</figcaption></figure>
+  <div class="xs-col">
+    <figure class="xs-t"><div class="screen"><img src="img/exp-empresas-pantalla.webp" alt="" loading="lazy" width="1600" height="900">
+      <div class="on" style="--sx:38.1%;--sy:18.4%;--sw:24.0%;--sh:25.6%"><div class="bgx" style="background-image:url(img/hero-gala-empresa.webp)"></div><div class="tt"><small data-en-html="WELCOME">BIENVENIDOS</small><b class="gold">Gala Aurora</b></div></div></div>
+      <figcaption data-en-html="Video for the big screen">Video para la pantalla</figcaption></figure>
+    <figure class="xs-t"><div class="photo sq"><img src="img/exp-empresas-pieza.webp" alt="" loading="lazy" width="1200" height="1200"><div class="lay badge" style="--x:24%;--y:48%;--w:26%;--h:31%;transform:rotate(20deg);"><img class="bseal" src="img/sello-ilusion-oro-s.webp" alt=""><span class="evt">GRUPO AURORA</span><b>Andrea Torres</b><small data-en-html="LUMIÈRE · GUEST">LUMIÈRE · INVITADA</small></div></div><figcaption data-en-html="NAME BADGE WITH QR">GAFETE CON NOMBRE Y QR</figcaption></figure>
+  </div>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="env">
+    <span class="who" data-en-html="ANNUAL GALA · GRUPO AURORA">GALA ANUAL · GRUPO AURORA</span><span class="para gold" data-en-html="For: Andrea Torres">Para: Andrea Torres</span><div class="card"><span class="qrp"></span><img class="seal" src="img/sello-marino.webp" alt=""></div><p class="seats" data-en-html="Your access pass&lt;br&gt;&lt;b&gt;Table 4&lt;/b&gt; · Lumière">Su pase de acceso<br><b>Mesa 4</b> · Lumière</p>
+    <div class="btns"><span class="y" data-en-html="Confirm attendance">Confirmar asistencia</span><span class="n" data-en-html="Bringing a guest">Iré con acompañante</span></div></div></div></div>
+    <figcaption data-en-html="Invitation with a link per guest">Invitación con link por invitado</figcaption></figure>
+  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="ig">
+    <div class="ph" style="background-image:url(img/exp-empresas-selfie.webp)"></div>
+    <div class="fr"><img class="f1" src="img/ramita-hojas-doradas.webp" alt=""><img class="f2" src="img/ramita-hojas-doradas.webp" alt=""></div>
+    <div class="lbl"><small data-en-html="ANNUAL GALA">GALA ANUAL</small><b>Grupo Aurora</b><span>15 · 11 · 2027</span></div></div></div></div>
+    <figcaption data-en-html="Guest photos with your frame">Fotos de invitados con tu marco</figcaption></figure>
+</div></div>
