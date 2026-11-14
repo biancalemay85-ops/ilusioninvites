@@ -18,7 +18,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Allura&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
 <style>
 /* Layout: a bright champagne hero (silk curtains, florals in the corners, the gold wordmark with its star), then the collections showcase, the "imagine your invitation" questionnaire with a live card, how it works and contact. Light brand palette from the Event Asset Library board. */
 :root {
@@ -405,11 +405,14 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), 0 8px 20px -12px rgba(120,85,45,.4), 0 0 16px rgba(240,222,186,.4) !important; }
 .btn-line:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), 0 12px 24px -12px rgba(120,85,45,.45), 0 0 26px rgba(240,222,186,.7) !important; }
 
+
+/* the wordmark keeps Great Vibes; only its capital I comes from Allura so it reads "Ilusión" (not "Jlusión") */
+.brand b .I, .brand-name b .I, .env-letter b .I { font-family: "Allura", "Great Vibes", cursive; font-style: normal; }
 </style>
 
 <header class="top" id="top">
   <div class="wrap">
-    <a class="brand" href="#inicio" aria-label="Ilusión Invites"><img src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><span><b>Ilusión</b><small>INVITES</small></span></a>
+    <a class="brand" href="#inicio" aria-label="Ilusión Invites"><img src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><span><b><i class="I">I</i>lusión</b><small>INVITES</small></span></a>
     <nav class="links" aria-label="Principal">
       <a href="#eventos" data-en="Collections">Colecciones</a>
       <a href="#paquetes" data-en="Packages">Paquetes</a>

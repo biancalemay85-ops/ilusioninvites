@@ -17,7 +17,7 @@
 <title>Crea tu invitación · Ilusión Invites</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Allura&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
 <style>
 /* "Crea la tuya": a guided, playful order form. Questions on the left, a card on the right that builds itself with their names, date, colour and their own cover photo. Ends by sending everything through WhatsApp (text first, then photos through the phone's share sheet). Nothing is uploaded to a server. */
 :root {
@@ -218,12 +218,15 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
 }
 @media (prefers-reduced-motion: reduce) { .st.on, .thumb, .card.pulse { animation: none; } html { scroll-behavior: auto; } }
 
+
+/* the wordmark keeps Great Vibes; only its capital I comes from Allura so it reads "Ilusión" (not "Jlusión") */
+.brand b .I, .brand-name b .I, .env-letter b .I { font-family: "Allura", "Great Vibes", cursive; font-style: normal; }
 </style>
 
 <header class="top">
   <div class="wrap">
     <a class="home" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span data-en="Home">Inicio</span></a>
-    <a class="brand" href="../" aria-label="Ilusión Invites"><img src="../img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><b>Ilusión</b></a>
+    <a class="brand" href="../" aria-label="Ilusión Invites"><img src="../img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><b><i class="I">I</i>lusión</b></a>
     <div class="lang" role="group" aria-label="Idioma"><button type="button" id="es" aria-pressed="true">ES</button><button type="button" id="en" aria-pressed="false">EN</button></div>
   </div>
 </header>
