@@ -12,6 +12,13 @@ cols = data['colecciones']
 tpl = open(os.path.join(HERE, '../website/coleccion-plantilla.html'), encoding='utf-8').read()
 
 lite = [{k: c.get(k, '') for k in ('slug', 'frame', 'img', 'deco', 'decoPos', 'es', 'en')} for c in cols]
+# link each collection to its "experiencia" page when that page exists
+for c in cols:
+    if os.path.exists(os.path.join(HERE, 'nuevo', 'experiencia', c['slug'], 'index.html')):
+        c['experiencia'] = '../../experiencia/' + c['slug'] + '/'
+        c['expImgs'] = ['xv-letrero', 'xv-salon-pantalla', 'xv-selfie'] if c['slug'] == 'xv-anos' else ['exp-%s-letrero' % c['slug'], 'exp-%s-pantalla' % c['slug'], 'exp-%s-selfie' % c['slug']]
+    else:
+        c.pop('experiencia', None); c.pop('expImgs', None)
 for c in cols:
     t = c['tema']
     decos = ''

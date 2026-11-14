@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Así se ve cada detalle que podemos crear para tu fiesta de Año Nuevo, en el mismo estilo de tu invitación: negro, champaña y destellos dorados. Los nombres son de ejemplo.">
+<meta property="og:title" content="La experiencia año nuevo · Ilusión Invites">
+<meta property="og:description" content="Así se ve cada detalle que podemos crear para tu fiesta de Año Nuevo, en el mismo estilo de tu invitación: negro, champaña y destellos dorados. Los nombres son de ejemplo.">
+<meta property="og:image" content="https://ilusioninvites.com/nuevo/img/exp-ano-nuevo-letrero.webp">
+<meta property="og:url" content="https://ilusioninvites.com/nuevo/experiencia/ano-nuevo/">
+<meta name="theme-color" content="#F7F4EE">
+<link rel="icon" href="../../img/sello-ilusion-oro-s.webp">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<title>La experiencia año nuevo · Ilusión Invites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Allura&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+/* "La experiencia XV": every piece of the XV package shown as the client would really see it, all in the same theme
+   (blush flowers, gold, crystal butterflies). Real UI mock-ups are built in the page; physical pieces sit on generated
+   photos with our own design laid on top. Fictional names only (Valentina, Familia López). */
+:root {
+  color-scheme: light;
+  --bg: #FCF3F4; --bg2: #FBEFF0; --paper: #FDF7F6; --ink: #4A2633; --ink2: #7A5560; --ink3: #A88893; --accent: #B8798A; --gold: #B68A4E; --tint: transparent; --flw: none;
+  --gold-text: linear-gradient(180deg, #F3D99A 0%, #D2A75E 45%, #9C6E30 100%);
+  --f-script: "Great Vibes", "Snell Roundhand", cursive; --f-caps: "Cinzel", Georgia, serif; --f-serif: "Cormorant Garamond", Georgia, serif; --f-body: "Jost", "Avenir Next", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { overflow-x: clip; }
+body { margin: 0; color: var(--ink); transition: background-color .6s; font: 400 16px/1.6 var(--f-body); background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: max(18px, env(safe-area-inset-left, 0px)); }
+.gold { background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* page background: the XV bokeh, soft and fixed */
+.bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+.bg::before { content: ""; position: absolute; inset: -10%; background: url(../../img/hero-ano-nuevo.webp) center / cover; filter: blur(26px) saturate(1.1); opacity: .45; }
+.bg .tint { position: absolute; inset: 0; background: var(--tint); mix-blend-mode: color; opacity: .6; transition: background .6s; }
+.flw { filter: var(--flw); transition: filter .6s; }
+.bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 60% at 50% 40%, color-mix(in srgb, var(--bg) 82%, transparent), color-mix(in srgb, var(--bg) 55%, transparent)); }
+
+/* top bar */
+.top { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 color-mix(in srgb, var(--accent) 25%, transparent); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; }
+.back { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font: 500 11px var(--f-caps); letter-spacing: .22em; color: var(--ink2); }
+.back svg { width: 16px; height: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { width: 38px; height: auto; }
+.brand b { font: 400 26px/1.1 var(--f-script); color: #A87B3F; padding: 0 .08em 0 .16em; }
+.cta-top { font: 500 13px var(--f-body); text-decoration: none; padding: 9px 16px; border-radius: 999px; color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); box-shadow: 0 6px 14px -8px rgba(140,95,40,.6); white-space: nowrap; }
+@media (max-width: 600px) { .back span, .brand b { display: none; } .cta-top { padding: 8px 12px; font-size: 12px; } }
+
+/* language */
+.right { display: flex; align-items: center; gap: 10px; }
+.lang { display: flex; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 999px; overflow: hidden; }
+.lang button { border: 0; background: none; padding: 6px 11px; font: 500 12px var(--f-body); color: var(--ink2); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+
+/* intro */
+.intro { text-align: center; padding: clamp(40px, 7vw, 90px) 0 clamp(20px, 3vw, 40px); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.eyebrow { font: 500 12px var(--f-caps); letter-spacing: .42em; color: var(--accent); }
+h1 { margin: 0; font: 600 clamp(40px, 6vw, 76px)/1.02 var(--f-serif); text-wrap: balance; }
+h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(110,72,28,.6)); }
+.intro p { margin: 6px 0 0; max-width: 58ch; color: var(--ink2); font-size: 17px; }
+.intro .tag { font: 400 30px var(--f-script); color: var(--gold); }
+.index { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 22px; }
+.index a { text-decoration: none; padding: 7px 14px; border-radius: 999px; font-size: 13.5px; color: var(--ink2); background: rgba(255,255,255,.6); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent); }
+.index a:hover { color: var(--ink); box-shadow: inset 0 0 0 1px var(--accent); }
+
+/* each piece */
+.piece { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 70px); align-items: center; padding-block: clamp(56px, 8vw, 100px); }
+.piece:nth-of-type(even) .vis { order: 2; }
+.piece .txt { display: flex; flex-direction: column; gap: 10px; }
+.piece .num { font: 500 11px var(--f-caps); letter-spacing: .36em; color: var(--accent); }
+.piece h2 { margin: 0; font: 500 clamp(32px, 3.8vw, 48px)/1.08 var(--f-serif); }
+.piece h2 em { font-style: italic; }
+.piece p { margin: 0; color: var(--ink2); }
+.steps { list-style: none; counter-reset: s; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.steps li { counter-increment: s; position: relative; padding-left: 40px; color: var(--ink2); font-size: 15px; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font: italic 500 16px var(--f-serif); color: var(--gold); background: #fff; box-shadow: inset 0 0 0 1px rgba(182,138,78,.5); }
+.where { display: inline-flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.where span { font: 500 10px var(--f-caps); letter-spacing: .18em; padding: 5px 10px; border-radius: 999px; color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #E3BE7F); }
+.where span.add { color: var(--ink2); background: rgba(255,255,255,.75); box-shadow: inset 0 0 0 1px rgba(182,138,78,.4); }
+.vis { position: relative; display: flex; justify-content: center; }
+@media (max-width: 860px) { .piece { grid-template-columns: minmax(0, 1fr); } .piece:nth-of-type(even) .vis { order: 0; } }
+.rule { height: 1px; background: linear-gradient(90deg, transparent, rgba(182,138,78,.45), transparent); }
+
+/* phone mock-up */
+.phone { position: relative; width: min(300px, 78vw); aspect-ratio: 9 / 19; border-radius: 42px; padding: 10px; background: linear-gradient(145deg, #3b3236, #121012 40%, #2a2326 70%, #0d0b0c); box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent), 0 50px 70px -36px rgba(60,25,35,.6), 0 14px 22px rgba(60,25,35,.2); }
+.phone::before { content: ""; position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 76px; height: 20px; border-radius: 999px; background: #0d0b0c; z-index: 3; }
+.scr { position: relative; width: 100%; height: 100%; border-radius: 33px; overflow: hidden; background: var(--paper); }
+.phone.tilt { transform: rotate(-3deg); }
+
+/* 1 · guest link with seats */
+.env { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 18px 22px; text-align: center; background: radial-gradient(120% 70% at 50% 0%, #fff, var(--bg2) 70%); }
+.env .who { font: 500 9.5px var(--f-caps); letter-spacing: .3em; color: var(--ink3); }
+.env .para { font: 400 34px/1 var(--f-script); }
+.env .card { position: relative; width: 100%; aspect-ratio: 1.45; border-radius: 6px; background: linear-gradient(160deg, #FFFBF8, var(--bg2)); box-shadow: 0 16px 26px -16px rgba(90,40,50,.5), inset 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent); overflow: hidden; }
+.env .card::before, .env .card::after { content: ""; position: absolute; top: 0; width: 72%; height: 70%; border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+.env .card::before { left: -12%; transform: skewY(28deg); transform-origin: left top; }
+.env .card::after { right: -12%; transform: skewY(-28deg); transform-origin: right top; }
+.env .card img.seal { position: absolute; left: 50%; top: 52%; width: 56px; transform: translate(-50%, -50%); filter: drop-shadow(0 6px 8px rgba(90,40,50,.35)); z-index: 2; }
+.env .card img.fl { position: absolute; width: 46%; right: -8%; top: 22%; z-index: 1; }
+.env .seats { font: italic 500 17px/1.35 var(--f-serif); color: var(--ink); }
+.env .seats b { font: 600 22px var(--f-serif); color: var(--gold); }
+.env .btns { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.env .btns span { padding: 10px; border-radius: 999px; font: 500 12.5px var(--f-body); }
+.env .btns .y { color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); }
+.env .btns .n { color: var(--ink2); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent); }
+.bubble { position: absolute; left: -24%; bottom: 3%; width: min(250px, 66vw); padding: 10px 12px 8px; border-radius: 12px 12px 12px 2px; background: #fff; box-shadow: 0 16px 30px -14px rgba(60,25,35,.45); font-size: 12.5px; line-height: 1.4; color: #2b2b2b; transform: rotate(2deg); }
+.bubble .l { color: #0b7a5c; text-decoration: underline; word-break: break-all; }
+.bubble small { display: block; text-align: right; color: #999; font-size: 10px; margin-top: 2px; }
+@media (max-width: 860px) { .bubble { left: 0; bottom: -4%; } }
+
+/* 2 · live RSVP list */
+.list { position: absolute; inset: 0; padding: 44px 14px 14px; display: flex; flex-direction: column; gap: 10px; background: var(--paper); }
+.list h4 { margin: 0; text-align: center; font: 400 26px/1 var(--f-script); color: var(--gold); }
+.list .sub { text-align: center; font: 500 9px var(--f-caps); letter-spacing: .26em; color: var(--ink3); margin-top: -4px; }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.kpis div { text-align: center; padding: 8px 4px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent); }
+.kpis b { display: block; font: 600 22px/1 var(--f-serif); color: var(--ink); }
+.kpis span { font: 500 8px var(--f-caps); letter-spacing: .12em; color: var(--ink3); }
+.rows { display: flex; flex-direction: column; gap: 6px; }
+.rows div { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 8px 10px; border-radius: 10px; background: #fff; font-size: 12px; }
+.rows b { font: 500 13.5px var(--f-serif); color: var(--ink); }
+.rows i { font-style: normal; font-size: 10px; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+.rows .ok { color: #1f6b4a; background: #e5f4e4; } .rows .wait { color: #8a6416; background: #f9eeda; } .rows .no { color: #9a3b3b; background: #fbebeb; }
+.rows .new { animation: slideIn 1s ease 1.2s both; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(-8px); background: #fff7e6; } }
+
+/* 3 · reminders (WhatsApp chat) */
+.chat { position: absolute; inset: 0; display: flex; flex-direction: column; background: #EFE6DD url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1.2' fill='%23d9cbbd'/%3E%3C/svg%3E"); }
+.chat .hd { display: flex; align-items: center; gap: 8px; padding: 40px 12px 10px; background: #F7F2EC; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+.chat .hd img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+.chat .hd b { font-size: 12.5px; color: #222; } .chat .hd small { display: block; font-size: 10px; color: #777; }
+.chat .ms { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 12px 10px; overflow: hidden; }
+.msg { max-width: 88%; padding: 7px 9px 4px; border-radius: 10px 10px 10px 2px; background: #fff; font-size: 11.5px; line-height: 1.4; color: #2b2b2b; box-shadow: 0 1px 1px rgba(0,0,0,.06); }
+.msg.me { align-self: flex-end; border-radius: 10px 10px 2px 10px; background: #DCF5C8; }
+.msg small { display: block; text-align: right; font-size: 9px; color: #999; }
+.msg .day { display: block; font: 500 8.5px var(--f-caps); letter-spacing: .14em; color: var(--accent); margin-bottom: 2px; }
+.daychip { align-self: center; font-size: 9.5px; color: #666; background: #fff; padding: 3px 9px; border-radius: 8px; }
+
+/* 4 · entrance video on the ballroom screen */
+.screen { position: relative; width: 100%; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(60,25,35,.6); }
+.screen > img { display: block; width: 100%; height: auto; }
+.screen .on { position: absolute; left: var(--sx, 30%); top: var(--sy, 20%); width: var(--sw, 40%); height: var(--sh, 40%); overflow: hidden; background: #2a0f1a; box-shadow: 0 0 40px rgba(255,220,235,.45); }
+.screen .on .bgx { position: absolute; inset: -6%; background: url(../../img/hero-ano-nuevo.webp) center 40% / cover; animation: kb 12s ease-in-out infinite alternate; }
+@keyframes kb { from { transform: scale(1); } to { transform: scale(1.12) translateY(-3%); } }
+.screen .on .tt { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: radial-gradient(60% 60% at 50% 55%, color-mix(in srgb, var(--bg) 75%, transparent), color-mix(in srgb, var(--bg) 0%, transparent) 75%); }
+.screen .on .tt small { font: 500 clamp(6px, .8vw, 10px) var(--f-caps); letter-spacing: .4em; color: var(--ink); opacity: 0; animation: up 6s ease-in-out infinite; }
+.screen .on .tt b { font: 400 clamp(22px, 4vw, 56px)/1 var(--f-script); opacity: 0; animation: up 6s ease-in-out .5s infinite; }
+@keyframes up { 0%, 8% { opacity: 0; transform: translateY(8px); } 20%, 80% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.screen .on .sp { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff6e0; box-shadow: 0 0 8px 2px rgba(255,230,180,.9); animation: tw 2.4s ease-in-out infinite; }
+@keyframes tw { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1); } }
+.vphone { position: absolute; right: -2%; bottom: -10%; width: min(150px, 30%); }
+.vphone .phone { width: 100%; border-radius: 26px; padding: 6px; }
+.vphone .scr { border-radius: 21px; }
+.vphone .phone::before { width: 40px; height: 12px; top: 10px; }
+@media (max-width: 860px) { .vphone { right: 2%; bottom: -14%; } }
+
+/* 5 · personalized song */
+.player { width: min(330px, 86vw); padding: 18px; border-radius: 30px; background: linear-gradient(180deg, #fff, var(--bg2)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent), 0 40px 60px -36px rgba(60,25,35,.55); }
+.player .art { position: relative; aspect-ratio: 1; border-radius: 20px; overflow: hidden; }
+.player .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.player .art .ov { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 14%; background: linear-gradient(180deg, transparent 40%, rgba(74,38,51,.55)); color: #fff; text-align: center; }
+.player .art .ov b { font: 400 40px/1 var(--f-script); }
+.player .art .ov small { font: 500 9px var(--f-caps); letter-spacing: .3em; }
+.player h3 { margin: 14px 0 0; font: 600 22px/1.15 var(--f-serif); }
+.player .by { font-size: 13px; color: var(--ink3); }
+.bar { height: 4px; border-radius: 4px; background: color-mix(in srgb, var(--accent) 20%, transparent); margin: 14px 0 4px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 38%; background: var(--gold); animation: prog 14s linear infinite; }
+@keyframes prog { from { width: 4%; } to { width: 96%; } }
+.times { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--ink3); }
+.ctrls { display: flex; align-items: center; justify-content: center; gap: 26px; margin-top: 6px; color: var(--ink); }
+.ctrls svg { width: 22px; height: 22px; }
+.ctrls .pp { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(180deg, #F7E4B4, #D6A963); color: #3A2210; box-shadow: 0 10px 20px -10px rgba(140,95,40,.6); }
+.eq { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
+.eq i { width: 3px; background: var(--accent); border-radius: 2px; animation: eq 1s ease-in-out infinite alternate; }
+.eq i:nth-child(2) { animation-delay: -.3s; } .eq i:nth-child(3) { animation-delay: -.6s; } .eq i:nth-child(4) { animation-delay: -.15s; }
+@keyframes eq { from { height: 4px; } to { height: 18px; } }
+.lyrics { margin-top: 14px; padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.75); font: italic 500 15.5px/1.5 var(--f-serif); color: var(--ink2); text-align: center; }
+.lyrics em { font-style: normal; color: var(--ink); }
+.styles { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 10px; }
+.styles span { font-size: 11.5px; padding: 4px 10px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent); color: var(--ink2); }
+
+/* 6 · Instagram frame */
+.ig { position: absolute; inset: 0; background: #111; }
+.ig .ph { position: absolute; inset: 0; background: center / cover no-repeat; }
+.ig .fr { position: absolute; inset: 0; pointer-events: none; }
+.ig .fr::before { content: ""; position: absolute; inset: 12px; border: 1.5px solid rgba(243,217,154,.9); border-radius: 18px; box-shadow: inset 0 0 0 4px rgba(255,255,255,.18); }
+.ig .fr img { position: absolute; }
+.ig .fr .f1 { width: 46%; left: -10%; top: -4%; transform: rotate(-12deg); }
+.ig .fr .f2 { width: 40%; right: -10%; bottom: 16%; transform: scaleX(-1) rotate(-10deg); }
+.ig .fr .bf { width: 22%; right: 8%; top: 9%; transform: rotate(14deg); }
+.ig .lbl { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 10px 18px; text-align: center; background: linear-gradient(180deg, transparent, rgba(60,20,35,.7)); color: #fff; }
+.ig .lbl small { display: block; font: 500 8.5px var(--f-caps); letter-spacing: .32em; }
+.ig .lbl b { display: block; font: 400 34px/1.05 var(--f-script); background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.ig .lbl span { font: 500 8.5px var(--f-caps); letter-spacing: .24em; }
+.ig .bar { position: absolute; top: 34px; left: 14px; right: 14px; height: 2px; margin: 0; background: rgba(255,255,255,.35); }
+.ig .bar i { width: 60%; background: #fff; animation: none; }
+.ig .user { position: absolute; top: 42px; left: 16px; display: flex; align-items: center; gap: 6px; font-size: 11px; color: #fff; font-weight: 500; text-shadow: 0 1px 4px rgba(0,0,0,.4); }
+.ig .user i { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #F7E4B4, #B8798A); box-shadow: 0 0 0 1.5px #fff; }
+.qrcard { position: absolute; left: -8%; bottom: 6%; width: min(150px, 40vw); padding: 12px 10px 10px; border-radius: 12px; text-align: center; background: linear-gradient(180deg, #FFFDF9, var(--bg2)); box-shadow: 0 20px 30px -14px rgba(60,25,35,.5), inset 0 0 0 1px rgba(182,138,78,.4); transform: rotate(-4deg); }
+.qrcard small { display: block; font: 500 8px var(--f-caps); letter-spacing: .24em; color: var(--ink2); }
+.qrcard b { display: block; font: 400 22px/1.1 var(--f-script); color: var(--gold); }
+.qrcard .qr { width: 84px; height: 84px; margin: 6px auto 4px; padding: 5px; background: #fff; border-radius: 6px; }
+.qrcard .qr img, .qrcard .qr canvas { width: 100% !important; height: 100% !important; }
+
+/* 7 · printed pieces on photos */
+.photo { position: relative; container-type: inline-size; width: 100%; max-width: 520px; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(60,25,35,.6); }
+.photo > img { display: block; width: 100%; height: auto; }
+.lay { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--ink); }
+.sign .mono { display: flex; justify-content: center; height: 28%; gap: 0; }
+.sign .mono img { height: 100%; width: auto; margin: 0 -3%; }
+.sign small { font: 500 2.1cqw var(--f-caps); letter-spacing: .34em; color: var(--ink2); margin-top: 4%; }
+.sign b { font: 400 9.6cqw/1 var(--f-script); background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .1em .1em; filter: drop-shadow(0 1px 0 rgba(110,72,28,.4)); }
+.sign .rl { width: 46%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 2% 0; }
+.sign span { font: 500 1.9cqw var(--f-caps); letter-spacing: .26em; color: var(--ink2); }
+.mesa small { font: 500 2.4cqw var(--f-caps); letter-spacing: .3em; color: var(--ink2); }
+.mesa b { font: 400 10cqw/1 var(--f-script); background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .1em .08em; }
+.mesa .bfl { width: 30%; margin-bottom: 2%; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+@media (max-width: 600px) { .pair { grid-template-columns: 1fr; } }
+.cap { margin: 10px 0 0; text-align: center; font: 500 10.5px var(--f-caps); letter-spacing: .24em; color: var(--ink3); }
+
+#papeleria { grid-template-columns: minmax(0, 1fr); text-align: center; }
+#papeleria .txt { order: -1; align-items: center; max-width: 720px; margin: 0 auto; }
+#papeleria .pair { width: 100%; max-width: 980px; margin: 0 auto; gap: clamp(16px, 3vw, 34px); }
+#papeleria .photo { max-width: none; }
+
+/* closing */
+.close { text-align: center; padding: clamp(60px, 9vw, 110px) 0 clamp(80px, 10vw, 120px); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 28px; border-radius: 999px; font: 600 15px var(--f-body); text-decoration: none; color: #3A2210; background: linear-gradient(180deg, #F7E4B4 0%, #EBC988 34%, #D6A963 70%, #C4914D 100%); box-shadow: inset 0 0 0 1px rgba(170,120,55,.3), 0 12px 26px -12px rgba(140,95,40,.6), 0 0 22px rgba(236,204,140,.5); }
+.btn.line { color: var(--ink); background: rgba(255,255,255,.8); box-shadow: inset 0 0 0 1px rgba(182,138,78,.45); font-weight: 500; }
+.close .row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 10px; }
+.note { font-size: 13px; color: var(--ink3); }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+
+/* the wordmark keeps Great Vibes; only its capital I comes from Allura so it reads "Ilusión" (not "Jlusión") */
+.brand b .I, .brand-name b .I, .env-letter b .I { font-family: "Allura", "Great Vibes", cursive; font-style: normal; }
+
+:root { --bg: #F7F4EE; --bg2: #ECE5D8; --paper: #FCFAF6; --accent: #9A7A3E; --ink: #1C1B20; --ink2: #4F4B52; --ink3: #85808A; }
+.sign b { font-size: 8cqw; text-align: center; line-height: 1.05; } .sign small { text-align: center; max-width: 92%; }
+.all { margin-top: 14px; } .all-t { display: block; font: 500 10px var(--f-caps); letter-spacing: .26em; color: var(--ink3); margin-bottom: 8px; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; } .chips span { font-size: 13px; padding: 6px 12px; border-radius: 999px; color: var(--ink2); background: rgba(255,255,255,.75); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent); }
+.qrp { position: absolute; left: 8%; top: 18%; width: 34%; aspect-ratio: 1; padding: 4px; background: #fff; border-radius: 6px; box-shadow: 0 6px 12px -6px rgba(0,0,0,.3); z-index: 1; } .qrp img, .qrp canvas, .qr img, .qr canvas { width: 100% !important; height: 100% !important; }
+.lot small { font: 500 2.6cqw var(--f-caps); letter-spacing: .3em; color: var(--ink2); } .lot b { font: 400 9cqw/1 var(--f-script); background: var(--gold-text); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .1em .1em; }
+.lot .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2cqw; width: 88%; margin-top: 2cqw; } .lot .grid span { aspect-ratio: 1.15; display: grid; place-items: center; font: 500 2.1cqw var(--f-serif); color: var(--ink); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 4px; background: rgba(255,255,255,.4); }
+.badge { gap: 1.2cqw; } .badge .bseal { width: 18%; } .badge .evt { font: 500 1.4cqw var(--f-caps); letter-spacing: .16em; color: var(--accent); text-align: center; } .badge b { font: 600 4.6cqw/1.05 var(--f-serif); color: var(--ink); text-align: center; } .badge small { font: 500 1.5cqw var(--f-caps); letter-spacing: .14em; color: var(--ink2); } .badge .qr { width: 30%; aspect-ratio: 1; margin-top: 1cqw; }
+.others { display: flex; gap: 18px; overflow-x: auto; padding: 8px 4px 20px; justify-content: safe center; scrollbar-width: none; } .ow { flex: none; width: 128px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; }
+.ow .ar { width: 100%; aspect-ratio: .74; border-radius: 50% 50% 12px 12px / 36% 36% 12px 12px; overflow: hidden; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 50%, transparent), 0 16px 26px -16px rgba(40,25,20,.5); } .ow img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; } .ow:hover img { transform: scale(1.08); } .ow b { font: 500 16px var(--f-serif); text-align: center; }
+</style>
+<div class="bg" aria-hidden="true"><i class="tint"></i></div>
+<header class="top"><div class="wrap">
+  <a class="back" href="../../coleccion/ano-nuevo/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span data-en-html="New Year&amp;#x27;s Eve">Año Nuevo</span></a>
+  <a class="brand" href="../../" aria-label="Ilusión Invites"><img src="../../img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><b><i class="I">I</i>lusión</b></a>
+  <div class="right"><div class="lang" role="group" aria-label="Idioma"><button type="button" id="es" aria-pressed="true">ES</button><button type="button" id="en" aria-pressed="false">EN</button></div><a class="cta-top" href="../../crear/?c=ano-nuevo" data-en-html="Create mine">Crear la mía</a></div>
+</div></header>
+<main class="wrap">
+  <section class="intro"><span class="eyebrow" data-en-html="THE NEW YEAR&#x27;S EVE EXPERIENCE">LA EXPERIENCIA AÑO NUEVO</span><h1 data-en-html="Everything &lt;span class=&quot;gold&quot;&gt;your midnight&lt;/span&gt; holds">Todo lo que vive <span class="gold">tu medianoche</span></h1><span class="tag" data-en-html="beyond the invitation">más allá de la invitación</span><p data-en-html="This is how every detail we can create for your New Year&#x27;s Eve party looks, in the same style as your invitation: black, champagne and gold sparkle. Names are examples.">Así se ve cada detalle que podemos crear para tu fiesta de Año Nuevo, en el mismo estilo de tu invitación: negro, champaña y destellos dorados. Los nombres son de ejemplo.</p><nav class="index" aria-label="En esta página"><a href="#pases"><span data-en-html="Link per guest">Link por invitado</span></a><a href="#lista"><span data-en-html="RSVP list">Lista de confirmados</span></a><a href="#recordatorios"><span data-en-html="Reminders">Recordatorios</span></a><a href="#video"><span data-en-html="Video">Video</span></a><a href="#marco"><span data-en-html="Guest photos">Fotos de invitados</span></a><a href="#papeleria"><span data-en-html="Printables">Papelería</span></a></nav></section>
+  <div class="rule"></div>
+  <section class="piece" id="pases"><div class="vis"><div class="phone"><div class="scr"><div class="env">
+      <span class="who" data-en-html="NEW YEAR&#x27;S EVE · VALERIA &amp; ANDRÉS">AÑO NUEVO · VALERIA & ANDRÉS</span><span class="para gold" data-en-html="For: Sofía &amp; Daniel">Para: Sofía y Daniel</span><div class="card"><img class="fl" src="../../img/cristal-1.webp" alt=""><img class="seal" src="../../img/sello-ilusion-oro-s.webp" alt=""></div><p class="seats" data-en-html="With love, we saved&lt;br&gt;&lt;b&gt;2 seats&lt;/b&gt; for you">Con mucho cariño reservamos<br><b>2 lugares</b> para ustedes</p>
+      <div class="btns"><span class="y" data-en-html="Confirm 2 seats">Confirmar 2 lugares</span><span class="n" data-en-html="Just me">Iré yo solo</span><span class="n" data-en-html="We can&#x27;t make it">No podremos ir</span></div></div></div></div>
+      <div class="bubble"><span data-en-html="Hi Sofía &amp; Daniel ✨ Ring in 2028 with us:">Hola Sofía y Daniel ✨ Los invitamos a recibir el 2028 con nosotros:</span><br><span class="l">ilusioninvites.com/ano-nuevo-2028?para=sofia-y-daniel</span><small>10:24 ✓✓</small></div></div>
+      <div class="txt"><span class="num" data-en-html="01 · LINK PER GUEST">01 · LINK POR INVITADO</span><h2 data-en-html="Every family, &lt;em&gt;its own invitation&lt;/em&gt;">Cada familia, <em>su propia invitación</em></h2><p data-en-html="Each guest gets a link with their name on the envelope and the seats you saved for them. Nothing to print: nobody adds extra people.">Cada invitado recibe un link con su nombre en el sobre y los lugares que le reservaste. Sin imprimir nada: nadie agrega personas de más.</p><ol class="steps"><li data-en-html="You send us your list: name, phone and seats.">Nos mandas tu lista: nombre, teléfono y lugares.</li><li data-en-html="We create a link for each guest and its ready WhatsApp message.">Creamos un link para cada invitado y su mensaje de WhatsApp listo.</li><li data-en-html="You just send it. They confirm with one tap.">Tú solo lo envías. Ellos confirman con un toque.</li></ol><div class="where"><span data-en-html="ILUSIÓN">ILUSIÓN</span><span data-en-html="GALA">GALA</span><span data-en-html="EXPERIENCIA">EXPERIENCIA</span></div></div></section><div class="rule"></div><section class="piece" id="lista"><div class="vis"><div class="phone tilt"><div class="scr"><div class="list">
+      <h4 data-en-html="Guests">Invitados</h4><span class="sub" data-en-html="NEW YEAR&#x27;S EVE 2028 · LIVE">AÑO NUEVO 2028 · EN VIVO</span>
+      <div class="kpis"><div><b>72</b><span data-en-html="CONFIRMED">CONFIRMADOS</span></div><div><b>15</b><span data-en-html="PENDING">PENDIENTES</span></div><div><b>5</b><span data-en-html="NOT COMING">NO ASISTEN</span></div></div>
+      <div class="rows"><div class="new"><b>Sofía y Daniel</b><i class="ok" data-en-html="Confirmed · 2">Confirmó · 2</i></div><div><b>Laura Méndez</b><i class="ok" data-en-html="Confirmed · 1">Confirmó · 1</i></div><div><b>Familia Torres</b><i class="ok" data-en-html="Confirmed · 4">Confirmó · 4</i></div><div><b>Diego y Paola</b><i class="wait" data-en-html="Pending">Pendiente</i></div><div><b>Ana y Luis</b><i class="ok" data-en-html="Confirmed · 2">Confirmó · 2</i></div><div><b>Javier Soto</b><i class="no" data-en-html="Not coming">No asistirá</i></div><div><b>Regina y Pablo</b><i class="ok" data-en-html="Confirmed · 2">Confirmó · 2</i></div><div><b>Familia Castro</b><i class="wait" data-en-html="Pending">Pendiente</i></div></div></div></div></div></div><div class="txt"><span class="num" data-en-html="02 · RSVP LIST">02 · LISTA DE CONFIRMADOS</span><h2 data-en-html="Know who is coming, &lt;em&gt;without calling anyone&lt;/em&gt;">Sabes quién viene, <em>sin llamar a nadie</em></h2><p data-en-html="Every RSVP lands in your private list by itself, with the number of people and their message. Open it on your phone anytime: it updates live.">Cada confirmación llega sola a tu lista privada, con el número de personas y su mensaje. La abres desde tu celular cuando quieras y se actualiza en vivo.</p><ol class="steps"><li data-en-html="Your guests confirm from the invitation.">Tus invitados confirman desde la invitación.</li><li data-en-html="Your list fills itself: confirmed, pending and who can&#x27;t come.">Tu lista se llena sola: confirmados, pendientes y quién no podrá ir.</li><li data-en-html="Perfect for the venue and catering: the exact number of seats.">Ideal para el salón y el banquete: el número exacto de lugares.</li></ol><div class="where"><span data-en-html="ILUSIÓN">ILUSIÓN</span><span data-en-html="GALA">GALA</span><span data-en-html="EXPERIENCIA">EXPERIENCIA</span></div></div></section><div class="rule"></div><section class="piece" id="recordatorios"><div class="vis"><div class="phone"><div class="scr"><div class="chat">
+      <div class="hd"><img src="../../img/sello-ilusion-oro-s.webp" alt=""><div><b>Año Nuevo con Valeria &amp; Andrés</b><small data-en-html="automatic message">mensaje automático</small></div></div>
+      <div class="ms"><span class="daychip" data-en-html="December 24">24 de diciembre</span><div class="msg"><span class="day" data-en-html="ONE WEEK TO GO">FALTA UNA SEMANA</span><span data-en-html="Hi! ✨ One week until we ring in 2028 together. Here are your invitation and the location.">¡Hola! ✨ Falta una semana para recibir el 2028 juntos. Aquí está tu invitación y la ubicación.</span><small>18:00</small></div><span class="daychip" data-en-html="December 30">30 de diciembre</span><div class="msg"><span class="day" data-en-html="IT&#x27;S TOMORROW">ES MAÑANA</span><span data-en-html="Tomorrow we say goodbye to the year 🥂 Dinner 9:00 pm. Dress code: gold and black.">Mañana despedimos el año 🥂 Cena 9:00 pm. Vestimenta: dorado y negro.</span><small>18:00</small></div><div class="msg me"><span data-en-html="Ready for the toast! 🍾">¡Listos para el brindis! 🍾</span><small>18:04 ✓✓</small></div><span class="daychip" data-en-html="December 31">31 de diciembre</span><div class="msg"><span class="day" data-en-html="IN 2 HOURS">EN 2 HORAS</span><span data-en-html="See you at 9:00 pm at Terraza Aurora. Tap here for directions 📍">Te esperamos a las 9:00 pm en Terraza Aurora. Toca aquí para el mapa 📍</span><small>18:00</small></div></div></div></div></div></div><div class="txt"><span class="num" data-en-html="03 · AUTOMATIC REMINDERS">03 · RECORDATORIOS AUTOMÁTICOS</span><h2 data-en-html="Nobody forgets &lt;em&gt;your day&lt;/em&gt;">Nadie se olvida <em>de tu día</em></h2><p data-en-html="WhatsApp messages that go out by themselves: a week before, a day before and two hours before with the map. Plus a kind nudge to anyone who hasn&#x27;t confirmed. In Spanish, English or both.">Mensajes por WhatsApp que salen solos: una semana antes, un día antes y dos horas antes con el mapa. Y un recordatorio amable a quien aún no confirma. En español, inglés o los dos.</p><div class="where"><span data-en-html="GALA">GALA</span><span data-en-html="EXPERIENCIA">EXPERIENCIA</span><span class="add" data-en-html="OR ADD IT TO YOUR PACKAGE">O AGRÉGALO A TU PAQUETE</span></div></div></section><div class="rule"></div><section class="piece" id="video"><div class="vis" style="flex-direction:column"><div class="screen"><img src="../../img/exp-ano-nuevo-pantalla.webp" alt="" width="1600" height="900">
+      <div class="on" style="--sx:24%;--sy:17.5%;--sw:52.5%;--sh:44.5%;border-radius:2px"><div class="bgx" style="background-image:url(../../img/hero-ano-nuevo.webp)"></div><div class="tt"><small data-en-html="HAPPY">FELIZ</small><b class="gold">2028</b></div></div>
+      <div class="vphone"><div class="phone"><div class="scr" style="background:#1d1820"><div class="on" style="position:absolute;inset:0;--sx:0;--sy:0;--sw:100%;--sh:100%"><div class="bgx" style="background-image:url(../../img/hero-ano-nuevo.webp)"></div><div class="tt"><small data-en-html="HAPPY">FELIZ</small><b class="gold">2028</b></div></div></div></div></div>
+      </div></div><div class="txt"><span class="num" data-en-html="04 · COUNTDOWN ON SCREEN">04 · CUENTA REGRESIVA EN PANTALLA</span><h2 data-en-html="Midnight, &lt;em&gt;on the big screen&lt;/em&gt;">La medianoche, <em>en la pantalla grande</em></h2><p data-en-html="A countdown with your names and golden fireworks to play in the last minutes of the year, plus a 15–30 second video invitation to send on WhatsApp.">Una cuenta regresiva con sus nombres y fuegos artificiales dorados para proyectar en los últimos minutos del año, y un video invitación de 15 a 30 segundos para enviar por WhatsApp.</p><div class="where"><span data-en-html="ILUSIÓN · VIDEO INVITATION">ILUSIÓN · VIDEO INVITACIÓN</span><span class="add" data-en-html="OR ADD IT">O AGRÉGALO</span></div></div></section><div class="rule"></div><section class="piece" id="marco"><div class="vis"><div class="phone"><div class="scr"><div class="ig">
+      <div class="ph" style="background-image:url(../../img/exp-ano-nuevo-selfie.webp)"></div>
+      <div class="fr"><img class="f1" src="../../img/cristal-1.webp" alt=""><img class="f2" src="../../img/ramita-hojas-doradas.webp" alt=""><img class="bf" src="../../img/cristal-1.webp" alt=""></div>
+      <div class="bar"><i></i></div><div class="user"><i></i>tu_mejor_amiga</div>
+      <div class="lbl"><small data-en-html="NEW YEAR&#x27;S EVE">AÑO NUEVO</small><b>2028</b><span>VALERIA &amp; ANDRÉS</span></div></div></div></div>
+      <div class="qrcard"><small data-en-html="SHARE YOUR PHOTO">COMPARTE TU FOTO</small><b data-en-html="in my album">en mi álbum</b><div class="qr" data-qr="https://ilusioninvites.com/nuevo/"></div><small data-en-html="SCAN HERE">ESCANEA AQUÍ</small></div></div>
+      <div class="txt"><span class="num" data-en-html="05 · YOUR GUESTS&#x27; PHOTOS">05 · FOTOS DE TUS INVITADOS</span><h2 data-en-html="Every photo, &lt;em&gt;in your style&lt;/em&gt;">Cada foto, <em>con tu estilo</em></h2><p data-en-html="Each table has a card with a QR code. Guests scan it, take a photo and it comes out with your frame and your name in gold, ready for Instagram or WhatsApp. All their photos and videos land in your album, and you get a link to download them.">En cada mesa hay una tarjeta con un código QR. Tus invitados lo escanean, se toman una foto y sale con tu marco y tu nombre en oro, lista para Instagram o WhatsApp. Todas sus fotos y videos llegan a tu álbum, y te damos un link para descargarlas.</p><ol class="steps"><li data-en-html="They scan their table&#x27;s QR with the phone camera.">Escanean el QR de su mesa con la cámara del celular.</li><li data-en-html="They take the photo: your frame appears instantly.">Se toman la foto: aparece con tu marco al instante.</li><li data-en-html="You receive every photo and video in one link.">Tú recibes todas las fotos y videos en un solo link.</li></ol><div class="where"><span data-en-html="GALA · PHOTO QR">GALA · QR DE FOTOS</span><span data-en-html="EXPERIENCIA">EXPERIENCIA</span><span class="add" data-en-html="OR ADD IT">O AGRÉGALO</span></div></div></section><div class="rule"></div><section class="piece" id="papeleria"><div class="vis" style="flex-direction:column;gap:22px"><div class="pair">
+      <figure style="margin:0"><div class="photo"><img src="../../img/exp-ano-nuevo-letrero.webp" alt="" width="1200" height="1600">
+        <div class="lay sign" style="--x:34%;--y:24%;--w:38%;--h:36%"><small data-en-html="WELCOME TO">BIENVENIDOS A RECIBIR EL</small><b style="font-size:8.0cqw">2028</b><i class="rl"></i><span data-en-html="DECEMBER 31 · 2027">31 · DICIEMBRE · 2027</span></div></div>
+        <figcaption class="cap" data-en-html="WELCOME SIGN">LETRERO DE BIENVENIDA</figcaption></figure>
+      <figure style="margin:0"><div class="photo"><img src="../../img/exp-ano-nuevo-pieza.webp" alt="" width="1200" height="1200"><div class="lay mesa" style="--x:33%;--y:29%;--w:35.5%;--h:52%"><img class="bfl" src="../../img/cristal-1.webp" alt=""><small data-en-html="MIDNIGHT">BRINDIS DE</small><b style="font-size:6.4cqw" data-en-html="Toast">Medianoche</b></div></div><figcaption class="cap" data-en-html="TOAST CARD">TARJETA PARA EL BRINDIS</figcaption></figure>
+      </div></div><div class="txt"><span class="num" data-en-html="06 · EVENT PRINTABLES">06 · PAPELERÍA DEL EVENTO</span><h2 data-en-html="Your event, &lt;em&gt;in the same style&lt;/em&gt;">Tu evento, <em>con el mismo estilo</em></h2><p data-en-html="We design the printed pieces of your event with the same colors, flowers and gold lettering as your invitation. You get print-ready files to print wherever you like.">Diseñamos las piezas impresas de tu evento con los mismos colores, flores y letra dorada de tu invitación. Te entregamos los archivos listos para imprimir donde tú prefieras.</p><div class="where"><span data-en-html="GALA · 3 PIECES">GALA · 3 PIEZAS</span><span data-en-html="EXPERIENCIA · ALL">EXPERIENCIA · TODAS</span><span class="add" data-en-html="OR ADD THEM">O AGRÉGALAS</span></div><div class="all"><span class="all-t" data-en-html="EVERYTHING WE CAN DESIGN FOR YOU">TODO LO QUE PODEMOS DISEÑAR PARA TI</span><div class="chips"><span data-en-html="Welcome sign">Letrero de bienvenida</span><span data-en-html="Countdown cards">Tarjetas de cuenta regresiva</span><span data-en-html="Toast cards">Tarjetas para el brindis</span><span data-en-html="Menu">Menú</span><span data-en-html="“2028” photo booth props">Accesorios para fotos “2028”</span><span data-en-html="Midnight reel">Reel de medianoche</span></div></div></div></section>
+  <div class="rule"></div>
+  <section class="close"><span class="eyebrow" data-en-html="YOUR EVENT, COMPLETE">TU EVENTO, COMPLETO</span><h2 style="margin:0;font:500 clamp(34px,4.4vw,54px)/1.1 var(--f-serif)" data-en-html="Choose a package &lt;em&gt;or build your own&lt;/em&gt;">Elige tu paquete <em>o arma el tuyo</em></h2>
+    <p class="note" data-en-html="Every piece can be added to any package.">Cada pieza se puede sumar a cualquier paquete.</p>
+    <div class="row"><a class="btn" href="../../crear/?c=ano-nuevo" data-en-html="Create my invitation">Crear mi invitación</a><a class="btn line" href="../../#paquetes" data-en-html="See packages &amp;amp; prices">Ver paquetes y precios</a></div></section>
+  <div class="rule"></div>
+  <section class="close" style="padding-top:clamp(40px,6vw,70px)"><span class="eyebrow" data-en-html="KEEP DREAMING">SIGUE SOÑANDO</span><h2 style="margin:0 0 10px;font:500 clamp(30px,3.6vw,44px)/1.1 var(--f-serif)" data-en-html="Other &lt;em&gt;worlds&lt;/em&gt;">Otros <em>mundos</em></h2><nav class="others" aria-label="Otras colecciones"><a class="ow" href="../../coleccion/bodas/"><span class="ar"><img src="../../img/cat-bodas.webp" alt="" loading="lazy"></span><b data-en-html="Weddings">Bodas</b></a><a class="ow" href="../../coleccion/xv-anos/"><span class="ar"><img src="../../img/cat-xv.webp" alt="" loading="lazy"></span><b data-en-html="Quinceañeras">XV Años</b></a><a class="ow" href="../../coleccion/cumpleanos/"><span class="ar"><img src="../../img/cat-cumpleanos.webp" alt="" loading="lazy"></span><b data-en-html="Birthdays">Cumpleaños</b></a><a class="ow" href="../../coleccion/baby-shower/"><span class="ar"><img src="../../img/cat-baby-shower.webp" alt="" loading="lazy"></span><b data-en-html="Baby Showers">Baby Shower</b></a><a class="ow" href="../../coleccion/navidad/"><span class="ar"><img src="../../img/cat-navidad-posadas.webp" alt="" loading="lazy"></span><b data-en-html="Christmas">Posada · Navidad</b></a><a class="ow" href="../../coleccion/empresas/"><span class="ar"><img src="../../img/cat-gala-empresa.webp" alt="" loading="lazy"></span><b data-en-html="Corporate Events">Empresas · Gala</b></a><a class="ow" href="../../coleccion/otras/"><span class="ar"><img src="../../img/cat-otras.webp" alt="" loading="lazy"></span><b data-en-html="Other Celebrations">Otras celebraciones</b></a></nav></section>
+</main>
+<script>
+(function () {
+  document.querySelectorAll('[data-qr]').forEach(function (el) { try { if (window.QRCode) new QRCode(el, { text: el.getAttribute('data-qr'), width: 160, height: 160, colorDark: '#1C1B20', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M }); } catch (e) {} });
+  document.querySelectorAll('.on').forEach(function (on) { for (var i = 0; i < 10; i++) { var s = document.createElement('i'); s.className = 'sp'; s.style.left = (8 + Math.random() * 84) + '%'; s.style.top = (8 + Math.random() * 84) + '%'; s.style.animationDelay = (-Math.random() * 2.4) + 's'; on.appendChild(s); } });
+  var nodes = [].slice.call(document.querySelectorAll('[data-en-html]'));
+  nodes.forEach(function (el) { el.setAttribute('data-es-html', el.innerHTML); });
+  var TITLES = { es: "La experiencia año nuevo · Ilusión Invites", en: "The New Year'S Eve Experience · Ilusión Invites" };
+  function setLang(l) {
+    nodes.forEach(function (el) { el.innerHTML = l === 'en' ? el.getAttribute('data-en-html') : el.getAttribute('data-es-html'); });
+    document.documentElement.lang = l; document.title = TITLES[l];
+    document.getElementById('es').setAttribute('aria-pressed', String(l === 'es')); document.getElementById('en').setAttribute('aria-pressed', String(l === 'en'));
+    try { localStorage.setItem('ilu-lang', l); } catch (e) {}
+  }
+  document.getElementById('es').addEventListener('click', function () { setLang('es'); });
+  document.getElementById('en').addEventListener('click', function () { setLang('en'); });
+  var saved = null; try { saved = localStorage.getItem('ilu-lang'); } catch (e) {}
+  var q = new URLSearchParams(location.search).get('lang');
+  setLang(q === 'en' || (q !== 'es' && saved === 'en') ? 'en' : 'es');
+})();
+</script>
+</body>
+</html>

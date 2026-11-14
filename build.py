@@ -76,4 +76,5 @@ for src, out, title, desc in PAGES:
 
 # always finish with the collections step (it fills the home page and "Crea la tuya" with the collections)
 import subprocess, sys
+subprocess.run([sys.executable, os.path.join(HERE, 'experiencias.py')], check=True)
 subprocess.run([sys.executable, os.path.join(HERE, 'colecciones.py')], check=True)
