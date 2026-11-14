@@ -73,3 +73,7 @@ for src, out, title, desc in PAGES:
         body += DEMO_NAV.replace('__COL__', DEMO_INFO[out][0]).replace('__DIS__', DEMO_INFO[out][1])
     open(os.path.join(HERE, out, 'index.html'), 'w', encoding='utf-8').write(head + body + '\n</body>\n</html>\n')
     print('built', out or '(root)')
+
+# always finish with the collections step (it fills the home page and "Crea la tuya" with the collections)
+import subprocess, sys
+subprocess.run([sys.executable, os.path.join(HERE, 'colecciones.py')], check=True)
