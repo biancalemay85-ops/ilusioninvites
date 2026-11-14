@@ -304,7 +304,7 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
         <legend tabindex="-1" data-en-html="Review and <em>send</em>">Revisa y <em>envía</em></legend>
         <p class="hint" data-en="Everything look right? Send it and we'll write back with your proposal.">¿Todo bien? Envíalo y te escribimos con tu propuesta.</p>
         <p class="sub" style="margin-top:0" data-en="YOUR PACKAGE">TU PAQUETE</p>
-        <div class="opts c3 pk" id="o-paquete"></div>
+        <div class="opts c2 pk" id="o-paquete"></div>
         <ul class="sum" id="sum" style="margin-top:18px"></ul>
         <div class="fields" style="margin-top:16px">
           <label class="full"><span data-en="Your name">Tu nombre</span><input name="contacto" maxlength="80" autocomplete="name"></label>
@@ -400,10 +400,10 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
     { v: 'galeria', es: 'Galería de fotos', en: 'Photo gallery' }, { v: 'regalos', es: 'Mesa de regalos', en: 'Gift registry' },
     { v: 'vestimenta', es: 'Código de vestimenta', en: 'Dress code' }, { v: 'itinerario', es: 'Itinerario del día', en: 'Schedule of the day' }
   ];
-  var PAQ = [{ v: 'esencial', n: 'Esencial' }, { v: 'ilusion', n: 'Ilusión' }, { v: 'gala', n: 'Gala' }];
-  var PRICES = { MXN: [890, 1490, 2490], CAD: [69, 119, 189] };
+  var PAQ = [{ v: 'esencial', n: 'Esencial' }, { v: 'ilusion', n: 'Ilusión' }, { v: 'gala', n: 'Gala' }, { v: 'experiencia', n: 'Experiencia' }];
+  var PRICES = { MXN: [890, 1490, 2990, 5900], CAD: [69, 119, 229, 449] };
   function curr() { var c = null; try { c = localStorage.getItem('ilu-cur'); } catch (e) {} return c || (L() === 'en' ? 'CAD' : 'MXN'); }
-  function priceOf(v) { var i = ['esencial', 'ilusion', 'gala'].indexOf(v), c = curr(); return i < 0 ? '' : '$' + PRICES[c][i].toLocaleString('en-US') + ' ' + c; }
+  function priceOf(v) { var i = ['esencial', 'ilusion', 'gala', 'experiencia'].indexOf(v), c = curr(); return i < 0 ? '' : (i === 3 ? (L() === 'en' ? 'from ' : 'desde ') : '') + '$' + PRICES[c][i].toLocaleString('en-US') + ' ' + c; }
   var KEYS = ['diseno', 'datos', 'fotos', 'idea', 'enviar'];
   var NAMES = { es: ['Diseño', 'Detalles', 'Fotos', 'Idea', 'Enviar'], en: ['Design', 'Details', 'Photos', 'Idea', 'Send'] };
   var TEXT = ['quien', 'fecha', 'hora', 'ceremonia', 'lugar', 'direccion', 'familia', 'vestimenta', 'invitados', 'rsvp', 'cancion', 'inspiracion', 'sueno', 'contacto'];
@@ -431,7 +431,7 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
   var qs = new URLSearchParams(location.search);
   if (qs.get('c') && EV[qs.get('c')]) { if (st.evento !== qs.get('c')) st.diseno = ''; st.evento = qs.get('c'); st.step = 0; }
   if (qs.get('d')) { st.diseno = qs.get('d'); if (st.evento) st.step = 1; }
-  if (qs.get('paquete') && /^(esencial|ilusion|gala)$/.test(qs.get('paquete'))) st.paquete = qs.get('paquete');
+  if (qs.get('paquete') && /^(esencial|ilusion|gala|experiencia)$/.test(qs.get('paquete'))) st.paquete = qs.get('paquete');
   if (!st.paquete) st.paquete = 'ilusion';
   st.step = Math.max(0, Math.min(KEYS.length - 1, +st.step || 0));
   var photos = []; /* {file, url} */

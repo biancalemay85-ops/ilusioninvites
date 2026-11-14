@@ -351,7 +351,7 @@ html, body { overflow-x: clip; }
 .cur { display: flex; width: max-content; margin: -14px auto 30px; border: 1px solid rgba(182,138,78,.45); border-radius: 999px; overflow: hidden; }
 .cur button { border: 0; background: none; padding: 7px 16px; font: 500 12px var(--f-caps); letter-spacing: .16em; color: var(--ink2); cursor: pointer; }
 .cur button[aria-pressed="true"] { background: var(--gold); color: #fff; }
-.packs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.6vw, 30px); max-width: 1060px; margin: 0 auto; align-items: center; }
+.packs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 24px); max-width: 1240px; margin: 0 auto; align-items: center; }
 .pack { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 50px clamp(22px, 2.6vw, 32px) 32px; border-radius: 50% 50% 22px 22px / 120px 120px 22px 22px; background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(253,249,243,.8)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.28), 0 40px 60px -44px rgba(90,60,40,.5); transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; }
 .pack::before { content: ""; position: absolute; inset: 9px; border-radius: 50% 50% 15px 15px / 112px 112px 15px 15px; border: 1px solid rgba(182,138,78,.16); pointer-events: none; }
 .pack:hover { transform: translateY(-4px); }
@@ -370,7 +370,19 @@ html, body { overflow-x: clip; }
 .pack .btn { margin-top: auto; width: 100%; }
 .pk-note { text-align: center; margin: 30px 0 0; font-size: 14px; color: var(--ink3); }
 .pk-note a { color: var(--gold); text-underline-offset: 3px; }
-@media (max-width: 860px) { .packs { grid-template-columns: minmax(0, 1fr); max-width: 400px; } .pack.star { order: -1; } }
+@media (max-width: 1100px) { .packs { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 820px; align-items: stretch; } }
+@media (max-width: 640px) { .packs { grid-template-columns: minmax(0, 1fr); max-width: 400px; } .pack.star { order: -1; } }
+.pack.top { background: linear-gradient(180deg, #FFFCF6, #F6ECDD); box-shadow: inset 0 0 0 1px rgba(182,138,78,.45), 0 40px 60px -44px rgba(90,60,40,.5); }
+.pack.top .ribbon { background: linear-gradient(180deg, #FFFFFF, #F1E4CF); box-shadow: inset 0 0 0 1px rgba(182,138,78,.5); }
+.pack.top { padding-top: 64px; }
+.pack .desde { font: italic 400 16px var(--f-serif); color: var(--ink3); }
+.pack h3 { text-wrap: balance; }
+.incl { max-width: 980px; margin: -6px auto 34px; text-align: center; }
+.incl-t { font: 500 10.5px var(--f-caps); letter-spacing: .3em; color: var(--gold); }
+.incl ul { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.incl li { padding: 7px 14px; border-radius: 999px; font-size: 13.5px; color: var(--ink2); background: rgba(255,252,246,.8); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); }
+.pk-more { text-align: center; margin: 26px 0 0; }
+.pk-more a { font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(182,138,78,.4); padding-bottom: 3px; }
 
 /* questions */
 .qs { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
@@ -467,44 +479,68 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <div class="wrap">
       <div class="head"><span class="eyebrow" data-en="PACKAGES">PAQUETES</span><h2 id="pk-title" data-en-html="Choose your <em>ilusión</em>">Elige tu <em>ilusión</em></h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"><p data-en="Every package includes a design made for you and a link ready to share. Choose how much magic you want.">Todos incluyen un diseño hecho para ti y un link listo para compartir. Tú eliges cuánta magia quieres.</p></div>
       <div class="cur" role="group" aria-label="Moneda" data-en-aria="Currency"><button type="button" data-cur="MXN">MXN</button><button type="button" data-cur="CAD">CAD</button></div>
+      <div class="incl">
+        <span class="incl-t" data-en="EVERY INVITATION INCLUDES">TODAS LAS INVITACIONES INCLUYEN</span>
+        <ul>
+          <li data-en="Envelope with wax seal that opens">Sobre con sello de cera que se abre</li>
+          <li data-en="Music and photo gallery">Música y galería de fotos</li>
+          <li data-en="Schedule, map and countdown">Itinerario, mapa y cuenta regresiva</li>
+          <li data-en="Gift registry and dress code">Mesa de regalos y vestimenta</li>
+          <li data-en="RSVP on WhatsApp">Confirmación por WhatsApp</li>
+          <li data-en="Spanish, English or both">Español, inglés o los dos</li>
+          <li data-en="Adjustments until you love it">Ajustes hasta que te encante</li>
+        </ul>
+      </div>
       <div class="packs">
         <article class="pack">
-          <h3>Esencial</h3><span class="tag" data-en="The essentials, beautiful">Lo esencial, hermoso</span>
+          <h3>Esencial</h3><span class="tag" data-en="The complete invitation">La invitación completa</span>
           <p class="amt"><b class="price" data-p="0"></b><small class="curl"></small></p>
           <ul>
-            <li data-en="Web invitation with an envelope that opens">Invitación web con sobre que se abre</li>
-            <li data-en="Countdown and map">Cuenta regresiva y mapa</li>
-            <li data-en="RSVP on WhatsApp">Confirmación por WhatsApp</li>
-            <li data-en="1 round of changes">1 ronda de cambios</li>
+            <li data-en="Everything above, in one of our designs">Todo lo anterior, en uno de nuestros diseños</li>
+            <li data-en="In your colors and with your photos">Con tus colores y tus fotos</li>
+            <li data-en="Ready-to-share link">Link listo para compartir</li>
           </ul>
           <a class="btn btn-line" href="crear/?paquete=esencial" data-en="Choose Esencial">Elegir Esencial</a>
         </article>
         <article class="pack star">
           <span class="ribbon" data-en="MOST CHOSEN">EL FAVORITO</span>
-          <h3>Ilusión</h3><span class="tag" data-en="Our signature package">Nuestro paquete estrella</span>
+          <h3>Ilusión</h3><span class="tag" data-en="Your guests, taken care of">Tus invitados, consentidos</span>
           <p class="amt"><b class="price" data-p="1"></b><small class="curl"></small></p>
           <ul>
             <li data-en="Everything in Esencial">Todo lo de Esencial</li>
-            <li data-en="Music, gallery and schedule">Música, galería e itinerario</li>
-            <li data-en="Gift registry and dress code">Mesa de regalos y vestimenta</li>
-            <li data-en="Bilingual Spanish / English">Bilingüe español / inglés</li>
-            <li data-en="2 rounds of changes">2 rondas de cambios</li>
+            <li data-en="A link per guest with their seats">Link por invitado con sus lugares</li>
+            <li data-en="Live list of confirmations">Lista de confirmados en vivo</li>
+            <li data-en="Video invitation (vertical + square)">Video invitación (vertical y cuadrado)</li>
           </ul>
           <a class="btn btn-gold" href="crear/?paquete=ilusion" data-en="Choose Ilusión">Elegir Ilusión</a>
         </article>
         <article class="pack">
-          <h3>Gala</h3><span class="tag" data-en="The complete experience">La experiencia completa</span>
+          <h3>Gala</h3><span class="tag" data-en="Zero stress">Cero estrés</span>
           <p class="amt"><b class="price" data-p="2"></b><small class="curl"></small></p>
           <ul>
             <li data-en="Everything in Ilusión">Todo lo de Ilusión</li>
-            <li data-en="Video invitation for WhatsApp and Reels">Video invitación para WhatsApp y Reels</li>
-            <li data-en="A link with each guest's name">Link con el nombre de cada invitado</li>
-            <li data-en="Guest list of confirmations for you">Lista de confirmados para ti</li>
-            <li data-en="Priority delivery in 24 h">Entrega prioritaria en 24 h</li>
+            <li data-en="Automatic WhatsApp reminders">Recordatorios automáticos por WhatsApp</li>
+            <li data-en="Guest photo QR + download link">QR de fotos de invitados + link de descarga</li>
+            <li data-en="3 printables: welcome sign, table numbers, QR card">3 imprimibles: letrero, números de mesa y tarjeta QR</li>
+            <li data-en="First version in 24 h">Primera versión en 24 h</li>
           </ul>
           <a class="btn btn-line" href="crear/?paquete=gala" data-en="Choose Gala">Elegir Gala</a>
         </article>
+        <article class="pack top">
+          <span class="ribbon" data-en="MADE WITH YOU">HECHA CONTIGO</span>
+          <h3 data-en="Ilusión Experience">Experiencia Ilusión</h3><span class="tag" data-en="Everything, by us">Todo, por nosotros</span>
+          <p class="amt"><span class="desde" data-en="from">desde</span> <b class="price" data-p="3"></b><small class="curl"></small></p>
+          <ul>
+            <li data-en="Everything in Gala">Todo lo de Gala</li>
+            <li data-en="Your own personalized song">Tu canción personalizada</li>
+            <li data-en="Full printables suite">Papelería completa</li>
+            <li data-en="3 highlight reels from your guests' photos">3 reels con las fotos de tus invitados</li>
+            <li data-en="A personal video presenting your proposal">Un video personal presentando tu propuesta</li>
+          </ul>
+          <a class="btn btn-line" href="crear/?paquete=experiencia" data-en="Let's talk">Hablemos</a>
+        </article>
       </div>
+      <p class="pk-more"><a href="experiencia/xv-anos/" data-en="See how every extra looks →">Mira cómo se ve cada detalle →</a></p>
       <p class="pk-note"><span data-en="Price per invitation (one event).">Precio por invitación (un evento).</span> <a href="https://wa.me/16048391163?text=Hola%20Ilusi%C3%B3n%20Invites%20%E2%9C%A8%20quiero%20cotizar%20algo%20especial" target="_blank" rel="noopener" data-en="Need something special? Ask us">¿Necesitas algo especial? Pregúntanos</a></p>
     </div>
   </section>
@@ -577,7 +613,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         <details><summary data-en="What exactly do I receive?">¿Qué recibo exactamente?</summary><p data-en="A personal link to your invitation. When your guests open it, they see a sealed envelope; they tap the seal and your invitation appears with music, photos, map, countdown and a button to confirm.">Un link personal de tu invitación. Al abrirlo, tus invitados ven un sobre sellado; tocan el sello y aparece tu invitación con música, fotos, mapa, cuenta regresiva y un botón para confirmar.</p></details>
         <details><summary data-en="How do my guests receive it?">¿Cómo la reciben mis invitados?</summary><p data-en="You share the link by WhatsApp, Instagram, email or text. It opens on any phone, with nothing to download.">Compartes el link por WhatsApp, Instagram, correo o mensaje. Se abre en cualquier celular, sin descargar nada.</p></details>
         <details><summary data-en="How long does it take?">¿Cuánto tiempo tarda?</summary><p data-en="Once we have your details and photos, we show you a first version in a few days. With the Gala package, in 24 hours.">Cuando tenemos tus datos y fotos, te mostramos una primera versión en pocos días. Con el paquete Gala, en 24 horas.</p></details>
-        <details><summary data-en="Can I make changes?">¿Puedo hacer cambios?</summary><p data-en="Yes. Esencial includes 1 round of changes, Ilusión and Gala include 2. We adjust texts, photos and details until you love it.">Sí. Esencial incluye 1 ronda de cambios; Ilusión y Gala incluyen 2. Ajustamos textos, fotos y detalles hasta que te encante.</p></details>
+        <details><summary data-en="Can I make changes?">¿Puedo hacer cambios?</summary><p data-en="Yes. We adjust texts, photos and details with you until it looks the way you dreamed it, in every package.">Sí. Ajustamos contigo textos, fotos y detalles hasta que quede como la soñaste, en todos los paquetes.</p></details>
         <details><summary data-en="How do I order and pay?">¿Cómo la pido y cómo pago?</summary><p data-en="Choose your package, tell us your idea in a few steps and send it by WhatsApp. We confirm everything with you there and send you the payment details.">Elige tu paquete, cuéntanos tu idea en unos pasos y envíala por WhatsApp. Ahí confirmamos todo contigo y te enviamos los datos de pago.</p></details>
         <details><summary data-en="Do you work in Mexico and Canada?">¿Trabajan en México y Canadá?</summary><p data-en="Yes. We design for clients in Mexico and Canada, in Spanish, English or both in the same invitation.">Sí. Diseñamos para clientes en México y Canadá, en español, inglés o los dos en la misma invitación.</p></details>
       </div>
@@ -971,7 +1007,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 
   /* package prices: one place to change them. Spanish shows pesos, English shows Canadian dollars (or the visitor's choice) */
   (function () {
-    var PRICES = { MXN: [890, 1490, 2490], CAD: [69, 119, 189] };
+    var PRICES = { MXN: [890, 1490, 2990, 5900], CAD: [69, 119, 229, 449] };
     var chosen = null; try { chosen = localStorage.getItem('ilu-cur'); } catch (e) {}
     function cur() { return chosen || (document.documentElement.lang === 'en' ? 'CAD' : 'MXN'); }
     function fmt(n) { return '$' + n.toLocaleString('en-US'); }
