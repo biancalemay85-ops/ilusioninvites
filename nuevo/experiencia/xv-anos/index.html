@@ -25,7 +25,7 @@
    photos with our own design laid on top. Fictional names only (Valentina, Familia López). */
 :root {
   color-scheme: light;
-  --bg: #FCF3F4; --bg2: var(--bg2); --paper: var(--paper); --ink: #4A2633; --ink2: #7A5560; --ink3: #A88893; --accent: #B8798A; --gold: #B68A4E; --tint: transparent; --flw: none;
+  --bg: #FCF3F4; --bg2: #FBEFF0; --paper: #FDF7F6; --ink: #4A2633; --ink2: #7A5560; --ink3: #A88893; --accent: #B8798A; --gold: #B68A4E; --tint: transparent; --flw: none;
   --gold-text: linear-gradient(180deg, #F3D99A 0%, #D2A75E 45%, #9C6E30 100%);
   --f-script: "Great Vibes", "Snell Roundhand", cursive; --f-caps: "Cinzel", Georgia, serif; --f-serif: "Cormorant Garamond", Georgia, serif; --f-body: "Jost", "Avenir Next", system-ui, sans-serif;
 }
@@ -54,21 +54,13 @@ a { color: inherit; }
 .brand img { width: 38px; height: auto; }
 .brand b { font: 400 26px/1.1 var(--f-script); color: #A87B3F; padding: 0 .08em 0 .16em; }
 .cta-top { font: 500 13px var(--f-body); text-decoration: none; padding: 9px 16px; border-radius: 999px; color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); box-shadow: 0 6px 14px -8px rgba(140,95,40,.6); white-space: nowrap; }
-@media (max-width: 600px) { .back span, .brand b { display: none; } }
+@media (max-width: 600px) { .back span, .brand b { display: none; } .cta-top { padding: 8px 12px; font-size: 12px; } }
 
-/* language + palette */
+/* language */
 .right { display: flex; align-items: center; gap: 10px; }
 .lang { display: flex; border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 999px; overflow: hidden; }
 .lang button { border: 0; background: none; padding: 6px 11px; font: 500 12px var(--f-body); color: var(--ink2); cursor: pointer; }
 .lang button[aria-pressed="true"] { background: var(--accent); color: #fff; }
-.pal { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 16px 9px; }
-.pal > span { font: 500 9.5px var(--f-caps); letter-spacing: .26em; color: var(--ink3); }
-.pal b { font: 400 22px/1 var(--f-script); color: var(--accent); min-width: 70px; }
-.dots { display: flex; gap: 8px; }
-.dots button { width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; background: linear-gradient(135deg, var(--c1) 0 50%, var(--c2) 50% 100%); box-shadow: inset 0 0 0 1px rgba(0,0,0,.08), 0 2px 6px -2px rgba(0,0,0,.25); transition: transform .3s, box-shadow .3s; }
-.dots button:hover { transform: scale(1.12); }
-.dots button[aria-pressed="true"] { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--gold), 0 4px 10px -3px rgba(0,0,0,.3); transform: scale(1.1); }
-@media (max-width: 600px) { .pal > span { display: none; } .pal b { min-width: 0; font-size: 19px; } .dots { gap: 7px; } .dots button { width: 24px; height: 24px; } .cta-top { padding: 8px 12px; font-size: 12px; } }
 
 /* intro */
 .intro { text-align: center; padding: clamp(40px, 7vw, 90px) 0 clamp(20px, 3vw, 40px); display: flex; flex-direction: column; align-items: center; gap: 8px; }
@@ -259,7 +251,6 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
     <a class="brand" href="../../" aria-label="Ilusión Invites"><img src="../../img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><b>Ilusión</b></a>
     <div class="right"><div class="lang" role="group" aria-label="Idioma"><button type="button" id="es" aria-pressed="true">ES</button><button type="button" id="en" aria-pressed="false">EN</button></div><a class="cta-top" href="../../crear/?c=xv-anos" data-en="Create mine">Crear la mía</a></div>
   </div>
-  <div class="pal" role="group" aria-label="Colores" data-en-aria="Colors"><span data-en="TRY YOUR COLORS">PRUEBA TUS COLORES</span><div class="dots" id="dots"></div><b id="pal-name"></b></div>
 </header>
 
 <main class="wrap">
@@ -463,33 +454,10 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
     document.documentElement.lang = l; document.title = l === 'en' ? 'The Quinceañera Experience · Ilusión Invites' : 'La experiencia XV · Ilusión Invites';
     document.getElementById('es').setAttribute('aria-pressed', String(l === 'es')); document.getElementById('en').setAttribute('aria-pressed', String(l === 'en'));
     try { localStorage.setItem('ilu-lang', l); } catch (e) {}
-    paintPal();
   }
   document.getElementById('es').addEventListener('click', function () { setLang('es'); });
   document.getElementById('en').addEventListener('click', function () { setLang('en'); });
 
-  /* color palette: try the experience in other colors */
-  var PAL = [
-    { k: 'rosa', es: 'Rubor', en: 'Blush', c: ['#FCF3F4', '#FBEFF0', '#FDF7F6', '#B8798A', '#4A2633', '#7A5560', '#A88893'], tint: 'transparent', flw: 'none', seal: 'sello-rubor', sw: ['#F4CFD8', '#B8798A'] },
-    { k: 'lila', es: 'Lila', en: 'Lilac', c: ['#F6F2FB', '#EFE8F8', '#FAF7FD', '#9A82B8', '#3B2A4A', '#665577', '#9A8CAA'], tint: '#9A82B8', flw: 'hue-rotate(-42deg) saturate(.9)', seal: 'sello-marfil', sw: ['#DCCDEE', '#9A82B8'] },
-    { k: 'durazno', es: 'Durazno', en: 'Peach', c: ['#FDF4EE', '#FAEADF', '#FEF9F5', '#C98E6E', '#4A2E26', '#7A5A4E', '#A88D80'], tint: '#E3A986', flw: 'hue-rotate(18deg) saturate(1.05)', seal: 'sello-ilusion-oro-s', sw: ['#F6D3BE', '#C98E6E'] },
-    { k: 'azul', es: 'Azul cielo', en: 'Sky blue', c: ['#F2F6FB', '#E6EEF7', '#F8FAFD', '#7F9CC0', '#24324A', '#55647A', '#8C98AA'], tint: '#7F9CC0', flw: 'hue-rotate(190deg) saturate(.6) brightness(1.05)', seal: 'sello-marino', sw: ['#CFDDEE', '#7F9CC0'] },
-    { k: 'blanco', es: 'Marfil', en: 'Ivory', c: ['#FBF7F0', '#F4EDE1', '#FDFAF5', '#B68A4E', '#3A2A26', '#6E5B54', '#9A877F'], tint: '#E9D9C3', flw: 'saturate(.2) brightness(1.12)', seal: 'sello-marfil', sw: ['#F3E8D6', '#B68A4E'] },
-    { k: 'vino', es: 'Vino', en: 'Wine', c: ['#F8EEF0', '#F1E1E4', '#FCF6F7', '#8E3A4E', '#4A1626', '#77505B', '#A3838C'], tint: '#8E3A4E', flw: 'hue-rotate(-12deg) saturate(1.35) brightness(.82)', seal: 'sello-vino', sw: ['#D9A9B4', '#8E3A4E'] }
-  ];
-  var cur = 0; try { var sv = localStorage.getItem('ilu-pal-xv'); PAL.forEach(function (p, i) { if (p.k === sv) cur = i; }); } catch (e) {}
-  var dots = document.getElementById('dots');
-  dots.innerHTML = PAL.map(function (p, i) { return '<button type="button" data-i="' + i + '" style="--c1:' + p.sw[0] + ';--c2:' + p.sw[1] + '"></button>'; }).join('');
-  function paintPal() {
-    var p = PAL[cur], r = document.documentElement.style, en = document.documentElement.lang === 'en', v = ['--bg', '--bg2', '--paper', '--accent', '--ink', '--ink2', '--ink3'];
-    v.forEach(function (n, i) { r.setProperty(n, p.c[i]); });
-    r.setProperty('--tint', p.tint); r.setProperty('--flw', p.flw);
-    document.querySelectorAll('img[data-l]').forEach(function (im) { im.src = '../../img/letras/' + p.k + '/' + im.getAttribute('data-l') + '.webp'; });
-    document.querySelectorAll('img[data-seal]').forEach(function (im) { im.src = '../../img/' + p.seal + '.webp'; });
-    dots.querySelectorAll('button').forEach(function (b, i) { b.setAttribute('aria-pressed', String(i === cur)); b.setAttribute('aria-label', PAL[i][en ? 'en' : 'es']); b.title = PAL[i][en ? 'en' : 'es']; });
-    document.getElementById('pal-name').textContent = p[en ? 'en' : 'es'];
-  }
-  dots.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; cur = +b.getAttribute('data-i'); try { localStorage.setItem('ilu-pal-xv', PAL[cur].k); } catch (x) {} paintPal(); });
   var saved = null; try { saved = localStorage.getItem('ilu-lang'); } catch (e) {}
   var q = new URLSearchParams(location.search).get('lang');
   setLang(q === 'en' || (q !== 'es' && saved === 'en') ? 'en' : 'es');
