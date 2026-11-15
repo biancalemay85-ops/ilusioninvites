@@ -371,6 +371,13 @@ html, body { overflow-x: clip; }
 .opt-all { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; min-height: 50px; border: 0; cursor: pointer; border-radius: 999px; font: 500 15.5px var(--f-body); color: var(--ink); background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px var(--gold); transition: background .3s, box-shadow .3s; }
 .opt-all i { font-style: normal; color: var(--gold); }
 .opt-all[aria-pressed="true"] { color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); box-shadow: 0 10px 22px -12px rgba(140,95,40,.6); } .opt-all[aria-pressed="true"] i { color: #3A2210; }
+.hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.im-done { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 22px 10px 6px; }
+.im-done img { width: 82px; height: auto; filter: drop-shadow(0 10px 14px rgba(90,60,40,.3)); animation: doneIn .8s cubic-bezier(.2,.7,.2,1); }
+.im-done b { font: 500 clamp(26px, 3vw, 34px)/1.1 var(--f-serif); color: var(--ink); } .im-done p { margin: 0; color: var(--ink2); max-width: 42ch; }
+@keyframes doneIn { from { transform: scale(.6) rotate(-20deg); opacity: 0; } }
+.im-err { margin: 10px 0 0; text-align: center; font-size: 14px; color: #9b3b3b; }
+#im-send.busy { opacity: .7; pointer-events: none; }
 .im-idea { margin-top: 18px; } .im-idea textarea { min-height: 76px; }
 .fields input, .fields textarea, .fields select { font: 400 16px var(--f-body); color: var(--ink); letter-spacing: 0; padding: 12px 16px; border-radius: 14px; border: 0; background: rgba(255,255,255,.85); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); transition: box-shadow .3s; min-width: 0; width: 100%; }
 .fields textarea { resize: vertical; min-height: 92px; line-height: 1.5; }
@@ -1025,6 +1032,11 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
               <label><span data-en="Date">Fecha</span><input id="im-fecha" name="fecha" type="date"></label>
               <label><span data-en="City">Ciudad</span><input id="im-ciudad" name="ciudad" autocomplete="address-level2" maxlength="50" placeholder="Guadalajara" data-en-ph="Vancouver"></label>
               <label class="full"><span data-en="Tell us your dream">Cuéntanos tu sueño</span><textarea id="im-sueno" name="sueno" maxlength="600" placeholder="Una cena al aire libre con luces colgantes, flores blancas y un vals al atardecer…" data-en-ph="An outdoor dinner with string lights, white flowers and a sunset first dance…"></textarea></label>
+            <p class="im-xh full" data-en="HOW DO WE REACH YOU?">¿CÓMO TE CONTACTAMOS?</p>
+              <label class="full"><span data-en="Your name">Tu nombre</span><input id="im-contacto" name="contacto" autocomplete="name" maxlength="60" placeholder="Ana Sofía López" data-en-ph="Ana Sofía López"></label>
+              <label><span data-en="Email (for updates)">Correo (para avisarte)</span><input id="im-correo" name="correo" type="email" autocomplete="email" maxlength="120" placeholder="tu@correo.com" data-en-ph="you@email.com"></label>
+              <label><span>WhatsApp</span><input id="im-whatsapp" name="whatsapp" type="tel" autocomplete="tel" maxlength="30" placeholder="+52 33 1234 5678" data-en-ph="+1 604 123 4567"></label>
+              <input class="hp" name="web" id="im-web" tabindex="-1" autocomplete="off" aria-hidden="true">
             </div>
           </fieldset>
           <div class="im-nav">
@@ -1032,6 +1044,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             <button type="button" class="btn btn-gold" id="im-next" data-en="Next">Siguiente</button>
             <a class="btn btn-gold" id="im-send" href="#" target="_blank" rel="noopener" hidden data-en="Send my idea on WhatsApp">Enviar mi idea por WhatsApp</a>
           </div>
+          <div class="im-done" id="im-done" hidden role="status"><img src="img/sello-ilusion-oro.webp" alt="" width="90" height="90"><b id="im-done-t"></b><p id="im-done-p"></p><a class="btn btn-gold" id="im-done-wa" href="#" target="_blank" rel="noopener" data-en="Let us know on WhatsApp">Avísanos por WhatsApp</a></div>
+          <p class="im-err" id="im-err" hidden></p>
           <p class="im-note" id="im-pnote" hidden data-en="📎 Your photos go along with your idea. If they don't show up in the chat, attach them there.">📎 Tus fotos se comparten junto con tu idea. Si no aparecen en el chat, adjúntalas ahí mismo.</p>
           <p class="im-note" id="im-note" hidden data-en="WhatsApp opens with your idea ready. You decide when to send it.">Se abre WhatsApp con tu idea lista. Tú decides cuándo enviarla.</p>
           <p class="im-more" id="im-go" hidden><a class="btn btn-line btn-sm" href="crear/" data-en="Continue and create mine →">Continuar y crear la mía →</a></p>
@@ -1342,7 +1356,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       ]
     };
     var KEYS = ['evento', 'ambiente', 'color', 'incluir', 'detalles'];
-    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [] };
+    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [], contacto: '', correo: '', whatsapp: '' };
     try { var sv = JSON.parse(localStorage.getItem('ilu-imagina') || 'null'); if (sv && typeof sv === 'object') for (var k in st) if (k in sv) st[k] = sv[k]; } catch (e) {}
     if (!Array.isArray(st.incluir)) st.incluir = [];
     if (!Array.isArray(st.codigos)) st.codigos = [];
@@ -1384,7 +1398,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       steps.forEach(function (f, i) { f.classList.toggle('on', i === st.step); });
       back.hidden = st.step === 0;
       var last = st.step === KEYS.length - 1;
-      next.hidden = last; send.hidden = !last; note.hidden = !last; $('im-pnote').hidden = !(last && fotos.length); document.getElementById('im-go').hidden = !last;
+      next.hidden = last; send.hidden = !last; note.hidden = !last || !!ENDPOINT; $('im-pnote').hidden = !(last && fotos.length) || !!ENDPOINT; document.getElementById('im-go').hidden = !last;
       var ev = find(Q.evento, st.evento);
       more.hidden = !(last && ev);
       if (ev) { colA.href = 'coleccion/' + ev.slug + '/'; colA.textContent = (l === 'en' ? 'SEE THE ' : 'VER LA COLECCIÓN ') + ev[l][0].toUpperCase() + (l === 'en' ? ' COLLECTION →' : ' →'); }
@@ -1428,6 +1442,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       if (fotos.length) out.push(en ? '• I have ' + fotos.length + ' inspiration photo' + (fotos.length > 1 ? 's' : '') + ' (attached)' : '• Tengo ' + fotos.length + ' foto' + (fotos.length > 1 ? 's' : '') + ' de inspiración (las adjunto)');
       if (st.incluir.length) out.push((en ? '• Must have: ' : '• Quiero incluir: ') + st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : ''; }).filter(Boolean).join(', '));
       if (st.extra) out.push((en ? '• Also: ' : '• Algo más: ') + st.extra);
+      if (st.contacto) out.push((en ? '• My name: ' : '• Mi nombre: ') + st.contacto);
       if (st.nombres) out.push((en ? '• Celebrating: ' : '• Quién celebra: ') + st.nombres);
       if (st.fecha) out.push((en ? '• Date: ' : '• Fecha: ') + fmtDate(st.fecha));
       if (st.ciudad) out.push((en ? '• City: ' : '• Ciudad: ') + st.ciudad);
@@ -1452,12 +1467,12 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       save(); renderCard(); renderNav();
       if (k === 'evento' && Date.now() - tapAt < 900) { clearTimeout(timer); var at = st.step; timer = setTimeout(function () { if (st.step === at) go(at + 1, true); }, 650); }
     });
-    form.addEventListener('input', function (e) { var t = e.target; if (/^(nombres|fecha|ciudad|sueno|idea|extra)$/.test(t.name)) { st[t.name] = t.value; save(); renderCard(); } });
+    form.addEventListener('input', function (e) { var t = e.target; if (/^(nombres|fecha|ciudad|sueno|idea|extra|contacto|correo|whatsapp)$/.test(t.name)) { st[t.name] = t.value; save(); renderCard(); } });
     form.addEventListener('submit', function (e) { e.preventDefault(); });
     next.addEventListener('click', function () { go(st.step + 1, true); });
     back.addEventListener('click', function () { go(st.step - 1, true); });
     prog.addEventListener('click', function (e) { var b = e.target.closest('button[data-step]'); if (b) go(+b.getAttribute('data-step'), true); });
-    ['nombres', 'fecha', 'ciudad', 'sueno', 'idea', 'extra'].forEach(function (k) { var el = $('im-' + k); if (el) el.value = st[k] || ''; });
+    ['nombres', 'fecha', 'ciudad', 'sueno', 'idea', 'extra', 'contacto', 'correo', 'whatsapp'].forEach(function (k) { var el = $('im-' + k); if (el) el.value = st[k] || ''; });
     /* colors: exact codes and inspiration photos */
     var cpick = $('im-cpick'), ccode = $('im-ccode'), clist = $('im-clist'), fin = $('im-fotos'), th = $('im-th');
     var HEX = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i;
@@ -1481,14 +1496,61 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       fin.value = ''; renderFotos();
     });
     th.addEventListener('click', function (e) { var b = e.target.closest('[data-rf]'); if (b) { var f = fotos.splice(+b.getAttribute('data-rf'), 1)[0]; if (f) URL.revokeObjectURL(f.url); renderFotos(); } });
-    /* send with the photos attached when the phone can share files */
+    /* send: save the order (answers + photos) in our system, then offer WhatsApp with the order number.
+       Without ENDPOINT, or if saving fails, it falls back to the plain WhatsApp message. */
+    var ENDPOINT = '';
+    function shrink(f) {
+      return new Promise(function (ok) {
+        var img = new Image(), u = URL.createObjectURL(f);
+        img.onload = function () {
+          var k = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight)), c = document.createElement('canvas');
+          c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
+          c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u);
+          ok({ name: f.name, data: c.toDataURL('image/jpeg', .85) });
+        };
+        img.onerror = function () { URL.revokeObjectURL(u); ok(null); };
+        img.src = u;
+      });
+    }
+    function payload(list) {
+      var l = L(), ev = find(Q.evento, st.evento), mo = find(Q.ambiente, st.ambiente), co = find(Q.color, st.color);
+      return { idioma: l, evento: ev ? ev[l][0] : '', ambiente: mo ? mo[l][0] : '', idea: st.idea, color: co ? co[l][0] : '', codigos: st.codigos,
+        incluir: st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : v; }), extra: st.extra, quien_celebra: st.nombres,
+        fecha_evento: st.fecha, ciudad: st.ciudad, sueno: st.sueno, contacto: st.contacto, correo: st.correo, whatsapp: st.whatsapp,
+        web: ($('im-web') || {}).value || '', fotos: list.filter(Boolean) };
+    }
+    var err = $('im-err');
     send.addEventListener('click', function (e) {
-      if (!fotos.length || !navigator.canShare) return;
-      var files = fotos.map(function (f) { return f.file; });
-      try { if (!navigator.canShare({ files: files })) return; } catch (err) { return; }
+      if (!ENDPOINT) {
+        // no order system: share the photos with the message when the phone allows it
+        if (!fotos.length || !navigator.canShare) return;
+        var files = fotos.map(function (f) { return f.file; });
+        try { if (!navigator.canShare({ files: files })) return; } catch (x) { return; }
+        e.preventDefault();
+        navigator.share({ text: message(), files: files }).catch(function (x) { if (!x || x.name !== 'AbortError') window.open(send.href, '_blank', 'noopener'); });
+        return;
+      }
       e.preventDefault();
-      navigator.share({ text: message(), files: files }).catch(function (err) { if (!err || err.name !== 'AbortError') window.open(send.href, '_blank', 'noopener'); });
+      var en = L() === 'en';
+      err.hidden = true;
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.correo || '')) { err.textContent = en ? 'Please add your email so we can send you updates.' : 'Agrega tu correo para poder avisarte de tu pedido.'; err.hidden = false; $('im-correo').focus(); return; }
+      send.classList.add('busy'); send.textContent = en ? 'Saving your order…' : 'Guardando tu pedido…';
+      Promise.all(fotos.map(function (f) { return shrink(f.file); })).then(function (list) {
+        return fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(payload(list)) });
+      }).then(function (r) { return r.json(); }).then(function (r) {
+        if (!r || !r.ok) throw new Error((r && r.error) || 'save');
+        var msg = (en ? 'Hi Ilusión Invites ✨ I just sent my order ' : 'Hola Ilusión Invites ✨ Acabo de enviar mi pedido ') + r.pedido + '\n' + message().split('\n').slice(1, -1).map(function (x) { return /^• (Tengo \d+ foto|I have \d+ inspiration)/.test(x) ? (en ? '• My inspiration photos are already in the order' : '• Mis fotos de inspiración ya están en el pedido') : x; }).join('\n') + '\n' + (en ? 'Can you help me create it?' : '¿Me ayudan a crearla?');
+        $('im-done-wa').href = 'https://wa.me/16048391163?text=' + encodeURIComponent(msg);
+        $('im-done-t').textContent = (en ? 'Order ' : 'Pedido ') + r.pedido + (en ? ' received' : ' recibido');
+        $('im-done-p').textContent = en ? 'We saved your ideas' + (fotos.length ? ' and photos' : '') + '. We sent a confirmation to ' + st.correo + ' and will contact you within 24 hours.' : 'Guardamos tus ideas' + (fotos.length ? ' y fotos' : '') + '. Te enviamos la confirmación a ' + st.correo + ' y te contactamos en menos de 24 horas.';
+        $('im-done').hidden = false; document.querySelector('.im-nav').hidden = true; steps.forEach(function (f) { f.classList.remove('on'); }); prog.hidden = true; no.hidden = true; note.hidden = true; $('im-pnote').hidden = true; $('im-go').hidden = true; more.hidden = true;
+        try { localStorage.removeItem('ilu-imagina'); } catch (x) {}
+      }).catch(function () {
+        err.textContent = en ? 'We could not save it right now. Send it to us on WhatsApp instead and attach your photos in the chat.' : 'No pudimos guardarlo en este momento. Envíanoslo por WhatsApp y adjunta tus fotos en el chat.';
+        err.hidden = false; ENDPOINT = '';
+      }).then(function () { send.classList.remove('busy'); send.textContent = en ? 'Send my idea on WhatsApp' : 'Enviar mi idea por WhatsApp'; if (ENDPOINT) send.textContent = en ? 'Send my order' : 'Enviar mi pedido'; });
     });
+    if (ENDPOINT) { send.removeAttribute('target'); send.setAttribute('data-en', 'Send my order'); send.textContent = L() === 'en' ? 'Send my order' : 'Enviar mi pedido'; }
     /* "I want it all" */
     var allB = $('im-all');
     function paintAll() { allB.setAttribute('aria-pressed', String(st.incluir.length === Q.incluir.length)); }
