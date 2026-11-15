@@ -221,6 +221,10 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
 
 /* the wordmark keeps Great Vibes; its capital I is our own drawn letter (img/letra-I.svg) so it reads clearly as "Ilusión" */
 .brand b .I, .brand-name b .I, .env-letter b .I { display: inline-block; width: .52em; height: .98em; overflow: hidden; vertical-align: -.1em; margin-right: -.06em; font-size: 1em; -webkit-text-fill-color: transparent; text-shadow: none; background: currentColor; -webkit-mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; }
+
+/* the menu logo is the gold seal alone (it already reads "Ilusión Invites") */
+.brand > span, .brand > b { display: none !important; }
+.brand img { width: 46px !important; }
 </style>
 
 <header class="top">

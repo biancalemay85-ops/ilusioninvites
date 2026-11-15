@@ -88,22 +88,26 @@ a { color: inherit; }
 .lead { margin: 0 0 22px; max-width: 58ch; font-size: clamp(16px, 1.6vw, 19px); color: var(--ink2); }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
-/* brand wordmark: "Ilusión" appears on a diagonal sweep of sparks, eases into place, shimmers once */
-.wm { position: relative; width: min(600px, 84vw); margin: -4px auto clamp(18px, 2.4vw, 30px); text-shadow: none; }
-.wm-svg { display: block; width: 100%; height: auto; overflow: visible; transform: scale(.9); opacity: 0; }
-.wm-t { font-family: "Great Vibes", "Snell Roundhand", cursive; font-size: 236px; }
-#wmIf { filter: drop-shadow(0 1px 0 rgba(150,105,50,.35)) drop-shadow(0 10px 16px rgba(150,110,60,.18)); }
-.wm-f { fill: url(#wmGold); filter: drop-shadow(0 1px 0 rgba(150,105,50,.35)) drop-shadow(0 10px 16px rgba(150,110,60,.18)); }
-.wm-sh, #wmIs { mix-blend-mode: screen; pointer-events: none; }
-.wm-spark { position: absolute; inset: -20% -10%; width: 120%; height: 140%; pointer-events: none; }
-.wm-glit circle { fill: #fffaf0; opacity: 0; animation: wmTw 3.4s ease-in-out infinite; }
-.wm-sub { display: block; margin-top: -14px; font: 500 clamp(11px, 1.3vw, 14px) var(--f-caps); letter-spacing: .9em; padding-left: .9em; color: var(--gold); opacity: 0; transform: translateY(8px); }
-.wm.go .wm-svg { animation: wmZoom 4.2s cubic-bezier(.16,.7,.2,1) forwards; }
-.wm.go .wm-sub { animation: wmSub 1.4s ease 2.6s forwards; }
-@keyframes wmZoom { 0% { transform: scale(.9); opacity: 0; } 12% { opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
-@keyframes wmSub { to { opacity: 1; transform: none; } }
-@keyframes wmTw { 0%, 100% { opacity: 0; } 50% { opacity: .7; } }
-.wm.still .wm-svg, .wm.still .wm-sub { opacity: 1; transform: none; }
+/* brand seal: revealed by a diagonal sweep of sparks, eases into place, shimmers once */
+.wm { position: relative; width: clamp(210px, 25vw, 320px); margin: 0 auto clamp(16px, 2vw, 26px); text-shadow: none; }
+.wm-seal { position: relative; transform: scale(.9); opacity: 0; filter: drop-shadow(0 22px 24px rgba(90,60,40,.3)) drop-shadow(0 5px 7px rgba(90,60,40,.2)); }
+.wm-img { display: block; width: 100%; height: auto;
+  -webkit-mask-image: linear-gradient(125deg, #000 42%, rgba(0,0,0,.6) 47%, transparent 52%); mask-image: linear-gradient(125deg, #000 42%, rgba(0,0,0,.6) 47%, transparent 52%);
+  -webkit-mask-size: 320% 320%; mask-size: 320% 320%; -webkit-mask-position: 100% 100%; mask-position: 100% 100%; }
+.wm::before { content: ""; position: absolute; inset: -16%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,240,205,.75), rgba(255,240,205,0)); opacity: 0; transition: opacity 2.4s ease .6s; pointer-events: none; }
+.wm.go::before, .wm.still::before { opacity: 1; }
+.wm-sh, .wm-gl { position: absolute; inset: 0; pointer-events: none; -webkit-mask: url(img/sello-ilusion-oro.webp) center / contain no-repeat; mask: url(img/sello-ilusion-oro.webp) center / contain no-repeat; }
+.wm-sh { background: linear-gradient(125deg, rgba(255,255,255,0) 40%, rgba(255,252,240,.6) 50%, rgba(255,255,255,0) 60%) 150% 150% / 300% 300% no-repeat; mix-blend-mode: screen; }
+.wm-gl i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fffaf0; box-shadow: 0 0 6px 2px rgba(255,240,200,.8); opacity: 0; animation: wmTw 3.2s ease-in-out infinite; }
+.wm-spark { position: absolute; inset: -30%; width: 160%; height: 160%; pointer-events: none; }
+.wm.go .wm-seal { animation: wmZoom 4.2s cubic-bezier(.16,.7,.2,1) forwards; }
+.wm.go .wm-img { animation: wmRev 2.8s cubic-bezier(.5,.1,.3,1) forwards; }
+.wm.go .wm-sh { animation: wmShine 3.2s ease-in-out 3.4s 1 forwards; }
+@keyframes wmZoom { 0% { transform: scale(.9); opacity: 0; } 10% { opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes wmRev { to { -webkit-mask-position: 0% 0%; mask-position: 0% 0%; } }
+@keyframes wmShine { from { background-position: 150% 150%; } to { background-position: -50% -50%; } }
+@keyframes wmTw { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: .9; transform: scale(1); } }
+.wm.still .wm-seal { opacity: 1; transform: none; } .wm.still .wm-img { -webkit-mask-position: 0 0; mask-position: 0 0; }
 .hero { padding-top: 78px; }
 .top .brand span { transition: opacity .5s; }
 .top:not(.scrolled) .brand span { opacity: 0; }
@@ -555,6 +559,10 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 
 /* the wordmark keeps Great Vibes; its capital I is our own drawn letter (img/letra-I.svg) so it reads clearly as "Ilusión" */
 .brand b .I, .brand-name b .I, .env-letter b .I { display: inline-block; width: .52em; height: .98em; overflow: hidden; vertical-align: -.1em; margin-right: -.06em; font-size: 1em; -webkit-text-fill-color: transparent; text-shadow: none; background: currentColor; -webkit-mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; }
+
+/* the menu logo is the gold seal alone (it already reads "Ilusión Invites") */
+.brand > span, .brand > b { display: none !important; }
+.brand img { width: 46px !important; }
 </style>
 
 <header class="top" id="top">
@@ -578,24 +586,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <canvas id="dust" aria-hidden="true"></canvas>
     <div class="hero-in">
       <div class="wm" id="wm" role="img" aria-label="Ilusión Invites">
-        <svg class="wm-svg" viewBox="0 0 1000 330" aria-hidden="true">
-          <defs>
-            <symbol id="wmI" viewBox="0 0 120 200" overflow="visible"><path d="M30 34 C 52 24, 86 21, 108 18 C 92 27, 62 31, 30 34 Z"/><path d="M28 34 C 18 36, 14 46, 22 50 C 26 52, 30 48, 28 44" fill="none" stroke-width="3.4" stroke-linecap="round"/><path d="M75 23 C 84 25, 86 34, 84 43 L 61 154 C 59 164, 53 170, 46 168 C 50 162, 51 156, 52 150 L 67 46 C 68 36, 68 27, 75 23 Z"/><path d="M14 170 C 36 162, 68 160, 94 160 C 76 168, 46 172, 14 170 Z"/><path d="M94 160 C 104 158, 108 148, 100 144 C 96 142, 92 146, 94 150" fill="none" stroke-width="3.2" stroke-linecap="round"/></symbol>
-            <linearGradient id="wmGold" x1="0" y1="0" x2=".25" y2="1"><stop offset="0" stop-color="#FBF0D2"/><stop offset=".3" stop-color="#EAD09A"/><stop offset=".55" stop-color="#D2AD6C"/><stop offset=".75" stop-color="#E4C78E"/><stop offset="1" stop-color="#F6E6BE"/></linearGradient>
-            <linearGradient id="wmSh" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="320" y2="120"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fffdf5" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
-              <animateTransform attributeName="gradientTransform" type="translate" from="-500 -120" to="1300 120" dur="3.4s" begin="indefinite" id="wmShA" fill="freeze"/></linearGradient>
-            <linearGradient id="wmEdge" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset=".9" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-            <mask id="wmRev" maskUnits="userSpaceOnUse" x="-400" y="-400" width="1800" height="1130"><g transform="rotate(24 500 165)"><rect id="wmRevR" x="-2400" y="-600" width="2400" height="1500" fill="url(#wmEdge)"/></g></mask>
-            <mask id="wmTxt"><use class="wmI" id="wmIm" href="#wmI" width="120" height="200" fill="#fff" stroke="#fff"/><text class="wm-t" x="500" y="232" text-anchor="middle" fill="#fff">lusión</text></mask>
-          </defs>
-          <g mask="url(#wmRev)">
-            <use class="wmI" id="wmIf" href="#wmI" width="120" height="200" fill="url(#wmGold)" stroke="url(#wmGold)"/><text class="wm-t wm-f" x="500" y="232" text-anchor="middle">lusión</text>
-          </g>
-          <use class="wmI" id="wmIs" href="#wmI" width="120" height="200" fill="url(#wmSh)" stroke="url(#wmSh)"/><text class="wm-t wm-sh" x="500" y="232" text-anchor="middle" fill="url(#wmSh)">lusión</text>
-          <g class="wm-glit" id="wmGlit" mask="url(#wmTxt)"></g>
-        </svg>
-        <canvas class="wm-spark" id="wmSpark"></canvas>
-        <span class="wm-sub" data-en="INVITES">INVITES</span>
+        <div class="wm-seal"><img class="wm-img" src="img/sello-ilusion-oro.webp" alt="" width="760" height="752"><span class="wm-sh" aria-hidden="true"></span><span class="wm-gl" id="wmGl" aria-hidden="true"></span></div>
+        <canvas class="wm-spark" id="wmSpark" aria-hidden="true"></canvas>
       </div>
       <span class="eyebrow" data-en="LUXURY DIGITAL INVITATIONS">INVITACIONES DIGITALES DE LUJO</span>
       <h1 data-en-html="An invitation you'll <em>never forget</em>">Una invitación que <em>nunca olvidarás</em></h1>
@@ -1426,43 +1418,33 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
   (function () { var f = document.querySelector('.flow'); if (!f) return; if (!('IntersectionObserver' in window)) { f.classList.add('in'); return; }
     var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { f.classList.add('in'); io.disconnect(); } }, { threshold: .5 }); io.observe(f); })();
 
-  /* wordmark: a diagonal sweep of sparks reveals "Ilusión" from top-left to bottom-right, then one soft shimmer */
+  /* brand seal: a diagonal sweep of sparks reveals it, then one soft shimmer and quiet glitter */
   (function () {
     var wm = document.getElementById('wm'); if (!wm) return;
-    var ns = 'http://www.w3.org/2000/svg';
+    var gl = document.getElementById('wmGl');
+    for (var i = 0; i < 16; i++) { var d = document.createElement('i'); var a = Math.random() * 6.283, r = Math.sqrt(Math.random()) * 40; d.style.left = (50 + Math.cos(a) * r) + '%'; d.style.top = (50 + Math.sin(a) * r) + '%'; d.style.animationDelay = (5 + Math.random() * 5).toFixed(2) + 's'; d.style.animationDuration = (2.6 + Math.random() * 2.4).toFixed(2) + 's'; gl.appendChild(d); }
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { wm.classList.add('still'); return; }
     function run() {
-      var svg = wm.querySelector('svg'), t = wm.querySelector('.wm-f');
-      /* place our drawn capital I before "lusión" and centre the whole word */
-      var texts = wm.querySelectorAll('text.wm-t'); texts.forEach(function (x) { x.setAttribute('text-anchor', 'start'); x.setAttribute('x', 0); });
-      var lb = t.getBBox(), sc = 1.025, iw = 123, gap = 14, total = iw - gap + lb.width, xI = 500 - total / 2, xT = xI + iw - gap - lb.x;
-      texts.forEach(function (x) { x.setAttribute('x', xT.toFixed(1)); });
-      ['wmIm', 'wmIf', 'wmIs'].forEach(function (id) { document.getElementById(id).setAttribute('transform', 'translate(' + xI.toFixed(1) + ' 50.6) scale(' + sc + ')'); });
-      var lb2 = t.getBBox(), b = { x: xI, y: Math.min(lb2.y, 70), width: lb2.x + lb2.width - xI, height: lb2.y + lb2.height - Math.min(lb2.y, 70) }, g = document.getElementById('wmGlit');
-      for (var i = 0; i < 45; i++) { var c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', (b.x + Math.random() * b.width).toFixed(1)); c.setAttribute('cy', (b.y + Math.random() * b.height).toFixed(1)); c.setAttribute('r', (0.8 + Math.random() * 1.8).toFixed(1)); c.style.animationDelay = (5 + Math.random() * 4).toFixed(2) + 's'; c.style.animationDuration = (2.6 + Math.random() * 2.6).toFixed(2) + 's'; g.appendChild(c); }
-      var r = document.getElementById('wmRevR');
-      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { r.setAttribute('x', 0); wm.classList.add('still'); return; }
       wm.classList.add('go');
-      /* sparks drawn on a canvas that follows the sweep edge */
       var cv = document.getElementById('wmSpark'), cx = cv.getContext('2d'), P = [];
-      var cr = cv.getBoundingClientRect(), sr = svg.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
-      cv.width = cr.width * d; cv.height = cr.height * d; cx.setTransform(d, 0, 0, d, 0, 0);
-      var k = sr.width / 1000, ox = sr.left - cr.left, oy = sr.top - cr.top, ang = 24 * Math.PI / 180, ca = Math.cos(ang), sa = Math.sin(ang);
-      var dur = 2600, t0 = 0, from = -1500, to = 900;
-      function edge(u) { /* point on the sweep edge, in svg units, u from -1 to 1 along the edge */ var ex = (r._x || from) - 500, ey = u * 260; return [500 + ex * ca - ey * sa, 165 + ex * sa + ey * ca]; }
+      var cr = cv.getBoundingClientRect(), sr = wm.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+      cv.width = cr.width * dpr; cv.height = cr.height * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var W = sr.width, ox = sr.left - cr.left, oy = sr.top - cr.top, ang = 125 * Math.PI / 180, dx = Math.sin(ang), dy = -Math.cos(ang), dur = 2800, t0 = 0;
       (function frame(ts) {
-        if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3), x = from + (to - from) * e;
-        r._x = x; r.setAttribute('x', (x - 2400).toFixed(1));
-        if (p < 1) for (var i = 0; i < 6; i++) { var pt = edge(Math.random() * 2 - 1); if (pt[0] > b.x - 30 && pt[0] < b.x + b.width + 30 && pt[1] > b.y - 10 && pt[1] < b.y + b.height + 10) P.push({ x: ox + pt[0] * k, y: oy + pt[1] * k, vx: (Math.random() * 1.4 + .4) * 30, vy: (Math.random() - .3) * 40, l: 0, m: .6 + Math.random() * .9, s: .6 + Math.random() * 1.8, star: Math.random() < .18 }); }
+        if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        /* the sweep edge travels from the top-left corner to the bottom-right corner */
+        var c = -0.15 + 1.3 * e, ex = ox + W * c, ey = oy + W * c;
+        if (p < 1) for (var i = 0; i < 5; i++) { var u = (Math.random() - .5) * W * 1.1, x = ex + u * dy, y = ey - u * dx, rx = (x - ox) / W - .5, ry = (y - oy) / W - .5;
+          if (rx * rx + ry * ry < .25) P.push({ x: x, y: y, vx: (Math.random() * .8 + .3) * 34, vy: (Math.random() * .8 + .2) * 30, l: 0, m: .6 + Math.random() * .9, s: .6 + Math.random() * 1.8, st: Math.random() < .2 }); }
         cx.clearRect(0, 0, cr.width, cr.height); cx.globalCompositeOperation = 'lighter';
-        for (var j = P.length - 1; j >= 0; j--) { var q = P[j]; q.l += 1 / 60; if (q.l > q.m) { P.splice(j, 1); continue; } q.x += q.vx / 60; q.y += q.vy / 60; q.vy += 12 / 60;
-          var a = Math.sin(Math.PI * q.l / q.m), gr = cx.createRadialGradient(q.x, q.y, 0, q.x, q.y, q.s * 4); gr.addColorStop(0, 'rgba(255,246,220,' + a + ')'); gr.addColorStop(1, 'rgba(240,205,140,0)'); cx.fillStyle = gr; cx.beginPath(); cx.arc(q.x, q.y, q.s * 4, 0, 6.283); cx.fill();
-          if (q.star && a > .5) { cx.strokeStyle = 'rgba(255,250,232,' + a * .9 + ')'; cx.lineWidth = .7; var L = q.s * 6; cx.beginPath(); cx.moveTo(q.x - L, q.y); cx.lineTo(q.x + L, q.y); cx.moveTo(q.x, q.y - L); cx.lineTo(q.x, q.y + L); cx.stroke(); } }
-        if (p < 1 || P.length) requestAnimationFrame(frame); else { cx.clearRect(0, 0, cr.width, cr.height); }
-        if (p >= 1 && !r._sh) { r._sh = 1; setTimeout(function () { try { document.getElementById('wmShA').beginElement(); } catch (x) {} }, 900); }
+        for (var j = P.length - 1; j >= 0; j--) { var q = P[j]; q.l += 1 / 60; if (q.l > q.m) { P.splice(j, 1); continue; } q.x += q.vx / 60; q.y += q.vy / 60;
+          var al = Math.sin(Math.PI * q.l / q.m), g = cx.createRadialGradient(q.x, q.y, 0, q.x, q.y, q.s * 4); g.addColorStop(0, 'rgba(255,246,220,' + al + ')'); g.addColorStop(1, 'rgba(240,205,140,0)'); cx.fillStyle = g; cx.beginPath(); cx.arc(q.x, q.y, q.s * 4, 0, 6.283); cx.fill();
+          if (q.st && al > .5) { cx.strokeStyle = 'rgba(255,250,232,' + al * .9 + ')'; cx.lineWidth = .7; var L = q.s * 6; cx.beginPath(); cx.moveTo(q.x - L, q.y); cx.lineTo(q.x + L, q.y); cx.moveTo(q.x, q.y - L); cx.lineTo(q.x, q.y + L); cx.stroke(); } }
+        if (p < 1 || P.length) requestAnimationFrame(frame); else cx.clearRect(0, 0, cr.width, cr.height);
       })(performance.now());
     }
-    var go = function () { requestAnimationFrame(run); };
-    if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('236px "Great Vibes"', 'Ilusión'), document.fonts.load('236px "Great Vibes"', 'l')]).then(go, go); else setTimeout(go, 300);
+    var img = wm.querySelector('.wm-img');
+    if (img.complete) requestAnimationFrame(run); else img.addEventListener('load', function () { requestAnimationFrame(run); });
   })();
 
   /* gentle depth on the florals */
