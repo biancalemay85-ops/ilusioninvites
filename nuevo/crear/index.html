@@ -17,7 +17,7 @@
 <title>Crea tu invitación · Ilusión Invites</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Parisienne&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
 <style>
 /* "Crea la tuya": a guided, playful order form. Questions on the left, a card on the right that builds itself with their names, date, colour and their own cover photo. Ends by sending everything through WhatsApp (text first, then photos through the phone's share sheet). Nothing is uploaded to a server. */
 :root {
@@ -219,8 +219,8 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
 @media (prefers-reduced-motion: reduce) { .st.on, .thumb, .card.pulse { animation: none; } html { scroll-behavior: auto; } }
 
 
-/* the wordmark keeps Great Vibes; only its capital I comes from Parisienne so it reads "Ilusión" (not "Jlusión") */
-.brand b .I, .brand-name b .I, .env-letter b .I { font-family: "Parisienne", "Great Vibes", cursive; font-style: normal; font-size: .9em; }
+/* the wordmark keeps Great Vibes; its capital I is our own drawn letter (img/letra-I.svg) so it reads clearly as "Ilusión" */
+.brand b .I, .brand-name b .I, .env-letter b .I { display: inline-block; width: .52em; height: .98em; overflow: hidden; vertical-align: -.1em; margin-right: -.06em; font-size: 1em; -webkit-text-fill-color: transparent; text-shadow: none; background: currentColor; -webkit-mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; }
 </style>
 
 <header class="top">

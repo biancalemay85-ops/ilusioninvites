@@ -18,7 +18,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Parisienne&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
 <style>
 /* Layout: a bright champagne hero (silk curtains, florals in the corners, the gold wordmark with its star), then the collections showcase, the "imagine your invitation" questionnaire with a live card, how it works and contact. Light brand palette from the Event Asset Library board. */
 :root {
@@ -92,9 +92,9 @@ a { color: inherit; }
 .wm { position: relative; width: min(600px, 84vw); margin: -4px auto clamp(18px, 2.4vw, 30px); text-shadow: none; }
 .wm-svg { display: block; width: 100%; height: auto; overflow: visible; transform: scale(.9); opacity: 0; }
 .wm-t { font-family: "Great Vibes", "Snell Roundhand", cursive; font-size: 236px; }
-.wm-t .I { font-family: "Parisienne", "Great Vibes", cursive; font-size: 212px; }
+#wmIf { filter: drop-shadow(0 1px 0 rgba(150,105,50,.35)) drop-shadow(0 10px 16px rgba(150,110,60,.18)); }
 .wm-f { fill: url(#wmGold); filter: drop-shadow(0 1px 0 rgba(150,105,50,.35)) drop-shadow(0 10px 16px rgba(150,110,60,.18)); }
-.wm-sh { mix-blend-mode: screen; pointer-events: none; }
+.wm-sh, #wmIs { mix-blend-mode: screen; pointer-events: none; }
 .wm-spark { position: absolute; inset: -20% -10%; width: 120%; height: 140%; pointer-events: none; }
 .wm-glit circle { fill: #fffaf0; opacity: 0; animation: wmTw 3.4s ease-in-out infinite; }
 .wm-sub { display: block; margin-top: -14px; font: 500 clamp(11px, 1.3vw, 14px) var(--f-caps); letter-spacing: .9em; padding-left: .9em; color: var(--gold); opacity: 0; transform: translateY(8px); }
@@ -553,8 +553,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 .btn-line:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), 0 12px 24px -12px rgba(120,85,45,.45), 0 0 26px rgba(240,222,186,.7) !important; }
 
 
-/* the wordmark keeps Great Vibes; only its capital I comes from Parisienne so it reads "Ilusión" (not "Jlusión") */
-.brand b .I, .brand-name b .I, .env-letter b .I { font-family: "Parisienne", "Great Vibes", cursive; font-style: normal; font-size: .9em; }
+/* the wordmark keeps Great Vibes; its capital I is our own drawn letter (img/letra-I.svg) so it reads clearly as "Ilusión" */
+.brand b .I, .brand-name b .I, .env-letter b .I { display: inline-block; width: .52em; height: .98em; overflow: hidden; vertical-align: -.1em; margin-right: -.06em; font-size: 1em; -webkit-text-fill-color: transparent; text-shadow: none; background: currentColor; -webkit-mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; }
 </style>
 
 <header class="top" id="top">
@@ -580,17 +580,18 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       <div class="wm" id="wm" role="img" aria-label="Ilusión Invites">
         <svg class="wm-svg" viewBox="0 0 1000 330" aria-hidden="true">
           <defs>
+            <symbol id="wmI" viewBox="0 0 120 200" overflow="visible"><path d="M30 34 C 52 24, 86 21, 108 18 C 92 27, 62 31, 30 34 Z"/><path d="M28 34 C 18 36, 14 46, 22 50 C 26 52, 30 48, 28 44" fill="none" stroke-width="3.4" stroke-linecap="round"/><path d="M75 23 C 84 25, 86 34, 84 43 L 61 154 C 59 164, 53 170, 46 168 C 50 162, 51 156, 52 150 L 67 46 C 68 36, 68 27, 75 23 Z"/><path d="M14 170 C 36 162, 68 160, 94 160 C 76 168, 46 172, 14 170 Z"/><path d="M94 160 C 104 158, 108 148, 100 144 C 96 142, 92 146, 94 150" fill="none" stroke-width="3.2" stroke-linecap="round"/></symbol>
             <linearGradient id="wmGold" x1="0" y1="0" x2=".25" y2="1"><stop offset="0" stop-color="#FBF0D2"/><stop offset=".3" stop-color="#EAD09A"/><stop offset=".55" stop-color="#D2AD6C"/><stop offset=".75" stop-color="#E4C78E"/><stop offset="1" stop-color="#F6E6BE"/></linearGradient>
             <linearGradient id="wmSh" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="320" y2="120"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fffdf5" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
               <animateTransform attributeName="gradientTransform" type="translate" from="-500 -120" to="1300 120" dur="3.4s" begin="indefinite" id="wmShA" fill="freeze"/></linearGradient>
             <linearGradient id="wmEdge" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset=".9" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
             <mask id="wmRev" maskUnits="userSpaceOnUse" x="-400" y="-400" width="1800" height="1130"><g transform="rotate(24 500 165)"><rect id="wmRevR" x="-2400" y="-600" width="2400" height="1500" fill="url(#wmEdge)"/></g></mask>
-            <mask id="wmTxt"><text class="wm-t" x="500" y="232" text-anchor="middle" fill="#fff"><tspan class="I">I</tspan>lusión</text></mask>
+            <mask id="wmTxt"><use class="wmI" id="wmIm" href="#wmI" width="120" height="200" fill="#fff" stroke="#fff"/><text class="wm-t" x="500" y="232" text-anchor="middle" fill="#fff">lusión</text></mask>
           </defs>
           <g mask="url(#wmRev)">
-            <text class="wm-t wm-f" x="500" y="232" text-anchor="middle"><tspan class="I">I</tspan>lusión</text>
+            <use class="wmI" id="wmIf" href="#wmI" width="120" height="200" fill="url(#wmGold)" stroke="url(#wmGold)"/><text class="wm-t wm-f" x="500" y="232" text-anchor="middle">lusión</text>
           </g>
-          <text class="wm-t wm-sh" x="500" y="232" text-anchor="middle" fill="url(#wmSh)"><tspan class="I">I</tspan>lusión</text>
+          <use class="wmI" id="wmIs" href="#wmI" width="120" height="200" fill="url(#wmSh)" stroke="url(#wmSh)"/><text class="wm-t wm-sh" x="500" y="232" text-anchor="middle" fill="url(#wmSh)">lusión</text>
           <g class="wm-glit" id="wmGlit" mask="url(#wmTxt)"></g>
         </svg>
         <canvas class="wm-spark" id="wmSpark"></canvas>
@@ -1430,7 +1431,13 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     var wm = document.getElementById('wm'); if (!wm) return;
     var ns = 'http://www.w3.org/2000/svg';
     function run() {
-      var svg = wm.querySelector('svg'), t = wm.querySelector('.wm-f'), b = t.getBBox(), g = document.getElementById('wmGlit');
+      var svg = wm.querySelector('svg'), t = wm.querySelector('.wm-f');
+      /* place our drawn capital I before "lusión" and centre the whole word */
+      var texts = wm.querySelectorAll('text.wm-t'); texts.forEach(function (x) { x.setAttribute('text-anchor', 'start'); x.setAttribute('x', 0); });
+      var lb = t.getBBox(), sc = 1.025, iw = 123, gap = 14, total = iw - gap + lb.width, xI = 500 - total / 2, xT = xI + iw - gap - lb.x;
+      texts.forEach(function (x) { x.setAttribute('x', xT.toFixed(1)); });
+      ['wmIm', 'wmIf', 'wmIs'].forEach(function (id) { document.getElementById(id).setAttribute('transform', 'translate(' + xI.toFixed(1) + ' 50.6) scale(' + sc + ')'); });
+      var lb2 = t.getBBox(), b = { x: xI, y: Math.min(lb2.y, 70), width: lb2.x + lb2.width - xI, height: lb2.y + lb2.height - Math.min(lb2.y, 70) }, g = document.getElementById('wmGlit');
       for (var i = 0; i < 45; i++) { var c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', (b.x + Math.random() * b.width).toFixed(1)); c.setAttribute('cy', (b.y + Math.random() * b.height).toFixed(1)); c.setAttribute('r', (0.8 + Math.random() * 1.8).toFixed(1)); c.style.animationDelay = (5 + Math.random() * 4).toFixed(2) + 's'; c.style.animationDuration = (2.6 + Math.random() * 2.6).toFixed(2) + 's'; g.appendChild(c); }
       var r = document.getElementById('wmRevR');
       if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { r.setAttribute('x', 0); wm.classList.add('still'); return; }
@@ -1455,7 +1462,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       })(performance.now());
     }
     var go = function () { requestAnimationFrame(run); };
-    if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('236px "Great Vibes"', 'Ilusión'), document.fonts.load('212px "Parisienne"', 'I')]).then(go, go); else setTimeout(go, 300);
+    if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('236px "Great Vibes"', 'Ilusión'), document.fonts.load('236px "Great Vibes"', 'l')]).then(go, go); else setTimeout(go, 300);
   })();
 
   /* gentle depth on the florals */

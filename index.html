@@ -16,7 +16,7 @@
 <body>
 <title>Ilusión Invites</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Parisienne&family=Great+Vibes&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
 <style>
 /* Layout: the whole page lies on draped plum velvet (fixed behind everything). Content sits in centered 1200px columns; gold hairlines frame sections like a jewelry box. Ivory appears only on things that are "paper": phone screens, envelopes, the featured package. Single dark theme on purpose, taken from the brand logo. */
 :root {
@@ -334,8 +334,9 @@ html.locked, html.locked body { overflow: hidden; }
 .btn-line::before, .btn-line-gold::before { opacity: .35; }
 
 
-/* the wordmark keeps Great Vibes; only its capital I comes from Parisienne so it reads "Ilusión" (not "Jlusión") */
-.brand b .I, .brand-name b .I, .env-letter b .I { font-family: "Parisienne", "Great Vibes", cursive; font-style: normal; font-size: .9em; }
+/* the wordmark keeps Great Vibes; its capital I is our own drawn letter (img/letra-I.svg) so it reads clearly as "Ilusión" */
+.brand b .I, .brand-name b .I, .env-letter b .I { display: inline-block; width: .52em; height: .98em; overflow: hidden; vertical-align: -.1em; margin-right: -.06em; font-size: 1em; -webkit-text-fill-color: transparent; text-shadow: none; background: currentColor; -webkit-mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; }
+.env-letter b .I { background: var(--gold-grad); }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">

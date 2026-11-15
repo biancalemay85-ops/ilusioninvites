@@ -241,8 +241,8 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
 
 
-/* the wordmark keeps Great Vibes; only its capital I comes from Parisienne so it reads "Ilusión" (not "Jlusión") */
-.brand b .I, .brand-name b .I, .env-letter b .I { font-family: "Parisienne", "Great Vibes", cursive; font-style: normal; font-size: .9em; }
+/* the wordmark keeps Great Vibes; its capital I is our own drawn letter (img/letra-I.svg) so it reads clearly as "Ilusión" */
+.brand b .I, .brand-name b .I, .env-letter b .I { display: inline-block; width: .52em; height: .98em; overflow: hidden; vertical-align: -.1em; margin-right: -.06em; font-size: 1em; -webkit-text-fill-color: transparent; text-shadow: none; background: currentColor; -webkit-mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; mask: url(/nuevo/img/letra-I.svg) center bottom / contain no-repeat; }
 
 :root { --bg: #FBF6EF; --bg2: #F3EADD; --paper: #FDFAF5; --accent: #B68A4E; --ink: #3A2A26; --ink2: #6E5B54; --ink3: #9A877F; }
 .sign b { font-size: 8cqw; text-align: center; line-height: 1.05; } .sign small { text-align: center; max-width: 92%; }
