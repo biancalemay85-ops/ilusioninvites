@@ -509,5 +509,12 @@ for i, (slug, es, en) in enumerate(SHOW_ORDER):
     d = XV_SHOW if slug == 'xv-anos' else EXP[slug]
     blocks.append(show_block(slug, d, i == 0))
 tabs = ''.join(f'<button type="button" data-ev="{s}" aria-pressed="{str(i == 0).lower()}" data-en="{html.escape(en)}">{html.escape(es)}</button>' for i, (s, es, en) in enumerate(SHOW_ORDER))
-open(os.path.join(HERE, '_expshow.html'), 'w', encoding='utf-8').write(f'<style>{scoped_css()}</style><div class="xs-tabs" role="group" aria-label="Tipo de evento">{tabs}</div><div class="xs-stage">' + ''.join(blocks) + '</div>')
+qfd = {}
+for slug, es, en in SHOW_ORDER:
+    d = XV_SHOW if slug == 'xv-anos' else EXP[slug]
+    pos = d.get('pos') or POS.get(slug, {})
+    imgs = d.get('imgs') or {k: f'exp-{slug}-{k}' for k in ('pieza', 'selfie')}
+    qfd[slug] = {'img': imgs['pieza'], 'pos': pos.get('pieza', [38, 40, 26, 36]), 'name': d['marco'][1], 'selfie': imgs['selfie'], 'th': d['theme']}
+qfjs = json.dumps(qfd, ensure_ascii=False).replace('</', '<\\/')
+open(os.path.join(HERE, '_expshow.html'), 'w', encoding='utf-8').write(f'<style>{scoped_css()}</style><div class="xs-tabs" role="group" aria-label="Tipo de evento">{tabs}</div><div class="xs-stage">' + ''.join(blocks) + '</div><script type="application/json" id="qf-data">' + qfjs + '</script>')
 print('home showcase: ' + str(len(blocks)) + ' events')

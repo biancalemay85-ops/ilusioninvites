@@ -349,6 +349,29 @@ html, body { overflow-x: clip; }
 .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .fields label { display: flex; flex-direction: column; gap: 6px; font: 500 10.5px var(--f-caps); letter-spacing: .22em; color: var(--ink2); }
 .fields .full { grid-column: 1 / -1; }
+.im-x { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+.im-xh { font: 500 10.5px var(--f-caps); letter-spacing: .22em; color: var(--ink2); margin-top: 6px; }
+.cc-row { display: flex; gap: 8px; align-items: stretch; }
+.cc-row input[type=color] { flex: none; width: 48px; height: 48px; padding: 4px; border: 0; border-radius: 14px; background: rgba(255,255,255,.85); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); cursor: pointer; }
+.cc-row input[type=color]::-webkit-color-swatch-wrapper { padding: 0; } .cc-row input[type=color]::-webkit-color-swatch { border: 0; border-radius: 10px; } .cc-row input[type=color]::-moz-color-swatch { border: 0; border-radius: 10px; }
+.cc-row #im-ccode { flex: 1; min-width: 0; font: 400 16px var(--f-body); color: var(--ink); padding: 12px 16px; border-radius: 14px; border: 0; background: rgba(255,255,255,.85); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); }
+.cc-row #im-ccode:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 4px rgba(233,207,149,.3); }
+.cc-add { flex: none; border: 0; cursor: pointer; padding: 0 18px; border-radius: 14px; font: 500 14px var(--f-body); color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); }
+.cc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; } .cc-list:empty { display: none; }
+.cc-list li { display: inline-flex; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); font-size: 14px; color: var(--ink); }
+.cc-list i { width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); background: conic-gradient(#E8C9C9, #C9A96E, #9DB4A0, #A9B8D0, #E8C9C9); }
+.cc-list button, .up-th button { border: 0; background: none; cursor: pointer; color: var(--ink3); font-size: 16px; line-height: 1; padding: 0 2px; }
+.up-drop { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 18px 14px; border-radius: 16px; border: 1px dashed rgba(182,138,78,.6); background: rgba(255,255,255,.55); text-align: center; color: var(--gold); cursor: pointer; transition: background .3s; }
+.up-drop:hover, .up-drop:focus-within { background: rgba(255,255,255,.9); }
+.up-drop input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.up-drop svg { width: 28px; height: 28px; } .up-drop b { font: 500 15px var(--f-body); color: var(--ink); } .up-drop small { font-size: 13px; color: var(--ink3); }
+.up-th { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 8px; } .up-th:empty { display: none; }
+.up-th span { position: relative; aspect-ratio: 1; border-radius: 12px; background: center / cover; box-shadow: 0 6px 12px -8px rgba(60,35,25,.5); }
+.up-th button { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,.92); color: var(--ink); font-size: 14px; }
+.opt-all { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; min-height: 50px; border: 0; cursor: pointer; border-radius: 999px; font: 500 15.5px var(--f-body); color: var(--ink); background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px var(--gold); transition: background .3s, box-shadow .3s; }
+.opt-all i { font-style: normal; color: var(--gold); }
+.opt-all[aria-pressed="true"] { color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); box-shadow: 0 10px 22px -12px rgba(140,95,40,.6); } .opt-all[aria-pressed="true"] i { color: #3A2210; }
+.im-idea { margin-top: 18px; } .im-idea textarea { min-height: 76px; }
 .fields input, .fields textarea, .fields select { font: 400 16px var(--f-body); color: var(--ink); letter-spacing: 0; padding: 12px 16px; border-radius: 14px; border: 0; background: rgba(255,255,255,.85); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); transition: box-shadow .3s; min-width: 0; width: 100%; }
 .fields textarea { resize: vertical; min-height: 92px; line-height: 1.5; }
 .fields input:focus, .fields textarea:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 4px rgba(233,207,149,.3); }
@@ -552,32 +575,33 @@ html, body { overflow-x: clip; }
 .xb-note { margin: 12px 0 0; font-size: 13px; color: var(--ink3); }
 
 /* guest photo QR: the star feature of the Experiencia Ilusión */
-.qf { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: clamp(26px, 4vw, 56px); align-items: center; margin: clamp(30px, 4vw, 50px) 0 10px; padding: clamp(18px, 3vw, 34px); border-radius: 26px; background: linear-gradient(180deg, rgba(255,253,248,.9), rgba(248,238,224,.75)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 30px 60px -44px rgba(90,60,30,.45); }
+.qf { --qa: #B68A4E; --qp: #FFFCF6; --qp2: #F6ECDD; --qk: #3A2A26; --qk3: #9A877F; transition: background .6s; display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: clamp(26px, 4vw, 56px); align-items: center; margin: clamp(30px, 4vw, 50px) 0 10px; padding: clamp(18px, 3vw, 34px); border-radius: 26px; background: linear-gradient(180deg, color-mix(in srgb, var(--qp) 92%, transparent), color-mix(in srgb, var(--qp2) 80%, transparent)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--qa) 40%, transparent), 0 30px 60px -44px rgba(90,60,30,.45); }
 .qf-vis { position: relative; width: min(620px, 100%); aspect-ratio: 1.05; container-type: inline-size; }
 .qf-cap { text-align: center; display: flex; flex-direction: column; gap: 6px; } .qf-cap h3 { margin: 0; font: 500 clamp(26px, 3vw, 38px)/1.1 var(--f-serif); color: var(--ink); } .qf-cap h3 em { font-style: italic; }
 .qf-photo { position: absolute; left: 6%; top: 0; width: 72%; aspect-ratio: 1; border-radius: 3cqw; overflow: hidden; box-shadow: 0 4cqw 6cqw -3cqw rgba(60,35,25,.5); }
-.qf-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.qf-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .35s; }
+.qf-photo.swap img, .qf-photo.swap .qf-card { opacity: 0; } .qf-card { transition: opacity .35s; }
 .qf-card { position: absolute; left: 38%; top: 40.5%; width: 27.5%; height: 38.5%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8cqw; text-align: center; }
 .qf-card small { font: 500 1.05cqw var(--f-caps); letter-spacing: .14em; color: var(--ink2); }
 .qf-qr { width: 64%; aspect-ratio: 1; background: #fff; padding: .6cqw; border-radius: .6cqw; box-shadow: 0 .4cqw .8cqw rgba(0,0,0,.12); }
 .qf-qr img, .qf-qr canvas { width: 100% !important; height: 100% !important; display: block; }
 .qf-phone { position: absolute; right: 0; bottom: 0; width: 34%; aspect-ratio: 9 / 19; border-radius: 4.6cqw; padding: 1cqw; background: linear-gradient(145deg, #3b3236, #121012 40%, #2a2326 70%, #0d0b0c); box-shadow: 0 0 0 1px rgba(182,138,78,.45), 0 5cqw 7cqw -3cqw rgba(60,35,25,.6); z-index: 3; animation: cpFloat 6s ease-in-out infinite alternate; }
-.qf-scr { position: absolute; inset: 1cqw; border-radius: 3.8cqw; overflow: hidden; background: linear-gradient(180deg, #FFFCF6, #F6ECDD); display: flex; flex-direction: column; align-items: center; gap: 1.6cqw; padding: 7cqw 2.4cqw 3cqw; text-align: center; }
-.qf-who { font: 500 1.3cqw var(--f-caps); letter-spacing: .2em; color: var(--gold); }
-.qf-scr b { font: 500 3cqw/1.1 var(--f-serif); color: var(--ink); }
-.qf-drop { width: 100%; padding: 2.6cqw 1cqw; border-radius: 2cqw; border: 1px dashed rgba(182,138,78,.7); display: flex; flex-direction: column; align-items: center; gap: .8cqw; color: var(--gold); font: 400 1.6cqw var(--f-body); }
+.qf-scr { position: absolute; inset: 1cqw; border-radius: 3.8cqw; overflow: hidden; background: linear-gradient(180deg, var(--qp), var(--qp2)); transition: background .6s; display: flex; flex-direction: column; align-items: center; gap: 1.6cqw; padding: 7cqw 2.4cqw 3cqw; text-align: center; }
+.qf-who { font: 500 1.3cqw var(--f-caps); letter-spacing: .2em; color: var(--qa); }
+.qf-scr b { font: 500 3cqw/1.1 var(--f-serif); color: var(--qk); }
+.qf-drop { width: 100%; padding: 2.6cqw 1cqw; border-radius: 2cqw; border: 1px dashed color-mix(in srgb, var(--qa) 75%, transparent); display: flex; flex-direction: column; align-items: center; gap: .8cqw; color: var(--qa); font: 400 1.6cqw var(--f-body); }
 .qf-drop svg { width: 5cqw; height: 5cqw; }
 .qf-up { width: 100%; display: flex; align-items: center; gap: 1.2cqw; padding: 1.2cqw; border-radius: 1.6cqw; background: #fff; box-shadow: 0 .6cqw 1.4cqw -1cqw rgba(0,0,0,.2); text-align: left; }
 .qf-up i { flex: none; width: 5.4cqw; height: 5.4cqw; border-radius: 1cqw; background: center / cover; }
 .qf-up > span { flex: 1; display: flex; flex-direction: column; gap: .6cqw; }
 .qf-up em { font: 500 1.35cqw var(--f-body); font-style: normal; color: var(--ink); }
-.qf-bar { display: block; height: .7cqw; border-radius: 1cqw; background: rgba(182,138,78,.2); overflow: hidden; }
-.qf-bar span { display: block; height: 100%; width: 30%; background: linear-gradient(90deg, #E9CF95, #B68A4E); animation: qfUp 3.6s ease-in-out infinite; }
+.qf-bar { display: block; height: .7cqw; border-radius: 1cqw; background: color-mix(in srgb, var(--qa) 20%, transparent); overflow: hidden; }
+.qf-bar span { display: block; height: 100%; width: 30%; background: linear-gradient(90deg, color-mix(in srgb, var(--qa) 45%, #fff), var(--qa)); animation: qfUp 3.6s ease-in-out infinite; }
 @keyframes qfUp { 0% { width: 8%; } 80%, 100% { width: 100%; } }
 .qf-ok { font: 500 1.3cqw var(--f-body); color: #2f7a52; }
-.qf-album { position: absolute; left: 0; bottom: 2%; width: 44%; padding: 2cqw; border-radius: 2.6cqw; background: rgba(255,253,248,.96); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 3cqw 5cqw -2.6cqw rgba(60,35,25,.5); z-index: 2; display: flex; flex-direction: column; gap: .8cqw; animation: cpFloat 7s ease-in-out -2s infinite alternate; }
-.qf-album b { font: 500 2.6cqw var(--f-serif); color: var(--ink); }
-.qf-cnt { font: 400 1.4cqw var(--f-body); color: var(--ink3); }
+.qf-album { position: absolute; left: 0; bottom: 2%; width: 44%; padding: 2cqw; border-radius: 2.6cqw; background: color-mix(in srgb, var(--qp) 96%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--qa) 40%, transparent), 0 3cqw 5cqw -2.6cqw rgba(60,35,25,.5); z-index: 2; display: flex; flex-direction: column; gap: .8cqw; animation: cpFloat 7s ease-in-out -2s infinite alternate; }
+.qf-album b { font: 500 2.6cqw var(--f-serif); color: var(--qk); }
+.qf-cnt { font: 400 1.4cqw var(--f-body); color: var(--qk3); }
 .qf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7cqw; margin-top: .4cqw; }
 .qf-grid span { aspect-ratio: 1; border-radius: .9cqw; background: center 25% / cover; }
 .qf-dl { align-self: flex-start; margin-top: .6cqw; padding: .9cqw 2cqw; border-radius: 99px; font: 600 1.4cqw var(--f-body); color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); }
@@ -951,7 +975,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <div class="on" style="--sx:38.1%;--sy:18.4%;--sw:24.0%;--sh:25.6%"><div class="bgx" style="background-image:url(img/hero-gala-empresa.webp)"></div><div class="tt"><small data-en-html="WELCOME">BIENVENIDOS</small><b class="gold">Gala Aurora</b></div></div></div>
     <figcaption data-en-html="Video for the big screen">Video para la pantalla</figcaption></figure>
   <figure class="xs-t t-pc"><div class="crop"><div class="photo" style="--ar:1/1"><img src="img/exp-empresas-pieza.webp" alt="" loading="lazy" width="1200" height="1200"><div class="lay badge" style="--x:24%;--y:48%;--w:26%;--h:31%;transform:rotate(20deg);"><img class="bseal" src="img/sello-ilusion-oro-s.webp" alt=""><span class="evt">GRUPO AURORA</span><b>Andrea Torres</b><small data-en-html="LUMIÈRE · GUEST">LUMIÈRE · INVITADA</small></div></div></div><figcaption data-en-html="NAME BADGE WITH QR">GAFETE CON NOMBRE Y QR</figcaption></figure>
-</div></div>
+</div></div><script type="application/json" id="qf-data">{"bodas": {"img": "exp-bodas-pieza", "pos": [38, 40.5, 27.5, 38.5], "name": "Ana & Emiliano", "selfie": "exp-bodas-selfie", "th": ["#FBF6EF", "#F3EADD", "#FDFAF5", "#B68A4E", "#3A2A26", "#6E5B54", "#9A877F"]}, "xv-anos": {"img": "xv-mesa", "pos": [38.5, 46, 27, 37], "name": "Valentina", "selfie": "xv-selfie", "th": ["#FCF3F4", "#FBEFF0", "#FDF7F6", "#B8798A", "#4A2633", "#7A5560", "#A88893"]}, "cumpleanos": {"img": "exp-cumpleanos-pieza", "pos": [34.5, 35.5, 31.5, 46.5], "name": "Mariana", "selfie": "exp-cumpleanos-selfie", "th": ["#FBF5F6", "#EFE3EE", "#FDF9FB", "#A77FA0", "#3B2A3A", "#6A5568", "#9C8A9A"]}, "baby-shower": {"img": "exp-baby-shower-pieza", "pos": [20, 32, 58, 50, -17], "name": "Mateo", "selfie": "exp-baby-shower-selfie", "th": ["#F5F8FB", "#E6EEF5", "#FAFCFE", "#6F8DB3", "#2E3B4B", "#5C6B7C", "#8C9AAA"]}, "navidad": {"img": "exp-navidad-pieza", "pos": [39.5, 17.5, 24.5, 35], "name": "Familia Hernández", "selfie": "exp-navidad-selfie", "th": ["#F6F4EE", "#EAE6DA", "#FBFAF6", "#2F5A43", "#1F2E25", "#4D5C52", "#7F8A82"]}, "ano-nuevo": {"img": "exp-ano-nuevo-pieza", "pos": [33, 29, 35.5, 52], "name": "2028", "selfie": "exp-ano-nuevo-selfie", "th": ["#F7F4EE", "#ECE5D8", "#FCFAF6", "#9A7A3E", "#1C1B20", "#4F4B52", "#85808A"]}, "empresas": {"img": "exp-empresas-pieza", "pos": [24, 48, 26, 31, 20], "name": "Grupo Aurora", "selfie": "exp-empresas-selfie", "th": ["#F4F5F8", "#E4E7EE", "#FAFBFC", "#2E3F66", "#1E2633", "#4E586A", "#8890A0"]}}</script>
         <div class="qf">
           <div class="qf-vis" aria-hidden="true">
             <div class="qf-photo"><img src="img/exp-bodas-pieza.webp" alt="" width="1200" height="1200" loading="lazy">
@@ -987,9 +1011,20 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
           <ol class="im-prog" id="im-prog"></ol>
           <p class="im-no" id="im-no" aria-live="polite"></p>
           <fieldset class="im-step" data-k="evento"><legend tabindex="-1" data-en-html="What are you <em>celebrating</em>?">¿Qué <em>celebras</em>?</legend><p class="im-hint" data-en="Choose your event.">Elige tu evento.</p><div class="opts c2 ev" data-opts="evento"></div></fieldset>
-          <fieldset class="im-step" data-k="ambiente"><legend tabindex="-1" data-en-html="How do you imagine the <em>atmosphere</em>?">¿Cómo imaginas el <em>ambiente</em>?</legend><p class="im-hint" data-en="The feeling you want your guests to have when they open it.">Lo que quieres que sientan tus invitados al abrirla.</p><div class="opts c2" data-opts="ambiente"></div></fieldset>
-          <fieldset class="im-step" data-k="color"><legend tabindex="-1" data-en-html="Your <em>colors</em>">Tus <em>colores</em></legend><p class="im-hint" data-en="It becomes the wax seal that closes your envelope.">Será también el sello de cera que cierra tu sobre.</p><div class="opts c3" data-opts="color"></div></fieldset>
-          <fieldset class="im-step" data-k="incluir"><legend tabindex="-1" data-en-html="What can't be <em>missing</em>?">¿Qué no puede <em>faltar</em>?</legend><p class="im-hint" data-en="Choose all you like. The envelope that opens is always included.">Elige todo lo que quieras. El sobre que se abre siempre va incluido.</p><div class="opts c2" data-opts="incluir"></div></fieldset>
+          <fieldset class="im-step" data-k="ambiente"><legend tabindex="-1" data-en-html="How do you imagine the <em>atmosphere</em>?">¿Cómo imaginas el <em>ambiente</em>?</legend><p class="im-hint" data-en="The feeling you want your guests to have when they open it.">Lo que quieres que sientan tus invitados al abrirla.</p><div class="opts c2" data-opts="ambiente"></div>
+            <div class="fields im-idea"><label class="full"><span data-en="Something else in mind? Tell us in a few words">¿Tienes algo más en mente? Cuéntanos en pocas palabras</span><textarea id="im-idea" name="idea" maxlength="300" rows="2" placeholder="Ej. elegante pero divertido, con detalles dorados y mucha luz…" data-en-ph="E.g. elegant but fun, with gold details and lots of light…"></textarea></label></div></fieldset>
+          <fieldset class="im-step" data-k="color"><legend tabindex="-1" data-en-html="Your <em>colors</em>">Tus <em>colores</em></legend><p class="im-hint" data-en="It becomes the wax seal that closes your envelope.">Será también el sello de cera que cierra tu sobre.</p><div class="opts c3" data-opts="color"></div>
+            <div class="im-x">
+              <div class="im-xh"><span data-en="Know your exact colors? Add the code">¿Ya tienes tus colores exactos? Agrega el código</span></div>
+              <div class="cc-row"><input type="color" id="im-cpick" value="#C9A96E" aria-label="Elegir un color" data-en-al="Pick a color"><input id="im-ccode" maxlength="40" autocomplete="off" placeholder="Ej. #C9A96E o Pantone 7502 C" data-en-ph="E.g. #C9A96E or Pantone 7502 C" aria-label="Código de color"><button type="button" class="cc-add" id="im-cadd" data-en="Add">Agregar</button></div>
+              <ul class="cc-list" id="im-clist" aria-live="polite"></ul>
+              <div class="im-xh"><span data-en="Inspiration photos">Fotos de inspiración</span></div>
+              <label class="up-drop"><input type="file" id="im-fotos" accept="image/*" multiple><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.4"/><path d="M8.5 6l1.4-2h4.2l1.4 2"/></svg><b data-en="Upload photos to match your colors">Sube fotos para combinar tus colores</b><small data-en="Your dress, the flowers, the venue, a palette you love…">Tu vestido, las flores, el salón, una paleta que te encante…</small></label>
+              <div class="up-th" id="im-th"></div>
+            </div></fieldset>
+          <fieldset class="im-step" data-k="incluir"><legend tabindex="-1" data-en-html="What can't be <em>missing</em>?">¿Qué no puede <em>faltar</em>?</legend><p class="im-hint" data-en="Choose all you like. The envelope that opens is always included.">Elige todo lo que quieras. El sobre que se abre siempre va incluido.</p><div class="opts c2" data-opts="incluir"></div>
+            <button type="button" class="opt-all" id="im-all" aria-pressed="false"><i aria-hidden="true">✦</i> <span data-en="I want it all">Lo quiero todo</span></button>
+            <div class="fields im-idea"><label class="full"><span data-en="Anything else you'd like on your invitation?">¿Algo más que quieras en tu invitación?</span><textarea id="im-extra" name="extra" maxlength="400" rows="2" placeholder="Ej. nuestra historia, hospedaje para invitados, transmisión en vivo…" data-en-ph="E.g. our story, guest accommodation, a live stream…"></textarea></label></div></fieldset>
           <fieldset class="im-step" data-k="detalles"><legend tabindex="-1" data-en-html="The <em>details</em>">Los <em>detalles</em></legend><p class="im-hint" data-en="Whatever you know so far. Everything can change later.">Lo que ya sepas. Todo se puede cambiar después.</p>
             <div class="fields">
               <label class="full"><span data-en="Who is celebrating">Quién celebra</span><input id="im-nombres" name="nombres" autocomplete="off" maxlength="60" placeholder="Ana Sofía &amp; Emiliano" data-en-ph="Ana Sofía &amp; Emiliano"></label>
@@ -1003,6 +1038,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             <button type="button" class="btn btn-gold" id="im-next" data-en="Next">Siguiente</button>
             <a class="btn btn-gold" id="im-send" href="#" target="_blank" rel="noopener" hidden data-en="Send my idea on WhatsApp">Enviar mi idea por WhatsApp</a>
           </div>
+          <p class="im-note" id="im-pnote" hidden data-en="📎 Your photos go along with your idea. If they don't show up in the chat, attach them there.">📎 Tus fotos se comparten junto con tu idea. Si no aparecen en el chat, adjúntalas ahí mismo.</p>
           <p class="im-note" id="im-note" hidden data-en="WhatsApp opens with your idea ready. You decide when to send it.">Se abre WhatsApp con tu idea lista. Tú decides cuándo enviarla.</p>
           <p class="im-more" id="im-go" hidden><a class="btn btn-line btn-sm" href="crear/" data-en="Continue and create mine →">Continuar y crear la mía →</a></p>
           <p class="im-more" id="im-more" hidden><a href="#" id="im-col"></a></p>
@@ -1312,9 +1348,11 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       ]
     };
     var KEYS = ['evento', 'ambiente', 'color', 'incluir', 'detalles'];
-    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '' };
+    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [] };
     try { var sv = JSON.parse(localStorage.getItem('ilu-imagina') || 'null'); if (sv && typeof sv === 'object') for (var k in st) if (k in sv) st[k] = sv[k]; } catch (e) {}
     if (!Array.isArray(st.incluir)) st.incluir = [];
+    if (!Array.isArray(st.codigos)) st.codigos = [];
+    var fotos = [];
     st.step = Math.max(0, Math.min(4, +st.step || 0));
     function save() { try { localStorage.setItem('ilu-imagina', JSON.stringify(st)); } catch (e) {} }
     function L() { return document.documentElement.lang === 'en' ? 'en' : 'es'; }
@@ -1344,7 +1382,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       });
       form.querySelectorAll('[data-en-ph]').forEach(function (el) { if (!el.dataset.esPh) el.dataset.esPh = el.placeholder; el.placeholder = l === 'en' ? el.dataset.enPh : el.dataset.esPh; });
     }
-    function filled(i) { var k = KEYS[i]; if (k === 'incluir') return st.incluir.length > 0; if (k === 'detalles') return !!(st.nombres || st.fecha || st.ciudad || st.sueno); return !!st[k]; }
+    function filled(i) { var k = KEYS[i]; if (k === 'detalles') return !!(st.nombres || st.fecha || st.ciudad || st.sueno); if (k === 'ambiente') return !!(st.ambiente || st.idea); if (k === 'color') return !!(st.color || st.codigos.length || fotos.length); if (k === 'incluir') return !!(st.incluir.length || st.extra); return !!st[k]; }
     function renderNav() {
       var l = L(), n = NAMES[l];
       prog.innerHTML = KEYS.map(function (k, i) { return '<li class="' + (i === st.step ? 'now' : filled(i) ? 'done' : '') + '"><button type="button" data-step="' + i + '" aria-label="' + (l === 'en' ? 'Step ' : 'Paso ') + (i + 1) + ': ' + n[i] + '"' + (i === st.step ? ' aria-current="step"' : '') + '><i></i></button></li>'; }).join('');
@@ -1352,7 +1390,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       steps.forEach(function (f, i) { f.classList.toggle('on', i === st.step); });
       back.hidden = st.step === 0;
       var last = st.step === KEYS.length - 1;
-      next.hidden = last; send.hidden = !last; note.hidden = !last; document.getElementById('im-go').hidden = !last;
+      next.hidden = last; send.hidden = !last; note.hidden = !last; $('im-pnote').hidden = !(last && fotos.length); document.getElementById('im-go').hidden = !last;
       var ev = find(Q.evento, st.evento);
       more.hidden = !(last && ev);
       if (ev) { colA.href = 'coleccion/' + ev.slug + '/'; colA.textContent = (l === 'en' ? 'SEE THE ' : 'VER LA COLECCIÓN ') + ev[l][0].toUpperCase() + (l === 'en' ? ' COLLECTION →' : ' →'); }
@@ -1390,8 +1428,12 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       out.push(en ? 'Hi Ilusión Invites ✨ I imagined my invitation:' : 'Hola Ilusión Invites ✨ Imaginé mi invitación:');
       if (ev) out.push((en ? '• Event: ' : '• Celebración: ') + ev[l][0]);
       if (mo) out.push((en ? '• Atmosphere: ' : '• Ambiente: ') + mo[l][0]);
+      if (st.idea) out.push((en ? '• In mind: ' : '• Tengo en mente: ') + st.idea);
       if (co) out.push((en ? '• Colors: ' : '• Colores: ') + co[l][0]);
+      if (st.codigos.length) out.push((en ? '• Color codes: ' : '• Códigos de color: ') + st.codigos.join(', '));
+      if (fotos.length) out.push(en ? '• I have ' + fotos.length + ' inspiration photo' + (fotos.length > 1 ? 's' : '') + ' (attached)' : '• Tengo ' + fotos.length + ' foto' + (fotos.length > 1 ? 's' : '') + ' de inspiración (las adjunto)');
       if (st.incluir.length) out.push((en ? '• Must have: ' : '• Quiero incluir: ') + st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : ''; }).filter(Boolean).join(', '));
+      if (st.extra) out.push((en ? '• Also: ' : '• Algo más: ') + st.extra);
       if (st.nombres) out.push((en ? '• Celebrating: ' : '• Quién celebra: ') + st.nombres);
       if (st.fecha) out.push((en ? '• Date: ' : '• Fecha: ') + fmtDate(st.fecha));
       if (st.ciudad) out.push((en ? '• City: ' : '• Ciudad: ') + st.ciudad);
@@ -1414,15 +1456,54 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       if (k === 'incluir') st.incluir = Array.prototype.slice.call(form.querySelectorAll('input[name="im-incluir"]:checked')).map(function (x) { return x.value; });
       else st[k] = t.value;
       save(); renderCard(); renderNav();
-      if (k !== 'incluir' && Date.now() - tapAt < 900) { clearTimeout(timer); var at = st.step; timer = setTimeout(function () { if (st.step === at) go(at + 1, true); }, 650); }
+      if (k === 'evento' && Date.now() - tapAt < 900) { clearTimeout(timer); var at = st.step; timer = setTimeout(function () { if (st.step === at) go(at + 1, true); }, 650); }
     });
-    form.addEventListener('input', function (e) { var t = e.target; if (/^(nombres|fecha|ciudad|sueno)$/.test(t.name)) { st[t.name] = t.value; save(); renderCard(); } });
+    form.addEventListener('input', function (e) { var t = e.target; if (/^(nombres|fecha|ciudad|sueno|idea|extra)$/.test(t.name)) { st[t.name] = t.value; save(); renderCard(); } });
     form.addEventListener('submit', function (e) { e.preventDefault(); });
     next.addEventListener('click', function () { go(st.step + 1, true); });
     back.addEventListener('click', function () { go(st.step - 1, true); });
     prog.addEventListener('click', function (e) { var b = e.target.closest('button[data-step]'); if (b) go(+b.getAttribute('data-step'), true); });
-    ['nombres', 'fecha', 'ciudad', 'sueno'].forEach(function (k) { var el = $('im-' + k); if (el) el.value = st[k] || ''; });
-    function all() { renderOpts(); renderNav(); renderCard(); }
+    ['nombres', 'fecha', 'ciudad', 'sueno', 'idea', 'extra'].forEach(function (k) { var el = $('im-' + k); if (el) el.value = st[k] || ''; });
+    /* colors: exact codes and inspiration photos */
+    var cpick = $('im-cpick'), ccode = $('im-ccode'), clist = $('im-clist'), fin = $('im-fotos'), th = $('im-th');
+    var HEX = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i;
+    function renderCodes() {
+      clist.innerHTML = st.codigos.map(function (c, i) { var h = HEX.test(c) ? (c.charAt(0) === '#' ? c : '#' + c) : ''; return '<li><i' + (h ? ' style="background:' + h + '"' : '') + '></i>' + e2(c) + '<button type="button" data-rm="' + i + '" aria-label="' + (L() === 'en' ? 'Remove ' : 'Quitar ') + e2(c) + '">×</button></li>'; }).join('');
+    }
+    function addCode() {
+      var v = ccode.value.trim() || cpick.value.toUpperCase(); if (!v || st.codigos.length >= 8 || st.codigos.indexOf(v) > -1) return;
+      st.codigos.push(v); ccode.value = ''; save(); renderCodes(); renderCard(); renderNav();
+    }
+    cpick.addEventListener('input', function () { ccode.value = cpick.value.toUpperCase(); });
+    $('im-cadd').addEventListener('click', addCode);
+    ccode.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addCode(); } });
+    clist.addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (b) { st.codigos.splice(+b.getAttribute('data-rm'), 1); save(); renderCodes(); renderCard(); renderNav(); } });
+    function renderFotos() {
+      th.innerHTML = fotos.map(function (f, i) { return '<span style="background-image:url(' + f.url + ')"><button type="button" data-rf="' + i + '" aria-label="' + (L() === 'en' ? 'Remove photo' : 'Quitar foto') + '">×</button></span>'; }).join('');
+      renderNav(); renderCard();
+    }
+    fin.addEventListener('change', function () {
+      Array.prototype.forEach.call(fin.files, function (f) { if (fotos.length < 8 && /^image\//.test(f.type)) fotos.push({ file: f, url: URL.createObjectURL(f) }); });
+      fin.value = ''; renderFotos();
+    });
+    th.addEventListener('click', function (e) { var b = e.target.closest('[data-rf]'); if (b) { var f = fotos.splice(+b.getAttribute('data-rf'), 1)[0]; if (f) URL.revokeObjectURL(f.url); renderFotos(); } });
+    /* send with the photos attached when the phone can share files */
+    send.addEventListener('click', function (e) {
+      if (!fotos.length || !navigator.canShare) return;
+      var files = fotos.map(function (f) { return f.file; });
+      try { if (!navigator.canShare({ files: files })) return; } catch (err) { return; }
+      e.preventDefault();
+      navigator.share({ text: message(), files: files }).catch(function (err) { if (!err || err.name !== 'AbortError') window.open(send.href, '_blank', 'noopener'); });
+    });
+    /* "I want it all" */
+    var allB = $('im-all');
+    function paintAll() { allB.setAttribute('aria-pressed', String(st.incluir.length === Q.incluir.length)); }
+    allB.addEventListener('click', function () {
+      st.incluir = st.incluir.length === Q.incluir.length ? [] : Q.incluir.map(function (o) { return o.v; });
+      save(); renderOpts(); renderCard(); renderNav(); paintAll();
+    });
+    form.addEventListener('change', function (e) { if (e.target.name === 'im-incluir') paintAll(); });
+    function all() { renderOpts(); renderNav(); renderCard(); renderCodes(); paintAll(); }
     document.getElementById('es').addEventListener('click', all);
     document.getElementById('en').addEventListener('click', all);
     all();
@@ -1452,11 +1533,31 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     var ITEMS = [['Invitación con link por invitado', 'Invitation with a link per guest'], ['Lista de confirmados en vivo', 'Live RSVP list'], ['Recordatorios automáticos', 'Automatic reminders'], ['Video para la pantalla', 'Big-screen video'], ['Video invitación', 'Video invitation'], ['Canción personalizada', 'Personalized song'], ['Fotos de invitados con QR', 'Guest photos with QR'], ['3 reels del evento', '3 event reels'], ['Letrero de bienvenida', 'Welcome sign'], ['Papelería de mesa', 'Table printables'], ['Video personal con tu propuesta', 'Personal video with your proposal']];
     var cur = 'bodas', off = {};
     var more = document.getElementById('xb-more');
+    var QD = {}; try { QD = JSON.parse(document.getElementById('qf-data').textContent); } catch (e) {}
+    var qfEl = document.querySelector('.qf'), qShown = 'bodas';
+    function qf(slug) {
+      var d = QD[slug]; if (!d || !qfEl) return;
+      var t = d.th; [['--qa', 3], ['--qp', 2], ['--qp2', 1], ['--qk', 4], ['--qk3', 6]].forEach(function (v) { qfEl.style.setProperty(v[0], t[v[1]]); });
+      qfEl.querySelector('.qf-who').textContent = d.name.toUpperCase();
+      qfEl.querySelector('.qf-up i').style.backgroundImage = 'url(img/' + d.selfie + '.webp)';
+      var g = qfEl.querySelector('.qf-grid'), first = Array.prototype.filter.call(g.children, function (c) { return c.style.backgroundImage.indexOf(d.selfie + '.webp') > -1; })[0];
+      if (first) g.insertBefore(first, g.firstChild);
+      if (slug === qShown) return; qShown = slug;
+      var ph = qfEl.querySelector('.qf-photo'), im = ph.querySelector('img'), cd = ph.querySelector('.qf-card'), p = d.pos;
+      ph.classList.add('swap');
+      setTimeout(function () {
+        var n = new Image(); n.onload = n.onerror = function () {
+          im.src = n.src; cd.style.cssText = 'left:' + p[0] + '%;top:' + p[1] + '%;width:' + p[2] + '%;height:' + p[3] + '%;' + (p.length > 4 ? 'transform:rotate(' + p[4] + 'deg);' : '');
+          ph.classList.remove('swap');
+        }; n.src = 'img/' + d.img + '.webp';
+      }, 300);
+    }
     function en() { return document.documentElement.lang === 'en'; }
     function paint() {
       var l = en() ? 1 : 0;
       xs.querySelectorAll('.xs-ev').forEach(function (b) { b.hidden = b.getAttribute('data-ev') !== cur; });
       xs.querySelectorAll('.xs-tabs button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-ev') === cur)); });
+      qf(cur);
       more.href = 'experiencia/' + cur + '/'; more.textContent = (l ? 'See everything for ' : 'Ver todo para ') + NAMES[cur][l] + ' →';
     }
     xs.querySelector('.xs-tabs').addEventListener('click', function (e) { var b = e.target.closest('button[data-ev]'); if (b) { cur = b.getAttribute('data-ev'); paint(); } });
