@@ -462,22 +462,22 @@ html, body { overflow-x: clip; }
 .xp { position: relative; padding-block: 10px clamp(70px, 9vw, 110px); overflow: hidden; }
 .xp-bg { position: absolute; inset: 0; background: url(img/organza.webp) center / cover; opacity: .35; -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent); }
 .xp > .wrap { position: relative; }
-.xu { position: relative; max-width: 1180px; margin: clamp(70px, 9vw, 120px) auto 0; padding: clamp(120px, 14vw, 190px) clamp(16px, 3vw, 40px) clamp(28px, 4vw, 48px);
+.xu { position: relative; max-width: 1180px; margin: clamp(80px, 15vw, 200px) auto 0; padding: clamp(130px, 16vw, 210px) clamp(16px, 3vw, 40px) clamp(28px, 4vw, 48px);
   border-radius: 50% 50% 34px 34px / clamp(240px, 30vw, 420px) clamp(240px, 30vw, 420px) 34px 34px;
   background: radial-gradient(60% 40% at 50% 18%, rgba(255,253,248,.96), rgba(251,246,239,.88) 70%), linear-gradient(180deg, rgba(255,252,246,.9), rgba(246,236,221,.92));
   box-shadow: inset 0 0 0 1.5px rgba(182,138,78,.55), inset 0 0 0 9px rgba(255,252,246,.6), inset 0 0 0 10px rgba(182,138,78,.25), 0 60px 90px -60px rgba(90,60,30,.45); }
 .xu::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: url(img/organza.webp) center / cover; opacity: .18; mix-blend-mode: multiply; pointer-events: none; }
 .xu > * { position: relative; }
-.xu-deco { position: absolute !important; inset: 0; z-index: 2; pointer-events: none; }
-.xu-deco svg { position: absolute; left: 0; top: 0; overflow: visible; }
-.xu-deco img { position: absolute; height: auto; transform: translate(-50%, -50%) rotate(var(--r, 0deg)); filter: drop-shadow(0 6px 8px rgba(90,60,40,.18)); }
+.xu { container-type: inline-size; }
+.xu-g { position: absolute !important; z-index: 2; left: 50%; top: -15cqw; width: 114cqw; max-width: none; height: auto; transform: translateX(-50.4%); pointer-events: none; filter: drop-shadow(0 14px 18px rgba(90,60,40,.16)); }
+@media (max-width: 600px) { .xu-g { width: 112cqw; top: -15cqw; } }
 .xu-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; max-width: 760px; margin: 0 auto; z-index: 3; }
 .xa-eye { font: 500 12px var(--f-caps); letter-spacing: .42em; color: var(--gold); }
 .xu-head h2 { margin: 0; font: 500 clamp(44px, 6.4vw, 84px)/1 var(--f-serif); color: var(--ink); }
 .xu-head h2 em { font-style: italic; background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; }
 .xa-scr { font: 400 clamp(28px, 3.4vw, 42px)/1.1 var(--f-script); color: var(--gold); }
 .xu-lead { margin: 4px 0 0; max-width: 56ch; color: var(--ink2); font-size: clamp(15px, 1.4vw, 17px); }
-.xu-pts { list-style: none; margin: 14px 0 4px; padding: 16px 0 0; border-top: 1px solid rgba(182,138,78,.3); display: grid; grid-template-columns: repeat(3, auto); gap: 10px 30px; justify-content: center; text-align: left; }
+.xu-pts { list-style: none; margin: 26px 0 4px; padding: 16px 0 0; border-top: 1px solid rgba(182,138,78,.3); display: grid; grid-template-columns: repeat(3, auto); gap: 10px 30px; justify-content: center; text-align: left; }
 .xu-pts li { position: relative; padding-left: 18px; font-size: 15px; color: var(--ink); white-space: nowrap; }
 .xu-pts li::before { content: ""; position: absolute; left: 1px; top: .55em; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold); }
 .xa-price { margin: 6px 0 0; font: italic 400 17px var(--f-serif); color: var(--ink3); }
@@ -741,7 +741,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <div class="xp-bg" aria-hidden="true"></div>
     <div class="wrap">
       <div class="xu">
-        <div class="xu-deco" id="xuDeco" aria-hidden="true"></div>
+        <img class="xu-g" src="img/arco-flores.webp" alt="" aria-hidden="true" width="1800" height="1013" loading="lazy">
         <div class="xu-head">
           <span class="xa-eye" data-en="THE COMPLETE PACKAGE">EL PAQUETE COMPLETO</span>
           <h2 id="xp-title" data-en-html="Ilusión <em>Experience</em>">Experiencia <em>Ilusión</em></h2>
@@ -1514,33 +1514,6 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     fit(); if ('ResizeObserver' in window) new ResizeObserver(fit).observe(st); else addEventListener('resize', fit);
   })();
 
-  /* Experiencia Ilusión arch: a fine gold vine with pearls, leaves and matching flowers that follows the arch edge */
-  (function () {
-    var el = document.querySelector('.xu'), box = document.getElementById('xuDeco'); if (!el || !box) return;
-    var NS = 'http://www.w3.org/2000/svg';
-    function draw() {
-      var W = el.offsetWidth, H = el.offsetHeight; if (!W) return;
-      var cs = getComputedStyle(el).borderTopLeftRadius.split(' '), rx = parseFloat(cs[0]), ry = parseFloat(cs[1] || cs[0]);
-      if (cs[0].indexOf('%') > -1) rx = W * rx / 100; if ((cs[1] || '').indexOf('%') > -1) ry = H * parseFloat(cs[1]) / 100;
-      rx = Math.min(rx, W / 2); var d = Math.max(7, W * .008), cx = W / 2, yEnd = H * .84, P = [];
-      for (var y = yEnd; y > ry; y -= 4) P.push([-d, y]);
-      for (var a = 0; a <= 180; a += .5) { var t = a * Math.PI / 180; P.push([cx - (rx + d) * Math.cos(t), ry - (ry + d) * Math.sin(t)]); }
-      for (var y2 = ry; y2 < yEnd; y2 += 4) P.push([W + d, y2]);
-      var L = [0]; for (var i = 1; i < P.length; i++) L.push(L[i - 1] + Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1])); var T = L[L.length - 1];
-      function at(f) { var target = f * T, i = 1; while (i < L.length - 1 && L[i] < target) i++; var k = (target - L[i - 1]) / ((L[i] - L[i - 1]) || 1), x = P[i - 1][0] + (P[i][0] - P[i - 1][0]) * k, y = P[i - 1][1] + (P[i][1] - P[i - 1][1]) * k; return [x, y, Math.atan2(P[i][1] - P[i - 1][1], P[i][0] - P[i - 1][0])]; }
-      var sc = Math.max(.55, Math.min(1, W / 1100));
-      var svg = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '"><defs><linearGradient id="xvG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A063"/><stop offset=".85" stop-color="#C9A063"/><stop offset="1" stop-color="#C9A063" stop-opacity="0"/></linearGradient><radialGradient id="xvP" cx=".35" cy=".35"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#F6EEDF"/><stop offset="1" stop-color="#D9C7A6"/></radialGradient></defs>';
-      svg += '<polyline fill="none" stroke="url(#xvG)" stroke-width="1.2" points="' + P.map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ') + '"/>';
-      var step = 26 * sc, n = Math.floor(T / step);
-      for (var j = 1; j < n; j++) { var q = at(j / n), side = j % 2 ? 1 : -1, ang = q[2] * 180 / Math.PI;
-        if (j % 3 === 0) svg += '<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="' + (2.6 * sc).toFixed(1) + '" fill="url(#xvP)"/>';
-        else { var col = j % 4 === 1 ? '#C9A063' : '#A9BBA2'; svg += '<path transform="translate(' + q[0].toFixed(1) + ' ' + q[1].toFixed(1) + ') rotate(' + (ang + side * 38).toFixed(1) + ') scale(' + sc.toFixed(2) + ')" d="M0 0 C 4 -5, 11 -5, 15 0 C 11 4, 4 4, 0 0 Z" fill="' + col + '" opacity=".85"/>'; } }
-      svg += '</svg>';
-      var F = [['hortensia-marfil', .5, 96, 0], ['rosa-marfil', .455, 58, -14], ['rosa-marfil', .545, 58, 14], ['rosa-rubor', .32, 50, -30], ['rosa-rubor', .68, 50, 30], ['ramita-hojas-doradas', .2, 54, -60], ['ramita-hojas-doradas', .8, 54, 60], ['rosa-marfil', .025, 70, -8], ['hortensia-marfil', .055, 52, 0], ['rosa-marfil', .975, 70, 8], ['hortensia-marfil', .945, 52, 0], ['rosa-rubor', .11, 38, -10], ['rosa-rubor', .89, 38, 10]];
-      box.innerHTML = svg + F.map(function (f) { var q = at(f[1]), w = f[2] * sc; if (f[1] < .15) q[0] += w * .3; if (f[1] > .85) q[0] -= w * .3; return '<img src="img/' + f[0] + '.webp" alt="" style="left:' + q[0].toFixed(1) + 'px;top:' + q[1].toFixed(1) + 'px;width:' + (f[2] * sc).toFixed(0) + 'px;--r:' + f[3] + 'deg">'; }).join('');
-    }
-    draw(); if ('ResizeObserver' in window) new ResizeObserver(draw).observe(el); else addEventListener('resize', draw);
-  })();
 
   /* gentle depth on the florals */
   var layers = Array.prototype.slice.call(document.querySelectorAll('[data-depth]')), tick = false, mx = 0, my = 0;
