@@ -1498,7 +1498,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     th.addEventListener('click', function (e) { var b = e.target.closest('[data-rf]'); if (b) { var f = fotos.splice(+b.getAttribute('data-rf'), 1)[0]; if (f) URL.revokeObjectURL(f.url); renderFotos(); } });
     /* send: save the order (answers + photos) in our system, then offer WhatsApp with the order number.
        Without ENDPOINT, or if saving fails, it falls back to the plain WhatsApp message. */
-    var ENDPOINT = '';
+    var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwLSkVg670lTXk73S5B_zP-ay8Kpwj7xFRDBXJPta3QF27T_Jy1zRBG3t_n2oZhiuc/exec';
     function shrink(f) {
       return new Promise(function (ok) {
         var img = new Image(), u = URL.createObjectURL(f);
