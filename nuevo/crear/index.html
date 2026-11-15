@@ -406,7 +406,7 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
   ];
   var PAQ = [{ v: 'esencial', n: 'Esencial' }, { v: 'ilusion', n: 'Ilusión' }, { v: 'gala', n: 'Gala' }, { v: 'experiencia', n: 'Experiencia' }];
   var PRICES = { MXN: [890, 1490, 2990, 5900], CAD: [69, 119, 229, 449] };
-  function curr() { var c = null; try { c = localStorage.getItem('ilu-cur'); } catch (e) {} return c || (L() === 'en' ? 'CAD' : 'MXN'); }
+  function curr() { return L() === 'en' ? 'CAD' : 'MXN'; }
   function priceOf(v) { var i = ['esencial', 'ilusion', 'gala', 'experiencia'].indexOf(v), c = curr(); return i < 0 ? '' : (i === 3 ? (L() === 'en' ? 'from ' : 'desde ') : '') + '$' + PRICES[c][i].toLocaleString('en-US') + ' ' + c; }
   var KEYS = ['diseno', 'datos', 'fotos', 'idea', 'enviar'];
   var NAMES = { es: ['Diseño', 'Detalles', 'Fotos', 'Idea', 'Enviar'], en: ['Design', 'Details', 'Photos', 'Idea', 'Send'] };
@@ -457,7 +457,7 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
     $('d-none').hidden = !(st.evento && !ds.length);
     $('o-ambiente').innerHTML = AMB.map(function (a) { var th = a.img ? '<span class="th"><img src="../img/' + a.img + '.webp" alt="" loading="lazy"></span>' : '<span class="th">' + svg(a.ic) + '</span>'; return '<label class="opt">' + radio('ambiente', a.v, st.ambiente === a.v) + '<span>' + th + '<span><b>' + e2(a[l][0]) + '</b><small>' + e2(a[l][1]) + '</small></span></span></label>'; }).join('');
     $('o-color').innerHTML = COL.map(function (c) { return '<label class="opt seal-o">' + radio('color', c.v, st.color === c.v) + '<span><img src="../img/' + c.seal + '.webp" alt="" width="300" height="300" loading="lazy"><b>' + e2(c[l]) + '</b></span></label>'; }).join('');
-    $('o-paquete').innerHTML = PAQ.map(function (q) { return '<label class="opt">' + radio('paquete', q.v, st.paquete === q.v) + '<span><b>' + q.n + '</b></span></label>'; }).join('');
+    $('o-paquete').innerHTML = PAQ.map(function (q) { return '<label class="opt">' + radio('paquete', q.v, st.paquete === q.v) + '<span><b>' + q.n + '</b><small>' + priceOf(q.v) + '</small></span></label>'; }).join('');
     $('o-incluir').innerHTML = INC.map(function (o) { return '<label class="opt chip"><input type="checkbox" name="incluir" value="' + o.v + '"' + (st.incluir.indexOf(o.v) > -1 ? ' checked' : '') + '><span><b>' + e2(o[l]) + '</b></span></label>'; }).join('');
     f.querySelectorAll('[data-en-ph]').forEach(function (el) { if (!el.dataset.esPh) el.dataset.esPh = el.placeholder; el.placeholder = l === 'en' ? el.dataset.enPh : el.dataset.esPh; });
   }
@@ -515,7 +515,7 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
   function rows() {
     var l = L(), en = l === 'en', w = EV[st.evento], d = find(designs(), 'id', st.diseno), a = find(AMB, 'v', st.ambiente), c = find(COL, 'v', st.color);
     var R = [
-      [4, en ? 'Package' : 'Paquete', st.paquete ? (find(PAQ, 'v', st.paquete) || {}).n : ''],
+      [4, en ? 'Package' : 'Paquete', st.paquete ? (find(PAQ, 'v', st.paquete) || {}).n + ' · ' + priceOf(st.paquete) : ''],
       [0, en ? 'Celebration' : 'Celebración', w ? w[l][0] : ''],
       [0, en ? 'Design' : 'Diseño', st.diseno ? (d ? d.nombre : (en ? 'Made to measure' : 'A mi medida')) : ''],
       [1, w ? w[l][2] : (en ? 'Who' : 'Quién'), st.quien],
