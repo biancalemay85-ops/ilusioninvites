@@ -525,6 +525,7 @@ html, body { overflow-x: clip; }
 .xb-chips input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
 .xb-cta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px; }
 .xb-more { font: 500 11px var(--f-caps); letter-spacing: .22em; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(182,138,78,.4); padding-bottom: 3px; }
+.xb-go { min-width: 280px; }
 .xb-note { margin: 12px 0 0; font-size: 13px; color: var(--ink3); }
 
 /* guest photo QR: the star feature of the Experiencia Ilusión */
@@ -965,10 +966,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
           </div>
         </div>
         <div class="xb">
-          <span class="xb-t" data-en="BUILD YOUR EXPERIENCE · REMOVE WHAT YOU DON'T NEED">ARMA TU EXPERIENCIA · QUITA LO QUE NO NECESITES</span>
-          <div class="xb-chips" id="xb-chips"></div>
-          <div class="xb-cta"><a class="btn btn-gold" id="xb-send" href="#" target="_blank" rel="noopener" data-en="Get my quote on WhatsApp">Cotizar mi experiencia por WhatsApp</a><a class="xb-more" id="xb-more" href="experiencia/bodas/"></a></div>
-          <p class="xb-note" data-en="We quote only what you choose. You can always add more later.">Te cotizamos solo lo que elijas. Siempre puedes sumar más después.</p>
+          <a class="btn btn-gold xb-go" id="xb-more" href="experiencia/bodas/"></a>
+          <p class="xb-note" data-en="See every piece, what it's for, and choose what you want for your event.">Mira cada pieza, para qué sirve, y elige lo que quieres para tu evento.</p>
         </div>
       </div>
       </div>
@@ -1449,23 +1448,15 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     var NAMES = { bodas: ['Boda', 'Wedding'], 'xv-anos': ['XV Años', 'Quinceañera'], cumpleanos: ['Cumpleaños', 'Birthday'], 'baby-shower': ['Baby Shower', 'Baby Shower'], navidad: ['Posada · Navidad', 'Christmas'], 'ano-nuevo': ['Año Nuevo', "New Year's Eve"], empresas: ['Evento de empresa', 'Corporate event'] };
     var ITEMS = [['Invitación con link por invitado', 'Invitation with a link per guest'], ['Lista de confirmados en vivo', 'Live RSVP list'], ['Recordatorios automáticos', 'Automatic reminders'], ['Video para la pantalla', 'Big-screen video'], ['Video invitación', 'Video invitation'], ['Canción personalizada', 'Personalized song'], ['Fotos de invitados con QR', 'Guest photos with QR'], ['3 reels del evento', '3 event reels'], ['Letrero de bienvenida', 'Welcome sign'], ['Papelería de mesa', 'Table printables'], ['Video personal con tu propuesta', 'Personal video with your proposal']];
     var cur = 'bodas', off = {};
-    var chips = document.getElementById('xb-chips'), send = document.getElementById('xb-send'), more = document.getElementById('xb-more');
+    var more = document.getElementById('xb-more');
     function en() { return document.documentElement.lang === 'en'; }
     function paint() {
       var l = en() ? 1 : 0;
-      chips.innerHTML = ITEMS.map(function (it, i) { return '<label><input type="checkbox" data-i="' + i + '"' + (off[i] ? '' : ' checked') + '><span>' + it[l] + '</span></label>'; }).join('');
       xs.querySelectorAll('.xs-ev').forEach(function (b) { b.hidden = b.getAttribute('data-ev') !== cur; });
       xs.querySelectorAll('.xs-tabs button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-ev') === cur)); });
-      more.href = 'experiencia/' + cur + '/'; more.textContent = (l ? 'SEE EVERY DETAIL FOR ' : 'VER TODO PARA ') + NAMES[cur][l].toUpperCase() + ' →';
-      link();
-    }
-    function link() {
-      var l = en() ? 1 : 0, picked = ITEMS.filter(function (it, i) { return !off[i]; }).map(function (it) { return '• ' + it[l]; });
-      var msg = (l ? 'Hi Ilusión Invites ✨ I want the Ilusión Experience for my ' + NAMES[cur][1] + '. I would like:' : 'Hola Ilusión Invites ✨ quiero la Experiencia Ilusión para mi ' + NAMES[cur][0] + '. Me gustaría:') + '\n' + picked.join('\n');
-      send.href = 'https://wa.me/16048391163?text=' + encodeURIComponent(msg);
+      more.href = 'experiencia/' + cur + '/'; more.textContent = (l ? 'See everything for ' : 'Ver todo para ') + NAMES[cur][l] + ' →';
     }
     xs.querySelector('.xs-tabs').addEventListener('click', function (e) { var b = e.target.closest('button[data-ev]'); if (b) { cur = b.getAttribute('data-ev'); paint(); } });
-    chips.addEventListener('change', function (e) { var i = e.target.getAttribute('data-i'); off[i] = !e.target.checked; link(); });
     document.getElementById('es').addEventListener('click', paint); document.getElementById('en').addEventListener('click', paint);
     paint();
   })();

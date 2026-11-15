@@ -249,6 +249,18 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
 /* the menu logo is the gold seal alone (it already reads "Ilusión Invites") */
 .brand > span, .brand > b { display: none !important; }
 .brand img { width: 46px !important; }
+
+/* builder: choose the pieces you want and ask for them on WhatsApp */
+.bld .b-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; max-width: 900px; margin: 16px auto 6px; }
+.bld label { cursor: pointer; } .bld input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.bld label span { display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px; border-radius: 999px; font-size: 14.5px; color: var(--ink2); background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent); transition: all .3s; }
+.bld label span::before { content: ""; width: 15px; height: 15px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--accent) 60%, transparent); transition: all .3s; }
+.bld input:checked + span { color: var(--ink); background: linear-gradient(180deg, #FFFDF8, #FBF1E1); box-shadow: inset 0 0 0 1.5px var(--gold), 0 6px 14px -8px rgba(140,95,40,.5); }
+.bld input:checked + span::before { background: radial-gradient(circle, #fff 0 28%, var(--gold) 32%); box-shadow: none; }
+.bld input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+.b-all { border: 0; cursor: pointer; background: none; font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--gold); border-bottom: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); padding: 4px 0; margin-bottom: 8px; }
+.b-count { font-size: 13px; color: var(--ink3); }
+.btn[aria-disabled="true"] { opacity: .5; pointer-events: none; }
 </style>
 
 <div class="bg" aria-hidden="true"><i class="tint"></i></div>
@@ -439,6 +451,18 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
 
   <div class="rule"></div>
 
+<section class="close bld" id="arma" data-ev-es="XV Años" data-ev-en="quinceañera">
+    <span class="eyebrow" data-en-html="BUILD YOUR EXPERIENCE">ARMA TU EXPERIENCIA</span>
+    <h2 style="margin:0;font:500 clamp(32px,4vw,50px)/1.1 var(--f-serif)" data-en-html="Choose what you want <em>for your event</em>">Elige lo que quieres <em>para tu evento</em></h2>
+    <p class="note" data-en-html="Tap the pieces you like and send them to us. We'll talk about your idea and give you a quote.">Toca las piezas que te gusten y envíanoslas. Platicamos de tu idea y te cotizamos.</p>
+    <div class="b-chips"><label><input type="checkbox" value="0"><span data-en-html="Invitation with a link per guest">Invitación con link por invitado</span></label><label><input type="checkbox" value="1"><span data-en-html="Live RSVP list">Lista de confirmados en vivo</span></label><label><input type="checkbox" value="2"><span data-en-html="Automatic reminders">Recordatorios automáticos</span></label><label><input type="checkbox" value="3"><span data-en-html="Video invitation">Video invitación</span></label><label><input type="checkbox" value="4"><span data-en-html="Big-screen video">Video para la pantalla</span></label><label><input type="checkbox" value="5"><span data-en-html="Personalized song">Canción personalizada</span></label><label><input type="checkbox" value="6"><span data-en-html="Guest photos with QR">Fotos de invitados con QR</span></label><label><input type="checkbox" value="7"><span data-en-html="3 event reels">3 reels del evento</span></label><label><input type="checkbox" value="8"><span data-en-html="Welcome sign">Letrero de bienvenida</span></label><label><input type="checkbox" value="9"><span data-en-html="Table printables">Papelería de mesa</span></label><label><input type="checkbox" value="10"><span data-en-html="Personal video with your proposal">Video personal con tu propuesta</span></label></div>
+    <button type="button" class="b-all" data-en-html="I WANT IT ALL ✨">LO QUIERO TODO ✨</button>
+    <span class="b-count"></span>
+    <div class="row"><a class="btn b-send" href="#" target="_blank" rel="noopener" aria-disabled="true" data-en-html="Send my choice on WhatsApp">Enviar mi elección por WhatsApp</a></div>
+  </section>
+
+  <div class="rule"></div>
+
   <section class="close">
     <span class="eyebrow" data-en-html="YOUR NIGHT, COMPLETE">TU NOCHE, COMPLETA</span>
     <h2 style="margin:0;font:500 clamp(34px,4.4vw,54px)/1.1 var(--f-serif)" data-en-html="Choose a package <em>or build your own</em>">Elige tu paquete <em>o arma el tuyo</em></h2>
@@ -468,6 +492,27 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
   var saved = null; try { saved = localStorage.getItem('ilu-lang'); } catch (e) {}
   var q = new URLSearchParams(location.search).get('lang');
   setLang(q === 'en' || (q !== 'es' && saved === 'en') ? 'en' : 'es');
+
+
+  /* builder: pick pieces, "I want it all", send on WhatsApp */
+  (function () {
+    var b = document.getElementById('arma'); if (!b) return;
+    var send = b.querySelector('.b-send'), cnt = b.querySelector('.b-count'), all = b.querySelector('.b-all');
+    function en() { return document.documentElement.lang === 'en'; }
+    function upd() {
+      var picked = [].slice.call(b.querySelectorAll('input:checked')).map(function (i) { return i.nextElementSibling.textContent; }), e = en(), ev = b.getAttribute(e ? 'data-ev-en' : 'data-ev-es');
+      var allOn = picked.length === b.querySelectorAll('input').length;
+      cnt.textContent = picked.length ? (e ? picked.length + ' selected' : picked.length + (picked.length === 1 ? ' pieza elegida' : ' piezas elegidas')) : (e ? 'Nothing selected yet' : 'Aún no eliges nada');
+      send.setAttribute('aria-disabled', String(!picked.length));
+      var msg = e ? 'Hi Ilusión Invites ✨ For my ' + ev + (allOn ? ' I want the complete Ilusión Experience:' : ' I would like:') : 'Hola Ilusión Invites ✨ Para mi ' + ev + (allOn ? ' quiero la Experiencia Ilusión completa:' : ' me gustaría:');
+      send.href = 'https://wa.me/16048391163?text=' + encodeURIComponent(msg + '\n' + picked.map(function (t) { return '• ' + t; }).join('\n'));
+    }
+    b.addEventListener('change', upd);
+    all.addEventListener('click', function () { b.querySelectorAll('input').forEach(function (i) { i.checked = true; }); upd(); });
+    document.getElementById('es').addEventListener('click', function () { setTimeout(upd, 0); });
+    document.getElementById('en').addEventListener('click', function () { setTimeout(upd, 0); });
+    upd();
+  })();
 
   /* little sparkles on the screens */
   document.querySelectorAll('.on').forEach(function (on) { for (var i = 0; i < 10; i++) { var s = document.createElement('i'); s.className = 'sp'; s.style.left = (8 + Math.random() * 84) + '%'; s.style.top = (8 + Math.random() * 84) + '%'; s.style.animationDelay = (-Math.random() * 2.4) + 's'; on.appendChild(s); } });

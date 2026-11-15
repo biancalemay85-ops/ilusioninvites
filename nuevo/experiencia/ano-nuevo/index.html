@@ -248,6 +248,18 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
 .brand > span, .brand > b { display: none !important; }
 .brand img { width: 46px !important; }
 
+/* builder: choose the pieces you want and ask for them on WhatsApp */
+.bld .b-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; max-width: 900px; margin: 16px auto 6px; }
+.bld label { cursor: pointer; } .bld input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.bld label span { display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px; border-radius: 999px; font-size: 14.5px; color: var(--ink2); background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent); transition: all .3s; }
+.bld label span::before { content: ""; width: 15px; height: 15px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--accent) 60%, transparent); transition: all .3s; }
+.bld input:checked + span { color: var(--ink); background: linear-gradient(180deg, #FFFDF8, #FBF1E1); box-shadow: inset 0 0 0 1.5px var(--gold), 0 6px 14px -8px rgba(140,95,40,.5); }
+.bld input:checked + span::before { background: radial-gradient(circle, #fff 0 28%, var(--gold) 32%); box-shadow: none; }
+.bld input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+.b-all { border: 0; cursor: pointer; background: none; font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--gold); border-bottom: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); padding: 4px 0; margin-bottom: 8px; }
+.b-count { font-size: 13px; color: var(--ink3); }
+.btn[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+
 :root { --bg: #F7F4EE; --bg2: #ECE5D8; --paper: #FCFAF6; --accent: #9A7A3E; --ink: #1C1B20; --ink2: #4F4B52; --ink3: #85808A; }
 .sign b { font-size: 8cqw; text-align: center; line-height: 1.05; } .sign small { text-align: center; max-width: 92%; }
 .all { margin-top: 14px; } .all-t { display: block; font: 500 10px var(--f-caps); letter-spacing: .26em; color: var(--ink3); margin-bottom: 8px; }
@@ -258,6 +270,18 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
 .badge { gap: 1.2cqw; } .badge .bseal { width: 18%; } .badge .evt { font: 500 1.4cqw var(--f-caps); letter-spacing: .16em; color: var(--accent); text-align: center; } .badge b { font: 600 4.6cqw/1.05 var(--f-serif); color: var(--ink); text-align: center; } .badge small { font: 500 1.5cqw var(--f-caps); letter-spacing: .14em; color: var(--ink2); } .badge .qr { width: 30%; aspect-ratio: 1; margin-top: 1cqw; }
 .others { display: flex; gap: 18px; overflow-x: auto; padding: 8px 4px 20px; justify-content: safe center; scrollbar-width: none; } .ow { flex: none; width: 128px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; }
 .ow .ar { width: 100%; aspect-ratio: .74; border-radius: 50% 50% 12px 12px / 36% 36% 12px 12px; overflow: hidden; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 50%, transparent), 0 16px 26px -16px rgba(40,25,20,.5); } .ow img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; } .ow:hover img { transform: scale(1.08); } .ow b { font: 500 16px var(--f-serif); text-align: center; }
+
+/* builder: choose the pieces you want and ask for them on WhatsApp */
+.bld .b-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; max-width: 900px; margin: 16px auto 6px; }
+.bld label { cursor: pointer; } .bld input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.bld label span { display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px; border-radius: 999px; font-size: 14.5px; color: var(--ink2); background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent); transition: all .3s; }
+.bld label span::before { content: ""; width: 15px; height: 15px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--accent) 60%, transparent); transition: all .3s; }
+.bld input:checked + span { color: var(--ink); background: linear-gradient(180deg, #FFFDF8, #FBF1E1); box-shadow: inset 0 0 0 1.5px var(--gold), 0 6px 14px -8px rgba(140,95,40,.5); }
+.bld input:checked + span::before { background: radial-gradient(circle, #fff 0 28%, var(--gold) 32%); box-shadow: none; }
+.bld input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+.b-all { border: 0; cursor: pointer; background: none; font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--gold); border-bottom: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); padding: 4px 0; margin-bottom: 8px; }
+.b-count { font-size: 13px; color: var(--ink3); }
+.btn[aria-disabled="true"] { opacity: .5; pointer-events: none; }
 </style>
 <div class="bg" aria-hidden="true"><i class="tint"></i></div>
 <header class="top"><div class="wrap">
@@ -293,6 +317,16 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
       <figure style="margin:0"><div class="photo"><img src="../../img/exp-ano-nuevo-pieza.webp" alt="" width="1200" height="1200"><div class="lay mesa" style="--x:33%;--y:29%;--w:35.5%;--h:52%"><img class="bfl" src="../../img/cristal-1.webp" alt=""><small data-en-html="MIDNIGHT">BRINDIS DE</small><b style="font-size:6.4cqw" data-en-html="Toast">Medianoche</b></div></div><figcaption class="cap" data-en-html="TOAST CARD">TARJETA PARA EL BRINDIS</figcaption></figure>
       </div></div><div class="txt"><span class="num" data-en-html="06 · EVENT PRINTABLES">06 · PAPELERÍA DEL EVENTO</span><h2 data-en-html="Your event, &lt;em&gt;in the same style&lt;/em&gt;">Tu evento, <em>con el mismo estilo</em></h2><p data-en-html="We design the printed pieces of your event with the same colors, flowers and gold lettering as your invitation. You get print-ready files to print wherever you like.">Diseñamos las piezas impresas de tu evento con los mismos colores, flores y letra dorada de tu invitación. Te entregamos los archivos listos para imprimir donde tú prefieras.</p><div class="where"><span data-en-html="GALA · 3 PIECES">GALA · 3 PIEZAS</span><span data-en-html="EXPERIENCIA · ALL">EXPERIENCIA · TODAS</span><span class="add" data-en-html="OR ADD THEM">O AGRÉGALAS</span></div><div class="all"><span class="all-t" data-en-html="EVERYTHING WE CAN DESIGN FOR YOU">TODO LO QUE PODEMOS DISEÑAR PARA TI</span><div class="chips"><span data-en-html="Welcome sign">Letrero de bienvenida</span><span data-en-html="Countdown cards">Tarjetas de cuenta regresiva</span><span data-en-html="Toast cards">Tarjetas para el brindis</span><span data-en-html="Menu">Menú</span><span data-en-html="“2028” photo booth props">Accesorios para fotos “2028”</span><span data-en-html="Midnight reel">Reel de medianoche</span></div></div></div></section>
   <div class="rule"></div>
+  <section class="close bld" id="arma" data-ev-es="Año Nuevo" data-ev-en="new year's eve">
+    <span class="eyebrow" data-en-html="BUILD YOUR EXPERIENCE">ARMA TU EXPERIENCIA</span>
+    <h2 style="margin:0;font:500 clamp(32px,4vw,50px)/1.1 var(--f-serif)" data-en-html="Choose what you want <em>for your event</em>">Elige lo que quieres <em>para tu evento</em></h2>
+    <p class="note" data-en-html="Tap the pieces you like and send them to us. We'll talk about your idea and give you a quote.">Toca las piezas que te gusten y envíanoslas. Platicamos de tu idea y te cotizamos.</p>
+    <div class="b-chips"><label><input type="checkbox" value="0"><span data-en-html="Invitation with a link per guest">Invitación con link por invitado</span></label><label><input type="checkbox" value="1"><span data-en-html="Live RSVP list">Lista de confirmados en vivo</span></label><label><input type="checkbox" value="2"><span data-en-html="Automatic reminders">Recordatorios automáticos</span></label><label><input type="checkbox" value="3"><span data-en-html="Video invitation">Video invitación</span></label><label><input type="checkbox" value="4"><span data-en-html="Big-screen video">Video para la pantalla</span></label><label><input type="checkbox" value="5"><span data-en-html="Personalized song">Canción personalizada</span></label><label><input type="checkbox" value="6"><span data-en-html="Guest photos with QR">Fotos de invitados con QR</span></label><label><input type="checkbox" value="7"><span data-en-html="3 event reels">3 reels del evento</span></label><label><input type="checkbox" value="8"><span data-en-html="Welcome sign">Letrero de bienvenida</span></label><label><input type="checkbox" value="9"><span data-en-html="Table printables">Papelería de mesa</span></label><label><input type="checkbox" value="10"><span data-en-html="Personal video with your proposal">Video personal con tu propuesta</span></label></div>
+    <button type="button" class="b-all" data-en-html="I WANT IT ALL ✨">LO QUIERO TODO ✨</button>
+    <span class="b-count"></span>
+    <div class="row"><a class="btn b-send" href="#" target="_blank" rel="noopener" aria-disabled="true" data-en-html="Send my choice on WhatsApp">Enviar mi elección por WhatsApp</a></div>
+  </section>
+  <div class="rule"></div>
   <section class="close"><span class="eyebrow" data-en-html="YOUR EVENT, COMPLETE">TU EVENTO, COMPLETO</span><h2 style="margin:0;font:500 clamp(34px,4.4vw,54px)/1.1 var(--f-serif)" data-en-html="Choose a package &lt;em&gt;or build your own&lt;/em&gt;">Elige tu paquete <em>o arma el tuyo</em></h2>
     <p class="note" data-en-html="Every piece can be added to any package.">Cada pieza se puede sumar a cualquier paquete.</p>
     <div class="row"><a class="btn" href="../../crear/?c=ano-nuevo" data-en-html="Create my invitation">Crear mi invitación</a><a class="btn line" href="../../#paquetes" data-en-html="See packages &amp;amp; prices">Ver paquetes y precios</a></div></section>
@@ -303,6 +337,27 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
 (function () {
   document.querySelectorAll('[data-qr]').forEach(function (el) { try { if (window.QRCode) new QRCode(el, { text: el.getAttribute('data-qr'), width: 160, height: 160, colorDark: '#1C1B20', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M }); } catch (e) {} });
   document.querySelectorAll('.on').forEach(function (on) { for (var i = 0; i < 10; i++) { var s = document.createElement('i'); s.className = 'sp'; s.style.left = (8 + Math.random() * 84) + '%'; s.style.top = (8 + Math.random() * 84) + '%'; s.style.animationDelay = (-Math.random() * 2.4) + 's'; on.appendChild(s); } });
+
+  /* builder: pick pieces, "I want it all", send on WhatsApp */
+  (function () {
+    var b = document.getElementById('arma'); if (!b) return;
+    var send = b.querySelector('.b-send'), cnt = b.querySelector('.b-count'), all = b.querySelector('.b-all');
+    function en() { return document.documentElement.lang === 'en'; }
+    function upd() {
+      var picked = [].slice.call(b.querySelectorAll('input:checked')).map(function (i) { return i.nextElementSibling.textContent; }), e = en(), ev = b.getAttribute(e ? 'data-ev-en' : 'data-ev-es');
+      var allOn = picked.length === b.querySelectorAll('input').length;
+      cnt.textContent = picked.length ? (e ? picked.length + ' selected' : picked.length + (picked.length === 1 ? ' pieza elegida' : ' piezas elegidas')) : (e ? 'Nothing selected yet' : 'Aún no eliges nada');
+      send.setAttribute('aria-disabled', String(!picked.length));
+      var msg = e ? 'Hi Ilusión Invites ✨ For my ' + ev + (allOn ? ' I want the complete Ilusión Experience:' : ' I would like:') : 'Hola Ilusión Invites ✨ Para mi ' + ev + (allOn ? ' quiero la Experiencia Ilusión completa:' : ' me gustaría:');
+      send.href = 'https://wa.me/16048391163?text=' + encodeURIComponent(msg + '\n' + picked.map(function (t) { return '• ' + t; }).join('\n'));
+    }
+    b.addEventListener('change', upd);
+    all.addEventListener('click', function () { b.querySelectorAll('input').forEach(function (i) { i.checked = true; }); upd(); });
+    document.getElementById('es').addEventListener('click', function () { setTimeout(upd, 0); });
+    document.getElementById('en').addEventListener('click', function () { setTimeout(upd, 0); });
+    upd();
+  })();
+
   var nodes = [].slice.call(document.querySelectorAll('[data-en-html]'));
   nodes.forEach(function (el) { el.setAttribute('data-es-html', el.innerHTML); });
   var TITLES = { es: "La experiencia año nuevo · Ilusión Invites", en: "The New Year'S Eve Experience · Ilusión Invites" };
