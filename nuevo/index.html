@@ -88,6 +88,20 @@ a { color: inherit; }
 .lead { margin: 0 0 22px; max-width: 58ch; font-size: clamp(16px, 1.6vw, 19px); color: var(--ink2); }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
+/* how it works: a light three-step flow in the hero */
+.flow { margin-top: clamp(30px, 4vw, 46px); width: min(720px, 100%); }
+.fl-t { display: block; font: 500 10.5px var(--f-caps); letter-spacing: .36em; color: var(--gold); margin-bottom: 16px; }
+.flow ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; position: relative; }
+.flow ol::before { content: ""; position: absolute; top: 27px; left: 16.6%; right: 16.6%; height: 1px; background: repeating-linear-gradient(90deg, rgba(182,138,78,.7) 0 6px, transparent 6px 12px); }
+.flow li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; text-shadow: none; }
+.flow li:not(:last-child)::after { content: ""; position: absolute; top: 23px; right: -6px; width: 7px; height: 7px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); transform: rotate(45deg); }
+.fl-ic { position: relative; width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; color: var(--gold); background: radial-gradient(circle at 50% 35%, #fff, #F6ECDD); box-shadow: inset 0 0 0 1px rgba(182,138,78,.5), 0 0 0 5px rgba(251,246,239,.85), 0 10px 18px -10px rgba(120,85,45,.45); margin-bottom: 6px; }
+.fl-ic svg { width: 24px; height: 24px; }
+.fl-ic i { position: absolute; top: -4px; right: -4px; width: 19px; height: 19px; border-radius: 50%; display: grid; place-items: center; font: italic 600 12px var(--f-serif); color: #fff; background: linear-gradient(180deg, #E9CF95, #B68A4E); }
+.flow b { font: 500 19px/1.2 var(--f-serif); color: var(--ink); }
+.flow li > span:last-child { font-size: 13.5px; line-height: 1.4; color: var(--ink2); max-width: 22ch; }
+@media (max-width: 560px) { .flow b { font-size: 16px; } .flow li > span:last-child { font-size: 12px; } .fl-ic { width: 46px; height: 46px; } .flow ol::before { top: 23px; } .flow li:not(:last-child)::after { top: 19px; } }
+
 /* section headings */
 .sec { padding-block: clamp(64px, 9vw, 110px); }
 .head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 36px; }
@@ -318,25 +332,6 @@ html, body { overflow-x: clip; }
 }
 @media (prefers-reduced-motion: reduce) { .im-step.on, .card.pulse { animation: none; } }
 
-/* steps: three arched panels joined by a fine gold line */
-.como { background: linear-gradient(180deg, var(--ivory), #F7EFE4 50%, var(--ivory)); }
-.steps { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 3vw, 40px); max-width: 1060px; margin: 0 auto; padding: 0; list-style: none; }
-.steps::before { content: ""; position: absolute; left: 12%; right: 12%; top: 92px; height: 1px; background: linear-gradient(90deg, rgba(182,138,78,0), rgba(182,138,78,.55) 15%, rgba(182,138,78,.55) 85%, rgba(182,138,78,0)); }
-.step { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 56px clamp(22px, 2.6vw, 34px) 40px; border-radius: 50% 50% 20px 20px / 150px 150px 20px 20px; background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(253,249,243,.78)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.26), 0 40px 60px -44px rgba(90,60,40,.5); transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; }
-.step::before { content: ""; position: absolute; inset: 9px; border-radius: 50% 50% 14px 14px / 142px 142px 14px 14px; border: 1px solid rgba(182,138,78,.16); pointer-events: none; }
-.step:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px rgba(182,138,78,.4), 0 46px 64px -42px rgba(90,60,40,.55), 0 0 40px rgba(240,222,186,.45); }
-.step .n { position: relative; width: 72px; height: 72px; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle at 50% 35%, #fff, #F6ECDD); box-shadow: inset 0 0 0 1px rgba(182,138,78,.55), 0 0 0 6px rgba(251,246,239,.9), 0 0 0 7px rgba(182,138,78,.22), 0 12px 22px -10px rgba(120,85,45,.4); font: italic 500 34px/1 var(--f-serif); margin-bottom: 10px; }
-.step .n span { background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .05em; }
-.step h3 { margin: 0; font: 500 clamp(24px, 2.4vw, 28px)/1.15 var(--f-serif); }
-.step p { margin: 0; color: var(--ink2); font-size: 15px; max-width: 30ch; }
-.step .orn { display: flex; align-items: center; gap: 8px; width: 90px; margin-top: 8px; }
-.step .orn i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
-.step .orn i:last-child { transform: scaleX(-1); }
-.step .orn b { width: 5px; height: 5px; transform: rotate(45deg); background: var(--gold); }
-.step a { font: 500 10.5px var(--f-caps); letter-spacing: .24em; color: var(--gold); text-decoration: none; margin-top: 4px; }
-.step a:hover { text-decoration: underline; text-underline-offset: 4px; }
-@media (max-width: 820px) { .steps { grid-template-columns: minmax(0, 1fr); max-width: 400px; gap: 22px; } .steps::before { left: 50%; right: auto; top: 60px; bottom: 60px; width: 1px; height: auto; background: linear-gradient(180deg, rgba(182,138,78,0), rgba(182,138,78,.5) 10%, rgba(182,138,78,.5) 90%, rgba(182,138,78,0)); } }
-
 /* what we sell, said plainly in the hero */
 .lead strong { font-weight: 500; color: var(--ink); }
 .perks { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; margin: -6px 0 22px; padding: 0; }
@@ -518,6 +513,14 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       <div class="ctas">
         <a class="btn btn-gold" href="#paquetes" data-en="See packages">Ver paquetes</a>
         <a class="btn btn-line" href="#eventos" data-en="See collections">Ver colecciones</a>
+      </div>
+      <div class="flow" id="como" aria-labelledby="fl-t">
+        <span class="fl-t" id="fl-t" data-en="HOW IT WORKS">CÓMO FUNCIONA</span>
+        <ol>
+        <li><span class="fl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.5 3.6 2.4 5.5 6 6-3.6.5-5.5 2.4-6 6-.5-3.6-2.4-5.5-6-6 3.6-.5 5.5-2.4 6-6z"/><path d="M18.5 15.5c.2 1.2.8 1.8 2 2-1.2.2-1.8.8-2 2-.2-1.2-.8-1.8-2-2 1.2-.2 1.8-.8 2-2z"/></svg><i>1</i></span><b data-en="Imagine it">Imagínala</b><span data-en="Pick your event and tell us your idea.">Elige tu evento y cuéntanos tu idea.</span></li>
+        <li><span class="fl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="6" width="17" height="12" rx="1.5"/><path d="M3.5 7l8.5 6 8.5-6"/><circle cx="12" cy="13.6" r="2.2"/></svg><i>2</i></span><b data-en="We design it">La diseñamos</b><span data-en="With your photos, music and details.">Con tus fotos, música y detalles.</span></li>
+        <li><span class="fl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/><path d="M10 9.5l2-2 2 2M12 7.5v6"/></svg><i>3</i></span><b data-en="Share it">Compártela</b><span data-en="Get your link, ready to send.">Recibe tu link listo para enviar.</span></li>
+        </ol>
       </div>
     </div>
   </section>
@@ -868,16 +871,6 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     </div>
   </section>
 
-  <section class="sec como" id="como">
-    <div class="wrap">
-      <div class="head"><span class="eyebrow" data-en="HOW IT WORKS">CÓMO FUNCIONA</span><h2 data-en-html="Three steps to your <em>invitation</em>">Tres pasos para tu <em>invitación</em></h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"></div>
-      <ol class="steps">
-        <li class="step"><span class="n" aria-hidden="true"><span>1</span></span><h3 data-en="Imagine it">Imagínala</h3><p data-en="Tell us about your event and the atmosphere you dream of, right here or on WhatsApp.">Cuéntanos tu evento y el ambiente que sueñas, aquí mismo o por WhatsApp.</p><a href="#imagina" data-en="START HERE">EMPIEZA AQUÍ</a><span class="orn" aria-hidden="true"><i></i><b></b><i></i></span></li>
-        <li class="step"><span class="n" aria-hidden="true"><span>2</span></span><h3 data-en="We design it for you">La diseñamos para ti</h3><p data-en="We create it with your photos, music and details, and show you how it looks before we deliver.">La creamos con tus fotos, música y detalles, y te mostramos cómo va quedando antes de entregarla.</p><span class="orn" aria-hidden="true"><i></i><b></b><i></i></span></li>
-        <li class="step"><span class="n" aria-hidden="true"><span>3</span></span><h3 data-en="Share it">Compártela</h3><p data-en="Receive your link with envelope, music, map and RSVP, ready to send.">Recibe tu link con sobre, música, mapa y confirmación, listo para enviar.</p><span class="orn" aria-hidden="true"><i></i><b></b><i></i></span></li>
-      </ol>
-    </div>
-  </section>
 
   <section class="sec faq" id="preguntas" aria-labelledby="faq-title">
     <div class="wrap">
