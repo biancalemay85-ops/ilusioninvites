@@ -259,6 +259,47 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
 .b-all { border: 0; cursor: pointer; background: none; font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--gold); border-bottom: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); padding: 4px 0; margin-bottom: 8px; }
 .b-count { font-size: 13px; color: var(--ink3); }
 .btn[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+/* guest photo QR: the star feature of the Experiencia Ilusión */
+.qf { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(26px, 4vw, 56px); align-items: center; margin: clamp(30px, 4vw, 50px) 0 10px; padding: clamp(18px, 3vw, 34px); border-radius: 26px; background: linear-gradient(180deg, rgba(255,253,248,.9), rgba(248,238,224,.75)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 30px 60px -44px rgba(90,60,30,.45); }
+.qf-vis { position: relative; aspect-ratio: 1.05; container-type: inline-size; }
+.qf-photo { position: absolute; left: 6%; top: 0; width: 72%; aspect-ratio: 1; border-radius: 3cqw; overflow: hidden; box-shadow: 0 4cqw 6cqw -3cqw rgba(60,35,25,.5); }
+.qf-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.qf-card { position: absolute; left: 38%; top: 40.5%; width: 27.5%; height: 38.5%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8cqw; text-align: center; }
+.qf-card small { font: 500 1.05cqw var(--f-caps); letter-spacing: .14em; color: var(--ink2); }
+.qf-qr { width: 64%; aspect-ratio: 1; background: #fff; padding: .6cqw; border-radius: .6cqw; box-shadow: 0 .4cqw .8cqw rgba(0,0,0,.12); }
+.qf-qr img, .qf-qr canvas { width: 100% !important; height: 100% !important; display: block; }
+.qf-phone { position: absolute; right: 0; bottom: 0; width: 34%; aspect-ratio: 9 / 19; border-radius: 4.6cqw; padding: 1cqw; background: linear-gradient(145deg, #3b3236, #121012 40%, #2a2326 70%, #0d0b0c); box-shadow: 0 0 0 1px rgba(182,138,78,.45), 0 5cqw 7cqw -3cqw rgba(60,35,25,.6); z-index: 3; animation: qfFloat 6s ease-in-out infinite alternate; }
+.qf-scr { position: absolute; inset: 1cqw; border-radius: 3.8cqw; overflow: hidden; background: linear-gradient(180deg, #FFFCF6, #F6ECDD); display: flex; flex-direction: column; align-items: center; gap: 1.6cqw; padding: 7cqw 2.4cqw 3cqw; text-align: center; }
+.qf-who { font: 500 1.3cqw var(--f-caps); letter-spacing: .2em; color: var(--gold); }
+.qf-scr b { font: 500 3cqw/1.1 var(--f-serif); color: var(--ink); }
+.qf-drop { width: 100%; padding: 2.6cqw 1cqw; border-radius: 2cqw; border: 1px dashed rgba(182,138,78,.7); display: flex; flex-direction: column; align-items: center; gap: .8cqw; color: var(--gold); font: 400 1.6cqw var(--f-body); }
+.qf-drop svg { width: 5cqw; height: 5cqw; }
+.qf-up { width: 100%; display: flex; align-items: center; gap: 1.2cqw; padding: 1.2cqw; border-radius: 1.6cqw; background: #fff; box-shadow: 0 .6cqw 1.4cqw -1cqw rgba(0,0,0,.2); text-align: left; }
+.qf-up i { flex: none; width: 5.4cqw; height: 5.4cqw; border-radius: 1cqw; background: center / cover; }
+.qf-up > span { flex: 1; display: flex; flex-direction: column; gap: .6cqw; }
+.qf-up em { font: 500 1.35cqw var(--f-body); font-style: normal; color: var(--ink); }
+.qf-bar { display: block; height: .7cqw; border-radius: 1cqw; background: rgba(182,138,78,.2); overflow: hidden; }
+.qf-bar span { display: block; height: 100%; width: 30%; background: linear-gradient(90deg, #E9CF95, #B68A4E); animation: qfUp 3.6s ease-in-out infinite; }
+@keyframes qfUp { 0% { width: 8%; } 80%, 100% { width: 100%; } }
+.qf-ok { font: 500 1.3cqw var(--f-body); color: #2f7a52; }
+.qf-album { position: absolute; left: 0; bottom: 2%; width: 44%; padding: 2cqw; border-radius: 2.6cqw; background: rgba(255,253,248,.96); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 3cqw 5cqw -2.6cqw rgba(60,35,25,.5); z-index: 2; display: flex; flex-direction: column; gap: .8cqw; animation: qfFloat 7s ease-in-out -2s infinite alternate; }
+.qf-album b { font: 500 2.6cqw var(--f-serif); color: var(--ink); }
+.qf-cnt { font: 400 1.4cqw var(--f-body); color: var(--ink3); }
+.qf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7cqw; margin-top: .4cqw; }
+.qf-grid span { aspect-ratio: 1; border-radius: .9cqw; background: center 25% / cover; }
+.qf-dl { align-self: flex-start; margin-top: .6cqw; padding: .9cqw 2cqw; border-radius: 99px; font: 600 1.4cqw var(--f-body); color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); }
+.qf-txt { display: flex; flex-direction: column; gap: 12px; }
+.qf-txt h3 { margin: 0; font: 500 clamp(28px, 3vw, 40px)/1.1 var(--f-serif); color: var(--ink); } .qf-txt h3 em { font-style: italic; }
+.qf-txt p { margin: 0; color: var(--ink2); }
+.qf-steps { list-style: none; counter-reset: q; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.qf-steps li { counter-increment: q; position: relative; padding-left: 46px; display: flex; flex-direction: column; gap: 2px; }
+.qf-steps li::before { content: counter(q, upper-roman); position: absolute; left: 0; top: -2px; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font: italic 500 16px var(--f-serif); color: var(--gold); background: #fff; box-shadow: inset 0 0 0 1px rgba(182,138,78,.5); }
+.qf-steps b { font: 500 18px var(--f-serif); color: var(--ink); } .qf-steps span { font-size: 14.5px; color: var(--ink2); }
+@media (max-width: 860px) { .qf { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .qf-phone, .qf-album, .qf-bar span { animation: none; } }
+
+@keyframes qfFloat { from { translate: 0 0; } to { translate: 0 -1.2cqw; } }
+.qrsec { padding-block: clamp(40px, 6vw, 80px); }
 
 :root { --bg: #FBF6EF; --bg2: #F3EADD; --paper: #FDFAF5; --accent: #B68A4E; --ink: #3A2A26; --ink2: #6E5B54; --ink3: #9A877F; }
 .sign b { font-size: 8cqw; text-align: center; line-height: 1.05; } .sign small { text-align: center; max-width: 92%; }
@@ -282,6 +323,47 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
 .b-all { border: 0; cursor: pointer; background: none; font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--gold); border-bottom: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); padding: 4px 0; margin-bottom: 8px; }
 .b-count { font-size: 13px; color: var(--ink3); }
 .btn[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+/* guest photo QR: the star feature of the Experiencia Ilusión */
+.qf { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(26px, 4vw, 56px); align-items: center; margin: clamp(30px, 4vw, 50px) 0 10px; padding: clamp(18px, 3vw, 34px); border-radius: 26px; background: linear-gradient(180deg, rgba(255,253,248,.9), rgba(248,238,224,.75)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 30px 60px -44px rgba(90,60,30,.45); }
+.qf-vis { position: relative; aspect-ratio: 1.05; container-type: inline-size; }
+.qf-photo { position: absolute; left: 6%; top: 0; width: 72%; aspect-ratio: 1; border-radius: 3cqw; overflow: hidden; box-shadow: 0 4cqw 6cqw -3cqw rgba(60,35,25,.5); }
+.qf-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.qf-card { position: absolute; left: 38%; top: 40.5%; width: 27.5%; height: 38.5%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8cqw; text-align: center; }
+.qf-card small { font: 500 1.05cqw var(--f-caps); letter-spacing: .14em; color: var(--ink2); }
+.qf-qr { width: 64%; aspect-ratio: 1; background: #fff; padding: .6cqw; border-radius: .6cqw; box-shadow: 0 .4cqw .8cqw rgba(0,0,0,.12); }
+.qf-qr img, .qf-qr canvas { width: 100% !important; height: 100% !important; display: block; }
+.qf-phone { position: absolute; right: 0; bottom: 0; width: 34%; aspect-ratio: 9 / 19; border-radius: 4.6cqw; padding: 1cqw; background: linear-gradient(145deg, #3b3236, #121012 40%, #2a2326 70%, #0d0b0c); box-shadow: 0 0 0 1px rgba(182,138,78,.45), 0 5cqw 7cqw -3cqw rgba(60,35,25,.6); z-index: 3; animation: qfFloat 6s ease-in-out infinite alternate; }
+.qf-scr { position: absolute; inset: 1cqw; border-radius: 3.8cqw; overflow: hidden; background: linear-gradient(180deg, #FFFCF6, #F6ECDD); display: flex; flex-direction: column; align-items: center; gap: 1.6cqw; padding: 7cqw 2.4cqw 3cqw; text-align: center; }
+.qf-who { font: 500 1.3cqw var(--f-caps); letter-spacing: .2em; color: var(--gold); }
+.qf-scr b { font: 500 3cqw/1.1 var(--f-serif); color: var(--ink); }
+.qf-drop { width: 100%; padding: 2.6cqw 1cqw; border-radius: 2cqw; border: 1px dashed rgba(182,138,78,.7); display: flex; flex-direction: column; align-items: center; gap: .8cqw; color: var(--gold); font: 400 1.6cqw var(--f-body); }
+.qf-drop svg { width: 5cqw; height: 5cqw; }
+.qf-up { width: 100%; display: flex; align-items: center; gap: 1.2cqw; padding: 1.2cqw; border-radius: 1.6cqw; background: #fff; box-shadow: 0 .6cqw 1.4cqw -1cqw rgba(0,0,0,.2); text-align: left; }
+.qf-up i { flex: none; width: 5.4cqw; height: 5.4cqw; border-radius: 1cqw; background: center / cover; }
+.qf-up > span { flex: 1; display: flex; flex-direction: column; gap: .6cqw; }
+.qf-up em { font: 500 1.35cqw var(--f-body); font-style: normal; color: var(--ink); }
+.qf-bar { display: block; height: .7cqw; border-radius: 1cqw; background: rgba(182,138,78,.2); overflow: hidden; }
+.qf-bar span { display: block; height: 100%; width: 30%; background: linear-gradient(90deg, #E9CF95, #B68A4E); animation: qfUp 3.6s ease-in-out infinite; }
+@keyframes qfUp { 0% { width: 8%; } 80%, 100% { width: 100%; } }
+.qf-ok { font: 500 1.3cqw var(--f-body); color: #2f7a52; }
+.qf-album { position: absolute; left: 0; bottom: 2%; width: 44%; padding: 2cqw; border-radius: 2.6cqw; background: rgba(255,253,248,.96); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 3cqw 5cqw -2.6cqw rgba(60,35,25,.5); z-index: 2; display: flex; flex-direction: column; gap: .8cqw; animation: qfFloat 7s ease-in-out -2s infinite alternate; }
+.qf-album b { font: 500 2.6cqw var(--f-serif); color: var(--ink); }
+.qf-cnt { font: 400 1.4cqw var(--f-body); color: var(--ink3); }
+.qf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7cqw; margin-top: .4cqw; }
+.qf-grid span { aspect-ratio: 1; border-radius: .9cqw; background: center 25% / cover; }
+.qf-dl { align-self: flex-start; margin-top: .6cqw; padding: .9cqw 2cqw; border-radius: 99px; font: 600 1.4cqw var(--f-body); color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); }
+.qf-txt { display: flex; flex-direction: column; gap: 12px; }
+.qf-txt h3 { margin: 0; font: 500 clamp(28px, 3vw, 40px)/1.1 var(--f-serif); color: var(--ink); } .qf-txt h3 em { font-style: italic; }
+.qf-txt p { margin: 0; color: var(--ink2); }
+.qf-steps { list-style: none; counter-reset: q; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.qf-steps li { counter-increment: q; position: relative; padding-left: 46px; display: flex; flex-direction: column; gap: 2px; }
+.qf-steps li::before { content: counter(q, upper-roman); position: absolute; left: 0; top: -2px; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font: italic 500 16px var(--f-serif); color: var(--gold); background: #fff; box-shadow: inset 0 0 0 1px rgba(182,138,78,.5); }
+.qf-steps b { font: 500 18px var(--f-serif); color: var(--ink); } .qf-steps span { font-size: 14.5px; color: var(--ink2); }
+@media (max-width: 860px) { .qf { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .qf-phone, .qf-album, .qf-bar span { animation: none; } }
+
+@keyframes qfFloat { from { translate: 0 0; } to { translate: 0 -1.2cqw; } }
+.qrsec { padding-block: clamp(40px, 6vw, 80px); }
 </style>
 <div class="bg" aria-hidden="true"><i class="tint"></i></div>
 <header class="top"><div class="wrap">
@@ -315,7 +397,32 @@ h1 .gold, h2 .gold { padding: 0 .06em .08em; filter: drop-shadow(0 1px 0 rgba(11
       <div class="bar"><i></i></div><div class="user"><i></i>tu_mejor_amiga</div>
       <div class="lbl"><small data-en-html="OUR WEDDING">NUESTRA BODA</small><b>Ana &amp; Emiliano</b><span>17 · 04 · 2027</span></div></div></div></div>
       <div class="qrcard"><small data-en-html="SHARE YOUR PHOTO">COMPARTE TU FOTO</small><b data-en-html="in my album">en mi álbum</b><div class="qr" data-qr="https://ilusioninvites.com/nuevo/"></div><small data-en-html="SCAN HERE">ESCANEA AQUÍ</small></div></div>
-      <div class="txt"><span class="num" data-en-html="06 · YOUR GUESTS&#x27; PHOTOS">06 · FOTOS DE TUS INVITADOS</span><h2 data-en-html="Every photo, &lt;em&gt;in your style&lt;/em&gt;">Cada foto, <em>con tu estilo</em></h2><p data-en-html="Each table has a card with a QR code. Guests scan it, take a photo and it comes out with your frame and your name in gold, ready for Instagram or WhatsApp. All their photos and videos land in your album, and you get a link to download them.">En cada mesa hay una tarjeta con un código QR. Tus invitados lo escanean, se toman una foto y sale con tu marco y tu nombre en oro, lista para Instagram o WhatsApp. Todas sus fotos y videos llegan a tu álbum, y te damos un link para descargarlas.</p><ol class="steps"><li data-en-html="They scan their table&#x27;s QR with the phone camera.">Escanean el QR de su mesa con la cámara del celular.</li><li data-en-html="They take the photo: your frame appears instantly.">Se toman la foto: aparece con tu marco al instante.</li><li data-en-html="You receive every photo and video in one link.">Tú recibes todas las fotos y videos en un solo link.</li></ol><div class="where"><span data-en-html="ILUSIÓN EXPERIENCE">EXPERIENCIA ILUSIÓN</span><span class="add" data-en-html="OR ADD IT">O AGRÉGALO</span></div></div></section><div class="rule"></div><section class="piece" id="papeleria"><div class="vis" style="flex-direction:column;gap:22px"><div class="pair">
+      <div class="txt"><span class="num" data-en-html="06 · YOUR GUESTS&#x27; PHOTOS">06 · FOTOS DE TUS INVITADOS</span><h2 data-en-html="Every photo, &lt;em&gt;in your style&lt;/em&gt;">Cada foto, <em>con tu estilo</em></h2><p data-en-html="Each table has a card with a QR code. Guests scan it, take a photo and it comes out with your frame and your name in gold, ready for Instagram or WhatsApp. All their photos and videos land in your album, and you get a link to download them.">En cada mesa hay una tarjeta con un código QR. Tus invitados lo escanean, se toman una foto y sale con tu marco y tu nombre en oro, lista para Instagram o WhatsApp. Todas sus fotos y videos llegan a tu álbum, y te damos un link para descargarlas.</p><ol class="steps"><li data-en-html="They scan their table&#x27;s QR with the phone camera.">Escanean el QR de su mesa con la cámara del celular.</li><li data-en-html="They take the photo: your frame appears instantly.">Se toman la foto: aparece con tu marco al instante.</li><li data-en-html="You receive every photo and video in one link.">Tú recibes todas las fotos y videos en un solo link.</li></ol><div class="where"><span data-en-html="ILUSIÓN EXPERIENCE">EXPERIENCIA ILUSIÓN</span><span class="add" data-en-html="OR ADD IT">O AGRÉGALO</span></div></div></section><div class="rule"></div><section class="qrsec" id="fotos-qr">        <div class="qf">
+          <div class="qf-vis" aria-hidden="true">
+            <div class="qf-photo"><img src="../../img/exp-bodas-pieza.webp" alt="" width="1200" height="1200" loading="lazy">
+              <div class="qf-card" style="left:38%;top:40.5%;width:27.5%;height:38.5%;"><small data-en-html="SHARE YOUR PHOTOS">COMPARTE TUS FOTOS</small><span class="qf-qr" data-qr="https://ilusioninvites.com/nuevo/"></span><small data-en-html="SCAN HERE">ESCANEA AQUÍ</small></div>
+            </div>
+            <div class="qf-album"><b data-en-html="Event album">Álbum del evento</b><span class="qf-cnt" data-en-html="1,248 photos & videos">1,248 fotos y videos</span><div class="qf-grid"><span style="background-image:url(../../img/exp-bodas-selfie.webp)"></span><span style="background-image:url(../../img/exp-cumpleanos-selfie.webp)"></span><span style="background-image:url(../../img/exp-ano-nuevo-selfie.webp)"></span><span style="background-image:url(../../img/exp-navidad-selfie.webp)"></span><span style="background-image:url(../../img/xv-selfie.webp)"></span><span style="background-image:url(../../img/exp-baby-shower-selfie.webp)"></span></div><span class="qf-dl" data-en-html="Download all">Descargar todo</span></div>
+            <div class="qf-phone"><div class="qf-scr">
+              <span class="qf-who">ANA &amp; EMILIANO</span>
+              <b data-en-html="Share your photos and videos">Comparte tus fotos y videos</b>
+              <span class="qf-drop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.4"/><path d="M8.5 6l1.4-2h4.2l1.4 2"/></svg><span data-en-html="Take or choose photos">Toma o elige tus fotos</span></span>
+              <span class="qf-up"><i style="background-image:url(../../img/exp-bodas-selfie.webp)"></i><span><em data-en-html="Uploading 3 photos">Subiendo 3 fotos</em><span class="qf-bar"><span></span></span></span></span>
+              <span class="qf-ok" data-en-html="No app needed ✓">Sin descargar nada ✓</span>
+            </div></div>
+          </div>
+          <div class="qf-txt">
+            <span class="eyebrow" data-en-html="ONLY IN THE ILUSIÓN EXPERIENCE">EXCLUSIVO DE LA EXPERIENCIA ILUSIÓN</span>
+            <h3 data-en-html="Every photo of your guests, <em>in one place</em>">Todas las fotos de tus invitados, <em>en un solo lugar</em></h3>
+            <p data-en-html="Your guests have the best moments on their phones. With a QR on each table, they share them with you in seconds, and nothing gets lost.">Tus invitados tienen los mejores momentos en sus celulares. Con un QR en cada mesa te los comparten en segundos, y no se pierde ninguno.</p>
+            <ol class="qf-steps">
+              <li><b data-en-html="They scan the QR">Escanean el QR</b><span data-en-html="With their phone camera, from the card on their table.">Con la cámara del celular, desde la tarjeta de su mesa.</span></li>
+              <li><b data-en-html="They upload photos and videos">Suben fotos y videos</b><span data-en-html="No app, no sign-up: tap and send.">Sin descargar apps ni registrarse: tocan y envían.</span></li>
+              <li><b data-en-html="You get everything">Tú recibes todo</b><span data-en-html="One private album with a download link, plus 3 reels made with their photos.">Un álbum privado con link de descarga, y 3 reels hechos con sus fotos.</span></li>
+            </ol>
+          </div>
+        </div>
+</section><div class="rule"></div><section class="piece" id="papeleria"><div class="vis" style="flex-direction:column;gap:22px"><div class="pair">
       <figure style="margin:0"><div class="photo"><img src="../../img/exp-bodas-letrero.webp" alt="" width="1200" height="1600">
         <div class="lay sign" style="--x:35.5%;--y:22.5%;--w:31%;--h:31%"><small data-en-html="WELCOME TO THE WEDDING OF">BIENVENIDOS A LA BODA DE</small><b style="font-size:8.0cqw">Ana &amp; Emiliano</b><i class="rl"></i><span data-en-html="APRIL 17 · 2027">17 · ABRIL · 2027</span></div></div>
         <figcaption class="cap" data-en-html="WELCOME SIGN">LETRERO DE BIENVENIDA</figcaption></figure>

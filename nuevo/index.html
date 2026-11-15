@@ -529,8 +529,9 @@ html, body { overflow-x: clip; }
 .xb-note { margin: 12px 0 0; font-size: 13px; color: var(--ink3); }
 
 /* guest photo QR: the star feature of the Experiencia Ilusión */
-.qf { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(26px, 4vw, 56px); align-items: center; margin: clamp(30px, 4vw, 50px) 0 10px; padding: clamp(18px, 3vw, 34px); border-radius: 26px; background: linear-gradient(180deg, rgba(255,253,248,.9), rgba(248,238,224,.75)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 30px 60px -44px rgba(90,60,30,.45); }
-.qf-vis { position: relative; aspect-ratio: 1.05; container-type: inline-size; }
+.qf { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: clamp(26px, 4vw, 56px); align-items: center; margin: clamp(30px, 4vw, 50px) 0 10px; padding: clamp(18px, 3vw, 34px); border-radius: 26px; background: linear-gradient(180deg, rgba(255,253,248,.9), rgba(248,238,224,.75)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 30px 60px -44px rgba(90,60,30,.45); }
+.qf-vis { position: relative; width: min(620px, 100%); aspect-ratio: 1.05; container-type: inline-size; }
+.qf-cap { text-align: center; display: flex; flex-direction: column; gap: 6px; } .qf-cap h3 { margin: 0; font: 500 clamp(26px, 3vw, 38px)/1.1 var(--f-serif); color: var(--ink); } .qf-cap h3 em { font-style: italic; }
 .qf-photo { position: absolute; left: 6%; top: 0; width: 72%; aspect-ratio: 1; border-radius: 3cqw; overflow: hidden; box-shadow: 0 4cqw 6cqw -3cqw rgba(60,35,25,.5); }
 .qf-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .qf-card { position: absolute; left: 38%; top: 40.5%; width: 27.5%; height: 38.5%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8cqw; text-align: center; }
@@ -954,16 +955,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
               <span class="qf-ok" data-en="No app needed ✓">Sin descargar nada ✓</span>
             </div></div>
           </div>
-          <div class="qf-txt">
-            <span class="eyebrow" data-en="ONLY IN THE ILUSIÓN EXPERIENCE">EXCLUSIVO DE LA EXPERIENCIA ILUSIÓN</span>
-            <h3 data-en-html="Every photo of your guests, <em>in one place</em>">Todas las fotos de tus invitados, <em>en un solo lugar</em></h3>
-            <p data-en="Your guests have the best moments on their phones. With a QR on each table, they share them with you in seconds, and nothing gets lost.">Tus invitados tienen los mejores momentos en sus celulares. Con un QR en cada mesa te los comparten en segundos, y no se pierde ninguno.</p>
-            <ol class="qf-steps">
-              <li><b data-en="They scan the QR">Escanean el QR</b><span data-en="With their phone camera, from the card on their table.">Con la cámara del celular, desde la tarjeta de su mesa.</span></li>
-              <li><b data-en="They upload photos and videos">Suben fotos y videos</b><span data-en="No app, no sign-up: tap and send.">Sin descargar apps ni registrarse: tocan y envían.</span></li>
-              <li><b data-en="You get everything">Tú recibes todo</b><span data-en="One private album with a download link, plus 3 reels made with their photos.">Un álbum privado con link de descarga, y 3 reels hechos con sus fotos.</span></li>
-            </ol>
-          </div>
+          <div class="qf-cap"><span class="eyebrow" data-en="ONLY IN THE ILUSIÓN EXPERIENCE">EXCLUSIVO DE LA EXPERIENCIA ILUSIÓN</span><h3 data-en-html="Guest photos <em>with QR</em>">Fotos de invitados <em>con QR</em></h3></div>
         </div>
         <div class="xb">
           <a class="btn btn-gold xb-go" id="xb-more" href="experiencia/bodas/"></a>
