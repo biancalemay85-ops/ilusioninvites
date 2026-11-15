@@ -342,7 +342,7 @@ def page(slug, d):
     name_es, name_en = col['es']['nombre'], col['en']['nombre']
     body = f'''<title>{html.escape(T(*d["eyebrow"]) and d["eyebrow"][0].capitalize())} · Ilusión Invites</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Allura&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Parisienne&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>{css}
 {extra_css}</style>

@@ -18,7 +18,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Allura&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Parisienne&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
 <style>
 /* Layout: a bright champagne hero (silk curtains, florals in the corners, the gold wordmark with its star), then the collections showcase, the "imagine your invitation" questionnaire with a live card, how it works and contact. Light brand palette from the Event Asset Library board. */
 :root {
@@ -88,27 +88,22 @@ a { color: inherit; }
 .lead { margin: 0 0 22px; max-width: 58ch; font-size: clamp(16px, 1.6vw, 19px); color: var(--ink2); }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
-/* brand wordmark: "Ilusión" writes itself in gold, then shimmers with glitter */
+/* brand wordmark: "Ilusión" appears on a diagonal sweep of sparks, eases into place, shimmers once */
 .wm { position: relative; width: min(600px, 84vw); margin: -4px auto clamp(18px, 2.4vw, 30px); text-shadow: none; }
-.wm-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.wm-svg { display: block; width: 100%; height: auto; overflow: visible; transform: scale(.9); opacity: 0; }
 .wm-t { font-family: "Great Vibes", "Snell Roundhand", cursive; font-size: 236px; }
-.wm-t .I { font-family: "Allura", "Great Vibes", cursive; }
-.wm-s { fill: none; stroke: url(#wmGold); stroke-width: 1.8; stroke-dasharray: 1600; stroke-dashoffset: 1600; }
-.wm-f { fill: url(#wmGold); opacity: 0; filter: drop-shadow(0 2px 0 rgba(255,248,230,.8)) drop-shadow(0 10px 14px rgba(120,80,30,.25)); }
+.wm-t .I { font-family: "Parisienne", "Great Vibes", cursive; font-size: 212px; }
+.wm-f { fill: url(#wmGold); filter: drop-shadow(0 1px 0 rgba(150,105,50,.35)) drop-shadow(0 10px 16px rgba(150,110,60,.18)); }
 .wm-sh { mix-blend-mode: screen; pointer-events: none; }
-.wm-pen { opacity: 0; }
-.wm-glit circle { fill: #fffaf0; opacity: 0; animation: wmTw 2.8s ease-in-out infinite; }
+.wm-spark { position: absolute; inset: -20% -10%; width: 120%; height: 140%; pointer-events: none; }
+.wm-glit circle { fill: #fffaf0; opacity: 0; animation: wmTw 3.4s ease-in-out infinite; }
 .wm-sub { display: block; margin-top: -14px; font: 500 clamp(11px, 1.3vw, 14px) var(--f-caps); letter-spacing: .9em; padding-left: .9em; color: var(--gold); opacity: 0; transform: translateY(8px); }
-.wm.go .wm-s { animation: wmDraw 3s cubic-bezier(.5,.1,.3,1) forwards; }
-.wm.go .wm-f { animation: wmFill 1.4s ease 2.4s forwards; }
-.wm.go .wm-sub { animation: wmSub 1.2s ease 3.2s forwards; }
-.wm.done .wm-s { animation: wmFade 1.2s ease forwards; }
-@keyframes wmDraw { to { stroke-dashoffset: 0; } }
-@keyframes wmFill { to { opacity: 1; } }
-@keyframes wmFade { from { stroke-dashoffset: 0; opacity: 1; } to { stroke-dashoffset: 0; opacity: .25; } }
+.wm.go .wm-svg { animation: wmZoom 4.2s cubic-bezier(.16,.7,.2,1) forwards; }
+.wm.go .wm-sub { animation: wmSub 1.4s ease 2.6s forwards; }
+@keyframes wmZoom { 0% { transform: scale(.9); opacity: 0; } 12% { opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 @keyframes wmSub { to { opacity: 1; transform: none; } }
-@keyframes wmTw { 0%, 100% { opacity: 0; } 50% { opacity: .95; } }
-.wm.still .wm-s { stroke-dashoffset: 0; opacity: .25; } .wm.still .wm-f, .wm.still .wm-sub { opacity: 1; transform: none; }
+@keyframes wmTw { 0%, 100% { opacity: 0; } 50% { opacity: .7; } }
+.wm.still .wm-svg, .wm.still .wm-sub { opacity: 1; transform: none; }
 .hero { padding-top: 78px; }
 .top .brand span { transition: opacity .5s; }
 .top:not(.scrolled) .brand span { opacity: 0; }
@@ -558,8 +553,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 .btn-line:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), 0 12px 24px -12px rgba(120,85,45,.45), 0 0 26px rgba(240,222,186,.7) !important; }
 
 
-/* the wordmark keeps Great Vibes; only its capital I comes from Allura so it reads "Ilusión" (not "Jlusión") */
-.brand b .I, .brand-name b .I, .env-letter b .I { font-family: "Allura", "Great Vibes", cursive; font-style: normal; }
+/* the wordmark keeps Great Vibes; only its capital I comes from Parisienne so it reads "Ilusión" (not "Jlusión") */
+.brand b .I, .brand-name b .I, .env-letter b .I { font-family: "Parisienne", "Great Vibes", cursive; font-style: normal; font-size: .9em; }
 </style>
 
 <header class="top" id="top">
@@ -585,19 +580,20 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       <div class="wm" id="wm" role="img" aria-label="Ilusión Invites">
         <svg class="wm-svg" viewBox="0 0 1000 330" aria-hidden="true">
           <defs>
-            <linearGradient id="wmGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3D99A"/><stop offset=".38" stop-color="#C99A50"/><stop offset=".62" stop-color="#8E5F24"/><stop offset=".82" stop-color="#C79747"/><stop offset="1" stop-color="#EBCB86"/></linearGradient>
-            <linearGradient id="wmSh" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="260" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff8e6" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
-              <animateTransform attributeName="gradientTransform" type="translate" from="-400 0" to="1400 0" dur="2.4s" begin="4.2s;wmShA.end+5s" id="wmShA" fill="freeze"/></linearGradient>
-            <radialGradient id="wmPenG"><stop offset="0" stop-color="#fffbe8"/><stop offset=".35" stop-color="#ffe2a0" stop-opacity=".8"/><stop offset="1" stop-color="#e8b860" stop-opacity="0"/></radialGradient>
+            <linearGradient id="wmGold" x1="0" y1="0" x2=".25" y2="1"><stop offset="0" stop-color="#FBF0D2"/><stop offset=".3" stop-color="#EAD09A"/><stop offset=".55" stop-color="#D2AD6C"/><stop offset=".75" stop-color="#E4C78E"/><stop offset="1" stop-color="#F6E6BE"/></linearGradient>
+            <linearGradient id="wmSh" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="320" y2="120"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fffdf5" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+              <animateTransform attributeName="gradientTransform" type="translate" from="-500 -120" to="1300 120" dur="3.4s" begin="indefinite" id="wmShA" fill="freeze"/></linearGradient>
+            <linearGradient id="wmEdge" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset=".9" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            <mask id="wmRev" maskUnits="userSpaceOnUse" x="-400" y="-400" width="1800" height="1130"><g transform="rotate(24 500 165)"><rect id="wmRevR" x="-2400" y="-600" width="2400" height="1500" fill="url(#wmEdge)"/></g></mask>
             <mask id="wmTxt"><text class="wm-t" x="500" y="232" text-anchor="middle" fill="#fff"><tspan class="I">I</tspan>lusión</text></mask>
-            <mask id="wmRev"><rect id="wmRevR" x="0" y="0" width="0" height="330" fill="#fff"/></mask>
           </defs>
-          <g mask="url(#wmRev)"><text class="wm-t wm-s" x="500" y="232" text-anchor="middle"><tspan class="I">I</tspan>lusión</text></g>
-          <text class="wm-t wm-f" x="500" y="232" text-anchor="middle"><tspan class="I">I</tspan>lusión</text>
+          <g mask="url(#wmRev)">
+            <text class="wm-t wm-f" x="500" y="232" text-anchor="middle"><tspan class="I">I</tspan>lusión</text>
+          </g>
           <text class="wm-t wm-sh" x="500" y="232" text-anchor="middle" fill="url(#wmSh)"><tspan class="I">I</tspan>lusión</text>
           <g class="wm-glit" id="wmGlit" mask="url(#wmTxt)"></g>
-          <g class="wm-pen" id="wmPen"><circle r="26" fill="url(#wmPenG)"/><circle r="3.2" fill="#fff"/></g>
         </svg>
+        <canvas class="wm-spark" id="wmSpark"></canvas>
         <span class="wm-sub" data-en="INVITES">INVITES</span>
       </div>
       <span class="eyebrow" data-en="LUXURY DIGITAL INVITATIONS">INVITACIONES DIGITALES DE LUJO</span>
@@ -1429,28 +1425,37 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
   (function () { var f = document.querySelector('.flow'); if (!f) return; if (!('IntersectionObserver' in window)) { f.classList.add('in'); return; }
     var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { f.classList.add('in'); io.disconnect(); } }, { threshold: .5 }); io.observe(f); })();
 
-  /* wordmark: an invisible pen writes "Ilusión" with a spark, then gold fills in and glitter twinkles */
+  /* wordmark: a diagonal sweep of sparks reveals "Ilusión" from top-left to bottom-right, then one soft shimmer */
   (function () {
     var wm = document.getElementById('wm'); if (!wm) return;
-    var svg = wm.querySelector('svg'), ns = 'http://www.w3.org/2000/svg';
+    var ns = 'http://www.w3.org/2000/svg';
     function run() {
-      var t = wm.querySelector('.wm-f'), b = t.getBBox();
-      var g = document.getElementById('wmGlit');
-      for (var i = 0; i < 90; i++) { var c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', (b.x + Math.random() * b.width).toFixed(1)); c.setAttribute('cy', (b.y + Math.random() * b.height).toFixed(1)); c.setAttribute('r', (0.8 + Math.random() * 2.2).toFixed(1)); c.style.animationDelay = (3.6 + Math.random() * 3).toFixed(2) + 's'; c.style.animationDuration = (1.8 + Math.random() * 2.4).toFixed(2) + 's'; g.appendChild(c); }
-      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { wm.classList.add('still'); document.getElementById('wmRevR').setAttribute('width', 1000); return; }
-      var r = document.getElementById('wmRevR'), pen = document.getElementById('wmPen'), x0 = b.x - 10, w = b.width + 30, dur = 2900, t0 = 0;
+      var svg = wm.querySelector('svg'), t = wm.querySelector('.wm-f'), b = t.getBBox(), g = document.getElementById('wmGlit');
+      for (var i = 0; i < 45; i++) { var c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', (b.x + Math.random() * b.width).toFixed(1)); c.setAttribute('cy', (b.y + Math.random() * b.height).toFixed(1)); c.setAttribute('r', (0.8 + Math.random() * 1.8).toFixed(1)); c.style.animationDelay = (5 + Math.random() * 4).toFixed(2) + 's'; c.style.animationDuration = (2.6 + Math.random() * 2.6).toFixed(2) + 's'; g.appendChild(c); }
+      var r = document.getElementById('wmRevR');
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { r.setAttribute('x', 0); wm.classList.add('still'); return; }
       wm.classList.add('go');
-      (function step(ts) {
-        if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / dur), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
-        var x = x0 + w * e, y = b.y + b.height * (.55 + .22 * Math.sin(e * Math.PI * 9));
-        r.setAttribute('width', (x - 0 + 20).toFixed(1));
-        pen.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')');
-        pen.style.opacity = k < .06 ? k / .06 : k > .92 ? (1 - k) / .08 : 1;
-        if (k < 1) requestAnimationFrame(step); else { r.setAttribute('width', 1000); setTimeout(function () { wm.classList.add('done'); }, 600); }
+      /* sparks drawn on a canvas that follows the sweep edge */
+      var cv = document.getElementById('wmSpark'), cx = cv.getContext('2d'), P = [];
+      var cr = cv.getBoundingClientRect(), sr = svg.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+      cv.width = cr.width * d; cv.height = cr.height * d; cx.setTransform(d, 0, 0, d, 0, 0);
+      var k = sr.width / 1000, ox = sr.left - cr.left, oy = sr.top - cr.top, ang = 24 * Math.PI / 180, ca = Math.cos(ang), sa = Math.sin(ang);
+      var dur = 2600, t0 = 0, from = -1500, to = 900;
+      function edge(u) { /* point on the sweep edge, in svg units, u from -1 to 1 along the edge */ var ex = (r._x || from) - 500, ey = u * 260; return [500 + ex * ca - ey * sa, 165 + ex * sa + ey * ca]; }
+      (function frame(ts) {
+        if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3), x = from + (to - from) * e;
+        r._x = x; r.setAttribute('x', (x - 2400).toFixed(1));
+        if (p < 1) for (var i = 0; i < 6; i++) { var pt = edge(Math.random() * 2 - 1); if (pt[0] > b.x - 30 && pt[0] < b.x + b.width + 30 && pt[1] > b.y - 10 && pt[1] < b.y + b.height + 10) P.push({ x: ox + pt[0] * k, y: oy + pt[1] * k, vx: (Math.random() * 1.4 + .4) * 30, vy: (Math.random() - .3) * 40, l: 0, m: .6 + Math.random() * .9, s: .6 + Math.random() * 1.8, star: Math.random() < .18 }); }
+        cx.clearRect(0, 0, cr.width, cr.height); cx.globalCompositeOperation = 'lighter';
+        for (var j = P.length - 1; j >= 0; j--) { var q = P[j]; q.l += 1 / 60; if (q.l > q.m) { P.splice(j, 1); continue; } q.x += q.vx / 60; q.y += q.vy / 60; q.vy += 12 / 60;
+          var a = Math.sin(Math.PI * q.l / q.m), gr = cx.createRadialGradient(q.x, q.y, 0, q.x, q.y, q.s * 4); gr.addColorStop(0, 'rgba(255,246,220,' + a + ')'); gr.addColorStop(1, 'rgba(240,205,140,0)'); cx.fillStyle = gr; cx.beginPath(); cx.arc(q.x, q.y, q.s * 4, 0, 6.283); cx.fill();
+          if (q.star && a > .5) { cx.strokeStyle = 'rgba(255,250,232,' + a * .9 + ')'; cx.lineWidth = .7; var L = q.s * 6; cx.beginPath(); cx.moveTo(q.x - L, q.y); cx.lineTo(q.x + L, q.y); cx.moveTo(q.x, q.y - L); cx.lineTo(q.x, q.y + L); cx.stroke(); } }
+        if (p < 1 || P.length) requestAnimationFrame(frame); else { cx.clearRect(0, 0, cr.width, cr.height); }
+        if (p >= 1 && !r._sh) { r._sh = 1; setTimeout(function () { try { document.getElementById('wmShA').beginElement(); } catch (x) {} }, 900); }
       })(performance.now());
     }
     var go = function () { requestAnimationFrame(run); };
-    if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('236px "Great Vibes"', 'Ilusión'), document.fonts.load('236px "Allura"', 'I')]).then(go, go); else setTimeout(go, 300);
+    if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('236px "Great Vibes"', 'Ilusión'), document.fonts.load('212px "Parisienne"', 'I')]).then(go, go); else setTimeout(go, 300);
   })();
 
   /* gentle depth on the florals */
