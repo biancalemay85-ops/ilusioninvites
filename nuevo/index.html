@@ -469,11 +469,20 @@ html, body { overflow-x: clip; }
 .xu::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: url(img/organza.webp) center / cover; opacity: .18; mix-blend-mode: multiply; pointer-events: none; }
 .xu > * { position: relative; }
 .xu { container-type: inline-size; }
-.xu-g { position: absolute !important; z-index: 2; left: 50%; top: -18.9cqw; width: 140cqw; max-width: none; height: auto; transform: translateX(-50.1%); pointer-events: none; filter: drop-shadow(0 10px 14px rgba(90,60,40,.14)); }
-.xu-pl { position: absolute !important; z-index: 2; top: 44cqw; bottom: 34px; width: 5px; border-radius: 3px; background: linear-gradient(90deg, #8E6A2E, #E8CD8E 45%, #B4894A 70%, #7D5A26); box-shadow: 0 2px 4px rgba(90,60,30,.25); pointer-events: none; }
-.xu-pl.l { left: -2px; } .xu-pl.r { right: -2px; }
-.xu-pl img { position: absolute; bottom: -14px; left: 50%; width: 46px; height: auto; transform: translateX(-50%); filter: drop-shadow(0 6px 8px rgba(90,60,40,.2)); }
-@media (max-width: 600px) { .xu-pl img { width: 34px; } }
+.xu-fr { position: absolute !important; inset: -8px; z-index: 2; pointer-events: none; filter: drop-shadow(0 3px 4px rgba(110,80,40,.22)); }
+.xu-fr i { position: absolute; inset: 0; padding: 2.5px; border-radius: calc(var(--hw, 50vw) + 8px) calc(var(--hw, 50vw) + 8px) 42px 42px;
+  background: linear-gradient(160deg, #F4E2B0, #C99B55 22%, #8E6A2E 40%, #E8CD8E 58%, #B4894A 78%, #7D5A26);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+.xu-top { position: absolute !important; z-index: 3; left: 50%; top: -8px; width: clamp(170px, 22vw, 270px); aspect-ratio: 2 / 1; transform: translate(-50%, -52%); pointer-events: none; filter: drop-shadow(0 10px 12px rgba(90,60,40,.2)); }
+.xu-top img { position: absolute; height: auto; }
+.xu-top .s { width: 70%; top: 50%; }
+.xu-top .s.r { left: 74%; transform: rotate(24deg); }
+.xu-top .s.l { right: 74%; transform: scaleX(-1) rotate(24deg); }
+.xu-top .h { width: 50%; left: 25%; top: 4%; }
+.xu-top .a { width: 33%; left: 4%; top: 30%; transform: rotate(-14deg); }
+.xu-top .b { width: 31%; right: 5%; top: 34%; transform: rotate(12deg); }
+.xu-cap { position: absolute !important; z-index: 3; top: calc(var(--hw, 50vw) + 8px); width: clamp(34px, 4vw, 48px); height: auto; pointer-events: none; filter: drop-shadow(0 6px 8px rgba(90,60,40,.22)); }
+.xu-cap.l { left: -8px; transform: translate(-50%, -50%) rotate(-10deg); } .xu-cap.r { right: -8px; transform: translate(50%, -50%) rotate(10deg); }
 .xu-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; max-width: 760px; margin: 0 auto; z-index: 3; }
 .xa-eye { font: 500 12px var(--f-caps); letter-spacing: .42em; color: var(--gold); }
 .xu-head h2 { margin: 0; font: 500 clamp(44px, 6.4vw, 84px)/1 var(--f-serif); color: var(--ink); }
@@ -744,8 +753,9 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <div class="xp-bg" aria-hidden="true"></div>
     <div class="wrap">
       <div class="xu">
-        <img class="xu-g" src="img/arco-fino.webp" alt="" aria-hidden="true" width="2000" height="1125" loading="lazy">
-        <span class="xu-pl l" aria-hidden="true"><img src="img/rosa-marfil.webp" alt=""></span><span class="xu-pl r" aria-hidden="true"><img src="img/rosa-rubor.webp" alt=""></span>
+        <span class="xu-fr" aria-hidden="true"><i></i></span>
+        <span class="xu-top" aria-hidden="true"><img class="s l" src="img/hoja-oro.webp" alt=""><img class="s r" src="img/hoja-oro.webp" alt=""><img class="a" src="img/rosa-rubor.webp" alt=""><img class="b" src="img/rosa-marfil.webp" alt=""><img class="h" src="img/hortensia-marfil.webp" alt=""></span>
+        <img class="xu-cap l" src="img/rosa-marfil.webp" alt="" aria-hidden="true"><img class="xu-cap r" src="img/rosa-marfil.webp" alt="" aria-hidden="true">
         <div class="xu-head">
           <span class="xa-eye" data-en="THE COMPLETE PACKAGE">EL PAQUETE COMPLETO</span>
           <h2 id="xp-title" data-en-html="Ilusión <em>Experience</em>">Experiencia <em>Ilusión</em></h2>
@@ -1525,6 +1535,12 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
   function req() { if (!tick && !reduce) { tick = true; requestAnimationFrame(apply); } }
   addEventListener('scroll', req, { passive: true });
   addEventListener('pointermove', function (e) { if (e.pointerType !== 'mouse') return; mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; req(); }, { passive: true });
+})();
+/* Arch frame: half the panel width, so the gold line's top is a true semicircle */
+(function () {
+  var x = document.querySelector('.xu'); if (!x) return;
+  function set() { x.style.setProperty('--hw', x.offsetWidth / 2 + 'px'); }
+  set(); if ('ResizeObserver' in window) new ResizeObserver(set).observe(x); else addEventListener('resize', set);
 })();
 </script>
 
