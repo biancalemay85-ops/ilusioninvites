@@ -472,24 +472,22 @@ def show_block(slug, d, first):
     style = f'--bg:{th[0]};--bg2:{th[1]};--paper:{th[2]};--accent:{th[3]};--ink:{th[4]};--ink2:{th[5]};--ink3:{th[6]}'
     hidden = '' if first else ' hidden'
     return f'''<div class="xs-ev" data-ev="{slug}" style="{style}"{hidden}>
-  <figure class="xs-t t-sign"><div class="photo"><img src="img/{imgs['letrero']}.webp" alt="" loading="lazy" width="1200" height="1600">
-    <div class="lay sign" style="--x:{sg[0]}%;--y:{sg[1]}%;--w:{sg[2]}%;--h:{sg[3]}%">{T(*sgn[0], 'small')}<b style="font-size:{min(8, 118 / max(len(sgn[1]), 1)):.1f}cqw">{html.escape(sgn[1])}</b><i class="rl"></i>{T(*sgn[2])}</div></div>
-    {T('Letrero de bienvenida', 'Welcome sign', 'figcaption')}</figure>
-  <div class="xs-col">
-    <figure class="xs-t"><div class="screen"><img src="img/{imgs['pantalla']}.webp" alt="" loading="lazy" width="1600" height="900">
-      <div class="on" style="--sx:{sc[0]}%;--sy:{sc[1]}%;--sw:{sc[2]}%;--sh:{sc[3]}%"><div class="bgx" style="background-image:url(img/{d['hero']}.webp)"></div><div class="tt">{T(*vs[0], 'small')}<b class="gold">{html.escape(vs[1])}</b></div></div></div>
-      {T('Video para la pantalla', 'Video for the big screen', 'figcaption')}</figure>
-    <figure class="xs-t"><div class="photo sq"><img src="img/{imgs['pieza']}.webp" alt="" loading="lazy" width="1200" height="1200">{pin}</div>{T(*p['cap'], 'figcaption')}</figure>
-  </div>
-  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="env">
+  <figure class="xs-t t-inv"><div class="phone"><div class="scr"><div class="env">
     {T(*d['who'], 'span', 'who')}{T(*d['para'], 'span', 'para gold')}<div class="card">{card}</div>{T(*d['seats'], 'p', 'seats')}
     <div class="btns">{T(*d['btns'][0], 'span', 'y')}{T(*d['btns'][1], 'span', 'n')}</div></div></div></div>
     {T('Invitación con link por invitado', 'Invitation with a link per guest', 'figcaption')}</figure>
-  <figure class="xs-t t-ph"><div class="phone"><div class="scr"><div class="ig">
+  <figure class="xs-t t-sel"><div class="phone"><div class="scr"><div class="ig">
     <div class="ph" style="background-image:url(img/{imgs['selfie']}.webp)"></div>
     <div class="fr"><img class="f1" src="img/{dec[0]}.webp" alt=""><img class="f2" src="img/{dec[1]}.webp" alt=""></div>
     <div class="lbl">{T(*mk[0], 'small')}<b>{html.escape(mk[1])}</b><span>{html.escape(mk[2])}</span></div></div></div></div>
     {T('Fotos de invitados con tu marco', 'Guest photos with your frame', 'figcaption')}</figure>
+  <figure class="xs-t t-sign"><div class="crop"><div class="photo" style="--ar:3/4"><img src="img/{imgs['letrero']}.webp" alt="" loading="lazy" width="1200" height="1600">
+    <div class="lay sign" style="--x:{sg[0]}%;--y:{sg[1]}%;--w:{sg[2]}%;--h:{sg[3]}%">{T(*sgn[0], 'small')}<b style="font-size:{min(8, 118 / max(len(sgn[1]), 1)):.1f}cqw">{html.escape(sgn[1])}</b><i class="rl"></i>{T(*sgn[2])}</div></div></div>
+    {T('Letrero de bienvenida', 'Welcome sign', 'figcaption')}</figure>
+  <figure class="xs-t t-scr"><div class="screen"><img src="img/{imgs['pantalla']}.webp" alt="" loading="lazy" width="1600" height="900">
+    <div class="on" style="--sx:{sc[0]}%;--sy:{sc[1]}%;--sw:{sc[2]}%;--sh:{sc[3]}%"><div class="bgx" style="background-image:url(img/{d['hero']}.webp)"></div><div class="tt">{T(*vs[0], 'small')}<b class="gold">{html.escape(vs[1])}</b></div></div></div>
+    {T('Video para la pantalla', 'Video for the big screen', 'figcaption')}</figure>
+  <figure class="xs-t t-pc"><div class="crop"><div class="photo" style="--ar:1/1"><img src="img/{imgs['pieza']}.webp" alt="" loading="lazy" width="1200" height="1200">{pin}</div></div>{T(*p['cap'], 'figcaption')}</figure>
 </div>'''
 
 
