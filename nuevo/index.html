@@ -428,6 +428,8 @@ html, body { overflow-x: clip; }
 .pack::before { content: ""; position: absolute; inset: 9px; border-radius: 50% 50% 15px 15px / 112px 112px 15px 15px; border: 1px solid rgba(182,138,78,.16); pointer-events: none; }
 .pack:hover { transform: translateY(-4px); }
 .pack.star { padding-top: 64px; padding-bottom: 40px; background: linear-gradient(180deg, #FFFDF8, #FBF1E1); box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 6px rgba(233,207,149,.22), 0 50px 70px -40px rgba(140,95,40,.55), 0 0 50px rgba(240,215,160,.4); }
+@media (min-width: 861px) { .pack.star { transform: scale(1.06); z-index: 2; } .pack.star:hover { transform: scale(1.06) translateY(-4px); } }
+.pack.star li:not(:first-child) { color: var(--ink); }
 .pack .ribbon { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); padding: 5px 14px; border-radius: 999px; font: 500 9.5px var(--f-caps); letter-spacing: .26em; white-space: nowrap; color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); box-shadow: 0 6px 14px -6px rgba(140,95,40,.6); }
 .pack h3 { margin: 0; font: 500 clamp(30px, 3vw, 38px)/1.05 var(--f-serif); }
 .pack.star h3 { font-size: clamp(34px, 3.4vw, 44px); }
@@ -650,9 +652,6 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             <li data-en="Schedule, map and countdown">Itinerario, mapa y cuenta regresiva</li>
             <li data-en="Gift registry and dress code">Mesa de regalos y vestimenta</li>
             <li data-en="RSVP on WhatsApp">Confirmación por WhatsApp</li>
-            <li data-en="Spanish, English or both">Español, inglés o los dos</li>
-            <li data-en="In your colors, with your photos">Con tus colores y tus fotos</li>
-            <li data-en="Adjustments until you love it">Ajustes hasta que te encante</li>
           </ul>
           <a class="btn btn-line" href="crear/?paquete=esencial" data-en="Choose Esencial">Elegir Esencial</a>
         </article>
@@ -665,6 +664,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             <li data-en="A link per guest with their seats">Link por invitado con sus lugares</li>
             <li data-en="Live list of confirmations">Lista de confirmados en vivo</li>
             <li data-en="Video invitation (vertical + square)">Video invitación (vertical y cuadrado)</li>
+            <li data-en="Bilingual: Spanish, English or both">Bilingüe: español, inglés o los dos</li>
+            <li data-en="Adjustments until you love it">Ajustes hasta que te encante</li>
           </ul>
           <a class="btn btn-gold" href="crear/?paquete=ilusion" data-en="Choose Ilusión">Elegir Ilusión</a>
         </article>
@@ -968,7 +969,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         <details><summary data-en="What exactly do I receive?">¿Qué recibo exactamente?</summary><p data-en="A personal link to your invitation. When your guests open it, they see a sealed envelope; they tap the seal and your invitation appears with music, photos, map, countdown and a button to confirm.">Un link personal de tu invitación. Al abrirlo, tus invitados ven un sobre sellado; tocan el sello y aparece tu invitación con música, fotos, mapa, cuenta regresiva y un botón para confirmar.</p></details>
         <details><summary data-en="How do my guests receive it?">¿Cómo la reciben mis invitados?</summary><p data-en="You share the link by WhatsApp, Instagram, email or text. It opens on any phone, with nothing to download.">Compartes el link por WhatsApp, Instagram, correo o mensaje. Se abre en cualquier celular, sin descargar nada.</p></details>
         <details><summary data-en="How long does it take?">¿Cuánto tiempo tarda?</summary><p data-en="Once we have your details and photos, we show you a first version in a few days.">Cuando tenemos tus datos y fotos, te mostramos una primera versión en pocos días.</p></details>
-        <details><summary data-en="Can I make changes?">¿Puedo hacer cambios?</summary><p data-en="Yes. We adjust texts, photos and details with you until it looks the way you dreamed it, in every package.">Sí. Ajustamos contigo textos, fotos y detalles hasta que quede como la soñaste, en todos los paquetes.</p></details>
+        <details><summary data-en="Can I make changes?">¿Puedo hacer cambios?</summary><p data-en="Yes. We review your invitation with you before delivering it, and with Ilusión, Gala and the Ilusión Experience we keep adjusting it until you love it.">Sí. Revisamos tu invitación contigo antes de entregarla, y con Ilusión, Gala y la Experiencia Ilusión te acompañamos con ajustes hasta que te encante.</p></details>
         <details><summary data-en="How do I order and pay?">¿Cómo la pido y cómo pago?</summary><p data-en="Choose your package, tell us your idea in a few steps and send it by WhatsApp. We confirm everything with you there and send you the payment details.">Elige tu paquete, cuéntanos tu idea en unos pasos y envíala por WhatsApp. Ahí confirmamos todo contigo y te enviamos los datos de pago.</p></details>
         <details><summary data-en="Do you work in Mexico and Canada?">¿Trabajan en México y Canadá?</summary><p data-en="Yes. We design for clients in Mexico and Canada, in Spanish, English or both in the same invitation.">Sí. Diseñamos para clientes en México y Canadá, en español, inglés o los dos en la misma invitación.</p></details>
       </div>
