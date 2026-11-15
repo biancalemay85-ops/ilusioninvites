@@ -492,20 +492,14 @@ html, body { overflow-x: clip; }
 .xu::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: url(img/organza.webp) center / cover; opacity: .18; mix-blend-mode: multiply; pointer-events: none; }
 .xu > * { position: relative; }
 .xu { container-type: inline-size; }
-.xu-fr { position: absolute !important; inset: -8px; z-index: 2; pointer-events: none; filter: drop-shadow(0 3px 4px rgba(110,80,40,.22)); }
-.xu-fr i { position: absolute; inset: 0; padding: 2.5px; border-radius: calc(var(--hw, 50vw) + 8px) calc(var(--hw, 50vw) + 8px) 42px 42px;
-  background: linear-gradient(160deg, #F4E2B0, #C99B55 22%, #8E6A2E 40%, #E8CD8E 58%, #B4894A 78%, #7D5A26);
+.xu-fr { position: absolute !important; inset: -8px; z-index: 2; pointer-events: none; filter: drop-shadow(0 2px 3px rgba(110,80,40,.2)); }
+.xu-fr i { position: absolute; inset: 0; padding: max(1.5px, calc((var(--hw, 50vw) + 8px) * .0065)); border-radius: calc(var(--hw, 50vw) + 8px) calc(var(--hw, 50vw) + 8px) 42px 42px;
+  background: linear-gradient(180deg, #D9B66E, #CBA35A 30%, #B8904A 65%, #A88241);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
-.xu-top { position: absolute !important; z-index: 3; left: 50%; top: -8px; width: clamp(170px, 22vw, 270px); aspect-ratio: 2 / 1; transform: translate(-50%, -52%); pointer-events: none; filter: drop-shadow(0 10px 12px rgba(90,60,40,.2)); }
-.xu-top img { position: absolute; height: auto; }
-.xu-top .s { width: 70%; top: 50%; }
-.xu-top .s.r { left: 74%; transform: rotate(24deg); }
-.xu-top .s.l { right: 74%; transform: scaleX(-1) rotate(24deg); }
-.xu-top .h { width: 50%; left: 25%; top: 4%; }
-.xu-top .a { width: 33%; left: 4%; top: 30%; transform: rotate(-14deg); }
-.xu-top .b { width: 31%; right: 5%; top: 34%; transform: rotate(12deg); }
-.xu-cap { position: absolute !important; z-index: 3; top: calc(var(--hw, 50vw) + 8px); width: clamp(34px, 4vw, 48px); height: auto; pointer-events: none; filter: drop-shadow(0 6px 8px rgba(90,60,40,.22)); }
-.xu-cap.l { left: -8px; transform: translate(-50%, -50%) rotate(-10deg); } .xu-cap.r { right: -8px; transform: translate(50%, -50%) rotate(10deg); }
+/* the garland photo was bent into a perfect half circle: its wire sits exactly on the gold line */
+.xu-gar { position: absolute !important; z-index: 3; left: 50%; top: calc(var(--hw, 50vw) - (var(--hw, 50vw) + 6.5px) * 1.22977); width: calc((var(--hw, 50vw) + 6.5px) * 2.45847); max-width: none; height: auto; transform: translateX(-50%); pointer-events: none; filter: drop-shadow(0 8px 10px rgba(90,60,40,.16)); }
+.xu-cap { position: absolute !important; z-index: 4; top: var(--hw, 50vw); width: clamp(26px, 3.2vw, 40px); height: auto; pointer-events: none; filter: drop-shadow(0 5px 7px rgba(90,60,40,.22)); }
+.xu-cap.l { left: -7px; transform: translate(-50%, -50%) rotate(-10deg); } .xu-cap.r { right: -7px; transform: translate(50%, -50%) rotate(10deg); }
 .xu-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; max-width: 760px; margin: 0 auto; z-index: 3; }
 .xa-eye { font: 500 12px var(--f-caps); letter-spacing: .42em; color: var(--gold); }
 .xu-head h2 { margin: 0; font: 500 clamp(44px, 6.4vw, 84px)/1 var(--f-serif); color: var(--ink); }
@@ -778,7 +772,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <div class="wrap">
       <div class="xu">
         <span class="xu-fr" aria-hidden="true"><i></i></span>
-        <span class="xu-top" aria-hidden="true"><img class="s l" src="img/hoja-oro.webp" alt=""><img class="s r" src="img/hoja-oro.webp" alt=""><img class="a" src="img/rosa-rubor.webp" alt=""><img class="b" src="img/rosa-marfil.webp" alt=""><img class="h" src="img/hortensia-marfil.webp" alt=""></span>
+        <img class="xu-gar" src="img/arco-guirnalda-curva.webp" alt="" aria-hidden="true" width="2279" height="1352">
         <img class="xu-cap l" src="img/rosa-marfil.webp" alt="" aria-hidden="true"><img class="xu-cap r" src="img/rosa-marfil.webp" alt="" aria-hidden="true">
         <div class="xu-head">
           <span class="xa-eye" data-en="THE COMPLETE PACKAGE">EL PAQUETE COMPLETO</span>
