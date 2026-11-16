@@ -199,7 +199,10 @@ html.locked .world { visibility: hidden; }
 .c-line { font-style: italic; font-size: max(15px, 4.4cqw); line-height: 1.35; color: var(--ink); max-width: 24ch; }
 .c-date { font-family: var(--f-names); font-size: 8.6cqw; line-height: 1.1; color: var(--ink); margin-top: 3% !important; }
 .c-small { font-family: var(--f-caps); font-size: max(10px, 2.5cqw); letter-spacing: .22em; line-height: 1.8; color: var(--ink-soft); }
-.c-orn { width: 40%; height: auto; margin: 1% 0 !important; }
+.c-orn { display: flex; align-items: center; gap: 2.5cqw; width: 52%; margin: 1.5% 0 !important; }
+.c-orn i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(169,132,76,.8)); }
+.c-orn i:last-child { transform: scaleX(-1); }
+.c-orn img { width: 5.5cqw; height: auto; filter: drop-shadow(0 2px 2px rgba(80,70,60,.3)); }
 .pre .gem, .pre .glint { opacity: 0; animation: none; }
 
 .l-flower .in { filter: drop-shadow(6px 14px 12px rgba(70,50,30,.28)); }
@@ -234,6 +237,22 @@ html.locked .world { visibility: hidden; }
 .wait .m.l { opacity: 0; translate: -40px 0; } .wait .m.r { opacity: 0; translate: 40px 0; }
 .rest { position: absolute; z-index: 2; pointer-events: none; }
 .rest img { display: block; width: 100%; height: auto; }
+/* first section: the rings, and the parents between two champagne flutes raised in a toast */
+.padres .txt { max-width: 860px; }
+.rings { width: clamp(150px, 22vw, 220px); height: auto; margin-bottom: 4px; filter: drop-shadow(0 14px 14px rgba(90,64,30,.28)); animation: ringsIn 6s ease-in-out infinite; }
+@keyframes ringsIn { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(1.5deg); } }
+.toast { position: relative; display: grid; grid-template-columns: minmax(80px, 150px) minmax(0, 1fr) minmax(80px, 150px); align-items: end; gap: clamp(10px, 3vw, 30px); width: 100%; }
+.toast .duo { align-self: center; }
+.flute { width: 100%; height: auto; filter: drop-shadow(0 18px 16px rgba(90,64,30,.28)); transform-origin: 50% 95%; }
+.flute.l { transform: rotate(9deg); animation: clinkL 5s ease-in-out infinite; }
+.flute.r { transform: scaleX(-1) rotate(9deg); animation: clinkR 5s ease-in-out infinite; }
+@keyframes clinkL { 0%,100% { transform: rotate(9deg); } 50% { transform: rotate(12deg); } }
+@keyframes clinkR { 0%,100% { transform: scaleX(-1) rotate(9deg); } 50% { transform: scaleX(-1) rotate(12deg); } }
+.fizz { position: absolute; width: 18px; height: 18px; pointer-events: none; background: radial-gradient(circle, #fff 0 10%, transparent 11%), linear-gradient(90deg, transparent 45%, rgba(255,248,226,.95) 50%, transparent 55%), linear-gradient(0deg, transparent 45%, rgba(255,248,226,.95) 50%, transparent 55%); -webkit-mask: radial-gradient(circle, #000 20%, transparent 70%); mask: radial-gradient(circle, #000 20%, transparent 70%); animation: glint 3.4s ease-in-out infinite; }
+@media (max-width: 640px) {
+  .toast { grid-template-columns: 62px minmax(0, 1fr) 62px; gap: 8px; }
+  .toast .duo { grid-template-columns: 1fr; gap: 18px; }
+}
 .part h2 { margin: 0; font-family: var(--f-names); font-weight: 400; font-size: clamp(52px, 12vw, 76px); line-height: 1.05; padding-inline: .14em; text-shadow: none; --foil: linear-gradient(100deg, #7A5A2A 0%, #B8914F 22%, #8A6632 40%, #D4B57A 54%, #8A6632 70%, #B08A4C 88%, #7A5A2A 100%); filter: drop-shadow(0 1px 0 rgba(255,255,255,.9)) drop-shadow(0 3px 8px rgba(110,80,40,.28)); }
 .caps { margin: 0; font-family: var(--f-caps); font-size: 13px; letter-spacing: .3em; color: var(--gold-deep); }
 .part p { margin: 0; color: var(--ink-soft); }
@@ -361,7 +380,7 @@ html.locked .world { visibility: hidden; }
             <span class="glint" style="left:72%;top:52%;animation-delay:2.9s"></span>
           </h1>
           <p class="c-line" data-en="request the honor of your presence at their wedding">tienen el honor de invitarte a celebrar su boda</p>
-          <img class="c-orn" src="img/divisor.webp" alt="">
+          <span class="c-orn" aria-hidden="true"><i></i><img src="img/cristal-1.webp" alt=""><i></i></span>
           <p class="c-date" data-en="Saturday, April 17th">Sábado 17 de abril</p>
           <p class="c-small" data-en-html="TWO THOUSAND TWENTY-SEVEN<br>AT HALF PAST FIVE IN THE AFTERNOON">DOS MIL VEINTISIETE<br>A LAS CINCO Y MEDIA DE LA TARDE</p>
           <p class="c-small">SAN MIGUEL DE ALLENDE<br>GUANAJUATO, MÉXICO</p>
@@ -375,19 +394,22 @@ html.locked .world { visibility: hidden; }
   </section>
 
   <main class="flow" id="detalles">
-    <section class="part">
-      <div class="m r" data-speed=".14" style="--w:30vw;--top:-6%;--rot:-22deg"><img src="img/rosa-tallo-largo.webp" alt=""></div>
-      <div class="m l small" data-speed=".08" style="--w:18vw;--top:30%;--rot:110deg;--x:-3vw"><img src="img/vid-perlas.webp" alt=""></div>
+    <section class="part padres">
       <div class="txt">
+        <img class="rings" src="img/anillos.webp" alt="" width="720" height="663">
         <p class="caps" data-en="WITH THE BLESSING OF GOD AND OUR PARENTS">CON LA BENDICIÓN DE DIOS Y DE NUESTROS PADRES</p>
-        <div class="duo">
-          <div><b>Laura Aranda &amp;<br>Jorge Lozano</b><p data-en="Parents of the bride">Padres de la novia</p></div>
-          <div><b>Mónica Villaseñor &amp;<br>Ricardo Cárdenas</b><p data-en="Parents of the groom">Padres del novio</p></div>
+        <div class="toast">
+          <img class="flute l" src="img/copa.webp" alt="" width="280" height="900">
+          <div class="duo">
+            <div><b>Laura Aranda &amp;<br>Jorge Lozano</b><p data-en="Parents of the bride">Padres de la novia</p></div>
+            <div><b>Mónica Villaseñor &amp;<br>Ricardo Cárdenas</b><p data-en="Parents of the groom">Padres del novio</p></div>
+          </div>
+          <img class="flute r" src="img/copa.webp" alt="" width="280" height="900">
+          <span class="fizz" style="left:9%;top:6%"></span><span class="fizz" style="right:9%;top:10%;animation-delay:1.6s"></span><span class="fizz" style="left:13%;top:2%;animation-delay:2.7s"></span>
         </div>
         <p class="quote" data-en="“Two souls with but a single thought, two hearts that beat as one.”">“Dos almas con un solo pensamiento, dos corazones que laten como uno.”</p>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
 
     <section class="part">
       <div class="m l" data-speed=".16" style="--w:30vw;--top:4%;--rot:-12deg"><img src="img/rosas-ramillete.webp" alt=""></div>
@@ -409,7 +431,6 @@ html.locked .world { visibility: hidden; }
         <div class="row"><a class="btn btn-line" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Boda%20Regina%20%26%20Emilio&amp;dates=20270417T173000/20270418T030000&amp;location=San%20Miguel%20de%20Allende%2C%20Guanajuato" data-en="Add to calendar">Agregar al calendario</a></div>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
 
     <section class="part">
       <div class="m r" data-speed=".15" style="--w:30vw;--top:6%;--rot:16deg;--fx:-1"><img src="img/rosas-ramillete.webp" alt=""></div>
@@ -450,7 +471,6 @@ html.locked .world { visibility: hidden; }
         </ol>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
 
     <section class="part">
       <div class="m r" data-speed=".14" style="--w:26vw;--top:8%;--rot:12deg"><img src="img/rosa-jardin.webp" alt=""></div>
@@ -462,7 +482,6 @@ html.locked .world { visibility: hidden; }
         <p class="caps" data-en="ADULTS ONLY">SOLO ADULTOS</p>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
 
     <section class="part">
       <div class="m l" data-speed=".15" style="--w:30vw;--top:2%;--rot:-24deg"><img src="img/rosas-ramillete.webp" alt=""></div>
@@ -476,7 +495,6 @@ html.locked .world { visibility: hidden; }
         </div>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
 
     <section class="part">
       <div class="m r" data-speed=".14" style="--w:32vw;--top:0%;--rot:-30deg"><img src="img/rosa-tallo-largo.webp" alt=""></div>
