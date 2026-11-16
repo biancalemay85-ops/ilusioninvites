@@ -385,6 +385,20 @@ html, body { overflow-x: clip; }
 .im-idea { margin-top: 18px; } .im-idea textarea { min-height: 76px; }
 .fields input, .fields textarea, .fields select { font: 400 16px var(--f-body); color: var(--ink); letter-spacing: 0; padding: 12px 16px; border-radius: 14px; border: 0; background: rgba(255,255,255,.85); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); transition: box-shadow .3s; min-width: 0; width: 100%; }
 .fields textarea { resize: vertical; min-height: 92px; line-height: 1.5; }
+.sueno { display: flex; flex-direction: column; gap: 8px; }
+.s-l { font: 500 10.5px var(--f-caps); letter-spacing: .22em; color: var(--ink2); }
+.s-h { margin: 0; font: 400 15px/1.5 var(--f-body); color: var(--ink2); }
+.s-ideas { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 2px 0 4px; }
+.s-ih { flex-basis: 100%; font: italic 400 15px var(--f-serif); color: var(--ink3); }
+#s-chips { display: contents; }
+.s-c { border: 0; cursor: pointer; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.8); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); font: 400 14px var(--f-body); color: var(--ink); transition: background .25s, box-shadow .25s, transform .25s; }
+.s-c::before { content: '+ '; color: var(--gold); }
+.s-c:hover { background: #FBF1E1; transform: translateY(-1px); }
+.s-c.used { background: linear-gradient(180deg, #FFFDF8, #FBF1E1); box-shadow: inset 0 0 0 1.5px var(--gold); }
+.s-c.used::before { content: '✓ '; }
+.s-c:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.sueno textarea { min-height: 150px; }
+.s-n { align-self: flex-end; font-size: 12px; color: var(--ink3); min-height: 1em; }
 /* date picker: our own calendar, round and gold like the rest of the page */
 .dp-w { position: relative; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .dp-lab { font: 500 10.5px var(--f-caps); letter-spacing: .22em; color: var(--ink2); }
@@ -1076,7 +1090,13 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
                 <button type="button" class="dp-btn" id="dp-btn" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="dp-lab dp-txt"><span id="dp-txt"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="4"/><path d="M8 3v4M16 3v4M3.5 10h17"/><circle cx="12" cy="15" r="1.3" fill="currentColor" stroke="none"/></svg></button>
                 <div class="dp" id="dp" role="dialog" aria-modal="false" hidden></div></div>
               <label><span data-en="City">Ciudad</span><input id="im-ciudad" name="ciudad" autocomplete="address-level2" maxlength="50" placeholder="Guadalajara" data-en-ph="Vancouver"></label>
-              <label class="full"><span data-en="Tell us your dream">Cuéntanos tu sueño</span><textarea id="im-sueno" name="sueno" maxlength="600" placeholder="Una cena al aire libre con luces colgantes, flores blancas y un vals al atardecer…" data-en-ph="An outdoor dinner with string lights, white flowers and a sunset first dance…"></textarea></label>
+              <div class="full sueno">
+                <label class="s-l" for="im-sueno" data-en="How do you imagine your invitation?">¿Cómo imaginas tu invitación?</label>
+                <p class="s-h" data-en="Tell us in your own words what you would love it to have, what matters most to you and what makes you excited. The more details you share, the better we can design it for you.">Cuéntanos con tus palabras lo que te encantaría que tuviera, lo que más te importa y lo que te hace ilusión. Entre más detalles nos compartas, mejor la diseñamos para ti.</p>
+                <div class="s-ideas" role="group" aria-label="Ideas para empezar" data-en-aria="Ideas to get started"><span class="s-ih" data-en="Not sure where to start? Tap an idea:">¿No sabes por dónde empezar? Toca una idea:</span><span id="s-chips"></span></div>
+                <textarea id="im-sueno" name="sueno" maxlength="1500" rows="6"></textarea>
+                <span class="s-n" id="s-n" aria-live="polite"></span>
+              </div>
             <p class="im-xh full" data-en="WHO WRITES THE MESSAGE FOR YOUR GUESTS?">¿QUIÉN ESCRIBE EL MENSAJE PARA TUS INVITADOS?</p>
               <div class="full"><div class="opts msg" data-opts="mensaje"></div><p class="msg-tip" id="im-msg-tip" hidden></p></div>
               <label class="full" id="im-texto-w" hidden><span id="im-texto-l"></span><textarea id="im-texto" name="texto" maxlength="800"></textarea></label>
@@ -1511,7 +1531,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       if (st.nombres) out.push((en ? '• Celebrating: ' : '• Quién celebra: ') + st.nombres);
       if (st.fecha) out.push((en ? '• Date: ' : '• Fecha: ') + fmtDate(st.fecha));
       if (st.ciudad) out.push((en ? '• City: ' : '• Ciudad: ') + st.ciudad);
-      if (st.sueno) out.push((en ? '• My dream: ' : '• Mi sueño: ') + st.sueno);
+      if (st.sueno) out.push((en ? '• How I imagine it: ' : '• Cómo la imagino: ') + st.sueno);
       out.push(en ? 'Can you help me create it?' : '¿Me ayudan a crearla?');
       return out.join('\n');
     }
@@ -1552,6 +1572,41 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     form.addEventListener('change', function (e) { if (e.target.name === 'im-mensaje') renderMsg(); });
     $('es').addEventListener('click', function () { setTimeout(renderMsg); }); $('en').addEventListener('click', function () { setTimeout(renderMsg); });
     renderMsg();
+    /* "How do you imagine your invitation?": an example that fits the event + ideas that start a sentence */
+    var SUENO = {
+      ideas: [
+        { es: 'Lo más importante es', en: 'What matters most is' },
+        { es: 'La historia detrás de esta celebración', en: 'The story behind this celebration', c: ':' },
+        { es: 'Sería perfecto si tuviera', en: 'It would be perfect if it had' },
+        { es: 'Un detalle muy especial', en: 'A very special detail', c: ':' },
+        { es: 'La fiesta será', en: 'The party will be' },
+        { es: 'Por favor, sin', en: 'Please, no' }
+      ],
+      ej: {
+        boda: { es: 'Ej. Nos conocimos en la universidad y queremos que se sienta nuestra historia. Nos encantan las flores blancas y el dorado: algo elegante pero cálido. Queremos incluir una foto de nuestro perro y la canción con la que vamos a bailar. La boda es en una hacienda, al atardecer.', en: 'E.g. We met in college and want our story to come through. We love white flowers and gold: elegant but warm. We would like to include a photo of our dog and the song for our first dance. The wedding is at a hacienda, at sunset.' },
+        xv: { es: 'Ej. Quiero que se sienta como un cuento: tonos rosa palo, mariposas y mucho brillo. Me gustaría una foto de mi sesión, un mensaje para mis papás y mis padrinos, y la canción de mi vals. La fiesta es de noche en un salón.', en: 'E.g. I want it to feel like a fairytale: blush tones, butterflies and lots of sparkle. I would love a photo from my shoot, a note for my parents and godparents, and my waltz song. The party is at night in a ballroom.' },
+        cumple: { es: 'Ej. Cumplo 40 y quiero algo divertido pero elegante, en negro y dorado. Me gustaría poner fotos de distintas épocas de mi vida y pedir que vengan vestidos de blanco.', en: 'E.g. I am turning 40 and want something fun but elegant, in black and gold. I would love photos from different times of my life and to ask guests to wear white.' },
+        baby: { es: 'Ej. Será niña y le llamaremos Emilia. Nos gustan los tonos suaves, los ositos y las nubes. Queremos incluir el ultrasonido y la mesa de regalos.', en: 'E.g. It is a girl and we will call her Emilia. We like soft tones, teddy bears and clouds. We want to include the ultrasound and the gift registry.' },
+        _: { es: 'Ej. Queremos algo elegante y cálido, con los colores de nuestra marca o de la temporada. Lo más importante es que se vea el lugar, la hora y cómo confirmar. Nos gustaría incluir una foto o un logo.', en: 'E.g. We want something elegant and warm, with our brand or seasonal colors. Most important is showing the place, the time and how to RSVP. We would like to include a photo or a logo.' }
+      }
+    };
+    var sueno = $('im-sueno');
+    function renderSueno() {
+      var l = L(), ej = SUENO.ej[st.evento] || SUENO.ej._;
+      sueno.placeholder = ej[l];
+      $('s-chips').innerHTML = SUENO.ideas.map(function (o, i) { var used = sueno.value.indexOf(o[l]) > -1; return '<button type="button" class="s-c' + (used ? ' used' : '') + '" data-si="' + i + '"' + (used ? ' aria-pressed="true"' : '') + '>' + e2(o[l]) + '…</button>'; }).join('');
+      var n = sueno.value.length; $('s-n').textContent = n > 1200 ? (1500 - n) + (l === 'en' ? ' characters left' : ' caracteres restantes') : '';
+    }
+    $('s-chips').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-si]'); if (!b) return;
+      var o = SUENO.ideas[+b.getAttribute('data-si')], t = o[L()], v = sueno.value.replace(/\s+$/, '');
+      if (v.indexOf(t) === -1) { sueno.value = (v ? v + '\n' : '') + t + (o.c || '') + ' '; sueno.dispatchEvent(new Event('input', { bubbles: true })); }
+      sueno.focus(); sueno.setSelectionRange(sueno.value.length, sueno.value.length);
+    });
+    sueno.addEventListener('input', renderSueno);
+    form.addEventListener('change', function (e) { if (e.target.name === 'im-evento') renderSueno(); });
+    $('es').addEventListener('click', function () { setTimeout(renderSueno); }); $('en').addEventListener('click', function () { setTimeout(renderSueno); });
+    renderSueno();
     /* date picker */
     (function () {
       var hid = $('im-fecha'), btn = $('dp-btn'), txt = $('dp-txt'), box = $('dp'), view = 'days', cur;
