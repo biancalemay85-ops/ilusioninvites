@@ -1015,7 +1015,12 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
           <p class="im-no" id="im-no" aria-live="polite"></p>
           <fieldset class="im-step" data-k="evento"><legend tabindex="-1" data-en-html="What are you <em>celebrating</em>?">¿Qué <em>celebras</em>?</legend><p class="im-hint" data-en="Choose your event.">Elige tu evento.</p><div class="opts c2 ev" data-opts="evento"></div></fieldset>
           <fieldset class="im-step" data-k="ambiente"><legend tabindex="-1" data-en-html="How do you imagine the <em>atmosphere</em>?">¿Cómo imaginas el <em>ambiente</em>?</legend><p class="im-hint" data-en="The feeling you want your guests to have when they open it.">Lo que quieres que sientan tus invitados al abrirla.</p><div class="opts c2" data-opts="ambiente"></div>
-            <div class="fields im-idea"><label class="full"><span data-en="Something else in mind? Tell us in a few words">¿Tienes algo más en mente? Cuéntanos en pocas palabras</span><textarea id="im-idea" name="idea" maxlength="300" rows="2" placeholder="Ej. elegante pero divertido, con detalles dorados y mucha luz…" data-en-ph="E.g. elegant but fun, with gold details and lots of light…"></textarea></label></div></fieldset>
+            <div class="fields im-idea"><label class="full"><span data-en="Something else in mind? Tell us in a few words">¿Tienes algo más en mente? Cuéntanos en pocas palabras</span><textarea id="im-idea" name="idea" maxlength="300" rows="2" placeholder="Ej. elegante pero divertido, con detalles dorados y mucha luz…" data-en-ph="E.g. elegant but fun, with gold details and lots of light…"></textarea></label></div>
+            <div class="im-x">
+              <div class="im-xh"><span data-en="Photos for your invitation">Fotos para tu invitación</span></div>
+              <label class="up-drop"><input type="file" id="im-fotos2" accept="image/*" multiple><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.4"/><path d="M8.5 6l1.4-2h4.2l1.4 2"/></svg><b data-en="Upload the photos you want in it">Sube las fotos que quieres que aparezcan</b><small data-en="You two, the guest of honor, the venue, a special place… You can also send them later.">Ustedes, la festejada, el lugar, un sitio especial… También puedes enviarlas después.</small></label>
+              <div class="up-th" id="im-th2"></div>
+            </div></fieldset>
           <fieldset class="im-step" data-k="color"><legend tabindex="-1" data-en-html="Your <em>colors</em>">Tus <em>colores</em></legend><p class="im-hint" data-en="It becomes the wax seal that closes your envelope.">Será también el sello de cera que cierra tu sobre.</p><div class="opts c3" data-opts="color"></div>
             <div class="im-x">
               <div class="im-xh"><span data-en="Know your exact colors? Add the code">¿Ya tienes tus colores exactos? Agrega el código</span></div>
@@ -1364,7 +1369,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     try { var sv = JSON.parse(localStorage.getItem('ilu-imagina') || 'null'); if (sv && typeof sv === 'object' && Date.now() - (+sv.t || 0) < 432e5) { for (var k in st) if (k in sv) st[k] = sv[k]; } else localStorage.removeItem('ilu-imagina'); } catch (e) {}
     if (!Array.isArray(st.incluir)) st.incluir = [];
     if (!Array.isArray(st.codigos)) st.codigos = [];
-    var fotos = [];
+    var fotos = []; // {file, url, tipo: 'inv' = to use in the invitation, 'insp' = color inspiration}
+    function nFotos(t) { return fotos.filter(function (f) { return f.tipo === t; }).length; }
     st.step = Math.max(0, Math.min(4, +st.step || 0));
     function save() { try { localStorage.setItem('ilu-imagina', JSON.stringify(Object.assign({ t: Date.now() }, st))); } catch (e) {} showReset(); }
     function showReset() { var b = document.getElementById('im-reset'); if (b) b.hidden = !(st.step || st.evento || st.ambiente || st.color || st.incluir.length || st.codigos.length || st.nombres || st.idea || st.extra || st.sueno); }
@@ -1395,7 +1401,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       });
       form.querySelectorAll('[data-en-ph]').forEach(function (el) { if (!el.dataset.esPh) el.dataset.esPh = el.placeholder; el.placeholder = l === 'en' ? el.dataset.enPh : el.dataset.esPh; });
     }
-    function filled(i) { var k = KEYS[i]; if (k === 'detalles') return !!(st.nombres || st.fecha || st.ciudad || st.sueno); if (k === 'ambiente') return !!(st.ambiente || st.idea); if (k === 'color') return !!(st.color || st.codigos.length || fotos.length); if (k === 'incluir') return !!(st.incluir.length || st.extra); return !!st[k]; }
+    function filled(i) { var k = KEYS[i]; if (k === 'detalles') return !!(st.nombres || st.fecha || st.ciudad || st.sueno); if (k === 'ambiente') return !!(st.ambiente || st.idea || nFotos('inv')); if (k === 'color') return !!(st.color || st.codigos.length || nFotos('insp')); if (k === 'incluir') return !!(st.incluir.length || st.extra); return !!st[k]; }
     function renderNav() {
       var l = L(), n = NAMES[l];
       prog.innerHTML = KEYS.map(function (k, i) { return '<li class="' + (i === st.step ? 'now' : filled(i) ? 'done' : '') + '"><button type="button" data-step="' + i + '" aria-label="' + (l === 'en' ? 'Step ' : 'Paso ') + (i + 1) + ': ' + n[i] + '"' + (i === st.step ? ' aria-current="step"' : '') + '><i></i></button></li>'; }).join('');
@@ -1444,7 +1450,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       if (st.idea) out.push((en ? '• In mind: ' : '• Tengo en mente: ') + st.idea);
       if (co) out.push((en ? '• Colors: ' : '• Colores: ') + co[l][0]);
       if (st.codigos.length) out.push((en ? '• Color codes: ' : '• Códigos de color: ') + st.codigos.join(', '));
-      if (fotos.length) out.push(en ? '• I have ' + fotos.length + ' inspiration photo' + (fotos.length > 1 ? 's' : '') + ' (attached)' : '• Tengo ' + fotos.length + ' foto' + (fotos.length > 1 ? 's' : '') + ' de inspiración (las adjunto)');
+      if (fotos.length) out.push(en ? '• I have ' + fotos.length + ' photo' + (fotos.length > 1 ? 's' : '') + ' (attached)' : '• Tengo ' + fotos.length + ' foto' + (fotos.length > 1 ? 's' : '') + ' (las adjunto)');
       if (st.incluir.length) out.push((en ? '• Must have: ' : '• Quiero incluir: ') + st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : ''; }).filter(Boolean).join(', '));
       if (st.extra) out.push((en ? '• Also: ' : '• Algo más: ') + st.extra);
       if (st.contacto) out.push((en ? '• My name: ' : '• Mi nombre: ') + st.contacto);
@@ -1481,7 +1487,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     prog.addEventListener('click', function (e) { var b = e.target.closest('button[data-step]'); if (b) go(+b.getAttribute('data-step'), true); });
     ['nombres', 'fecha', 'ciudad', 'sueno', 'idea', 'extra', 'contacto', 'correo', 'whatsapp'].forEach(function (k) { var el = $('im-' + k); if (el) el.value = st[k] || ''; });
     /* colors: exact codes and inspiration photos */
-    var cpick = $('im-cpick'), ccode = $('im-ccode'), clist = $('im-clist'), fin = $('im-fotos'), th = $('im-th');
+    var cpick = $('im-cpick'), ccode = $('im-ccode'), clist = $('im-clist'), fin = $('im-fotos'), th = $('im-th'), fin2 = $('im-fotos2'), th2 = $('im-th2');
     var HEX = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i;
     function renderCodes() {
       clist.innerHTML = st.codigos.map(function (c, i) { var h = HEX.test(c) ? (c.charAt(0) === '#' ? c : '#' + c) : ''; return '<li><i' + (h ? ' style="background:' + h + '"' : '') + '></i>' + e2(c) + '<button type="button" data-rm="' + i + '" aria-label="' + (L() === 'en' ? 'Remove ' : 'Quitar ') + e2(c) + '">×</button></li>'; }).join('');
@@ -1495,25 +1501,30 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     ccode.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addCode(); } });
     clist.addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (b) { st.codigos.splice(+b.getAttribute('data-rm'), 1); save(); renderCodes(); renderCard(); renderNav(); } });
     function renderFotos() {
-      th.innerHTML = fotos.map(function (f, i) { return '<span style="background-image:url(' + f.url + ')"><button type="button" data-rf="' + i + '" aria-label="' + (L() === 'en' ? 'Remove photo' : 'Quitar foto') + '">×</button></span>'; }).join('');
+      var thumbs = function (t) { return fotos.map(function (f, i) { return f.tipo !== t ? '' : '<span style="background-image:url(' + f.url + ')"><button type="button" data-rf="' + i + '" aria-label="' + (L() === 'en' ? 'Remove photo' : 'Quitar foto') + '">×</button></span>'; }).join(''); };
+      th.innerHTML = thumbs('insp'); th2.innerHTML = thumbs('inv');
       renderNav(); renderCard();
     }
-    fin.addEventListener('change', function () {
-      Array.prototype.forEach.call(fin.files, function (f) { if (fotos.length < 8 && /^image\//.test(f.type)) fotos.push({ file: f, url: URL.createObjectURL(f) }); });
-      fin.value = ''; renderFotos();
-    });
-    th.addEventListener('click', function (e) { var b = e.target.closest('[data-rf]'); if (b) { var f = fotos.splice(+b.getAttribute('data-rf'), 1)[0]; if (f) URL.revokeObjectURL(f.url); renderFotos(); } });
+    var MAXF = { inv: 10, insp: 8 };
+    function addFotos(input, t) {
+      Array.prototype.forEach.call(input.files, function (f) { if (nFotos(t) < MAXF[t] && /^image\//.test(f.type)) fotos.push({ file: f, url: URL.createObjectURL(f), tipo: t }); });
+      input.value = ''; renderFotos();
+    }
+    function removeFoto(e) { var b = e.target.closest('[data-rf]'); if (b) { var f = fotos.splice(+b.getAttribute('data-rf'), 1)[0]; if (f) URL.revokeObjectURL(f.url); renderFotos(); } }
+    fin.addEventListener('change', function () { addFotos(fin, 'insp'); });
+    fin2.addEventListener('change', function () { addFotos(fin2, 'inv'); });
+    th.addEventListener('click', removeFoto); th2.addEventListener('click', removeFoto);
     /* send: save the order (answers + photos) in our system, then offer WhatsApp with the order number.
        Without ENDPOINT, or if saving fails, it falls back to the plain WhatsApp message. */
     var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwLSkVg670lTXk73S5B_zP-ay8Kpwj7xFRDBXJPta3QF27T_Jy1zRBG3t_n2oZhiuc/exec';
-    function shrink(f) {
+    function shrink(f, tipo) {
       return new Promise(function (ok) {
         var img = new Image(), u = URL.createObjectURL(f);
         img.onload = function () {
           var k = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight)), c = document.createElement('canvas');
           c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
           c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u);
-          ok({ name: f.name, data: c.toDataURL('image/jpeg', .85) });
+          ok({ name: f.name, data: c.toDataURL('image/jpeg', .85), tipo: tipo });
         };
         img.onerror = function () { URL.revokeObjectURL(u); ok(null); };
         img.src = u;
@@ -1542,11 +1553,11 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       err.hidden = true;
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.correo || '')) { err.textContent = en ? 'Please add your email so we can send you updates.' : 'Agrega tu correo para poder avisarte de tu pedido.'; err.hidden = false; $('im-correo').focus(); return; }
       send.classList.add('busy'); send.textContent = en ? 'Saving your order…' : 'Guardando tu pedido…';
-      Promise.all(fotos.map(function (f) { return shrink(f.file); })).then(function (list) {
+      Promise.all(fotos.map(function (f) { return shrink(f.file, f.tipo); })).then(function (list) {
         return fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(payload(list)) });
       }).then(function (r) { return r.json(); }).then(function (r) {
         if (!r || !r.ok) throw new Error((r && r.error) || 'save');
-        var msg = (en ? 'Hi Ilusión Invites ✨ I just sent my order ' : 'Hola Ilusión Invites ✨ Acabo de enviar mi pedido ') + r.pedido + '\n' + message().split('\n').slice(1, -1).map(function (x) { return /^• (Tengo \d+ foto|I have \d+ inspiration)/.test(x) ? (en ? '• My inspiration photos are already in the order' : '• Mis fotos de inspiración ya están en el pedido') : x; }).join('\n') + '\n' + (en ? 'Can you help me create it?' : '¿Me ayudan a crearla?');
+        var msg = (en ? 'Hi Ilusión Invites ✨ I just sent my order ' : 'Hola Ilusión Invites ✨ Acabo de enviar mi pedido ') + r.pedido + '\n' + message().split('\n').slice(1, -1).map(function (x) { return /^• (Tengo \d+ foto|I have \d+ photo)/.test(x) ? (en ? '• My photos are already in the order' : '• Mis fotos ya están en el pedido') : x; }).join('\n') + '\n' + (en ? 'Can you help me create it?' : '¿Me ayudan a crearla?');
         $('im-done-wa').href = 'https://wa.me/16048391163?text=' + encodeURIComponent(msg);
         $('im-done-t').textContent = (en ? 'Order ' : 'Pedido ') + r.pedido + (en ? ' received' : ' recibido');
         $('im-done-p').textContent = en ? 'We saved your ideas' + (fotos.length ? ' and photos' : '') + '. We sent a confirmation to ' + st.correo + ' and will contact you within 24 hours.' : 'Guardamos tus ideas' + (fotos.length ? ' y fotos' : '') + '. Te enviamos la confirmación a ' + st.correo + ' y te contactamos en menos de 24 horas.';
