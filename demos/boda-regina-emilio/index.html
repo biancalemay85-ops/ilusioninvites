@@ -81,19 +81,26 @@ html.locked .world { visibility: hidden; }
 @keyframes float { 0%,100% { transform: translateY(0) rotate(-.4deg); } 50% { transform: translateY(-8px) rotate(.3deg); } }
 .envelope { position: relative; width: min(94vw, 660px, 92svh); aspect-ratio: 1.45; container-type: inline-size; perspective: 1400px; cursor: pointer; -webkit-tap-highlight-color: transparent; --paper-env: url("img/papel-lino.webp"); }
 .env-shadow { position: absolute; left: 3%; right: 3%; bottom: -7%; height: 16%; z-index: 0; background: radial-gradient(ellipse at center, rgba(80,60,38,.45), transparent 70%); filter: blur(10px); }
-.env-back { position: absolute; inset: 0; z-index: 1; border-radius: 4px; background: #15100E url("img/terciopelo-negro.webp") center / cover; box-shadow: 0 0 0 1px rgba(120,95,60,.25); }
-.env-back::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,230,200,.08), rgba(0,0,0,.35)); box-shadow: inset 0 0 0 2px rgba(201,160,99,.55), inset 0 0 0 5px rgba(0,0,0,.25); }
-.letter { position: absolute; left: 6%; width: 88%; top: 6%; height: 88%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1cqw; text-align: center; border-radius: 6px;
-  background: linear-gradient(150deg, rgba(255,255,255,.2), rgba(255,255,255,.03) 45%, rgba(255,255,255,.1)), linear-gradient(rgba(20,15,14,.78), rgba(20,15,14,.86)), #15100E url("img/terciopelo-negro.webp") center / cover;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 0 0 1px rgba(255,255,255,.28), 0 10px 26px rgba(0,0,0,.45); transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
-.letter::before { content: ""; position: absolute; inset: 4cqw; border: 1px solid rgba(214,178,112,.55); border-radius: 3px; }
+.env-back { position: absolute; inset: 0; z-index: 1; border-radius: 4px; background: #EDE2D2 url("img/terciopelo-crema.webp") center / cover; box-shadow: 0 0 0 1px rgba(120,95,60,.25); }
+.env-back::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,250,240,.12), rgba(120,90,55,.22)); box-shadow: inset 0 0 0 2px rgba(201,160,99,.6), inset 0 0 0 5px rgba(120,90,55,.1); }
+.letter { position: absolute; left: 6%; width: 88%; top: 6%; height: 88%; z-index: 2; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 5cqw; text-align: center; border-radius: 8px; padding: 5cqw 8cqw;
+  background: linear-gradient(150deg, rgba(255,255,255,.7), rgba(255,255,255,.35) 45%, rgba(255,255,255,.6)), linear-gradient(rgba(255,248,236,.5), rgba(255,248,236,.5)), #F6EFE5 url("img/papel-perla.webp") center / cover;
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255,255,255,.85), inset 0 0 0 6px rgba(255,255,255,.18), 3px 4px 0 -1px rgba(255,255,255,.7), 3px 4px 0 0 rgba(150,138,126,.25), 0 12px 26px rgba(70,52,34,.3); transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.letter::before { content: ""; position: absolute; inset: 3.6cqw; border: 1px solid rgba(169,132,76,.55); border-radius: 4px; }
+.lphoto { position: relative; flex: none; width: 31%; aspect-ratio: 4 / 5; border-radius: 50% 50% 4px 4px / 36% 36% 4px 4px; overflow: hidden; box-shadow: 0 0 0 1.2px rgba(190,150,90,.9), 0 0 0 4px rgba(255,255,255,.7), 0 0 0 5px rgba(190,150,90,.4), 0 8px 16px rgba(70,52,34,.3); }
+.lphoto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+.ltext { display: flex; flex-direction: column; align-items: center; gap: 1.2cqw; }
+.ltext > * { margin: 0; }
+.ltext .lfl { width: 30cqw; height: auto; }
 .letter .lc { position: absolute; width: 15%; height: auto; }
 .lc.tl { left: 2.4%; top: 3.4%; } .lc.tr { right: 2.4%; top: 3.4%; transform: scaleX(-1); } .lc.bl { left: 2.4%; bottom: 3.4%; transform: scaleY(-1); } .lc.br { right: 2.4%; bottom: 3.4%; transform: scale(-1); }
 .letter .crys-w { color: #fff; }
 .letter > * { position: relative; margin: 0; }
-.l-caps { font-family: var(--f-caps); font-size: 2.2cqw; letter-spacing: .4em; padding-left: .4em; color: #E2C58C; }
-.l-names { font-family: var(--f-names); font-size: 11cqw; line-height: 1.15; padding: 0 3cqw; }
-.l-date { font-family: var(--f-caps); font-size: 2.4cqw; letter-spacing: .4em; padding-left: .4em; color: rgba(255,255,255,.85); }
+.l-caps { font-family: var(--f-caps); font-size: 2.2cqw; letter-spacing: .4em; padding-left: .4em; color: var(--gold-deep); }
+.l-names { font-family: var(--f-names); font-size: 9.5cqw; line-height: .95; }
+.l-names > span { display: block; width: max-content; margin: 0 auto; }
+.l-names .amp { font-size: .55em; }
+.l-date { font-family: var(--f-caps); font-size: 2.3cqw; letter-spacing: .4em; padding-left: .4em; color: var(--ink-soft); }
 /* white crystal letters for dark crystal */
 .wcrys { color: transparent; background: linear-gradient(115deg, rgba(255,255,255,.8) 0%, #fff 26%, rgba(255,255,255,.62) 44%, #fff 54%, rgba(242,228,234,.88) 72%, #fff 100%); background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 1px 0 rgba(255,255,255,.55)) drop-shadow(1px 3px 2px rgba(0,0,0,.65)) drop-shadow(0 0 10px rgba(255,255,255,.18)); animation: crys 7s ease-in-out infinite; display: inline-block; padding: .05em .14em .12em; }
 #burst { position: fixed; inset: 0; z-index: 47; width: 100%; height: 100%; pointer-events: none; }
@@ -116,7 +123,7 @@ html.locked .world { visibility: hidden; }
 .flap-out::after { content: ""; position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.45) 45%, rgba(236,226,240,.25) 50%, transparent 62%); background-size: 260% 100%; animation: sheen 7s ease-in-out infinite; mix-blend-mode: soft-light; }
 @keyframes sheen { 0% { background-position: 120% 0; } 60%, 100% { background-position: -40% 0; } }
 .flap-in { transform: rotateX(180deg); }
-.flap-in::before { content: ""; position: absolute; inset: 0; clip-path: polygon(0 100%, 100% 100%, 50% 0); background: radial-gradient(ellipse at 50% 80%, rgba(255,230,200,.1), rgba(0,0,0,.3)), #15100E url("img/terciopelo-negro.webp") center / cover; }
+.flap-in::before { content: ""; position: absolute; inset: 0; clip-path: polygon(0 100%, 100% 100%, 50% 0); background: radial-gradient(ellipse at 50% 80%, rgba(255,250,240,.12), rgba(120,90,55,.2)), #EDE2D2 url("img/terciopelo-crema.webp") center / cover; }
 
 .band { position: absolute; z-index: 6; left: -1.5%; right: -1.5%; top: 51%; height: 11%; pointer-events: none; transition: transform 1s cubic-bezier(.5,0,.3,1), opacity .8s ease; }
 .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: left center; filter: brightness(1.14) sepia(.12) drop-shadow(0 2px 2px rgba(80,60,38,.28)); }
@@ -248,26 +255,26 @@ html.locked .world { visibility: hidden; }
 .rest img { display: block; width: 100%; height: auto; }
 /* presentation: velvet, a flat dark crystal with gold corners, the couple's photo and their names; it melts into the satin below */
 .present { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: calc(70px + env(safe-area-inset-top, 0px)) 16px 120px; overflow: hidden; }
-.present .velvet { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(255,225,190,.12), rgba(0,0,0,.45) 100%), #120D0C url("img/terciopelo-negro.webp") center / cover; -webkit-mask: linear-gradient(#000 78%, transparent); mask: linear-gradient(#000 78%, transparent); }
+.present .velvet { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 55% at 50% 42%, rgba(255,253,248,.55), rgba(255,250,242,0) 75%); -webkit-mask: linear-gradient(#000 78%, transparent); mask: linear-gradient(#000 78%, transparent); }
 .plate { position: relative; z-index: 2; width: min(86vw, 430px); display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 9% 9% 10%; text-align: center; border-radius: 10px; container-type: inline-size;
-  background: linear-gradient(150deg, rgba(255,255,255,.2), rgba(255,255,255,.04) 42%, rgba(255,255,255,.12)), rgba(16,12,11,.5);
-  -webkit-backdrop-filter: blur(6px) saturate(1.2); backdrop-filter: blur(6px) saturate(1.2);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 0 0 1px rgba(255,255,255,.32), inset 1.5px 1.5px 0 rgba(255,255,255,.18), 5px 7px 0 -2px rgba(255,255,255,.12), 0 40px 80px -20px rgba(0,0,0,.7);
+  background: linear-gradient(150deg, rgba(255,255,255,.62), rgba(255,255,255,.22) 42%, rgba(255,255,255,.14) 60%, rgba(255,255,255,.42)), rgba(255,250,243,.28);
+  -webkit-backdrop-filter: blur(7px) saturate(1.2) brightness(1.04); backdrop-filter: blur(7px) saturate(1.2) brightness(1.04);
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255,255,255,.8), inset 0 0 0 7px rgba(255,255,255,.16), inset 16px 0 30px -18px rgba(255,255,255,.75), 5px 7px 0 -2px rgba(255,255,255,.6), 5px 7px 0 -1px rgba(150,138,126,.26), 0 40px 70px -26px rgba(80,62,48,.45);
   transition: transform 1.6s cubic-bezier(.16,.8,.24,1), opacity 1.4s ease; }
 .plate::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(112deg, transparent 38%, rgba(255,255,255,.22) 47%, rgba(255,255,255,.04) 52%, transparent 60%); background-size: 300% 100%; animation: glare 7s ease-in-out 1.5s infinite; }
 .pre .plate { opacity: 0; transform: translateY(40px) scale(.94); }
-.pframe { position: absolute; inset: 4.5%; border: 1px solid rgba(214,178,112,.6); border-radius: 6px; pointer-events: none; }
-.pcn { position: absolute; width: 20%; height: auto; z-index: 3; pointer-events: none; filter: drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
+.pframe { position: absolute; inset: 4.5%; border: 1px solid rgba(169,132,76,.5); border-radius: 6px; pointer-events: none; }
+.pcn { position: absolute; width: 20%; height: auto; z-index: 3; pointer-events: none; filter: drop-shadow(0 2px 3px rgba(90,64,30,.3)); }
 .pcn.tl { left: 1.6%; top: 1.4%; } .pcn.tr { right: 1.6%; top: 1.4%; transform: scaleX(-1); } .pcn.bl { left: 1.6%; bottom: 1.4%; transform: scaleY(-1); } .pcn.br { right: 1.6%; bottom: 1.4%; transform: scale(-1); }
-.pwin { position: relative; width: 74%; aspect-ratio: 4 / 5; border-radius: 50% 50% 8px 8px / 38% 38% 8px 8px; overflow: hidden; box-shadow: 0 0 0 1.5px rgba(222,188,120,.9), 0 0 0 5px rgba(0,0,0,.25), 0 0 0 6px rgba(222,188,120,.45), 0 18px 34px rgba(0,0,0,.55); margin-top: 6%; }
+.pwin { position: relative; width: 74%; aspect-ratio: 4 / 5; border-radius: 50% 50% 8px 8px / 38% 38% 8px 8px; overflow: hidden; box-shadow: 0 0 0 1.5px rgba(190,150,90,.9), 0 0 0 5px rgba(255,255,255,.75), 0 0 0 6px rgba(190,150,90,.45), 0 18px 34px rgba(70,52,34,.35); margin-top: 6%; }
 .pwin img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; transform: scale(1.06); animation: kb 18s ease-in-out infinite alternate; }
 @keyframes kb { from { transform: scale(1.06); } to { transform: scale(1.14) translate(-1.5%, -1%); } }
-.pfl { width: 62%; height: auto; margin-top: 4%; filter: drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
-.p-caps { margin: 0; font-family: var(--f-caps); font-size: max(10px, 3cqw); letter-spacing: .4em; padding-left: .4em; color: #E6CB92; }
+.pfl { width: 62%; height: auto; margin-top: 4%; filter: drop-shadow(0 2px 2px rgba(90,64,30,.3)); }
+.p-caps { margin: 0; font-family: var(--f-caps); font-size: max(10px, 3cqw); letter-spacing: .4em; padding-left: .4em; color: var(--gold-deep); }
 .p-names { margin: 0; font-family: var(--f-names); font-weight: 400; font-size: 21cqw; line-height: .92; }
 .p-names > span { display: block; width: max-content; margin: 0 auto; }
 .p-names .amp { font-size: .55em; }
-.p-date { margin: 2% 0 4%; font-family: var(--f-caps); font-size: max(11px, 3.6cqw); letter-spacing: .3em; padding-left: .3em; color: rgba(255,255,255,.9); }
+.p-date { margin: 2% 0 4%; font-family: var(--f-caps); font-size: max(11px, 3.6cqw); letter-spacing: .3em; padding-left: .3em; color: var(--ink-soft); }
 .p-hint { position: absolute; left: 0; right: 0; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); margin: 0; text-align: center; font-family: var(--f-caps); font-size: 12px; letter-spacing: .32em; z-index: 3; }
 .p-hint a { color: #8B6A36; text-decoration: none; animation: breathe 2.6s ease-in-out infinite; display: inline-block; padding: 8px; }
 
@@ -381,9 +388,13 @@ html.locked .world { visibility: hidden; }
       <div class="env-back"></div>
       <div class="letter" aria-hidden="true">
         <img class="lc tl" src="img/esquina-oro.webp" alt=""><img class="lc tr" src="img/esquina-oro.webp" alt=""><img class="lc bl" src="img/esquina-oro.webp" alt=""><img class="lc br" src="img/esquina-oro.webp" alt="">
-        <p class="l-caps">NOS CASAMOS</p>
-        <p class="l-names"><span class="wcrys">Regina &amp; Emilio</span></p>
-        <p class="l-date">17 · IV · 2027</p>
+        <div class="lphoto"><img src="img/pareja-abrazo.webp" alt=""></div>
+        <div class="ltext">
+          <p class="l-caps">NOS CASAMOS</p>
+          <p class="l-names"><span class="crys">Regina</span><span class="crys amp">&amp;</span><span class="crys">Emilio</span></p>
+          <img class="lfl" src="img/filigrana.webp" alt="">
+          <p class="l-date">17 · IV · 2027</p>
+        </div>
       </div>
       <div class="piece p-left"></div>
       <div class="piece p-right"></div>
@@ -419,7 +430,7 @@ html.locked .world { visibility: hidden; }
       <div class="pwin"><img src="img/pareja-abrazo.webp" alt="Regina y Emilio" width="975" height="1300"></div>
       <img class="pfl" src="img/filigrana.webp" alt="">
       <p class="p-caps" data-en="WE ARE GETTING MARRIED">NOS CASAMOS</p>
-      <h1 class="p-names"><span class="wcrys">Regina</span><span class="wcrys amp">&amp;</span><span class="wcrys">Emilio</span></h1>
+      <h1 class="p-names"><span class="crys">Regina</span><span class="crys amp">&amp;</span><span class="crys">Emilio</span></h1>
       <p class="p-date">17 · 04 · 2027</p>
     </div>
     <p class="p-hint"><a href="#scene" data-en="OUR INVITATION ↓">NUESTRA INVITACIÓN ↓</a></p>
