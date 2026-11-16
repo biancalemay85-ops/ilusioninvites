@@ -386,6 +386,8 @@ html, body { overflow-x: clip; }
 .im-nav { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 24px; flex-wrap: wrap; }
 .im-back { border: 0; background: none; padding: 10px 4px; font: 500 11px var(--f-caps); letter-spacing: .26em; color: var(--ink2); cursor: pointer; }
 .im-nav .btn { min-width: 170px; margin-left: auto; }
+.im-reset { display: block; margin: 14px auto 0; border: 0; background: none; padding: 6px 10px; font: italic 400 15px var(--f-serif); color: var(--ink3, #9A877F); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.im-reset[hidden] { display: none; }
 .im-note { margin: 12px 0 0; text-align: center; font-size: 13px; color: var(--ink3); }
 .im-more { margin: 10px 0 0; text-align: center; }
 .im-more a { font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(182,138,78,.4); padding-bottom: 2px; }
@@ -1044,6 +1046,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             <button type="button" class="btn btn-gold" id="im-next" data-en="Next">Siguiente</button>
             <a class="btn btn-gold" id="im-send" href="#" target="_blank" rel="noopener" hidden data-en="Send my idea on WhatsApp">Enviar mi idea por WhatsApp</a>
           </div>
+          <button type="button" class="im-reset" id="im-reset" hidden data-en="Start over">Empezar de nuevo</button>
           <div class="im-done" id="im-done" hidden role="status"><img src="img/sello-ilusion-oro.webp" alt="" width="90" height="90"><b id="im-done-t"></b><p id="im-done-p"></p><a class="btn btn-gold" id="im-done-wa" href="#" target="_blank" rel="noopener" data-en="Let us know on WhatsApp">Avísanos por WhatsApp</a></div>
           <p class="im-err" id="im-err" hidden></p>
           <p class="im-note" id="im-pnote" hidden data-en="📎 Your photos go along with your idea. If they don't show up in the chat, attach them there.">📎 Tus fotos se comparten junto con tu idea. Si no aparecen en el chat, adjúntalas ahí mismo.</p>
@@ -1357,12 +1360,14 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     };
     var KEYS = ['evento', 'ambiente', 'color', 'incluir', 'detalles'];
     var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [], contacto: '', correo: '', whatsapp: '' };
-    try { var sv = JSON.parse(localStorage.getItem('ilu-imagina') || 'null'); if (sv && typeof sv === 'object') for (var k in st) if (k in sv) st[k] = sv[k]; } catch (e) {}
+    // unfinished answers are kept for 12 hours, then the form starts fresh
+    try { var sv = JSON.parse(localStorage.getItem('ilu-imagina') || 'null'); if (sv && typeof sv === 'object' && Date.now() - (+sv.t || 0) < 432e5) { for (var k in st) if (k in sv) st[k] = sv[k]; } else localStorage.removeItem('ilu-imagina'); } catch (e) {}
     if (!Array.isArray(st.incluir)) st.incluir = [];
     if (!Array.isArray(st.codigos)) st.codigos = [];
     var fotos = [];
     st.step = Math.max(0, Math.min(4, +st.step || 0));
-    function save() { try { localStorage.setItem('ilu-imagina', JSON.stringify(st)); } catch (e) {} }
+    function save() { try { localStorage.setItem('ilu-imagina', JSON.stringify(Object.assign({ t: Date.now() }, st))); } catch (e) {} showReset(); }
+    function showReset() { var b = document.getElementById('im-reset'); if (b) b.hidden = !(st.step || st.evento || st.ambiente || st.color || st.incluir.length || st.codigos.length || st.nombres || st.idea || st.extra || st.sueno); }
     function L() { return document.documentElement.lang === 'en' ? 'en' : 'es'; }
     function find(list, v) { for (var i = 0; i < list.length; i++) if (list[i].v === v) return list[i]; return null; }
     function e2(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -1471,6 +1476,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     form.addEventListener('submit', function (e) { e.preventDefault(); });
     next.addEventListener('click', function () { go(st.step + 1, true); });
     back.addEventListener('click', function () { go(st.step - 1, true); });
+    $('im-reset').addEventListener('click', function () { try { localStorage.removeItem('ilu-imagina'); } catch (x) {} location.hash = 'imagina'; location.reload(); });
+    showReset();
     prog.addEventListener('click', function (e) { var b = e.target.closest('button[data-step]'); if (b) go(+b.getAttribute('data-step'), true); });
     ['nombres', 'fecha', 'ciudad', 'sueno', 'idea', 'extra', 'contacto', 'correo', 'whatsapp'].forEach(function (k) { var el = $('im-' + k); if (el) el.value = st[k] || ''; });
     /* colors: exact codes and inspiration photos */
@@ -1543,7 +1550,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         $('im-done-wa').href = 'https://wa.me/16048391163?text=' + encodeURIComponent(msg);
         $('im-done-t').textContent = (en ? 'Order ' : 'Pedido ') + r.pedido + (en ? ' received' : ' recibido');
         $('im-done-p').textContent = en ? 'We saved your ideas' + (fotos.length ? ' and photos' : '') + '. We sent a confirmation to ' + st.correo + ' and will contact you within 24 hours.' : 'Guardamos tus ideas' + (fotos.length ? ' y fotos' : '') + '. Te enviamos la confirmación a ' + st.correo + ' y te contactamos en menos de 24 horas.';
-        $('im-done').hidden = false; document.querySelector('.im-nav').hidden = true; steps.forEach(function (f) { f.classList.remove('on'); }); prog.hidden = true; no.hidden = true; note.hidden = true; $('im-pnote').hidden = true; $('im-go').hidden = true; more.hidden = true;
+        $('im-done').hidden = false; document.querySelector('.im-nav').hidden = true; $('im-reset').hidden = true; steps.forEach(function (f) { f.classList.remove('on'); }); prog.hidden = true; no.hidden = true; note.hidden = true; $('im-pnote').hidden = true; $('im-go').hidden = true; more.hidden = true;
         try { localStorage.removeItem('ilu-imagina'); } catch (x) {}
       }).catch(function () {
         err.textContent = en ? 'We could not save it right now. Send it to us on WhatsApp instead and attach your photos in the chat.' : 'No pudimos guardarlo en este momento. Envíanoslo por WhatsApp y adjunta tus fotos en el chat.';
