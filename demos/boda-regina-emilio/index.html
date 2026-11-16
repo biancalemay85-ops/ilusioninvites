@@ -43,7 +43,7 @@ body { margin: 0; background: #F3ECE2; color: var(--ink); font-family: var(--f-d
 button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 html.locked, html.locked body { overflow: hidden; }
-html.locked .world { visibility: hidden; }
+html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
 
 .lang { position: fixed; z-index: 60; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); display: flex; border: 1px solid rgba(169,132,76,.5); border-radius: 999px; overflow: hidden; background: rgba(251,248,242,.75); backdrop-filter: blur(6px); }
 .lang button { border: 0; background: transparent; padding: 6px 11px; font: 500 12px var(--f-caps); letter-spacing: .12em; color: var(--ink-soft); cursor: pointer; }
@@ -62,10 +62,8 @@ html.locked .world { visibility: hidden; }
 @keyframes crys { 0%,100% { background-position: 0% 0; } 50% { background-position: 100% 0; } }
 
 /* ---------- first screen: silk, envelope, petals ---------- */
-.intro { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(18px, 4vh, 40px); text-align: center; overflow: hidden;
-  background: var(--silk) url("img/seda.jpg") center / cover no-repeat;
+.intro { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(18px, 4vh, 40px); text-align: center; overflow: hidden; pointer-events: none;
   padding: calc(56px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
-.intro::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 48%, rgba(255,253,249,.55), rgba(255,253,249,0) 70%), radial-gradient(ellipse 90% 80% at 50% 50%, transparent 55%, rgba(170,150,125,.22)); pointer-events: none; }
 .intro-top, .intro-hint { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: opacity 1s ease, transform 1s ease; }
 .intro-top p { margin: 0; }
 .covered .intro-top, .covered .intro-hint { opacity: 0; transform: translateY(10px); }
@@ -152,7 +150,7 @@ html.locked .world { visibility: hidden; }
 .petal { position: absolute; left: 0; top: 0; display: block; height: auto; will-change: transform, opacity; user-select: none; -webkit-user-drag: none; }
 .drift { position: absolute; top: -10%; left: 0; z-index: 25; pointer-events: none; opacity: .92; animation: drift linear infinite; }
 @keyframes drift { from { transform: translate3d(0, -10vh, 0) rotate(0deg) rotateX(0deg); } to { transform: translate3d(var(--dx), 120vh, 0) rotate(var(--r)) rotateX(900deg); } }
-.skip { position: absolute; z-index: 31; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); border: 0; background: rgba(251,248,242,.7); backdrop-filter: blur(4px); border-radius: 999px; padding: 9px 18px; font: 500 11px var(--f-caps); letter-spacing: .26em; color: var(--gold-deep); cursor: pointer; transition: opacity .6s ease; }
+.skip { pointer-events: auto; position: absolute; z-index: 31; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); border: 0; background: rgba(251,248,242,.7); backdrop-filter: blur(4px); border-radius: 999px; padding: 9px 18px; font: 500 11px var(--f-caps); letter-spacing: .26em; color: var(--gold-deep); cursor: pointer; transition: opacity .6s ease; }
 .revealed .skip { opacity: 0; pointer-events: none; }
 
 /* ---------- inside: champagne satin, gold glitter, one continuous page ---------- */
@@ -239,6 +237,40 @@ html.locked .world { visibility: hidden; }
 .wait .m.l { opacity: 0; translate: -40px 0; } .wait .m.r { opacity: 0; translate: 40px 0; }
 .rest { position: absolute; z-index: 2; pointer-events: none; }
 .rest img { display: block; width: 100%; height: auto; }
+/* ---------- the gatefold: two linen doors with gold edges, sealed over the glass card ---------- */
+.gate { position: absolute; inset: 0; z-index: 8; perspective: 1800px; border-radius: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.door { position: absolute; top: 0; bottom: 0; width: 50%; transform-style: preserve-3d; transition: transform 2.4s cubic-bezier(.55,.05,.2,1), opacity 1s ease 1.7s; }
+.door.l { left: 0; transform-origin: 0 50%; } .door.r { right: 0; transform-origin: 100% 50%; }
+.dfront, .dback { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.door.l .dfront, .door.l .dback { border-radius: 10px 0 0 10px; } .door.r .dfront, .door.r .dback { border-radius: 0 10px 10px 0; }
+.dfront { background: linear-gradient(90deg, rgba(120,95,60,.06), rgba(255,255,255,.18) 40%, rgba(120,95,60,.05)), #F5EFE4 url("img/papel-lino-tile.webp") 0 0 / 560px auto repeat;
+  box-shadow: inset 0 0 0 1px rgba(150,120,80,.25), inset 0 0 0 9px rgba(255,255,255,.12), 0 18px 40px -18px rgba(70,52,34,.45); }
+.dfront::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(176,138,76,.7); border-radius: 4px; }
+.door.l .dfront::before { right: -1px; border-right: 0; border-radius: 4px 0 0 4px; } .door.r .dfront::before { left: -1px; border-left: 0; border-radius: 0 4px 4px 0; }
+.door.l .dfront::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 2px; background: linear-gradient(180deg, #B08A4C, #F0D9A4 30%, #B08A4C 55%, #E8CC8E 80%, #9C7438); }
+.door.r .dfront::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 18px; background: linear-gradient(90deg, rgba(80,58,30,.18), transparent); }
+.dback { transform: rotateY(180deg); background: radial-gradient(ellipse at 50% 40%, rgba(255,250,240,.15), rgba(120,90,55,.2)), #EDE2D2 url("img/terciopelo-crema.webp") center / cover; box-shadow: inset 0 0 0 2px rgba(201,160,99,.55); }
+.dc { position: absolute; width: 34%; height: auto; filter: drop-shadow(0 2px 2px rgba(90,64,30,.3)); }
+.dc.tl { left: 6px; top: 6px; } .dc.bl { left: 6px; bottom: 6px; transform: scaleY(-1); } .dc.tr { right: 6px; top: 6px; transform: scaleX(-1); } .dc.br { right: 6px; bottom: 6px; transform: scale(-1); }
+.gface { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6cqw; text-align: center; pointer-events: none; transition: opacity 1.2s ease; }
+.gface > * { margin: 0; }
+.g-eye { font-family: var(--f-caps); font-size: max(10px, 2.8cqw); letter-spacing: .4em; padding-left: .4em; color: var(--gold-deep); }
+.g-sub { font-style: italic; font-size: max(15px, 4.4cqw); color: var(--ink-soft); }
+.g-names { font-family: var(--f-names); font-size: 11.5cqw; line-height: 1.15; margin-bottom: 4cqw !important; padding: 0 .1em; filter: drop-shadow(0 1px 0 rgba(255,255,255,.8)); }
+.gate .seal { container-type: inline-size; aspect-ratio: auto; position: relative; left: auto; top: auto; margin: 0; width: 30%; pointer-events: auto; transition: transform 1.6s cubic-bezier(.3,.1,.2,1), opacity 1.4s ease, filter 1.6s ease; }
+.gate .seal img { width: 100%; height: auto; display: block; filter: sepia(.2) saturate(1.15) brightness(1.02) contrast(1.06); }
+.g-para { margin-top: 3cqw !important; font-family: var(--f-caps); font-size: max(10px, 2.5cqw); letter-spacing: .5em; padding-left: .5em; color: var(--gold-deep); }
+.g-guest { font-family: var(--f-names); font-size: 8cqw; line-height: 1.2; padding: 0 2cqw; }
+.g-hint { display: flex; align-items: center; gap: 12px; margin-top: 6cqw !important; font-family: var(--f-caps); font-size: max(10px, 2.4cqw); letter-spacing: .3em; color: var(--gold-deep); }
+.g-hint span { animation: breathe 2.6s ease-in-out infinite; } .g-hint i { width: 28px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); } .g-hint i:last-child { transform: scaleX(-1); }
+/* the seal warms up, rises a little, then dissolves into fine gold dust: slow and straight */
+.gate.warm .seal { transform: translateY(-2%) scale(1.04); filter: drop-shadow(0 0 16px rgba(255,226,160,.9)) drop-shadow(0 0 34px rgba(255,214,140,.55)) drop-shadow(0 6px 10px rgba(70,48,24,.35)); }
+.gate.warm .seal::before, .gate.warm .seal::after { animation: none; opacity: 0; transition: opacity .6s; }
+.gate.lift .seal { transform: translateY(-14%) scale(1.1); opacity: 0; }
+.gate.lift .g-eye, .gate.lift .g-sub, .gate.lift .g-names, .gate.lift .g-para, .gate.lift .g-guest, .gate.lift .g-hint { opacity: 0; transition: opacity 1s ease; }
+.gate.open .door.l { transform: rotateY(-112deg); opacity: 0; }
+.gate.open .door.r { transform: rotateY(112deg); opacity: 0; }
+.gate.open { pointer-events: none; }
 /* presentation: velvet, a flat dark crystal with gold corners, the couple's photo and their names; it melts into the satin below */
 .present { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: calc(70px + env(safe-area-inset-top, 0px)) 16px 120px; overflow: hidden; }
 .present .velvet { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 55% at 50% 42%, rgba(255,253,248,.55), rgba(255,250,242,0) 75%); -webkit-mask: linear-gradient(#000 78%, transparent); mask: linear-gradient(#000 78%, transparent); }
@@ -364,32 +396,7 @@ html.locked .world { visibility: hidden; }
   <button type="button" id="lang-en" aria-pressed="false">EN</button>
 </div>
 
-<section class="intro covered" id="intro" aria-label="Sobre de invitación" data-en-label="Invitation envelope">
-  <div class="intro-top">
-    <p class="eyebrow" data-en="YOU ARE INVITED">TIENES UNA INVITACIÓN</p>
-    <p class="intro-sub" data-en="to the wedding of Regina &amp; Emilio">a la boda de Regina &amp; Emilio</p>
-  </div>
-  <div class="float">
-    <div class="envelope" id="envelope">
-      <div class="env-shadow"></div>
-      <div class="env-back"></div>
-      <div class="lclip"><div class="letter plate" id="letter" aria-hidden="true"></div></div>
-      <div class="piece p-left"></div>
-      <div class="piece p-right"></div>
-      <div class="piece p-bottom"></div>
-      <svg class="edges" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0.4 99.6 L50 42 L99.6 99.6"/><path d="M0.4 0.4 L52 55 M99.6 0.4 L48 55" opacity=".55"/></svg>
-      <div class="addr">
-        <span class="addr-label" data-en="FOR">PARA</span>
-        <span class="addr-name foil" id="guestName" data-en="a very special guest">un invitado muy especial</span>
-      </div>
-      <div class="flap"><div class="flap-face flap-out"><svg class="flap-gold" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0.4 0.4 L50 99 L99.6 0.4"/></svg></div><div class="flap-face flap-in"></div></div>
-      <button class="seal" id="seal" type="button" aria-label="Romper el sello y abrir la invitación" data-en-label="Break the seal and open the invitation">
-        <span class="seal-half l"><img src="img/sello-corona.webp" alt=""><span class="mono" aria-hidden="true">R<i>&amp;</i>E</span></span>
-        <span class="seal-half r"><img src="img/sello-corona.webp" alt=""><span class="mono" aria-hidden="true">R<i>&amp;</i>E</span></span>
-      </button>
-    </div>
-  </div>
-  <p class="intro-hint"><i></i><span data-en="TAP THE SEAL TO OPEN">TOCA EL SELLO PARA ABRIR</span><i></i></p>
+<section class="intro covered" id="intro" aria-hidden="true">
   <div class="petals" id="petals" aria-hidden="true"></div>
   <button class="skip" id="skip" type="button" data-en="TAP TO REVEAL">TOCA PARA DESCUBRIR</button>
 </section>
@@ -400,11 +407,26 @@ html.locked .world { visibility: hidden; }
 <canvas id="glitter" aria-hidden="true"></canvas>
 
 <div class="world" id="world">
-  <section class="present pre hide-plate" id="present" aria-label="Regina y Emilio" data-en-label="Regina and Emilio">
+  <section class="present pre" id="present" aria-label="Regina y Emilio" data-en-label="Regina and Emilio">
     <div class="velvet" aria-hidden="true"></div>
     <div class="plate">
       <img class="pcn tl" src="img/esquina-oro.webp" alt=""><img class="pcn tr" src="img/esquina-oro.webp" alt=""><img class="pcn bl" src="img/esquina-oro.webp" alt=""><img class="pcn br" src="img/esquina-oro.webp" alt="">
       <span class="pframe" aria-hidden="true"></span>
+      <div class="gate" id="gate">
+        <div class="door l"><div class="dfront"><img class="dc tl" src="img/esquina-oro.webp" alt=""><img class="dc bl" src="img/esquina-oro.webp" alt=""></div><div class="dback"></div></div>
+        <div class="door r"><div class="dfront"><img class="dc tr" src="img/esquina-oro.webp" alt=""><img class="dc br" src="img/esquina-oro.webp" alt=""></div><div class="dback"></div></div>
+        <div class="gface">
+          <p class="g-eye" data-en="YOU ARE INVITED">TIENES UNA INVITACIÓN</p>
+          <p class="g-sub" data-en-html="to the wedding of">a la boda de</p>
+          <p class="g-names foil">Regina &amp; Emilio</p>
+          <button class="seal" id="seal" type="button" aria-label="Abrir la invitación" data-en-label="Open the invitation">
+            <img src="img/sello-corona.webp" alt=""><span class="mono" aria-hidden="true">R<i>&amp;</i>E</span>
+          </button>
+          <p class="g-para" data-en="FOR">PARA</p>
+          <p class="g-guest foil" id="guestName" data-en="a very special guest">un invitado muy especial</p>
+          <p class="g-hint"><i></i><span data-en="TAP THE SEAL TO OPEN">TOCA EL SELLO PARA ABRIR</span><i></i></p>
+        </div>
+      </div>
       <div class="pwin"><img src="img/pareja-abrazo.webp" alt="Regina y Emilio" width="975" height="1300"></div>
       <img class="prings" src="img/anillos.webp" alt="" width="720" height="663">
       <p class="p-caps" data-en="WE ARE GETTING MARRIED">NOS CASAMOS</p>
@@ -595,7 +617,7 @@ html.locked .world { visibility: hidden; }
   'use strict';
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement, intro = document.getElementById('intro'), scene = document.getElementById('scene'), present = document.getElementById('present');
-  var envelope = document.getElementById('envelope'), petalBox = document.getElementById('petals');
+  var gate = document.getElementById('gate'), petalBox = document.getElementById('petals');
   function rnd(a, b) { return a + Math.random() * (b - a); }
   function list(name, n) { var a = []; for (var i = 1; i <= n; i++) a.push('img/petalo-' + name + '-0' + i + '.webp'); return a; }
   // real rose petals: ivory with blush edges, blush and peach, and some white
@@ -625,8 +647,9 @@ html.locked .world { visibility: hidden; }
     }
     petalBox.appendChild(frag);
   }
+  var revealAt = 0;
   function reveal(fast) {
-    if (revealed) return; revealed = true;
+    if (revealed) return; revealed = true; revealAt = Date.now();
     intro.classList.add('revealed');
     var W = innerWidth, H = innerHeight, cx = W / 2, cy = H / 2, longest = 0;
     cover.forEach(function (p) {
@@ -655,79 +678,45 @@ html.locked .world { visibility: hidden; }
       intro.appendChild(img);
     }
   }
+  startGlitter();
   if (reduce) { intro.classList.remove('covered'); revealed = true; intro.classList.add('revealed'); }
   else {
     makeCover();
     var t0 = setTimeout(function () { reveal(false); }, 1600);
     document.getElementById('skip').addEventListener('click', function () { clearTimeout(t0); reveal(true); });
-    intro.addEventListener('pointerdown', function () { if (!revealed) { clearTimeout(t0); reveal(true); } });
+    window.addEventListener('pointerdown', function () { if (!revealed) { clearTimeout(t0); reveal(true); } });
   }
 
-  // ---------- envelope ----------
+  // ---------- the gatefold opens ----------
   var envOpen = false;
   function openEnvelope() {
     if (!revealed) { reveal(true); return; }
-    if (envOpen) return; envOpen = true;
-    if (reduce) { enterWorld(); return; }
-    var sr = document.getElementById('seal').getBoundingClientRect();
-    intro.classList.add('opening');
-    setTimeout(function () { burst(sr.left + sr.width / 2, sr.top + sr.height / 2, 140, 1); }, 260);
-    [[1000, 'flap-open'], [1550, 'flap-behind'], [1900, 'letter-up'], [3450, 'env-away']].forEach(function (s) {
-      setTimeout(function () { intro.classList.add(s[1]); }, s[0]);
-    });
-    setTimeout(flyCard, 3500);
-  }
-  // the card leaves the envelope and glides to its place at the top of the page; then the page appears around it
-  function flyCard() {
-    var L = document.getElementById('letter'), plate = present.querySelector('.plate');
-    var r = L.getBoundingClientRect();
-    present.classList.remove('pre'); window.scrollTo(0, 0);
-    var t = plate.getBoundingClientRect();
-    document.body.appendChild(L);
-    L.classList.add('flying');
-    L.style.left = r.left + 'px'; L.style.top = r.top + 'px'; L.style.width = r.width + 'px';
-    L.getBoundingClientRect();
-    L.style.left = t.left + 'px'; L.style.top = t.top + 'px'; L.style.width = t.width + 'px';
-    setTimeout(function () {
-      root.classList.remove('locked'); intro.classList.add('fade');
-      burst(t.left + t.width / 2, t.top + t.height * .45, 200, 1.4);
-      requestAnimationFrame(function () { scene.classList.remove('pre'); });
-      measure(); startParallax(); pageFall(); startGlitter();
-    }, 1450);
-    setTimeout(function () { present.classList.remove('hide-plate'); L.remove(); intro.hidden = true; }, 2500);
+    if (envOpen || Date.now() - revealAt < 900) return; envOpen = true;
+    if (reduce) { gate.remove(); enterWorld(); return; }
+    var sr = document.getElementById('seal').getBoundingClientRect(), cx = sr.left + sr.width / 2, cy = sr.top + sr.height / 2;
+    gate.classList.add('warm');
+    setTimeout(function () { gate.classList.add('lift'); burst(cx, cy, 70, .55, 1.6); }, 1100);
+    setTimeout(function () { gate.classList.add('open'); }, 2000);
+    setTimeout(function () { enterWorld(); }, 3300);
+    setTimeout(function () { gate.remove(); }, 4500);
   }
   function enterWorld() {
-    intro.hidden = true; root.classList.remove('locked'); window.scrollTo(0, 0);
-    setTimeout(function () { document.body.classList.remove('flashing'); }, 60);
-    present.classList.remove('hide-plate');
+    intro.hidden = true; root.classList.remove('locked');
     requestAnimationFrame(function () { requestAnimationFrame(function () { scene.classList.remove('pre'); present.classList.remove('pre'); }); });
-    measure(); startParallax(); pageFall(); startGlitter();
+    measure(); startParallax(); pageFall();
   }
-  (function () {
-    var src = present.querySelector('.plate'), L = document.getElementById('letter');
-    L.innerHTML = src.innerHTML;
-    Array.prototype.forEach.call(L.querySelectorAll('[id]'), function (n) { n.removeAttribute('id'); });
-    // small enough to come out of the envelope fully visible; it grows to full size as it glides into place
-    function size() {
-      var er = envelope.getBoundingClientRect(), pr = src.getBoundingClientRect(), ratio = (pr.height / pr.width) || 1.7;
-      var w = Math.min(pr.width || 430, er.width * .8, (er.top + .4 * er.height - 14) / ratio);
-      L.style.width = w.toFixed(1) + 'px';
-      L.style.setProperty('--rise', (w * ratio - .34 * er.height).toFixed(1) + 'px');
-    }
-    size(); window.addEventListener('resize', function () { if (!envOpen) size(); });
-    envelope.addEventListener('pointerdown', size);
-  })();
   // gold sparkles bursting out from a point (the seal, then the card)
-  function burst(x0, y0, n, power) {
+  function burst(x0, y0, n, power, slow) {
+    slow = slow || 1;
     if (reduce) return;
     var cv = document.getElementById('burst'), c = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1), W = innerWidth, H = innerHeight, P = [], t0 = performance.now();
     cv.width = W * dpr; cv.height = H * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
-    for (var i = 0; i < n; i++) { var a = rnd(0, 6.283), v = rnd(1.5, 9) * power; P.push({ x: x0, y: y0, vx: Math.cos(a) * v, vy: Math.sin(a) * v - rnd(0, 1.5), r: rnd(.8, 2.6), life: rnd(900, 1700), star: Math.random() < .22, tw: rnd(8, 18) }); }
+    for (var i = 0; i < n; i++) { var a = rnd(0, 6.283), v = rnd(1.5, 9) * power; P.push({ x: x0 + rnd(-20, 20), y: y0 + rnd(-20, 20), vx: Math.cos(a) * v, vy: Math.sin(a) * v - rnd(0, 1.2), r: rnd(.7, 2.2), life: rnd(1100, 2000) * slow, star: Math.random() < .25, tw: rnd(4, 10) }); }
     function f(now) {
       var t = now - t0, alive = false; c.clearRect(0, 0, W, H);
       for (var i = 0; i < P.length; i++) {
         var p = P[i], k = t / p.life; if (k >= 1) continue; alive = true;
-        p.x += p.vx; p.y += p.vy; p.vx *= .955; p.vy = p.vy * .955 + .035;
+        p.x += p.vx / slow; p.y += p.vy / slow - .15; p.vx *= .965; p.vy = p.vy * .965;
         var a = (1 - k) * (.55 + .45 * Math.sin(t / 1000 * p.tw));
         var g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4); g.addColorStop(0, 'rgba(255,250,228,' + a + ')'); g.addColorStop(.35, 'rgba(232,190,110,' + a * .85 + ')'); g.addColorStop(1, 'rgba(232,190,110,0)');
         c.fillStyle = g; c.beginPath(); c.arc(p.x, p.y, p.r * 4, 0, 6.283); c.fill();
@@ -738,7 +727,7 @@ html.locked .world { visibility: hidden; }
     requestAnimationFrame(f);
   }
   document.getElementById('seal').addEventListener('click', function (e) { e.stopPropagation(); openEnvelope(); });
-  envelope.addEventListener('click', openEnvelope);
+  gate.addEventListener('click', openEnvelope);
   document.getElementById('replay').addEventListener('click', function () { window.scrollTo(0, 0); location.reload(); });
 
   // petals that keep falling over the whole page
