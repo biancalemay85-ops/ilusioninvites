@@ -327,6 +327,7 @@ html, body { overflow-x: clip; }
 .opts.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .opts.msg { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .fields .opt { display: block; letter-spacing: 0; }
+.av { display: flex; flex-direction: column; gap: 8px; } .av-l { font: 500 10.5px var(--f-caps); letter-spacing: .22em; color: var(--ink2); }
 .msg-tip { margin: 10px 2px 0; font: italic 400 15px/1.4 var(--f-serif); color: var(--ink2); }
 @media (max-width: 560px) { .opts.msg { grid-template-columns: minmax(0, 1fr); } }
 .opt { position: relative; display: block; cursor: pointer; }
@@ -1125,7 +1126,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
               <div class="full"><div class="opts pk" data-opts="paquete"></div><div class="pk-inc" id="pk-inc" hidden></div></div>
             <p class="im-xh full" data-en="HOW DO WE REACH YOU?">¿CÓMO TE CONTACTAMOS?</p>
               <label class="full"><span data-en="Your name">Tu nombre</span><input id="im-contacto" name="contacto" autocomplete="name" maxlength="60" placeholder="Ana Sofía López" data-en-ph="Ana Sofía López"></label>
-              <label><span data-en="Email (for updates)">Correo (para avisarte)</span><input id="im-correo" name="correo" type="email" autocomplete="email" maxlength="120" placeholder="tu@correo.com" data-en-ph="you@email.com"></label>
+              <div class="full av"><span class="av-l" data-en="How would you like to get updates on your order?">¿Cómo prefieres que te avisemos de tu pedido?</span><div class="opts msg" data-opts="aviso"></div></div>
+              <label><span data-en="Email">Correo</span><input id="im-correo" name="correo" type="email" autocomplete="email" maxlength="120" placeholder="tu@correo.com" data-en-ph="you@email.com"></label>
               <label><span>WhatsApp</span><input id="im-whatsapp" name="whatsapp" type="tel" autocomplete="tel" maxlength="30" placeholder="+52 33 1234 5678" data-en-ph="+1 604 123 4567"></label>
               <input class="hp" name="web" id="im-web" tabindex="-1" autocomplete="off" aria-hidden="true">
             </div>
@@ -1430,6 +1432,11 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         { v: 'empresa', slug: 'empresas', ic: 'empresa', es: ['Evento de empresa', 'Tenemos el honor de invitarle', 'Su empresa aquí'], en: ['Corporate event', 'You are cordially invited', 'Your company here'] },
         { v: 'otra', slug: 'otras', ic: 'otra', es: ['Otra celebración', 'Te invitamos a celebrar', 'Tu nombre aquí'], en: ['Something else', 'Join us to celebrate', 'Your name here'] }
       ],
+      aviso: [
+        { v: 'correo', es: ['Por correo'], en: ['By email'] },
+        { v: 'whatsapp', es: ['Por WhatsApp'], en: ['On WhatsApp'] },
+        { v: 'ambos', es: ['Por los dos'], en: ['Both'] }
+      ],
       paquete: [
         { v: 'esencial', p: 0, es: ['Esencial', 'Solo la invitación', ['Sobre con sello de cera que se abre', 'Música y galería de fotos', 'Itinerario, mapa y cuenta regresiva', 'Mesa de regalos y vestimenta', 'Confirmación por WhatsApp']],
           en: ['Esencial', 'Just the invitation', ['Envelope with a wax seal that opens', 'Music and photo gallery', 'Schedule, map and countdown', 'Gift registry and dress code', 'RSVP on WhatsApp']] },
@@ -1472,7 +1479,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       ]
     };
     var KEYS = ['evento', 'ambiente', 'color', 'incluir', 'detalles'];
-    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [], contacto: '', correo: '', whatsapp: '', mensaje: '', texto: '', paquete: '' };
+    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [], contacto: '', correo: '', whatsapp: '', mensaje: '', texto: '', paquete: '', aviso: '' };
     // unfinished answers are kept for 12 hours, then the form starts fresh
     try { var sv = JSON.parse(localStorage.getItem('ilu-imagina') || 'null'); if (sv && typeof sv === 'object' && Date.now() - (+sv.t || 0) < 432e5) { for (var k in st) if (k in sv) st[k] = sv[k]; } else localStorage.removeItem('ilu-imagina'); } catch (e) {}
     if (!Array.isArray(st.incluir)) st.incluir = [];
@@ -1502,7 +1509,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
           var inp = '<input type="' + (multi ? 'checkbox' : 'radio') + '" name="im-' + k + '" value="' + o.v + '"' + (on ? ' checked' : '') + '>';
           if (k === 'color') return '<label class="opt seal-o">' + inp + '<span><img src="img/' + o.seal + '.webp" alt="" width="300" height="300" loading="lazy"><b>' + e2(t[0]) + '</b></span></label>';
           if (k === 'paquete') return '<label class="opt pk-o' + (o.star ? ' star' : '') + '">' + inp + '<span>' + (o.star ? '<em class="pk-rib">' + (l === 'en' ? 'MOST CHOSEN' : 'EL FAVORITO') + '</em>' : '') + '<b>' + e2(t[0]) + '</b><small>' + e2(t[1]) + '</small>' + (o.p != null ? '<span class="pk-pr"><span data-p="' + o.p + '"></span> <span class="curl"></span></span>' : '') + '<i class="tick"></i></span></label>';
-          if (multi || k === 'mensaje') return '<label class="opt chip">' + inp + '<span><b>' + e2(t[0]) + '</b></span></label>';
+          if (multi || k === 'mensaje' || k === 'aviso') return '<label class="opt chip">' + inp + '<span><b>' + e2(t[0]) + '</b></span></label>';
           var th = o.img ? '<span class="th"><img src="img/' + o.img + '.webp" alt="" loading="lazy"></span>' : '<span class="th">' + svg(o.ic) + '</span>';
           if (k === 'ambiente') return '<label class="opt mood">' + inp + '<span>' + th + '<span><b>' + e2(t[0]) + '</b><small>' + e2(t[1]) + '</small></span><i class="tick"></i></span></label>';
           return '<label class="opt">' + inp + '<span>' + th + '<b>' + e2(t[0]) + '</b><i class="tick"></i></span></label>';
@@ -1570,6 +1577,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       var ms = find(Q.mensaje, st.mensaje);
       if (ms) out.push((en ? '• Message for guests: ' : '• Mensaje para invitados: ') + ms[l][0] + (st.texto ? ' — "' + st.texto + '"' : ''));
       if (st.contacto) out.push((en ? '• My name: ' : '• Mi nombre: ') + st.contacto);
+      var av = find(Q.aviso, st.aviso); if (av) out.push((en ? '• Updates: ' : '• Avisos: ') + av[l][0].toLowerCase());
       if (st.nombres) out.push((en ? '• Celebrating: ' : '• Quién celebra: ') + st.nombres);
       if (st.fecha) out.push((en ? '• Date: ' : '• Fecha: ') + fmtDate(st.fecha));
       if (st.ciudad) out.push((en ? '• City: ' : '• Ciudad: ') + st.ciudad);
@@ -1785,7 +1793,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       var l = L(), ev = find(Q.evento, st.evento), mo = find(Q.ambiente, st.ambiente), co = find(Q.color, st.color);
       return { idioma: l, evento: ev ? ev[l][0] : '', ambiente: mo ? mo[l][0] : '', idea: st.idea, color: co ? co[l][0] : '', codigos: st.codigos,
         incluir: st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : v; }), extra: st.extra, quien_celebra: st.nombres,
-        fecha_evento: st.fecha, ciudad: st.ciudad, sueno: st.sueno, mensaje: (find(Q.mensaje, st.mensaje) || { es: [''], en: [''] })[l][0], mensaje_texto: st.texto, paquete: (find(Q.paquete, st.paquete) || { es: [''], en: [''] })[l][0], contacto: st.contacto, correo: st.correo, whatsapp: st.whatsapp,
+        fecha_evento: st.fecha, ciudad: st.ciudad, sueno: st.sueno, mensaje: (find(Q.mensaje, st.mensaje) || { es: [''], en: [''] })[l][0], mensaje_texto: st.texto, paquete: (find(Q.paquete, st.paquete) || { es: [''], en: [''] })[l][0], aviso: (find(Q.aviso, st.aviso) || { es: [''], en: [''] })[l][0], contacto: st.contacto, correo: st.correo, whatsapp: st.whatsapp,
         web: ($('im-web') || {}).value || '', fotos: list.filter(Boolean) };
     }
     var err = $('im-err');
@@ -1802,7 +1810,10 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       e.preventDefault();
       var en = L() === 'en';
       err.hidden = true;
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.correo || '')) { err.textContent = en ? 'Please add your email so we can send you updates.' : 'Agrega tu correo para poder avisarte de tu pedido.'; err.hidden = false; $('im-correo').focus(); return; }
+      var okMail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.correo || ''), okWa = String(st.whatsapp || '').replace(/\D/g, '').length >= 8;
+      var needWa = st.aviso === 'whatsapp' || st.aviso === 'ambos', needMail = st.aviso !== 'whatsapp' || (st.correo && !okMail);
+      if (needWa && !okWa) { err.textContent = en ? 'Please add your WhatsApp number (with area code) so we can message you.' : 'Agrega tu número de WhatsApp (con lada) para poder escribirte.'; err.hidden = false; $('im-whatsapp').focus(); return; }
+      if (needMail && !okMail) { err.textContent = en ? 'Please add your email so we can send you updates.' : 'Agrega tu correo para poder avisarte de tu pedido.'; err.hidden = false; $('im-correo').focus(); return; }
       send.classList.add('busy'); send.textContent = en ? 'Saving your order…' : 'Guardando tu pedido…';
       Promise.all(fotos.map(function (f) { return shrink(f.file, f.tipo); })).then(function (list) {
         return fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(payload(list)) });
@@ -1813,7 +1824,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         var first = String(st.contacto || '').trim().split(/\s+/)[0];
         $('im-done-n').textContent = (en ? 'ORDER ' : 'PEDIDO ') + r.pedido;
         $('im-done-t').innerHTML = (en ? 'Thank you' : '¡Gracias') + (first ? ', ' + e2(first) : '') + (en ? '! <em>We received it</em>' : '! <em>Ya lo recibimos</em>');
-        $('im-done-p').textContent = en ? 'Your ideas' + (fotos.length ? ' and photos' : '') + ' reached us safely. We sent a copy to ' + st.correo + '.' : 'Tus ideas' + (fotos.length ? ' y fotos' : '') + ' nos llegaron completas. Te enviamos una copia a ' + st.correo + '.';
+        $('im-done-p').textContent = (en ? 'Your ideas' + (fotos.length ? ' and photos' : '') + ' reached us safely.' : 'Tus ideas' + (fotos.length ? ' y fotos' : '') + ' nos llegaron completas.') + (okMail ? (en ? ' We sent a copy to ' : ' Te enviamos una copia a ') + st.correo + '.' : (en ? ' We will message you on WhatsApp.' : ' Te escribiremos por WhatsApp.'));
         $('im-done').hidden = false; document.querySelector('.im-nav').hidden = true; $('im-reset').hidden = true; steps.forEach(function (f) { f.classList.remove('on'); }); prog.hidden = true; no.hidden = true; note.hidden = true; $('im-pnote').hidden = true;
         var dn = $('im-done'); try { dn.focus({ preventScroll: true }); } catch (x) {} var dr = form.getBoundingClientRect(); scrollTo({ top: scrollY + dr.top - 90, behavior: reduce ? 'auto' : 'smooth' });
         try { localStorage.removeItem('ilu-imagina'); } catch (x) {}

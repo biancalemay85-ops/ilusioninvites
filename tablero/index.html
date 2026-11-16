@@ -27,6 +27,11 @@
   .card small { display: block; color: var(--ink3); font-size: 12px; letter-spacing: .08em; }
   .card b { display: block; font: 500 19px/1.2 'Cormorant Garamond', serif; margin: 2px 0; }
   .card span { font-size: 13px; color: var(--ink2); }
+  .card .tag.wa, .btn.wa { background: #E3F4E8; color: #1E6B3A; }
+  .btn.wa { box-shadow: inset 0 0 0 1px rgba(30,107,58,.35); }
+  .btn.wa.pulse { animation: waP 1.4s ease 3; }
+  @keyframes waP { 50% { box-shadow: inset 0 0 0 1px rgba(30,107,58,.5), 0 0 0 8px rgba(37,211,102,.25); } }
+  .wa-note { margin: 10px 0 0; font-size: 13.5px; color: #1E6B3A; }
   .card .tag { display: inline-block; margin-top: 6px; padding: 2px 9px; border-radius: 99px; font-size: 11.5px; background: #F3E6D2; color: #7A5A2E; }
   .empty { color: var(--ink3); font-size: 13px; text-align: center; padding: 14px 4px; }
   /* detail panel */
@@ -89,20 +94,23 @@
       var cards = list.filter(function (o) { return (o.etapa || 'consulta') === s[0]; }).sort(function (a, b) { return String(b.recibido).localeCompare(String(a.recibido)); });
       return '<section class="col"><h2>' + esc(s[1]) + ' <b>' + cards.length + '</b></h2>' + (cards.length ? cards.map(function (o) {
         var when = o.fecha_evento ? 'Evento ' + esc(o.fecha_evento) : 'Recibido ' + esc(String(o.recibido).slice(0, 10));
-        return '<button class="card" data-id="' + esc(o.pedido) + '"><small>' + esc(o.pedido) + ' · ' + when + '</small><b>' + esc(o.quien_celebra || o.contacto) + '</b><span>' + esc(o.evento || '') + (o.ciudad ? ' · ' + esc(o.ciudad) : '') + '</span>' + (o.entrega_estimada ? '<br><span class="tag">Lista el ' + esc(o.entrega_estimada) + '</span>' : '') + '</button>';
+        return '<button class="card" data-id="' + esc(o.pedido) + '"><small>' + esc(o.pedido) + ' · ' + when + '</small><b>' + esc(o.quien_celebra || o.contacto) + '</b><span>' + esc(o.evento || '') + (o.ciudad ? ' · ' + esc(o.ciudad) : '') + '</span>' + (o.entrega_estimada ? '<br><span class="tag">Lista el ' + esc(o.entrega_estimada) + '</span>' : '') + (/whatsapp|ambos|both/i.test(o.aviso || '') ? '<br><span class="tag wa">Prefiere WhatsApp</span>' : '') + '</button>';
       }).join('') : '<p class="empty">—</p>') + '</section>';
     }).join('');
   }
   function digits(s) { return String(s || '').replace(/\D/g, ''); }
+  // WhatsApp needs the country code: 10 digits alone = Mexico (52) or Canada/US (1) by the client's language
+  function waNum(o) { var d = digits(o.whatsapp); if (d.length === 10) d = (o.idioma === 'en' ? '1' : '52') + d; return d.length >= 11 ? d : ''; }
+  var moved = '';
   function open(o) {
     cur = o;
     var info = Object.keys(LABEL).filter(function (k) { return o[k] !== '' && o[k] != null; }).map(function (k) { return '<dt>' + LABEL[k] + '</dt><dd>' + esc(o[k]) + '</dd>'; }).join('');
     var opts = D.stages.map(function (s) { return '<option value="' + s[0] + '"' + (s[0] === (o.etapa || 'consulta') ? ' selected' : '') + '>' + esc(s[1]) + '</option>'; }).join('');
-    var wa = digits(o.whatsapp);
+    var wa = waNum(o);
     $('panel').innerHTML =
       '<div class="dh"><h3><small>' + esc(o.pedido) + ' · ' + esc(stageName(o.etapa)) + '</small>' + esc(o.quien_celebra || o.contacto) + '</h3><button class="x" id="close" aria-label="Cerrar">×</button></div>' +
       '<div class="sec"><h4>Lo que nos pidió</h4><dl>' + info + '</dl><div class="contact">' +
-        (wa ? '<a class="btn ghost" target="_blank" href="https://wa.me/' + wa + '?text=' + encodeURIComponent('Hola ' + String(o.contacto || '').split(' ')[0] + ', te escribe Ilusión Invites sobre tu pedido ' + o.pedido + ' ✨') + '">WhatsApp</a>' : '') +
+        (wa ? '<a class="btn ghost wa" id="wa-btn" target="_blank" rel="noopener" href="https://wa.me/' + wa + '?text=' + encodeURIComponent('Hola ' + String(o.contacto || '').split(' ')[0] + ', te escribe Ilusión Invites sobre tu pedido ' + o.pedido + ' ✨') + '">WhatsApp</a>' : '') +
         (o.correo ? '<a class="btn ghost" href="mailto:' + esc(o.correo) + '?subject=' + encodeURIComponent('Tu pedido ' + o.pedido + ' · Ilusión Invites') + '">Correo</a>' : '') +
         (o.carpeta ? '<a class="btn ghost" target="_blank" href="' + esc(o.carpeta) + '">Carpeta en Drive</a>' : '') + '</div></div>' +
       (o.fotos > 0 ? '<div class="sec"><h4>Fotos (' + esc(o.fotos) + ')</h4><div id="ph"><p class="empty">Cargando fotos…</p></div></div>' : '') +
@@ -120,6 +128,13 @@
     $('panel').classList.add('on'); $('veil').classList.add('on'); $('panel').setAttribute('aria-hidden', 'false');
     $('close').onclick = close; $('save').onclick = save;
     $('e-etapa').onchange = function () { var v = this.value; $('smsg').textContent = v !== o.etapa ? (o.correo ? 'Se enviará el correo de "' + stageName(v) + '" a ' + o.correo : 'Sin correo: no se enviará aviso') : ''; };
+    // WhatsApp button carries the message of the order's current stage (same words as the email)
+    if (wa) api('msg', { row: o._row, etapa: o.etapa || 'consulta' }).then(function (r) {
+      var b = $('wa-btn'); if (!b || cur !== o || !r.data) return;
+      b.href = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(r.data);
+      b.textContent = 'WhatsApp · aviso de «' + stageName(o.etapa) + '»';
+      if (moved === o.pedido) { moved = ''; b.classList.add('pulse'); var n = document.createElement('p'); n.className = 'wa-note'; n.textContent = (/whatsapp|ambos|both/i.test(o.aviso || '') ? 'Prefiere WhatsApp: ' : '') + 'toca el botón verde para mandarle este aviso por WhatsApp.'; b.parentNode.after(n); b.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+    }).catch(function () {});
     if (o.fotos > 0) api('photos', { carpeta: o.carpeta }).then(function (r) { var el = $('ph'); if (el && cur === o) el.innerHTML = photoGroups(r.data); }).catch(function () { var el = $('ph'); if (el) el.innerHTML = '<p class="empty">No se pudieron cargar las fotos. Ábrelas en la carpeta de Drive.</p>'; });
   }
   function photoGroups(ps) {
@@ -135,6 +150,7 @@
     var o = cur, ch = { pedido: o.pedido, enviar: $('e-enviar').checked };
     ['etapa', 'precio', 'pagado', 'entrega_estimada', 'link', 'notas'].forEach(function (k) { ch[k] = $('e-' + k).value; });
     var b = $('save'); b.disabled = true; b.textContent = 'Guardando…';
+    if (ch.etapa !== (o.etapa || 'consulta') && waNum(o)) moved = o.pedido;
     api('save', { row: o._row, cambios: ch }).then(function (r) { toast(r.sent ? 'Guardado · correo enviado ✉️' : 'Guardado'); b.disabled = false; b.textContent = 'Guardar'; load(); })
       .catch(function (e) { toast('No se pudo guardar: ' + e.message); b.disabled = false; b.textContent = 'Guardar'; });
   }
