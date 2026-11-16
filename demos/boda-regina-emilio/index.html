@@ -83,24 +83,13 @@ html.locked .world { visibility: hidden; }
 .env-shadow { position: absolute; left: 3%; right: 3%; bottom: -7%; height: 16%; z-index: 0; background: radial-gradient(ellipse at center, rgba(80,60,38,.45), transparent 70%); filter: blur(10px); }
 .env-back { position: absolute; inset: 0; z-index: 1; border-radius: 4px; background: #EDE2D2 url("img/terciopelo-crema.webp") center / cover; box-shadow: 0 0 0 1px rgba(120,95,60,.25); }
 .env-back::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,250,240,.12), rgba(120,90,55,.22)); box-shadow: inset 0 0 0 2px rgba(201,160,99,.6), inset 0 0 0 5px rgba(120,90,55,.1); }
-.letter { position: absolute; left: 6%; width: 88%; top: 6%; height: 88%; z-index: 2; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 5cqw; text-align: center; border-radius: 8px; padding: 5cqw 8cqw;
-  background: linear-gradient(150deg, rgba(255,255,255,.7), rgba(255,255,255,.35) 45%, rgba(255,255,255,.6)), linear-gradient(rgba(255,248,236,.5), rgba(255,248,236,.5)), #F6EFE5 url("img/papel-perla.webp") center / cover;
-  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255,255,255,.85), inset 0 0 0 6px rgba(255,255,255,.18), 3px 4px 0 -1px rgba(255,255,255,.7), 3px 4px 0 0 rgba(150,138,126,.25), 0 12px 26px rgba(70,52,34,.3); transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
-.letter::before { content: ""; position: absolute; inset: 3.6cqw; border: 1px solid rgba(169,132,76,.55); border-radius: 4px; }
-.lphoto { position: relative; flex: none; width: 31%; aspect-ratio: 4 / 5; border-radius: 50% 50% 4px 4px / 36% 36% 4px 4px; overflow: hidden; box-shadow: 0 0 0 1.2px rgba(190,150,90,.9), 0 0 0 4px rgba(255,255,255,.7), 0 0 0 5px rgba(190,150,90,.4), 0 8px 16px rgba(70,52,34,.3); }
-.lphoto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
-.ltext { display: flex; flex-direction: column; align-items: center; gap: 1.2cqw; }
-.ltext > * { margin: 0; }
-.ltext .lfl { width: 30cqw; height: auto; }
-.letter .lc { position: absolute; width: 15%; height: auto; }
-.lc.tl { left: 2.4%; top: 3.4%; } .lc.tr { right: 2.4%; top: 3.4%; transform: scaleX(-1); } .lc.bl { left: 2.4%; bottom: 3.4%; transform: scaleY(-1); } .lc.br { right: 2.4%; bottom: 3.4%; transform: scale(-1); }
-.letter .crys-w { color: #fff; }
-.letter > * { position: relative; margin: 0; }
-.l-caps { font-family: var(--f-caps); font-size: 2.2cqw; letter-spacing: .4em; padding-left: .4em; color: var(--gold-deep); }
-.l-names { font-family: var(--f-names); font-size: 9.5cqw; line-height: .95; }
-.l-names > span { display: block; width: max-content; margin: 0 auto; }
-.l-names .amp { font-size: .55em; }
-.l-date { font-family: var(--f-caps); font-size: 2.3cqw; letter-spacing: .4em; padding-left: .4em; color: var(--ink-soft); }
+/* the glass card waits inside the envelope (only what rises above the pockets is visible), then glides to its place as the first section */
+.lclip { position: absolute; left: -20%; right: -20%; top: -500%; bottom: 0; z-index: 2; overflow: hidden; pointer-events: none; }
+.lclip .letter { position: absolute; left: 50%; top: calc(500% / 6 + 1%); margin: 0; transform: translateX(-50%); transition: transform 1.5s cubic-bezier(.3,.05,.2,1); }
+.letter-up .lclip .letter { transform: translateX(-50%) translateY(calc(-1 * var(--rise, 300px))); }
+.letter.flying { position: fixed; transform: none !important; z-index: 44; transition: left 1.4s cubic-bezier(.55,0,.2,1), top 1.4s cubic-bezier(.55,0,.2,1), width 1.4s cubic-bezier(.55,0,.2,1); }
+.intro { transition: opacity .9s ease; }
+.intro.fade { opacity: 0; pointer-events: none; }
 /* white crystal letters for dark crystal */
 .wcrys { color: transparent; background: linear-gradient(115deg, rgba(255,255,255,.8) 0%, #fff 26%, rgba(255,255,255,.62) 44%, #fff 54%, rgba(242,228,234,.88) 72%, #fff 100%); background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 1px 0 rgba(255,255,255,.55)) drop-shadow(1px 3px 2px rgba(0,0,0,.65)) drop-shadow(0 0 10px rgba(255,255,255,.18)); animation: crys 7s ease-in-out infinite; display: inline-block; padding: .05em .14em .12em; }
 #burst { position: fixed; inset: 0; z-index: 47; width: 100%; height: 100%; pointer-events: none; }
@@ -154,11 +143,8 @@ html.locked .world { visibility: hidden; }
 
 .flap-open .flap { transform: rotateX(180deg); }
 .flap-behind .flap { z-index: 1; }
-.letter-up .letter { transform: translateY(-60%); }
-.letter-front .letter { z-index: 9; transform: translateY(-6%) scale(1.12); transition: transform 1.4s cubic-bezier(.6,0,.3,1); }
 .env-away .env-back, .env-away .piece, .env-away .addr, .env-away .env-shadow { transform: translateY(55%); opacity: 0; transition: transform 1.1s ease-in, opacity 1.1s ease-in; }
 .env-away .flap { transform: translateY(55%) rotateX(180deg); opacity: 0; }
-.zoom .letter { transform: translateY(-6%) scale(5.5); opacity: 0; transition: transform 1.3s cubic-bezier(.6,0,.9,.4), opacity 1s ease-in .3s; }
 .flash { position: fixed; inset: 0; z-index: 45; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 48%, #FFFFFF 0%, #FBF7F2 55%, #EEE6DC 100%); transition: opacity 1.4s ease-out; }
 .flashing .flash { opacity: .96; transition: opacity .45s ease-in; }
 
@@ -262,14 +248,15 @@ html.locked .world { visibility: hidden; }
   box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255,255,255,.8), inset 0 0 0 7px rgba(255,255,255,.16), inset 16px 0 30px -18px rgba(255,255,255,.75), 5px 7px 0 -2px rgba(255,255,255,.6), 5px 7px 0 -1px rgba(150,138,126,.26), 0 40px 70px -26px rgba(80,62,48,.45);
   transition: transform 1.6s cubic-bezier(.16,.8,.24,1), opacity 1.4s ease; }
 .plate::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(112deg, transparent 38%, rgba(255,255,255,.22) 47%, rgba(255,255,255,.04) 52%, transparent 60%); background-size: 300% 100%; animation: glare 7s ease-in-out 1.5s infinite; }
-.pre .plate { opacity: 0; transform: translateY(40px) scale(.94); }
+.present.hide-plate .plate { visibility: hidden; }
 .pframe { position: absolute; inset: 4.5%; border: 1px solid rgba(169,132,76,.5); border-radius: 6px; pointer-events: none; }
 .pcn { position: absolute; width: 20%; height: auto; z-index: 3; pointer-events: none; filter: drop-shadow(0 2px 3px rgba(90,64,30,.3)); }
 .pcn.tl { left: 1.6%; top: 1.4%; } .pcn.tr { right: 1.6%; top: 1.4%; transform: scaleX(-1); } .pcn.bl { left: 1.6%; bottom: 1.4%; transform: scaleY(-1); } .pcn.br { right: 1.6%; bottom: 1.4%; transform: scale(-1); }
 .pwin { position: relative; width: 74%; aspect-ratio: 4 / 5; border-radius: 50% 50% 8px 8px / 38% 38% 8px 8px; overflow: hidden; box-shadow: 0 0 0 1.5px rgba(190,150,90,.9), 0 0 0 5px rgba(255,255,255,.75), 0 0 0 6px rgba(190,150,90,.45), 0 18px 34px rgba(70,52,34,.35); margin-top: 6%; }
 .pwin img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; transform: scale(1.06); animation: kb 18s ease-in-out infinite alternate; }
 @keyframes kb { from { transform: scale(1.06); } to { transform: scale(1.14) translate(-1.5%, -1%); } }
-.pfl { width: 62%; height: auto; margin-top: 4%; filter: drop-shadow(0 2px 2px rgba(90,64,30,.3)); }
+.pfl { width: 56%; height: auto; margin-top: 1%; filter: drop-shadow(0 2px 2px rgba(90,64,30,.3)); }
+.prings { position: relative; z-index: 2; width: 30%; height: auto; margin-top: -13%; filter: drop-shadow(0 10px 10px rgba(90,64,30,.35)); }
 .p-caps { margin: 0; font-family: var(--f-caps); font-size: max(10px, 3cqw); letter-spacing: .4em; padding-left: .4em; color: var(--gold-deep); }
 .p-names { margin: 0; font-family: var(--f-names); font-weight: 400; font-size: 21cqw; line-height: .92; }
 .p-names > span { display: block; width: max-content; margin: 0 auto; }
@@ -386,16 +373,7 @@ html.locked .world { visibility: hidden; }
     <div class="envelope" id="envelope">
       <div class="env-shadow"></div>
       <div class="env-back"></div>
-      <div class="letter" aria-hidden="true">
-        <img class="lc tl" src="img/esquina-oro.webp" alt=""><img class="lc tr" src="img/esquina-oro.webp" alt=""><img class="lc bl" src="img/esquina-oro.webp" alt=""><img class="lc br" src="img/esquina-oro.webp" alt="">
-        <div class="lphoto"><img src="img/pareja-abrazo.webp" alt=""></div>
-        <div class="ltext">
-          <p class="l-caps">NOS CASAMOS</p>
-          <p class="l-names"><span class="crys">Regina</span><span class="crys amp">&amp;</span><span class="crys">Emilio</span></p>
-          <img class="lfl" src="img/filigrana.webp" alt="">
-          <p class="l-date">17 · IV · 2027</p>
-        </div>
-      </div>
+      <div class="lclip"><div class="letter plate" id="letter" aria-hidden="true"></div></div>
       <div class="piece p-left"></div>
       <div class="piece p-right"></div>
       <div class="piece p-bottom"></div>
@@ -422,15 +400,16 @@ html.locked .world { visibility: hidden; }
 <canvas id="glitter" aria-hidden="true"></canvas>
 
 <div class="world" id="world">
-  <section class="present pre" id="present" aria-label="Regina y Emilio" data-en-label="Regina and Emilio">
+  <section class="present pre hide-plate" id="present" aria-label="Regina y Emilio" data-en-label="Regina and Emilio">
     <div class="velvet" aria-hidden="true"></div>
     <div class="plate">
       <img class="pcn tl" src="img/esquina-oro.webp" alt=""><img class="pcn tr" src="img/esquina-oro.webp" alt=""><img class="pcn bl" src="img/esquina-oro.webp" alt=""><img class="pcn br" src="img/esquina-oro.webp" alt="">
       <span class="pframe" aria-hidden="true"></span>
       <div class="pwin"><img src="img/pareja-abrazo.webp" alt="Regina y Emilio" width="975" height="1300"></div>
-      <img class="pfl" src="img/filigrana.webp" alt="">
+      <img class="prings" src="img/anillos.webp" alt="" width="720" height="663">
       <p class="p-caps" data-en="WE ARE GETTING MARRIED">NOS CASAMOS</p>
       <h1 class="p-names"><span class="crys">Regina</span><span class="crys amp">&amp;</span><span class="crys">Emilio</span></h1>
+      <img class="pfl" src="img/filigrana.webp" alt="">
       <p class="p-date">17 · 04 · 2027</p>
     </div>
     <p class="p-hint"><a href="#scene" data-en="OUR INVITATION ↓">NUESTRA INVITACIÓN ↓</a></p>
@@ -693,19 +672,51 @@ html.locked .world { visibility: hidden; }
     var sr = document.getElementById('seal').getBoundingClientRect();
     intro.classList.add('opening');
     setTimeout(function () { burst(sr.left + sr.width / 2, sr.top + sr.height / 2, 140, 1); }, 260);
-    [[1000, 'flap-open'], [1550, 'flap-behind'], [2000, 'letter-up'], [3300, 'letter-front'], [3350, 'env-away'], [5000, 'zoom']].forEach(function (s) {
+    [[1000, 'flap-open'], [1550, 'flap-behind'], [1900, 'letter-up'], [3450, 'env-away']].forEach(function (s) {
       setTimeout(function () { intro.classList.add(s[1]); }, s[0]);
     });
-    setTimeout(function () { burst(innerWidth / 2, innerHeight / 2, 220, 1.6); }, 4900);
-    setTimeout(function () { document.body.classList.add('flashing'); }, 5450);
-    setTimeout(enterWorld, 5950);
+    setTimeout(flyCard, 3500);
+  }
+  // the card leaves the envelope and glides to its place at the top of the page; then the page appears around it
+  function flyCard() {
+    var L = document.getElementById('letter'), plate = present.querySelector('.plate');
+    var r = L.getBoundingClientRect();
+    present.classList.remove('pre'); window.scrollTo(0, 0);
+    var t = plate.getBoundingClientRect();
+    document.body.appendChild(L);
+    L.classList.add('flying');
+    L.style.left = r.left + 'px'; L.style.top = r.top + 'px'; L.style.width = r.width + 'px';
+    L.getBoundingClientRect();
+    L.style.left = t.left + 'px'; L.style.top = t.top + 'px'; L.style.width = t.width + 'px';
+    setTimeout(function () {
+      root.classList.remove('locked'); intro.classList.add('fade');
+      burst(t.left + t.width / 2, t.top + t.height * .45, 200, 1.4);
+      requestAnimationFrame(function () { scene.classList.remove('pre'); });
+      measure(); startParallax(); pageFall(); startGlitter();
+    }, 1450);
+    setTimeout(function () { present.classList.remove('hide-plate'); L.remove(); intro.hidden = true; }, 2500);
   }
   function enterWorld() {
     intro.hidden = true; root.classList.remove('locked'); window.scrollTo(0, 0);
     setTimeout(function () { document.body.classList.remove('flashing'); }, 60);
+    present.classList.remove('hide-plate');
     requestAnimationFrame(function () { requestAnimationFrame(function () { scene.classList.remove('pre'); present.classList.remove('pre'); }); });
     measure(); startParallax(); pageFall(); startGlitter();
   }
+  (function () {
+    var src = present.querySelector('.plate'), L = document.getElementById('letter');
+    L.innerHTML = src.innerHTML;
+    Array.prototype.forEach.call(L.querySelectorAll('[id]'), function (n) { n.removeAttribute('id'); });
+    // small enough to come out of the envelope fully visible; it grows to full size as it glides into place
+    function size() {
+      var er = envelope.getBoundingClientRect(), pr = src.getBoundingClientRect(), ratio = (pr.height / pr.width) || 1.7;
+      var w = Math.min(pr.width || 430, er.width * .8, (er.top + .4 * er.height - 14) / ratio);
+      L.style.width = w.toFixed(1) + 'px';
+      L.style.setProperty('--rise', (w * ratio - .34 * er.height).toFixed(1) + 'px');
+    }
+    size(); window.addEventListener('resize', function () { if (!envOpen) size(); });
+    envelope.addEventListener('pointerdown', size);
+  })();
   // gold sparkles bursting out from a point (the seal, then the card)
   function burst(x0, y0, n, power) {
     if (reduce) return;
