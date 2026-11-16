@@ -325,6 +325,10 @@ html, body { overflow-x: clip; }
 .opts { display: grid; gap: 10px; }
 .opts.c2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .opts.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.opts.msg { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fields .opt { display: block; letter-spacing: 0; }
+.msg-tip { margin: 10px 2px 0; font: italic 400 15px/1.4 var(--f-serif); color: var(--ink2); }
+@media (max-width: 560px) { .opts.msg { grid-template-columns: minmax(0, 1fr); } }
 .opt { position: relative; display: block; cursor: pointer; }
 .opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .opt > span { position: relative; display: flex; align-items: center; gap: 12px; min-height: 54px; height: 100%; padding: 10px 16px; border-radius: 16px; background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px rgba(182,138,78,.22); transition: box-shadow .35s, background .35s, transform .35s; }
@@ -381,6 +385,37 @@ html, body { overflow-x: clip; }
 .im-idea { margin-top: 18px; } .im-idea textarea { min-height: 76px; }
 .fields input, .fields textarea, .fields select { font: 400 16px var(--f-body); color: var(--ink); letter-spacing: 0; padding: 12px 16px; border-radius: 14px; border: 0; background: rgba(255,255,255,.85); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); transition: box-shadow .3s; min-width: 0; width: 100%; }
 .fields textarea { resize: vertical; min-height: 92px; line-height: 1.5; }
+/* date picker: our own calendar, round and gold like the rest of the page */
+.dp-w { position: relative; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.dp-lab { font: 500 10.5px var(--f-caps); letter-spacing: .22em; color: var(--ink2); }
+.dp-btn { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 48px; padding: 12px 14px 12px 16px; border: 0; border-radius: 14px; background: rgba(255,255,255,.85); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); font: 400 16px var(--f-body); color: var(--ink); text-align: left; cursor: pointer; transition: box-shadow .3s; }
+.dp-btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .dp-btn .ph { color: #B3A39A; }
+.dp-btn svg { flex: none; width: 22px; height: 22px; color: var(--gold); }
+.dp-btn:focus-visible, .dp-btn[aria-expanded="true"] { outline: none; box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 4px rgba(233,207,149,.3); }
+.dp { position: absolute; z-index: 30; top: calc(100% + 10px); left: 0; width: min(340px, calc(100vw - 32px)); padding: 18px 16px 14px; border-radius: 26px; background: linear-gradient(180deg, #FFFDF9, #FBF3E7); box-shadow: inset 0 0 0 1px rgba(182,138,78,.28), 0 26px 50px -24px rgba(90,55,25,.55), 0 0 0 6px rgba(255,255,255,.55); animation: dpIn .28s cubic-bezier(.2,.7,.2,1); }
+.dp[hidden] { display: none; }
+@keyframes dpIn { from { opacity: 0; transform: translateY(-6px) scale(.98); } }
+.dp-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.dp-t { border: 0; background: none; cursor: pointer; padding: 6px 12px; border-radius: 999px; font: 500 22px/1.1 var(--f-serif); color: var(--ink); text-transform: capitalize; transition: background .25s; }
+.dp-t em { font-style: italic; color: var(--gold); } .dp-t:hover { background: rgba(233,207,149,.25); }
+.dp-nav { flex: none; width: 38px; height: 38px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: #fff; color: var(--gold); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); transition: background .25s, transform .25s; }
+.dp-nav:hover { background: #FBF1E1; transform: scale(1.06); } .dp-nav:disabled { opacity: .3; cursor: default; transform: none; }
+.dp-nav svg { width: 16px; height: 16px; }
+.dp-wd, .dp-g { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; text-align: center; }
+.dp-wd span { padding: 4px 0 6px; font: 500 10px var(--f-caps); letter-spacing: .12em; color: var(--ink3); }
+.dp-d { aspect-ratio: 1; max-width: 42px; margin: 0 auto; width: 100%; border: 0; border-radius: 50%; background: none; cursor: pointer; font: 400 15.5px var(--f-body); color: var(--ink); transition: background .2s, color .2s, box-shadow .2s; }
+.dp-d:hover { background: rgba(233,207,149,.35); }
+.dp-d.today { box-shadow: inset 0 0 0 1px var(--gold); }
+.dp-d.on { color: #3A2210; font-weight: 500; background: radial-gradient(circle at 50% 30%, #F7E4B4, #D6A963 75%); box-shadow: 0 6px 14px -6px rgba(140,95,40,.7), inset 0 0 0 1px rgba(170,120,55,.35); }
+.dp-d:disabled { color: rgba(110,91,84,.28); cursor: default; background: none; box-shadow: none; }
+.dp-d:focus-visible, .dp-m:focus-visible, .dp-t:focus-visible, .dp-nav:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.dp-ms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 4px 0; }
+.dp-m { border: 0; cursor: pointer; padding: 12px 4px; border-radius: 999px; background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px rgba(182,138,78,.2); font: 400 15px var(--f-body); color: var(--ink); text-transform: capitalize; transition: background .2s; }
+.dp-m:hover { background: rgba(233,207,149,.3); } .dp-m.on { background: radial-gradient(circle at 50% 30%, #F7E4B4, #D6A963 80%); color: #3A2210; font-weight: 500; } .dp-m:disabled { opacity: .35; cursor: default; }
+.dp-f { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(182,138,78,.2); }
+.dp-f button { border: 0; background: none; cursor: pointer; padding: 6px 4px; font: italic 400 15px var(--f-serif); color: var(--ink2); text-decoration: underline; text-underline-offset: 3px; }
+.dp-f .dp-ok { font: 500 10.5px var(--f-caps); letter-spacing: .22em; text-decoration: none; color: var(--gold); }
+@media (max-width: 560px) { .dp { left: 50%; transform: translateX(-50%); animation: none; } }
 .fields input:focus, .fields textarea:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 4px rgba(233,207,149,.3); }
 .fields ::placeholder { color: #B5A59C; }
 .im-nav { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 24px; flex-wrap: wrap; }
@@ -400,7 +435,7 @@ html, body { overflow-x: clip; }
 .c-in { position: absolute; inset: 15% 12% 17%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; }
 .c-eye { font: 500 11px var(--f-caps); letter-spacing: .42em; padding-left: .42em; color: var(--acc); transition: color .8s; }
 .c-pre { font: italic 400 15px/1.3 var(--f-serif); opacity: .8; }
-.c-names { font: 400 clamp(38px, 4.4vw, 52px)/1.05 var(--f-script); color: var(--cink); margin: 6px 0 2px; text-wrap: balance; overflow-wrap: anywhere; transition: opacity .4s; }
+.c-names { font: italic 500 clamp(34px, 3.9vw, 46px)/1.08 var(--f-serif); letter-spacing: .005em; color: var(--cink); margin: 6px 0 2px; text-wrap: balance; overflow-wrap: anywhere; transition: opacity .4s; }
 .c-names.empty { opacity: .35; }
 .c-rule { display: flex; align-items: center; gap: 8px; width: 62%; margin: 6px 0; }
 .c-rule i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--acc)); }
@@ -419,6 +454,7 @@ html, body { overflow-x: clip; }
 .c-deco.a.on { transform: rotate(-8deg) scale(1); }
 .c-deco.b.on { transform: scaleX(-1) rotate(-14deg) scale(.8); }
 .c-cap { margin: 22px 0 0; font: 400 26px/1 var(--f-script); color: var(--gold); }
+.c-note { margin: 10px auto 0; max-width: 34ch; font: 400 13px/1.5 var(--f-body); color: var(--ink3); text-align: center; }
 .card.pulse { animation: cardPulse .9s ease; }
 @keyframes cardPulse { 40% { box-shadow: 0 50px 70px -40px rgba(90,60,40,.5), 0 0 40px rgba(240,210,150,.75), inset 0 0 0 1px color-mix(in srgb, var(--acc) 50%, transparent); } }
 @media (max-width: 900px) {
@@ -426,7 +462,7 @@ html, body { overflow-x: clip; }
   .im-side { position: relative; top: 0; order: -1; }
   .card { width: min(80vw, 300px); }
   .c-in { inset: 14% 10% 16%; gap: 4px; } .c-inc { display: none; } .c-deco { width: 27%; }
-  .c-names { font-size: 34px; } .c-mood { font-size: 14.5px; } .c-pre { font-size: 13px; } .c-eye { font-size: 9.5px; } .c-date { font-size: 9.5px; } .c-inc, .c-city { font-size: 11px; }
+  .c-names { font-size: 30px; } .c-mood { font-size: 14.5px; } .c-pre { font-size: 13px; } .c-eye { font-size: 9.5px; } .c-date { font-size: 9.5px; } .c-inc, .c-city { font-size: 11px; }
   .c-seal { width: 56px; } .c-cap { display: none; }
 }
 @media (max-width: 560px) {
@@ -1036,9 +1072,14 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
           <fieldset class="im-step" data-k="detalles"><legend tabindex="-1" data-en-html="The <em>details</em>">Los <em>detalles</em></legend><p class="im-hint" data-en="Whatever you know so far. Everything can change later.">Lo que ya sepas. Todo se puede cambiar después.</p>
             <div class="fields">
               <label class="full"><span data-en="Who is celebrating">Quién celebra</span><input id="im-nombres" name="nombres" autocomplete="off" maxlength="60" placeholder="Ana Sofía &amp; Emiliano" data-en-ph="Ana Sofía &amp; Emiliano"></label>
-              <label><span data-en="Date">Fecha</span><input id="im-fecha" name="fecha" type="date"></label>
+              <div class="dp-w"><span class="dp-lab" id="dp-lab" data-en="Date">Fecha</span><input type="hidden" id="im-fecha" name="fecha">
+                <button type="button" class="dp-btn" id="dp-btn" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="dp-lab dp-txt"><span id="dp-txt"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="4"/><path d="M8 3v4M16 3v4M3.5 10h17"/><circle cx="12" cy="15" r="1.3" fill="currentColor" stroke="none"/></svg></button>
+                <div class="dp" id="dp" role="dialog" aria-modal="false" hidden></div></div>
               <label><span data-en="City">Ciudad</span><input id="im-ciudad" name="ciudad" autocomplete="address-level2" maxlength="50" placeholder="Guadalajara" data-en-ph="Vancouver"></label>
               <label class="full"><span data-en="Tell us your dream">Cuéntanos tu sueño</span><textarea id="im-sueno" name="sueno" maxlength="600" placeholder="Una cena al aire libre con luces colgantes, flores blancas y un vals al atardecer…" data-en-ph="An outdoor dinner with string lights, white flowers and a sunset first dance…"></textarea></label>
+            <p class="im-xh full" data-en="WHO WRITES THE MESSAGE FOR YOUR GUESTS?">¿QUIÉN ESCRIBE EL MENSAJE PARA TUS INVITADOS?</p>
+              <div class="full"><div class="opts msg" data-opts="mensaje"></div><p class="msg-tip" id="im-msg-tip" hidden></p></div>
+              <label class="full" id="im-texto-w" hidden><span id="im-texto-l"></span><textarea id="im-texto" name="texto" maxlength="800"></textarea></label>
             <p class="im-xh full" data-en="HOW DO WE REACH YOU?">¿CÓMO TE CONTACTAMOS?</p>
               <label class="full"><span data-en="Your name">Tu nombre</span><input id="im-contacto" name="contacto" autocomplete="name" maxlength="60" placeholder="Ana Sofía López" data-en-ph="Ana Sofía López"></label>
               <label><span data-en="Email (for updates)">Correo (para avisarte)</span><input id="im-correo" name="correo" type="email" autocomplete="email" maxlength="120" placeholder="tu@correo.com" data-en-ph="you@email.com"></label>
@@ -1076,6 +1117,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             <img class="c-seal" id="c-seal" src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139">
           </div>
           <p class="c-cap" data-en="Your idea, taking shape">Tu idea, tomando forma</p>
+          <p class="c-note" data-en="This is only a preview of your ideas, not your final invitation. We design that one by hand, just for you.">Esto es solo una vista previa de tus ideas, no tu invitación final. Esa la diseñamos a mano, solo para ti.</p>
         </div>
       </div>
     </div>
@@ -1336,6 +1378,11 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         { v: 'empresa', slug: 'empresas', ic: 'empresa', es: ['Evento de empresa', 'Tenemos el honor de invitarle', 'Su empresa aquí'], en: ['Corporate event', 'You are cordially invited', 'Your company here'] },
         { v: 'otra', slug: 'otras', ic: 'otra', es: ['Otra celebración', 'Te invitamos a celebrar', 'Tu nombre aquí'], en: ['Something else', 'Join us to celebrate', 'Your name here'] }
       ],
+      mensaje: [
+        { v: 'yo', es: ['Yo lo escribo'], en: ["I'll write it"] },
+        { v: 'ustedes', es: ['Escríbanlo ustedes'], en: ['You write it'] },
+        { v: 'mezcla', es: ['Un poco de ambos'], en: ['A mix of both'] }
+      ],
       ambiente: [
         { v: 'romantico', img: 'rosa-marfil', img2: 'rosa-marfil', es: ['Romántico y clásico', 'Seda, velas y flores blancas', 'romántica y clásica'], en: ['Romantic & classic', 'Silk, candlelight and white flowers', 'romantic, classic'] },
         { v: 'jardin', img: 'hortensia-marfil', img2: 'rosa-marfil', es: ['Jardín en flor', 'Flores frescas y luz de día', 'como un jardín en flor'], en: ['Garden in bloom', 'Fresh flowers and daylight', 'garden-in-bloom'] },
@@ -1364,7 +1411,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       ]
     };
     var KEYS = ['evento', 'ambiente', 'color', 'incluir', 'detalles'];
-    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [], contacto: '', correo: '', whatsapp: '' };
+    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [], contacto: '', correo: '', whatsapp: '', mensaje: '', texto: '' };
     // unfinished answers are kept for 12 hours, then the form starts fresh
     try { var sv = JSON.parse(localStorage.getItem('ilu-imagina') || 'null'); if (sv && typeof sv === 'object' && Date.now() - (+sv.t || 0) < 432e5) { for (var k in st) if (k in sv) st[k] = sv[k]; } else localStorage.removeItem('ilu-imagina'); } catch (e) {}
     if (!Array.isArray(st.incluir)) st.incluir = [];
@@ -1373,7 +1420,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     function nFotos(t) { return fotos.filter(function (f) { return f.tipo === t; }).length; }
     st.step = Math.max(0, Math.min(4, +st.step || 0));
     function save() { try { localStorage.setItem('ilu-imagina', JSON.stringify(Object.assign({ t: Date.now() }, st))); } catch (e) {} showReset(); }
-    function showReset() { var b = document.getElementById('im-reset'); if (b) b.hidden = !(st.step || st.evento || st.ambiente || st.color || st.incluir.length || st.codigos.length || st.nombres || st.idea || st.extra || st.sueno); }
+    function showReset() { var b = document.getElementById('im-reset'); if (b) b.hidden = !(st.step || st.evento || st.ambiente || st.color || st.incluir.length || st.codigos.length || st.nombres || st.idea || st.extra || st.sueno || st.mensaje || st.texto); }
     function L() { return document.documentElement.lang === 'en' ? 'en' : 'es'; }
     function find(list, v) { for (var i = 0; i < list.length; i++) if (list[i].v === v) return list[i]; return null; }
     function e2(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -1393,7 +1440,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
           var t = o[l], on = multi ? st.incluir.indexOf(o.v) > -1 : st[k] === o.v;
           var inp = '<input type="' + (multi ? 'checkbox' : 'radio') + '" name="im-' + k + '" value="' + o.v + '"' + (on ? ' checked' : '') + '>';
           if (k === 'color') return '<label class="opt seal-o">' + inp + '<span><img src="img/' + o.seal + '.webp" alt="" width="300" height="300" loading="lazy"><b>' + e2(t[0]) + '</b></span></label>';
-          if (multi) return '<label class="opt chip">' + inp + '<span><b>' + e2(t[0]) + '</b></span></label>';
+          if (multi || k === 'mensaje') return '<label class="opt chip">' + inp + '<span><b>' + e2(t[0]) + '</b></span></label>';
           var th = o.img ? '<span class="th"><img src="img/' + o.img + '.webp" alt="" loading="lazy"></span>' : '<span class="th">' + svg(o.ic) + '</span>';
           if (k === 'ambiente') return '<label class="opt mood">' + inp + '<span>' + th + '<span><b>' + e2(t[0]) + '</b><small>' + e2(t[1]) + '</small></span><i class="tick"></i></span></label>';
           return '<label class="opt">' + inp + '<span>' + th + '<b>' + e2(t[0]) + '</b><i class="tick"></i></span></label>';
@@ -1401,7 +1448,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       });
       form.querySelectorAll('[data-en-ph]').forEach(function (el) { if (!el.dataset.esPh) el.dataset.esPh = el.placeholder; el.placeholder = l === 'en' ? el.dataset.enPh : el.dataset.esPh; });
     }
-    function filled(i) { var k = KEYS[i]; if (k === 'detalles') return !!(st.nombres || st.fecha || st.ciudad || st.sueno); if (k === 'ambiente') return !!(st.ambiente || st.idea || nFotos('inv')); if (k === 'color') return !!(st.color || st.codigos.length || nFotos('insp')); if (k === 'incluir') return !!(st.incluir.length || st.extra); return !!st[k]; }
+    function filled(i) { var k = KEYS[i]; if (k === 'detalles') return !!(st.nombres || st.fecha || st.ciudad || st.sueno || st.mensaje); if (k === 'ambiente') return !!(st.ambiente || st.idea || nFotos('inv')); if (k === 'color') return !!(st.color || st.codigos.length || nFotos('insp')); if (k === 'incluir') return !!(st.incluir.length || st.extra); return !!st[k]; }
     function renderNav() {
       var l = L(), n = NAMES[l];
       prog.innerHTML = KEYS.map(function (k, i) { return '<li class="' + (i === st.step ? 'now' : filled(i) ? 'done' : '') + '"><button type="button" data-step="' + i + '" aria-label="' + (l === 'en' ? 'Step ' : 'Paso ') + (i + 1) + ': ' + n[i] + '"' + (i === st.step ? ' aria-current="step"' : '') + '><i></i></button></li>'; }).join('');
@@ -1413,6 +1460,11 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       var ev = find(Q.evento, st.evento);
       more.hidden = !(last && ev);
       if (ev) { colA.href = 'coleccion/' + ev.slug + '/'; colA.textContent = (l === 'en' ? 'SEE THE ' : 'VER LA COLECCIÓN ') + ev[l][0].toUpperCase() + (l === 'en' ? ' COLLECTION →' : ' →'); }
+    }
+    // names typed in ALL CAPS read better in title case ("BIANCA AND KEITH" -> "Bianca and Keith")
+    function niceName(v) {
+      v = String(v || '').trim(); if (!v || v !== v.toUpperCase() || !/\p{Lu}{2}/u.test(v)) return v;
+      return v.toLowerCase().replace(/(^|[\s\-'’])(\p{L})/gu, function (m, a, b) { return a + b.toUpperCase(); }).replace(/(^|\s)(Y|And|E)(?=\s)/g, function (m, a, w) { return a + w.toLowerCase(); });
     }
     function fmtDate(v) {
       var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); if (!m) return '';
@@ -1429,7 +1481,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       var l = L(), ev = find(Q.evento, st.evento), mo = find(Q.ambiente, st.ambiente), co = find(Q.color, st.color) || Q.color[2];
       $('c-eye').textContent = ev ? ev[l][0].toUpperCase() : (l === 'en' ? 'YOUR CELEBRATION' : 'TU CELEBRACIÓN');
       $('c-pre').textContent = ev ? ev[l][1] : (l === 'en' ? 'Join us to celebrate' : 'Te invitamos a celebrar');
-      var nm = $('c-names'); nm.textContent = st.nombres || (ev ? ev[l][2] : (l === 'en' ? 'Your name here' : 'Tu nombre aquí')); nm.classList.toggle('empty', !st.nombres);
+      var nm = $('c-names'); nm.textContent = niceName(st.nombres) || (ev ? ev[l][2] : (l === 'en' ? 'Your name here' : 'Tu nombre aquí')); nm.classList.toggle('empty', !st.nombres);
       $('c-mood').textContent = moodLine();
       $('c-date').textContent = fmtDate(st.fecha);
       $('c-city').textContent = st.ciudad;
@@ -1453,6 +1505,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       if (fotos.length) out.push(en ? '• I have ' + fotos.length + ' photo' + (fotos.length > 1 ? 's' : '') + ' (attached)' : '• Tengo ' + fotos.length + ' foto' + (fotos.length > 1 ? 's' : '') + ' (las adjunto)');
       if (st.incluir.length) out.push((en ? '• Must have: ' : '• Quiero incluir: ') + st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : ''; }).filter(Boolean).join(', '));
       if (st.extra) out.push((en ? '• Also: ' : '• Algo más: ') + st.extra);
+      var ms = find(Q.mensaje, st.mensaje);
+      if (ms) out.push((en ? '• Message for guests: ' : '• Mensaje para invitados: ') + ms[l][0] + (st.texto ? ' — "' + st.texto + '"' : ''));
       if (st.contacto) out.push((en ? '• My name: ' : '• Mi nombre: ') + st.contacto);
       if (st.nombres) out.push((en ? '• Celebrating: ' : '• Quién celebra: ') + st.nombres);
       if (st.fecha) out.push((en ? '• Date: ' : '• Fecha: ') + fmtDate(st.fecha));
@@ -1478,14 +1532,101 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       save(); renderCard(); renderNav();
       if (k === 'evento' && Date.now() - tapAt < 900) { clearTimeout(timer); var at = st.step; timer = setTimeout(function () { if (st.step === at) go(at + 1, true); }, 650); }
     });
-    form.addEventListener('input', function (e) { var t = e.target; if (/^(nombres|fecha|ciudad|sueno|idea|extra|contacto|correo|whatsapp)$/.test(t.name)) { st[t.name] = t.value; save(); renderCard(); } });
+    form.addEventListener('input', function (e) { var t = e.target; if (/^(nombres|fecha|ciudad|sueno|idea|extra|contacto|correo|whatsapp|texto)$/.test(t.name)) { st[t.name] = t.value; save(); renderCard(); } });
     form.addEventListener('submit', function (e) { e.preventDefault(); });
     next.addEventListener('click', function () { go(st.step + 1, true); });
     back.addEventListener('click', function () { go(st.step - 1, true); });
+    var MSG = {
+      yo: { es: ['Lo usamos tal como lo escribas.', 'Tu mensaje para tus invitados', 'Ej. Con la bendición de Dios y de nuestros padres, tenemos el honor de invitarte a celebrar con nosotros…'],
+            en: ["We'll use it just as you write it.", 'Your message for your guests', 'E.g. Together with our families, we would be honored to have you celebrate with us…'] },
+      ustedes: { es: ['Nosotros lo escribimos y te enviamos una propuesta para que la apruebes.', '¿Algo que te gustaría que dijera? (opcional)', 'Ej. cálido y breve, agradecer a nuestros papás, una frase que nos encanta…'],
+                 en: ["We'll write it and send you a draft to approve.", 'Anything you would like it to say? (optional)', 'E.g. warm and short, thank our parents, a quote we love…'] },
+      mezcla: { es: ['Con tus palabras armamos el mensaje y te lo enviamos para que lo apruebes.', 'Las palabras o ideas que quieres incluir', 'Ej. queremos decir que han sido parte de nuestra historia y que no sería lo mismo sin ellos…'],
+                en: ["We'll shape your words into the message and send it to you to approve.", 'The words or ideas you want to include', "E.g. we want to say they've been part of our story and it wouldn't be the same without them…"] }
+    };
+    function renderMsg() {
+      var m = MSG[st.mensaje], l = L(), tip = $('im-msg-tip'), w = $('im-texto-w');
+      tip.hidden = w.hidden = !m; if (!m) return;
+      tip.textContent = m[l][0]; $('im-texto-l').textContent = m[l][1]; $('im-texto').placeholder = m[l][2];
+    }
+    form.addEventListener('change', function (e) { if (e.target.name === 'im-mensaje') renderMsg(); });
+    $('es').addEventListener('click', function () { setTimeout(renderMsg); }); $('en').addEventListener('click', function () { setTimeout(renderMsg); });
+    renderMsg();
+    /* date picker */
+    (function () {
+      var hid = $('im-fecha'), btn = $('dp-btn'), txt = $('dp-txt'), box = $('dp'), view = 'days', cur;
+      var CH = function (d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + (d < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7') + '"/></svg>'; };
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      function pad(n) { return (n < 10 ? '0' : '') + n; }
+      function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+      function parse(v) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null; }
+      function loc() { return L() === 'en' ? 'en-CA' : 'es-MX'; }
+      function monthName(m, y) { return new Date(y, m, 1).toLocaleDateString(loc(), { month: 'long' }); }
+      function label() {
+        var d = parse(st.fecha), en = L() === 'en';
+        txt.className = d ? '' : 'ph';
+        txt.textContent = d ? d.toLocaleDateString(loc(), { day: 'numeric', month: 'short', year: 'numeric' }).replace('.', '') : (en ? 'Choose the date' : 'Elige la fecha');
+      }
+      function draw() {
+        var en = L() === 'en', y = cur.getFullYear(), m = cur.getMonth(), sel = parse(st.fecha);
+        var prevOff = view === 'days' ? (y < today.getFullYear() || (y === today.getFullYear() && m <= today.getMonth())) : y <= today.getFullYear();
+        var head = '<div class="dp-h"><button type="button" class="dp-nav" data-go="-1" aria-label="' + (en ? 'Previous' : 'Anterior') + '"' + (prevOff ? ' disabled' : '') + '>' + CH(-1) + '</button>' +
+          '<button type="button" class="dp-t" data-view aria-label="' + (en ? 'Choose month and year' : 'Elegir mes y año') + '">' + (view === 'days' ? e2(monthName(m, y)) + ' <em>' + y + '</em>' : '<em>' + y + '</em>') + '</button>' +
+          '<button type="button" class="dp-nav" data-go="1" aria-label="' + (en ? 'Next' : 'Siguiente') + '">' + CH(1) + '</button></div>';
+        var body;
+        if (view === 'days') {
+          var first = new Date(y, m, 1), start = (first.getDay() + 6) % 7, days = new Date(y, m + 1, 0).getDate(), wd = '';
+          for (var i = 0; i < 7; i++) wd += '<span>' + new Date(2024, 0, 1 + i).toLocaleDateString(loc(), { weekday: 'narrow' }) + '</span>';
+          var g = ''; for (i = 0; i < start; i++) g += '<span></span>';
+          for (var dd = 1; dd <= days; dd++) {
+            var d = new Date(y, m, dd), c = 'dp-d' + (+d === +today ? ' today' : '') + (sel && +d === +sel ? ' on' : '');
+            g += '<button type="button" class="' + c + '" data-d="' + iso(d) + '"' + (d < today ? ' disabled' : '') + (sel && +d === +sel ? ' aria-pressed="true"' : '') + ' aria-label="' + e2(d.toLocaleDateString(loc(), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })) + '">' + dd + '</button>';
+          }
+          body = '<div class="dp-wd" aria-hidden="true">' + wd + '</div><div class="dp-g">' + g + '</div>';
+        } else {
+          body = '<div class="dp-ms">' + [0,1,2,3,4,5,6,7,8,9,10,11].map(function (k) {
+            var off = y < today.getFullYear() || (y === today.getFullYear() && k < today.getMonth());
+            return '<button type="button" class="dp-m' + (k === m ? ' on' : '') + '" data-m="' + k + '"' + (off ? ' disabled' : '') + '>' + e2(new Date(y, k, 1).toLocaleDateString(loc(), { month: 'short' }).replace('.', '')) + '</button>';
+          }).join('') + '</div>';
+        }
+        box.setAttribute('aria-label', en ? 'Choose the date' : 'Elige la fecha');
+        box.innerHTML = head + body + '<div class="dp-f"><button type="button" data-clear>' + (en ? 'No date yet' : 'Aún no tenemos fecha') + '</button><button type="button" class="dp-ok" data-close>' + (en ? 'Close' : 'Cerrar') + '</button></div>';
+      }
+      function open() {
+        cur = parse(st.fecha) || new Date(today.getFullYear(), today.getMonth(), 1); cur.setDate(1); view = 'days';
+        draw(); box.hidden = false; btn.setAttribute('aria-expanded', 'true');
+        var f = box.querySelector('.dp-d.on') || box.querySelector('.dp-d.today') || box.querySelector('.dp-d:not(:disabled)'); if (f) f.focus({ preventScroll: true });
+        var r = box.getBoundingClientRect(); if (r.bottom > innerHeight - 10) scrollBy({ top: r.bottom - innerHeight + 24, behavior: reduce ? 'auto' : 'smooth' });
+      }
+      function close(back) { if (box.hidden) return; box.hidden = true; btn.setAttribute('aria-expanded', 'false'); if (back) btn.focus(); }
+      function pick(v) { st.fecha = v; hid.value = v; save(); renderCard(); renderNav(); label(); }
+      btn.addEventListener('click', function () { box.hidden ? open() : close(); });
+      box.addEventListener('click', function (e) {
+        var t = e.target.closest('button'); if (!t || t.disabled) return;
+        if (t.hasAttribute('data-go')) { var k = +t.getAttribute('data-go'); if (view === 'days') cur.setMonth(cur.getMonth() + k); else cur.setFullYear(cur.getFullYear() + k); draw(); var nb = box.querySelector('[data-go="' + k + '"]'); if (nb && !nb.disabled) nb.focus(); }
+        else if (t.hasAttribute('data-view')) { view = view === 'days' ? 'months' : 'days'; draw(); box.querySelector('[data-view]').focus(); }
+        else if (t.hasAttribute('data-m')) { cur.setMonth(+t.getAttribute('data-m')); view = 'days'; draw(); var f = box.querySelector('.dp-d:not(:disabled)'); if (f) f.focus(); }
+        else if (t.hasAttribute('data-d')) { pick(t.getAttribute('data-d')); close(true); }
+        else if (t.hasAttribute('data-clear')) { pick(''); close(true); }
+        else if (t.hasAttribute('data-close')) close(true);
+      });
+      box.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { e.preventDefault(); close(true); return; }
+        var t = e.target; if (!t.classList.contains('dp-d')) return;
+        var step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[e.key]; if (!step) return;
+        e.preventDefault(); var d = parse(t.getAttribute('data-d')); d.setDate(d.getDate() + step); if (d < today) return;
+        if (d.getMonth() !== cur.getMonth()) { cur = new Date(d.getFullYear(), d.getMonth(), 1); draw(); }
+        var n = box.querySelector('[data-d="' + iso(d) + '"]'); if (n) n.focus();
+      });
+      document.addEventListener('pointerdown', function (e) { if (!box.hidden && !e.target.closest('.dp-w')) close(); });
+      $('es').addEventListener('click', function () { setTimeout(function () { label(); if (!box.hidden) draw(); }); });
+      $('en').addEventListener('click', function () { setTimeout(function () { label(); if (!box.hidden) draw(); }); });
+      label();
+    })();
     $('im-reset').addEventListener('click', function () { try { localStorage.removeItem('ilu-imagina'); } catch (x) {} location.hash = 'imagina'; location.reload(); });
     showReset();
     prog.addEventListener('click', function (e) { var b = e.target.closest('button[data-step]'); if (b) go(+b.getAttribute('data-step'), true); });
-    ['nombres', 'fecha', 'ciudad', 'sueno', 'idea', 'extra', 'contacto', 'correo', 'whatsapp'].forEach(function (k) { var el = $('im-' + k); if (el) el.value = st[k] || ''; });
+    ['nombres', 'fecha', 'ciudad', 'sueno', 'idea', 'extra', 'contacto', 'correo', 'whatsapp', 'texto'].forEach(function (k) { var el = $('im-' + k); if (el) el.value = st[k] || ''; });
     /* colors: exact codes and inspiration photos */
     var cpick = $('im-cpick'), ccode = $('im-ccode'), clist = $('im-clist'), fin = $('im-fotos'), th = $('im-th'), fin2 = $('im-fotos2'), th2 = $('im-th2');
     var HEX = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i;
@@ -1534,7 +1675,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       var l = L(), ev = find(Q.evento, st.evento), mo = find(Q.ambiente, st.ambiente), co = find(Q.color, st.color);
       return { idioma: l, evento: ev ? ev[l][0] : '', ambiente: mo ? mo[l][0] : '', idea: st.idea, color: co ? co[l][0] : '', codigos: st.codigos,
         incluir: st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : v; }), extra: st.extra, quien_celebra: st.nombres,
-        fecha_evento: st.fecha, ciudad: st.ciudad, sueno: st.sueno, contacto: st.contacto, correo: st.correo, whatsapp: st.whatsapp,
+        fecha_evento: st.fecha, ciudad: st.ciudad, sueno: st.sueno, mensaje: (find(Q.mensaje, st.mensaje) || { es: [''], en: [''] })[l][0], mensaje_texto: st.texto, contacto: st.contacto, correo: st.correo, whatsapp: st.whatsapp,
         web: ($('im-web') || {}).value || '', fotos: list.filter(Boolean) };
     }
     var err = $('im-err');
