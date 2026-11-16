@@ -49,22 +49,34 @@ DEMO_NAV = """
 </script>
 """
 DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas')}
+# pages with their own link preview (shown when the link is shared on WhatsApp, iMessage, Instagram...)
+OG = {
+    'demos/boda-regina-emilio': ('Regina & Emilio · Nos casamos ✨', 'Sábado 17 de abril de 2027 · San Miguel de Allende. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello-corona.webp', '#F3ECE2'),
+}
 for src, out, title, desc in PAGES:
     sub = (out + '/') if out else ''
     body = open(os.path.join(HERE, src), encoding='utf-8').read()
+    og = OG.get(out)
+    og_title, og_desc = (og[0], og[1]) if og else (title, desc)
+    og_img = f"{BASE}/{sub}{og[2]}" if og else f"{BASE}/{sub}img/ilusion-logo.jpg"
+    og_extra = (f'\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="{og_title}">\n<meta name="twitter:card" content="summary_large_image">') if og else ''
+    icon = og[3] if og else 'img/ilusion-logo.jpg'
+    apple = f'\n<link rel="apple-touch-icon" href="{og[3]}">' if og else ''
+    theme = og[4] if og else '#1E0916'
+    if og: title = og_title
     head = f'''<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="{desc}">
-<meta property="og:title" content="{title}">
-<meta property="og:description" content="{desc}">
-<meta property="og:image" content="{BASE}/{sub}img/ilusion-logo.jpg">
+<meta property="og:title" content="{og_title}">
+<meta property="og:description" content="{og_desc}">
+<meta property="og:image" content="{og_img}">{og_extra}
 <meta property="og:url" content="{BASE}/{(out + '/') if out else ''}">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#1E0916">
-<link rel="icon" href="img/ilusion-logo.jpg">
+<meta name="theme-color" content="{theme}">
+<link rel="icon" href="{icon}">{apple}
 <style>body{{margin:0}} img{{max-width:100%}} [hidden]{{display:none!important}}</style>
 </head>
 <body>
