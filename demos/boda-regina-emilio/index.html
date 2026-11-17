@@ -375,15 +375,19 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
 .btn-gold { background: linear-gradient(180deg, #D9BF8C 0%, #B08B52 60%, #8E6C3A 100%); color: #FFFDF8; border: 0; box-shadow: inset 0 1px 0 rgba(255,245,220,.6), 0 8px 18px rgba(90,65,30,.25); }
 .btn-line { border: 1px solid rgba(169,132,76,.6); color: var(--ink); background: rgba(255,255,255,.5); backdrop-filter: blur(4px); }
 .row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
-.timeline { list-style: none; margin: 6px 0 0; padding: 0; width: 100%; max-width: 360px; display: flex; flex-direction: column; }
-.timeline li { display: grid; grid-template-columns: 92px 18px 1fr; align-items: center; text-align: left; min-height: 54px; }
-.timeline time { font-family: var(--f-caps); font-size: 14px; letter-spacing: .06em; color: var(--gold-deep); text-align: right; padding-right: 14px; font-variant-numeric: tabular-nums; }
+/* schedule: a shimmering gold line down the exact centre, a small crystal at each moment */
+.timeline { list-style: none; margin: 10px auto 0; padding: 0; width: 100%; max-width: 440px; display: flex; flex-direction: column; }
+.timeline li { display: grid; grid-template-columns: 1fr 34px 1fr; align-items: center; min-height: 62px; }
+.timeline time { font-family: var(--f-caps); font-size: 14px; letter-spacing: .08em; color: var(--gold-deep); text-align: right; padding-right: 16px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .timeline .dot { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
-.timeline .dot::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: rgba(169,132,76,.5); }
+.timeline .dot::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: linear-gradient(180deg, #B08A4C, #F0D9A4 25%, #B08A4C 50%, #E8CC8E 75%, #B08A4C); background-size: 100% 240px; animation: gline 6s linear infinite; box-shadow: 0 0 6px rgba(232,200,140,.6); }
+@keyframes gline { from { background-position: 0 0; } to { background-position: 0 240px; } }
 .timeline li:first-child .dot::before { top: 50%; }
 .timeline li:last-child .dot::before { bottom: 50%; }
-.timeline .dot::after { content: ""; position: relative; width: 11px; height: 11px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #EDE3D6 60%, #CDBBA2); box-shadow: 0 1px 3px rgba(90,70,45,.4); }
-.timeline span { padding-left: 14px; font-size: 21px; color: var(--ink); }
+.timeline .dot::after { content: ""; position: relative; z-index: 1; width: 20px; height: 20px; background: url("img/cristal-1.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,236,190,.95)) drop-shadow(0 2px 2px rgba(90,70,45,.35)); animation: twinkle 3.6s ease-in-out infinite; }
+.timeline li:nth-child(2) .dot::after { animation-delay: .7s; } .timeline li:nth-child(3) .dot::after { animation-delay: 1.4s; } .timeline li:nth-child(4) .dot::after { animation-delay: 2.1s; } .timeline li:nth-child(5) .dot::after { animation-delay: 2.8s; }
+.timeline span { padding-left: 16px; font-size: 21px; color: var(--ink); text-align: left; }
+@media (max-width: 640px) { .timeline span { font-size: 19px; } .timeline time { font-size: 13px; } }
 /* only a few things sit on crystal cards, to highlight them */
 .cristal { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px clamp(22px, 6vw, 44px) 28px; border-radius: 22px; text-shadow: none;
   background: linear-gradient(150deg, rgba(255,255,255,.62), rgba(255,255,255,.26) 48%, rgba(255,255,255,.44)); -webkit-backdrop-filter: blur(8px) saturate(1.2); backdrop-filter: blur(8px) saturate(1.2);
@@ -425,6 +429,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
   .part { padding-top: 104px; }
   .m { --w: 24vw !important; --x: -8vw !important; --mw: 120px !important; top: 6px !important; transform: none !important; }
   .m ~ .m { display: none; }
+  .m.whole { --x: 10px !important; --w: 18vw !important; }
   /* arch card: flowers below the card corners, not over the text */
   .f-front { display: none; }
   .f-br { right: -20%; bottom: -24%; width: 32%; }
@@ -603,7 +608,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
     <img class="divider" src="img/divisor.webp" alt="">
 
     <section class="part">
-      <div class="m l small" data-speed=".12" style="--w:15vw;--top:22%;--x:2vw"><img src="img/velas.webp" alt=""></div>
+      <div class="m l small whole" data-speed=".12" style="--w:13vw;--top:18%;--x:3vw"><img src="img/velas.webp" alt=""></div>
       <div class="m r small" data-speed=".09" style="--w:18vw;--top:52%;--rot:-14deg;--x:-2vw"><img src="img/hortensia.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
