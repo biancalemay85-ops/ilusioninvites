@@ -253,6 +253,16 @@ html.locked .hero, html.locked .details { visibility: hidden; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* countdown: soft rounded glass, no square lines; always one line, with a small ornament below */
+.count { flex-wrap: nowrap !important; gap: clamp(6px, 2vw, 12px) !important; position: relative; padding-bottom: 26px; }
+.count div { width: clamp(64px, 18vw, 86px) !important; padding: 14px 0 12px !important; border: 0 !important; outline: 0 !important; border-radius: 20px !important;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,236,200,.18), rgba(255,236,200,0) 70%), linear-gradient(180deg, rgba(255,236,200,.16), rgba(40,6,16,.35)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,236,200,.35), inset 0 0 0 1px rgba(246,215,140,.35), 0 12px 24px -16px rgba(0,0,0,.6) !important;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.count strong { font-size: clamp(26px, 7vw, 34px) !important; }
+.count::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 150px; height: 10px; transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(246,215,140,.8) 0 3px, transparent 3.5px) center / 10px 10px no-repeat, linear-gradient(90deg, transparent, rgba(246,215,140,.8) 40%, transparent 46%, transparent 54%, rgba(246,215,140,.8) 60%, transparent) center / 100% 1px no-repeat; }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">

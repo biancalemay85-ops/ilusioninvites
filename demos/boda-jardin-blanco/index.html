@@ -14,6 +14,7 @@
 <style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head>
 <body>
+<meta charset="utf-8">
 <title>Ana Sofía &amp; Emiliano</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&display=swap">
@@ -75,7 +76,7 @@ html.locked .world { visibility: hidden; }
 .float { position: relative; animation: float 7s ease-in-out infinite; }
 @keyframes float { 0%,100% { transform: translateY(0) rotate(-.4deg); } 50% { transform: translateY(-8px) rotate(.3deg); } }
 .envelope { position: relative; width: min(86vw, 500px, 74svh); aspect-ratio: 1.45; container-type: inline-size; perspective: 1300px; cursor: pointer; -webkit-tap-highlight-color: transparent;
-  --paper-env: url("img/papel-sobre.jpg"); }
+  --paper-env: url("img/papel-lino-tile.webp"); }
 .env-shadow { position: absolute; left: 3%; right: 3%; bottom: -7%; height: 16%; z-index: 0; background: radial-gradient(ellipse at center, rgba(80,60,38,.45), transparent 70%); filter: blur(10px); }
 .env-back { position: absolute; inset: 0; z-index: 1; border-radius: 3px; background: url("img/encaje-forro.jpg") center / 70% auto, #EFE7DA; box-shadow: 0 0 0 1px rgba(120,95,60,.18); }
 .env-back::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(90,70,45,.22), rgba(255,250,240,.1) 60%); }
@@ -181,7 +182,7 @@ html.locked .world { visibility: hidden; }
 .details { display: flex; flex-direction: column; align-items: center; gap: clamp(46px, 9vw, 80px); padding-block: 30px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .sheet { position: relative; width: 100%; max-width: 600px; padding: 54px clamp(24px, 7vw, 58px) 50px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .sheet .paper { position: absolute; inset: 0; z-index: 0; background: url("img/papel-tarjeta.jpg") center / cover, var(--ivory); filter: url(#deckle); box-shadow: var(--shadow-soft); }
-.sheet.fiber .paper { background: url("img/papel-fibras.jpg") center / cover, var(--paper); }
+.sheet.fiber .paper { background: linear-gradient(rgba(251,246,238,.62), rgba(251,246,238,.62)), radial-gradient(ellipse at 30% 20%, rgba(255,252,246,.3), rgba(160,130,95,.1)), #EFE5D7 url("img/terciopelo-crema.webp") center / 70% auto; filter: none; border-radius: 6px; box-shadow: inset 0 0 0 1px rgba(201,160,99,.45), inset 0 0 0 6px rgba(255,255,255,.12), var(--shadow-soft); }
 .sheet .paper::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.4), rgba(160,135,100,.08)); }
 .sheet > :not(.paper):not(.peek) { position: relative; z-index: 2; }
 .sheet .peek { position: absolute; z-index: 3; pointer-events: none; filter: drop-shadow(5px 12px 10px rgba(70,50,30,.28)); }
@@ -242,6 +243,16 @@ html.locked .world { visibility: hidden; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* countdown: soft rounded glass, no square lines; always one line, with a small ornament below */
+.count { flex-wrap: nowrap !important; gap: clamp(6px, 2vw, 12px) !important; position: relative; padding-bottom: 26px; }
+.count div { width: clamp(64px, 18vw, 86px) !important; padding: 14px 0 12px !important; border: 0 !important; outline: 0 !important; border-radius: 20px !important;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.75), rgba(255,255,255,0) 70%), linear-gradient(180deg, rgba(255,252,246,.7), rgba(246,238,226,.55)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8), inset 0 0 0 1px rgba(169,132,76,.28), 0 12px 24px -16px rgba(90,64,30,.5) !important;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.count strong { font-size: clamp(26px, 7vw, 34px) !important; }
+.count::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 150px; height: 10px; transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(169,132,76,.8) 0 3px, transparent 3.5px) center / 10px 10px no-repeat, linear-gradient(90deg, transparent, rgba(169,132,76,.8) 40%, transparent 46%, transparent 54%, rgba(169,132,76,.8) 60%, transparent) center / 100% 1px no-repeat; }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -331,7 +342,7 @@ html.locked .world { visibility: hidden; }
         </div>
       </div>
       <div class="layer l-lace" data-depth="0.12"><img class="in" src="img/encaje-perlas.png" alt="" style="transition-delay:.7s"></div>
-      <div class="layer l-flower f-bl" data-depth="0.22"><img class="in" src="img/rosa-gris.png" alt="" style="transition-delay:.9s; transform-origin: 50% 100%"></div>
+      <div class="layer l-flower f-bl" data-depth="0.22"><img class="in" src="img/hortensia.webp" alt="" style="transition-delay:.9s"></div>
       <div class="layer l-flower f-br" data-depth="0.35"><img class="in" src="img/rosa-jardin.png" alt="" style="transition-delay:.35s"></div>
       <div class="layer l-flower f-tl" data-depth="0.6"><img class="in" src="img/rosa-cerca.png" alt="" style="transition-delay:.25s"></div>
     </div>
@@ -389,7 +400,7 @@ html.locked .world { visibility: hidden; }
 
     <section class="sheet fiber">
       <div class="paper"></div>
-      <img class="peek br" src="img/rosa-gris.png" alt="">
+      <img class="peek br" src="img/hortensia.webp" alt="">
       <h2 class="foil" data-en="Schedule">Itinerario</h2>
       <ol class="timeline">
         <li><time>6:00 pm</time><i class="dot"></i><span data-en="Ceremony">Ceremonia</span></li>
