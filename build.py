@@ -7,8 +7,7 @@ PAGES = [
     ('../demos/boda-isabella-julian/index.html', 'demos/boda-isabella-julian', 'Isabella & Julián · Ilusión Invites', 'Invitación de boda de ejemplo: terciopelo vino y oro.'),
     ('../demos/boda-camila-sebastian/index.html', 'demos/boda-camila-sebastian', 'Camila & Sebastián · Ilusión Invites', 'Invitación de boda de ejemplo: encaje.'),
     ('../demos/boda-regina-emilio/index.html', 'demos/boda-regina-emilio', 'Regina & Emilio · Ilusión Invites', 'Invitación de boda de ejemplo: pétalos blancos, encaje, sello de perla y cristal.'),
-    ('../website/index.html', '', 'Ilusión Invites · Invitaciones digitales de lujo',
-     'Invitaciones digitales que se abren como un sobre con sello: bodas, XV años, baby showers y cumpleaños. México y Canadá.'),
+    # the old homepage (website/index.html) is retired: ilusioninvites.com now sends visitors to the new site at /nuevo/
     # (source artifact file, output folder, title, description)
     ('../website/inicio-claro.html', 'nuevo', 'Ilusión Invites · Invitaciones digitales',
      'Invitaciones digitales de lujo para bodas, XV años, baby showers, cumpleaños, galas, posadas y Año Nuevo. México y Canadá.'),
@@ -119,3 +118,27 @@ for src, out, title, desc in PAGES:
 import subprocess, sys
 subprocess.run([sys.executable, os.path.join(HERE, 'experiencias.py')], check=True)
 subprocess.run([sys.executable, os.path.join(HERE, 'colecciones.py')], check=True)
+
+# ilusioninvites.com -> the new site (/nuevo/). Keeps a nice link preview for the bare domain.
+ROOT = f"""<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ilusión Invites · Invitaciones digitales de lujo</title>
+<meta name="description" content="Invitaciones digitales de lujo para bodas, XV años, baby showers, cumpleaños, galas, posadas y Año Nuevo. México y Canadá.">
+<meta property="og:title" content="Ilusión Invites · Invitaciones digitales de lujo">
+<meta property="og:description" content="Invitaciones digitales de lujo para bodas, XV años, baby showers, cumpleaños, galas, posadas y Año Nuevo. México y Canadá.">
+<meta property="og:image" content="{BASE}/nuevo/img/ilusion-logo.jpg">
+<meta property="og:url" content="{BASE}/nuevo/">
+<link rel="canonical" href="{BASE}/nuevo/">
+<link rel="icon" href="nuevo/img/ilusion-logo.jpg">
+<meta http-equiv="refresh" content="0; url=/nuevo/">
+<script>location.replace('/nuevo/' + location.search + location.hash);</script>
+<style>body{{margin:0;background:#FBF6EF;font-family:Georgia,serif;display:grid;place-items:center;min-height:100vh;color:#3A2A26}}a{{color:#B68A4E}}</style>
+</head>
+<body><p><a href="/nuevo/">Ilusión Invites ✨</a></p></body>
+</html>
+"""
+open(os.path.join(HERE, 'index.html'), 'w', encoding='utf-8').write(ROOT)
+print('built / -> /nuevo/')
