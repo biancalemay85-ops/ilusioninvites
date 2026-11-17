@@ -102,6 +102,13 @@ html.locked .world { visibility: hidden; }
 .flap-in { transform: rotateX(180deg); }
 .flap-in::before { content: ""; position: absolute; inset: 0; clip-path: polygon(0 100%, 100% 100%, 50% 0); background: url("img/encaje-forro.jpg") center / 70% auto, #EFE7DA; }
 
+/* real wax seal with a rose wreath; it lifts away softly (no crack) */
+.seal-img { position: absolute; inset: -8%; display: block; container-type: inline-size; }
+.seal-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.smono { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 500 15cqw/1 var(--f-caps); white-space: nowrap; color: rgba(150,122,88,.75); text-shadow: 0 -1px 0 rgba(255,255,255,.9), 0 1px 1px rgba(90,66,40,.45); }
+.smono i { font-style: normal; font-size: .55em; vertical-align: .3em; margin: 0 .06em; }
+.envelope .seal { transition: transform 1.4s cubic-bezier(.3,.1,.2,1), opacity 1.2s ease .2s, filter 1.4s ease; }
+.opening .seal { transform: translateY(-16%) scale(1.12) !important; opacity: 0; filter: drop-shadow(0 0 16px rgba(255,236,190,.95)) drop-shadow(0 0 34px rgba(255,226,170,.55)); }
 /* the real rose tucked under the seal */
 .tuck { position: absolute; z-index: 6; left: 49%; top: 34%; width: 44%; pointer-events: none; transform: rotate(-24deg); filter: drop-shadow(5px 10px 8px rgba(70,50,30,.35)); transition: transform 1.3s cubic-bezier(.5,0,.3,1), opacity 1s ease .2s; }
 .tuck img { display: block; width: 100%; height: auto; }
@@ -313,8 +320,7 @@ html.locked .world { visibility: hidden; }
       <div class="flap"><div class="flap-face flap-out"></div><div class="flap-face flap-in"></div></div>
       <div class="tuck" aria-hidden="true"><img src="img/rosa-jardin2.png" alt=""></div>
       <button class="seal" id="seal" type="button" aria-label="Romper el sello y abrir la invitación" data-en-label="Break the seal and open the invitation">
-        <span class="seal-half l"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#sealArt"></use></svg></span>
-        <span class="seal-half r"><svg viewBox="0 0 240 240" aria-hidden="true"><use href="#sealArt"></use></svg></span>
+        <span class="seal-img"><img src="img/sello-rosas.webp" alt=""><span class="smono" aria-hidden="true">A<i>&amp;</i>E</span></span>
       </button>
     </div>
   </div>
@@ -575,6 +581,32 @@ html.locked .world { visibility: hidden; }
   addEventListener('scroll', function () { if (!shown) return; var y = scrollY; if (y > last + 8) cta.classList.add('off'); else if (y < last - 8 || innerHeight + y >= document.documentElement.scrollHeight - 40) cta.classList.remove('off'); last = y; }, { passive: true });
 })();
 </script>
+
+<div id="ilu-freeze">
+<style>
+#ilu-pause{position:fixed;z-index:2147483001;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:42px;height:42px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;padding:0;color:#3A2A26;background:rgba(255,252,246,.82);box-shadow:inset 0 0 0 1px rgba(182,138,78,.45),0 8px 18px -8px rgba(40,25,20,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent}
+#ilu-pause svg{width:15px;height:15px}
+#ilu-pause .pl{display:none} html.ilu-frozen #ilu-pause .pa{display:none} html.ilu-frozen #ilu-pause .pl{display:block}
+html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-play-state:paused!important}
+</style>
+<button id="ilu-pause" type="button" aria-pressed="false" aria-label="Pausar animación"><svg class="pa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg><svg class="pl" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></button>
+<script>
+/* pause button: freezes every animation so a guest (or the designer) can stop at any moment */
+(function(){
+  var raf=window.requestAnimationFrame.bind(window), q=[], frozen=false, paused=[];
+  window.requestAnimationFrame=function(cb){ if(frozen){ q.push(cb); return 0; } return raf(cb); };
+  var b=document.getElementById('ilu-pause'), en=false; try{ en=localStorage.getItem('ilu-lang')==='en'||localStorage.getItem('ilusion-lang')==='en'; }catch(e){}
+  function label(){ b.setAttribute('aria-label', frozen ? (en?'Resume animation':'Continuar animación') : (en?'Pause animation':'Pausar animación')); b.setAttribute('aria-pressed', String(frozen)); }
+  b.addEventListener('click', function(e){
+    e.stopPropagation(); frozen=!frozen; document.documentElement.classList.toggle('ilu-frozen', frozen);
+    if(frozen){ paused=(document.getAnimations?document.getAnimations():[]).filter(function(a){ return a.playState==='running'; }); paused.forEach(function(a){ try{a.pause();}catch(x){} }); }
+    else { paused.forEach(function(a){ try{a.play();}catch(x){} }); paused=[]; var cbs=q; q=[]; cbs.forEach(function(cb){ raf(cb); }); }
+    label();
+  });
+  label();
+})();
+</script>
+</div>
 
 </body>
 </html>
