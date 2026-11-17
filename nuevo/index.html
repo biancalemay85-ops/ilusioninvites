@@ -1863,7 +1863,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 
   /* package prices: one place to change them. Spanish shows pesos, English shows Canadian dollars (or the visitor's choice) */
   (function () {
-    var PRICES = { MXN: [890, 1490, 2990, 5900], CAD: [69, 119, 229, 449] };
+    var PRICES = { MXN: [1990, 3490, 4990, 7490], CAD: [119, 249, 349, 549] };
     var chosen = null;
     function cur() { return chosen || (document.documentElement.lang === 'en' ? 'CAD' : 'MXN'); }
     function fmt(n) { return '$' + n.toLocaleString('en-US'); }

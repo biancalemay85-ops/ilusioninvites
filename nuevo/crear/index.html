@@ -406,7 +406,7 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
     { v: 'vestimenta', es: 'Código de vestimenta', en: 'Dress code' }, { v: 'itinerario', es: 'Itinerario del día', en: 'Schedule of the day' }
   ];
   var PAQ = [{ v: 'esencial', n: 'Esencial' }, { v: 'ilusion', n: 'Ilusión' }, { v: 'gala', n: 'Gala' }, { v: 'experiencia', n: 'Experiencia' }];
-  var PRICES = { MXN: [890, 1490, 2990, 5900], CAD: [69, 119, 229, 449] };
+  var PRICES = { MXN: [1990, 3490, 4990, 7490], CAD: [119, 249, 349, 549] };
   function curr() { return L() === 'en' ? 'CAD' : 'MXN'; }
   function priceOf(v) { var i = ['esencial', 'ilusion', 'gala', 'experiencia'].indexOf(v), c = curr(); return i < 0 ? '' : (i === 3 ? (L() === 'en' ? 'from ' : 'desde ') : '') + '$' + PRICES[c][i].toLocaleString('en-US') + ' ' + c; }
   var KEYS = ['diseno', 'datos', 'fotos', 'idea', 'enviar'];
