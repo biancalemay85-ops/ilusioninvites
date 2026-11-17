@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /pedido-xv/
+Sitemap: https://ilusioninvites.com/sitemap.xml
