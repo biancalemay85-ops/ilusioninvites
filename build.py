@@ -100,6 +100,7 @@ for src, out, title, desc in PAGES:
 <meta property="og:description" content="{og_desc}">
 <meta property="og:image" content="{og_img}">{og_extra}
 <meta property="og:url" content="{BASE}/{(out + '/') if out else ''}">
+<link rel="canonical" href="{BASE}/{(out + '/') if out else ''}">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="{theme}">
 <link rel="icon" href="{icon}">{apple}
