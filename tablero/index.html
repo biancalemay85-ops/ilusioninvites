@@ -58,6 +58,7 @@
   #toast { position: fixed; left: 50%; bottom: 20px; transform: translate(-50%, 30px); opacity: 0; transition: .3s; background: var(--plum); color: #F6EDE4; padding: 10px 18px; border-radius: 99px; z-index: 20; font-size: 14px; }
   #toast.on { opacity: 1; transform: translate(-50%, 0); }
   @media (max-width: 640px) { header { flex-wrap: wrap; } #q { order: 3; width: 100%; } .board { grid-auto-columns: 84vw; scroll-snap-type: x mandatory; } .col { scroll-snap-align: start; } dl { grid-template-columns: 100px 1fr; } }
+.refnote { margin: 0; font-size: 14px; color: #6F5A4E; background: #FBF3E4; border-radius: 8px; padding: 8px 10px; }
 </style>
 </head>
 <body>
@@ -94,7 +95,7 @@
       var cards = list.filter(function (o) { return (o.etapa || 'consulta') === s[0]; }).sort(function (a, b) { return String(b.recibido).localeCompare(String(a.recibido)); });
       return '<section class="col"><h2>' + esc(s[1]) + ' <b>' + cards.length + '</b></h2>' + (cards.length ? cards.map(function (o) {
         var when = o.fecha_evento ? 'Evento ' + esc(o.fecha_evento) : 'Recibido ' + esc(String(o.recibido).slice(0, 10));
-        return '<button class="card" data-id="' + esc(o.pedido) + '"><small>' + esc(o.pedido) + ' · ' + when + '</small><b>' + esc(o.quien_celebra || o.contacto) + '</b><span>' + esc(o.evento || '') + (o.ciudad ? ' · ' + esc(o.ciudad) : '') + '</span>' + (o.entrega_estimada ? '<br><span class="tag">Lista el ' + esc(o.entrega_estimada) + '</span>' : '') + (/whatsapp|ambos|both/i.test(o.aviso || '') ? '<br><span class="tag wa">Prefiere WhatsApp</span>' : '') + '</button>';
+        return '<button class="card" data-id="' + esc(o.pedido) + '"><small>' + esc(o.pedido) + ' · ' + when + '</small><b>' + esc(o.quien_celebra || o.contacto) + '</b><span>' + esc(o.evento || '') + (o.ciudad ? ' · ' + esc(o.ciudad) : '') + '</span>' + (o.entrega_estimada ? '<br><span class="tag">Lista el ' + esc(o.entrega_estimada) + '</span>' : '') + (/whatsapp|ambos|both/i.test(o.aviso || '') ? '<br><span class="tag wa">Prefiere WhatsApp</span>' : '') + (o.referido ? '<br><span class="tag">Recomendada por ' + esc(o.referido) + '</span>' : '') + '</button>';
       }).join('') : '<p class="empty">—</p>') + '</section>';
     }).join('');
   }
@@ -120,6 +121,10 @@
         '<label>Pagado<input id="e-pagado" type="number" min="0" step="1" value="' + esc(o.pagado) + '"></label>' +
         '<label>Lista para revisar el<input id="e-entrega_estimada" type="date" value="' + esc(o.entrega_estimada) + '"></label>' +
         '<label>Link de la invitación<input id="e-link" type="url" value="' + esc(o.link) + '" placeholder="https://"></label>' +
+        '<label>Moneda / país<select id="e-moneda"><option value="MXN"' + (o.moneda !== 'CAD' ? ' selected' : '') + '>MXN · México (cuenta de mamá)</option><option value="CAD"' + (o.moneda === 'CAD' ? ' selected' : '') + '>CAD · Canadá (e-Transfer)</option></select></label>' +
+        '<label>Recomendada por (código)<input id="e-referido" value="' + esc(o.referido) + '" placeholder="ej. ana"></label>' +
+        (o.referido ? '<p class="full refnote">' + (o.comision ? 'Comisión para <b>' + esc(o.referido) + '</b>: $' + esc(o.comision) + ' ' + esc(o.moneda) + (o.comision_pagada ? ' · pagada el ' + esc(o.comision_pagada) : ' · por pagar') : 'La comisión para <b>' + esc(o.referido) + '</b> aparece cuando el pedido esté pagado completo.') + '</p>' : '') +
+        (o.comision ? '<label>Comisión pagada el<input id="e-comision_pagada" type="date" value="' + esc(o.comision_pagada) + '"></label>' : '') +
         '<label class="full">Notas (solo tú las ves)<textarea id="e-notas">' + esc(o.notas) + '</textarea></label>' +
         '<label class="full mail"><input type="checkbox" id="e-enviar" checked> Al cambiar de etapa, enviar el correo de esa etapa al cliente</label>' +
       '</div></div>' +
@@ -148,7 +153,7 @@
   function close() { $('panel').classList.remove('on'); $('veil').classList.remove('on'); $('panel').setAttribute('aria-hidden', 'true'); cur = null; }
   function save() {
     var o = cur, ch = { pedido: o.pedido, enviar: $('e-enviar').checked };
-    ['etapa', 'precio', 'pagado', 'entrega_estimada', 'link', 'notas'].forEach(function (k) { ch[k] = $('e-' + k).value; });
+    ['etapa', 'precio', 'pagado', 'entrega_estimada', 'link', 'notas', 'moneda', 'referido', 'comision_pagada'].forEach(function (k) { if ($('e-' + k)) ch[k] = $('e-' + k).value; });
     var b = $('save'); b.disabled = true; b.textContent = 'Guardando…';
     if (ch.etapa !== (o.etapa || 'consulta') && waNum(o)) moved = o.pedido;
     api('save', { row: o._row, cambios: ch }).then(function (r) { toast(r.sent ? 'Guardado · correo enviado ✉️' : 'Guardado'); b.disabled = false; b.textContent = 'Guardar'; load(); })

@@ -1790,12 +1790,24 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         img.src = u;
       });
     }
+    // referral links (ilusioninvites.com/?ref=ana): remembered for 90 days, sent with the order
+    function refCode() {
+      var r = '';
+      try {
+        var q = new URLSearchParams(location.search).get('ref');
+        if (q) localStorage.setItem('ilu-ref', JSON.stringify({ c: q.slice(0, 30), t: Date.now() }));
+        var s = JSON.parse(localStorage.getItem('ilu-ref') || 'null');
+        if (s && Date.now() - s.t < 90 * 864e5) r = s.c;
+      } catch (e) {}
+      return r;
+    }
+    refCode();
     function payload(list) {
       var l = L(), ev = find(Q.evento, st.evento), mo = find(Q.ambiente, st.ambiente), co = find(Q.color, st.color);
       return { idioma: l, evento: ev ? ev[l][0] : '', ambiente: mo ? mo[l][0] : '', idea: st.idea, color: co ? co[l][0] : '', codigos: st.codigos,
         incluir: st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : v; }), extra: st.extra, quien_celebra: st.nombres,
         fecha_evento: st.fecha, ciudad: st.ciudad, sueno: st.sueno, mensaje: (find(Q.mensaje, st.mensaje) || { es: [''], en: [''] })[l][0], mensaje_texto: st.texto, paquete: (find(Q.paquete, st.paquete) || { es: [''], en: [''] })[l][0], aviso: (find(Q.aviso, st.aviso) || { es: [''], en: [''] })[l][0], contacto: st.contacto, correo: st.correo, whatsapp: st.whatsapp,
-        web: ($('im-web') || {}).value || '', fotos: list.filter(Boolean) };
+        web: ($('im-web') || {}).value || '', ref: refCode(), fotos: list.filter(Boolean) };
     }
     var err = $('im-err');
     send.addEventListener('click', function (e) {
