@@ -196,6 +196,20 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
 
 /* thanks */
 .thanks { text-align: center; padding: 20px 0 6px; }
+.draft { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 12px; margin: -4px auto 14px; padding: 9px 16px; width: fit-content; max-width: 100%; border-radius: 999px; background: rgba(182,138,78,.09); box-shadow: inset 0 0 0 1px rgba(182,138,78,.25); font-size: 13.5px; color: var(--ink2); }
+.draft button { border: 0; background: none; padding: 0; font: 600 11.5px var(--f-caps); letter-spacing: .14em; color: var(--gold); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.how { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.fields .lbl { display: block; font: 500 10.5px var(--f-caps); letter-spacing: .2em; color: var(--ink2); }
+.fields .how label { display: inline-block; cursor: pointer; font: 400 14px var(--f-body); letter-spacing: 0; }
+.how input { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; padding: 0; }
+.how span { display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 14px; color: var(--ink2); background: rgba(255,255,255,.75); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); }
+.how input:checked + span { background: var(--gold); color: #fff; box-shadow: none; }
+.how input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+.err { margin: 12px 0 0; padding: 10px 14px; border-radius: 12px; background: #FBEDEA; color: #9A2E22; font-size: 14px; }
+.sendbtn { width: 100%; margin-top: 18px; }
+.sendbtn.busy { opacity: .7; pointer-events: none; }
+.ordno { font: 600 12px var(--f-caps); letter-spacing: .3em; color: var(--gold); margin-top: 10px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .thanks .big { font: 400 clamp(46px, 6vw, 64px)/1 var(--f-script); color: var(--gold); }
 .thanks p { color: var(--ink2); max-width: 44ch; margin: 10px auto 0; }
 #spark { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 60; }
@@ -246,6 +260,7 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
 
   <div class="cr">
     <form class="panel" id="f" novalidate>
+      <p class="draft" id="draft" hidden><span data-en="We kept your answers from last time.">Guardamos tus respuestas de la vez pasada.</span><button type="button" id="fresh" data-en="Start over">Empezar de nuevo</button></p>
       <ol class="prog" id="prog"></ol>
       <p class="stepno" id="stepno" aria-live="polite"></p>
 
@@ -313,12 +328,21 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
         <ul class="sum" id="sum" style="margin-top:18px"></ul>
         <div class="fields" style="margin-top:16px">
           <label class="full"><span data-en="Your name">Tu nombre</span><input name="contacto" maxlength="80" autocomplete="name"></label>
+          <label><span data-en="Email">Correo</span><input name="correo" type="email" maxlength="120" autocomplete="email" inputmode="email" placeholder="tu@correo.com" data-en-ph="you@email.com"></label>
+          <label><span data-en="WhatsApp (with area code)">WhatsApp (con lada)</span><input name="whatsapp" type="tel" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="33 1234 5678" data-en-ph="604 123 4567"></label>
+          <div class="full"><span class="lbl" data-en="How should we keep you posted?">¿Cómo prefieres que te avisemos?</span><div class="how" role="radiogroup">
+            <label><input type="radio" name="aviso" value="correo"><span data-en="Email">Correo</span></label>
+            <label><input type="radio" name="aviso" value="whatsapp"><span>WhatsApp</span></label>
+            <label><input type="radio" name="aviso" value="ambos"><span data-en="Both">Los dos</span></label></div></div>
+          <input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
         </div>
-        <div class="send" id="send">
+        <p class="err" id="err" hidden role="alert"></p>
+        <button type="button" class="btn btn-gold sendbtn" id="b-send" data-en="Send my order ✨">Enviar mi pedido ✨</button>
+        <div class="send" id="send" hidden>
           <div class="row" id="r1"><span class="num">1</span><span class="txt"><b data-en="Send your details">Envía tus datos</b><span data-en="WhatsApp opens with everything written.">Se abre WhatsApp con todo escrito.</span></span><a class="btn btn-gold btn-sm" id="b-wa" href="#" target="_blank" rel="noopener" data-en="Send on WhatsApp">Enviar por WhatsApp</a></div>
           <div class="row" id="r2" hidden><span class="num">2</span><span class="txt"><b data-en="Send your photos">Envía tus fotos</b><span id="r2-txt"></span></span><button type="button" class="btn btn-line btn-sm" id="b-ph" data-en="Share photos">Compartir fotos</button></div>
         </div>
-        <div class="thanks" id="thanks" hidden><div class="big" data-en="Thank you!">¡Gracias!</div><p data-en="As soon as your message arrives, we start designing. We'll write back soon with your proposal.">En cuanto llegue tu mensaje empezamos a diseñar. Te escribimos pronto con tu propuesta.</p></div>
+        <div class="thanks" id="thanks" hidden tabindex="-1"><div class="big" data-en="Thank you!">¡Gracias!</div><p class="ordno" id="ordno"></p><p id="thanks-p" data-en="As soon as your message arrives, we start designing. We'll write back soon with your proposal.">En cuanto llegue tu mensaje empezamos a diseñar. Te escribimos pronto con tu propuesta.</p><p style="margin-top:16px"><a class="btn btn-line btn-sm" id="wa-after" href="#" target="_blank" rel="noopener" hidden data-en="Message us on WhatsApp">Escríbenos por WhatsApp</a></p></div>
       </fieldset>
 
       <div class="nav">
@@ -411,15 +435,21 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
   function priceOf(v) { var i = ['esencial', 'ilusion', 'gala', 'experiencia'].indexOf(v), c = curr(); return i < 0 ? '' : (i === 3 ? (L() === 'en' ? 'from ' : 'desde ') : '') + '$' + PRICES[c][i].toLocaleString('en-US') + ' ' + c; }
   var KEYS = ['diseno', 'datos', 'fotos', 'idea', 'enviar'];
   var NAMES = { es: ['Diseño', 'Detalles', 'Fotos', 'Idea', 'Enviar'], en: ['Design', 'Details', 'Photos', 'Idea', 'Send'] };
-  var TEXT = ['quien', 'fecha', 'hora', 'ceremonia', 'lugar', 'direccion', 'familia', 'vestimenta', 'invitados', 'rsvp', 'cancion', 'inspiracion', 'sueno', 'contacto'];
+  var TEXT = ['quien', 'fecha', 'hora', 'ceremonia', 'lugar', 'direccion', 'familia', 'vestimenta', 'invitados', 'rsvp', 'cancion', 'inspiracion', 'sueno', 'contacto', 'correo', 'whatsapp'];
 
   /* state: saved in this browser only (photos stay in memory) */
-  var st = { step: 0, evento: '', diseno: '', ambiente: '', color: '', incluir: [], paquete: '' };
+  var st = { step: 0, evento: '', diseno: '', ambiente: '', color: '', incluir: [], paquete: '', aviso: 'correo' };
   TEXT.forEach(function (k) { st[k] = ''; });
-  try { var sv = JSON.parse(localStorage.getItem('ilu-crear') || 'null'); if (sv) for (var k in st) if (k in sv) st[k] = sv[k]; } catch (e) {}
+  var qs0 = new URLSearchParams(location.search), hadDraft = false;
+  try {
+    var sv = JSON.parse(localStorage.getItem('ilu-crear') || 'null');
+    // coming from a design's "Quiero una así" for a different design: start clean
+    if (sv && qs0.get('d') && sv.diseno && sv.diseno !== qs0.get('d')) { sv = null; localStorage.removeItem('ilu-crear'); }
+    if (sv) { for (var k in st) if (k in sv) st[k] = sv[k]; hadDraft = TEXT.some(function (t) { return sv[t]; }); }
+  } catch (e) {}
   if (!Array.isArray(st.incluir)) st.incluir = [];
   /* carry over the "Imagina tu invitación" answers from the home page */
-  try {
+  if (!sessionStorage.getItem('ilu-fresh')) try {
     var im = JSON.parse(localStorage.getItem('ilu-imagina') || 'null');
     if (im) {
       var map = { boda: 'bodas', xv: 'xv-anos', cumple: 'cumpleanos', baby: 'baby-shower', navidad: 'navidad', nuevo: 'ano-nuevo', empresa: 'empresas', otra: 'otras' };
@@ -496,12 +526,18 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
     try { return d.toLocaleDateString(L() === 'en' ? 'en-CA' : 'es-MX', short ? { day: 'numeric', month: 'long', year: 'numeric' } : { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) { return v; }
   }
   function fmtTime(v) { var m = /^(\d{2}):(\d{2})$/.exec(v || ''); if (!m) return ''; var h = +m[1], ap = h >= 12 ? 'pm' : 'am'; h = h % 12 || 12; return h + ':' + m[2] + ' ' + ap; }
+  // names typed in CAPITALS look wrong in script letters: show them as "Bianca y Keith"
+  function pretty(v) {
+    v = String(v || '').trim(); if (!v) return '';
+    if (v !== v.toUpperCase() || !/[A-ZÁÉÍÓÚÑ]{2}/.test(v)) return v;
+    return v.toLowerCase().replace(/(^|[\s\-'’])([a-záéíóúñü])/g, function (m, a, b) { return a + b.toUpperCase(); }).replace(/\b(Y|And|De|Del|La|Las|Los|E)\b/g, function (w, x, i) { return i ? w.toLowerCase() : w; });
+  }
   var lastSig = '';
   function renderCard() {
     var l = L(), w = EV[st.evento], c = find(COL, 'v', st.color) || COL[2], card = $('card');
     $('c-eye').textContent = w ? w[l][0].toUpperCase() : (l === 'en' ? 'YOUR CELEBRATION' : 'TU CELEBRACIÓN');
     $('c-pre').textContent = w ? w[l][1] : (l === 'en' ? 'Join us to celebrate' : 'Te invitamos a celebrar');
-    var nm = $('c-names'); nm.textContent = st.quien || (w ? w[l][3] : (l === 'en' ? 'Your name here' : 'Tu nombre aquí')); nm.classList.toggle('empty', !st.quien);
+    var nm = $('c-names'); nm.textContent = pretty(st.quien) || (w ? w[l][3] : (l === 'en' ? 'Your name here' : 'Tu nombre aquí')); nm.classList.toggle('empty', !st.quien);
     $('c-date').textContent = [fmtDate(st.fecha), fmtTime(st.hora)].filter(Boolean).join(' · ');
     $('c-place').textContent = st.lugar;
     card.style.setProperty('--bg', c.t[0]); card.style.setProperty('--cink', c.t[1]); card.style.setProperty('--acc', c.t[2]);
@@ -594,8 +630,72 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
   $('back').addEventListener('click', function () { go(st.step - 1, true); });
   f.addEventListener('click', function (e) { var b = e.target.closest('button[data-step]'); if (b) go(+b.getAttribute('data-step'), true); });
 
-  /* sending */
+  /* sending: the whole order (answers + photos) goes straight to our order system.
+     If that fails, the WhatsApp rows appear as a backup. */
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwLSkVg670lTXk73S5B_zP-ay8Kpwj7xFRDBXJPta3QF27T_Jy1zRBG3t_n2oZhiuc/exec';
   function thanks() { $('thanks').hidden = false; sparkle(); }
+  function shrink(file) {
+    return new Promise(function (ok) {
+      var img = new Image(), u = URL.createObjectURL(file);
+      img.onload = function () {
+        var k = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight)), c = document.createElement('canvas');
+        c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u);
+        ok({ name: file.name, data: c.toDataURL('image/jpeg', .85), tipo: 'inv' });
+      };
+      img.onerror = function () { URL.revokeObjectURL(u); ok(null); };
+      img.src = u;
+    });
+  }
+  function refCode() { try { var s = JSON.parse(localStorage.getItem('ilu-ref') || 'null'); if (s && Date.now() - s.t < 90 * 864e5) return s.c; } catch (e) {} return ''; }
+  function payload(list) {
+    var l = L(), en = l === 'en', w = EV[st.evento], d = find(designs(), 'id', st.diseno), a = find(AMB, 'v', st.ambiente), c = find(COL, 'v', st.color);
+    var det = [[en ? 'Time' : 'Hora', fmtTime(st.hora)], [en ? 'Ceremony' : 'Ceremonia', st.ceremonia], [en ? 'Address' : 'Dirección', st.direccion], [en ? 'Parents & sponsors' : 'Padres y padrinos', st.familia],
+      [en ? 'Dress code' : 'Vestimenta', st.vestimenta], [en ? 'Guests' : 'Invitados', st.invitados], [en ? 'RSVP by' : 'Confirmar antes del', fmtDate(st.rsvp, 1)], [en ? 'Song' : 'Canción', st.cancion]]
+      .filter(function (x) { return x[1]; }).map(function (x) { return x[0] + ': ' + x[1]; }).join('\n');
+    return { idioma: l, evento: w ? w[l][0] : '', ambiente: a ? a[l][0] : '', color: c ? c[l] : '',
+      idea: (en ? 'Design: ' : 'Diseño: ') + (st.diseno ? (d ? d.nombre : (en ? 'Made to measure' : 'A mi medida')) : '—') + (st.inspiracion ? '\n' + (en ? 'Inspiration: ' : 'Inspiración: ') + st.inspiracion : ''),
+      incluir: st.incluir.map(function (v) { var o = find(INC, 'v', v); return o ? o[l] : v; }), extra: det, quien_celebra: st.quien, fecha_evento: st.fecha, ciudad: st.lugar, sueno: st.sueno,
+      mensaje: 'Crea la tuya', mensaje_texto: '', paquete: (find(PAQ, 'v', st.paquete) || {}).n || '', aviso: st.aviso === 'ambos' ? (en ? 'Both' : 'Los dos') : st.aviso === 'whatsapp' ? 'WhatsApp' : (en ? 'Email' : 'Correo'),
+      contacto: st.contacto, correo: st.correo, whatsapp: st.whatsapp, web: f.elements.web.value || '', ref: refCode(), fotos: list.filter(Boolean) };
+  }
+  function fail(msg, el) { var e = $('err'); e.textContent = msg; e.hidden = false; if (el) try { el.focus(); } catch (x) {} }
+  $('b-send').addEventListener('click', function () {
+    var en = L() === 'en', b = this; $('err').hidden = true;
+    var okMail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.correo || ''), okWa = String(st.whatsapp || '').replace(/\D/g, '').length >= 8;
+    if (!String(st.contacto || '').trim()) return fail(en ? 'Please add your name.' : 'Escribe tu nombre.', f.elements.contacto);
+    if (!st.quien) return fail(en ? 'Please add the name for the invitation (step 2).' : 'Falta el nombre de la invitación (paso 2).');
+    if ((st.aviso === 'whatsapp' || st.aviso === 'ambos') && !okWa) return fail(en ? 'Please add your WhatsApp number with area code.' : 'Agrega tu WhatsApp con lada.', f.elements.whatsapp);
+    if (st.aviso !== 'whatsapp' && !okMail) return fail(en ? 'Please add your email so we can send you updates.' : 'Agrega tu correo para avisarte de tu pedido.', f.elements.correo);
+    if (photos.length && !$('perm').checked) { go(2, true); return fail(en ? 'Please confirm you have permission to share the photos (step 3).' : 'Confirma que tienes permiso para compartir las fotos (paso 3).'); }
+    b.classList.add('busy'); b.textContent = en ? 'Sending your order…' : 'Enviando tu pedido…';
+    Promise.all(photos.map(function (p) { return shrink(p.file); })).then(function (list) {
+      return fetch(ENDPOINT, { method: 'POST', body: JSON.stringify(payload(list)) });
+    }).then(function (r) { return r.json(); }).then(function (r) {
+      if (!r || !r.ok) throw new Error((r && r.error) || 'save');
+      var first = String(st.contacto || '').trim().split(/\s+/)[0];
+      $('ordno').textContent = (en ? 'ORDER ' : 'PEDIDO ') + r.pedido;
+      $('thanks-p').textContent = (en ? 'Thank you' : 'Gracias') + (first ? ', ' + first : '') + '. ' + (en ? 'Your details' + (photos.length ? ' and ' + photos.length + ' photos' : '') + ' reached us safely.' : 'Tus datos' + (photos.length ? ' y tus ' + photos.length + ' fotos' : '') + ' nos llegaron completos.') +
+        (okMail ? (en ? ' We sent a copy to ' : ' Te enviamos una copia a ') + st.correo + '.' : '') + (en ? ' We will write back within 24 hours with your proposal.' : ' En menos de 24 horas te escribimos con tu propuesta.');
+      var wa = $('wa-after'); wa.hidden = false; wa.href = 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent((en ? 'Hi Ilusión Invites ✨ I just sent my order ' : 'Hola Ilusión Invites ✨ Acabo de enviar mi pedido ') + r.pedido);
+      [].slice.call(f.querySelectorAll('.st[data-k="enviar"] > *')).forEach(function (el) { if (el.id !== 'thanks' && el.tagName !== 'LEGEND') el.hidden = true; });
+      document.querySelector('.nav').hidden = true; $('prog').hidden = true; $('draft').hidden = true;
+      thanks(); try { $('thanks').focus({ preventScroll: true }); } catch (x) {}
+      var r2 = f.getBoundingClientRect(); scrollTo({ top: scrollY + r2.top - 80, behavior: reduce ? 'auto' : 'smooth' });
+      try { localStorage.removeItem('ilu-crear'); localStorage.removeItem('ilu-imagina'); } catch (x) {}
+    }).catch(function () {
+      fail(en ? 'We could not save it right now. Please send it on WhatsApp below and attach your photos in the chat.' : 'No pudimos guardarlo en este momento. Envíalo por WhatsApp aquí abajo y adjunta tus fotos en el chat.');
+      $('send').hidden = false; b.hidden = true; renderSummary();
+    }).then(function () { b.classList.remove('busy'); b.textContent = en ? 'Send my order ✨' : 'Enviar mi pedido ✨'; });
+  });
+  f.addEventListener('change', function (e) { if (e.target.name === 'aviso') { st.aviso = e.target.value; save(); } });
+  /* start over */
+  if (hadDraft) $('draft').hidden = false;
+  $('fresh').addEventListener('click', function () {
+    try { localStorage.removeItem('ilu-crear'); sessionStorage.setItem('ilu-fresh', '1'); } catch (e) {}
+    var q = new URLSearchParams(location.search), keep = new URLSearchParams(); ['c', 'd', 'paquete'].forEach(function (k) { if (q.get(k)) keep.set(k, q.get(k)); });
+    location.href = location.pathname + (keep.toString() ? '?' + keep : '');
+  });
   $('b-wa').addEventListener('click', function () {
     $('r1').classList.add('done');
     if (!photos.length || $('b-ph').hidden) setTimeout(thanks, 400);
@@ -631,6 +731,7 @@ h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: te
   $('es').addEventListener('click', function () { setLang('es'); });
   $('en').addEventListener('click', function () { setLang('en'); });
   TEXT.forEach(function (k) { if (f.elements[k]) f.elements[k].value = st[k] || ''; });
+  [].slice.call(f.querySelectorAll('input[name="aviso"]')).forEach(function (r) { r.checked = r.value === (st.aviso || 'correo'); });
   var saved = null; try { saved = localStorage.getItem('ilu-lang'); } catch (e) {}
   setLang(saved === 'en' ? 'en' : 'es');
   save();
