@@ -48,7 +48,7 @@ DEMO_NAV = """
 })();
 </script>
 """
-DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas')}
+DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas'), 'demos/boda-regina-emilio': ('bodas', 'perla-cristal')}
 # pages with their own link preview (shown when the link is shared on WhatsApp, iMessage, Instagram...)
 OG = {
     'demos/boda-regina-emilio': ('Regina & Emilio · Nos casamos ✨', 'Sábado 17 de abril de 2027 · San Miguel de Allende. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello-corona.webp', '#F3ECE2'),
