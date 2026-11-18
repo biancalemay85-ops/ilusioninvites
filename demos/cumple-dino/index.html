@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Cumpleaños de ejemplo: Expedición Dino.">
+<meta property="og:title" content="Santiago cumple 5 🦕">
+<meta property="og:description" content="Sábado 24 de abril de 2027 · Cuernavaca. Toca el huevo para abrirlo.">
+<meta property="og:image" content="https://ilusioninvites.com/demos/cumple-dino/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Santiago cumple 5 🦕">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://ilusioninvites.com/demos/cumple-dino/">
+<link rel="canonical" href="https://ilusioninvites.com/demos/cumple-dino/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F1E6D2">
+<link rel="icon" href="img/objeto.webp">
+<link rel="apple-touch-icon" href="img/objeto.webp">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Expedición Dino · Santiago cumple 5</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Josefin+Sans:wght@600;700&family=Nunito:wght@500;600;700&display=swap">
+<style>
+/* Cumpleaños "Expedición Dino" (Santiago, 5). 1) A sunny prehistoric jungle; a big speckled egg rests in its nest. 2) Tap it: it wobbles twice, cracks spread over the shell, warm light leaks out, the top pops off in pieces with a golden burst, and the jungle parts — the plate is already waiting. 3) One warm, light page: sand, jungle green, terracotta and a touch of gold; soft Fraunces titles, expedition stamps and pebble-shaped countdown. */
+:root {
+  color-scheme: light;
+  --sand: #F4E8D2;
+  --sand2: #EAD7B5;
+  --cream: #FBF5E9;
+  --green: #2F5A3A;
+  --green2: #4E7D4F;
+  --deep: #1D3826;
+  --terra: #C2643B;
+  --terra2: #DA8459;
+  --gold: #C99A4B;
+  --ink: #2B2A1E;
+  --ink-soft: #5B5640;
+  --f-title: 'Fraunces', 'Georgia', serif;
+  --f-body: 'Nunito', 'Avenir Next', system-ui, sans-serif;
+  --f-caps: 'Josefin Sans', 'Futura', system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--sand); color: var(--ink); font-family: var(--f-body); font-weight: 600; font-size: 18px; line-height: 1.55; overflow-x: clip; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
+html.locked, html.locked body { overflow: hidden; }
+html.locked .p-hint { opacity: 0; }
+
+.lang { position: fixed; z-index: 60; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); display: flex; border: 1.5px solid rgba(194,100,59,.55); border-radius: 999px; overflow: hidden; background: rgba(251,245,233,.75); backdrop-filter: blur(6px); }
+.lang button { border: 0; background: transparent; padding: 6px 12px 4px; font: 700 12px var(--f-caps); letter-spacing: .14em; color: var(--green); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--terra); color: #FFF6EA; }
+@keyframes breathe { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
+@keyframes sway { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+
+/* ---------- the jungle with the egg ---------- */
+.scene { position: fixed; inset: 0; z-index: 40; overflow: hidden; cursor: pointer; -webkit-tap-highlight-color: transparent; background: #E9C98E; }
+.half { position: absolute; inset: 0; background: #2C3B20 url("img/fondo.webp") 50% 62% / cover no-repeat; transition: transform 1.8s cubic-bezier(.6,0,.25,1), opacity 1.2s ease .5s; }
+.half::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,30,14,.5), rgba(20,30,14,.05) 34%, rgba(20,30,14,.08) 66%, rgba(20,30,14,.45)); }
+.half.l { clip-path: inset(0 50% 0 0); } .half.r { clip-path: inset(0 0 0 50%); }
+.scene.parted .half.l { transform: translateX(-62%) rotate(-4deg); opacity: 0; } .scene.parted .half.r { transform: translateX(62%) rotate(4deg); opacity: 0; }
+.flood { position: absolute; inset: 0; z-index: 9; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 52%, #FFF8E2, #FBE6B0 35%, #F2CC85 70%, rgba(233,190,120,.9)); transition: opacity .9s ease; }
+#burst { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
+
+.cface { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; pointer-events: none;
+  padding: calc(58px + env(safe-area-inset-top, 0px)) 18px calc(36px + env(safe-area-inset-bottom, 0px)); }
+.cface > * { margin: 0; transition: opacity .7s ease; }
+.cface::before { content: ""; position: absolute; left: 50%; top: 22%; width: min(620px, 130vw); height: 44%; transform: translate(-50%, -50%); z-index: -1; border-radius: 50%; background: radial-gradient(closest-side, rgba(18,28,12,.5), rgba(18,28,12,.2) 60%, transparent); transition: opacity .8s ease; }
+.c-eye { font: 700 clamp(11px, 1.5vw, 14px) var(--f-caps); letter-spacing: .3em; padding-left: .3em; color: #FFE2B0; text-shadow: 0 2px 10px rgba(14,22,8,.9); }
+.c-title { font: 800 clamp(46px, 11vw, 88px)/1 var(--f-title); color: #FFF6E4; letter-spacing: -.01em; text-shadow: 0 3px 0 rgba(194,100,59,.85), 0 8px 24px rgba(14,22,8,.75); }
+.c-sub { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px !important; font: 700 clamp(13px, 1.8vw, 16px) var(--f-caps); letter-spacing: .24em; padding-left: .24em; color: #FFF6E4; text-shadow: 0 2px 10px rgba(14,22,8,.9); }
+.c-sub b { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--terra); color: #FFF6EA; font: 800 19px var(--f-title); letter-spacing: 0; padding: 0; text-shadow: none; box-shadow: inset 0 0 0 2px rgba(255,246,234,.6), 0 4px 12px rgba(14,22,8,.5); }
+/* the egg: the button that opens everything */
+.egg { position: relative; width: min(74vw, 420px); aspect-ratio: 1374 / 1175; padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto; margin: 12px 0 2px; transform-origin: 53% 82%;
+  filter: drop-shadow(0 16px 14px rgba(20,24,10,.55)); }
+.egg img, .egg svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.egg .base { clip-path: polygon(0 0, 36% 0, 36% 26.6%, 39.7% 24.7%, 42.2% 27.7%, 45.1% 24.5%, 48% 28.1%, 50.9% 24.9%, 54% 27.9%, 57.1% 24.7%, 60% 27.7%, 63% 25%, 65.9% 27.4%, 69.5% 25.5%, 70% 25.5%, 70% 0, 100% 0, 100% 100%, 0 100%); }
+.egg .tl { clip-path: polygon(36% 0, 53% 0, 53% 26.9%, 50.9% 24.9%, 48% 28.1%, 45.1% 24.5%, 42.2% 27.7%, 39.7% 24.7%, 36% 26.6%); transform-origin: 45% 22%; transition: transform 1.1s cubic-bezier(.2,.75,.3,1), opacity .6s ease .55s; }
+.egg .tr { clip-path: polygon(53% 0, 70% 0, 70% 25.5%, 69.5% 25.5%, 65.9% 27.4%, 63% 25%, 60% 27.7%, 57.1% 24.7%, 54% 27.9%, 53% 26.9%); transform-origin: 61% 22%; transition: transform 1.1s cubic-bezier(.2,.75,.3,1), opacity .6s ease .55s; }
+.egg .cracks path { fill: none; stroke: #4A3218; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 700; stroke-dashoffset: 700; }
+.egg .leak path { fill: none; stroke: #FFD98A; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; opacity: 0; filter: blur(3px); }
+.egg .inglow { position: absolute; left: 34%; right: 26%; top: 6%; bottom: 46%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,236,170,.95), rgba(255,200,110,.5) 55%, transparent); opacity: 0; mix-blend-mode: screen; pointer-events: none; transition: opacity .6s ease; }
+/* a soft ring that invites the tap */
+.egg::after { content: ""; position: absolute; left: 53%; top: 31%; width: 52%; aspect-ratio: 1; transform: translate(-50%, -50%) scale(.7); border-radius: 50%; border: 2px solid rgba(255,226,170,.8); animation: pulse 2.6s ease-out infinite; pointer-events: none; }
+@keyframes pulse { 0% { transform: translate(-50%, -50%) scale(.6); opacity: .95; } 100% { transform: translate(-50%, -50%) scale(1.25); opacity: 0; } }
+.c-para { margin-top: 4px !important; font: 700 12px var(--f-caps); letter-spacing: .5em; padding-left: .5em; color: #FFE2B0; text-shadow: 0 2px 10px rgba(14,22,8,.95); }
+.c-guest { font: 700 italic clamp(26px, 6.8vw, 42px)/1.2 var(--f-title); color: #FFF6E4; text-shadow: 0 2px 0 rgba(194,100,59,.8), 0 6px 18px rgba(14,22,8,.8); max-width: 92vw; }
+.c-hint { display: flex; align-items: center; gap: 12px; margin-top: 10px !important; font: 700 11px var(--f-caps); letter-spacing: .28em; color: #FFE2B0; text-shadow: 0 2px 10px rgba(14,22,8,.95); }
+.c-hint span { animation: breathe 2.4s ease-in-out infinite; } .c-hint i { width: 26px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, #FFE2B0); } .c-hint i:last-child { transform: scaleX(-1); }
+/* stages */
+.scene.go .cface > :not(.egg) { opacity: 0; }
+.scene.go .cface::before { opacity: .3; }
+.scene.go .egg::after { animation: none; opacity: 0; }
+.scene.wobble .egg { animation: wob 1s cubic-bezier(.36,.07,.19,.97) both; }
+@keyframes wob { 0% { transform: rotate(0); } 12% { transform: rotate(-7deg); } 26% { transform: rotate(6deg); } 38% { transform: rotate(0); } 52% { transform: rotate(-6deg); } 66% { transform: rotate(5deg); } 80% { transform: rotate(-1.5deg); } 100% { transform: rotate(0); } }
+.scene.crack .egg .cracks path { stroke-dashoffset: 0; transition: stroke-dashoffset .8s cubic-bezier(.3,.6,.3,1); }
+.scene.crack .egg .cracks path:nth-child(n+2) { transition-delay: .25s; }
+.scene.leaking .egg .leak path { opacity: .95; transition: opacity .6s ease; animation: leak .5s ease-in-out infinite alternate; }
+@keyframes leak { from { opacity: .7; } to { opacity: 1; } }
+.scene.leaking .egg .inglow { opacity: .55; }
+.scene.leaking .egg { animation: tremble .1s linear infinite; }
+@keyframes tremble { 0% { translate: 0 0; } 50% { translate: 1px -1px; } 100% { translate: -1px 0; } }
+.scene.pop .egg { animation: none; }
+.scene.pop .egg .tl { transform: translate(-46%, -120%) rotate(-48deg); opacity: 0; }
+.scene.pop .egg .tr { transform: translate(52%, -112%) rotate(42deg); opacity: 0; }
+.scene.pop .egg .cracks, .scene.pop .egg .leak { opacity: 0; transition: opacity .3s ease; }
+.scene.pop .egg .inglow { opacity: 1; transform: scale(1.6); transition: opacity .3s ease, transform 1s ease; }
+.scene.flooded .flood { opacity: 1; }
+.scene.clear .flood { opacity: 0; transition: opacity 1.3s ease; }
+.scene.clear { pointer-events: none; background: transparent; }
+.scene.gone { opacity: 0; transition: opacity .6s ease; }
+
+/* ---------- inside: a warm, light jungle page ---------- */
+.bg { position: fixed; inset: -20px; z-index: 0; pointer-events: none; background: #E8D4AE url("img/fondo.webp") 50% 40% / cover no-repeat; filter: blur(6px) saturate(.9); }
+.bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,240,200,.35), transparent 70%), linear-gradient(180deg, rgba(246,234,210,.78), rgba(244,232,210,.88) 50%, rgba(240,226,200,.92)); }
+#dust { position: fixed; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; }
+.world { position: relative; z-index: 2; }
+
+/* the plate: sand glass with a terracotta edge, the party in a stone arch and an explorer's stamp */
+.present { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: calc(70px + env(safe-area-inset-top, 0px)) 16px 120px; overflow: hidden; }
+.plate { position: relative; z-index: 2; width: min(86vw, 420px); display: flex; flex-direction: column; align-items: center; gap: 6px; padding: clamp(26px, 8vw, 38px) clamp(22px, 7vw, 36px) clamp(28px, 8vw, 40px); text-align: center; border-radius: 30px; container-type: inline-size;
+  background: linear-gradient(160deg, rgba(255,252,242,.78), rgba(244,230,204,.55) 50%, rgba(255,248,232,.7)); -webkit-backdrop-filter: blur(10px) saturate(1.1); backdrop-filter: blur(10px) saturate(1.1);
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1.5px rgba(194,100,59,.45), inset 0 0 0 8px rgba(255,255,255,.35), inset 0 0 0 9.5px rgba(47,90,58,.25), 0 40px 70px -30px rgba(80,56,24,.55); }
+.parch { position: relative; width: 74%; aspect-ratio: 4 / 5; border-radius: 48% 48% 26px 26px / 40% 40% 26px 26px; overflow: hidden; margin-top: 2%;
+  box-shadow: 0 0 0 5px #FBF5E9, 0 0 0 9px var(--green2), 0 22px 34px -10px rgba(60,40,16,.55); }
+.parch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
+.present.opened .parch img { animation: zin 3.4s cubic-bezier(.25,.6,.25,1) forwards, kb 18s ease-in-out 3.4s infinite alternate; }
+.present.opened .plate { animation: settle 3s cubic-bezier(.25,.6,.25,1); }
+@keyframes zin { from { transform: scale(1); } to { transform: scale(1.1); } }
+@keyframes settle { from { transform: scale(.95) translateY(10px); } to { transform: none; } }
+@keyframes kb { from { transform: scale(1.1); } to { transform: scale(1.16) translate(-1%, -1.2%); } }
+.stamp { position: absolute; z-index: 3; left: 4%; top: 46%; width: 27%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center; transform: rotate(-12deg); color: #FFF6EA;
+  background: radial-gradient(circle at 40% 30%, #E0895D, var(--terra) 60%, #A44F2B); box-shadow: 0 0 0 3px #FBF5E9, 0 10px 18px rgba(60,40,16,.45); animation: bob 6s ease-in-out infinite; }
+.stamp::before { content: ""; position: absolute; inset: 8%; border-radius: 50%; border: 1.5px dashed rgba(255,246,234,.75); }
+.stamp b { display: block; font: 800 12cqw/1 var(--f-title); }
+.stamp small { display: block; font: 700 2.5cqw var(--f-caps); letter-spacing: .16em; margin-top: 2px; }
+.pleaf { position: absolute; z-index: 3; width: 17%; right: 5%; top: 5%; transform: rotate(18deg); filter: drop-shadow(0 4px 5px rgba(60,40,16,.35)); animation: sway 7s ease-in-out infinite; transform-origin: 30% 90%; }
+.p-caps { margin: 4% 0 0; font: 700 max(10px, 3cqw) var(--f-caps); letter-spacing: .38em; padding-left: .38em; color: var(--terra); }
+.p-name { margin: 0; font: 800 16cqw/1 var(--f-title); color: var(--green); letter-spacing: -.01em; }
+.p-sub { margin: 0; font: 600 italic max(15px, 4.6cqw) var(--f-title); color: var(--ink-soft); }
+.orn-img { display: block; width: 66%; height: auto; margin: 2% 0; filter: drop-shadow(0 3px 3px rgba(60,40,16,.25)); }
+.p-date { margin: 0; font: 700 max(12px, 3.8cqw) var(--f-caps); letter-spacing: .28em; padding-left: .28em; color: var(--green); }
+.p-hint { position: absolute; left: 0; right: 0; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); margin: 0; text-align: center; font: 700 12px var(--f-caps); letter-spacing: .3em; z-index: 3; transition: opacity 1s ease; }
+.p-hint a { color: var(--terra); text-decoration: none; animation: breathe 2.6s ease-in-out infinite; display: inline-block; padding: 8px; }
+
+/* the invitation card: an expedition notice */
+.invite { position: relative; padding: 60px 16px 80px; display: grid; place-items: center; }
+.card { position: relative; width: min(88vw, 470px); padding: clamp(48px, 12vw, 60px) clamp(24px, 8vw, 44px) clamp(46px, 12vw, 56px); border-radius: 30px; text-align: center; container-type: inline-size; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  background: linear-gradient(165deg, rgba(255,252,242,.86), rgba(246,234,210,.7)); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1.5px rgba(47,90,58,.35), inset 0 0 0 9px rgba(255,255,255,.3), inset 0 0 0 10.5px rgba(194,100,59,.3), 0 40px 70px -30px rgba(80,56,24,.55); }
+.card > * { position: relative; z-index: 2; margin: 0; }
+.card .k-tag { display: inline-flex; padding: 7px 16px 5px; border-radius: 999px; background: var(--green); color: #FFF6EA; font: 700 max(10px, 2.6cqw) var(--f-caps); letter-spacing: .24em; }
+.card .k-name { font: 800 15cqw/1 var(--f-title); color: var(--green); margin-top: 4px; }
+.card .k-line { font-size: max(17px, 4.3cqw); line-height: 1.5; color: var(--ink); max-width: 28ch; }
+.card .k-date { font: 700 italic 8cqw/1.15 var(--f-title); color: var(--terra); margin-top: 2%; }
+.card .k-small { font: 700 max(10px, 2.6cqw)/1.9 var(--f-caps); letter-spacing: .2em; color: var(--ink-soft); }
+.card .cleaf { position: absolute; z-index: 3; width: 46px; pointer-events: none; filter: drop-shadow(0 4px 4px rgba(60,40,16,.3)); animation: sway 6s ease-in-out infinite; }
+
+.flow { position: relative; }
+.part { position: relative; padding: clamp(70px, 12vw, 116px) max(20px, env(safe-area-inset-right, 0px)) clamp(70px, 12vw, 116px) max(20px, env(safe-area-inset-left, 0px)); text-align: center; }
+.txt { position: relative; z-index: 3; max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.txt > * { transition: opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1); }
+.wait .txt > * { opacity: 0; transform: translateY(26px); }
+.txt > :nth-child(2) { transition-delay: .12s; } .txt > :nth-child(3) { transition-delay: .24s; } .txt > :nth-child(4) { transition-delay: .36s; } .txt > :nth-child(5) { transition-delay: .48s; }
+.m { position: absolute; z-index: 1; pointer-events: none; width: var(--w, 6vw); max-width: 84px; top: var(--top, 10%); transition: opacity 1.4s ease, translate 1.6s cubic-bezier(.16,.8,.24,1); }
+.m img { display: block; width: 100%; height: auto; filter: drop-shadow(0 6px 6px rgba(60,40,16,.3)); animation: sway 7s ease-in-out infinite; }
+.m.l { left: var(--x, 6vw); } .m.r { right: var(--x, 6vw); }
+.wait .m.l { opacity: 0; translate: -30px 0; } .wait .m.r { opacity: 0; translate: 30px 0; }
+.part h2 { margin: 0; font: 800 clamp(40px, 9.6vw, 62px)/1.05 var(--f-title); color: var(--green); letter-spacing: -.01em; }
+.caps { margin: 0; font: 700 13px var(--f-caps); letter-spacing: .3em; color: var(--terra); }
+.part p { margin: 0; color: var(--ink-soft); }
+.part p.foil { color: transparent; }
+.lead { font-size: 20px; color: var(--ink) !important; max-width: 34ch; text-wrap: balance; }
+.quote { font: 600 italic 23px/1.5 var(--f-title); color: var(--ink) !important; max-width: 30ch; }
+.sign { font: 800 26px var(--f-title); color: var(--terra) !important; }
+.sdiv { display: block; width: min(64vw, 320px); height: auto; filter: drop-shadow(0 3px 3px rgba(60,40,16,.25)); }
+
+.fiesta .txt { max-width: 900px; }
+.nest { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(20px, 5vw, 56px); align-items: center; width: 100%; margin-top: 10px; text-align: left; }
+.bigarch { position: relative; width: 100%; max-width: 360px; justify-self: end; aspect-ratio: 3 / 4; border-radius: 48% 48% 26px 26px / 36% 36% 26px 26px; overflow: hidden;
+  box-shadow: 0 0 0 5px #FBF5E9, 0 0 0 9px var(--green2), 0 30px 50px -18px rgba(60,40,16,.55); }
+.bigarch img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dets { display: flex; flex-direction: column; gap: 14px; }
+.det { display: flex; gap: 14px; align-items: center; padding: 14px 18px; border-radius: 24px; background: rgba(255,252,242,.72); box-shadow: inset 0 0 0 1.5px rgba(47,90,58,.25), 0 10px 20px -14px rgba(60,40,16,.4); }
+.det img { flex: none; width: 36px; height: auto; }
+.det div { display: flex; flex-direction: column; }
+.det b { font: 700 12px var(--f-caps); letter-spacing: .22em; color: var(--terra); }
+.det span { font-size: 18px; color: var(--ink); line-height: 1.35; }
+@media (max-width: 640px) { .nest { grid-template-columns: 1fr; } .bigarch { justify-self: center; max-width: 76vw; } }
+
+.big-date { font: 800 clamp(30px, 8vw, 46px) var(--f-title); color: var(--green); margin: 0; font-variant-numeric: tabular-nums; }
+.place h3 { margin: 0; font: 700 14px var(--f-caps); letter-spacing: .3em; color: var(--terra); }
+.place .name { font: 800 26px var(--f-title); color: var(--green) !important; }
+.place .time { font: 800 40px/1.1 var(--f-title); color: var(--ink) !important; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 2px 26px 0; border-radius: 999px; font: 700 13px var(--f-caps); letter-spacing: .18em; text-decoration: none; cursor: pointer; transition: transform .2s ease, filter .2s ease; }
+.btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.btn-gold { background: linear-gradient(180deg, #E28D61, var(--terra) 60%, #A9532E); color: #FFF6EA; border: 0; box-shadow: inset 0 1px 0 rgba(255,230,210,.8), 0 10px 20px -8px rgba(160,80,40,.6); }
+.btn-line { border: 1.5px solid rgba(47,90,58,.55); color: var(--green); background: rgba(255,252,242,.6); }
+.row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
+
+.glass { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 28px clamp(20px, 6vw, 44px) 26px; border-radius: 30px;
+  background: linear-gradient(165deg, rgba(255,252,242,.86), rgba(246,234,210,.7)); box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1.5px rgba(47,90,58,.3), 0 30px 60px -30px rgba(80,56,24,.5); }
+.glass > * { position: relative; }
+/* countdown: smooth river pebbles */
+.count { display: flex; justify-content: center; flex-wrap: nowrap; gap: clamp(6px, 2vw, 12px); }
+.count div { width: clamp(66px, 18vw, 86px); padding: 16px 0 14px; display: flex; flex-direction: column; align-items: center; border-radius: 46% 54% 48% 52% / 54% 48% 52% 46%;
+  background: radial-gradient(circle at 35% 25%, #6E9A6A, var(--green) 70%); color: #FFF6EA; box-shadow: inset 0 2px 0 rgba(255,255,255,.25), 0 10px 18px -8px rgba(30,50,30,.6); }
+.count div:nth-child(2) { border-radius: 52% 48% 54% 46% / 46% 54% 48% 52%; } .count div:nth-child(3) { border-radius: 48% 52% 46% 54% / 52% 46% 54% 48%; } .count div:nth-child(4) { border-radius: 54% 46% 52% 48% / 48% 52% 46% 54%; }
+.count strong { font: 800 clamp(26px, 7vw, 34px)/1 var(--f-title); font-variant-numeric: tabular-nums; }
+.count span { font: 700 10px var(--f-caps); letter-spacing: .18em; color: #F6E2BE; margin-top: 6px; }
+.pass strong { font: 800 46px/1.1 var(--f-title); color: var(--green); }
+.pass .nestmini { width: 110px; height: auto; margin-bottom: -6px; animation: bob 5s ease-in-out infinite; filter: drop-shadow(0 8px 8px rgba(60,40,16,.3)); }
+
+/* expedition route · D: big rounded display times stacked, a little egg between them */
+.route { list-style: none; margin: 8px auto 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+.route li { display: flex; flex-direction: column; align-items: center; }
+.route time { font: 800 clamp(38px, 10vw, 50px)/1 var(--f-title); color: var(--terra); letter-spacing: -.01em; }
+.route time small { font-size: .5em; font-weight: 700; margin-left: .15em; color: var(--green2); }
+.route span { margin-top: 4px; font: 700 13px var(--f-caps); letter-spacing: .22em; color: var(--green); }
+.route li + li::before { content: ""; display: block; width: 28px; height: 46px; margin: 12px 0 14px; background: url("img/huevo-mini.webp") center / contain no-repeat; filter: drop-shadow(0 4px 4px rgba(60,40,16,.3)); animation: sway 5s ease-in-out infinite; }
+.route li:nth-child(3)::before { animation-delay: -1.2s; } .route li:nth-child(4)::before { animation-delay: -2.4s; } .route li:nth-child(5)::before { animation-delay: -3.6s; }
+
+.foot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; padding: 40px 16px calc(90px + env(safe-area-inset-bottom, 0px)); }
+.foot .fnest { width: 170px; height: auto; filter: drop-shadow(0 10px 10px rgba(60,40,16,.3)); animation: bob 5s ease-in-out infinite; }
+.foot .tag { font: 800 clamp(26px, 7.4vw, 40px) var(--f-title); margin: 0; color: var(--green); }
+.foot .made { font: 700 11px var(--f-caps); letter-spacing: .3em; color: var(--ink-soft); margin: 0; }
+.replay { border: 1.5px solid rgba(47,90,58,.5); background: rgba(255,252,242,.7); border-radius: 999px; padding: 12px 22px 10px; margin-top: 10px; font: 700 12px var(--f-caps); letter-spacing: .2em; color: var(--green); cursor: pointer; }
+
+#yt { position: fixed; left: 0; bottom: 0; width: 2px; height: 2px; opacity: 0; pointer-events: none; z-index: -1; }
+.music { position: fixed; z-index: 60; right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 50px; height: 50px; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 30%, #E9A27C, var(--terra) 80%); box-shadow: inset 0 1px 0 rgba(255,230,210,.8), 0 8px 18px -6px rgba(80,40,20,.6), 0 0 0 4px rgba(255,252,242,.6); opacity: 0; transform: scale(.6); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.music.show { opacity: 1; transform: none; }
+.music .bars { display: flex; align-items: flex-end; gap: 3px; height: 16px; }
+.music .bars i { width: 3px; height: 100%; border-radius: 2px; background: #FFF6EA; transform-origin: bottom; animation: eq 1s ease-in-out infinite; }
+.music .bars i:nth-child(2) { animation-delay: -.35s; } .music .bars i:nth-child(3) { animation-delay: -.7s; } .music .bars i:nth-child(4) { animation-delay: -.2s; }
+.music.paused .bars i { animation: none; transform: scaleY(.3); }
+@keyframes eq { 0%,100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+@media (max-width: 640px) {
+  .cface { padding-top: calc(62px + env(safe-area-inset-top, 0px)); }
+  .c-eye { letter-spacing: .24em; padding-left: .24em; }
+  .c-hint { letter-spacing: .2em; font-size: 10px; } .c-hint i { width: 16px; }
+  .part { padding-top: 104px; }
+  .m { top: 52px !important; width: 40px !important; --x: 16px !important; }
+  .m ~ .m { display: none; }
+}
+</style>
+<script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+
+<div class="lang" role="group" aria-label="Idioma / Language">
+  <button type="button" id="lang-es" aria-pressed="true">ES</button>
+  <button type="button" id="lang-en" aria-pressed="false">EN</button>
+</div>
+
+<!-- the jungle with the egg -->
+<section class="scene" id="scene" aria-label="Invitación a la expedición de Santiago" data-en-label="Invitation to Santiago's expedition">
+  <div class="half l" aria-hidden="true"></div><div class="half r" aria-hidden="true"></div>
+  <div class="cface">
+    <p class="c-eye" data-en="SOMETHING IS ABOUT TO HATCH!">¡ALGO ESTÁ POR NACER!</p>
+    <p class="c-title" data-en="Dino Expedition">Expedición Dino</p>
+    <p class="c-sub"><span data-en="SANTIAGO TURNS">SANTIAGO CUMPLE</span><b>5</b></p>
+    <button class="egg" id="egg" type="button" aria-label="Abrir el huevo y la invitación" data-en-label="Hatch the egg and open the invitation">
+      <img class="base" src="img/objeto.webp" alt="" width="1374" height="1175">
+      <img class="tl" src="img/objeto.webp" alt="" width="1374" height="1175">
+      <img class="tr" src="img/objeto.webp" alt="" width="1374" height="1175">
+      <span class="inglow" aria-hidden="true"></span>
+      <svg class="leak" viewBox="0 0 1374 1175" preserveAspectRatio="none" aria-hidden="true"><path d="M500 312 L545 290 L580 326 L620 288 L660 330 L700 292 L742 328 L785 290 L825 326 L865 294 L905 322 L955 300"/><path d="M620 288 L604 360 L628 420"/><path d="M785 290 L803 362 L784 414"/></svg>
+      <svg class="cracks" viewBox="0 0 1374 1175" preserveAspectRatio="none" aria-hidden="true"><path d="M500 312 L545 290 L580 326 L620 288 L660 330 L700 292 L742 328 L785 290 L825 326 L865 294 L905 322 L955 300"/><path d="M620 288 L604 360 L628 420 L612 470"/><path d="M785 290 L803 362 L784 414 L798 452"/><path d="M700 292 L690 250 L706 214"/></svg>
+    </button>
+    <p class="c-para" data-en="FOR">PARA</p>
+    <p class="c-guest" id="guestName" data-en="a very special guest">un invitado muy especial</p>
+    <p class="c-hint"><i></i><span data-en="TAP THE EGG TO HATCH IT">TOCA EL HUEVO PARA ABRIRLO</span><i></i></p>
+  </div>
+  <div class="flood" aria-hidden="true"></div>
+  <canvas id="burst" aria-hidden="true"></canvas>
+</section>
+
+<div id="yt" aria-hidden="true"><div id="ytp"></div></div>
+<button class="music paused" id="music" type="button" aria-label="Música: reproducir" data-en-label="Music: play" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+<div class="bg" aria-hidden="true"></div>
+<canvas id="dust" aria-hidden="true"></canvas>
+
+<div class="world" id="world">
+  <section class="present" id="present" aria-label="Expedición Dino · Santiago cumple 5" data-en-label="Dino Expedition · Santiago turns 5">
+    <div class="plate">
+      <img class="pleaf" src="img/ginkgo-oro.webp" alt="">
+      <div class="parch"><img src="img/fiesta.webp" alt="Mesa de fiesta con helechos, globos verdes y terracota y un pastel con un dinosaurio" data-en-alt="Party table with ferns, green and terracotta balloons and a dinosaur cake" width="1100" height="1650"></div>
+      <span class="stamp" aria-hidden="true"><b>5</b><small data-en="YEARS">AÑOS</small></span>
+      <p class="p-caps" data-en="DINO EXPEDITION">EXPEDICIÓN DINO</p>
+      <h1 class="p-name">Santiago</h1>
+      <p class="p-sub" data-en="is turning 5, and the adventure begins">cumple 5 y la aventura comienza</p>
+      <img class="orn-img" src="img/divisor-olivo.webp" alt="">
+      <p class="p-date">24 · 04 · 2027</p>
+    </div>
+    <p class="p-hint"><a href="#invitacion" data-en="THE EXPEDITION ↓">LA EXPEDICIÓN ↓</a></p>
+  </section>
+
+  <section class="invite" id="invitacion">
+    <div class="card">
+      <img class="cleaf" src="img/ginkgo-oro.webp" alt="" style="left:6%;top:4%;transform:rotate(-20deg)">
+      <img class="cleaf" src="img/huevo-mini.webp" alt="" style="right:7%;top:5%;width:28px;animation-delay:-2s">
+      <p class="k-tag" data-en="ATTENTION, EXPLORERS!">¡ATENCIÓN, EXPLORADORES!</p>
+      <p class="k-name">Santiago</p>
+      <p class="k-line" data-en="is turning 5 and invites you on a great expedition: a hunt for dinosaur eggs in the jungle!">cumple 5 años y te invita a una gran expedición: ¡a buscar huevos de dinosaurio en la jungla!</p>
+      <img class="sdiv" src="img/divisor-olivo.webp" alt="">
+      <p class="k-date" data-en="Saturday, April 24th">Sábado 24 de abril</p>
+      <p class="k-small" data-en-html="2027 · AT 12:00 NOON<br>RANCHO LAS PALMAS · CUERNAVACA, MOR.">2027 · A LAS 12:00 PM<br>RANCHO LAS PALMAS · CUERNAVACA, MOR.</p>
+    </div>
+  </section>
+
+  <main class="flow" id="detalles">
+    <section class="part">
+      <div class="m r" style="--top:6%"><img src="img/ginkgo-oro.webp" alt=""></div>
+      <div class="txt">
+        <p class="caps" data-en="A NOTE FROM BASE CAMP">UNAS PALABRAS DEL CAMPAMENTO</p>
+        <p class="quote" data-en="“Santiago knows the name of every dinosaur. This year we're turning his birthday into a real expedition, and we'd love for you to explore with us.”">“Santiago se sabe el nombre de cada dinosaurio. Este año convertimos su cumpleaños en una verdadera expedición, y nos encantaría que exploraras con nosotros.”</p>
+        <p class="sign" data-en="Mom and Dad">Mamá y Papá</p>
+      </div>
+    </section>
+
+    <section class="part fiesta">
+      <div class="m l" style="--top:4%"><img src="img/huevo-mini.webp" alt=""></div>
+      <div class="txt">
+        <h2 data-en="The party">La fiesta</h2>
+        <p class="lead" data-en="Ferns, fossils and a cake worthy of a T. rex.">Helechos, fósiles y un pastel digno de un T. rex.</p>
+        <div class="nest">
+          <div class="bigarch"><img src="img/fiesta.webp" alt="" width="1100" height="1650" loading="lazy"></div>
+          <div class="dets">
+            <div class="det"><img src="img/huevo-mini.webp" alt=""><div><b data-en="THE CAKE">EL PASTEL</b><span data-en="Jungle green with dinosaur eggs on top">Verde jungla con huevos de dinosaurio</span></div></div>
+            <div class="det"><img src="img/ginkgo-oro.webp" alt=""><div><b data-en="THE ADVENTURE">LA AVENTURA</b><span data-en="A fossil dig and a hunt for hidden eggs">Excavación de fósiles y búsqueda de huevos</span></div></div>
+            <div class="det"><img src="img/huevo-mini.webp" alt=""><div><b data-en="THE KEEPSAKE">EL RECUERDO</b><span data-en="An explorer kit for every guest">Un kit de explorador para cada invitado</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m r" style="--top:6%"><img src="img/huevo-mini.webp" alt=""></div>
+      <div class="txt">
+        <h2 data-en="Save the date">Reserva la fecha</h2>
+        <p class="big-date">24 · 04 · 2027</p>
+        <div class="glass">
+          <p class="caps" data-en="THE EXPEDITION STARTS IN">LA EXPEDICIÓN EMPIEZA EN</p>
+          <div class="count" aria-label="Cuenta regresiva" data-en-label="Countdown">
+            <div><strong id="cd-d">0</strong><span data-en="DAYS">DÍAS</span></div>
+            <div><strong id="cd-h">0</strong><span data-en="HRS">HRS</span></div>
+            <div><strong id="cd-m">0</strong><span data-en="MIN">MIN</span></div>
+            <div><strong id="cd-s">0</strong><span data-en="SEC">SEG</span></div>
+          </div>
+        </div>
+        <div class="row"><a class="btn btn-line" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Expedici%C3%B3n%20Dino%20%C2%B7%20Santiago%20cumple%205&amp;dates=20270424T120000/20270424T160000&amp;location=Rancho%20Las%20Palmas%2C%20Cuernavaca%2C%20Morelos" data-en="Add to calendar">Agregar al calendario</a></div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m l" style="--top:6%"><img src="img/ginkgo-oro.webp" alt=""></div>
+      <div class="txt">
+        <h2 data-en="Base camp">Campamento</h2>
+        <div class="place">
+          <h3 data-en="THE PARTY">LA FIESTA</h3>
+          <p class="time">12:00 pm</p>
+          <p class="name">Rancho Las Palmas</p>
+          <p>Cuernavaca, Morelos</p>
+          <div class="row"><a class="btn btn-line" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Cuernavaca%2C%20Morelos" data-en="View map">Ver mapa</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m r" style="--top:6%"><img src="img/huevo-mini.webp" alt=""></div>
+      <div class="txt">
+        <h2 data-en="The route">La ruta</h2>
+        <img class="sdiv" src="img/divisor-olivo.webp" alt="">
+        <ol class="route">
+          <li><time>12:00<small>pm</small></time><span data-en="THE EXPLORERS ARRIVE">LLEGAN LOS EXPLORADORES</span></li>
+          <li><time>12:30<small>pm</small></time><span data-en="FOSSIL DIG">EXCAVACIÓN DE FÓSILES</span></li>
+          <li><time>1:30<small>pm</small></time><span data-en="LUNCH IN THE JUNGLE">COMIDA EN LA JUNGLA</span></li>
+          <li><time>2:30<small>pm</small></time><span data-en="CAKE AND HAPPY BIRTHDAY">PASTEL Y LAS MAÑANITAS</span></li>
+          <li><time>3:30<small>pm</small></time><span data-en="PIÑATA AND GOODBYES">PIÑATA Y DESPEDIDA</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m l" style="--top:6%"><img src="img/ginkgo-oro.webp" alt=""></div>
+      <div class="txt">
+        <h2 data-en="What to bring">Qué traer</h2>
+        <p class="caps" data-en="COME READY FOR THE EXPEDITION">VEN LISTO PARA LA EXPEDICIÓN</p>
+        <p class="lead" data-en="Comfy clothes, sneakers, an explorer's hat and lots of courage for the adventure.">Ropa cómoda, tenis, sombrero de explorador y muchas ganas de aventura.</p>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m r" style="--top:6%"><img src="img/huevo-mini.webp" alt=""></div>
+      <div class="txt">
+        <h2 data-en="RSVP">Confirma</h2>
+        <div class="glass pass">
+          <img class="nestmini" src="img/nido-mini.webp" alt="">
+          <p class="caps" data-en="THIS EXPLORER PASS IS VALID FOR">ESTE PASE DE EXPLORADOR ES VÁLIDO PARA</p>
+          <strong data-en="2 guests">2 personas</strong>
+          <p data-en="Please let us know before April 10th, 2027.">Por favor confírmanos antes del 10 de abril de 2027.</p>
+          <div class="row"><a class="btn btn-gold" id="rsvp" target="_blank" rel="noopener" href="https://wa.me/?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20Expedici%C3%B3n%20Dino%20de%20Santiago" data-en="Confirm on WhatsApp">Confirmar por WhatsApp</a></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <img class="fnest" src="img/nido-mini.webp" alt="">
+      <p class="tag">#ExpediciónSantiago5</p>
+      <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
+      <button class="replay" id="replay" type="button" data-en="HATCH THE EGG AGAIN">ABRIR EL HUEVO OTRA VEZ</button>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement, scene = document.getElementById('scene'), present = document.getElementById('present'), egg = document.getElementById('egg');
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  var q = null; try { q = new URLSearchParams(location.search); } catch (e) {}
+  var para = q && q.get('para');
+  if (para) { var gn = document.getElementById('guestName'); gn.textContent = para.slice(0, 60); gn.removeAttribute('data-en'); }
+
+  // ---------- music: Saint-Saëns, "Royal March of the Lion" (Carnival of the Animals), then Grieg; starts with the egg tap ----------
+  var SONGS = ['e45dESM_K6Y', 'VT1AfpAWDSE', 'BLZl-hhbXDI'], song = 0, yt = null, ytReady = false, wantPlay = false, playing = false;
+  var mbtn = document.getElementById('music');
+  window.onYouTubeIframeAPIReady = function () {
+    yt = new YT.Player('ytp', { width: 2, height: 2, videoId: SONGS[0],
+      playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, loop: 1, playlist: SONGS[0], rel: 0 },
+      events: {
+        onReady: function () { ytReady = true; if (wantPlay) startMusic(); },
+        onStateChange: function (e) { playing = e.data === 1; mbtn.classList.toggle('paused', !playing); mbtn.setAttribute('aria-pressed', String(playing)); },
+        onError: function () { if (song < SONGS.length - 1) { song++; yt.loadVideoById(SONGS[song]); if (!wantPlay) yt.pauseVideo(); } }
+      } });
+  };
+  (function () { var t = document.createElement('script'); t.src = 'https://www.youtube.com/iframe_api'; t.async = true; document.head.appendChild(t); })();
+  function startMusic() {
+    wantPlay = true; mbtn.classList.add('show');
+    if (!ytReady) return;
+    try { yt.setVolume(0); yt.playVideo(); var v = 0, f = setInterval(function () { v += 4; yt.setVolume(Math.min(60, v)); if (v >= 60) clearInterval(f); }, 160); } catch (e) {}
+  }
+  mbtn.addEventListener('click', function () { if (!ytReady) { startMusic(); return; } if (playing) yt.pauseVideo(); else { yt.setVolume(60); yt.playVideo(); } });
+
+  // ---------- the golden burst: sparks and little shell flecks ----------
+  var dpr = Math.min(2, window.devicePixelRatio || 1);
+  function fit(cv) { cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; var c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0); return c; }
+  var bcv = document.getElementById('burst'), bc = fit(bcv), BP = [], bRun = false;
+  function burst(x, y) {
+    for (var i = 0; i < 120; i++) { var a = rnd(-Math.PI, 0) + rnd(-.3, .3), v = rnd(2, 9); BP.push({ x: x, y: y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - rnd(0, 2), r: rnd(1.2, 3.4), life: 1, shell: Math.random() < .25, rot: rnd(0, 6.3) }); }
+    if (!bRun) { bRun = true; requestAnimationFrame(bdraw); }
+  }
+  function bdraw() {
+    bc.clearRect(0, 0, innerWidth, innerHeight);
+    for (var i = BP.length - 1; i >= 0; i--) {
+      var p = BP[i]; p.x += p.vx; p.y += p.vy; p.vy += .16; p.vx *= .985; p.life -= .012; p.rot += .1;
+      if (p.life <= 0) { BP.splice(i, 1); continue; }
+      if (p.shell) { bc.save(); bc.translate(p.x, p.y); bc.rotate(p.rot); bc.fillStyle = 'rgba(242,232,206,' + p.life + ')'; bc.beginPath(); bc.moveTo(-p.r * 2, 0); bc.lineTo(0, -p.r * 1.6); bc.lineTo(p.r * 2.2, p.r * .4); bc.closePath(); bc.fill(); bc.restore(); }
+      else { var g = bc.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3); g.addColorStop(0, 'rgba(255,246,210,' + p.life + ')'); g.addColorStop(.4, 'rgba(255,206,110,' + p.life * .8 + ')'); g.addColorStop(1, 'rgba(255,190,90,0)'); bc.fillStyle = g; bc.beginPath(); bc.arc(p.x, p.y, p.r * 3, 0, 6.283); bc.fill(); }
+    }
+    if (BP.length) requestAnimationFrame(bdraw); else bRun = false;
+  }
+  window.addEventListener('resize', function () { bc = fit(bcv); });
+
+  // ---------- hatch: wobble, cracks, light leaks, the top pops off, golden light, the jungle parts ----------
+  var opened = false;
+  function openScene() {
+    if (opened) return; opened = true; startMusic();
+    if (reduce) { scene.remove(); present.classList.add('opened'); enterWorld(); return; }
+    scene.classList.add('go', 'wobble');
+    setTimeout(function () { scene.classList.add('crack'); }, 950);
+    setTimeout(function () { scene.classList.remove('wobble'); scene.classList.add('leaking'); }, 1550);
+    setTimeout(function () { var r = egg.getBoundingClientRect(); scene.classList.add('pop'); burst(r.left + r.width * .53, r.top + r.height * .25); }, 2350);
+    setTimeout(function () { scene.classList.add('flooded'); }, 2750);
+    setTimeout(function () { scene.classList.add('parted'); }, 3050);
+    setTimeout(function () { present.classList.add('opened'); }, 3500);
+    setTimeout(function () { scene.classList.add('clear'); enterWorld(); }, 3700);
+    setTimeout(function () { scene.classList.add('gone'); }, 5000);
+    setTimeout(function () { scene.remove(); }, 5700);
+  }
+  function enterWorld() { root.classList.remove('locked'); }
+  egg.addEventListener('click', function (e) { e.stopPropagation(); openScene(); });
+  scene.addEventListener('click', openScene);
+  document.getElementById('replay').addEventListener('click', function () { window.scrollTo(0, 0); location.reload(); });
+
+  // ---------- inside: warm motes of light drifting through the jungle air ----------
+  (function () {
+    var cv = document.getElementById('dust'), c = fit(cv), P = [];
+    function mk() { P = []; var n = Math.round(innerWidth * innerHeight / 26000); for (var i = 0; i < n; i++) P.push({ x: rnd(0, innerWidth), y: rnd(0, innerHeight), r: rnd(1, 2.6), vx: rnd(-.15, .15), vy: rnd(-.25, -.05), ph: rnd(0, 6.3) }); }
+    mk(); window.addEventListener('resize', function () { c = fit(cv); mk(); });
+    function draw(t) {
+      c.clearRect(0, 0, innerWidth, innerHeight);
+      for (var i = 0; i < P.length; i++) { var p = P[i]; p.x += p.vx + Math.sin(t / 2000 + p.ph) * .15; p.y += p.vy; if (p.y < -10) { p.y = innerHeight + 10; p.x = rnd(0, innerWidth); }
+        var a = .25 + .3 * Math.sin(t / 900 + p.ph); var g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3); g.addColorStop(0, 'rgba(255,214,140,' + a + ')'); g.addColorStop(1, 'rgba(255,214,140,0)'); c.fillStyle = g; c.beginPath(); c.arc(p.x, p.y, p.r * 3, 0, 6.283); c.fill(); }
+      if (!reduce) requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  })();
+
+  var parts = document.querySelectorAll('.part');
+  if ('IntersectionObserver' in window && !reduce && !(q && q.get('desde'))) {
+    parts.forEach(function (s) { s.classList.add('wait'); });
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('wait'); io.unobserve(e.target); } }); }, { threshold: .15 });
+    parts.forEach(function (s) { io.observe(s); });
+  }
+
+  var target = new Date(2027, 3, 24, 12, 0, 0).getTime();
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function count() { var s = Math.floor(Math.max(0, target - Date.now()) / 1000); document.getElementById('cd-d').textContent = Math.floor(s / 86400); document.getElementById('cd-h').textContent = pad(Math.floor(s % 86400 / 3600)); document.getElementById('cd-m').textContent = pad(Math.floor(s % 3600 / 60)); document.getElementById('cd-s').textContent = pad(s % 60); }
+  count(); setInterval(count, 1000);
+
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-en], [data-en-html]'));
+  nodes.forEach(function (el) { el.setAttribute('data-es-html', el.innerHTML); });
+  var labels = Array.prototype.slice.call(document.querySelectorAll('[data-en-label]'));
+  labels.forEach(function (el) { el.setAttribute('data-es-label', el.getAttribute('aria-label')); });
+  var alts = Array.prototype.slice.call(document.querySelectorAll('[data-en-alt]'));
+  alts.forEach(function (el) { el.setAttribute('data-es-alt', el.getAttribute('alt')); });
+  var rsvp = document.getElementById('rsvp');
+  var RSVP = ['Hola, confirmo mi asistencia a la Expedición Dino de Santiago 🦕', 'Hi! I\'m confirming my attendance at Santiago\'s Dino Expedition 🦕'];
+  function setLang(l) {
+    nodes.forEach(function (el) { if (l === 'en') { if (el.hasAttribute('data-en-html')) el.innerHTML = el.getAttribute('data-en-html'); else el.textContent = el.getAttribute('data-en'); } else el.innerHTML = el.getAttribute('data-es-html'); });
+    labels.forEach(function (el) { el.setAttribute('aria-label', el.getAttribute(l === 'en' ? 'data-en-label' : 'data-es-label')); });
+    alts.forEach(function (el) { el.setAttribute('alt', el.getAttribute(l === 'en' ? 'data-en-alt' : 'data-es-alt')); });
+    rsvp.href = 'https://wa.me/?text=' + encodeURIComponent(RSVP[l === 'en' ? 1 : 0]);
+    root.lang = l;
+    document.getElementById('lang-es').setAttribute('aria-pressed', l === 'es');
+    document.getElementById('lang-en').setAttribute('aria-pressed', l === 'en');
+    try { localStorage.setItem('ilusion-lang', l); } catch (e) {}
+  }
+  document.getElementById('lang-es').addEventListener('click', function () { setLang('es'); });
+  document.getElementById('lang-en').addEventListener('click', function () { setLang('en'); });
+  var saved = 'es'; try { saved = localStorage.getItem('ilusion-lang') || 'es'; } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'es');
+
+  // preview switches: ?vista=sobre (closed, default) · ?abrir=1 · ?abierto=1 · ?mitad=1 (cracked, light leaking) · ?desde=N (start at section N)
+  if (q && q.get('abrir') === '1') setTimeout(openScene, 300);
+  if (q && q.get('abierto') === '1') { opened = true; scene.remove(); present.classList.add('opened'); enterWorld(); var d = parseInt(q.get('desde') || '', 10); if (d) { root.style.scrollBehavior = 'auto'; var el = document.querySelectorAll('.invite, .part, .foot')[d - 1]; if (el) setTimeout(function () { window.scrollTo(0, el.getBoundingClientRect().top + scrollY); }, 50); } }
+  if (q && q.get('mitad') === '1') {
+    opened = true; scene.classList.add('go', 'crack', 'leaking');
+    document.querySelectorAll('.egg .cracks path').forEach(function (p) { p.style.transition = 'none'; p.style.strokeDashoffset = '0'; });
+    document.querySelectorAll('.egg .leak path').forEach(function (p) { p.style.transition = 'none'; p.style.opacity = '.95'; });
+    var ig = document.querySelector('.egg .inglow'); ig.style.transition = 'none'; ig.style.opacity = '.55';
+    egg.style.animation = 'none';
+    var tl = document.querySelector('.egg .tl'), tr = document.querySelector('.egg .tr'); tl.style.transition = tr.style.transition = 'none'; tl.style.transform = 'translate(-6%, -14%) rotate(-12deg)'; tr.style.transform = 'translate(7%, -12%) rotate(10deg)';
+  }
+})();
+</script>
+
+<div id="ilu-nav" hidden>
+<style>
+#ilu-back,#ilu-cta{position:fixed;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;min-height:40px;border-radius:999px;text-decoration:none;font:500 13px/1 Jost,"Avenir Next",system-ui,sans-serif;letter-spacing:.03em;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:opacity .5s ease,transform .5s ease;-webkit-font-smoothing:antialiased}
+#ilu-back{top:calc(12px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));padding:0 15px 0 11px;background:rgba(255,252,246,.88);color:#3A2A26;box-shadow:0 8px 20px -10px rgba(40,25,20,.5),inset 0 0 0 1px rgba(182,138,78,.45)}
+#ilu-back svg{width:16px;height:16px}
+#ilu-cta{left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);padding:0 22px;min-height:46px;font-weight:600;font-size:14px;color:#3A2210;background:linear-gradient(180deg,#F7E4B4 0%,#EBC988 34%,#D6A963 70%,#C4914D 100%);box-shadow:inset 0 0 0 1px rgba(170,120,55,.3),0 12px 26px -12px rgba(110,70,30,.65),0 0 22px rgba(236,204,140,.5);white-space:nowrap}
+#ilu-cta.off{opacity:0;transform:translate(-50%,24px);pointer-events:none}
+@media (prefers-reduced-motion: reduce){#ilu-back,#ilu-cta{transition:none}}
+</style>
+<a id="ilu-back" href="/nuevo/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Volver</span></a>
+<a id="ilu-cta" class="off" href="/nuevo/crear/">Quiero una así ✨</a>
+</div>
+<script>
+(function(){
+  if (window.top !== window) return; /* inside the preview on the collection page: it has its own buttons */
+  var q = new URLSearchParams(location.search), c = q.get('c') || 'cumpleanos', d = q.get('d') || 'expedicion-dino';
+  var en = false; try { en = localStorage.getItem('ilu-lang') === 'en'; } catch (e) {}
+  var nav = document.getElementById('ilu-nav'), back = document.getElementById('ilu-back'), cta = document.getElementById('ilu-cta');
+  back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/?evento=' + c + '&diseno=' + encodeURIComponent('Expedición Dino') + '#imagina';
+  back.querySelector('span').textContent = en ? 'Back' : 'Volver'; cta.textContent = en ? 'I want one like this ✨' : 'Quiero una así ✨';
+  back.addEventListener('click', function (e) { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {} });
+  nav.hidden = false;
+  var last = scrollY, shown = false;
+  setTimeout(function () { shown = true; cta.classList.remove('off'); }, 3500);
+  addEventListener('scroll', function () { if (!shown) return; var y = scrollY; if (y > last + 8) cta.classList.add('off'); else if (y < last - 8 || innerHeight + y >= document.documentElement.scrollHeight - 40) cta.classList.remove('off'); last = y; }, { passive: true });
+})();
+</script>
+
+<div id="ilu-freeze">
+<style>
+#ilu-pause{position:fixed;z-index:2147483001;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:42px;height:42px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;padding:0;color:#3A2A26;background:rgba(255,252,246,.82);box-shadow:inset 0 0 0 1px rgba(182,138,78,.45),0 8px 18px -8px rgba(40,25,20,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent}
+#ilu-pause svg{width:15px;height:15px}
+#ilu-pause .pl{display:none} html.ilu-frozen #ilu-pause .pa{display:none} html.ilu-frozen #ilu-pause .pl{display:block}
+html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-play-state:paused!important}
+</style>
+<button id="ilu-pause" type="button" aria-pressed="false" aria-label="Pausar animación"><svg class="pa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg><svg class="pl" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></button>
+<script>
+/* pause button: freezes every animation so a guest (or the designer) can stop at any moment */
+(function(){
+  var raf=window.requestAnimationFrame.bind(window), q=[], frozen=false, paused=[];
+  window.requestAnimationFrame=function(cb){ if(frozen){ q.push(cb); return 0; } return raf(cb); };
+  var b=document.getElementById('ilu-pause'), en=false; try{ en=localStorage.getItem('ilu-lang')==='en'||localStorage.getItem('ilusion-lang')==='en'; }catch(e){}
+  function label(){ b.setAttribute('aria-label', frozen ? (en?'Resume animation':'Continuar animación') : (en?'Pause animation':'Pausar animación')); b.setAttribute('aria-pressed', String(frozen)); }
+  b.addEventListener('click', function(e){
+    e.stopPropagation(); frozen=!frozen; document.documentElement.classList.toggle('ilu-frozen', frozen);
+    if(frozen){ paused=(document.getAnimations?document.getAnimations():[]).filter(function(a){ return a.playState==='running'; }); paused.forEach(function(a){ try{a.pause();}catch(x){} }); }
+    else { paused.forEach(function(a){ try{a.play();}catch(x){} }); paused=[]; var cbs=q; q=[]; cbs.forEach(function(cb){ raf(cb); }); }
+    label();
+  });
+  label();
+})();
+</script>
+</div>
+
+</body>
+</html>

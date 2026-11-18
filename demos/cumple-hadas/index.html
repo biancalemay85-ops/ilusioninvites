@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Cumpleaños de ejemplo: Jardín de Hadas.">
+<meta property="og:title" content="Lucía cumple 8 ✨">
+<meta property="og:description" content="Sábado 18 de septiembre de 2027 · Valle de Bravo. Toca el frasco para abrirlo.">
+<meta property="og:image" content="https://ilusioninvites.com/demos/cumple-hadas/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Lucía cumple 8 ✨">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://ilusioninvites.com/demos/cumple-hadas/">
+<link rel="canonical" href="https://ilusioninvites.com/demos/cumple-hadas/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2A2240">
+<link rel="icon" href="img/objeto.webp">
+<link rel="apple-touch-icon" href="img/objeto.webp">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jardín de Hadas · Lucía 8 años</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Parisienne&family=Quicksand:wght@500;600;700&display=swap">
+<style>
+/* "Jardín de Hadas". 1) An enchanted forest at twilight; a corked jar full of fireflies glows on its moss in the middle. 2) Tap it: the cork pops off with a little bounce, the fireflies stream out and wander across the screen, the forest brightens and a lavender glow opens onto the plate. 3) One twilight page in plum, lavender, mint and moss with glowing fireflies. Dark theme only, on purpose. */
+:root {
+  color-scheme: dark;
+  --night: #1B1426;
+  --plum: #2A1F3A;
+  --lav: #C7B2E6;
+  --lav-deep: #9C82C8;
+  --mint: #AEE3CF;
+  --moss: #6F8F55;
+  --ink: #F6F0FA;
+  --ink-soft: #D9CFE6;
+  --glow: #F4D990;
+  --foil: linear-gradient(100deg, #C9A8E8 0%, #FFF3D2 22%, #E6C77E 40%, #FFFFFF 54%, #D8C0F2 70%, #F2D894 86%, #C9A8E8 100%);
+  --f-display: 'Lora', Georgia, serif;
+  --f-names: 'Parisienne', 'Snell Roundhand', cursive;
+  --f-caps: 'Quicksand', 'Avenir Next', sans-serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+img { height: auto; }
+body { margin: 0; background: var(--night); color: var(--ink); font-family: var(--f-display); font-size: 18px; line-height: 1.55; overflow-x: clip; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+html.locked, html.locked body { overflow: hidden; }
+html.locked .p-hint { opacity: 0; }
+
+.lang { position: fixed; z-index: 60; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); display: flex; border: 1px solid rgba(199,178,230,.5); border-radius: 999px; overflow: hidden; background: rgba(27,20,38,.55); backdrop-filter: blur(6px); }
+.lang button { border: 0; background: transparent; padding: 6px 11px; font: 700 11px var(--f-caps); letter-spacing: .14em; color: var(--ink-soft); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: linear-gradient(180deg, #EBDDFB, #B79BDF); color: var(--night); }
+/* iridescent lavender-gold foil with a soft glow, so it reads on the twilight */
+.foil { background: var(--foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 9s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(199,178,230,.35)) drop-shadow(0 3px 8px rgba(10,6,18,.85)); }
+@keyframes foil { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+@keyframes breathe { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+@keyframes flutter { 0%,100% { transform: rotate(-6deg) scaleX(1); } 25% { transform: rotate(-2deg) scaleX(.82); } 50% { transform: rotate(5deg) scaleX(1); } 75% { transform: rotate(1deg) scaleX(.86); } }
+
+/* ---------- the enchanted forest with the firefly jar ---------- */
+.scene { position: fixed; inset: 0; z-index: 40; overflow: hidden; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.veil { position: absolute; inset: 0; background: var(--plum) url("img/fondo.webp") 50% 60% / cover no-repeat; filter: brightness(.72) saturate(.9); transition: filter 2s ease, transform 3s cubic-bezier(.45,.05,.25,1), opacity 1.6s ease; }
+.veil::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,12,30,.5), rgba(20,12,30,.05) 34%, rgba(20,12,30,.1) 66%, rgba(20,12,30,.6)); }
+.bloom { position: absolute; inset: 0; z-index: 8; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 46%, rgba(255,250,236,.98), rgba(230,214,250,.85) 32%, rgba(186,160,226,.5) 60%, rgba(186,160,226,0) 84%); transform: scale(.5); transition: opacity 1.2s ease, transform 1.9s cubic-bezier(.3,.7,.2,1); }
+
+.cface { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; pointer-events: none;
+  padding: calc(56px + env(safe-area-inset-top, 0px)) 20px calc(36px + env(safe-area-inset-bottom, 0px)); }
+.cface > * { margin: 0; transition: opacity 1s ease, transform 1s ease; }
+.cface::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(640px, 130vw); height: min(760px, 100vh); transform: translate(-50%, -50%); z-index: -1; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(20,12,30,.62), rgba(20,12,30,.3) 60%, transparent); pointer-events: none; transition: opacity 1.2s ease; }
+.c-eye { font-family: var(--f-caps); font-weight: 700; font-size: clamp(11px, 1.4vw, 13px); letter-spacing: .34em; padding-left: .34em; color: var(--mint); text-shadow: 0 2px 10px rgba(10,6,18,.95); }
+.c-name { font-family: var(--f-names); font-size: clamp(74px, 17vw, 126px); line-height: 1.02; padding: 0 .16em; margin-top: 4px !important; }
+.c-age { display: flex; align-items: center; gap: 12px; font-family: var(--f-caps); font-weight: 600; font-size: 13px; letter-spacing: .32em; color: var(--ink-soft); margin-top: -6px !important; text-shadow: 0 2px 10px rgba(10,6,18,.95); }
+.c-age b { font-family: var(--f-display); font-style: italic; font-weight: 600; font-size: 36px; letter-spacing: 0; line-height: 1; text-shadow: none; }
+/* the jar: the button that opens everything */
+.jar { position: relative; width: clamp(200px, 25vw, 270px); aspect-ratio: 1148 / 1400; padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto; margin: 10px 0 6px;
+  filter: drop-shadow(0 0 26px rgba(244,217,144,.35)) drop-shadow(0 18px 16px rgba(6,4,10,.65)); transition: filter 1.2s ease, opacity 1s ease, transform 1.4s cubic-bezier(.3,.7,.2,1); animation: bob 6.5s ease-in-out infinite; }
+.jar img { position: absolute; display: block; }
+.jar .body { inset: 0; width: 100%; height: 100%; }
+.jar .cork { left: 36.6%; top: 0; width: 28.7%; z-index: 2; transform-origin: 50% 80%; }
+.jar::before { content: ""; position: absolute; left: -26%; right: -26%; top: -10%; bottom: -6%; z-index: -1; border-radius: 50%; background: radial-gradient(circle at 50% 52%, rgba(244,217,144,.42), rgba(199,178,230,.16) 46%, transparent 70%); animation: halo 3.4s ease-in-out infinite; }
+@keyframes halo { 0%,100% { opacity: .6; transform: scale(.94); } 50% { opacity: 1; transform: scale(1.05); } }
+.jar .ring { position: absolute; left: 50%; top: 9%; width: 52%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; border: 1.5px solid rgba(174,227,207,.65); animation: ping 2.6s ease-out infinite; pointer-events: none; }
+@keyframes ping { from { transform: scale(.5); opacity: .95; } to { transform: scale(1.25); opacity: 0; } }
+.c-para { margin-top: 8px !important; font-family: var(--f-caps); font-weight: 700; font-size: 11px; letter-spacing: .5em; padding-left: .5em; color: var(--mint); text-shadow: 0 2px 10px rgba(10,6,18,.95); }
+.c-guest { font-family: var(--f-names); font-size: clamp(32px, 8vw, 46px); line-height: 1.2; padding: 0 .14em; max-width: 92vw; }
+.c-hint { display: flex; align-items: center; gap: 12px; margin-top: 10px !important; font-family: var(--f-caps); font-weight: 700; font-size: 11px; letter-spacing: .26em; color: var(--glow); text-shadow: 0 2px 10px rgba(10,6,18,.95); }
+.c-hint span { animation: breathe 2.6s ease-in-out infinite; } .c-hint i { width: 26px; height: 1px; background: linear-gradient(90deg, transparent, var(--glow)); } .c-hint i:last-child { transform: scaleX(-1); }
+
+/* 1) the cork pops off with a bounce and the words step back */
+.pop .jar { animation: none; }
+.pop .jar .ring { display: none; }
+.pop .jar .cork { animation: corkpop 1.5s cubic-bezier(.2,.75,.3,1) forwards; }
+@keyframes corkpop { 0% { transform: none; } 12% { transform: translateY(6%) scale(1.02, .94); } 30% { transform: translate(18%, -150%) rotate(28deg); } 52% { transform: translate(42%, -240%) rotate(70deg); } 72% { transform: translate(70%, -200%) rotate(120deg); opacity: 1; } 100% { transform: translate(110%, -120%) rotate(170deg); opacity: 0; } }
+.pop .cface > :not(.jar) { opacity: 0; transform: translateY(-8px); }
+.pop .cface::before { opacity: .3; }
+/* 2) the forest brightens as the fireflies fly out */
+.free .veil { filter: brightness(1.08) saturate(1.1); transform: scale(1.06); }
+.free .jar { filter: drop-shadow(0 0 40px rgba(244,217,144,.85)) drop-shadow(0 0 80px rgba(199,178,230,.5)); }
+/* 3) the lavender glow opens onto the plate */
+.glowing .bloom { opacity: 1; transform: scale(1.5); }
+.glowing .jar { opacity: 0; transform: scale(1.15); transition: opacity 1.1s ease .4s, transform 1.6s ease; }
+.scene.clear .bloom { opacity: 0; transition: opacity 1.5s ease; }
+.scene.clear .veil { opacity: 0; }
+.scene.clear { pointer-events: none; }
+.scene.gone { opacity: 0; transition: opacity .6s ease; }
+
+/* ---------- inside: the twilight forest under a soft plum veil ---------- */
+.bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: var(--plum) url("img/fondo.webp") 50% 60% / cover no-repeat; }
+.bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(199,178,230,.12), transparent 70%), linear-gradient(180deg, rgba(24,16,34,.58), rgba(24,16,34,.74) 50%, rgba(20,14,28,.84)); }
+#fx { position: fixed; inset: 0; z-index: 46; width: 100%; height: 100%; pointer-events: none; }
+html:not(.locked) #fx { z-index: 3; }
+.world { position: relative; z-index: 2; }
+
+/* the plate: a frosted fairy window, tall and rounded, with a leafy branch and forget-me-nots */
+.present { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: calc(70px + env(safe-area-inset-top, 0px)) 16px 120px; overflow: hidden; }
+.plate { position: relative; z-index: 2; width: min(84vw, 400px); display: flex; flex-direction: column; align-items: center; gap: 6px; padding: clamp(26px, 8vw, 38px) clamp(22px, 7vw, 34px) clamp(34px, 10vw, 46px); text-align: center; border-radius: 220px 220px 36px 36px; container-type: inline-size;
+  background: linear-gradient(165deg, rgba(232,220,250,.2), rgba(174,227,207,.07) 46%, rgba(199,178,230,.14)), rgba(36,26,52,.55); -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 0 0 1px rgba(199,178,230,.6), inset 0 0 0 8px rgba(174,227,207,.08), inset 0 0 0 9px rgba(174,227,207,.3), 0 0 60px -10px rgba(199,178,230,.35), 0 40px 80px -30px rgba(6,4,10,.9); }
+.pwin { position: relative; width: 82%; aspect-ratio: 4 / 5; border-radius: 999px 999px 26px 26px; overflow: hidden;
+  box-shadow: 0 0 0 1.5px rgba(244,217,144,.85), 0 0 0 6px rgba(174,227,207,.22), 0 0 0 7px rgba(199,178,230,.5), 0 0 30px rgba(244,217,144,.25); }
+.pwin img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block; }
+.present.opened .pwin img { animation: zin 3.4s cubic-bezier(.25,.6,.25,1) forwards, kb 18s ease-in-out 3.4s infinite alternate; }
+.present.opened .plate { animation: settle 3s cubic-bezier(.25,.6,.25,1); }
+@keyframes zin { from { transform: scale(1); } to { transform: scale(1.1); } }
+@keyframes settle { from { transform: scale(.96); } to { transform: none; } }
+@keyframes kb { from { transform: scale(1.1); } to { transform: scale(1.16) translate(-1%, -1%); } }
+.pflor { position: absolute; z-index: 3; pointer-events: none; filter: drop-shadow(0 6px 8px rgba(6,4,10,.6)); }
+.pflor.a { width: 20%; left: 3%; top: 49%; }
+.pflor.b { width: 15%; right: 5%; top: 52%; animation: bob 6s ease-in-out infinite; }
+.pbut { position: absolute; z-index: 3; width: 16%; right: 9%; top: 9%; pointer-events: none; animation: flutter 2.4s ease-in-out infinite; filter: drop-shadow(0 4px 6px rgba(6,4,10,.5)); }
+.p-caps { margin: 6px 0 0; font-family: var(--f-caps); font-weight: 700; font-size: max(10px, 3cqw); letter-spacing: .4em; padding-left: .4em; color: var(--mint); }
+.p-name { margin: -2px 0 0; font-family: var(--f-names); font-weight: 400; font-size: 23cqw; line-height: 1; padding: 0 .14em; }
+.p-age { display: flex; align-items: baseline; gap: 2.4cqw; margin: -1% 0 0; font-family: var(--f-caps); font-weight: 600; font-size: max(11px, 3.4cqw); letter-spacing: .3em; color: var(--ink-soft); }
+.p-age b { font-family: var(--f-display); font-style: italic; font-weight: 600; font-size: 12cqw; letter-spacing: 0; line-height: 1; }
+.orn-img { display: block; width: 66%; height: auto; margin: 2% 0; filter: drop-shadow(0 3px 4px rgba(6,4,10,.6)); }
+.p-date { margin: 0; font-family: var(--f-caps); font-weight: 600; font-size: max(11px, 3.4cqw); letter-spacing: .3em; padding-left: .3em; color: var(--ink); }
+.p-hint { position: absolute; left: 0; right: 0; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); margin: 0; text-align: center; font-family: var(--f-caps); font-weight: 700; font-size: 11px; letter-spacing: .32em; z-index: 3; transition: opacity 1s ease; }
+.p-hint a { color: var(--mint); text-decoration: none; animation: breathe 2.6s ease-in-out infinite; display: inline-block; padding: 8px; }
+
+/* the invitation card: lavender glass with a mossy, flowery foot */
+.invite { position: relative; padding: 60px 16px 90px; display: grid; place-items: center; }
+.card { position: relative; width: min(88vw, 460px); padding: clamp(58px, 15vw, 72px) clamp(24px, 8vw, 44px) clamp(70px, 18vw, 84px); border-radius: 46% 46% 30px 30px / 18% 18% 30px 30px; text-align: center; container-type: inline-size; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  background: linear-gradient(165deg, rgba(232,220,250,.18), rgba(174,227,207,.06) 50%, rgba(199,178,230,.12)), rgba(36,26,52,.62); -webkit-backdrop-filter: blur(9px); backdrop-filter: blur(9px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 0 0 1px rgba(199,178,230,.55), 0 0 50px -16px rgba(199,178,230,.4), 0 40px 70px -30px rgba(6,4,10,.9); }
+.card > :not(.cflor) { position: relative; z-index: 2; margin: 0; }
+.cflor { position: absolute; z-index: 3; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(6,4,10,.6)); }
+.cflor.a { width: 22%; left: 6%; bottom: -5%; } .cflor.b { width: 15%; right: 9%; bottom: -3%; } .cflor.c { width: 12%; left: 27%; bottom: -2%; }
+.card .k-caps { font-family: var(--f-caps); font-weight: 700; font-size: max(10px, 2.6cqw); letter-spacing: .3em; padding-left: .3em; color: var(--mint); line-height: 1.8; }
+.card .k-name { font-family: var(--f-names); font-size: 21cqw; line-height: 1.04; padding: 0 .14em; }
+.card .k-line { font-style: italic; font-size: max(17px, 4.6cqw); line-height: 1.45; color: var(--ink); max-width: 27ch; }
+.card .k-date { font-family: var(--f-names); font-size: 10.5cqw; line-height: 1.15; color: var(--lav); margin-top: 2% !important; }
+.card .k-small { font-family: var(--f-caps); font-weight: 600; font-size: max(10px, 2.5cqw); letter-spacing: .2em; line-height: 1.9; color: var(--ink-soft); }
+.card .orn-img { width: min(62%, 300px); margin: 4px auto; }
+
+/* the rest of the page */
+.flow { position: relative; padding: 10px 0 0; }
+.part { position: relative; padding: clamp(70px, 12vw, 116px) max(20px, env(safe-area-inset-right, 0px)) clamp(70px, 12vw, 116px) max(20px, env(safe-area-inset-left, 0px)); text-align: center; }
+.txt { position: relative; z-index: 3; max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 14px; text-shadow: 0 0 14px rgba(14,9,22,.95), 0 0 4px rgba(14,9,22,.8); }
+.txt > * { transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1); }
+.wait .txt > * { opacity: 0; transform: translateY(26px); }
+.txt > :nth-child(2) { transition-delay: .12s; } .txt > :nth-child(3) { transition-delay: .24s; } .txt > :nth-child(4) { transition-delay: .36s; } .txt > :nth-child(5) { transition-delay: .48s; }
+.txt .foil { text-shadow: none; }
+/* butterflies and little flowers resting at the page margins */
+.m { position: absolute; z-index: 1; pointer-events: none; width: var(--w, 8vw); max-width: var(--mw, 120px); top: var(--top, 10%); transition: opacity 1.6s ease, translate 1.8s cubic-bezier(.16,.8,.24,1); }
+.m img { display: block; width: 100%; height: auto; filter: drop-shadow(4px 12px 12px rgba(6,4,10,.55)); }
+.m.but img { animation: flutter 2.6s ease-in-out infinite; }
+.m.l { left: var(--x, 6vw); } .m.r { right: var(--x, 6vw); }
+.wait .m.l { opacity: 0; translate: -30px 0; } .wait .m.r { opacity: 0; translate: 30px 0; }
+.part h2 { margin: 0; font-family: var(--f-names); font-weight: 400; font-size: clamp(56px, 13.5vw, 84px); line-height: 1.08; padding-inline: .16em; }
+.caps { margin: 0; font-family: var(--f-caps); font-weight: 700; font-size: 12px; letter-spacing: .3em; color: var(--mint); }
+.part p { margin: 0; color: var(--ink-soft); }
+.part p.foil { color: transparent; }
+.lead { font-size: 20px; color: var(--ink) !important; max-width: 34ch; }
+.quote { font-style: italic; font-size: 22px; line-height: 1.5; color: var(--ink) !important; max-width: 30ch; }
+.sign { font-family: var(--f-names); font-size: 48px; line-height: 1.1; padding: 0 .14em; }
+.glows { display: flex; gap: 10px; } .glows i { width: 6px; height: 6px; border-radius: 50%; background: var(--glow); box-shadow: 0 0 10px 3px rgba(244,217,144,.7); animation: breathe 2.2s ease-in-out infinite; } .glows i:nth-child(2) { animation-delay: -.7s; background: var(--mint); box-shadow: 0 0 10px 3px rgba(174,227,207,.6); } .glows i:nth-child(3) { animation-delay: -1.4s; }
+
+/* the garden party: the photo in a tall rounded window and the little details */
+.fiesta .txt { max-width: 900px; }
+.nest { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(20px, 5vw, 56px); align-items: center; width: 100%; margin-top: 12px; text-align: left; }
+.gwin { position: relative; width: 100%; max-width: 350px; justify-self: end; aspect-ratio: 3 / 4.3; border-radius: 999px 999px 30px 30px; overflow: hidden;
+  box-shadow: 0 0 0 1.5px rgba(244,217,144,.8), 0 0 0 7px rgba(174,227,207,.2), 0 0 0 8px rgba(199,178,230,.5), 0 0 40px rgba(199,178,230,.25), 0 30px 50px -20px rgba(6,4,10,.85); }
+.gwin img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dets { display: flex; flex-direction: column; gap: 16px; }
+.det { display: flex; gap: 14px; align-items: flex-start; }
+.det img { flex: none; width: 34px; margin-top: 4px; filter: drop-shadow(0 3px 4px rgba(6,4,10,.6)); }
+.det div { display: flex; flex-direction: column; gap: 2px; }
+.det b { font-family: var(--f-caps); font-weight: 700; font-size: 12px; letter-spacing: .24em; color: var(--mint); }
+.det span { font-size: 18px; color: var(--ink); line-height: 1.4; }
+@media (max-width: 640px) {
+  .nest { grid-template-columns: 1fr; }
+  .gwin { justify-self: center; max-width: 76vw; }
+  .dets { width: min(100%, 360px); margin: 0 auto; }
+}
+
+.big-date { font-family: var(--f-display); font-style: italic; font-weight: 500; font-size: clamp(30px, 7.4vw, 44px); letter-spacing: .06em; color: var(--ink); margin: 0; }
+.place h3 { margin: 0; font-family: var(--f-caps); font-weight: 700; font-size: 13px; letter-spacing: .3em; color: var(--mint); }
+.place .name { font-size: 23px; color: var(--ink) !important; }
+.place .time { font-family: var(--f-names); font-size: 46px; line-height: 1.1; color: var(--ink) !important; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 24px; border-radius: 999px; font-family: var(--f-caps); font-weight: 700; font-size: 12px; letter-spacing: .18em; text-decoration: none; cursor: pointer; transition: transform .2s ease; text-shadow: none; }
+.btn:hover { transform: translateY(-1px); }
+.btn-gold { background: linear-gradient(180deg, #FFF1C9 0%, #F0D186 50%, #CDA757 100%); color: #2A1F3A; border: 0; box-shadow: inset 0 1px 0 rgba(255,250,235,.95), 0 0 24px -4px rgba(244,217,144,.6), 0 8px 18px -6px rgba(6,4,10,.6); }
+.btn-line { border: 1px solid rgba(174,227,207,.55); color: var(--ink); background: rgba(36,26,52,.55); backdrop-filter: blur(4px); }
+.row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
+
+/* lavender glass cards */
+.glass { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px clamp(20px, 6vw, 44px) 28px; border-radius: 32px; text-shadow: none;
+  background: linear-gradient(165deg, rgba(232,220,250,.16), rgba(174,227,207,.06) 50%, rgba(199,178,230,.1)), rgba(36,26,52,.6); -webkit-backdrop-filter: blur(9px); backdrop-filter: blur(9px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), inset 0 0 0 1px rgba(199,178,230,.5), 0 0 40px -14px rgba(199,178,230,.35), 0 30px 60px -28px rgba(6,4,10,.9); }
+.glass > * { position: relative; }
+.perch { position: absolute !important; z-index: 3; pointer-events: none; filter: drop-shadow(0 4px 5px rgba(6,4,10,.5)); }
+.perch img { display: block; width: 100%; height: auto; }
+.perch.but img { animation: flutter 2.4s ease-in-out infinite; }
+/* the countdown: little round pebbles of mint glass */
+.count { display: flex; justify-content: center; flex-wrap: nowrap; gap: clamp(6px, 2vw, 12px); }
+.count div { width: clamp(64px, 18vw, 84px); padding: 15px 0 13px; border-radius: 48% 52% 46% 54% / 56% 50% 50% 44%; display: flex; flex-direction: column; align-items: center;
+  background: radial-gradient(ellipse at 40% 25%, rgba(255,255,255,.22), rgba(174,227,207,.08) 60%), rgba(40,30,56,.5); box-shadow: inset 0 0 0 1px rgba(174,227,207,.45), 0 0 18px -6px rgba(174,227,207,.4); }
+.count strong { font-family: var(--f-display); font-style: italic; font-weight: 500; font-size: clamp(26px, 7vw, 32px); line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.count span { font-family: var(--f-caps); font-weight: 700; font-size: 9.5px; letter-spacing: .2em; color: var(--mint); margin-top: 6px; }
+.pass strong { font-family: var(--f-names); font-weight: 400; font-size: 52px; line-height: 1.1; color: var(--ink); }
+
+/* itinerary · C (zigzag): a trail of glowing firefly dots, a butterfly at each moment */
+.timeline { list-style: none; margin: 14px auto 0; padding: 0; width: 100%; max-width: 560px; display: flex; flex-direction: column; }
+.timeline li { display: grid; grid-template-columns: 1fr 52px 1fr; align-items: center; min-height: 110px; }
+.timeline .dot { grid-column: 2; grid-row: 1; position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
+.timeline .dot::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 6px; margin-left: -3px; background: radial-gradient(circle, rgba(255,236,170,.95) 0 1.6px, rgba(244,217,144,.35) 2.4px, transparent 3px) center top / 6px 14px repeat-y; animation: trail 3s linear infinite; }
+@keyframes trail { from { background-position: center 0; } to { background-position: center 14px; } }
+.timeline li:first-child .dot::before { top: 50%; }
+.timeline li:last-child .dot::before { bottom: 50%; }
+.timeline .dot img { position: relative; z-index: 1; width: 40px; filter: drop-shadow(0 3px 4px rgba(6,4,10,.6)) drop-shadow(0 0 8px rgba(199,178,230,.4)); animation: flutter 2.6s ease-in-out infinite; }
+.timeline li:nth-child(2) .dot img { animation-delay: -.5s; } .timeline li:nth-child(3) .dot img { animation-delay: -1s; } .timeline li:nth-child(4) .dot img { animation-delay: -1.5s; } .timeline li:nth-child(5) .dot img { animation-delay: -2s; }
+.timeline .cd { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; align-items: flex-end; text-align: right; padding-right: 16px; }
+.timeline li:nth-child(even) .cd { grid-column: 3; align-items: flex-start; text-align: left; padding: 0 0 0 16px; }
+.timeline time { font-family: var(--f-names); font-size: 38px; line-height: 1.15; padding: 0 .14em; background: var(--foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 2px 4px rgba(6,4,10,.8)); animation: foil 9s ease-in-out infinite alternate; }
+.timeline span { font-size: 18px; line-height: 1.3; color: var(--ink); }
+@media (max-width: 520px) {
+  .timeline li { grid-template-columns: 1fr 44px 1fr; min-height: 100px; }
+  .timeline .cd { padding-right: 10px; } .timeline li:nth-child(even) .cd { padding-left: 10px; }
+  .timeline time { font-size: 31px; }
+  .timeline span { font-size: 16px; }
+  .timeline .dot img { width: 34px; }
+}
+
+.bring { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 6px; }
+.bring b { font-family: var(--f-caps); font-weight: 700; font-size: 12px; letter-spacing: .26em; color: var(--mint); }
+.foot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; padding: 40px 16px calc(84px + env(safe-area-inset-bottom, 0px)); }
+.foot .fjar { width: clamp(110px, 16vw, 150px); height: auto; filter: drop-shadow(0 0 22px rgba(244,217,144,.4)) drop-shadow(0 12px 14px rgba(6,4,10,.6)); animation: bob 7s ease-in-out infinite; margin-bottom: 6px; }
+.foot .tag { font-family: var(--f-names); font-size: clamp(38px, 10.5vw, 54px); margin: 0; padding: 0 .14em; }
+.foot .made { font-family: var(--f-caps); font-weight: 700; font-size: 10.5px; letter-spacing: .3em; color: var(--ink-soft); margin: 0; }
+.replay { border: 1px solid rgba(174,227,207,.45); background: rgba(36,26,52,.55); border-radius: 999px; padding: 10px 20px; margin-top: 10px; font-family: var(--f-caps); font-weight: 700; font-size: 10.5px; letter-spacing: .22em; color: var(--ink-soft); cursor: pointer; }
+
+/* music button: a soft glowing pearl */
+#yt { position: fixed; left: 0; bottom: 0; width: 2px; height: 2px; opacity: 0; pointer-events: none; z-index: -1; }
+.music { position: fixed; z-index: 60; right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 48px; height: 48px; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 30%, #FFF6DD, #E8CB82 80%); box-shadow: inset 0 1px 0 rgba(255,250,235,.9), 0 0 22px -2px rgba(244,217,144,.6), 0 8px 18px -6px rgba(6,4,10,.7); opacity: 0; transform: scale(.6); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.music.show { opacity: 1; transform: none; }
+.music .bars { display: flex; align-items: flex-end; gap: 3px; height: 16px; }
+.music .bars i { width: 3px; height: 100%; border-radius: 2px; background: #2A1F3A; transform-origin: bottom; animation: eq 1s ease-in-out infinite; }
+.music .bars i:nth-child(2) { animation-delay: -.35s; } .music .bars i:nth-child(3) { animation-delay: -.7s; } .music .bars i:nth-child(4) { animation-delay: -.2s; }
+.music.paused .bars i { animation: none; transform: scaleY(.3); }
+@keyframes eq { 0%,100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+/* phones: one butterfly or flower per section in the top corner, never over the words */
+@media (max-width: 640px) {
+  .jar { width: min(56vw, 230px); margin: 8px 0 4px; }
+  .part { padding-top: 112px; }
+  .m { width: 50px !important; max-width: none !important; --x: 16px !important; top: 60px !important; }
+  .m ~ .m { display: none; }
+  .c-hint { letter-spacing: .18em; font-size: 10px; } .c-hint i { width: 16px; }
+  .c-eye { letter-spacing: .26em; }
+}
+</style>
+<script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+
+<div class="lang" role="group" aria-label="Idioma / Language">
+  <button type="button" id="lang-es" aria-pressed="true">ES</button>
+  <button type="button" id="lang-en" aria-pressed="false">EN</button>
+</div>
+
+<!-- the enchanted forest with the firefly jar -->
+<section class="scene" id="scene" aria-label="Invitación al cumpleaños de Lucía" data-en-label="Invitation to Lucía's birthday">
+  <div class="veil" aria-hidden="true"></div>
+  <div class="cface">
+    <p class="c-eye" data-en="THE FAIRIES INVITE YOU">LAS HADAS TE INVITAN</p>
+    <p class="c-name foil">Lucía</p>
+    <p class="c-age"><span data-en="TURNS">CUMPLE</span><b class="foil">8</b><span data-en="YEARS">AÑOS</span></p>
+    <button class="jar" id="jar" type="button" aria-label="Abrir el frasco de luciérnagas y la invitación" data-en-label="Open the firefly jar and the invitation">
+      <img class="body" src="img/frasco.webp" alt="" width="1148" height="1400">
+      <img class="cork" src="img/corcho.webp" alt="" width="330" height="122">
+      <span class="ring" aria-hidden="true"></span>
+    </button>
+    <p class="c-para" data-en="FOR">PARA</p>
+    <p class="c-guest foil" id="guestName" data-en="a very special guest">un invitado muy especial</p>
+    <p class="c-hint"><i></i><span data-en="TAP THE JAR TO OPEN IT">TOCA EL FRASCO PARA ABRIRLO</span><i></i></p>
+  </div>
+  <div class="bloom" aria-hidden="true"></div>
+</section>
+
+<div id="yt" aria-hidden="true"><div id="ytp"></div></div>
+<button class="music paused" id="music" type="button" aria-label="Música: reproducir" data-en-label="Music: play" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+<div class="bg" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<div class="world" id="world">
+  <section class="present" id="present" aria-label="Cumpleaños de Lucía" data-en-label="Lucía's birthday">
+    <div class="plate">
+      <div class="pwin"><img src="img/fiesta.webp" alt="Mesa de fiesta de hadas al atardecer con pastel lavanda, flores y frascos de luces" data-en-alt="Fairy garden party table at dusk with a lavender cake, flowers and jars of lights" width="1100" height="1650"></div>
+      <img class="pbut" src="img/mariposa-rosa.webp" alt="">
+      <img class="pflor a" src="img/hortensia-flor.webp" alt=""><img class="pflor b" src="img/nomeolvides.webp" alt="">
+      <p class="p-caps" data-en="FAIRY GARDEN">JARDÍN DE HADAS</p>
+      <h1 class="p-name foil">Lucía</h1>
+      <p class="p-age"><span data-en="TURNS">CUMPLE</span><b class="foil">8</b><span data-en="YEARS">AÑOS</span></p>
+      <img class="orn-img" src="img/divisor-olivo.webp" alt="">
+      <p class="p-date">18 · 09 · 2027</p>
+    </div>
+    <p class="p-hint"><a href="#invitacion" data-en="MY INVITATION ↓">MI INVITACIÓN ↓</a></p>
+  </section>
+
+  <section class="invite" id="invitacion">
+    <div class="card">
+      <img class="cflor a" src="img/hortensia-flor.webp" alt=""><img class="cflor c" src="img/nomeolvides.webp" alt=""><img class="cflor b" src="img/hortensia-flor.webp" alt="">
+      <p class="k-caps" data-en="WITH WINGS AND LOTS OF EXCITEMENT">CON ALAS Y MUCHA ILUSIÓN</p>
+      <p class="k-name foil">Lucía</p>
+      <p class="k-line" data-en="invites you to an enchanted garden to celebrate her 8th birthday">te invita a un jardín encantado para celebrar sus 8 años</p>
+      <img class="orn-img" src="img/divisor-olivo.webp" alt="">
+      <p class="k-date" data-en="Saturday, September 18th">Sábado 18 de septiembre</p>
+      <p class="k-small" data-en-html="TWO THOUSAND TWENTY-SEVEN<br>AT FIVE IN THE AFTERNOON">DOS MIL VEINTISIETE<br>A LAS CINCO DE LA TARDE</p>
+      <p class="k-small">CASA DE CAMPO LOS ENCINOS<br>VALLE DE BRAVO</p>
+    </div>
+  </section>
+
+  <main class="flow" id="detalles">
+    <section class="part">
+      <div class="m r but" style="--top:6%"><img src="img/mariposa-rosa.webp" alt=""></div>
+      <div class="txt">
+        <p class="caps" data-en="A FEW WORDS">UNAS PALABRAS</p>
+        <span class="glows" aria-hidden="true"><i></i><i></i><i></i></span>
+        <p class="quote" data-en="“Eight years ago a little fairy landed in our home and filled it with light. Come and celebrate her in a garden full of flowers, butterflies and fireflies.”">“Hace ocho años aterrizó en nuestra casa una pequeña hada y la llenó de luz. Ven a celebrarla en un jardín lleno de flores, mariposas y luciérnagas.”</p>
+        <p class="sign foil" data-en="Mom &amp; Dad">Mamá y Papá</p>
+      </div>
+    </section>
+
+    <section class="part fiesta">
+      <div class="m l" style="--top:4%"><img src="img/hortensia-flor.webp" alt=""></div>
+      <div class="txt">
+        <h2 class="foil" data-en="The garden">El jardín</h2>
+        <p class="lead" data-en="Lavender and mint, moss on the table, little mushrooms and jars full of light.">Lavanda y menta, musgo en la mesa, hongos pequeñitos y frascos llenos de luz.</p>
+        <div class="nest">
+          <div class="gwin"><img src="img/fiesta.webp" alt="" width="1100" height="1650" loading="lazy"></div>
+          <div class="dets">
+            <div class="det"><img src="img/nomeolvides.webp" alt=""><div><b data-en="FAIRY TEA">TÉ DE HADAS</b><span data-en="Lavender lemonade and flower cookies">Limonada de lavanda y galletas de flores</span></div></div>
+            <div class="det"><img src="img/mariposa-rosa.webp" alt=""><div><b data-en="WING WORKSHOP">TALLER DE ALAS</b><span data-en="Every guest decorates her own fairy wings">Cada invitada decora sus propias alas</span></div></div>
+            <div class="det"><img src="img/ginkgo-oro.webp" alt=""><div><b data-en="FIREFLY HUNT">CAZA DE LUCIÉRNAGAS</b><span data-en="At sunset, with little lanterns and magic lights">Al atardecer, con linternas y luces mágicas</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m r but" style="--top:6%"><img src="img/mariposa-rosa.webp" alt=""></div>
+      <div class="txt">
+        <h2 class="foil" data-en="Save the date">Reserva la fecha</h2>
+        <p class="big-date">18 · 09 · 2027</p>
+        <div class="glass">
+          <span class="perch" style="left:-14px;top:-18px;width:40px"><img src="img/nomeolvides.webp" alt=""></span>
+          <p class="caps" data-en="ONLY">FALTAN</p>
+          <div class="count" aria-label="Cuenta regresiva" data-en-label="Countdown">
+            <div><strong id="cd-d">0</strong><span data-en="DAYS">DÍAS</span></div>
+            <div><strong id="cd-h">0</strong><span data-en="HRS">HRS</span></div>
+            <div><strong id="cd-m">0</strong><span data-en="MIN">MIN</span></div>
+            <div><strong id="cd-s">0</strong><span data-en="SEC">SEG</span></div>
+          </div>
+        </div>
+        <div class="row"><a class="btn btn-line" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cumplea%C3%B1os%20de%20Luc%C3%ADa%20%C2%B7%208%20a%C3%B1os&amp;dates=20270918T170000/20270918T210000&amp;location=Casa%20de%20Campo%20Los%20Encinos%2C%20Valle%20de%20Bravo" data-en="Add to calendar">Agregar al calendario</a></div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m l" style="--top:6%"><img src="img/ginkgo-oro.webp" alt=""></div>
+      <div class="txt">
+        <h2 class="foil" data-en="Where">Dónde</h2>
+        <div class="place">
+          <h3 data-en="THE PARTY">LA FIESTA</h3>
+          <p class="time">5:00 pm</p>
+          <p class="name">Casa de Campo Los Encinos</p>
+          <p>Valle de Bravo, Edo. de México</p>
+          <div class="row"><a class="btn btn-line" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Valle%20de%20Bravo%2C%20Estado%20de%20M%C3%A9xico" data-en="View map">Ver mapa</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m r" style="--top:6%"><img src="img/nomeolvides.webp" alt=""></div>
+      <div class="txt">
+        <h2 class="foil" data-en="Itinerary">Itinerario</h2>
+        <img class="orn-img" src="img/divisor-olivo.webp" alt="" style="width:min(64vw,320px)">
+        <ol class="timeline">
+          <li><i class="dot"><img src="img/mariposa-rosa.webp" alt=""></i><div class="cd"><time>5:00 pm</time><span data-en="Arrival at the garden">Llegada al jardín</span></div></li>
+          <li><i class="dot"><img src="img/mariposa-rosa.webp" alt=""></i><div class="cd"><time>5:30 pm</time><span data-en="Wing workshop">Taller de alas</span></div></li>
+          <li><i class="dot"><img src="img/mariposa-rosa.webp" alt=""></i><div class="cd"><time>6:15 pm</time><span data-en="Fairy tea">Té de hadas</span></div></li>
+          <li><i class="dot"><img src="img/mariposa-rosa.webp" alt=""></i><div class="cd"><time>7:00 pm</time><span data-en="Cake and Happy Birthday">Pastel y mañanitas</span></div></li>
+          <li><i class="dot"><img src="img/mariposa-rosa.webp" alt=""></i><div class="cd"><time>7:45 pm</time><span data-en="Firefly hunt">Caza de luciérnagas</span></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m l but" style="--top:6%"><img src="img/mariposa-rosa.webp" alt=""></div>
+      <div class="txt">
+        <h2 class="foil" data-en="What to wear">Vestimenta</h2>
+        <p class="caps" data-en="MAGICAL · LAVENDER AND MINT">MÁGICO · LAVANDA Y MENTA</p>
+        <p class="lead" data-en="Come with fairy wings, a flower crown or your most magical outfit — and comfy shoes for the garden.">Ven con alas de hada, corona de flores o tu atuendo más mágico — y zapatos cómodos para el jardín.</p>
+        <div class="bring">
+          <b data-en="BRING">TRAE</b>
+          <p class="lead" data-en="A little flashlight for the firefly hunt">Una linterna pequeña para la caza de luciérnagas</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m r" style="--top:6%"><img src="img/hortensia-flor.webp" alt=""></div>
+      <div class="txt">
+        <h2 class="foil" data-en="RSVP">Confirma</h2>
+        <div class="glass pass">
+          <span class="perch but" style="right:-12px;top:-24px;width:46px"><img src="img/mariposa-rosa.webp" alt=""></span>
+          <p class="caps" data-en="THIS INVITATION IS VALID FOR">ESTA INVITACIÓN ES VÁLIDA PARA</p>
+          <strong data-en="2 guests">2 personas</strong>
+          <p data-en="Please let us know before September 4th, 2027.">Por favor confírmanos antes del 4 de septiembre de 2027.</p>
+          <div class="row"><a class="btn btn-gold" id="rsvp" target="_blank" rel="noopener" href="https://wa.me/?text=Hola%2C%20confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Luc%C3%ADa" data-en="Confirm on WhatsApp">Confirmar por WhatsApp</a></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <img class="fjar" src="img/objeto.webp" alt="">
+      <p class="tag foil">#LuciaCumple8</p>
+      <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
+      <button class="replay" id="replay" type="button" data-en="OPEN THE JAR AGAIN">ABRIR EL FRASCO OTRA VEZ</button>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement, scene = document.getElementById('scene'), present = document.getElementById('present'), jar = document.getElementById('jar');
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  var q = null; try { q = new URLSearchParams(location.search); } catch (e) {}
+  var para = q && q.get('para');
+  if (para) { var gn = document.getElementById('guestName'); gn.textContent = para.slice(0, 60); gn.removeAttribute('data-en'); }
+
+  // ---------- music: Debussy, "Arabesque No. 1"; starts with the jar tap ----------
+  var SONGS = ['6W302DpfIao', 'cVYH-7QGE-A', 'JCTQTp1PdnA'], song = 0, yt = null, ytReady = false, wantPlay = false, playing = false;
+  var mbtn = document.getElementById('music');
+  window.onYouTubeIframeAPIReady = function () {
+    yt = new YT.Player('ytp', { width: 2, height: 2, videoId: SONGS[0],
+      playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, loop: 1, playlist: SONGS[0], rel: 0 },
+      events: {
+        onReady: function () { ytReady = true; if (wantPlay) startMusic(); },
+        onStateChange: function (e) { playing = e.data === 1; mbtn.classList.toggle('paused', !playing); mbtn.setAttribute('aria-pressed', String(playing)); },
+        onError: function () { if (song < SONGS.length - 1) { song++; yt.loadVideoById(SONGS[song]); if (!wantPlay) yt.pauseVideo(); } }
+      } });
+  };
+  (function () { var t = document.createElement('script'); t.src = 'https://www.youtube.com/iframe_api'; t.async = true; document.head.appendChild(t); })();
+  function startMusic() {
+    wantPlay = true; mbtn.classList.add('show');
+    if (!ytReady) return;
+    try { yt.setVolume(0); yt.playVideo(); var v = 0, f = setInterval(function () { v += 4; yt.setVolume(Math.min(60, v)); if (v >= 60) clearInterval(f); }, 160); } catch (e) {}
+  }
+  mbtn.addEventListener('click', function () {
+    if (!ytReady) { startMusic(); return; }
+    if (playing) yt.pauseVideo(); else { yt.setVolume(60); yt.playVideo(); }
+  });
+
+  // ---------- fireflies: they stream out of the jar on wandering paths, then a few keep drifting over the page ----------
+  var cv = document.getElementById('fx'), cx = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1), F = [], W = 0, H = 0, emit = 0, ox = 0, oy = 0, ambient = 0;
+  function size() { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+  size(); addEventListener('resize', size);
+  function fly(fromJar) {
+    var ang = fromJar ? rnd(-Math.PI * .92, -Math.PI * .08) : rnd(0, 6.28), sp = fromJar ? rnd(1.6, 4.2) : rnd(.15, .5);
+    F.push({ x: fromJar ? ox + rnd(-14, 14) : rnd(0, W), y: fromJar ? oy : rnd(0, H), vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, wob: rnd(0, 6.3), ws: rnd(.8, 2.2), r: rnd(1.4, 2.8),
+      life: fromJar ? rnd(5, 9) : rnd(9, 16), age: 0, c: Math.random() < .25 ? '200,240,220' : '255,226,140', blink: rnd(1.5, 3.5) });
+  }
+  var last = 0;
+  function draw(t) {
+    var dt = Math.min(.05, (t - last) / 1000 || .016); last = t;
+    cx.clearRect(0, 0, W, H);
+    if (emit > 0) { for (var k = 0; k < 3; k++) fly(true); emit -= dt; }
+    if (ambient && F.length < 26 && Math.random() < .05) fly(false);
+    cx.globalCompositeOperation = 'lighter';
+    for (var i = F.length - 1; i >= 0; i--) {
+      var p = F[i]; p.age += dt;
+      p.wob += dt * p.ws; p.vx += Math.cos(p.wob) * .06; p.vy += Math.sin(p.wob * 1.3) * .05 - .004; p.vx *= .985; p.vy *= .985;
+      p.x += p.vx; p.y += p.vy;
+      var f = Math.max(0, 1 - p.age / p.life), on = .55 + .45 * Math.sin(t / 1000 * p.blink * 3 + i), al = Math.min(1, p.age * 2) * f * on;
+      if (f <= 0 || p.x < -40 || p.x > W + 40 || p.y < -40 || p.y > H + 40) { F.splice(i, 1); continue; }
+      var g = cx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 6);
+      g.addColorStop(0, 'rgba(255,255,235,' + al + ')'); g.addColorStop(.18, 'rgba(' + p.c + ',' + (al * .85) + ')'); g.addColorStop(1, 'rgba(' + p.c + ',0)');
+      cx.fillStyle = g; cx.beginPath(); cx.arc(p.x, p.y, p.r * 6, 0, 6.283); cx.fill();
+    }
+    cx.globalCompositeOperation = 'source-over';
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  if (!reduce) requestAnimationFrame(draw);
+
+  // ---------- open: the cork pops, the fireflies fly out, the forest brightens, a lavender glow ----------
+  var opened = false;
+  function origin() { var r = jar.getBoundingClientRect(); ox = r.left + r.width / 2; oy = r.top + r.height * .1; }
+  function openScene() {
+    if (opened) return; opened = true;
+    startMusic();
+    if (reduce) { scene.remove(); present.classList.add('opened'); enterWorld(); return; }
+    origin(); scene.classList.add('pop');
+    setTimeout(function () { scene.classList.add('free'); emit = 2.2; }, 380);
+    setTimeout(function () { scene.classList.add('glowing'); }, 2600);
+    setTimeout(function () { present.classList.add('opened'); }, 3300);
+    setTimeout(function () { scene.classList.add('clear'); enterWorld(); }, 3600);
+    setTimeout(function () { scene.classList.add('gone'); }, 4800);
+    setTimeout(function () { scene.remove(); }, 5500);
+  }
+  function enterWorld() { root.classList.remove('locked'); ambient = 1; }
+  jar.addEventListener('click', function (e) { e.stopPropagation(); openScene(); });
+  scene.addEventListener('click', openScene);
+  document.getElementById('replay').addEventListener('click', function () { window.scrollTo(0, 0); location.reload(); });
+
+  // sections arrive softly as you scroll
+  var parts = document.querySelectorAll('.part');
+  if ('IntersectionObserver' in window && !reduce && !(q && q.get('sec'))) {
+    parts.forEach(function (s) { s.classList.add('wait'); });
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('wait'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
+    parts.forEach(function (s) { io.observe(s); });
+  }
+
+  // ---------- countdown ----------
+  var target = new Date(2027, 8, 18, 17, 0, 0).getTime();
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function count() {
+    var ms = Math.max(0, target - Date.now()), s = Math.floor(ms / 1000);
+    document.getElementById('cd-d').textContent = Math.floor(s / 86400);
+    document.getElementById('cd-h').textContent = pad(Math.floor(s % 86400 / 3600));
+    document.getElementById('cd-m').textContent = pad(Math.floor(s % 3600 / 60));
+    document.getElementById('cd-s').textContent = pad(s % 60);
+  }
+  count(); setInterval(count, 1000);
+
+  // ---------- Spanish / English ----------
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-en], [data-en-html]'));
+  nodes.forEach(function (el) { el.setAttribute('data-es-html', el.innerHTML); });
+  var labels = Array.prototype.slice.call(document.querySelectorAll('[data-en-label]'));
+  labels.forEach(function (el) { el.setAttribute('data-es-label', el.getAttribute('aria-label')); });
+  var alts = Array.prototype.slice.call(document.querySelectorAll('[data-en-alt]'));
+  alts.forEach(function (el) { el.setAttribute('data-es-alt', el.getAttribute('alt')); });
+  var rsvp = document.getElementById('rsvp');
+  var RSVP = ['Hola, confirmo mi asistencia al cumpleaños de Lucía', 'Hi! I\'m confirming my attendance at Lucía\'s birthday party'];
+  function setLang(l) {
+    nodes.forEach(function (el) {
+      if (l === 'en') { if (el.hasAttribute('data-en-html')) el.innerHTML = el.getAttribute('data-en-html'); else el.textContent = el.getAttribute('data-en'); }
+      else el.innerHTML = el.getAttribute('data-es-html');
+    });
+    labels.forEach(function (el) { el.setAttribute('aria-label', el.getAttribute(l === 'en' ? 'data-en-label' : 'data-es-label')); });
+    alts.forEach(function (el) { el.setAttribute('alt', el.getAttribute(l === 'en' ? 'data-en-alt' : 'data-es-alt')); });
+    rsvp.href = 'https://wa.me/?text=' + encodeURIComponent(RSVP[l === 'en' ? 1 : 0]);
+    root.lang = l;
+    document.getElementById('lang-es').setAttribute('aria-pressed', l === 'es');
+    document.getElementById('lang-en').setAttribute('aria-pressed', l === 'en');
+    try { localStorage.setItem('ilusion-lang', l); } catch (e) {}
+  }
+  document.getElementById('lang-es').addEventListener('click', function () { setLang('es'); });
+  document.getElementById('lang-en').addEventListener('click', function () { setLang('en'); });
+  var saved = 'es'; try { saved = localStorage.getItem('ilusion-lang') || 'es'; } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'es');
+
+  // ?vista=sobre (default) keeps the jar closed for the poster; ?abrir=1 opens straight away
+  if (q && q.get('abrir') === '1') setTimeout(openScene, 300);
+  // ?abierto=1 shows the open page without animation; &sec=N hides the sections before N (only for checking the look)
+  if (q && q.get('abierto') === '1') { opened = true; scene.remove(); present.classList.add('opened'); enterWorld();
+    var sn = parseInt(q.get('sec') || '0', 10); if (sn) { present.hidden = true; if (sn > 1) document.getElementById('invitacion').hidden = true; parts.forEach(function (p, i) { if (i < sn - 2) p.hidden = true; }); } }
+  // ?mitad=1 freezes the moment the cork is off and the fireflies are flying out (only for checking the look)
+  if (q && q.get('mitad') === '1') { opened = true; scene.classList.add('pop', 'free'); var ck = jar.querySelector('.cork'); ck.style.animation = 'none'; ck.style.transform = 'translate(42%, -240%) rotate(70deg)';
+    setTimeout(function () { origin(); emit = 1.4; }, 150); }
+})();
+</script>
+
+<div id="ilu-nav" hidden>
+<style>
+#ilu-back,#ilu-cta{position:fixed;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;min-height:40px;border-radius:999px;text-decoration:none;font:500 13px/1 Jost,"Avenir Next",system-ui,sans-serif;letter-spacing:.03em;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:opacity .5s ease,transform .5s ease;-webkit-font-smoothing:antialiased}
+#ilu-back{top:calc(12px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));padding:0 15px 0 11px;background:rgba(255,252,246,.88);color:#3A2A26;box-shadow:0 8px 20px -10px rgba(40,25,20,.5),inset 0 0 0 1px rgba(182,138,78,.45)}
+#ilu-back svg{width:16px;height:16px}
+#ilu-cta{left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);padding:0 22px;min-height:46px;font-weight:600;font-size:14px;color:#3A2210;background:linear-gradient(180deg,#F7E4B4 0%,#EBC988 34%,#D6A963 70%,#C4914D 100%);box-shadow:inset 0 0 0 1px rgba(170,120,55,.3),0 12px 26px -12px rgba(110,70,30,.65),0 0 22px rgba(236,204,140,.5);white-space:nowrap}
+#ilu-cta.off{opacity:0;transform:translate(-50%,24px);pointer-events:none}
+@media (prefers-reduced-motion: reduce){#ilu-back,#ilu-cta{transition:none}}
+</style>
+<a id="ilu-back" href="/nuevo/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Volver</span></a>
+<a id="ilu-cta" class="off" href="/nuevo/crear/">Quiero una así ✨</a>
+</div>
+<script>
+(function(){
+  if (window.top !== window) return; /* inside the preview on the collection page: it has its own buttons */
+  var q = new URLSearchParams(location.search), c = q.get('c') || 'cumpleanos', d = q.get('d') || 'jardin-hadas';
+  var en = false; try { en = localStorage.getItem('ilu-lang') === 'en'; } catch (e) {}
+  var nav = document.getElementById('ilu-nav'), back = document.getElementById('ilu-back'), cta = document.getElementById('ilu-cta');
+  back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/?evento=' + c + '&diseno=' + encodeURIComponent('Jardín de Hadas') + '#imagina';
+  back.querySelector('span').textContent = en ? 'Back' : 'Volver'; cta.textContent = en ? 'I want one like this ✨' : 'Quiero una así ✨';
+  back.addEventListener('click', function (e) { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {} });
+  nav.hidden = false;
+  var last = scrollY, shown = false;
+  setTimeout(function () { shown = true; cta.classList.remove('off'); }, 3500);
+  addEventListener('scroll', function () { if (!shown) return; var y = scrollY; if (y > last + 8) cta.classList.add('off'); else if (y < last - 8 || innerHeight + y >= document.documentElement.scrollHeight - 40) cta.classList.remove('off'); last = y; }, { passive: true });
+})();
+</script>
+
+<div id="ilu-freeze">
+<style>
+#ilu-pause{position:fixed;z-index:2147483001;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:42px;height:42px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;padding:0;color:#3A2A26;background:rgba(255,252,246,.82);box-shadow:inset 0 0 0 1px rgba(182,138,78,.45),0 8px 18px -8px rgba(40,25,20,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent}
+#ilu-pause svg{width:15px;height:15px}
+#ilu-pause .pl{display:none} html.ilu-frozen #ilu-pause .pa{display:none} html.ilu-frozen #ilu-pause .pl{display:block}
+html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-play-state:paused!important}
+</style>
+<button id="ilu-pause" type="button" aria-pressed="false" aria-label="Pausar animación"><svg class="pa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg><svg class="pl" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></button>
+<script>
+/* pause button: freezes every animation so a guest (or the designer) can stop at any moment */
+(function(){
+  var raf=window.requestAnimationFrame.bind(window), q=[], frozen=false, paused=[];
+  window.requestAnimationFrame=function(cb){ if(frozen){ q.push(cb); return 0; } return raf(cb); };
+  var b=document.getElementById('ilu-pause'), en=false; try{ en=localStorage.getItem('ilu-lang')==='en'||localStorage.getItem('ilusion-lang')==='en'; }catch(e){}
+  function label(){ b.setAttribute('aria-label', frozen ? (en?'Resume animation':'Continuar animación') : (en?'Pause animation':'Pausar animación')); b.setAttribute('aria-pressed', String(frozen)); }
+  b.addEventListener('click', function(e){
+    e.stopPropagation(); frozen=!frozen; document.documentElement.classList.toggle('ilu-frozen', frozen);
+    if(frozen){ paused=(document.getAnimations?document.getAnimations():[]).filter(function(a){ return a.playState==='running'; }); paused.forEach(function(a){ try{a.pause();}catch(x){} }); }
+    else { paused.forEach(function(a){ try{a.play();}catch(x){} }); paused=[]; var cbs=q; q=[]; cbs.forEach(function(cb){ raf(cb); }); }
+    label();
+  });
+  label();
+})();
+</script>
+</div>
+
+</body>
+</html>
