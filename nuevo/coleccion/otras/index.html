@@ -154,6 +154,18 @@ button.phone { display: block; border: 0; cursor: pointer; font: inherit; color:
 .pv-x { position: absolute; top: max(14px, env(safe-area-inset-top, 0px)); right: 14px; z-index: 3; width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: rgba(255,252,246,.9); box-shadow: 0 8px 20px -8px rgba(40,25,20,.5), inset 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent); color: #3A2A26; }
 .pv-x svg { width: 18px; height: 18px; }
 .pv-bar { display: none; }
+/* gallery arrows: see the next design without closing */
+.pv-nav { position: fixed; top: 50%; z-index: 3; width: 54px; height: 54px; margin-top: -27px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; color: var(--ink);
+  background: color-mix(in srgb, var(--bg) 82%, #fff); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent), 0 10px 26px -10px rgba(0,0,0,.45); transition: transform .25s ease, box-shadow .25s ease; }
+.pv-nav:hover { transform: scale(1.07); box-shadow: inset 0 0 0 1.5px var(--accent), 0 0 0 6px color-mix(in srgb, var(--accent) 18%, transparent), 0 10px 26px -10px rgba(0,0,0,.45); }
+.pv-nav svg { width: 22px; height: 22px; }
+.pv-nav.prev { left: max(16px, env(safe-area-inset-left, 0px)); } .pv-nav.next { right: max(16px, env(safe-area-inset-right, 0px)); }
+.pv-side .eyebrow .pv-n { font-weight: 500; color: var(--ink3); margin-left: .8em; letter-spacing: .25em; }
+.pv-phone, .pv-info { transition: opacity .23s ease, transform .23s ease; }
+.pv-phone.sl-l, .pv-info.sl-l { animation: slL .5s cubic-bezier(.2,.7,.2,1); } .pv-phone.sl-r, .pv-info.sl-r { animation: slR .5s cubic-bezier(.2,.7,.2,1); }
+@keyframes slL { 0% { opacity: 1; transform: none; } 45% { opacity: 0; transform: translateX(-28px); } 55% { opacity: 0; transform: translateX(28px); } 100% { opacity: 1; transform: none; } }
+@keyframes slR { 0% { opacity: 1; transform: none; } 45% { opacity: 0; transform: translateX(28px); } 55% { opacity: 0; transform: translateX(-28px); } 100% { opacity: 1; transform: none; } }
+.pv-bn { display: none; }
 @media (max-width: 700px) {
   .pv { padding: 0; place-items: stretch; }
   .pv-in { flex-direction: column; align-items: stretch; gap: 0; width: 100%; height: 100%; }
@@ -163,6 +175,15 @@ button.phone { display: block; border: 0; cursor: pointer; font: inherit; color:
   .pv-side { display: none; }
   .pv-bar { display: flex; gap: 10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); background: color-mix(in srgb, var(--bg) 92%, #fff); box-shadow: 0 -1px 0 color-mix(in srgb, var(--accent) 30%, transparent); }
   .pv-bar .btn { flex: 1; padding: 0 10px; }
+  .pv-bar { flex-direction: column; align-items: stretch; gap: 6px; }
+  .pv-bar .btn { white-space: nowrap; }
+  .pv-bn { display: block; order: 2; text-align: center; line-height: 1; }
+  .pv-bn b { display: none; } .pv-bn small { font: 500 9.5px var(--f-caps); letter-spacing: .22em; text-transform: uppercase; color: var(--ink3); }
+  /* phone: arrows live in the bottom bar, never over the invitation */
+  .pv-nav { width: 40px; height: 40px; margin-top: 0; top: auto; bottom: calc(29px + env(safe-area-inset-bottom, 0px)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent); }
+  .pv-nav.prev { left: 10px; } .pv-nav.next { right: 10px; }
+  .pv:has(.pv-nav) .pv-bar { padding-left: 58px; padding-right: 58px; }
+  .pv-nav svg { width: 18px; height: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { .pv-bg, .pv-in, .phone .play i, .pv-side .tip i { animation: none; } }
 .cta-row { display: flex; justify-content: center; margin-top: clamp(28px, 4vw, 44px); }
@@ -335,14 +356,14 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
   var T = {
     es: { back: 'Todas las celebraciones', coleccion: 'COLECCIÓN', ver: 'VER DISEÑOS', disenosEyebrow: 'LOS DISEÑOS', disenosTitle: 'Invitaciones de <em>esta colección</em>',
       pasosEyebrow: 'HAZLA TUYA', pasosTitle: 'Así la <em>personalizas</em>', otrosEyebrow: 'SIGUE SOÑANDO', otrosTitle: 'Otros <em>mundos</em>',
-      verInv: 'Ver cómo se abre', personalizar: 'Quiero este diseño', play: 'VER CÓMO SE ABRE', full: 'Pantalla completa', tip: 'TOCA EL SELLO PARA ABRIRLA', disEyebrow: 'DISEÑO', cerrar: 'Cerrar', crear: 'Crear la mía', pronto: 'MUY PRONTO', algoAsi: 'Quiero algo así', ejNote: 'Así se verán. Muy pronto podrás abrir cada invitación aquí mismo y ver cómo se mueve.', soonT: 'Esta colección se está creando', soonP: 'Estamos diseñando las primeras invitaciones de este mundo. Mientras tanto, creamos la tuya a tu medida.',
+      verInv: 'Ver cómo se abre', personalizar: 'Quiero este diseño', play: 'VER CÓMO SE ABRE', full: 'Pantalla completa', tip: 'TOCA LA INVITACIÓN PARA ABRIRLA', prev: 'Diseño anterior', desliza: 'desliza para ver más', next: 'Siguiente diseño', de: 'de', disEyebrow: 'DISEÑO', cerrar: 'Cerrar', crear: 'Crear la mía', pronto: 'MUY PRONTO', algoAsi: 'Quiero algo así', ejNote: 'Así se verán. Muy pronto podrás abrir cada invitación aquí mismo y ver cómo se mueve.', soonT: 'Esta colección se está creando', soonP: 'Estamos diseñando las primeras invitaciones de este mundo. Mientras tanto, creamos la tuya a tu medida.',
       soonBtn: 'Pedir mi invitación', formBtn: 'Llenar el formulario',
       pasos: [['Elige tu diseño', 'Escoge el que te enamore o cuéntanos tu idea.'], ['Cuéntanos los detalles', 'Nombres, fecha, lugar, fotos y música. Lo llenas en minutos.'], ['Recíbela y compártela', 'Tu link con sobre, música, mapa y confirmación, listo para enviar.']],
       msgDis: function (d) { return 'Hola Ilusión Invites ✨ me encanta el diseño "' + d + '" de la colección ' + C.es.nombre + '. ¿Me ayudan a personalizarlo?'; },
       msgCol: function () { return 'Hola Ilusión Invites ✨ me interesa una invitación de la colección ' + C.es.nombre + '.'; } },
     en: { back: 'All celebrations', coleccion: 'COLLECTION', ver: 'SEE THE DESIGNS', disenosEyebrow: 'THE DESIGNS', disenosTitle: 'Invitations in <em>this collection</em>',
       pasosEyebrow: 'MAKE IT YOURS', pasosTitle: 'How to <em>personalize it</em>', otrosEyebrow: 'KEEP DREAMING', otrosTitle: 'Other <em>worlds</em>',
-      verInv: 'See it open', personalizar: 'I want this design', play: 'SEE IT OPEN', full: 'Full screen', tip: 'TAP THE SEAL TO OPEN IT', disEyebrow: 'DESIGN', cerrar: 'Close', crear: 'Create mine', pronto: 'COMING SOON', algoAsi: 'I want something like this', ejNote: 'This is the look. Soon you will be able to open each invitation right here and watch it come alive.', soonT: 'This collection is being created', soonP: 'We are designing the first invitations for this world. In the meantime, we will create yours just for you.',
+      verInv: 'See it open', personalizar: 'I want this design', play: 'SEE IT OPEN', full: 'Full screen', tip: 'TAP THE INVITATION TO OPEN IT', prev: 'Previous design', desliza: 'swipe for more', next: 'Next design', de: 'of', disEyebrow: 'DESIGN', cerrar: 'Close', crear: 'Create mine', pronto: 'COMING SOON', algoAsi: 'I want something like this', ejNote: 'This is the look. Soon you will be able to open each invitation right here and watch it come alive.', soonT: 'This collection is being created', soonP: 'We are designing the first invitations for this world. In the meantime, we will create yours just for you.',
       soonBtn: 'Request my invitation', formBtn: 'Fill in the form',
       pasos: [['Choose your design', 'Pick the one you love or tell us your idea.'], ['Tell us the details', 'Names, date, venue, photos and music. It takes minutes.'], ['Receive it and share it', 'Your link with envelope, music, map and RSVP, ready to send.']],
       msgDis: function (d) { return 'Hi Ilusión Invites ✨ I love the "' + d + '" design from the ' + C.en.nombre + ' collection. Can you help me personalize it?'; },
@@ -420,20 +441,53 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     var H = Math.round(Math.min(innerHeight * .86, 800) - 20), W = Math.round(H / 2.05), k = W / 390;
     sc.style.width = W + 'px'; sc.style.height = H + 'px'; fr.style.width = '390px'; fr.style.height = Math.round(H / k) + 'px'; fr.style.transform = 'scale(' + k + ')';
   }
+  var pvIdx = 0;
+  function pvHTML(d, L) {
+    return '<div class="pv-side"><span class="eyebrow">' + L.disEyebrow + ' <b class="pv-n"></b></span><h3>' + esc(d.nombre) + '</h3><span class="who">' + esc(d.pareja) + '</span><p>' + esc(d.nota) + '</p><span class="tip"><i></i>' + L.tip + '</span>' +
+      '<div class="btns"><a class="btn btn-gold" href="' + crearUrl(d) + '">' + L.personalizar + '</a><a class="btn btn-line" href="' + demoUrl(d) + '">' + L.full + '</a></div></div>';
+  }
   function openPv(i) {
-    var d = (C.disenos || [])[i]; if (!d || pv) return; var L = T[lang];
-    lastFocus = document.activeElement;
+    var ds = C.disenos || [], d = ds[i]; if (!d || pv) return; var L = T[lang], many = ds.length > 1;
+    lastFocus = document.activeElement; pvIdx = i;
+    var arrow = function (dir) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + (dir < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7') + '"/></svg>'; };
     pv = document.createElement('div'); pv.className = 'pv'; pv.setAttribute('role', 'dialog'); pv.setAttribute('aria-modal', 'true'); pv.setAttribute('aria-label', d.nombre);
     pv.innerHTML = '<div class="pv-bg"></div><div class="pv-in"><div class="pv-phone"><div class="pv-screen"><iframe title="' + esc(d.nombre) + '" src="' + demoUrl(d, 1) + '" allow="autoplay; fullscreen"></iframe></div></div>' +
-      '<div class="pv-side"><span class="eyebrow">' + L.disEyebrow + '</span><h3>' + esc(d.nombre) + '</h3><span class="who">' + esc(d.pareja) + '</span><p>' + esc(d.nota) + '</p><span class="tip"><i></i>' + L.tip + '</span>' +
-      '<div class="btns"><a class="btn btn-gold" href="' + crearUrl(d) + '">' + L.personalizar + '</a><a class="btn btn-line" href="' + demoUrl(d) + '">' + L.full + '</a></div></div>' +
-      '<div class="pv-bar"><a class="btn btn-gold" href="' + crearUrl(d) + '">' + L.personalizar + '</a></div></div>' +
+      '<div class="pv-info">' + pvHTML(d, L) + '</div>' +
+      '<div class="pv-bar"><span class="pv-bn"><b class="pv-bname">' + esc(d.nombre) + '</b><small class="pv-n"></small></span><a class="btn btn-gold" href="' + crearUrl(d) + '">' + L.personalizar + '</a></div></div>' +
+      (many ? '<button type="button" class="pv-nav prev" aria-label="' + L.prev + '">' + arrow(-1) + '</button><button type="button" class="pv-nav next" aria-label="' + L.next + '">' + arrow(1) + '</button>' : '') +
       '<button type="button" class="pv-x" aria-label="' + L.cerrar + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
     document.body.appendChild(pv); document.documentElement.style.overflow = 'hidden';
-    pvSize(); requestAnimationFrame(pvSize);
+    pvCount(); pvSize(); requestAnimationFrame(pvSize);
     pv.querySelector('.pv-x').focus();
     pv.querySelector('.pv-bg').addEventListener('click', closePv);
     pv.querySelector('.pv-x').addEventListener('click', closePv);
+    if (many) {
+      pv.querySelector('.pv-nav.prev').addEventListener('click', function () { pvGo(-1); });
+      pv.querySelector('.pv-nav.next').addEventListener('click', function () { pvGo(1); });
+      // swipe left/right on the bottom bar or the side (the invitation itself keeps its own taps)
+      var sx = 0, sy = 0, st = 0;
+      var tStart = function (e) { var t = e.touches[0]; sx = t.clientX; sy = t.clientY; st = Date.now(); };
+      var tEnd = function (e) { var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy; if (Date.now() - st < 700 && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) pvGo(dx < 0 ? 1 : -1); };
+      pv.addEventListener('touchstart', tStart, { passive: true }); pv.addEventListener('touchend', tEnd, { passive: true });
+      // swipes on the invitation itself (same site, so the frame can be listened to)
+      pv.querySelector('iframe').addEventListener('load', function () { try { var doc = this.contentWindow.document; doc.addEventListener('touchstart', tStart, { passive: true }); doc.addEventListener('touchend', tEnd, { passive: true }); } catch (err) {} });
+    }
+  }
+  function pvCount() { if (!pv) return; var n = (C.disenos || []).length, L = T[lang]; pv.querySelectorAll('.pv-n').forEach(function (el) { el.textContent = n > 1 ? (pvIdx + 1) + ' ' + L.de + ' ' + n + (el.tagName === 'SMALL' ? ' · ' + L.desliza : '') : ''; }); }
+  // next / previous design without closing the window
+  function pvGo(step) {
+    var ds = C.disenos || []; if (!pv || ds.length < 2) return;
+    pvIdx = (pvIdx + step + ds.length) % ds.length; var d = ds[pvIdx], L = T[lang];
+    var ph = pv.querySelector('.pv-phone'), info = pv.querySelector('.pv-info');
+    ph.classList.remove('sl-l', 'sl-r'); info.classList.remove('sl-l', 'sl-r'); void ph.offsetWidth;
+    var cls = step > 0 ? 'sl-l' : 'sl-r'; ph.classList.add(cls); info.classList.add(cls);
+    setTimeout(function () {
+      if (!pv) return;
+      var fr = pv.querySelector('iframe'); fr.title = d.nombre; fr.src = demoUrl(d, 1);
+      info.innerHTML = pvHTML(d, L); pv.setAttribute('aria-label', d.nombre);
+      pv.querySelector('.pv-bname').textContent = d.nombre; pv.querySelector('.pv-bar .btn').href = crearUrl(d);
+      pvCount();
+    }, 230);
   }
   function closePv() {
     if (!pv) return; var el = pv; pv = null; el.classList.add('out');
@@ -444,6 +498,8 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
   addEventListener('keydown', function (e) {
     if (!pv) return;
     if (e.key === 'Escape') { closePv(); return; }
+    if (e.key === 'ArrowRight') { pvGo(1); return; }
+    if (e.key === 'ArrowLeft') { pvGo(-1); return; }
     if (e.key === 'Tab') { var q = [].slice.call(pv.querySelectorAll('a[href], button, iframe')).filter(function (x) { return x.offsetParent !== null; }); if (!q.length) return; var a = q[0], z = q[q.length - 1];
       if (e.shiftKey && document.activeElement === a) { z.focus(); e.preventDefault(); } else if (!e.shiftKey && document.activeElement === z) { a.focus(); e.preventDefault(); } }
   });
