@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Evento de empresa de ejemplo: Gala Esmeralda, negro, esmeralda y oro.">
+<meta property="og:title" content="Gala Anual 2027 · Grupo Altavista ✨">
+<meta property="og:description" content="Viernes 26 de noviembre de 2027 · Ciudad de México. Toca para abrir tu invitación.">
+<meta property="og:image" content="https://ilusioninvites.com/demos/empresa-gala/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gala Anual 2027 · Grupo Altavista ✨">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://ilusioninvites.com/demos/empresa-gala/">
+<link rel="canonical" href="https://ilusioninvites.com/demos/empresa-gala/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#071A14">
+<link rel="icon" href="img/cordon.webp">
+<link rel="apple-touch-icon" href="img/cordon.webp">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gala Anual 2027 · Grupo Altavista</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&display=swap">
+<style>
+/* Corporate gala "Gala Esmeralda". 1) A VIP corridor with an emerald carpet and glowing gold doors fills the screen; a brass-and-velvet rope blocks the way. 2) Tap: a glint runs along the rope, it unhooks from the right post and swings down, the right post glides away, and we walk down the carpet into the light. 3) A smoked-glass plate with the gala ballroom is already there, then one continuous page in black, emerald and gold. Dark theme only, on purpose. */
+:root {
+  color-scheme: dark;
+  --night: #050807;
+  --ink: #F1EBDD;
+  --ink-soft: #CFD3C8;
+  --gold: #C9A35A;
+  --gold-soft: #E6CB8E;
+  --emerald: #1B6B52;
+  --emerald-deep: #0F4D3A;
+  --foil: linear-gradient(100deg, #9A7434 0%, #F3DDA4 22%, #B48A42 40%, #FFF0C4 52%, #A87E3A 68%, #E9CD8A 86%, #9A7434 100%);
+  --f-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --f-names: 'Pinyon Script', 'Snell Roundhand', cursive;
+  --f-caps: 'Cinzel', 'Trajan Pro', Georgia, serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--night); color: var(--ink); font-family: var(--f-display); font-size: 19px; line-height: 1.5; overflow-x: clip; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+html.locked, html.locked body { overflow: hidden; }
+html.locked .p-hint { opacity: 0; }
+
+.lang { position: fixed; z-index: 60; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); display: flex; border: 1px solid rgba(201,163,90,.55); border-radius: 999px; overflow: hidden; background: rgba(5,8,7,.6); backdrop-filter: blur(6px); }
+.lang button { border: 0; background: transparent; padding: 6px 11px; font: 500 12px var(--f-caps); letter-spacing: .12em; color: var(--ink-soft); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: linear-gradient(180deg, #F3DDA4, #B48A42); color: #1A140B; }
+/* gold foil text with a soft dark halo so it reads on black */
+.foil { background: var(--foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 9s ease-in-out infinite alternate;
+  filter: drop-shadow(0 1px 0 rgba(255,240,200,.18)) drop-shadow(0 3px 8px rgba(0,0,0,.75)); }
+@keyframes foil { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+@keyframes breathe { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
+
+/* ---------- the VIP entrance ---------- */
+.vip { position: fixed; inset: 0; z-index: 40; overflow: hidden; background: #050807; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background .9s ease; }
+/* the corridor photo always covers the screen; we "walk" toward the glowing doors */
+.vwrap { position: absolute; left: 50%; top: 50%; width: max(100vw, 56.23vh); height: max(100vh, 177.85vw); transform: translate(-50%, -50%); transform-origin: 50% 44%; transition: transform 2.6s cubic-bezier(.55,.05,.3,1), opacity 1.4s ease 1.2s; }
+.vwrap img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* warm light from the doors that grows as we walk in */
+.vlight { position: absolute; left: 50%; top: 44%; width: 30%; height: 34%; transform: translate(-50%, -50%); border-radius: 40%; background: radial-gradient(ellipse at 50% 50%, rgba(255,236,190,.95), rgba(255,214,150,.45) 40%, transparent 72%); opacity: 0; transition: opacity 1.6s ease .4s, transform 2.6s cubic-bezier(.55,.05,.3,1); pointer-events: none; }
+/* soft shade so the words read on the marble and the bright doors */
+.vip::before { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(ellipse 70% 42% at 50% 34%, rgba(0,0,0,.62), rgba(0,0,0,.25) 62%, transparent 88%), linear-gradient(180deg, rgba(0,0,0,.5), transparent 26%, transparent 70%, rgba(0,0,0,.35)); transition: opacity 1.2s ease; }
+
+.vface { position: absolute; left: 0; right: 0; top: 0; z-index: 4; height: 62%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; pointer-events: none;
+  padding: calc(56px + env(safe-area-inset-top, 0px)) 20px 10px; transition: opacity 1s ease; }
+.vface > * { margin: 0; }
+.v-eye { font-family: var(--f-caps); font-size: clamp(12px, 1.6vw, 15px); letter-spacing: .42em; padding-left: .42em; color: var(--gold-soft); text-shadow: 0 2px 10px rgba(0,0,0,.95); }
+.v-name { font-family: var(--f-names); font-size: clamp(44px, 10vw, 112px); line-height: 1.08; padding: 0 .14em; text-wrap: balance; max-width: 100%; }
+.v-co { font-family: var(--f-caps); font-size: clamp(14px, 2vw, 18px); letter-spacing: .5em; padding-left: .5em; color: var(--ink); text-shadow: 0 2px 10px rgba(0,0,0,.95); }
+.v-rule { display: flex; align-items: center; gap: 10px; width: min(220px, 52vw); margin: 6px 0 2px !important; }
+.v-rule i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(230,203,142,.9)); } .v-rule i:last-child { transform: scaleX(-1); }
+.v-rule b { width: 7px; height: 7px; transform: rotate(45deg); background: linear-gradient(135deg, #F3DDA4, #9A7434); }
+.v-para { margin-top: 12px !important; font-family: var(--f-caps); font-size: 12px; letter-spacing: .5em; padding-left: .5em; color: var(--gold-soft); text-shadow: 0 2px 10px rgba(0,0,0,.95); }
+.v-guest { font-family: var(--f-names); font-size: clamp(30px, 7.4vw, 46px); line-height: 1.2; padding: 0 .12em; max-width: 92vw; }
+
+/* the rope: one photo cut in three (left post, left half of the rope, right post with the rest of the rope) */
+.rope { position: absolute; z-index: 5; left: 50%; bottom: calc(3.5vh + env(safe-area-inset-bottom, 0px)); width: min(90vw, 470px, 52vh); aspect-ratio: 1400 / 1041; transform: translateX(-50%); padding: 0; border: 0; background: none; cursor: pointer;
+  filter: drop-shadow(0 18px 22px rgba(0,0,0,.75)) drop-shadow(0 3px 4px rgba(0,0,0,.6)); }
+.rope .pc { position: absolute; inset: 0; background: url("img/cordon.webp") center / 100% 100% no-repeat; will-change: transform, opacity; }
+.rope .p-left { clip-path: polygon(0 0, 14.6% 0, 14.6% 76%, 23% 76%, 23% 100%, 0 100%); transition: opacity 1.2s ease 1.9s; }
+.rope .p-rope { clip-path: polygon(14.6% 0, 50% 0, 50% 76%, 14.6% 76%); transform-origin: 13% 20%; transition: transform 1.9s cubic-bezier(.45,.05,.3,1), opacity 1.2s ease 1.4s; }
+.rope .p-right { clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%, 50% 76%); transform-origin: 88% 100%; transition: transform 2s cubic-bezier(.5,.05,.35,1) .25s, opacity 1.5s ease .5s; }
+/* a glint runs along the brass and the velvet when tapped */
+.rope .glint { position: absolute; inset: 0; pointer-events: none; -webkit-mask: url("img/cordon.webp") center / 100% 100% no-repeat; mask: url("img/cordon.webp") center / 100% 100% no-repeat;
+  background: linear-gradient(100deg, transparent 30%, rgba(255,244,214,.85) 46%, rgba(255,255,255,.95) 50%, rgba(255,244,214,.85) 54%, transparent 70%); background-size: 300% 100%; background-position: 120% 0; opacity: 0; mix-blend-mode: screen; }
+.vip.glint .rope .glint { animation: glint 1s ease-out forwards; }
+@keyframes glint { 0% { opacity: 1; background-position: 120% 0; } 100% { opacity: 1; background-position: -20% 0; } }
+/* a breathing halo around the rope invites the tap */
+.rope::after { content: ""; position: absolute; left: 10%; right: 10%; top: 38%; height: 40%; border-radius: 50%; background: radial-gradient(ellipse, rgba(230,203,142,.2), transparent 70%); animation: halo 3.2s ease-in-out infinite; pointer-events: none; z-index: -1; }
+@keyframes halo { 0%,100% { opacity: .4; transform: scale(.94); } 50% { opacity: 1; transform: scale(1.04); } }
+.v-hint { position: absolute; left: 0; right: 0; z-index: 6; bottom: calc(1.2vh + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: center; align-items: center; gap: 12px; margin: 0; font-family: var(--f-caps); font-size: 11px; letter-spacing: .3em; color: var(--gold-soft); text-shadow: 0 2px 10px rgba(0,0,0,.95); pointer-events: none; transition: opacity .8s ease; }
+.v-hint span { animation: breathe 2.6s ease-in-out infinite; } .v-hint i { width: 30px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); } .v-hint i:last-child { transform: scaleX(-1); }
+
+/* opening steps */
+.vip.unhook .p-rope { transform: rotate(52deg) translateY(4%); opacity: 0; }
+.vip.unhook .p-right { transform: translateX(46%) rotate(3deg); opacity: 0; }
+.vip.unhook .p-left { opacity: 0; }
+.vip.unhook .rope::after, .vip.unhook .v-hint { opacity: 0; animation: none; }
+.vip.unhook .vface { opacity: 0; transition-delay: .5s; }
+.vip.walk .vwrap { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+.vip.walk .vlight { opacity: 1; transform: translate(-50%, -50%) scale(2.6); }
+.vip.walk::before { opacity: 0; }
+.vip.walk { background: transparent; pointer-events: none; }
+.vip.gone { opacity: 0; transition: opacity .7s ease; }
+.vip.unhook { pointer-events: none; }
+/* frozen half-way (screenshots only) */
+.vip.half .p-rope { transform: rotate(26deg); transition: none; }
+.vip.half .p-right { transform: translateX(22%) rotate(2deg); opacity: .5; transition: none; }
+.vip.half .vface, .vip.half .v-hint { opacity: .15; transition: none; }
+
+/* ---------- inside: black with an emerald glow, gold dust ---------- */
+.bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; background:
+  radial-gradient(ellipse 60% 45% at 50% 0%, rgba(255,214,150,.12), transparent 70%),
+  radial-gradient(ellipse 80% 60% at 50% 105%, rgba(27,107,82,.28), transparent 70%),
+  radial-gradient(ellipse 50% 40% at 0% 50%, rgba(15,77,58,.22), transparent 70%),
+  radial-gradient(ellipse 50% 40% at 100% 60%, rgba(15,77,58,.2), transparent 70%),
+  linear-gradient(180deg, #060A08, #040605 60%, #060907); }
+#glitter { position: fixed; inset: 0; z-index: 3; width: 100%; height: 100%; pointer-events: none; }
+#burst { position: fixed; inset: 0; z-index: 47; width: 100%; height: 100%; pointer-events: none; }
+.world { position: relative; z-index: 2; }
+
+/* the first section: smoked glass with gold corners and the ballroom */
+.present { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: calc(64px + env(safe-area-inset-top, 0px)) 16px 92px; overflow: hidden; }
+.present .spot { position: absolute; inset: 0; background: radial-gradient(ellipse 46% 60% at 50% 0%, rgba(255,220,160,.15), transparent 70%), radial-gradient(ellipse 55% 50% at 50% 50%, rgba(27,107,82,.16), transparent 75%); pointer-events: none; }
+.plate { position: relative; z-index: 2; width: min(86vw, 410px, 47svh); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: clamp(28px, 4svh, 40px) clamp(26px, 4svh, 40px) clamp(30px, 4.6svh, 44px); text-align: center; border-radius: 18px; container-type: inline-size;
+  background: linear-gradient(150deg, rgba(255,255,255,.12), rgba(255,255,255,.03) 42%, rgba(255,255,255,.02) 60%, rgba(255,255,255,.09)), rgba(8,18,14,.62);
+  -webkit-backdrop-filter: blur(9px) saturate(1.2); backdrop-filter: blur(9px) saturate(1.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 0 0 1px rgba(201,163,90,.55), inset 0 0 0 7px rgba(255,255,255,.03), inset 0 0 0 8px rgba(27,107,82,.55), 0 40px 80px -26px rgba(0,0,0,.9); }
+.plate::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(112deg, transparent 38%, rgba(255,255,255,.14) 47%, rgba(255,255,255,.03) 52%, transparent 60%); background-size: 300% 100%; animation: glare 7s ease-in-out 1.5s infinite; }
+@keyframes glare { 0% { background-position: 110% 0; } 35%, 100% { background-position: -20% 0; } }
+.pframe { position: absolute; inset: 4%; border: 1px solid rgba(201,163,90,.45); border-radius: 12px; pointer-events: none; }
+.pframe::after { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(27,107,82,.45); border-radius: 9px; }
+.pcn { position: absolute; z-index: 3; width: 22%; height: auto; pointer-events: none; filter: drop-shadow(0 3px 4px rgba(0,0,0,.6)); }
+.pcn.tl { left: 2%; top: 1.5%; } .pcn.tr { right: 2%; top: 1.5%; transform: scaleX(-1); } .pcn.bl { left: 2%; bottom: 1.5%; transform: scaleY(-1); } .pcn.br { right: 2%; bottom: 1.5%; transform: scale(-1); }
+.pwin { position: relative; width: 78%; aspect-ratio: 3 / 3.45; border-radius: 50% 50% 14px 14px / 34% 34% 14px 14px; overflow: hidden; margin-top: 5%;
+  box-shadow: 0 0 0 1.5px rgba(230,203,142,.85), 0 0 0 5px rgba(8,18,14,.92), 0 0 0 6px rgba(27,107,82,.7), 0 18px 34px rgba(0,0,0,.7); }
+.pwin img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; transform: scale(1); }
+.present.opened .pwin img { animation: zin 3.4s cubic-bezier(.25,.6,.25,1) forwards, kb 18s ease-in-out 3.4s infinite alternate; }
+.present.opened .plate { animation: settle 3s cubic-bezier(.25,.6,.25,1); }
+@keyframes zin { from { transform: scale(1); } to { transform: scale(1.08); } }
+@keyframes settle { from { transform: scale(.95); } to { transform: none; } }
+@keyframes kb { from { transform: scale(1.08); } to { transform: scale(1.14) translate(1%, -1%); } }
+.p-caps { margin: 5% 0 0; font-family: var(--f-caps); font-size: max(10px, 3.4cqw); letter-spacing: .5em; padding-left: .5em; color: var(--gold-soft); }
+.p-name { margin: 0; font-family: var(--f-names); font-weight: 400; font-size: 17cqw; line-height: 1.05; padding: 0 .12em; }
+.p-fil { width: 52%; height: auto; margin: 1% 0; filter: drop-shadow(0 2px 3px rgba(0,0,0,.6)); }
+.p-date { margin: 0 0 3%; font-family: var(--f-caps); font-size: max(11px, 3.6cqw); letter-spacing: .3em; padding-left: .3em; color: var(--ink-soft); }
+.p-hint { position: absolute; left: 0; right: 0; bottom: calc(40px + env(safe-area-inset-bottom, 0px)); margin: 0; text-align: center; font-family: var(--f-caps); font-size: 12px; letter-spacing: .32em; z-index: 3; transition: opacity 1s ease; }
+.p-hint a { color: var(--gold-soft); text-decoration: none; animation: breathe 2.6s ease-in-out infinite; display: inline-block; padding: 8px; }
+
+/* the formal invitation card with an emerald velvet tag */
+.invite { position: relative; padding: 60px 16px 80px; display: grid; place-items: center; }
+.card { position: relative; width: min(88vw, 480px); padding: 76px clamp(24px, 8vw, 46px) 54px; border-radius: 24px; text-align: center; container-type: inline-size; display: flex; flex-direction: column; align-items: center; gap: 12px;
+  background: linear-gradient(150deg, rgba(255,255,255,.1), rgba(255,255,255,.02) 45%, rgba(255,255,255,.07)), rgba(8,16,13,.68);
+  -webkit-backdrop-filter: blur(8px) saturate(1.15); backdrop-filter: blur(8px) saturate(1.15);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.32), inset 0 0 0 1px rgba(201,163,90,.5), inset 0 0 0 7px rgba(255,255,255,.02), inset 0 0 0 8px rgba(27,107,82,.45), 0 40px 70px -28px rgba(0,0,0,.9); }
+.card > * { position: relative; margin: 0; }
+.tag-vel { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); display: grid; place-items: center; padding: 12px 30px; border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.25)), url("img/terciopelo.webp") center / 240% auto; box-shadow: inset 0 0 0 1px rgba(201,163,90,.65), inset 0 0 0 4px rgba(0,0,0,.25), 0 10px 18px -6px rgba(0,0,0,.7); }
+.tag-vel span { position: relative; font-family: var(--f-caps); font-size: 12px; letter-spacing: .34em; padding-left: .34em; color: #FBF1DD; text-shadow: 0 1px 2px rgba(0,0,0,.7); white-space: nowrap; }
+.card .k-caps { font-family: var(--f-caps); font-size: max(10px, 2.6cqw); letter-spacing: .3em; padding-left: .3em; color: var(--gold-soft); line-height: 1.8; }
+.card .k-name { font-family: var(--f-names); font-size: 16cqw; line-height: 1.05; padding: 0 .12em; }
+.card .k-line { font-style: italic; font-size: max(17px, 4.6cqw); line-height: 1.4; color: var(--ink); max-width: 28ch; }
+.card .k-event { font-family: var(--f-caps); font-size: max(15px, 5cqw); letter-spacing: .18em; color: var(--ink); margin-top: 2%; }
+.card .k-date { font-family: var(--f-names); font-size: 8.5cqw; line-height: 1.15; color: var(--ink); }
+.card .k-small { font-family: var(--f-caps); font-size: max(10px, 2.5cqw); letter-spacing: .22em; line-height: 1.8; color: var(--ink-soft); }
+.gold-rule { display: flex; align-items: center; gap: 10px; width: 52%; }
+.gold-rule i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(230,203,142,.85)); }
+.gold-rule i:last-child { transform: scaleX(-1); }
+.gold-rule b { width: 8px; height: 8px; transform: rotate(45deg); background: linear-gradient(135deg, #F3DDA4, #1B6B52); box-shadow: 0 0 6px rgba(255,236,200,.35); }
+
+/* the rest of the page flows as one */
+.flow { position: relative; padding: 10px 0 0; }
+.part { position: relative; padding: clamp(70px, 12vw, 120px) max(20px, env(safe-area-inset-right, 0px)) clamp(70px, 12vw, 120px) max(20px, env(safe-area-inset-left, 0px)); text-align: center; }
+.txt { position: relative; z-index: 3; max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 14px; text-shadow: 0 0 14px rgba(0,0,0,.95), 0 0 4px rgba(0,0,0,.8); }
+.txt > * { transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1); }
+.wait .txt > * { opacity: 0; transform: translateY(26px); }
+.txt > :nth-child(2) { transition-delay: .12s; } .txt > :nth-child(3) { transition-delay: .24s; } .txt > :nth-child(4) { transition-delay: .36s; } .txt > :nth-child(5) { transition-delay: .48s; }
+.part h2 { margin: 0; font-family: var(--f-names); font-weight: 400; font-size: clamp(52px, 12vw, 76px); line-height: 1.05; padding-inline: .14em; text-shadow: none; }
+.part h2 + * { margin-top: 14px !important; }
+.part h2::after { content: ""; display: block; width: 110px; height: 9px; margin: 12px auto 0; -webkit-text-fill-color: initial;
+  background: radial-gradient(circle, #1B6B52 0 2.6px, rgba(230,203,142,.9) 2.8px 3.6px, transparent 4px) center / 9px 9px no-repeat, linear-gradient(90deg, transparent, rgba(201,163,90,.85) 38%, transparent 45%, transparent 55%, rgba(201,163,90,.85) 62%, transparent) center / 100% 1px no-repeat; }
+.caps { margin: 0; font-family: var(--f-caps); font-size: 13px; letter-spacing: .3em; color: var(--gold-soft); }
+.part p { margin: 0; color: var(--ink-soft); }
+.lead { font-size: 21px; color: var(--ink) !important; max-width: 34ch; }
+.quote { font-style: italic; font-size: 24px; line-height: 1.45; color: var(--ink) !important; max-width: 32ch; }
+.sign { font-family: var(--f-names); font-size: 40px; line-height: 1.1; padding: 0 .12em; }
+
+/* "the evening": an emerald velvet band, the ballroom in a gold arch and three moments */
+.velvet { position: relative; padding: clamp(80px, 12vw, 120px) 20px; background: linear-gradient(180deg, rgba(3,10,7,.74), rgba(3,10,7,.5) 50%, rgba(3,10,7,.78)), url("img/terciopelo.webp") center / cover no-repeat; box-shadow: inset 0 22px 30px -18px rgba(0,0,0,.9), inset 0 -22px 30px -18px rgba(0,0,0,.9); }
+.velvet::before, .velvet::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,163,90,.75) 20%, rgba(201,163,90,.75) 80%, transparent); }
+.velvet::before { top: 12px; } .velvet::after { bottom: 12px; }
+.velvet .txt { max-width: 940px; }
+.velada { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(20px, 5vw, 56px); align-items: center; width: 100%; margin-top: 12px; text-align: left; }
+.vwin { position: relative; width: 100%; max-width: 400px; justify-self: end; aspect-ratio: 3 / 4; border-radius: 50% 50% 18px 18px / 30% 30% 18px 18px; overflow: hidden;
+  box-shadow: 0 0 0 1.5px rgba(230,203,142,.85), 0 0 0 7px rgba(6,14,10,.92), 0 0 0 8px rgba(27,107,82,.65), 0 30px 50px -18px rgba(0,0,0,.85); }
+.vwin img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block; }
+.dets { display: flex; flex-direction: column; gap: 20px; }
+.det { display: flex; flex-direction: column; gap: 2px; padding-left: 16px; border-left: 1px solid rgba(201,163,90,.6); }
+.det b { font-family: var(--f-caps); font-weight: 500; font-size: 13px; letter-spacing: .26em; color: var(--gold-soft); }
+.det span { font-size: 20px; color: var(--ink); }
+@media (max-width: 680px) {
+  .velada { grid-template-columns: 1fr; text-align: center; }
+  .vwin { justify-self: center; max-width: 78vw; }
+  .dets { align-items: center; }
+  .det { border-left: 0; padding-left: 0; align-items: center; }
+}
+
+.big-date { font-family: var(--f-caps); font-size: clamp(28px, 7vw, 42px); letter-spacing: .12em; color: var(--ink); margin: 0; font-variant-numeric: tabular-nums; }
+.place h3 { margin: 0; font-family: var(--f-caps); font-weight: 500; font-size: 14px; letter-spacing: .3em; color: var(--gold-soft); }
+.place .name { font-size: 26px; color: var(--ink) !important; }
+.place .time { font-family: var(--f-names); font-size: 44px; line-height: 1.1; color: var(--ink) !important; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 24px; border-radius: 999px; font-family: var(--f-caps); font-size: 12px; letter-spacing: .22em; text-decoration: none; cursor: pointer; transition: transform .2s ease, filter .2s ease; text-shadow: none; }
+.btn:hover { transform: translateY(-1px); }
+.btn-gold { background: linear-gradient(180deg, #F6E2AE 0%, #D2AE63 55%, #A07A36 100%); color: #1A140B; border: 0; box-shadow: inset 0 1px 0 rgba(255,250,230,.9), 0 8px 18px rgba(0,0,0,.6); }
+.btn-line { border: 1px solid rgba(201,163,90,.6); color: var(--ink); background: rgba(6,14,10,.55); backdrop-filter: blur(4px); }
+.row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
+
+/* the programme: a shimmering gold line down the exact centre, a crystal at each moment */
+.timeline { list-style: none; margin: 10px auto 0; padding: 0; width: 100%; max-width: 500px; display: flex; flex-direction: column; }
+.timeline li { display: grid; grid-template-columns: 1fr 34px 1fr; align-items: center; min-height: 62px; }
+.timeline time { font-family: var(--f-caps); font-size: 14px; letter-spacing: .08em; color: var(--gold-soft); text-align: right; padding-right: 16px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.timeline .dot { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
+.timeline .dot::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: linear-gradient(180deg, #9A7434, #F3DDA4 25%, #9A7434 50%, #E9CD8A 75%, #9A7434); background-size: 100% 240px; animation: gline 6s linear infinite; box-shadow: 0 0 8px rgba(230,190,120,.45); }
+@keyframes gline { from { background-position: 0 0; } to { background-position: 0 240px; } }
+.timeline li:first-child .dot::before { top: 50%; }
+.timeline li:last-child .dot::before { bottom: 50%; }
+.timeline .dot::after { content: ""; position: relative; z-index: 1; width: 20px; height: 20px; background: url("img/cristal-1.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,236,190,.9)) drop-shadow(0 2px 2px rgba(0,0,0,.6)); animation: twinkle 3.6s ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { transform: scale(.9); opacity: .85; } 50% { transform: scale(1.1); opacity: 1; } }
+.timeline li:nth-child(2) .dot::after { animation-delay: .7s; } .timeline li:nth-child(3) .dot::after { animation-delay: 1.4s; } .timeline li:nth-child(4) .dot::after { animation-delay: 2.1s; } .timeline li:nth-child(5) .dot::after { animation-delay: 2.8s; }
+.timeline span { padding-left: 16px; font-size: 21px; color: var(--ink); text-align: left; }
+@media (max-width: 640px) { .timeline span { font-size: 18px; } .timeline time { font-size: 13px; } .timeline li { grid-template-columns: 1fr 30px 1.25fr; } }
+
+/* smoked-glass cards */
+.glass { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px clamp(22px, 6vw, 44px) 28px; border-radius: 22px; text-shadow: none;
+  background: linear-gradient(150deg, rgba(255,255,255,.1), rgba(255,255,255,.02) 48%, rgba(255,255,255,.07)), rgba(8,16,13,.62); -webkit-backdrop-filter: blur(8px) saturate(1.15); backdrop-filter: blur(8px) saturate(1.15);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.32), inset 0 0 0 1px rgba(201,163,90,.45), inset 0 0 0 7px rgba(255,255,255,.02), inset 0 0 0 8px rgba(27,107,82,.38), 0 30px 60px -28px rgba(0,0,0,.9); }
+.glass > * { position: relative; }
+.count { display: flex; justify-content: center; flex-wrap: nowrap; gap: clamp(6px, 2vw, 12px); position: relative; padding-bottom: 26px; }
+.count div { width: clamp(64px, 18vw, 86px); padding: 14px 0 12px; border-radius: 20px; display: flex; flex-direction: column;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.14), rgba(255,255,255,0) 70%), linear-gradient(180deg, rgba(27,107,82,.22), rgba(255,255,255,.02));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), inset 0 0 0 1px rgba(201,163,90,.35), 0 12px 24px -16px rgba(0,0,0,.9); }
+.count strong { font-weight: 500; font-size: clamp(26px, 7vw, 34px); line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.count span { font-family: var(--f-caps); font-size: 10px; letter-spacing: .2em; color: var(--gold-soft); margin-top: 6px; }
+.count::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 150px; height: 10px; transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(201,163,90,.9) 0 3px, transparent 3.5px) center / 10px 10px no-repeat, linear-gradient(90deg, transparent, rgba(201,163,90,.8) 40%, transparent 46%, transparent 54%, rgba(201,163,90,.8) 60%, transparent) center / 100% 1px no-repeat; }
+.pass strong { font-family: var(--f-names); font-weight: 400; font-size: 48px; line-height: 1.1; color: var(--ink); }
+.pass .ticket { display: flex; align-items: center; gap: 12px; padding: 10px 18px; border-radius: 14px; border: 1px dashed rgba(201,163,90,.6); font-size: 17px; color: var(--ink); background: rgba(27,107,82,.14); }
+.pass .ticket b { font-family: var(--f-caps); font-weight: 500; font-size: 11px; letter-spacing: .26em; color: var(--gold-soft); }
+.foot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; padding: 60px 16px calc(120px + env(safe-area-inset-bottom, 0px)); overflow: hidden; }
+.foot .fil { width: 180px; height: auto; margin-bottom: 8px; filter: drop-shadow(0 3px 4px rgba(0,0,0,.6)); }
+.foot .tag { font-family: var(--f-names); font-size: 50px; margin: 0; position: relative; z-index: 2; padding: 0 .12em; }
+.foot .made { font-family: var(--f-caps); font-size: 11px; letter-spacing: .3em; color: var(--ink-soft); margin: 0; position: relative; z-index: 2; }
+.replay { position: relative; z-index: 2; border: 1px solid rgba(201,163,90,.5); background: rgba(6,14,10,.55); border-radius: 999px; padding: 10px 20px; margin-top: 10px; font-family: var(--f-caps); font-size: 11px; letter-spacing: .24em; color: var(--ink-soft); cursor: pointer; }
+
+/* music button, gold */
+#yt { position: fixed; left: 0; bottom: 0; width: 2px; height: 2px; opacity: 0; pointer-events: none; z-index: -1; }
+.music { position: fixed; z-index: 60; right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 48px; height: 48px; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 30%, #F7E4B4, #C99A52 80%); box-shadow: inset 0 1px 0 rgba(255,250,235,.8), 0 8px 18px -6px rgba(0,0,0,.7), 0 0 0 4px rgba(201,163,90,.25); opacity: 0; transform: scale(.6); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.music.show { opacity: 1; transform: none; }
+.music .bars { display: flex; align-items: flex-end; gap: 3px; height: 16px; }
+.music .bars i { width: 3px; height: 100%; border-radius: 2px; background: #2A1E0E; transform-origin: bottom; animation: eq 1s ease-in-out infinite; }
+.music .bars i:nth-child(2) { animation-delay: -.35s; } .music .bars i:nth-child(3) { animation-delay: -.7s; } .music .bars i:nth-child(4) { animation-delay: -.2s; }
+.music.paused .bars i { animation: none; transform: scaleY(.3); }
+@keyframes eq { 0%,100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+@media (max-width: 640px) {
+  .part { padding-top: 84px; padding-bottom: 84px; }
+  .v-eye { letter-spacing: .32em; font-size: 11px; }
+  .v-co { letter-spacing: .36em; }
+  .foot .tag { font-size: 38px; }
+  .vface { height: 64%; }
+}
+
+/* gold foil text inside sections keeps its gold (the .part p color must not win) */
+.part p.foil, .part p.foil-l { color: transparent; }
+.txt .foil { text-shadow: none; }
+</style>
+<script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+
+<div class="lang" role="group" aria-label="Idioma / Language">
+  <button type="button" id="lang-es" aria-pressed="true">ES</button>
+  <button type="button" id="lang-en" aria-pressed="false">EN</button>
+</div>
+
+<!-- the VIP entrance -->
+<section class="vip" id="vip" aria-label="Invitación a la Gala Anual 2027 de Grupo Altavista" data-en-label="Invitation to Grupo Altavista's 2027 Annual Gala">
+  <div class="vwrap" aria-hidden="true">
+    <img src="img/entrada.webp" alt="" width="787" height="1400">
+    <span class="vlight"></span>
+  </div>
+  <div class="vface">
+    <p class="v-eye" data-en="YOU ARE INVITED">ESTÁS INVITADO</p>
+    <p class="v-name foil" data-en="Annual Gala 2027">Gala Anual 2027</p>
+    <p class="v-co">GRUPO ALTAVISTA</p>
+    <p class="v-rule" aria-hidden="true"><i></i><b></b><i></i></p>
+    <p class="v-para" data-en="FOR">PARA</p>
+    <p class="v-guest foil" id="guestName" data-en="a very special guest">un invitado muy especial</p>
+  </div>
+  <button class="rope" id="rope" type="button" aria-label="Quitar el cordón y entrar" data-en-label="Unhook the rope and come in">
+    <span class="pc p-left"></span><span class="pc p-rope"></span><span class="pc p-right"></span><span class="glint"></span>
+  </button>
+  <p class="v-hint"><i></i><span data-en="TAP THE ROPE TO COME IN">TOCA EL CORDÓN PARA ENTRAR</span><i></i></p>
+</section>
+<canvas id="burst" aria-hidden="true"></canvas>
+
+<div id="yt" aria-hidden="true"><div id="ytp"></div></div>
+<button class="music paused" id="music" type="button" aria-label="Música: reproducir" data-en-label="Music: play" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+<div class="bg" aria-hidden="true"></div>
+<canvas id="glitter" aria-hidden="true"></canvas>
+
+<div class="world" id="world">
+  <section class="present" id="present" aria-label="Gala Anual 2027, Grupo Altavista" data-en-label="Annual Gala 2027, Grupo Altavista">
+    <div class="spot" aria-hidden="true"></div>
+    <div class="plate">
+      <span class="pframe" aria-hidden="true"></span>
+      <img class="pcn tl" src="img/esquina-oro.webp" alt="" width="420" height="414"><img class="pcn tr" src="img/esquina-oro.webp" alt="" width="420" height="414"><img class="pcn bl" src="img/esquina-oro.webp" alt="" width="420" height="414"><img class="pcn br" src="img/esquina-oro.webp" alt="" width="420" height="414">
+      <div class="pwin"><img src="img/salon.webp" alt="El salón de la gala en verde esmeralda y oro, con candelabros y escenario" data-en-alt="The gala ballroom in emerald and gold, with chandeliers and a stage" width="733" height="1100"></div>
+      <p class="p-caps" data-en="ANNUAL GALA 2027">GALA ANUAL 2027</p>
+      <h1 class="p-name foil">Grupo Altavista</h1>
+      <img class="p-fil" src="img/filigrana.webp" alt="" width="900" height="183">
+      <p class="p-date">26 · 11 · 2027</p>
+    </div>
+    <p class="p-hint"><a href="#invitacion" data-en="THE INVITATION ↓">LA INVITACIÓN ↓</a></p>
+  </section>
+
+  <section class="invite" id="invitacion">
+    <div class="card">
+      <span class="tag-vel"><span data-en="INVITATION">INVITACIÓN</span></span>
+      <p class="k-caps" data-en="THE BOARD OF DIRECTORS OF">LA DIRECCIÓN GENERAL DE</p>
+      <p class="k-name foil">Grupo Altavista</p>
+      <p class="k-line" data-en="is honored to invite you to its">tiene el honor de invitarle a su</p>
+      <p class="k-event" data-en="ANNUAL GALA 2027">GALA ANUAL 2027</p>
+      <p class="k-line" data-en="to celebrate together the achievements of this year">para celebrar juntos los logros de este año</p>
+      <span class="gold-rule" aria-hidden="true"><i></i><b></b><i></i></span>
+      <p class="k-date" data-en="Friday, November 26th">Viernes 26 de noviembre</p>
+      <p class="k-small" data-en-html="TWO THOUSAND TWENTY-SEVEN<br>AT EIGHT IN THE EVENING">DOS MIL VEINTISIETE<br>A LAS OCHO DE LA NOCHE</p>
+      <p class="k-small" data-en-html="SALÓN ESMERALDA · GRAN HOTEL ALAMEDA<br>MEXICO CITY">SALÓN ESMERALDA · GRAN HOTEL ALAMEDA<br>CIUDAD DE MÉXICO</p>
+    </div>
+  </section>
+
+  <main class="flow" id="detalles">
+    <section class="part">
+      <div class="txt">
+        <p class="caps" data-en="A MESSAGE FROM THE BOARD">MENSAJE DE LA DIRECCIÓN</p>
+        <p class="quote" data-en="“Every achievement this year carries the name of our collaborators, clients and partners. It is an honor to raise a glass with you on a night made to celebrate what we have built together.”">“Cada logro de este año lleva el nombre de nuestros colaboradores, clientes y socios. Es un honor brindar con usted en una noche hecha para celebrar lo que construimos juntos.”</p>
+        <p class="sign foil" data-en="Board of Directors">Dirección General</p>
+      </div>
+    </section>
+
+    <section class="part velvet">
+      <div class="txt">
+        <h2 class="foil" data-en="The evening">La velada</h2>
+        <p class="lead" data-en="A black-tie night in the Salón Esmeralda, under crystal chandeliers.">Una noche de etiqueta en el Salón Esmeralda, bajo candelabros de cristal.</p>
+        <div class="velada">
+          <div class="vwin"><img src="img/salon.webp" alt="" width="733" height="1100" loading="lazy"></div>
+          <div class="dets">
+            <div class="det"><b data-en="GALA DINNER">CENA DE GALA</b><span data-en="A five-course menu by the hotel's chef">Menú de cinco tiempos del chef del hotel</span></div>
+            <div class="det"><b data-en="AWARDS">RECONOCIMIENTOS</b><span data-en="We honor the teams of the year">Celebramos a los equipos del año</span></div>
+            <div class="det"><b data-en="LIVE MUSIC">MÚSICA EN VIVO</b><span data-en="A jazz orchestra until the last dance">Orquesta de jazz hasta el último baile</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="txt">
+        <h2 class="foil" data-en="Save the date">Reserva la fecha</h2>
+        <p class="big-date">26 · 11 · 2027</p>
+        <div class="glass">
+          <p class="caps" data-en="ONLY">FALTAN</p>
+          <div class="count" aria-label="Cuenta regresiva" data-en-label="Countdown">
+            <div><strong id="cd-d">0</strong><span data-en="DAYS">DÍAS</span></div>
+            <div><strong id="cd-h">0</strong><span data-en="HRS">HRS</span></div>
+            <div><strong id="cd-m">0</strong><span data-en="MIN">MIN</span></div>
+            <div><strong id="cd-s">0</strong><span data-en="SEC">SEG</span></div>
+          </div>
+        </div>
+        <div class="row"><a class="btn btn-line" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Gala%20Anual%202027%20%C2%B7%20Grupo%20Altavista&amp;dates=20271126T200000/20271127T010000&amp;location=Gran%20Hotel%20Alameda%2C%20Ciudad%20de%20M%C3%A9xico" data-en="Add to calendar">Agregar al calendario</a></div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="txt">
+        <h2 class="foil" data-en="Where">Dónde</h2>
+        <div class="place">
+          <h3 data-en="GALA DINNER">CENA DE GALA</h3>
+          <p class="time">8:00 pm</p>
+          <p class="name">Salón Esmeralda</p>
+          <p data-en="Gran Hotel Alameda · Mexico City">Gran Hotel Alameda · Ciudad de México</p>
+          <div class="row" style="margin-top:12px"><a class="btn btn-line" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Gran%20Hotel%20Alameda%2C%20Ciudad%20de%20M%C3%A9xico" data-en="View map">Ver mapa</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="txt">
+        <h2 class="foil" data-en="Programme">Programa</h2>
+        <ol class="timeline">
+          <li><time>8:00 pm</time><i class="dot"></i><span data-en="Welcome cocktail">Cóctel de bienvenida</span></li>
+          <li><time>8:45 pm</time><i class="dot"></i><span data-en="Words from the Board">Mensaje de la Dirección</span></li>
+          <li><time>9:00 pm</time><i class="dot"></i><span data-en="Gala dinner">Cena de gala</span></li>
+          <li><time>10:00 pm</time><i class="dot"></i><span data-en="Awards">Reconocimientos</span></li>
+          <li><time>10:45 pm</time><i class="dot"></i><span data-en="Dancing">Baile</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="txt">
+        <h2 class="foil" data-en="Dress code">Vestimenta</h2>
+        <p class="caps" data-en="STRICT BLACK TIE">ETIQUETA RIGUROSA · BLACK TIE</p>
+        <p class="lead" data-en="Tuxedo for gentlemen, long evening gown for ladies.">Smoking para caballeros, vestido largo de noche para damas.</p>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="txt">
+        <h2 class="foil" data-en="RSVP">Confirma</h2>
+        <div class="glass pass">
+          <p class="caps" data-en="THIS INVITATION IS PERSONAL">ESTA INVITACIÓN ES PERSONAL</p>
+          <strong data-en="1 guest">1 persona</strong>
+          <p class="ticket"><b data-en="YOUR ACCESS">TU ACCESO</b><span data-en="When you confirm, you receive your personal pass">Al confirmar recibes tu pase personal</span></p>
+          <p data-en="Please confirm before November 5th, 2027.">Por favor confirme antes del 5 de noviembre de 2027.</p>
+          <div class="row"><a class="btn btn-gold" id="rsvp" target="_blank" rel="noopener" href="https://wa.me/?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20Gala%20Anual%202027%20de%20Grupo%20Altavista" data-en="Confirm on WhatsApp">Confirmar por WhatsApp</a></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <img class="fil" src="img/filigrana.webp" alt="" width="900" height="183" loading="lazy">
+      <p class="tag foil">#GalaAltavista2027</p>
+      <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
+      <button class="replay" id="replay" type="button" data-en="COME IN AGAIN">ENTRAR OTRA VEZ</button>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement, vip = document.getElementById('vip'), present = document.getElementById('present');
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+
+  var q = null; try { q = new URLSearchParams(location.search); } catch (e) {}
+  var para = q && q.get('para');
+  if (para) { var gn = document.getElementById('guestName'); gn.textContent = para.slice(0, 60); gn.removeAttribute('data-en'); }
+
+  // ---------- music: "La vie en rose" (Louis Armstrong) through the YouTube player; starts with the first tap ----------
+  var SONGS = ['8IJzYAda1wA', 'rzeLynj1GYM', 'ZEcqHA7dbwM'], song = 0, yt = null, ytReady = false, wantPlay = false, playing = false;
+  var mbtn = document.getElementById('music');
+  window.onYouTubeIframeAPIReady = function () {
+    yt = new YT.Player('ytp', { width: 2, height: 2, videoId: SONGS[0],
+      playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, loop: 1, playlist: SONGS[0], rel: 0 },
+      events: {
+        onReady: function () { ytReady = true; if (wantPlay) startMusic(); },
+        onStateChange: function (e) { playing = e.data === 1; mbtn.classList.toggle('paused', !playing); mbtn.setAttribute('aria-pressed', String(playing)); },
+        onError: function () { if (song < SONGS.length - 1) { song++; yt.loadVideoById(SONGS[song]); if (!wantPlay) yt.pauseVideo(); } }
+      } });
+  };
+  (function () { var t = document.createElement('script'); t.src = 'https://www.youtube.com/iframe_api'; t.async = true; document.head.appendChild(t); })();
+  function startMusic() {
+    wantPlay = true; mbtn.classList.add('show');
+    if (!ytReady) return;
+    try { yt.setVolume(0); yt.playVideo(); var v = 0, f = setInterval(function () { v += 4; yt.setVolume(Math.min(70, v)); if (v >= 70) clearInterval(f); }, 140); } catch (e) {}
+  }
+  mbtn.addEventListener('click', function () {
+    if (!ytReady) { startMusic(); return; }
+    if (playing) yt.pauseVideo(); else { yt.setVolume(70); yt.playVideo(); }
+  });
+
+  // ---------- the rope unhooks, then we walk down the emerald carpet ----------
+  var opened = false;
+  function openVip() {
+    if (opened) return; opened = true;
+    startMusic();
+    if (reduce) { vip.remove(); present.classList.add('opened'); enterWorld(); return; }
+    var r = document.getElementById('rope').getBoundingClientRect();
+    vip.classList.add('glint');
+    setTimeout(function () { vip.classList.add('unhook'); burst(r.left + r.width * .5, r.top + r.height * .58, 46, .45, 1.5); }, 750);
+    setTimeout(function () { vip.classList.add('walk'); present.classList.add('opened'); }, 2900);
+    setTimeout(enterWorld, 4600);
+    setTimeout(function () { vip.classList.add('gone'); }, 5300);
+    setTimeout(function () { vip.remove(); }, 6100);
+  }
+  function enterWorld() { root.classList.remove('locked'); var y = q && parseInt(q.get('y') || '', 10); if (y) { root.style.scrollBehavior = 'auto'; var el = q.get('el') ? document.querySelectorAll(q.get('el'))[y - 1] : null; window.scrollTo(0, el ? el.getBoundingClientRect().top + scrollY : y); } }
+  document.getElementById('rope').addEventListener('click', function (e) { e.stopPropagation(); openVip(); });
+  vip.addEventListener('click', openVip);
+  document.getElementById('replay').addEventListener('click', function () { window.scrollTo(0, 0); location.reload(); });
+
+  // soft gold sparkles where the rope unhooks
+  function burst(x0, y0, n, power, slow) {
+    if (reduce) return;
+    var cv = document.getElementById('burst'), c = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1), W = innerWidth, H = innerHeight, P = [], t0 = performance.now();
+    cv.width = W * dpr; cv.height = H * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    for (var i = 0; i < n; i++) { var a = rnd(0, 6.283), v = rnd(1.5, 8) * power; P.push({ x: x0 + rnd(-40, 40), y: y0 + rnd(-14, 14), vx: Math.cos(a) * v, vy: Math.sin(a) * v - rnd(0, 1.2), r: rnd(.7, 2), life: rnd(1100, 1900) * slow, star: Math.random() < .3, tw: rnd(4, 10) }); }
+    function f(now) {
+      var t = now - t0, alive = false; c.clearRect(0, 0, W, H);
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i], k = t / p.life; if (k >= 1) continue; alive = true;
+        p.x += p.vx / slow; p.y += p.vy / slow - .15; p.vx *= .965; p.vy *= .965;
+        var a = (1 - k) * (.55 + .45 * Math.sin(t / 1000 * p.tw));
+        var g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4); g.addColorStop(0, 'rgba(255,246,220,' + a + ')'); g.addColorStop(.35, 'rgba(240,196,110,' + a * .85 + ')'); g.addColorStop(1, 'rgba(240,196,110,0)');
+        c.fillStyle = g; c.beginPath(); c.arc(p.x, p.y, p.r * 4, 0, 6.283); c.fill();
+        if (p.star) { var L = p.r * 6 * (1 - k); c.strokeStyle = 'rgba(255,236,190,' + a + ')'; c.lineWidth = .9; c.beginPath(); c.moveTo(p.x - L, p.y); c.lineTo(p.x + L, p.y); c.moveTo(p.x, p.y - L); c.lineTo(p.x, p.y + L); c.stroke(); }
+      }
+      if (alive) requestAnimationFrame(f); else c.clearRect(0, 0, W, H);
+    }
+    requestAnimationFrame(f);
+    setTimeout(function () { P.length = 0; c.clearRect(0, 0, W, H); }, 2000 * slow + 400);
+  }
+
+  // ---------- gold dust drifting up slowly ----------
+  (function startDust() {
+    var cv = document.getElementById('glitter'), cx = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1), P = [], W = 0, H = 0, lastY = window.scrollY;
+    function mk(any) { return { x: rnd(0, W), y: any ? rnd(0, H) : rnd(H + 4, H + 20), r: rnd(.5, 1.8), v: rnd(.08, .3), dx: rnd(-.08, .08), ph: rnd(0, 6.3), tw: rnd(.6, 2), star: Math.random() < .06 }; }
+    function size() {
+      W = window.innerWidth; H = window.innerHeight; cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(110, Math.max(40, W * H / 10000))); P = []; for (var i = 0; i < n; i++) P.push(mk(true));
+    }
+    size(); window.addEventListener('resize', size);
+    function draw(t) {
+      t /= 1000; cx.clearRect(0, 0, W, H);
+      var sy = window.scrollY, ds = (sy - lastY) * .1; lastY = sy;
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i];
+        p.y -= p.v + ds; p.x += p.dx + Math.sin(t * .4 + p.ph) * .1;
+        if (p.y < -12) { P[i] = mk(false); continue; }
+        if (p.y > H + 24) { p.y = -10; }
+        var a = .15 + .6 * Math.max(0, Math.sin(t * p.tw + p.ph));
+        var g = cx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+        g.addColorStop(0, 'rgba(255,240,200,' + a + ')'); g.addColorStop(.35, 'rgba(226,182,104,' + (a * .7) + ')'); g.addColorStop(1, 'rgba(226,182,104,0)');
+        cx.fillStyle = g; cx.beginPath(); cx.arc(p.x, p.y, p.r * 4, 0, 6.283); cx.fill();
+        if (p.star && a > .6) {
+          var L = p.r * 7 * a; cx.strokeStyle = 'rgba(255,236,190,' + (a * .8) + ')'; cx.lineWidth = .8;
+          cx.beginPath(); cx.moveTo(p.x - L, p.y); cx.lineTo(p.x + L, p.y); cx.moveTo(p.x, p.y - L); cx.lineTo(p.x, p.y + L); cx.stroke();
+        }
+      }
+      if (!reduce && !document.hidden) requestAnimationFrame(draw); else if (!reduce) setTimeout(function () { requestAnimationFrame(draw); }, 500);
+    }
+    requestAnimationFrame(draw);
+  })();
+
+  // sections arrive softly as you scroll
+  var parts = document.querySelectorAll('.part');
+  if ('IntersectionObserver' in window && !reduce && !(q && (q.get('y') || q.get('desde')))) {
+    parts.forEach(function (s) { s.classList.add('wait'); });
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('wait'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
+    parts.forEach(function (s) { io.observe(s); });
+  }
+
+  // ---------- countdown ----------
+  var target = new Date(2027, 10, 26, 20, 0, 0).getTime();
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function count() {
+    var ms = Math.max(0, target - Date.now()), s = Math.floor(ms / 1000);
+    document.getElementById('cd-d').textContent = Math.floor(s / 86400);
+    document.getElementById('cd-h').textContent = pad(Math.floor(s % 86400 / 3600));
+    document.getElementById('cd-m').textContent = pad(Math.floor(s % 3600 / 60));
+    document.getElementById('cd-s').textContent = pad(s % 60);
+  }
+  count(); setInterval(count, 1000);
+
+  // ---------- Spanish / English ----------
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-en], [data-en-html]'));
+  nodes.forEach(function (el) { el.setAttribute('data-es-html', el.innerHTML); });
+  var labels = Array.prototype.slice.call(document.querySelectorAll('[data-en-label]'));
+  labels.forEach(function (el) { el.setAttribute('data-es-label', el.getAttribute('aria-label')); });
+  var alts = Array.prototype.slice.call(document.querySelectorAll('[data-en-alt]'));
+  alts.forEach(function (el) { el.setAttribute('data-es-alt', el.getAttribute('alt')); });
+  var rsvp = document.getElementById('rsvp');
+  var RSVP = ['Hola, confirmo mi asistencia a la Gala Anual 2027 de Grupo Altavista', 'Hello, I confirm my attendance at Grupo Altavista\'s 2027 Annual Gala'];
+  function setLang(l) {
+    nodes.forEach(function (el) {
+      if (l === 'en') { if (el.hasAttribute('data-en-html')) el.innerHTML = el.getAttribute('data-en-html'); else el.textContent = el.getAttribute('data-en'); }
+      else el.innerHTML = el.getAttribute('data-es-html');
+    });
+    labels.forEach(function (el) { el.setAttribute('aria-label', el.getAttribute(l === 'en' ? 'data-en-label' : 'data-es-label')); });
+    alts.forEach(function (el) { el.setAttribute('alt', el.getAttribute(l === 'en' ? 'data-en-alt' : 'data-es-alt')); });
+    rsvp.href = 'https://wa.me/?text=' + encodeURIComponent(RSVP[l === 'en' ? 1 : 0]);
+    root.lang = l;
+    document.getElementById('lang-es').setAttribute('aria-pressed', l === 'es');
+    document.getElementById('lang-en').setAttribute('aria-pressed', l === 'en');
+    try { localStorage.setItem('ilusion-lang', l); } catch (e) {}
+  }
+  document.getElementById('lang-es').addEventListener('click', function () { setLang('es'); });
+  document.getElementById('lang-en').addEventListener('click', function () { setLang('en'); });
+  var saved = 'es'; try { saved = localStorage.getItem('ilusion-lang') || 'es'; } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'es');
+
+  // ?vista=sobre keeps the entrance closed (it is closed by default; used for the poster)
+  // ?abrir=1 opens straight away (screenshots)
+  if (q && q.get('abrir') === '1') setTimeout(openVip, 300);
+  // ?mitad=1 freezes the rope half-way (only for checking the look)
+  if (q && q.get('mitad') === '1') vip.classList.add('half');
+  // ?desde=N (screenshots only): start the open page at section N, hiding what comes before
+  if (q && q.get('desde')) { var all = [present, document.getElementById('invitacion')].concat([].slice.call(document.querySelectorAll('.flow > *'))), n = parseInt(q.get('desde'), 10) || 0; all.slice(0, n).forEach(function (el) { el.style.display = 'none'; }); parts.forEach(function (s) { s.classList.remove('wait'); }); }
+  // ?abierto=1 shows the open page without the animation (screenshots)
+  if (q && q.get('abierto') === '1') { opened = true; vip.remove(); present.classList.add('opened'); enterWorld(); }
+})();
+</script>
+
+<div id="ilu-nav" hidden>
+<style>
+#ilu-back,#ilu-cta{position:fixed;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;min-height:40px;border-radius:999px;text-decoration:none;font:500 13px/1 Jost,"Avenir Next",system-ui,sans-serif;letter-spacing:.03em;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:opacity .5s ease,transform .5s ease;-webkit-font-smoothing:antialiased}
+#ilu-back{top:calc(12px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));padding:0 15px 0 11px;background:rgba(255,252,246,.88);color:#3A2A26;box-shadow:0 8px 20px -10px rgba(40,25,20,.5),inset 0 0 0 1px rgba(182,138,78,.45)}
+#ilu-back svg{width:16px;height:16px}
+#ilu-cta{left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);padding:0 22px;min-height:46px;font-weight:600;font-size:14px;color:#3A2210;background:linear-gradient(180deg,#F7E4B4 0%,#EBC988 34%,#D6A963 70%,#C4914D 100%);box-shadow:inset 0 0 0 1px rgba(170,120,55,.3),0 12px 26px -12px rgba(110,70,30,.65),0 0 22px rgba(236,204,140,.5);white-space:nowrap}
+#ilu-cta.off{opacity:0;transform:translate(-50%,24px);pointer-events:none}
+@media (prefers-reduced-motion: reduce){#ilu-back,#ilu-cta{transition:none}}
+</style>
+<a id="ilu-back" href="/nuevo/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Volver</span></a>
+<a id="ilu-cta" class="off" href="/nuevo/crear/">Quiero una así ✨</a>
+</div>
+<script>
+(function(){
+  if (window.top !== window) return; /* inside the preview on the collection page: it has its own buttons */
+  var q = new URLSearchParams(location.search), c = q.get('c') || 'empresas', d = q.get('d') || 'gala-esmeralda';
+  var en = false; try { en = localStorage.getItem('ilu-lang') === 'en'; } catch (e) {}
+  var nav = document.getElementById('ilu-nav'), back = document.getElementById('ilu-back'), cta = document.getElementById('ilu-cta');
+  back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/?evento=' + c + '&diseno=' + encodeURIComponent('Gala Esmeralda') + '#imagina';
+  back.querySelector('span').textContent = en ? 'Back' : 'Volver'; cta.textContent = en ? 'I want one like this ✨' : 'Quiero una así ✨';
+  back.addEventListener('click', function (e) { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {} });
+  nav.hidden = false;
+  var last = scrollY, shown = false;
+  setTimeout(function () { shown = true; cta.classList.remove('off'); }, 3500);
+  addEventListener('scroll', function () { if (!shown) return; var y = scrollY; if (y > last + 8) cta.classList.add('off'); else if (y < last - 8 || innerHeight + y >= document.documentElement.scrollHeight - 40) cta.classList.remove('off'); last = y; }, { passive: true });
+})();
+</script>
+
+<div id="ilu-freeze">
+<style>
+#ilu-pause{position:fixed;z-index:2147483001;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:42px;height:42px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;padding:0;color:#3A2A26;background:rgba(255,252,246,.82);box-shadow:inset 0 0 0 1px rgba(182,138,78,.45),0 8px 18px -8px rgba(40,25,20,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent}
+#ilu-pause svg{width:15px;height:15px}
+#ilu-pause .pl{display:none} html.ilu-frozen #ilu-pause .pa{display:none} html.ilu-frozen #ilu-pause .pl{display:block}
+html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-play-state:paused!important}
+</style>
+<button id="ilu-pause" type="button" aria-pressed="false" aria-label="Pausar animación"><svg class="pa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg><svg class="pl" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></button>
+<script>
+/* pause button: freezes every animation so a guest (or the designer) can stop at any moment */
+(function(){
+  var raf=window.requestAnimationFrame.bind(window), q=[], frozen=false, paused=[];
+  window.requestAnimationFrame=function(cb){ if(frozen){ q.push(cb); return 0; } return raf(cb); };
+  var b=document.getElementById('ilu-pause'), en=false; try{ en=localStorage.getItem('ilu-lang')==='en'||localStorage.getItem('ilusion-lang')==='en'; }catch(e){}
+  function label(){ b.setAttribute('aria-label', frozen ? (en?'Resume animation':'Continuar animación') : (en?'Pause animation':'Pausar animación')); b.setAttribute('aria-pressed', String(frozen)); }
+  b.addEventListener('click', function(e){
+    e.stopPropagation(); frozen=!frozen; document.documentElement.classList.toggle('ilu-frozen', frozen);
+    if(frozen){ paused=(document.getAnimations?document.getAnimations():[]).filter(function(a){ return a.playState==='running'; }); paused.forEach(function(a){ try{a.pause();}catch(x){} }); }
+    else { paused.forEach(function(a){ try{a.play();}catch(x){} }); paused=[]; var cbs=q; q=[]; cbs.forEach(function(cb){ raf(cb); }); }
+    label();
+  });
+  label();
+})();
+</script>
+</div>
+
+</body>
+</html>
