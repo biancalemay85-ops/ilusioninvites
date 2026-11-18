@@ -495,8 +495,8 @@ html:not(.locked) .bg::after { background: radial-gradient(ellipse 70% 60% at 50
   var para = q && q.get('para');
   if (para) { var gn = document.getElementById('guestName'); gn.textContent = para.slice(0, 60); gn.removeAttribute('data-en'); }
 
-  // ---------- music: Brahms' Lullaby (music box) through the YouTube player; starts with the moon tap ----------
-  var SONGS = ['hs6AcuPcPgw', 'awBv1SQ6DEA', 'a8BJbZ-RYxs'], song = 0, yt = null, ytReady = false, wantPlay = false, playing = false;
+  // ---------- music: Fly Me to the Moon (Sinatra), What a Wonderful World as fallback, through the YouTube player; starts with the moon tap ----------
+  var SONGS = ['ZEcqHA7dbwM', 'mQR0bXO_yI8', 'rBrd_3VMC3c'], song = 0, yt = null, ytReady = false, wantPlay = false, playing = false;
   var mbtn = document.getElementById('music');
   window.onYouTubeIframeAPIReady = function () {
     yt = new YT.Player('ytp', { width: 2, height: 2, videoId: SONGS[0],
