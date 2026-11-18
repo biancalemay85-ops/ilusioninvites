@@ -26,7 +26,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&display=swap">
 <style>
-/* Birthday "Cena en la Toscana". 1) A closed Tuscan villa door at sunset, sealed with a terracotta wax seal. 2) The seal lifts and turns to gold dust, the two oak doors swing inward, warm light pours through and we walk in. 3) Inside: one continuous page on warm cream linen with soft gold glints, a glass plate with the dinner under the olive tree and her name. Light theme only on purpose. */
+/* Birthday "Cena en la Toscana". 1) A closed Tuscan villa door at sunset, an olive and lemon wreath hanging on the seam. 2) The wreath swings, a few leaves fall, it lifts away, the two oak doors swing inward, warm light pours through and we walk in. 3) Inside: one continuous page on warm cream linen with soft gold glints, a glass plate with the dinner under the olive tree and her name. Light theme only on purpose. */
 :root {
   color-scheme: light;
   --ivory: #FBF6EC;
@@ -92,19 +92,26 @@ html.locked .p-hint { opacity: 0; }
 .o-hint { display: flex; align-items: center; gap: 10px; margin-top: 1.4cqw !important; font-family: var(--f-caps); font-size: max(10px, 1.6cqw); letter-spacing: .28em; color: var(--champ); text-shadow: 0 2px 8px rgba(30,12,2,.9); white-space: nowrap; }
 .o-hint span { animation: breathe 2.6s ease-in-out infinite; } .o-hint i { width: 22px; height: 1px; background: linear-gradient(90deg, transparent, #E2C998); } .o-hint i:last-child { transform: scaleX(-1); }
 
-/* the terracotta seal on the seam: it warms, lifts slowly and dissolves into gold dust */
-.seal { z-index: 5; left: 51.5%; top: 54.6%; width: 19%; aspect-ratio: 640 / 627; transform: translate(-50%, -50%); padding: 0; border: 0; background: none; cursor: pointer; border-radius: 50%; container-type: inline-size; -webkit-tap-highlight-color: transparent;
-  filter: drop-shadow(0 0 1px rgba(60,20,6,.6)) drop-shadow(3px 10px 10px rgba(20,8,2,.6)); transition: transform 1.6s cubic-bezier(.3,.1,.2,1), opacity 1.4s ease, filter 1.6s ease; }
-.seal img { width: 100%; height: 100%; display: block; }
-.seal::after { content: ""; position: absolute; inset: -34%; z-index: -1; border-radius: 50%; background: radial-gradient(circle, rgba(255,226,180,.5), rgba(255,226,180,.16) 45%, transparent 68%); animation: halo 3.4s ease-in-out infinite; pointer-events: none; }
-.seal::before { content: ""; position: absolute; inset: -10%; border-radius: 50%; border: 1.5px solid rgba(236,204,150,.85); animation: ring 2.6s ease-out infinite; }
+/* the olive & lemon wreath hanging on the seam: it sways, swings when tapped, then lifts away as the doors open */
+.wreath { z-index: 5; left: 51.5%; top: 53.4%; width: 18.5%; aspect-ratio: 1054 / 1100; transform: translate(-50%, -50%); padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: transform 1.5s cubic-bezier(.3,.1,.2,1), opacity 1.2s ease; }
+.wreath .wr { position: absolute; inset: 0; transform-origin: 50% -9%; animation: sway 4.6s ease-in-out infinite; }
+.wreath .wr img { width: 100%; height: 100%; display: block; filter: drop-shadow(0 1px 1px rgba(40,18,6,.55)) drop-shadow(2px 9px 8px rgba(20,8,2,.55)); }
+/* a short linen ribbon to a small iron nail */
+.wreath .rib { position: absolute; left: 50%; top: -9%; width: 2.2%; height: 13%; transform: translateX(-50%); border-radius: 2px; background: linear-gradient(90deg, #CDBFA3, #F1E7D2 45%, #BFAF92); box-shadow: 0 1px 2px rgba(20,8,2,.4); }
+.wreath .nail { position: absolute; left: 50%; top: -11%; width: 4.4%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle at 35% 30%, #8a7a68, #2c241d 70%); box-shadow: 0 1px 2px rgba(0,0,0,.6); }
+.wreath::after { content: ""; position: absolute; inset: -26%; z-index: -1; border-radius: 50%; background: radial-gradient(circle, rgba(255,226,180,.42), rgba(255,226,180,.12) 45%, transparent 68%); animation: halo 3.4s ease-in-out infinite; pointer-events: none; }
+.wreath::before { content: ""; position: absolute; inset: -6%; border-radius: 50%; border: 1.5px solid rgba(236,204,150,.8); animation: ring 2.6s ease-out infinite; pointer-events: none; }
 @keyframes halo { 0%,100% { opacity: .55; transform: scale(.94); } 50% { opacity: 1; transform: scale(1.04); } }
 @keyframes ring { 0% { transform: scale(.8); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1.3); opacity: 0; } }
-.mono { position: absolute; left: 50%; top: 51%; transform: translate(-50%, -50%); font: 500 19cqw/1 var(--f-caps); letter-spacing: .02em; white-space: nowrap;
-  background: var(--foil-light); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 1px 0 rgba(255,240,210,.35)) drop-shadow(0 1.5px 1.5px rgba(60,20,6,.75)); }
-.warm .seal { transform: translate(-50%, -52%) scale(1.04); filter: drop-shadow(0 0 16px rgba(255,214,150,.9)) drop-shadow(0 0 36px rgba(255,200,130,.55)) drop-shadow(0 6px 10px rgba(20,8,2,.35)); }
-.warm .seal::before, .warm .seal::after { animation: none; opacity: 0; transition: opacity .6s; }
-.lift .seal { transform: translate(-50%, -68%) scale(1.1); opacity: 0; }
+@keyframes sway { 0%,100% { transform: rotate(-1.1deg); } 50% { transform: rotate(1.1deg); } }
+/* tapped: a damped swing from the nail */
+.knock .wreath .wr { animation: swingW 1.6s cubic-bezier(.3,.2,.3,1) both; }
+@keyframes swingW { 0% { transform: rotate(0); } 14% { transform: rotate(9deg); } 34% { transform: rotate(-6.5deg); } 54% { transform: rotate(4deg); } 72% { transform: rotate(-2deg); } 88% { transform: rotate(.8deg); } 100% { transform: rotate(0); } }
+.knock .wreath::before, .knock .wreath::after { animation: none; opacity: 0; transition: opacity .5s; }
+.lift .wreath { transform: translate(-50%, -64%) scale(1.06); opacity: 0; }
+/* olive sprigs and jasmine petals shaken loose */
+.shake { position: absolute; z-index: 6; pointer-events: none; will-change: transform, opacity; filter: drop-shadow(1px 3px 3px rgba(20,8,2,.4)); }
 .lift .o-top, .lift .o-bot { opacity: 0; transform: translateY(-1.2cqw); }
 .lift .s-shade { opacity: 0; }
 /* walking through the door into the light */
@@ -328,11 +335,11 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
       <p class="o-eye" data-en-html="YOU'RE INVITED<br>TO CELEBRATE MY 60TH">TE INVITO A CELEBRAR<br>MIS 60</p>
       <p class="o-name foil-l">Elena</p>
     </div>
-    <button class="seal" id="seal" type="button" aria-label="Abrir la invitación" data-en-label="Open the invitation"><img src="img/sello.webp" alt=""><span class="mono" aria-hidden="true">60</span></button>
+    <button class="wreath" id="seal" type="button" aria-label="Abrir la invitación" data-en-label="Open the invitation"><span class="nail" aria-hidden="true"></span><span class="rib" aria-hidden="true"></span><span class="wr"><img src="img/corona-limones.webp" alt="" width="1054" height="1100"></span></button>
     <div class="o-bot">
       <p class="o-para" data-en="FOR">PARA</p>
       <p class="o-guest foil-l" id="guestName" data-en="a very special guest">un invitado muy especial</p>
-      <p class="o-hint"><i></i><span data-en="TAP THE SEAL TO OPEN">TOCA EL SELLO PARA ABRIR</span><i></i></p>
+      <p class="o-hint"><i></i><span data-en="TAP THE WREATH TO COME IN">TOCA LA CORONA PARA ENTRAR</span><i></i></p>
     </div>
   </div>
   <div class="o-fill" aria-hidden="true"></div>
@@ -549,8 +556,8 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
     startMusic();
     if (reduce) { open.remove(); present.classList.add('opened'); enterWorld(); return; }
     var sr = document.getElementById('seal').getBoundingClientRect(), cx = sr.left + sr.width / 2, cy = sr.top + sr.height / 2;
-    scene.classList.add('warm');
-    setTimeout(function () { scene.classList.add('lift'); burst(cx, cy, 80, .55, 1.6); }, 1100);
+    scene.classList.add('knock'); shakeLoose(sr);
+    setTimeout(function () { scene.classList.add('lift'); burst(cx, cy, 46, .45, 1.6); }, 1250);
     setTimeout(function () { scene.classList.add('swing'); }, 1900);       // the two oak doors swing inward
     setTimeout(function () { open.classList.add('walk'); }, 2900);         // a slow walk through the door
     setTimeout(function () { open.classList.add('fill'); }, 3800);         // into the warm light
@@ -564,7 +571,29 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
   scene.addEventListener('click', openDoor);
   document.getElementById('replay').addEventListener('click', function () { window.scrollTo(0, 0); location.reload(); });
 
-  // gold sparkles bursting out of the seal
+  // a few olive sprigs and jasmine petals shaken loose from the wreath; they flutter down with drift
+  function shakeLoose(sr) {
+    if (reduce) return;
+    var srcs = ['img/olivo.webp', 'img/petalo-blanco-01.webp', 'img/olivo.webp', 'img/petalo-blanco-04.webp', 'img/petalo-blanco-06.webp', 'img/olivo.webp'];
+    var ob = open.getBoundingClientRect();
+    srcs.forEach(function (src, k) {
+      var im = document.createElement('img'); im.src = src; im.alt = ''; im.className = 'shake';
+      var leaf = src.indexOf('olivo') > -1, w = sr.width * (leaf ? rnd(.16, .22) : rnd(.08, .11));
+      var x0 = sr.left - ob.left + sr.width * rnd(.12, .88) - w / 2, y0 = sr.top - ob.top + sr.height * rnd(.2, .85);
+      im.style.width = w + 'px'; im.style.left = x0 + 'px'; im.style.top = y0 + 'px'; im.style.opacity = '0';
+      open.appendChild(im);
+      var dx = rnd(-1, 1) * sr.width * .9, fall = innerHeight * rnd(.42, .62), r0 = rnd(-30, 30), r1 = r0 + rnd(-320, 320), dur = rnd(2600, 3600), delay = 180 + k * 110;
+      im.animate([
+        { transform: 'translate(0,0) rotate(' + r0 + 'deg)', opacity: 0 },
+        { transform: 'translate(' + dx * .25 + 'px,' + fall * .12 + 'px) rotate(' + (r0 + (r1 - r0) * .2) + 'deg)', opacity: 1, offset: .12 },
+        { transform: 'translate(' + (-dx * .35) + 'px,' + fall * .45 + 'px) rotate(' + (r0 + (r1 - r0) * .55) + 'deg) rotateX(160deg)', opacity: 1, offset: .5 },
+        { transform: 'translate(' + dx + 'px,' + fall + 'px) rotate(' + r1 + 'deg) rotateX(360deg)', opacity: 0 }
+      ], { duration: dur, delay: delay, easing: 'cubic-bezier(.35,.1,.5,1)', fill: 'forwards' });
+      setTimeout(function () { im.remove(); }, dur + delay + 100);
+    });
+  }
+
+  // gold sparkles bursting out of the wreath
   function burst(x0, y0, n, power, slow) {
     slow = slow || 1;
     if (reduce) return;
