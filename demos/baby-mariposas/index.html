@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Invitación de baby shower de ejemplo: Jardín de Mariposas, rubor y salvia.">
+<meta property="og:title" content="Baby shower · Esperamos a Valeria ✨">
+<meta property="og:description" content="Sábado 17 de abril de 2027 · Valle de Bravo. Toca para abrir tu invitación.">
+<meta property="og:image" content="https://ilusioninvites.com/demos/baby-mariposas/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Baby shower · Esperamos a Valeria ✨">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://ilusioninvites.com/demos/baby-mariposas/">
+<link rel="canonical" href="https://ilusioninvites.com/demos/baby-mariposas/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F6E6E2">
+<link rel="icon" href="img/mariposa-1.webp">
+<link rel="apple-touch-icon" href="img/mariposa-1.webp">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Baby shower · Valeria</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&display=swap">
+<style>
+/* Baby shower "Jardín de Mariposas". 1) A clear glass bell dome over a little bouquet of blush roses, with butterflies resting inside, on blush silk. 2) Tap the dome: it lifts away with a glint, the butterflies fly out across the screen, soft light blooms and we drift in. 3) Inside: one continuous page on blush silk and ivory light, a crystal plate with the garden table and her name. Light theme only on purpose. */
+:root {
+  color-scheme: light;
+  --ivory: #FDF9F5;
+  --ink: #4B3A3C;
+  --ink-soft: #7A6466;
+  --blush: #E8B9B5;
+  --blush-soft: #F6DEDA;
+  --rose-deep: #9C5F58;
+  --sage: #A8B5A0;
+  --sage-deep: #5F7058;
+  --gold: #A9844C;
+  --gold-deep: #7E5F31;
+  --foil: linear-gradient(100deg, #8C6A35 0%, #C9A86A 22%, #9B7740 40%, #E2C998 54%, #9B7740 70%, #C3A062 88%, #8C6A35 100%);
+  --pearl-edge: conic-gradient(from 210deg, #ffffff, #f6e4e1, #f6efdc, #f3e6e4, #f8eeee, #f6efdc, #ffffff);
+  --f-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --f-names: 'Pinyon Script', 'Snell Roundhand', cursive;
+  --f-caps: 'Cinzel', 'Trajan Pro', Georgia, serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #F7ECE8; color: var(--ink); font-family: var(--f-display); font-size: 19px; line-height: 1.5; overflow-x: clip; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+html.locked, html.locked body { overflow: hidden; }
+html.locked .p-hint { opacity: 0; }
+
+.lang { position: fixed; z-index: 60; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); display: flex; border: 1px solid rgba(201,160,99,.6); border-radius: 999px; overflow: hidden; background: rgba(253,249,245,.8); backdrop-filter: blur(6px); }
+.lang button { border: 0; background: transparent; padding: 6px 11px; font: 500 12px var(--f-caps); letter-spacing: .12em; color: var(--ink-soft); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: var(--ivory); }
+.foil { background: var(--foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 9s ease-in-out infinite alternate; }
+@keyframes foil { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+@keyframes breathe { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
+
+/* real butterflies: a slow rest-and-flutter, and a quick beat while flying */
+.bfly { position: absolute; pointer-events: none; animation: hover var(--hd, 5s) ease-in-out infinite alternate; animation-delay: var(--hdl, 0s); }
+.bfly img { display: block; width: 100%; height: auto; transform-origin: 50% 50%; animation: flap var(--fd, 2.6s) ease-in-out infinite; animation-delay: var(--fdl, 0s); filter: drop-shadow(0 6px 6px rgba(120,70,60,.22)); }
+@keyframes flap { 0%, 62%, 100% { transform: scaleX(1); } 70% { transform: scaleX(.42); } 78% { transform: scaleX(1); } 86% { transform: scaleX(.5); } 93% { transform: scaleX(1); } }
+@keyframes flapfast { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(.32); } }
+@keyframes hover { from { translate: 0 0; rotate: var(--r0, -6deg); } to { translate: var(--hx, 6px) var(--hy, -10px); rotate: var(--r1, 6deg); } }
+.flying img { animation: flapfast .36s ease-in-out infinite !important; }
+
+/* ---------- first screen: the glass dome over the roses ---------- */
+.open { position: fixed; inset: 0; z-index: 40; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(8px, 2vh, 20px); text-align: center;
+  padding: calc(54px + env(safe-area-inset-top, 0px)) 16px calc(24px + env(safe-area-inset-bottom, 0px)); background: #F3DCD6; transition: opacity 1.3s ease; }
+.o-scene { position: absolute; inset: 0; transform-origin: 50% 56%; transition: transform 3.4s cubic-bezier(.45,.05,.25,1); }
+.o-bg { position: absolute; inset: -6%; background: url("img/seda.webp") center / cover; filter: blur(5px) brightness(1.05) saturate(.95); animation: obg 30s ease-in-out infinite alternate; }
+@keyframes obg { from { transform: scale(1.05); } to { transform: scale(1.12) translate(1%, -1%); } }
+.o-shade { position: absolute; inset: 0; background: radial-gradient(ellipse 52% 46% at 50% 56%, rgba(255,251,246,.82), rgba(252,238,233,.42) 52%, rgba(206,150,140,.32)); }
+.o-top, .o-bot { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 2px; transition: opacity 1.1s ease, transform 1.1s ease; }
+.o-top p, .o-bot p { margin: 0; }
+.o-eye { font-family: var(--f-caps); font-size: 12px; letter-spacing: .4em; padding-left: .4em; color: var(--rose-deep); text-shadow: 0 0 12px rgba(255,250,246,.95); line-height: 1.7; }
+.o-sub { font-style: italic; font-size: 21px; color: var(--ink-soft); text-shadow: 0 0 10px rgba(255,250,246,.95); margin-top: 4px !important; }
+.o-name { font-family: var(--f-names); font-size: clamp(56px, min(10vw, 11vh), 90px); line-height: 1.1; padding: 0 .14em; filter: drop-shadow(0 1px 0 rgba(255,255,255,.9)) drop-shadow(0 4px 10px rgba(120,80,60,.25)); }
+.o-para { font-family: var(--f-caps); font-size: 11px; letter-spacing: .5em; padding-left: .5em; color: var(--rose-deep); text-shadow: 0 0 10px rgba(255,250,246,.95); }
+.o-guest { font-family: var(--f-names); font-size: clamp(28px, 5vw, 38px); line-height: 1.2; padding: 0 .2em; filter: drop-shadow(0 1px 0 rgba(255,255,255,.9)); }
+.o-hint { display: flex; align-items: center; gap: 12px; margin-top: 8px !important; font-family: var(--f-caps); font-size: 11px; letter-spacing: .3em; color: var(--rose-deep); text-shadow: 0 0 10px rgba(255,250,246,.95); }
+.o-hint span { animation: breathe 2.6s ease-in-out infinite; } .o-hint i { width: 28px; height: 1px; background: linear-gradient(90deg, transparent, #C9A86A); } .o-hint i:last-child { transform: scaleX(-1); }
+
+.cloche { position: relative; z-index: 2; width: min(62vw, 330px, calc((100svh - 350px) * .63)); aspect-ratio: 568 / 900; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; transform-origin: 50% 80%; transition: transform 3.4s cubic-bezier(.45,.05,.25,1); }
+.c-plinth { position: absolute; left: -12%; right: -12%; bottom: -4%; height: 14%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(ellipse 48% 40% at 50% 46%, rgba(255,252,246,.95), rgba(255,240,230,.55) 45%, rgba(255,240,230,0) 70%), radial-gradient(ellipse 50% 50% at 50% 62%, rgba(120,70,60,.28), rgba(120,70,60,0) 70%); filter: blur(1.5px); }
+.c-halo { position: absolute; left: -40%; right: -40%; top: -10%; bottom: -10%; pointer-events: none; background: radial-gradient(ellipse 50% 46% at 50% 58%, rgba(255,250,240,.7), rgba(255,240,228,.25) 50%, rgba(255,240,228,0) 70%); animation: halo 5s ease-in-out infinite; }
+@keyframes halo { 0%,100% { opacity: .75; } 50% { opacity: 1; } }
+.c-inner { position: absolute; left: 6%; right: 6%; top: 12%; bottom: 4.6%; pointer-events: none; -webkit-mask: radial-gradient(ellipse 50% 62% at 50% 70%, #000 64%, transparent 100%); mask: radial-gradient(ellipse 50% 62% at 50% 70%, #000 64%, transparent 100%); }
+.c-bouquet { position: absolute; left: 50%; bottom: 0; width: 118%; aspect-ratio: 1; transform: translate(-50%, 33%); -webkit-mask: linear-gradient(to top, transparent 20%, rgba(0,0,0,.75) 27%, #000 34%); mask: linear-gradient(to top, transparent 20%, rgba(0,0,0,.75) 27%, #000 34%); }
+.c-bouquet img { position: absolute; left: 50%; top: 50%; width: 100%; height: auto; transform: translate(-50%, -50%) rotate(-135deg); filter: drop-shadow(0 6px 8px rgba(120,70,60,.25)); }
+.c-bouquet img.b2 { width: 92%; transform: translate(-50%, -54%) rotate(-135deg) scaleY(-1); }
+.c-flies { position: absolute; inset: 0; pointer-events: none; }
+.c-dome { position: absolute; inset: 0; z-index: 3; pointer-events: none; transition: transform 2.6s cubic-bezier(.5,0,.25,1), opacity 1.8s ease .7s; }
+.c-dome img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: .82; mix-blend-mode: screen; filter: contrast(1.1) brightness(1.02); }
+.c-dome::before { content: ""; position: absolute; inset: 0; -webkit-mask: url("img/campana.webp") center / 100% 100% no-repeat; mask: url("img/campana.webp") center / 100% 100% no-repeat; background: rgba(255,255,255,.08); }
+.c-glint { position: absolute; inset: 0; -webkit-mask: url("img/campana.webp") center / 100% 100% no-repeat; mask: url("img/campana.webp") center / 100% 100% no-repeat;
+  background: linear-gradient(112deg, transparent 38%, rgba(255,255,255,.85) 47%, rgba(255,255,255,.1) 53%, transparent 60%); background-size: 320% 100%; animation: glint 6s ease-in-out 1s infinite; mix-blend-mode: screen; }
+@keyframes glint { 0% { background-position: 110% 0; } 30%, 100% { background-position: -30% 0; } }
+.cloche::after { content: ""; position: absolute; left: 50%; top: 56%; width: 120%; aspect-ratio: 1; transform: translate(-50%, -50%) scale(.6); border-radius: 50%; border: 1.5px solid rgba(214,170,110,.6); opacity: 0; animation: ring 3.2s ease-out 1.5s infinite; pointer-events: none; }
+@keyframes ring { 0% { transform: translate(-50%, -50%) scale(.6); opacity: 0; } 30% { opacity: .9; } 100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0; } }
+/* opening: the glass lifts away with a glint */
+.cloche.warm .c-dome { transform: translateY(-3%); }
+.cloche.warm .c-glint { animation: none; background-position: -30% 0; transition: background-position 1.2s ease; }
+.cloche.warm::after { animation: none; opacity: 0; }
+.cloche.lift .c-dome { transform: translateY(-120%) scale(1.04); opacity: 0; }
+.lifting .o-top, .lifting .o-bot { opacity: 0; transform: translateY(-8px); }
+.walk .o-scene { transform: scale(1.45); }
+.walk .cloche { transform: scale(1.35); }
+.o-fill { position: absolute; inset: 0; z-index: 6; pointer-events: none; opacity: 0; background: radial-gradient(circle at 50% 56%, #FFFFFF 0%, #FDF7F3 42%, #F6E6E1 100%); transition: opacity 1.4s ease-in; }
+.fill .o-fill { opacity: 1; }
+.open.gone { opacity: 0; pointer-events: none; }
+#burst { position: fixed; inset: 0; z-index: 48; width: 100%; height: 100%; pointer-events: none; }
+#flyers { position: fixed; inset: 0; z-index: 49; pointer-events: none; overflow: hidden; }
+#flyers .bfly { animation: none; }
+.drift { position: absolute; top: -10%; left: 0; z-index: 4; pointer-events: none; opacity: .9; animation: drift linear infinite; }
+@keyframes drift { from { transform: translate3d(0, -10vh, 0) rotate(0deg) rotateX(0deg); } to { transform: translate3d(var(--dx), 120vh, 0) rotate(var(--r)) rotateX(900deg); } }
+/* still frames for the poster and for checking (?etapa=) */
+.still * { transition: none !important; }
+
+/* ---------- inside: ivory light over blush silk, gold glitter, one continuous page ---------- */
+.bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.bg i { position: absolute; inset: -8%; background: url("img/seda.webp") center / cover no-repeat; animation: fabric 34s ease-in-out infinite alternate; }
+.bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 64% 80% at 50% 50%, rgba(253,249,245,.9), rgba(252,246,242,.74) 58%, rgba(248,236,232,.36)); }
+@keyframes fabric { from { transform: scale(1.02) translate(-1.2%, -.8%) rotate(-.4deg); } to { transform: scale(1.1) translate(1.4%, 1%) rotate(.5deg); } }
+#glitter { position: fixed; inset: 0; z-index: 3; width: 100%; height: 100%; pointer-events: none; opacity: .8; }
+.world { position: relative; z-index: 2; }
+.fall { position: fixed; top: -10%; z-index: 0; pointer-events: none; animation: drift linear infinite; opacity: .85; }
+/* two butterflies keep wandering along the page edges (computers only) */
+.wander { position: fixed; z-index: 4; pointer-events: none; width: 54px; animation: wander var(--wd, 38s) ease-in-out infinite; animation-delay: var(--wdl, 0s); }
+.wander img { display: block; width: 100%; height: auto; animation: flapfast .5s ease-in-out infinite; filter: drop-shadow(0 6px 6px rgba(120,70,60,.2)); }
+@keyframes wander { 0% { transform: translate(0, 0) rotate(-8deg); } 25% { transform: translate(3vw, 22vh) rotate(10deg); } 50% { transform: translate(-1vw, 48vh) rotate(-6deg); } 75% { transform: translate(4vw, 26vh) rotate(12deg); } 100% { transform: translate(0, 0) rotate(-8deg); } }
+@media (max-width: 899px) { .wander { display: none; } }
+
+/* presentation: the crystal plate with the garden table and her name */
+.present { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: calc(80px + env(safe-area-inset-top, 0px)) 16px 120px; overflow: hidden; }
+.present .velvet { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 55% at 50% 42%, rgba(255,253,250,.6), rgba(255,250,246,0) 75%); }
+.plate { position: relative; z-index: 2; width: min(86vw, 430px, calc((100svh - 140px) * .58)); display: flex; flex-direction: column; align-items: center; gap: 6px; padding: clamp(28px, 9vw, 40px) clamp(26px, 8vw, 38px) clamp(30px, 9vw, 42px); text-align: center; border-radius: 16px; container-type: inline-size;
+  background: linear-gradient(150deg, rgba(255,255,255,.68), rgba(255,255,255,.26) 42%, rgba(255,255,255,.18) 60%, rgba(255,255,255,.46)), rgba(253,248,246,.32);
+  -webkit-backdrop-filter: blur(7px) saturate(1.15) brightness(1.04); backdrop-filter: blur(7px) saturate(1.15) brightness(1.04);
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255,255,255,.8), inset 0 0 0 7px rgba(255,255,255,.16), inset 16px 0 30px -18px rgba(255,255,255,.75), 5px 7px 0 -2px rgba(255,255,255,.6), 5px 7px 0 -1px rgba(170,120,112,.24), 0 40px 70px -26px rgba(120,70,60,.4); }
+.plate::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(112deg, transparent 38%, rgba(255,255,255,.22) 47%, rgba(255,255,255,.04) 52%, transparent 60%); background-size: 300% 100%; animation: glare 7s ease-in-out 1.5s infinite; }
+@keyframes glare { 0% { background-position: 110% 0; } 35%, 100% { background-position: -20% 0; } }
+.pframe { position: absolute; inset: 4.5%; border: 1px solid rgba(169,132,76,.5); border-radius: 10px; pointer-events: none; }
+.pcn { position: absolute; width: 20%; height: auto; z-index: 3; pointer-events: none; filter: drop-shadow(0 2px 3px rgba(90,64,30,.3)); }
+.pcn.tl { left: 1.6%; top: 1.4%; } .pcn.tr { right: 1.6%; top: 1.4%; transform: scaleX(-1); } .pcn.bl { left: 1.6%; bottom: 1.4%; transform: scaleY(-1); } .pcn.br { right: 1.6%; bottom: 1.4%; transform: scale(-1); }
+.pflor { position: absolute; z-index: 4; width: 46%; height: auto; pointer-events: none; filter: drop-shadow(6px 14px 12px rgba(120,70,60,.24)); }
+.pflor.tl { left: -17%; top: -9%; } .pflor.br { right: -17%; bottom: -9%; transform: rotate(180deg); }
+.pwin { position: relative; width: 74%; aspect-ratio: 4 / 5; border-radius: 50% 50% 8px 8px / 38% 38% 8px 8px; overflow: hidden; box-shadow: 0 0 0 1.5px rgba(190,150,90,.9), 0 0 0 5px rgba(255,255,255,.75), 0 0 0 6px rgba(190,150,90,.45), 0 18px 34px rgba(120,70,60,.3); margin-top: 6%; }
+.pwin img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; display: block; transform: scale(1); }
+.present.opened .pwin img { animation: zin 3.2s cubic-bezier(.25,.6,.25,1) forwards, kb 18s ease-in-out 3.2s infinite alternate; }
+.present.opened .plate { animation: settle 2.8s cubic-bezier(.25,.6,.25,1); }
+@keyframes zin { from { transform: scale(1); } to { transform: scale(1.1); } }
+@keyframes settle { from { transform: scale(.955); } to { transform: none; } }
+@keyframes kb { from { transform: scale(1.1); } to { transform: scale(1.16) translate(-1%, -1%); } }
+.pwrap { position: relative; width: 100%; display: flex; justify-content: center; }
+.pwrap .bfly { z-index: 5; width: 17%; right: 9%; bottom: -5%; --r0: -14deg; --r1: -4deg; --hx: 3px; --hy: -5px; }
+.p-caps { margin: 6% 0 0; font-family: var(--f-caps); font-size: max(10px, 3cqw); letter-spacing: .4em; padding-left: .4em; color: var(--gold-deep); }
+.p-pre { margin: 0; font-style: italic; font-size: max(15px, 5cqw); color: var(--ink-soft); }
+.p-names { margin: -2px 0 0; font-family: var(--f-names); font-weight: 400; font-size: 23cqw; line-height: 1.05; filter: drop-shadow(0 1px 0 rgba(255,255,255,.9)) drop-shadow(0 4px 8px rgba(110,80,40,.26)); }
+.p-names > span { display: inline-block; padding: 0 .12em; }
+.pfl { width: 52%; height: auto; margin-top: 1%; filter: drop-shadow(0 2px 2px rgba(90,64,30,.3)); }
+.p-date { margin: 2% 0 0; font-family: var(--f-caps); font-size: max(11px, 3.6cqw); letter-spacing: .3em; padding-left: .3em; color: var(--ink-soft); }
+.p-honor { margin: 1% 0 4%; font-style: italic; font-size: max(14px, 4.4cqw); color: var(--rose-deep); }
+.p-hint { position: absolute; left: 0; right: 0; bottom: calc(36px + env(safe-area-inset-bottom, 0px)); margin: 0; text-align: center; font-family: var(--f-caps); font-size: 12px; letter-spacing: .32em; z-index: 3; transition: opacity 1s ease 1.5s; }
+.p-hint a { color: #7E5F31; text-decoration: none; animation: breathe 2.6s ease-in-out infinite; display: inline-block; padding: 8px; }
+
+/* the rose spray was photographed touching the frame on two sides: soften those edges so no flat cut ever shows */
+img[src$="esquina.webp"] { -webkit-mask-image: linear-gradient(to right, transparent 0, #000 9%), linear-gradient(to bottom, transparent 0, #000 9%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0, #000 9%), linear-gradient(to bottom, transparent 0, #000 9%); mask-composite: intersect; }
+
+/* the rest of the page flows as one */
+.flow { position: relative; padding: 10px 0 0; }
+.part { position: relative; padding: clamp(70px, 12vw, 120px) max(20px, env(safe-area-inset-right, 0px)) clamp(70px, 12vw, 120px) max(20px, env(safe-area-inset-left, 0px)); text-align: center; }
+.txt { position: relative; z-index: 3; max-width: 580px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 14px; text-shadow: 0 0 14px rgba(253,249,245,.95), 0 0 4px rgba(253,249,245,.9); }
+.txt > * { transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1); }
+.wait .txt > * { opacity: 0; transform: translateY(26px); }
+.txt > :nth-child(2) { transition-delay: .12s; } .txt > :nth-child(3) { transition-delay: .24s; } .txt > :nth-child(4) { transition-delay: .36s; } .txt > :nth-child(5) { transition-delay: .48s; }
+.divider { display: block; width: min(78vw, 520px); height: auto; margin: 0 auto; position: relative; z-index: 3; opacity: .95; filter: drop-shadow(0 2px 2px rgba(120,90,50,.2)); }
+.m { position: absolute; z-index: 1; pointer-events: none; width: var(--w, 30vw); max-width: var(--mw, 460px); top: var(--top, 10%); will-change: transform; transition: opacity 1.6s ease, translate 1.8s cubic-bezier(.16,.8,.24,1); }
+.m > img { display: block; width: 100%; height: auto; transform: rotate(var(--rot, 0deg)) scaleX(var(--fx, 1)); filter: drop-shadow(8px 16px 14px rgba(120,70,60,.2)); }
+.m .bfly { position: relative; width: 100%; }
+.m.l { left: var(--x, -5vw); } .m.r { right: var(--x, -5vw); }
+.wait .m.l { opacity: 0; translate: -40px 0; } .wait .m.r { opacity: 0; translate: 40px 0; }
+
+.part h2 { margin: 0; font-family: var(--f-names); font-weight: 400; font-size: clamp(52px, 12vw, 76px); line-height: 1.05; padding-inline: .14em; text-shadow: none; --foil: linear-gradient(100deg, #7A5A2A 0%, #B8914F 22%, #8A6632 40%, #D4B57A 54%, #8A6632 70%, #B08A4C 88%, #7A5A2A 100%); filter: drop-shadow(0 1px 0 rgba(255,255,255,.9)) drop-shadow(0 3px 8px rgba(110,80,40,.22)); }
+.caps { margin: 0; font-family: var(--f-caps); font-size: 13px; letter-spacing: .3em; color: var(--gold-deep); }
+.rcaps { color: var(--rose-deep); }
+.part p { margin: 0; color: var(--ink-soft); }
+.part p.foil { color: transparent; }
+.lead { font-size: 21px; color: var(--ink) !important; max-width: 34ch; }
+.quote { font-style: italic; font-size: 24px; line-height: 1.45; color: var(--ink) !important; max-width: 30ch; }
+.sign { text-shadow: none; font-family: var(--f-names); font-size: 40px; line-height: 1.1; padding: 0 .14em; }
+.duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 26px 34px; width: 100%; }
+.duo > div { display: flex; flex-direction: column; gap: 4px; align-items: center; min-width: 0; }
+.duo b { font-weight: 500; font-size: 22px; color: var(--ink); }
+.big-name { text-shadow: none; font-family: var(--f-names); font-size: clamp(64px, 15vw, 96px); line-height: 1.05; padding: 0 .14em; margin: -4px 0 0 !important; filter: drop-shadow(0 1px 0 rgba(255,255,255,.9)) drop-shadow(0 3px 8px rgba(110,80,40,.22)); }
+.big-date { font-family: var(--f-caps); font-size: clamp(28px, 7vw, 42px); letter-spacing: .12em; color: var(--ink); margin: 0; font-variant-numeric: tabular-nums; }
+.place h3 { margin: 0; font-family: var(--f-caps); font-weight: 500; font-size: 14px; letter-spacing: .3em; color: var(--rose-deep); }
+.place .name { font-size: 24px; color: var(--ink) !important; }
+.place .time { font-family: var(--f-names); font-size: 40px; line-height: 1.1; color: var(--ink) !important; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 24px; border-radius: 999px; font-family: var(--f-caps); font-size: 12px; letter-spacing: .22em; text-decoration: none; cursor: pointer; transition: transform .2s ease; text-shadow: none; }
+.btn:hover { transform: translateY(-1px); }
+.btn-gold { background: linear-gradient(180deg, #D9BF8C 0%, #B08B52 60%, #8E6C3A 100%); color: #FFFDF8; border: 0; box-shadow: inset 0 1px 0 rgba(255,245,220,.6), 0 8px 18px rgba(90,65,30,.25); }
+.btn-line { border: 1px solid rgba(169,132,76,.6); color: var(--ink); background: rgba(255,255,255,.55); backdrop-filter: blur(4px); }
+.row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 4px; }
+
+/* "una tarde en el jardín": the table in a gold arch frame and three little moments */
+.jard .txt { max-width: 900px; }
+.night { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); gap: clamp(20px, 5vw, 60px); align-items: center; width: 100%; margin-top: 10px; }
+.archf { position: relative; margin: 0; }
+.archf .ph { position: absolute; left: 16.6%; width: 66.8%; top: 19.6%; height: 73.8%; object-fit: cover; object-position: 50% 45%; border-radius: 50% 50% 0 0 / 27% 27% 0 0; }
+.archf .fr { position: relative; display: block; width: 100%; height: auto; filter: drop-shadow(0 18px 20px rgba(120,70,60,.3)); }
+.archf .bfly { width: 22%; left: 6%; top: 14%; z-index: 2; --r0: 8deg; --r1: 18deg; }
+.trad { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.trad ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.trad li { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.trad li b { font-weight: 500; font-size: 22px; color: var(--ink); }
+.trad li span { font-size: 17px; color: var(--ink-soft); font-style: italic; }
+.trad li::before { content: ""; width: 20px; height: 20px; margin-bottom: 4px; background: url("img/cristal-1.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,236,190,.9)); animation: twinkle 3.6s ease-in-out infinite; }
+.trad li:nth-child(2)::before { animation-delay: 1.2s; } .trad li:nth-child(3)::before { animation-delay: 2.4s; }
+@media (max-width: 640px) { .night { grid-template-columns: 1fr; } .archf { width: 76%; margin: 0 auto; } }
+
+/* schedule: a shimmering gold line down the exact centre, a crystal at each moment */
+.timeline { list-style: none; margin: 10px auto 0; padding: 0; width: 100%; max-width: 460px; display: flex; flex-direction: column; }
+.timeline li { display: grid; grid-template-columns: 1fr 34px 1fr; align-items: center; min-height: 62px; }
+.timeline time { font-family: var(--f-caps); font-size: 14px; letter-spacing: .08em; color: var(--gold-deep); text-align: right; padding-right: 16px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.timeline .dot { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
+.timeline .dot::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: linear-gradient(180deg, #B08A4C, #F0D9A4 25%, #B08A4C 50%, #E8CC8E 75%, #B08A4C); background-size: 100% 240px; animation: gline 6s linear infinite; box-shadow: 0 0 6px rgba(232,200,140,.6); }
+@keyframes gline { from { background-position: 0 0; } to { background-position: 0 240px; } }
+.timeline li:first-child .dot::before { top: 50%; }
+.timeline li:last-child .dot::before { bottom: 50%; }
+.timeline .dot::after { content: ""; position: relative; z-index: 1; width: 20px; height: 20px; background: url("img/cristal-1.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,236,190,.95)) drop-shadow(0 2px 2px rgba(90,60,50,.3)); animation: twinkle 3.6s ease-in-out infinite; }
+.timeline li:nth-child(2) .dot::after { animation-delay: .7s; } .timeline li:nth-child(3) .dot::after { animation-delay: 1.4s; } .timeline li:nth-child(4) .dot::after { animation-delay: 2.1s; } .timeline li:nth-child(5) .dot::after { animation-delay: 2.8s; }
+.timeline span { padding-left: 16px; font-size: 21px; color: var(--ink); text-align: left; }
+@keyframes twinkle { 0%,100% { opacity: .55; transform: scale(.86) rotate(0deg); } 50% { opacity: 1; transform: scale(1.06) rotate(10deg); } }
+@media (max-width: 640px) { .timeline span { font-size: 18px; } .timeline time { font-size: 12.5px; } }
+
+/* crystal cards: the countdown and the RSVP */
+.cristal { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px clamp(22px, 6vw, 44px) 28px; border-radius: 22px; text-shadow: none;
+  background: linear-gradient(150deg, rgba(255,255,255,.68), rgba(255,255,255,.3) 48%, rgba(255,255,255,.48)); -webkit-backdrop-filter: blur(8px) saturate(1.15); backdrop-filter: blur(8px) saturate(1.15);
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255,255,255,.7), 4px 6px 0 -2px rgba(255,255,255,.55), 4px 6px 0 -1px rgba(170,120,112,.22), 0 30px 60px -28px rgba(120,70,60,.4); }
+.cristal::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; background: var(--pearl-edge); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+.cristal > * { position: relative; }
+.gem { position: absolute !important; z-index: 3; pointer-events: none; animation: twinkle 3.6s ease-in-out infinite; filter: drop-shadow(0 3px 3px rgba(90,60,50,.22)); }
+.gem img { display: block; width: 100%; height: auto; }
+.count { display: flex; justify-content: center; flex-wrap: nowrap; gap: clamp(6px, 2vw, 12px); position: relative; padding-bottom: 26px; }
+.count div { width: clamp(64px, 18vw, 86px); padding: 14px 0 12px; border-radius: 20px; display: flex; flex-direction: column;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.78), rgba(255,255,255,0) 70%), linear-gradient(180deg, rgba(255,252,250,.74), rgba(246,222,218,.55));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8), inset 0 0 0 1px rgba(201,143,136,.26), 0 12px 24px -16px rgba(120,70,60,.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.count strong { font-weight: 500; font-size: clamp(26px, 7vw, 34px); line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.count span { font-family: var(--f-caps); font-size: 10px; letter-spacing: .2em; color: var(--gold-deep); margin-top: 6px; }
+.count::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 150px; height: 10px; transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(169,132,76,.8) 0 3px, transparent 3.5px) center / 10px 10px no-repeat, linear-gradient(90deg, transparent, rgba(169,132,76,.8) 40%, transparent 46%, transparent 54%, rgba(169,132,76,.8) 60%, transparent) center / 100% 1px no-repeat; }
+.pass strong { font-family: var(--f-names); font-weight: 400; font-size: 46px; line-height: 1.1; color: var(--ink); }
+.foot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; padding: 60px 16px clamp(200px, 34vw, 300px); overflow: hidden; }
+.foot .tag { font-family: var(--f-names); font-size: 50px; margin: 0; position: relative; z-index: 2; padding: 0 .14em; filter: drop-shadow(0 1px 0 rgba(255,255,255,.9)) drop-shadow(0 3px 8px rgba(110,80,40,.22)); }
+.foot .made { font-family: var(--f-caps); font-size: 11px; letter-spacing: .3em; color: var(--ink-soft); margin: 0; position: relative; z-index: 2; }
+.foot .corner-end { position: absolute; right: -2%; bottom: -2%; width: min(46vw, 400px); transform: rotate(180deg); pointer-events: none; z-index: 1; filter: drop-shadow(-8px -12px 14px rgba(120,70,60,.16)); }
+.replay { position: relative; z-index: 2; border: 1px solid rgba(169,132,76,.5); background: rgba(255,255,255,.55); border-radius: 999px; padding: 10px 20px; margin-top: 10px; font-family: var(--f-caps); font-size: 11px; letter-spacing: .24em; color: var(--ink-soft); cursor: pointer; }
+
+/* music through YouTube's own player; a small gold button to pause/play */
+#yt { position: fixed; left: 0; bottom: 0; width: 2px; height: 2px; opacity: 0; pointer-events: none; z-index: -1; }
+.music { position: fixed; z-index: 60; right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 48px; height: 48px; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 30%, #F7E4B4, #D6A963 80%); box-shadow: inset 0 1px 0 rgba(255,250,235,.8), 0 8px 18px -6px rgba(110,70,40,.5), 0 0 0 4px rgba(255,255,255,.5); opacity: 0; transform: scale(.6); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.music.show { opacity: 1; transform: none; }
+.music .bars { display: flex; align-items: flex-end; gap: 3px; height: 16px; }
+.music .bars i { width: 3px; height: 100%; border-radius: 2px; background: #5A3E2E; transform-origin: bottom; animation: eq 1s ease-in-out infinite; }
+.music .bars i:nth-child(2) { animation-delay: -.35s; } .music .bars i:nth-child(3) { animation-delay: -.7s; } .music .bars i:nth-child(4) { animation-delay: -.2s; }
+.music.paused .bars i { animation: none; transform: scaleY(.3); }
+@keyframes eq { 0%,100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- phones: decorations stay at the edges, never on top of the words ---------- */
+@media (max-width: 640px) {
+  .part { padding-top: 104px; }
+  .m { --w: 26vw !important; --x: -8vw !important; --mw: 130px !important; top: 6px !important; transform: none !important; }
+  .m.bm { --w: 15vw !important; --x: 3vw !important; top: 26px !important; }
+  .m ~ .m { display: none; }
+  .pflor { width: 36%; } .pflor.tl { left: -11%; top: -6%; } .pflor.br { right: -11%; bottom: -6%; }
+  .gem { opacity: .8; }
+  .o-sub { font-size: 19px; }
+  .o-eye { font-size: 11px; letter-spacing: .3em; max-width: 26ch; }
+}
+</style>
+
+<script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+
+<div class="lang" role="group" aria-label="Idioma / Language">
+  <button type="button" id="lang-es" aria-pressed="true">ES</button>
+  <button type="button" id="lang-en" aria-pressed="false">EN</button>
+</div>
+
+<section class="open" id="open" aria-label="Invitación al baby shower de Fernanda" data-en-label="Invitation to Fernanda's baby shower">
+  <div class="o-scene" id="oscene" aria-hidden="true">
+    <div class="o-bg"></div>
+    <div class="o-shade"></div>
+  </div>
+  <div class="o-top">
+    <p class="o-eye" data-en="A NEW LIFE IS ABOUT TO BLOOM">UNA NUEVA VIDA ESTÁ POR FLORECER</p>
+    <p class="o-sub" data-en="Baby shower for">Baby shower de</p>
+    <p class="o-name foil">Fernanda</p>
+  </div>
+  <button class="cloche" id="cloche" type="button" aria-label="Levantar la campana y abrir la invitación" data-en-label="Lift the glass dome and open the invitation">
+    <span class="c-halo" aria-hidden="true"></span>
+    <span class="c-plinth" aria-hidden="true"></span>
+    <span class="c-inner" aria-hidden="true"><span class="c-bouquet"><img class="b2" src="img/esquina.webp" alt=""><img src="img/esquina.webp" alt=""></span></span>
+    <span class="c-flies" id="cflies" aria-hidden="true">
+      <span class="bfly" style="width:26%;left:20%;top:44%;--hd:5.4s;--fd:2.8s;--r0:-14deg;--r1:-2deg;--hx:5px;--hy:-9px"><img src="img/mariposa-1.webp" alt=""></span>
+      <span class="bfly" style="width:22%;left:47%;top:31%;--hd:6.2s;--hdl:-2s;--fd:3.1s;--fdl:-1.2s;--r0:10deg;--r1:22deg;--hx:-6px;--hy:-8px"><img src="img/mariposa-2.webp" alt=""></span>
+      <span class="bfly" style="width:22%;left:38%;top:24%;--hd:5s;--hdl:-1s;--fd:2.5s;--fdl:-.6s;--r0:-6deg;--r1:8deg;--hx:4px;--hy:-7px"><img src="img/mariposa-3.webp" alt=""></span>
+      <span class="bfly" style="width:20%;left:52%;top:56%;--hd:5.8s;--hdl:-3s;--fd:2.9s;--fdl:-2s;--r0:16deg;--r1:4deg;--hx:-4px;--hy:-6px"><img src="img/mariposa-4.webp" alt=""></span>
+    </span>
+    <span class="c-dome" aria-hidden="true"><img src="img/campana.webp" alt="" width="568" height="900"><span class="c-glint"></span></span>
+  </button>
+  <div class="o-bot">
+    <p class="o-para" data-en="FOR">PARA</p>
+    <p class="o-guest foil" id="guestName" data-en="a very special guest">un invitado muy especial</p>
+    <p class="o-hint"><i></i><span data-en="TAP THE GLASS DOME TO OPEN">TOCA LA CAMPANA PARA ABRIR</span><i></i></p>
+  </div>
+  <div class="o-fill" aria-hidden="true"></div>
+</section>
+<canvas id="burst" aria-hidden="true"></canvas>
+<div id="flyers" aria-hidden="true"></div>
+
+<div id="yt" aria-hidden="true"><div id="ytp"></div></div>
+<button class="music paused" id="music" type="button" aria-label="Música: reproducir" data-en-label="Music: play" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+<div class="bg" aria-hidden="true"><i></i></div>
+<canvas id="glitter" aria-hidden="true"></canvas>
+
+<div class="world" id="world">
+  <section class="present" id="present" aria-label="Baby shower · esperamos a Valeria" data-en-label="Baby shower · we're waiting for Valeria">
+    <div class="velvet" aria-hidden="true"></div>
+    <div class="plate">
+      <img class="pcn tl" src="img/esquina-oro.webp" alt=""><img class="pcn tr" src="img/esquina-oro.webp" alt=""><img class="pcn bl" src="img/esquina-oro.webp" alt=""><img class="pcn br" src="img/esquina-oro.webp" alt="">
+      <img class="pflor tl" src="img/esquina.webp" alt=""><img class="pflor br" src="img/esquina.webp" alt="">
+      <span class="pframe" aria-hidden="true"></span>
+      <div class="pwrap">
+        <div class="pwin"><img src="img/jardin.webp" alt="Mesa de baby shower en un jardín de rosas rubor con mariposas" data-en-alt="Baby shower table in a blush rose garden with butterflies" width="733" height="1100"></div>
+        <span class="bfly" aria-hidden="true" style="--hd:6s;--fd:3.4s;--fdl:-1s"><img src="img/mariposa-1.webp" alt=""></span>
+      </div>
+      <p class="p-caps">BABY SHOWER</p>
+      <p class="p-pre" data-en="We're waiting for">Esperamos a</p>
+      <h1 class="p-names"><span class="foil">Valeria</span></h1>
+      <img class="pfl" src="img/filigrana.webp" alt="">
+      <p class="p-date">17 · 04 · 2027</p>
+      <p class="p-honor" data-en="in honor of Fernanda">en honor a Fernanda</p>
+    </div>
+    <p class="p-hint"><a href="#detalles" data-en="MY INVITATION ↓">LA INVITACIÓN ↓</a></p>
+  </section>
+
+  <main class="flow" id="detalles">
+    <section class="part">
+      <div class="m l" data-speed=".14" style="--w:30vw;--top:2%;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
+      <div class="m r bm" data-speed=".1" style="--w:9vw;--mw:120px;--top:58%;--x:6vw"><span class="bfly" style="--hd:5.6s;--fd:2.9s;--r0:-10deg;--r1:6deg"><img src="img/mariposa-3.webp" alt=""></span></div>
+      <div class="txt">
+        <p class="caps" data-en="WITH ALL OUR LOVE, WE INVITE YOU TO CELEBRATE THE ARRIVAL OF">CON MUCHO AMOR TE INVITAMOS A CELEBRAR LA LLEGADA DE</p>
+        <p class="big-name foil">Valeria</p>
+        <p class="lead" data-en="at the baby shower in honor of her mom, Fernanda">en el baby shower en honor a su mamá, Fernanda</p>
+        <p class="big-date" style="font-size:clamp(22px,5vw,30px)" data-en="Saturday, April 17 · 2027">Sábado 17 de abril · 2027</p>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m r" data-speed=".14" style="--w:28vw;--top:4%;--fx:-1;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
+      <div class="m l bm" data-speed=".09" style="--w:8vw;--mw:110px;--top:62%;--x:6vw"><span class="bfly" style="--hd:6.4s;--fd:3.2s;--fdl:-1.4s;--r0:12deg;--r1:-4deg"><img src="img/mariposa-4.webp" alt=""></span></div>
+      <div class="txt">
+        <h2 class="foil" data-en="A few words">Unas palabras</h2>
+        <p class="quote" data-en="“Little Valeria, we loved you before we ever saw you. Our hearts are already a garden waiting for you to bloom. Come celebrate with us the sweetest wait of our lives.”">“Pequeña Valeria, te amamos desde antes de conocerte. Nuestro corazón ya es un jardín que espera verte florecer. Ven a celebrar con nosotros la espera más dulce de nuestra vida.”</p>
+        <p class="sign foil">Fernanda</p>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m l" data-speed=".15" style="--w:28vw;--top:4%;--rot:-8deg;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
+      <div class="m r bm" data-speed=".1" style="--w:8vw;--mw:110px;--top:62%;--x:7vw"><span class="bfly" style="--hd:5.2s;--fd:2.7s;--fdl:-.8s"><img src="img/mariposa-2.webp" alt=""></span></div>
+      <div class="txt">
+        <h2 class="foil" data-en="Save the date">Reserva la fecha</h2>
+        <p class="big-date">17 · 04 · 2027</p>
+        <div class="cristal">
+          <span class="gem" style="left:-12px;top:-14px;width:30px;animation-delay:.6s"><img src="img/cristal-3.webp" alt=""></span>
+          <span class="gem" style="right:-10px;bottom:-12px;width:24px;animation-delay:2s"><img src="img/cristal-11.webp" alt=""></span>
+          <p class="caps" data-en="ONLY">FALTAN</p>
+          <div class="count" aria-label="Cuenta regresiva" data-en-label="Countdown">
+            <div><strong id="cd-d">0</strong><span data-en="DAYS">DÍAS</span></div>
+            <div><strong id="cd-h">0</strong><span data-en="HRS">HRS</span></div>
+            <div><strong id="cd-m">0</strong><span data-en="MIN">MIN</span></div>
+            <div><strong id="cd-s">0</strong><span data-en="SEC">SEG</span></div>
+          </div>
+        </div>
+        <div class="row"><a class="btn btn-line" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Baby%20shower%20%C2%B7%20esperamos%20a%20Valeria&amp;dates=20270417T170000/20270417T200000&amp;location=Valle%20de%20Bravo%2C%20Estado%20de%20M%C3%A9xico" data-en="Add to calendar">Agregar al calendario</a></div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m r" data-speed=".15" style="--w:28vw;--top:6%;--fx:-1;--rot:10deg;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
+      <div class="txt">
+        <h2 class="foil" data-en="Where">Dónde</h2>
+        <div class="place" style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          <h3 data-en="AN AFTERNOON IN THE GARDEN">UNA TARDE EN EL JARDÍN</h3>
+          <p class="time">5:00 pm</p>
+          <p class="name">Jardín Las Mariposas</p>
+          <p>Valle de Bravo, Edo. Méx.</p>
+          <div class="row"><a class="btn btn-line" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Valle%20de%20Bravo%2C%20Estado%20de%20M%C3%A9xico" data-en="View map">Ver mapa</a></div>
+        </div>
+      </div>
+    </section>
+    <img class="divider" src="img/divisor.webp" alt="">
+
+    <section class="part">
+      <div class="m l" data-speed=".12" style="--w:26vw;--top:6%;--rot:-6deg;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
+      <div class="m r bm" data-speed=".09" style="--w:8vw;--mw:110px;--top:54%;--x:6vw"><span class="bfly" style="--hd:6s;--fd:3s;--fdl:-2s;--r0:-14deg;--r1:2deg"><img src="img/mariposa-1.webp" alt=""></span></div>
+      <div class="txt">
+        <h2 class="foil" data-en="Schedule">Itinerario</h2>
+        <ol class="timeline">
+          <li><time>5:00 pm</time><i class="dot"></i><span data-en="Welcome">Bienvenida</span></li>
+          <li><time>5:30 pm</time><i class="dot"></i><span data-en="Tea &amp; treats">Té y bocadillos</span></li>
+          <li><time>6:15 pm</time><i class="dot"></i><span data-en="Games">Juegos</span></li>
+          <li><time>7:00 pm</time><i class="dot"></i><span data-en="Cake">Pastel</span></li>
+          <li><time>8:00 pm</time><i class="dot"></i><span data-en="Farewell">Despedida</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="part jard">
+      <div class="m r bm" data-speed=".1" style="--w:8vw;--mw:110px;--top:4%;--x:6vw"><span class="bfly" style="--hd:5.4s;--fd:2.8s;--fdl:-.4s;--r0:10deg;--r1:-6deg"><img src="img/mariposa-3.webp" alt=""></span></div>
+      <div class="txt">
+        <h2 class="foil" data-en="An afternoon in the garden">Una tarde en el jardín</h2>
+        <p class="lead" data-en="Blush roses, butterflies and a table set with love to welcome Valeria.">Rosas rubor, mariposas y una mesa puesta con amor para recibir a Valeria.</p>
+        <div class="night">
+          <figure class="archf"><img class="ph" src="img/jardin.webp" alt="" loading="lazy"><img class="fr" src="img/marco-arco.webp" alt="" width="547" height="900" loading="lazy"><span class="bfly" aria-hidden="true" style="--hd:5.8s;--fd:3.2s"><img src="img/mariposa-2.webp" alt=""></span></figure>
+          <div class="trad">
+            <ul>
+              <li><b data-en="Tea &amp; treats">Té y bocadillos</b><span data-en="among the roses">entre las rosas</span></li>
+              <li><b data-en="Sweet games">Juegos muy dulces</b><span data-en="to guess everything about Valeria">para adivinar todo sobre Valeria</span></li>
+              <li><b data-en="Wishes for Valeria">Deseos para Valeria</b><span data-en="a note for her to read one day">una notita para que la lea algún día</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m l" data-speed=".14" style="--w:26vw;--top:4%;--rot:-10deg;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
+      <div class="txt">
+        <h2 class="foil" data-en="Dress code">Código de vestimenta</h2>
+        <p class="caps" data-en="GARDEN PARTY">GARDEN PARTY</p>
+        <p class="lead" data-en="Soft pastel tones — blush, sage, ivory and pearl — are perfect for an afternoon among the flowers.">Tonos pastel suaves — rubor, salvia, marfil y perla — perfectos para una tarde entre flores.</p>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m r" data-speed=".15" style="--w:28vw;--top:2%;--fx:-1;--rot:-12deg;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
+      <div class="m l bm" data-speed=".1" style="--w:8vw;--mw:110px;--top:50%;--x:6vw"><span class="bfly" style="--hd:6.2s;--fd:3s;--fdl:-1s;--r0:-8deg;--r1:10deg"><img src="img/mariposa-4.webp" alt=""></span></div>
+      <div class="txt">
+        <h2 class="foil" data-en="Gifts">Mesa de regalos</h2>
+        <p class="lead" data-en="Your love is the best gift for Valeria. If you'd like to bring her something, you'll find her registry here:">Tu cariño es el mejor regalo para Valeria. Si deseas tener un detalle con ella, aquí encontrarás su mesa:</p>
+        <div class="duo">
+          <div><b>Liverpool</b><p data-en="Event no. 50777123">Evento no. 50777123</p></div>
+          <div><b data-en="A flower for her garden">Una flor para su jardín</b><p data-en="bring a flower and a wish for Valeria">trae una flor y un deseo para Valeria</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <div class="m l" data-speed=".1" style="--w:26vw;--top:6%;--rot:-4deg;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
+      <div class="txt">
+        <h2 class="foil" data-en="RSVP">Confirma</h2>
+        <div class="cristal pass">
+          <span class="gem" style="left:-12px;top:-12px;width:30px;animation-delay:.4s"><img src="img/cristal-1.webp" alt=""></span>
+          <span class="gem" style="right:-10px;top:40%;width:22px;animation-delay:1.8s"><img src="img/cristal-5.webp" alt=""></span>
+          <p class="caps" data-en="THIS INVITATION IS VALID FOR">ESTA INVITACIÓN ES VÁLIDA PARA</p>
+          <strong data-en="2 guests">2 personas</strong>
+          <p data-en="Please confirm before April 1st, 2027.">Por favor confirma antes del 1 de abril de 2027.</p>
+          <div class="row"><a class="btn btn-gold" id="rsvp" target="_blank" rel="noopener" href="https://wa.me/?text=Hola%2C%20confirmo%20mi%20asistencia%20al%20baby%20shower%20de%20Fernanda%20%E2%9C%A8" data-en="Confirm on WhatsApp">Confirmar por WhatsApp</a></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <img class="corner-end" src="img/esquina.webp" alt="">
+      <img class="divider" src="img/divisor.webp" alt="" style="width:min(60vw,380px)">
+      <p class="tag foil">#EsperandoAValeria</p>
+      <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
+      <button class="replay" id="replay" type="button" data-en="SEE THE GLASS DOME AGAIN">VER LA CAMPANA OTRA VEZ</button>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement, open = document.getElementById('open'), cloche = document.getElementById('cloche'), present = document.getElementById('present');
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  function list(name, n) { var a = []; for (var i = 1; i <= n; i++) a.push('img/petalo-' + name + '-0' + i + '.webp'); return a; }
+  // real petals: blush, white and ivory
+  var PETALS = list('rubor', 3).concat(list('rubor', 3), list('blanco', 8), list('marfil', 3));
+  function pick() { return PETALS[Math.floor(Math.random() * PETALS.length)]; }
+
+  var para = null, vista = '', etapa = '', sec = -1;
+  try { var q = new URLSearchParams(location.search); para = q.get('para'); vista = q.get('vista') || ''; etapa = q.get('etapa') || ''; sec = q.has('sec') ? +q.get('sec') : -1; } catch (e) {}
+  if (para) { var gn = document.getElementById('guestName'); gn.textContent = para.slice(0, 60); gn.removeAttribute('data-en'); }
+
+  // a few petals drifting slowly in front of the dome (none for ?vista=sobre, the poster picture)
+  function openDrift() {
+    if (reduce || vista === 'sobre' || etapa) return;
+    for (var i = 0; i < 6; i++) {
+      var img = new Image(), s = rnd(30, 52);
+      img.src = pick(); img.alt = ''; img.className = 'drift';
+      img.style.cssText = 'width:' + s + 'px;left:' + rnd(2, 92) + '%;animation-duration:' + rnd(16, 26).toFixed(1) + 's;animation-delay:-' + rnd(0, 20).toFixed(1) + 's;--dx:' + rnd(-22, 22).toFixed(0) + 'vw;--r:' + rnd(-480, 480).toFixed(0) + 'deg';
+      open.appendChild(img);
+    }
+  }
+  openDrift();
+  startGlitter();
+
+  // ---------- music: Debussy "Clair de Lune" through the YouTube player; starts with the first tap ----------
+  var SONGS = ['CvFH_6DNRCY', 'WNcsUNKlAKw', '97_VJve7UVc'], song = 0, yt = null, ytReady = false, wantPlay = false, playing = false;
+  var mbtn = document.getElementById('music');
+  window.onYouTubeIframeAPIReady = function () {
+    yt = new YT.Player('ytp', { width: 2, height: 2, videoId: SONGS[0],
+      playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, loop: 1, playlist: SONGS[0], rel: 0 },
+      events: {
+        onReady: function () { ytReady = true; if (wantPlay) startMusic(); },
+        onStateChange: function (e) { playing = e.data === 1; mbtn.classList.toggle('paused', !playing); mbtn.setAttribute('aria-pressed', String(playing)); },
+        onError: function () { if (song < SONGS.length - 1) { song++; yt.loadVideoById(SONGS[song]); if (!wantPlay) yt.pauseVideo(); } }
+      } });
+  };
+  (function () { var t = document.createElement('script'); t.src = 'https://www.youtube.com/iframe_api'; t.async = true; document.head.appendChild(t); })();
+  function startMusic() {
+    wantPlay = true; mbtn.classList.add('show');
+    if (!ytReady) return;
+    try { yt.setVolume(0); yt.playVideo(); var v = 0, f = setInterval(function () { v += 4; yt.setVolume(Math.min(70, v)); if (v >= 70) clearInterval(f); }, 140); } catch (e) {}
+  }
+  mbtn.addEventListener('click', function () {
+    if (!ytReady) { startMusic(); return; }
+    if (playing) yt.pauseVideo(); else { yt.setVolume(70); yt.playVideo(); }
+  });
+
+  // ---------- the butterflies fly out of the dome ----------
+  var flyers = document.getElementById('flyers');
+  function flyOut() {
+    var W = innerWidth, H = innerHeight;
+    var bs = Array.prototype.slice.call(document.querySelectorAll('#cflies .bfly'));
+    // where each one goes: two off the top corners, one off the side, one loops and leaves at the bottom side
+    var ends = [[-0.18, -0.12], [1.15, -0.1], [1.2, 0.55], [-0.2, 0.7]];
+    var mids = [[0.18, 0.18], [0.82, 0.12], [0.88, 0.38], [0.12, 0.42]];
+    bs.forEach(function (b, i) {
+      var r = b.getBoundingClientRect(), w = r.width;
+      var el = b.cloneNode(true); el.classList.add('flying'); el.removeAttribute('style');
+      el.style.cssText = 'left:0;top:0;width:' + w + 'px;transform:translate(' + r.left.toFixed(1) + 'px,' + r.top.toFixed(1) + 'px);';
+      flyers.appendChild(el); b.style.visibility = 'hidden';
+      var x0 = r.left, y0 = r.top, m = mids[i % 4], e = ends[i % 4];
+      var mx = m[0] * W - w / 2, my = m[1] * H, ex = e[0] * W, ey = e[1] * H;
+      var c1x = x0 + (mx - x0) * .4 + rnd(-60, 60), c1y = y0 - rnd(60, 140);
+      var kf = [], N = 8;
+      for (var k = 0; k <= N; k++) {
+        var t = k / N, x, y;
+        if (t <= .5) { var u = t / .5; x = (1 - u) * (1 - u) * x0 + 2 * (1 - u) * u * c1x + u * u * mx; y = (1 - u) * (1 - u) * y0 + 2 * (1 - u) * u * c1y + u * u * my; }
+        else { var v = (t - .5) / .5; x = mx + (ex - mx) * v + Math.sin(v * 3.14) * rnd(-40, 40); y = my + (ey - my) * v - Math.sin(v * 3.14) * 50; }
+        var rot = Math.sin(t * 6.28 + i) * 18 + (ex > x0 ? 10 : -10), sc = 1 + Math.sin(t * 3.14) * .35;
+        kf.push({ transform: 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) rotate(' + rot.toFixed(1) + 'deg) scale(' + sc.toFixed(2) + ')', offset: t });
+      }
+      kf[kf.length - 1].opacity = 0; kf[kf.length - 2].opacity = 1; kf[0].opacity = 1;
+      var an = el.animate(kf, { duration: 3200 + i * 380, delay: i * 160, easing: 'cubic-bezier(.45,.1,.4,1)', fill: 'forwards' });
+      an.onfinish = function () { el.remove(); };
+    });
+  }
+
+  // ---------- the dome opens ----------
+  var opened = false;
+  function openDome() {
+    if (opened) return; opened = true;
+    startMusic();
+    if (reduce) { open.remove(); present.classList.add('opened'); enterWorld(); return; }
+    var cr = cloche.getBoundingClientRect(), cx = cr.left + cr.width / 2, cy = cr.top + cr.height * .2;
+    cloche.classList.add('warm');
+    setTimeout(function () { cloche.classList.add('lift'); open.classList.add('lifting'); burst(cx, cy, 60, .5, 1.7); }, 700);
+    setTimeout(flyOut, 1300);
+    setTimeout(function () { open.classList.add('walk'); }, 2600);
+    setTimeout(function () { open.classList.add('fill'); }, 3500);
+    setTimeout(function () { enterWorld(); present.classList.add('opened'); }, 4700);
+    setTimeout(function () { open.classList.add('gone'); }, 4800);
+    setTimeout(function () { open.remove(); }, 6200);
+    setTimeout(function () { var cv = document.getElementById('burst'); cv.getContext('2d').clearRect(0, 0, cv.width, cv.height); cv.width = 1; }, 6500);
+    setTimeout(function () { flyers.innerHTML = ''; }, 7600);
+  }
+  function enterWorld() { root.classList.remove('locked'); window.scrollTo(0, 0); measure(); startParallax(); pageFall(); wanderers(); }
+  cloche.addEventListener('click', openDome);
+  document.getElementById('replay').addEventListener('click', function () { window.scrollTo(0, 0); location.reload(); });
+
+  // soft gold sparkles where the glass lifts
+  function burst(x0, y0, n, power, slow) {
+    slow = slow || 1;
+    if (reduce) return;
+    var cv = document.getElementById('burst'), c = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1), W = innerWidth, H = innerHeight, P = [], t0 = performance.now();
+    cv.width = W * dpr; cv.height = H * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    for (var i = 0; i < n; i++) { var a = rnd(0, 6.283), v = rnd(1.5, 8) * power; P.push({ x: x0 + rnd(-40, 40), y: y0 + rnd(-30, 60), vx: Math.cos(a) * v, vy: Math.sin(a) * v - rnd(0, 1.2), r: rnd(.7, 2.2), life: rnd(1100, 2000) * slow, star: Math.random() < .25, tw: rnd(4, 10) }); }
+    function f(now) {
+      var t = now - t0, alive = false; c.clearRect(0, 0, W, H);
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i], k = t / p.life; if (k >= 1) continue; alive = true;
+        p.x += p.vx / slow; p.y += p.vy / slow - .15; p.vx *= .965; p.vy = p.vy * .965;
+        var a = (1 - k) * (.55 + .45 * Math.sin(t / 1000 * p.tw));
+        var g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4); g.addColorStop(0, 'rgba(255,250,236,' + a + ')'); g.addColorStop(.35, 'rgba(232,190,140,' + a * .85 + ')'); g.addColorStop(1, 'rgba(232,190,140,0)');
+        c.fillStyle = g; c.beginPath(); c.arc(p.x, p.y, p.r * 4, 0, 6.283); c.fill();
+        if (p.star) { var L = p.r * 6 * (1 - k); c.strokeStyle = 'rgba(255,244,220,' + a + ')'; c.lineWidth = .9; c.beginPath(); c.moveTo(p.x - L, p.y); c.lineTo(p.x + L, p.y); c.moveTo(p.x, p.y - L); c.lineTo(p.x, p.y + L); c.stroke(); }
+      }
+      if (alive) requestAnimationFrame(f); else c.clearRect(0, 0, W, H);
+    }
+    requestAnimationFrame(f);
+  }
+
+  // petals that keep falling softly over the whole page
+  function pageFall() {
+    if (reduce) return;
+    var world = document.getElementById('world');
+    for (var i = 0; i < 6; i++) {
+      var img = new Image(), s = rnd(30, 50);
+      img.src = pick(); img.alt = ''; img.className = 'fall';
+      img.style.cssText = 'width:' + s + 'px;left:' + rnd(3, 94) + '%;animation-duration:' + rnd(16, 28).toFixed(1) + 's;animation-delay:-' + rnd(0, 26).toFixed(1) + 's;--dx:' + rnd(-18, 18).toFixed(0) + 'vw;--r:' + rnd(-500, 500).toFixed(0) + 'deg';
+      world.appendChild(img);
+    }
+  }
+  // two butterflies keep wandering along the page edges (computers only, see CSS)
+  function wanderers() {
+    if (reduce) return;
+    [['img/mariposa-2.webp', 'left:2vw;top:14vh', '40s', '0s'], ['img/mariposa-1.webp', 'right:3vw;top:30vh', '46s', '-18s']].forEach(function (w) {
+      var d = document.createElement('div'); d.className = 'wander'; d.setAttribute('aria-hidden', 'true');
+      d.style.cssText = w[1] + ';--wd:' + w[2] + ';--wdl:' + w[3];
+      var im = new Image(); im.src = w[0]; im.alt = ''; d.appendChild(im); document.body.appendChild(d);
+    });
+  }
+
+  // ---------- gold glitter drifting over the silk ----------
+  function startGlitter() {
+    var cv = document.getElementById('glitter'), cx = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1), P = [], W = 0, H = 0, lastY = window.scrollY;
+    function mk(any) { return { x: rnd(0, W), y: any ? rnd(0, H) : H + rnd(0, 20), r: rnd(.6, 1.8), v: rnd(.08, .3), dx: rnd(-.12, .12), ph: rnd(0, 6.3), tw: rnd(.7, 2.4), star: Math.random() < .08 }; }
+    function size() {
+      W = window.innerWidth; H = window.innerHeight; cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(140, Math.max(50, W * H / 8000))); P = []; for (var i = 0; i < n; i++) P.push(mk(true));
+    }
+    size(); window.addEventListener('resize', size);
+    function draw(t) {
+      t /= 1000; cx.clearRect(0, 0, W, H);
+      var sy = window.scrollY, ds = (sy - lastY) * .12; lastY = sy;
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i];
+        p.y -= p.v - ds; p.x += p.dx + Math.sin(t * .4 + p.ph) * .08;
+        if (p.y < -12) { P[i] = mk(false); continue; }
+        if (p.y > H + 24) { p.y = -10; }
+        var a = .25 + .75 * Math.max(0, Math.sin(t * p.tw + p.ph));
+        var g = cx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+        g.addColorStop(0, 'rgba(255,246,224,' + a + ')'); g.addColorStop(.3, 'rgba(214,168,104,' + (a * .8) + ')'); g.addColorStop(1, 'rgba(214,168,104,0)');
+        cx.fillStyle = g; cx.beginPath(); cx.arc(p.x, p.y, p.r * 4, 0, 6.283); cx.fill();
+        if (p.star && a > .7) {
+          var L = p.r * 7 * a; cx.strokeStyle = 'rgba(255,240,210,' + (a * .9) + ')'; cx.lineWidth = .8;
+          cx.beginPath(); cx.moveTo(p.x - L, p.y); cx.lineTo(p.x + L, p.y); cx.moveTo(p.x, p.y - L); cx.lineTo(p.x, p.y + L); cx.stroke();
+        }
+      }
+      if (!reduce && !document.hidden) requestAnimationFrame(draw); else if (!reduce) setTimeout(function () { requestAnimationFrame(draw); }, 500);
+    }
+    requestAnimationFrame(draw);
+  }
+
+  // ---------- margin flowers drift a little with the scroll (computers only) ----------
+  var deco = Array.prototype.slice.call(document.querySelectorAll('.m[data-speed]')).map(function (el) { return { el: el, s: parseFloat(el.dataset.speed), c: 0 }; });
+  function measure() { deco.forEach(function (d) { var p = d.el.parentNode; d.c = p.offsetTop + p.offsetHeight / 2; }); }
+  window.addEventListener('resize', measure);
+  var px = 0, tx = 0, running = false;
+  window.addEventListener('pointermove', function (e) { if (e.pointerType === 'touch') return; tx = e.clientX / window.innerWidth - 0.5; });
+  function tick() {
+    px += (tx - px) * 0.06;
+    var mid = window.scrollY + window.innerHeight / 2;
+    for (var j = 0; j < (innerWidth > 640 ? deco.length : 0); j++) {
+      var D = deco[j], off = (D.c - mid) * D.s;
+      D.el.style.transform = 'translate3d(' + (px * 18 * D.s * 6).toFixed(2) + 'px,' + off.toFixed(2) + 'px,0)';
+    }
+    if (running) requestAnimationFrame(tick);
+  }
+  function startParallax() { if (reduce || running) return; running = true; requestAnimationFrame(tick); }
+
+  // sections arrive softly as you scroll
+  var parts = document.querySelectorAll('.part');
+  if ('IntersectionObserver' in window && !reduce && sec < 0) {
+    parts.forEach(function (s) { s.classList.add('wait'); });
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('wait'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
+    parts.forEach(function (s) { io.observe(s); });
+  }
+
+  // ---------- countdown ----------
+  var target = new Date(2027, 3, 17, 17, 0, 0).getTime();
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function count() {
+    var ms = Math.max(0, target - Date.now()), s = Math.floor(ms / 1000);
+    document.getElementById('cd-d').textContent = Math.floor(s / 86400);
+    document.getElementById('cd-h').textContent = pad(Math.floor(s % 86400 / 3600));
+    document.getElementById('cd-m').textContent = pad(Math.floor(s % 3600 / 60));
+    document.getElementById('cd-s').textContent = pad(s % 60);
+  }
+  count(); setInterval(count, 1000);
+
+  // ---------- Spanish / English ----------
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-en], [data-en-html]'));
+  nodes.forEach(function (el) { el.setAttribute('data-es-html', el.innerHTML); });
+  var labels = Array.prototype.slice.call(document.querySelectorAll('[data-en-label]'));
+  labels.forEach(function (el) { el.setAttribute('data-es-label', el.getAttribute('aria-label')); });
+  var rsvp = document.getElementById('rsvp');
+  var RSVP = ['Hola, confirmo mi asistencia al baby shower de Fernanda ✨ ¡Esperamos a Valeria!', "Hi! I'm confirming my attendance at Fernanda's baby shower ✨ We can't wait to meet Valeria!"];
+  function setLang(l) {
+    nodes.forEach(function (el) {
+      if (l === 'en') { if (el.hasAttribute('data-en-html')) el.innerHTML = el.getAttribute('data-en-html'); else el.textContent = el.getAttribute('data-en'); }
+      else el.innerHTML = el.getAttribute('data-es-html');
+    });
+    labels.forEach(function (el) { el.setAttribute('aria-label', el.getAttribute(l === 'en' ? 'data-en-label' : 'data-es-label')); });
+    rsvp.href = 'https://wa.me/?text=' + encodeURIComponent(RSVP[l === 'en' ? 1 : 0]);
+    root.lang = l;
+    document.getElementById('lang-es').setAttribute('aria-pressed', l === 'es');
+    document.getElementById('lang-en').setAttribute('aria-pressed', l === 'en');
+    try { localStorage.setItem('ilusion-lang', l); } catch (e) {}
+    measure();
+  }
+  document.getElementById('lang-es').addEventListener('click', function () { setLang('es'); });
+  document.getElementById('lang-en').addEventListener('click', function () { setLang('en'); });
+  var saved = 'es'; try { saved = localStorage.getItem('ilusion-lang') || 'es'; } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'es');
+
+  // ---------- still frames for checking: ?etapa=mitad (dome lifting, butterflies leaving) | abierta ; &sec=N jumps to section N ----------
+  if (etapa === 'mitad') {
+    open.classList.add('still', 'lifting'); cloche.classList.add('warm');
+    var dome = cloche.querySelector('.c-dome'); dome.style.transform = 'translateY(-48%) scale(1.02)'; dome.style.opacity = '.55';
+    var spots = [[-40, -70, -16], [70, -110, 18], [120, -20, 12], [-90, 30, -10]];
+    Array.prototype.forEach.call(document.querySelectorAll('#cflies .bfly'), function (b, i) { b.style.animation = 'none'; b.style.transform = 'translate(' + spots[i][0] + '%,' + spots[i][1] + '%) rotate(' + spots[i][2] + 'deg) scale(1.2)'; });
+  } else if (etapa === 'abrir') { setTimeout(openDome, 400);
+  } else if (etapa === 'abierta' || sec >= 0) {
+    open.remove(); root.classList.remove('locked'); present.classList.add('opened'); measure(); pageFall(); wanderers();
+    if (sec >= 0) { var go = function () { var all = document.querySelectorAll('.present, .part, .foot'); var el = all[Math.min(sec, all.length - 1)]; if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY); }; go(); window.addEventListener('load', function () { setTimeout(go, 300); }); }
+  }
+})();
+</script>
+
+<div id="ilu-nav" hidden>
+<style>
+#ilu-back,#ilu-cta{position:fixed;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;min-height:40px;border-radius:999px;text-decoration:none;font:500 13px/1 Jost,"Avenir Next",system-ui,sans-serif;letter-spacing:.03em;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:opacity .5s ease,transform .5s ease;-webkit-font-smoothing:antialiased}
+#ilu-back{top:calc(12px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));padding:0 15px 0 11px;background:rgba(255,252,246,.88);color:#3A2A26;box-shadow:0 8px 20px -10px rgba(40,25,20,.5),inset 0 0 0 1px rgba(182,138,78,.45)}
+#ilu-back svg{width:16px;height:16px}
+#ilu-cta{left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);padding:0 22px;min-height:46px;font-weight:600;font-size:14px;color:#3A2210;background:linear-gradient(180deg,#F7E4B4 0%,#EBC988 34%,#D6A963 70%,#C4914D 100%);box-shadow:inset 0 0 0 1px rgba(170,120,55,.3),0 12px 26px -12px rgba(110,70,30,.65),0 0 22px rgba(236,204,140,.5);white-space:nowrap}
+#ilu-cta.off{opacity:0;transform:translate(-50%,24px);pointer-events:none}
+@media (prefers-reduced-motion: reduce){#ilu-back,#ilu-cta{transition:none}}
+</style>
+<a id="ilu-back" href="/nuevo/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Volver</span></a>
+<a id="ilu-cta" class="off" href="/nuevo/crear/">Quiero una así ✨</a>
+</div>
+<script>
+(function(){
+  if (window.top !== window) return; /* inside the preview on the collection page: it has its own buttons */
+  var q = new URLSearchParams(location.search), c = q.get('c') || 'baby-shower', d = q.get('d') || 'jardin-mariposas';
+  var en = false; try { en = localStorage.getItem('ilu-lang') === 'en'; } catch (e) {}
+  var nav = document.getElementById('ilu-nav'), back = document.getElementById('ilu-back'), cta = document.getElementById('ilu-cta');
+  back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/crear/?c=' + c + '&d=' + d;
+  back.querySelector('span').textContent = en ? 'Back' : 'Volver'; cta.textContent = en ? 'I want one like this ✨' : 'Quiero una así ✨';
+  back.addEventListener('click', function (e) { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {} });
+  nav.hidden = false;
+  var last = scrollY, shown = false;
+  setTimeout(function () { shown = true; cta.classList.remove('off'); }, 3500);
+  addEventListener('scroll', function () { if (!shown) return; var y = scrollY; if (y > last + 8) cta.classList.add('off'); else if (y < last - 8 || innerHeight + y >= document.documentElement.scrollHeight - 40) cta.classList.remove('off'); last = y; }, { passive: true });
+})();
+</script>
+
+<div id="ilu-freeze">
+<style>
+#ilu-pause{position:fixed;z-index:2147483001;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:42px;height:42px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;padding:0;color:#3A2A26;background:rgba(255,252,246,.82);box-shadow:inset 0 0 0 1px rgba(182,138,78,.45),0 8px 18px -8px rgba(40,25,20,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent}
+#ilu-pause svg{width:15px;height:15px}
+#ilu-pause .pl{display:none} html.ilu-frozen #ilu-pause .pa{display:none} html.ilu-frozen #ilu-pause .pl{display:block}
+html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-play-state:paused!important}
+</style>
+<button id="ilu-pause" type="button" aria-pressed="false" aria-label="Pausar animación"><svg class="pa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg><svg class="pl" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></button>
+<script>
+/* pause button: freezes every animation so a guest (or the designer) can stop at any moment */
+(function(){
+  var raf=window.requestAnimationFrame.bind(window), q=[], frozen=false, paused=[];
+  window.requestAnimationFrame=function(cb){ if(frozen){ q.push(cb); return 0; } return raf(cb); };
+  var b=document.getElementById('ilu-pause'), en=false; try{ en=localStorage.getItem('ilu-lang')==='en'||localStorage.getItem('ilusion-lang')==='en'; }catch(e){}
+  function label(){ b.setAttribute('aria-label', frozen ? (en?'Resume animation':'Continuar animación') : (en?'Pause animation':'Pausar animación')); b.setAttribute('aria-pressed', String(frozen)); }
+  b.addEventListener('click', function(e){
+    e.stopPropagation(); frozen=!frozen; document.documentElement.classList.toggle('ilu-frozen', frozen);
+    if(frozen){ paused=(document.getAnimations?document.getAnimations():[]).filter(function(a){ return a.playState==='running'; }); paused.forEach(function(a){ try{a.pause();}catch(x){} }); }
+    else { paused.forEach(function(a){ try{a.play();}catch(x){} }); paused=[]; var cbs=q; q=[]; cbs.forEach(function(cb){ raf(cb); }); }
+    label();
+  });
+  label();
+})();
+</script>
+</div>
+
+</body>
+</html>

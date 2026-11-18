@@ -12,6 +12,9 @@ PAGES = [
     ('../demos/cumple-ricardo/index.html', 'demos/cumple-ricardo', 'Los 50 de Ricardo · Ilusión Invites', 'Invitación de cumpleaños de ejemplo: Clásico 67, negro, cromo y oro.'),
     ('../demos/cumple-mariana/index.html', 'demos/cumple-mariana', 'Los 40 de Mariana · Ilusión Invites', 'Invitación de cumpleaños de ejemplo: Noche de Champaña, art déco negro y oro.'),
     ('../demos/cumple-elena/index.html', 'demos/cumple-elena', 'Los 60 de Elena · Ilusión Invites', 'Invitación de cumpleaños de ejemplo: Cena en la Toscana, terracota y olivo.'),
+    ('../demos/baby-nube/index.html', 'demos/baby-nube', 'Baby shower · Mateo · Ilusión Invites', 'Invitación de baby shower de ejemplo: Nube de Algodón, una caja de regalo azul cielo.'),
+    ('../demos/baby-mariposas/index.html', 'demos/baby-mariposas', 'Baby shower · Valeria · Ilusión Invites', 'Invitación de baby shower de ejemplo: Jardín de Mariposas, rubor y salvia.'),
+    ('../demos/baby-luna/index.html', 'demos/baby-luna', 'Baby shower · Paola y Luis · Ilusión Invites', 'Invitación de baby shower de ejemplo: Bajo la Luna, azul noche y oro.'),
     ('../demos/boda-regina-emilio/index.html', 'demos/boda-regina-emilio', 'Regina & Emilio · Ilusión Invites', 'Invitación de boda de ejemplo: pétalos blancos, encaje, sello de perla y cristal.'),
     # the old homepage (website/index.html) is retired: ilusioninvites.com now sends visitors to the new site at /nuevo/
     # (source artifact file, output folder, title, description)
@@ -80,9 +83,12 @@ html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-p
 </script>
 </div>
 """
-DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas'), 'demos/boda-regina-emilio': ('bodas', 'perla-cristal'), 'demos/xv-valentina': ('xv-anos', 'rosa-roja'), 'demos/xv-renata': ('xv-anos', 'noche-zafiro'), 'demos/xv-ximena': ('xv-anos', 'jardin-jade'), 'demos/cumple-ricardo': ('cumpleanos', 'clasico-67'), 'demos/cumple-mariana': ('cumpleanos', 'noche-champana'), 'demos/cumple-elena': ('cumpleanos', 'cena-toscana')}
+DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas'), 'demos/boda-regina-emilio': ('bodas', 'perla-cristal'), 'demos/xv-valentina': ('xv-anos', 'rosa-roja'), 'demos/xv-renata': ('xv-anos', 'noche-zafiro'), 'demos/xv-ximena': ('xv-anos', 'jardin-jade'), 'demos/cumple-ricardo': ('cumpleanos', 'clasico-67'), 'demos/cumple-mariana': ('cumpleanos', 'noche-champana'), 'demos/cumple-elena': ('cumpleanos', 'cena-toscana'), 'demos/baby-nube': ('baby-shower', 'nube-algodon'), 'demos/baby-mariposas': ('baby-shower', 'jardin-mariposas'), 'demos/baby-luna': ('baby-shower', 'bajo-la-luna')}
 # pages with their own link preview (shown when the link is shared on WhatsApp, iMessage, Instagram...)
 OG = {
+    'demos/baby-nube': ('Baby shower · Esperamos a Mateo ✨', 'Sábado 20 de marzo de 2027 · Puebla. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/caja.webp', '#EAF1F8'),
+    'demos/baby-mariposas': ('Baby shower · Esperamos a Valeria ✨', 'Sábado 17 de abril de 2027 · Valle de Bravo. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/mariposa-1.webp', '#F6E6E2'),
+    'demos/baby-luna': ('Baby shower · Bajo la Luna ✨', 'Domingo 9 de mayo de 2027 · Cuernavaca. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/luna.webp', '#1E2A4A'),
     'demos/cumple-ricardo': ('Los 50 de Ricardo ✨', 'Sábado 15 de mayo de 2027 · Querétaro. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#0B0B0B'),
     'demos/cumple-mariana': ('Los 40 de Mariana ✨', 'Sábado 4 de septiembre de 2027 · Ciudad de México. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#070605'),
     'demos/cumple-elena': ('Los 60 de Elena ✨', 'Sábado 23 de octubre de 2027 · Valle de Guadalupe. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#F3EBDD'),
