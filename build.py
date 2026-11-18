@@ -9,6 +9,9 @@ PAGES = [
     ('../demos/xv-valentina/index.html', 'demos/xv-valentina', 'Mis XV · Valentina · Ilusión Invites', 'Invitación de XV años de ejemplo: Rosa Roja, rojo y dorado.'),
     ('../demos/xv-renata/index.html', 'demos/xv-renata', 'Mis XV · Renata · Ilusión Invites', 'Invitación de XV años de ejemplo: Noche de Zafiro, azul y plata.'),
     ('../demos/xv-ximena/index.html', 'demos/xv-ximena', 'Mis XV · Ximena · Ilusión Invites', 'Invitación de XV años de ejemplo: Jardín de Jade, verde jade y oro.'),
+    ('../demos/cumple-ricardo/index.html', 'demos/cumple-ricardo', 'Los 50 de Ricardo · Ilusión Invites', 'Invitación de cumpleaños de ejemplo: Clásico 67, negro, cromo y oro.'),
+    ('../demos/cumple-mariana/index.html', 'demos/cumple-mariana', 'Los 40 de Mariana · Ilusión Invites', 'Invitación de cumpleaños de ejemplo: Noche de Champaña, art déco negro y oro.'),
+    ('../demos/cumple-elena/index.html', 'demos/cumple-elena', 'Los 60 de Elena · Ilusión Invites', 'Invitación de cumpleaños de ejemplo: Cena en la Toscana, terracota y olivo.'),
     ('../demos/boda-regina-emilio/index.html', 'demos/boda-regina-emilio', 'Regina & Emilio · Ilusión Invites', 'Invitación de boda de ejemplo: pétalos blancos, encaje, sello de perla y cristal.'),
     # the old homepage (website/index.html) is retired: ilusioninvites.com now sends visitors to the new site at /nuevo/
     # (source artifact file, output folder, title, description)
@@ -77,9 +80,12 @@ html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-p
 </script>
 </div>
 """
-DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas'), 'demos/boda-regina-emilio': ('bodas', 'perla-cristal'), 'demos/xv-valentina': ('xv-anos', 'rosa-roja'), 'demos/xv-renata': ('xv-anos', 'noche-zafiro'), 'demos/xv-ximena': ('xv-anos', 'jardin-jade')}
+DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas'), 'demos/boda-regina-emilio': ('bodas', 'perla-cristal'), 'demos/xv-valentina': ('xv-anos', 'rosa-roja'), 'demos/xv-renata': ('xv-anos', 'noche-zafiro'), 'demos/xv-ximena': ('xv-anos', 'jardin-jade'), 'demos/cumple-ricardo': ('cumpleanos', 'clasico-67'), 'demos/cumple-mariana': ('cumpleanos', 'noche-champana'), 'demos/cumple-elena': ('cumpleanos', 'cena-toscana')}
 # pages with their own link preview (shown when the link is shared on WhatsApp, iMessage, Instagram...)
 OG = {
+    'demos/cumple-ricardo': ('Los 50 de Ricardo ✨', 'Sábado 15 de mayo de 2027 · Querétaro. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#0B0B0B'),
+    'demos/cumple-mariana': ('Los 40 de Mariana ✨', 'Sábado 4 de septiembre de 2027 · Ciudad de México. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#070605'),
+    'demos/cumple-elena': ('Los 60 de Elena ✨', 'Sábado 23 de octubre de 2027 · Valle de Guadalupe. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#F3EBDD'),
     'demos/xv-valentina': ('Mis XV Años · Valentina ✨', 'Sábado 13 de marzo de 2027 · Guadalajara. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#3A0A14'),
     'demos/xv-renata': ('Mis XV Años · Renata ✨', 'Sábado 12 de junio de 2027 · Monterrey. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#0B1E46'),
     'demos/xv-ximena': ('Mis XV Años · Ximena ✨', 'Sábado 9 de octubre de 2027 · San Miguel de Allende. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#EEF3EC'),
