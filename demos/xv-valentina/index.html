@@ -342,6 +342,25 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
 
 /* gold foil text inside sections keeps its gold (the .part p color must not win) */
 .part p.foil, .part p.foil-l { color: transparent; }
+
+/* section dividers: the fleur-de-lis filigree instead of the laurel line */
+.divider { width: min(64vw, 400px); }
+/* ---------- itinerary · "guion grande": big gold script times, a gold crown between moments ---------- */
+.timeline.it-d { max-width: 420px; align-items: center; margin-top: 18px; }
+.timeline.it-d li { display: flex; flex-direction: column; align-items: center; min-height: 0; gap: 4px; text-align: center; }
+.timeline.it-d .dot { display: none; }
+.timeline.it-d li + li::before { content: ""; width: 30px; height: 28px; margin: 16px 0 12px; background: url("img/corona-oro.webp") center / contain no-repeat; filter: drop-shadow(0 0 6px rgba(255,220,150,.35)) drop-shadow(0 3px 3px rgba(0,0,0,.5)); animation: itFloat 4.2s ease-in-out infinite; }
+.timeline.it-d li:nth-child(odd)::before { animation-delay: -2s; }
+.timeline.it-d time { font-family: var(--f-names); font-size: clamp(38px, 9.5vw, 46px); letter-spacing: 0; line-height: 1.15; padding: 0 .18em; text-align: center; color: #EDCF92; text-shadow: 0 1px 0 rgba(255,240,200,.35), 0 3px 6px rgba(20,0,6,.75); }
+.timeline.it-d span { padding: 0 0 0 .3em; font-family: var(--f-caps); font-size: 13px; letter-spacing: .3em; color: var(--ink); text-transform: uppercase; }
+@keyframes itFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+/* side flowers never bleed off the screen edge */
+.m.l { left: max(14px, var(--x, 14px)); } .m.r { right: max(14px, var(--x, 14px)); }
+@media (max-width: 640px) {
+  .m, .m.small, .m.l, .m.r { --x: 6px !important; }
+  .f-br { right: -3%; } .f-bl { left: -3%; } .f-tr { right: -2%; }
+  .corner.br { display: none; }
+}
 </style>
 
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
@@ -414,7 +433,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
             <span class="glint" style="left:74%;top:50%;animation-delay:2.9s"></span>
           </h1>
           <p class="c-line" data-en="request the honor of your presence to celebrate my Sweet Fifteen">tengo el honor de invitarte a celebrar mis XV años</p>
-          <span class="c-orn" aria-hidden="true"><i></i><img src="img/cristal-1.webp" alt=""><i></i></span>
+          <span class="c-orn" aria-hidden="true"><i></i><img src="img/corona-oro.webp" alt=""><i></i></span>
           <p class="c-date" data-en="Saturday, March 13th">Sábado 13 de marzo</p>
           <p class="c-small" data-en-html="TWO THOUSAND TWENTY-SEVEN<br>AT SIX O'CLOCK IN THE EVENING">DOS MIL VEINTISIETE<br>A LAS SEIS DE LA TARDE</p>
           <p class="c-small">GUADALAJARA, JALISCO</p>
@@ -499,13 +518,13 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
         </div>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
+    <img class="divider" src="img/filigrana.webp" alt="">
 
     <section class="part">
       <div class="m r small" data-speed=".09" style="--w:18vw;--top:12%;--rot:-14deg;--x:-2vw"><img src="img/peonia-vino.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
-        <ol class="timeline">
+        <ol class="timeline it-d">
           <li><time>6:00 pm</time><i class="dot"></i><span data-en="Mass">Misa</span></li>
           <li><time>8:00 pm</time><i class="dot"></i><span data-en="Reception">Recepción</span></li>
           <li><time>9:00 pm</time><i class="dot"></i><span data-en="Waltz">Vals</span></li>
@@ -554,7 +573,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
 
     <footer class="foot">
       <img class="corner-end" src="img/esquina.webp" alt="">
-      <img class="divider" src="img/divisor.webp" alt="" style="width:min(60vw,380px)">
+      <img class="divider" src="img/filigrana.webp" alt="" style="width:min(60vw,380px)">
       <p class="tag foil">#MisXVValentina</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="SEE THE INVITATION AGAIN">VER LA INVITACIÓN OTRA VEZ</button>

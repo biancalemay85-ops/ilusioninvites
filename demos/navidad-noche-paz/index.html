@@ -204,7 +204,7 @@ html:not(.locked) #snow { z-index: 3; }
 .trad li { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .trad li b { font-weight: 500; font-size: 22px; color: var(--ink); }
 .trad li span { font-size: 17px; color: var(--ink-soft); font-style: italic; }
-.trad li::before { content: ""; width: 20px; height: 20px; margin-bottom: 4px; background: url("img/cristal-1.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,236,190,.9)); animation: twinkle 3.6s ease-in-out infinite; }
+.trad li::before { content: ""; width: 20px; height: 20px; margin-bottom: 4px; background: url("img/copo-nieve.webp") center / contain no-repeat; filter: drop-shadow(0 1px 2px rgba(90,70,40,.45)); animation: twinkle 3.6s ease-in-out infinite; }
 .trad li:nth-child(2)::before { animation-delay: 1.2s; } .trad li:nth-child(3)::before { animation-delay: 2.4s; }
 @media (max-width: 640px) { .night { grid-template-columns: 1fr; } .archf { width: 76%; margin: 0 auto; } }
 
@@ -275,6 +275,18 @@ html:not(.locked) #snow { z-index: 3; }
   .o-fam { font-size: 11px; letter-spacing: .32em; }
   .foot .end-velas { width: 26vw; right: 2%; }
 }
+
+/* itinerary · A (line) with themed markers */
+@keyframes itFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-3px) rotate(3deg); } }
+.timeline .dot::after { width: 26px; height: 26px; background: url("img/copo-nieve.webp") center / contain no-repeat; filter: drop-shadow(0 1px 2px rgba(90,70,40,.5)) drop-shadow(0 0 6px rgba(255,255,255,.9)); animation: itFloat 4.6s ease-in-out infinite; transform-origin: 50% 50%; box-shadow: none; border-radius: 0; }
+.timeline li:nth-child(2) .dot::after { animation-delay: -.9s; } .timeline li:nth-child(3) .dot::after { animation-delay: -1.8s; } .timeline li:nth-child(4) .dot::after { animation-delay: -2.7s; } .timeline li:nth-child(5) .dot::after { animation-delay: -3.6s; } .timeline li:nth-child(6) .dot::after { animation-delay: -4.2s; }
+.timeline li { min-height: 66px; }
+.divider { width: min(70vw, 400px); filter: drop-shadow(0 3px 4px rgba(120,90,50,.28)); }
+.pfl { width: 50%; margin: 2% 0 1%; filter: drop-shadow(0 2px 3px rgba(90,64,30,.3)); }
+/* margin decorations stay fully on screen (never cut by the edge) */
+.m.l { left: max(var(--x, -5vw), 10px); } .m.r { right: max(var(--x, -5vw), 10px); }
+@media (max-width: 640px) { .m { --x: 8px !important; --w: 24vw !important; --mw: 100px !important; } }
+.gem.flake { filter: drop-shadow(0 1px 2px rgba(90,70,40,.5)) drop-shadow(0 0 6px rgba(255,255,255,.9)); }
 </style>
 
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
@@ -326,7 +338,7 @@ html:not(.locked) #snow { z-index: 3; }
       <div class="pwin"><img src="img/sala.webp" alt="Sala navideña en blanco y dorado con árbol nevado y chimenea" data-en-alt="White and gold Christmas living room with a frosted tree and fireplace" width="733" height="1100"></div>
       <p class="p-caps" data-en="CHRISTMAS EVE">NOCHEBUENA</p>
       <h1 class="p-names"><span class="foil" data-en="The Castillo Family">Familia Castillo</span></h1>
-      <img class="pfl" src="img/filigrana.webp" alt="">
+      <img class="pfl" src="img/divisor-perlas.webp" alt="">
       <p class="p-date">24 · 12 · 2027</p>
     </div>
     <p class="p-hint"><a href="#detalles" data-en="OUR INVITATION ↓">NUESTRA INVITACIÓN ↓</a></p>
@@ -361,8 +373,7 @@ html:not(.locked) #snow { z-index: 3; }
         <h2 class="foil" data-en="Save the date">Reserva la fecha</h2>
         <p class="big-date">24 · 12 · 2027</p>
         <div class="cristal">
-          <span class="gem" style="left:-12px;top:-14px;width:30px;animation-delay:.6s"><img src="img/cristal-3.webp" alt=""></span>
-          <span class="gem" style="right:-10px;bottom:-12px;width:24px;animation-delay:2s"><img src="img/cristal-11.webp" alt=""></span>
+          <span class="gem flake" style="left:-14px;top:-16px;width:34px;animation-delay:.6s"><img src="img/copo-nieve.webp" alt=""></span>
           <p class="caps" data-en="ONLY">FALTAN</p>
           <div class="count" aria-label="Cuenta regresiva" data-en-label="Countdown">
             <div><strong id="cd-d">0</strong><span data-en="DAYS">DÍAS</span></div>
@@ -388,13 +399,13 @@ html:not(.locked) #snow { z-index: 3; }
         </div>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
+    <img class="divider" src="img/divisor-perlas.webp" alt="">
 
     <section class="part">
       <div class="m l hang" data-speed=".1" style="--w:10vw;--mw:140px;--x:7vw;--drop:100px;--sd:6s;--sdl:-3s"><span class="hb"><img src="img/esfera.webp" alt=""></span></div>
       <div class="txt">
         <h2 class="foil" data-en="The evening">Programa</h2>
-        <ol class="timeline">
+        <ol class="timeline it-a">
           <li><time>8:00 pm</time><i class="dot"></i><span data-en="Welcome">Recepción</span></li>
           <li><time>9:00 pm</time><i class="dot"></i><span data-en="Blessing">Bendición</span></li>
           <li><time>9:30 pm</time><i class="dot"></i><span data-en="Christmas Eve dinner">Cena de Nochebuena</span></li>
@@ -449,8 +460,7 @@ html:not(.locked) #snow { z-index: 3; }
       <div class="txt">
         <h2 class="foil" data-en="RSVP">Confirma</h2>
         <div class="cristal pass">
-          <span class="gem" style="left:-12px;top:-12px;width:30px;animation-delay:.4s"><img src="img/cristal-1.webp" alt=""></span>
-          <span class="gem" style="right:-10px;top:40%;width:22px;animation-delay:1.8s"><img src="img/cristal-5.webp" alt=""></span>
+          <span class="gem flake" style="left:-14px;top:-16px;width:34px;animation-delay:.4s"><img src="img/copo-nieve.webp" alt=""></span>
           <p class="caps" data-en="THIS INVITATION IS VALID FOR">ESTA INVITACIÓN ES VÁLIDA PARA</p>
           <strong data-en="4 guests">4 personas</strong>
           <p data-en="Please confirm before December 10, 2027.">Por favor confirma antes del 10 de diciembre de 2027.</p>
@@ -461,7 +471,7 @@ html:not(.locked) #snow { z-index: 3; }
 
     <footer class="foot">
       <img class="end-velas" src="img/velas.webp" alt="">
-      <img class="divider" src="img/divisor.webp" alt="" style="width:min(60vw,380px)">
+      <img class="divider" src="img/divisor-perlas.webp" alt="" style="width:min(58vw,340px)">
       <p class="tag foil">#NochebuenaCastillo</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="SEE THE ORNAMENT AGAIN">VER LA ESFERA OTRA VEZ</button>

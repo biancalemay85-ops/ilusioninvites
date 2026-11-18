@@ -292,6 +292,32 @@ html:not(.locked) .bg::after { background: radial-gradient(ellipse 70% 60% at 50
   .hang { margin-top: -66px; }
   .duo { gap: 22px; }
 }
+
+/* ---------- itinerary · own style for this design (layout C) ---------- */
+.timeline { --tl-mk: url("img/luna-oro.webp"); --tl-foil: var(--foil); }
+.divider { display: block; width: min(70vw, 420px); height: auto; margin: 0 auto; position: relative; z-index: 3; opacity: 1; filter: drop-shadow(0 4px 10px rgba(0,0,0,.6)); }
+.divider.slim { width: min(56vw, 340px); }
+.timeline .tl-t { }
+@keyframes tlFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-4px) rotate(3deg); } }
+.timeline.tl-c { max-width: 540px; margin-top: 18px; }
+.timeline.tl-c li { display: grid; grid-template-columns: 1fr 46px 1fr; grid-template-rows: auto auto; min-height: 0; padding: 12px 0; }
+.timeline.tl-c .dot { grid-column: 2; grid-row: 1 / span 2; height: auto; align-self: stretch; }
+.timeline.tl-c .dot::before { top: -12px; bottom: -12px; }
+@media (max-width: 520px) { .timeline.tl-c .dot::before { top: -10px; bottom: -10px; } }
+.timeline.tl-c li:first-child .dot::before { top: 50% !important; } .timeline.tl-c li:last-child .dot::before { bottom: 50% !important; }
+.timeline.tl-c .dot::after { width: 28px; height: 28px; border-radius: 0; box-shadow: none; background: var(--tl-mk) center / contain no-repeat; filter: drop-shadow(0 3px 6px rgba(0,0,0,.55)) drop-shadow(0 0 8px rgba(255,225,160,.25)); animation: tlFloat 4.5s ease-in-out infinite; }
+.timeline.tl-c time { text-shadow: none; grid-row: 1; align-self: end; font-family: var(--f-names); font-size: 32px; line-height: 1.15; letter-spacing: 0; text-transform: none; padding: 0 .16em; white-space: nowrap;
+  background: var(--tl-foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 9s ease-in-out infinite alternate; }
+.timeline.tl-c span { grid-row: 2; align-self: start; padding: 0; font-family: var(--f-caps); font-size: 12.5px; letter-spacing: .16em; line-height: 1.45; text-transform: uppercase; color: var(--ink); }
+.timeline.tl-c li:nth-child(odd) time, .timeline.tl-c li:nth-child(odd) span { grid-column: 1; text-align: right; justify-self: end; margin-right: 14px; }
+.timeline.tl-c li:nth-child(even) time, .timeline.tl-c li:nth-child(even) span { grid-column: 3; text-align: left; justify-self: start; margin-left: 14px; }
+@media (max-width: 520px) {
+  .timeline.tl-c li { grid-template-columns: 1fr 38px 1fr; padding: 10px 0; }
+  .timeline.tl-c time { font-size: 27px; }
+  .timeline.tl-c span { font-size: 10.5px; letter-spacing: .12em; }
+  .timeline.tl-c li:nth-child(odd) time, .timeline.tl-c li:nth-child(odd) span { margin-right: 8px; }
+  .timeline.tl-c li:nth-child(even) time, .timeline.tl-c li:nth-child(even) span { margin-left: 8px; }
+}
 </style>
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 
@@ -425,11 +451,13 @@ html:not(.locked) .bg::after { background: radial-gradient(ellipse 70% 60% at 50
       </div>
     </section>
 
+    <img class="divider" src="img/divisor-estrellas.webp" alt="">
+
     <section class="part">
       <div class="m l" data-speed=".12" style="--w:22vw;--top:6%;--x:2vw"><img src="img/nube-4.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
-        <ol class="timeline">
+        <ol class="timeline tl-c">
           <li><time>1:00 pm</time><i class="dot"></i><span data-en="Welcome">Bienvenida</span></li>
           <li><time>2:00 pm</time><i class="dot"></i><span data-en="Lunch">Comida</span></li>
           <li><time>3:30 pm</time><i class="dot"></i><span data-en="Games">Juegos</span></li>
@@ -477,7 +505,7 @@ html:not(.locked) .bg::after { background: radial-gradient(ellipse 70% 60% at 50
 
     <footer class="foot">
       <img class="cloud-end" src="img/nube-1-corte-t.webp" alt="">
-      <p class="tag foil">#BajoLaLuna</p>
+      <img class="divider slim" src="img/divisor-estrellas.webp" alt="">      <p class="tag foil">#BajoLaLuna</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="SEE THE CLOUDS AGAIN">VER LAS NUBES OTRA VEZ</button>
     </footer>

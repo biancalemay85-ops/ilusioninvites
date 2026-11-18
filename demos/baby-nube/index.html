@@ -199,7 +199,7 @@ html.locked .p-hint { opacity: 0; }
 .trad li { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .trad li b { font-weight: 500; font-size: 22px; color: var(--ink); }
 .trad li span { font-size: 17px; color: var(--ink-soft); font-style: italic; }
-.trad li::before { content: ""; width: 20px; height: 20px; margin-bottom: 4px; background: url("img/cristal-1.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,226,170,.9)); animation: twinkle 3.6s ease-in-out infinite; }
+.trad li::before { content: ""; width: 22px; height: 22px; margin-bottom: 4px; background: url("img/nomeolvides.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,226,170,.9)); animation: twinkle 3.6s ease-in-out infinite; }
 .trad li:nth-child(2)::before { animation-delay: 1.2s; } .trad li:nth-child(3)::before { animation-delay: 2.4s; }
 .velas { width: clamp(110px, 18vw, 150px); height: auto; filter: drop-shadow(0 12px 12px rgba(90,55,25,.28)); }
 @media (max-width: 640px) { .night { grid-template-columns: 1fr; } .archf { width: 76%; margin: 0 auto; } }
@@ -272,6 +272,36 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
   .o-hint { letter-spacing: .2em; }
   .pflor.tl { left: -12%; top: -5%; width: 40%; } .pflor.br { right: -12%; bottom: -6%; width: 36%; }
 }
+
+/* ---------- itinerary · own style for this design (layout B) ---------- */
+.timeline { --tl-mk: url("img/nomeolvides.webp"); --tl-foil: linear-gradient(100deg, #7A5A2A 0%, #B8914F 22%, #8A6632 40%, #D4B57A 54%, #8A6632 70%, #B08A4C 88%, #7A5A2A 100%); }
+.divider { display: block; width: min(70vw, 420px); height: auto; margin: 0 auto; position: relative; z-index: 3; opacity: 1; filter: drop-shadow(0 3px 4px rgba(110,80,50,.25)); }
+.divider.slim { width: min(56vw, 340px); }
+.timeline .tl-t { }
+@keyframes tlFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-4px) rotate(3deg); } }
+.timeline.tl-b { gap: 12px; max-width: 440px; margin-top: 18px; }
+.timeline.tl-b li { display: flex; align-items: center; gap: 14px; min-height: 0; padding: 12px 26px 12px 14px; border-radius: 999px; background: linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.38));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 42%, transparent), inset 0 1px 0 rgba(255,255,255,.9), 0 12px 26px -18px rgba(0,0,0,.35); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.timeline.tl-b .dot { order: -1; flex: none; width: 30px; height: 30px; }
+.timeline.tl-b .dot::before { content: none; }
+.timeline.tl-b .dot::after { width: 30px; height: 30px; border-radius: 0; box-shadow: none; background: var(--tl-mk) center / contain no-repeat; filter: drop-shadow(0 3px 4px rgba(90,64,40,.28)); animation: tlFloat 4.5s ease-in-out infinite; }
+.timeline.tl-b time { flex: none; min-width: 5.6em; text-align: left; padding: 0 14px 0 0; border-right: 1px solid color-mix(in srgb, var(--gold) 42%, transparent); }
+.timeline.tl-b span { padding: 0; font-size: 20px; line-height: 1.25; }
+@media (max-width: 520px) {
+  .timeline.tl-b li { display: grid; grid-template-columns: 30px 1fr; column-gap: 14px; row-gap: 1px; border-radius: 26px; padding: 11px 22px 11px 14px; }
+  .timeline.tl-b .dot { grid-row: 1 / span 2; grid-column: 1; align-self: center; }
+  .timeline.tl-b time { grid-column: 2; border-right: 0; padding: 0; min-width: 0; font-size: 12px; letter-spacing: .14em; }
+  .timeline.tl-b span { grid-column: 2; font-size: 18.5px; }
+}
+
+/* flowers stay fully inside the screen (never cut by the edge) */
+.m.l, .m.r { --x: 1.5vw !important; }
+.m:not(.bm) { --w: min(22vw, 320px) !important; }
+@media (max-width: 640px) { .m:not(.bm) { --w: 22vw !important; --x: 2vw !important; --mw: 110px !important; } }
+.foot .corner-end { right: 1.5vw; bottom: 0; width: min(40vw, 340px); }
+@media (max-width: 640px) {
+  .pflor { width: 32% !important; } .pflor.tl { left: -4% !important; top: -4% !important; } .pflor.br { right: -4% !important; bottom: -4% !important; }
+}
 </style>
 
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
@@ -325,7 +355,7 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
       <p class="p-pre" data-en="We are waiting for">Esperamos a</p>
       <h1 class="p-names"><span class="foil">Mateo</span></h1>
       <p class="p-honor" data-en="in honor of Daniela">en honor a Daniela</p>
-      <img class="pfl" src="img/filigrana.webp" alt="">
+      <img class="pfl" src="img/divisor-liston-azul.webp" alt="">
       <p class="p-date">20 · 03 · 2027</p>
     </div>
     <p class="p-hint"><a href="#detalles" data-en="MY INVITATION ↓">MI INVITACIÓN ↓</a></p>
@@ -386,13 +416,13 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
         </div>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
+    <img class="divider" src="img/divisor-liston-azul.webp" alt="">
 
     <section class="part">
       <div class="m l" data-speed=".12" style="--w:26vw;--top:6%;--x:-8vw"><img src="img/nube.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
-        <ol class="timeline">
+        <ol class="timeline tl-b">
           <li><time>4:00 pm</time><i class="dot"></i><span data-en="Welcome">Bienvenida</span></li>
           <li><time>4:45 pm</time><i class="dot"></i><span data-en="Games">Juegos</span></li>
           <li><time>5:30 pm</time><i class="dot"></i><span data-en="Afternoon tea">Merienda</span></li>
@@ -459,7 +489,7 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
 
     <footer class="foot">
       <img class="corner-end" src="img/nube.webp" alt="">
-      <img class="divider" src="img/divisor.webp" alt="" style="width:min(60vw,380px)">
+      <img class="divider slim" src="img/divisor-liston-azul.webp" alt="">
       <p class="tag foil">#BienvenidoMateo</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="OPEN THE GIFT AGAIN">ABRIR EL REGALO OTRA VEZ</button>

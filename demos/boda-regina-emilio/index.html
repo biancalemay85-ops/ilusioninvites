@@ -307,7 +307,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
 @keyframes zin { from { transform: scale(1); } to { transform: scale(1.12); } }
 @keyframes settle { from { transform: scale(.965); } to { transform: none; } }
 @keyframes kb { from { transform: scale(1.12); } to { transform: scale(1.18) translate(-1.2%, -.8%); } }
-.pfl { width: 56%; height: auto; margin-top: 1%; filter: drop-shadow(0 2px 2px rgba(90,64,30,.3)); }
+.pfl { width: 62%; height: auto; margin: 2% 0 1%; filter: drop-shadow(0 2px 2px rgba(90,64,30,.3)); }
 .prings { position: relative; z-index: 2; width: 30%; height: auto; margin-top: -13%; filter: drop-shadow(0 10px 10px rgba(90,64,30,.35)); }
 .p-caps { margin: 0; font-family: var(--f-caps); font-size: max(10px, 3cqw); letter-spacing: .4em; padding-left: .4em; color: var(--gold-deep); }
 .p-names { margin: 0; font-family: var(--f-names); font-weight: 400; font-size: 21cqw; line-height: .92; }
@@ -456,6 +456,24 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
 
 /* gold foil text inside sections keeps its gold (the .part p color must not win) */
 .part p.foil, .part p.foil-l { color: transparent; }
+
+/* ---------- itinerary · "guion grande": big script times, a pearl between moments ---------- */
+.timeline.it-d { max-width: 420px; align-items: center; margin-top: 18px; }
+.timeline.it-d li { display: flex; flex-direction: column; align-items: center; min-height: 0; gap: 4px; text-align: center; }
+.timeline.it-d .dot { display: none; }
+.timeline.it-d li + li::before { content: ""; width: 26px; height: 26px; margin: 16px 0 12px; background: url("img/perla.webp") center / contain no-repeat; filter: drop-shadow(0 3px 4px rgba(90,64,30,.28)); animation: itFloat 4.2s ease-in-out infinite; }
+.timeline.it-d li:nth-child(odd)::before { animation-delay: -2s; }
+.timeline.it-d time { font-family: var(--f-names); font-size: clamp(38px, 9.5vw, 46px); letter-spacing: 0; line-height: 1.15; padding: 0 .18em; text-align: center; color: #6E4E1F; text-shadow: 0 1px 0 rgba(255,255,255,.75), 0 2px 6px rgba(120,90,50,.18); }
+.timeline.it-d span { padding: 0; font-family: var(--f-caps); font-size: 13px; letter-spacing: .3em; padding-left: .3em; color: var(--ink); text-transform: uppercase; }
+/* side flowers never bleed off the screen edge */
+.m.l { left: max(14px, var(--x, 14px)); } .m.r { right: max(14px, var(--x, 14px)); }
+@keyframes itFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@media (max-width: 640px) {
+  /* side flowers stay whole inside the screen */
+  .m, .m.small, .m.l, .m.r { --x: 6px !important; }
+  .m.whole { --x: 10px !important; }
+  .f-br { right: -3%; bottom: -24%; width: 30%; } .f-bl { left: -3%; } .f-vid { right: -3%; }
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="gilt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9C7438"/><stop offset=".3" stop-color="#E8CC8E"/><stop offset=".55" stop-color="#B08A4C"/><stop offset=".8" stop-color="#F0D9A4"/><stop offset="1" stop-color="#9C7438"/></linearGradient></defs></svg>
@@ -503,7 +521,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
       <img class="prings" src="img/anillos.webp" alt="" width="720" height="663">
       <p class="p-caps" data-en="WE ARE GETTING MARRIED">NOS CASAMOS</p>
       <h1 class="p-names"><span class="crys">Regina</span><span class="crys amp">&amp;</span><span class="crys">Emilio</span></h1>
-      <img class="pfl" src="img/filigrana.webp" alt="">
+      <img class="pfl" src="img/divisor-diamantes.webp" alt="">
       <p class="p-date">17 · 04 · 2027</p>
     </div>
     <p class="p-hint"><a href="#scene" data-en="OUR INVITATION ↓">NUESTRA INVITACIÓN ↓</a></p>
@@ -529,7 +547,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
             <span class="glint" style="left:72%;top:52%;animation-delay:2.9s"></span>
           </h1>
           <p class="c-line" data-en="request the honor of your presence at their wedding">tienen el honor de invitarte a celebrar su boda</p>
-          <span class="c-orn" aria-hidden="true"><i></i><img src="img/cristal-1.webp" alt=""><i></i></span>
+          <span class="c-orn" aria-hidden="true"><i></i><img src="img/perla.webp" alt=""><i></i></span>
           <p class="c-date" data-en="Saturday, April 17th">Sábado 17 de abril</p>
           <p class="c-small" data-en-html="TWO THOUSAND TWENTY-SEVEN<br>AT HALF PAST FIVE IN THE AFTERNOON">DOS MIL VEINTISIETE<br>A LAS CINCO Y MEDIA DE LA TARDE</p>
           <p class="c-small">SAN MIGUEL DE ALLENDE<br>GUANAJUATO, MÉXICO</p>
@@ -619,14 +637,14 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
         </div>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
+    <img class="divider" src="img/divisor-diamantes.webp" alt="">
 
     <section class="part">
       <div class="m l small whole" data-speed=".12" style="--w:13vw;--top:18%;--x:3vw"><img src="img/velas.webp" alt=""></div>
       <div class="m r small" data-speed=".09" style="--w:18vw;--top:52%;--rot:-14deg;--x:-2vw"><img src="img/hortensia.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
-        <ol class="timeline">
+        <ol class="timeline it-d">
           <li><time>5:30 pm</time><i class="dot"></i><span data-en="Ceremony">Ceremonia</span></li>
           <li><time>7:00 pm</time><i class="dot"></i><span data-en="Cocktail hour">Cóctel</span></li>
           <li><time>8:30 pm</time><i class="dot"></i><span data-en="Dinner">Cena</span></li>
@@ -678,7 +696,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
 
     <footer class="foot">
       <img class="corner-end" src="img/ramo-blanco.webp" alt="">
-      <img class="divider" src="img/divisor.webp" alt="" style="width:min(60vw,380px)">
+      <img class="divider" src="img/divisor-diamantes.webp" alt="" style="width:min(60vw,380px)">
       <p class="tag foil">#ReginaYEmilio</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="SEE THE ENVELOPE AGAIN">VER EL SOBRE OTRA VEZ</button>

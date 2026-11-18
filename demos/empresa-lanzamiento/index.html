@@ -15,8 +15,8 @@
 <link rel="canonical" href="https://ilusioninvites.com/demos/empresa-lanzamiento/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#060606">
-<link rel="icon" href="img/tela.webp">
-<link rel="apple-touch-icon" href="img/tela.webp">
+<link rel="icon" href="img/producto.webp">
+<link rel="apple-touch-icon" href="img/producto.webp">
 <style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head>
 <body>
@@ -26,7 +26,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&display=swap">
 <style>
-/* Product launch "El Gran Lanzamiento". 1) A dark gallery stage: something tall rests on a black marble pedestal under a spotlight, hidden under an ivory silk cloth. 2) Tap the silk: it lifts and whisks away in a swirl, the spotlight brightens and the crystal bottle sparkles, then we glide into the light. 3) A smoked-glass plate with the product is already there, then one continuous page in black marble, gold and ivory. Dark theme only, on purpose. */
+/* Product launch "El Gran Lanzamiento". 1) A dark gallery stage: something tall rests on a black marble pedestal under a spotlight, the crystal bottle waits in near-darkness. 2) Tap the bottle: the spotlight comes on, the crystal lights up, the atomizer sprays a cloud of golden mist that billows over the screen and clears onto the plate. 3) A smoked-glass plate with the product is already there, then one continuous page in black marble, gold and ivory. Dark theme only, on purpose. */
 :root {
   color-scheme: dark;
   --night: #070605;
@@ -66,31 +66,51 @@ html.locked .p-hint { opacity: 0; }
 .swrap { position: absolute; left: 50%; top: 50%; width: max(100vw, 66.64vh); height: max(100vh, 150.07vw); transform: translate(-50%, -43%); transform-origin: 50% 47%;
   transition: transform 2.4s cubic-bezier(.55,.05,.3,1), opacity 1.6s ease .6s; }
 @media (min-aspect-ratio: 3/4) { .swrap { width: 66.64vh; height: 100vh; } }
-.simg { position: absolute; inset: 0; background: url("img/producto.webp") center / 100% 100% no-repeat; filter: brightness(.62) contrast(1.05); transition: filter 1.8s ease; }
+.simg { position: absolute; inset: 0; background: url("img/producto.webp") center / 100% 100% no-repeat; filter: brightness(.24) contrast(.92) saturate(.8); transition: filter .9s cubic-bezier(.2,.7,.3,1); }
 /* fade the photo's edges into the dark so the column melts into the blurred sides */
-.swrap::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, #070605 0%, rgba(7,6,5,0) 14%, rgba(7,6,5,0) 78%, rgba(7,6,5,.85) 100%), linear-gradient(90deg, rgba(7,6,5,.85), rgba(7,6,5,0) 16%, rgba(7,6,5,0) 84%, rgba(7,6,5,.85)); }
-/* the spotlight cone on the silk */
-.beam { position: absolute; left: 50%; top: -6%; width: 70%; height: 80%; transform: translateX(-50%); pointer-events: none; mix-blend-mode: screen; opacity: .55;
-  background: radial-gradient(ellipse 40% 100% at 50% 0%, rgba(255,226,170,.32), rgba(255,210,140,.1) 55%, transparent 80%); transition: opacity 1.6s ease; animation: beam 5s ease-in-out infinite alternate; }
-@keyframes beam { from { opacity: .45; } to { opacity: .62; } }
-/* the silk sits exactly over the bottle and rests on the pedestal */
-.silk { position: absolute; left: 50.6%; bottom: 29.8%; width: 41.5%; transform: translateX(-50%); transform-origin: 55% 100%; padding: 0; border: 0; background: none; cursor: pointer; z-index: 2;
-  filter: drop-shadow(0 18px 18px rgba(0,0,0,.6)) drop-shadow(0 0 30px rgba(255,220,160,.12)); animation: silk 6s ease-in-out infinite; }
-.silk img { display: block; width: 100%; height: auto; }
-@keyframes silk { 0%,100% { transform: translateX(-50%) scaleY(1); } 50% { transform: translateX(-50%) scaleY(1.006) skewX(.4deg); } }
-/* a slow glint across the silk, inviting the tap */
-.silk::after { content: ""; position: absolute; inset: 0; -webkit-mask: url("img/tela.webp") center / 100% 100% no-repeat; mask: url("img/tela.webp") center / 100% 100% no-repeat;
-  background: linear-gradient(105deg, transparent 35%, rgba(255,248,230,.5) 48%, transparent 58%); background-size: 300% 100%; animation: sheen 5.5s ease-in-out 1.2s infinite; mix-blend-mode: soft-light; }
-@keyframes sheen { 0% { background-position: 120% 0; } 45%, 100% { background-position: -30% 0; } }
-/* the reveal: the cloth lifts, then is whisked away in a swirl */
-.stage.pull .silk { animation: whisk 1.7s cubic-bezier(.5,0,.25,1) forwards; }
-@keyframes whisk {
-  0%   { transform: translateX(-50%); opacity: 1; }
-  16%  { transform: translateX(-50%) translateY(-4%) scale(1.02, 1.05); opacity: 1; }
-  55%  { transform: translateX(-28%) translateY(-46%) rotate(13deg) skewX(-12deg) scale(.95, .9); opacity: .95; }
-  100% { transform: translateX(30%) translateY(-120%) rotate(34deg) skewX(-18deg) scale(.62, .55); opacity: 0; }
-}
-.stage.pull .silk::after { display: none; }
+.swrap::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, #070605 0%, rgba(7,6,5,0) 14%, rgba(7,6,5,0) 78%, rgba(7,6,5,.85) 100%), linear-gradient(90deg, rgba(7,6,5,.85), rgba(7,6,5,0) 16%, rgba(7,6,5,0) 84%, rgba(7,6,5,.85)); }
+/* the spotlight cone: barely on while closed, breathing slowly */
+.beam { position: absolute; left: 50%; top: -6%; width: 70%; height: 80%; transform: translateX(-50%); pointer-events: none; mix-blend-mode: screen; opacity: .3;
+  background: radial-gradient(ellipse 40% 100% at 50% 0%, rgba(255,226,170,.32), rgba(255,210,140,.1) 55%, transparent 80%); transition: opacity .7s cubic-bezier(.2,.7,.3,1); animation: beam 5s ease-in-out infinite alternate; }
+@keyframes beam { from { opacity: .22; } to { opacity: .4; } }
+/* a faint glint on the crystal's edge in the dark */
+.rim { position: absolute; left: 37%; top: 36%; width: 27%; height: 30%; pointer-events: none; mix-blend-mode: screen; transition: opacity .6s ease;
+  background: radial-gradient(ellipse 14% 38% at 22% 42%, rgba(255,236,196,.38), transparent 70%), radial-gradient(ellipse 10% 26% at 80% 36%, rgba(255,236,196,.26), transparent 70%); animation: rim 4.6s ease-in-out infinite; }
+@keyframes rim { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+/* a soft ring pulsing around the cap: tap here */
+.ring { position: absolute; left: 50.6%; top: 31.6%; width: 20%; aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; border-radius: 50%; transition: opacity .4s ease; }
+.ring::before, .ring::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(232,200,140,.75); box-shadow: 0 0 14px rgba(255,214,150,.35), inset 0 0 14px rgba(255,214,150,.2); animation: ring 3.2s cubic-bezier(.2,.6,.3,1) infinite; }
+.ring::after { animation-delay: 1.6s; }
+@keyframes ring { 0% { transform: scale(.55); opacity: 0; } 25% { opacity: .9; } 100% { transform: scale(1.35); opacity: 0; } }
+/* the bottle is the button */
+.bottle { position: absolute; left: 34%; top: 22%; width: 32%; height: 48%; z-index: 3; padding: 0; border: 0; border-radius: 40%; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.bottle:focus-visible { outline: 1px solid rgba(232,200,140,.7); outline-offset: 6px; }
+/* the light sweeping across the crystal when it lights up */
+.sweep { position: absolute; left: 36%; top: 26%; width: 29%; height: 44%; pointer-events: none; mix-blend-mode: screen; opacity: 0; border-radius: 30% 30% 22% 22%;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,246,222,.55) 46%, rgba(255,236,190,.2) 52%, transparent 64%); background-size: 320% 100%; background-position: 130% 0; }
+.stage.lit .sweep { animation: sweep 1.3s cubic-bezier(.3,.6,.3,1) .15s forwards; }
+@keyframes sweep { 0% { opacity: 0; background-position: 130% 0; } 20% { opacity: 1; } 100% { opacity: 0; background-position: -40% 0; } }
+.stage.lit .ring, .stage.lit .rim { opacity: 0; animation: none; }
+/* the golden mist: real photos of perfume spray, nozzle on the left edge, placed at the atomizer */
+.mists { position: absolute; inset: 0; z-index: 2; pointer-events: none; mix-blend-mode: screen; transform-origin: 62% 33%; transition: transform 2.2s cubic-bezier(.2,.65,.25,1), filter 2.2s cubic-bezier(.2,.65,.25,1), opacity 1.2s ease; }
+.mist { position: absolute; left: 56.2%; top: 31%; height: auto; opacity: 0; mix-blend-mode: screen; transform-origin: 0 44.3%; will-change: transform, opacity;
+  -webkit-mask: radial-gradient(ellipse 72% 58% at 30% 45%, #000 35%, rgba(0,0,0,.5) 62%, transparent 92%); mask: radial-gradient(ellipse 72% 58% at 30% 45%, #000 35%, rgba(0,0,0,.5) 62%, transparent 92%); }
+.mist.m1 { width: 82%; filter: contrast(1.25) brightness(1.05); transform: translate(0, -44.3%) rotate(-4deg) scale(.12, .08); }
+.mist.m2 { width: 104%; filter: blur(5px) contrast(1.3); transform: translate(0, -44.3%) rotate(-20deg) scale(.1, -.06); }
+.mist.m3 { width: 70%; filter: blur(9px) contrast(1.3) brightness(.9); transform: translate(0, -44.3%) rotate(14deg) scale(.1, -.06); }
+.stage.spray .mist.m1 { animation: spray1 1.5s cubic-bezier(.12,.75,.25,1) forwards; }
+.stage.spray .mist.m2 { animation: spray2 1.9s cubic-bezier(.12,.75,.25,1) .18s forwards; }
+.stage.spray .mist.m3 { animation: spray3 2s cubic-bezier(.12,.75,.25,1) .32s forwards; }
+@keyframes spray1 { 0% { opacity: 0; transform: translate(0, -44.3%) rotate(-4deg) scale(.12, .08); } 18% { opacity: 1; } 100% { opacity: .95; transform: translate(0, -44.3%) rotate(-9deg) scale(1, 1) translateX(2%); } }
+@keyframes spray2 { 0% { opacity: 0; transform: translate(0, -44.3%) rotate(-20deg) scale(.1, -.06); } 25% { opacity: .65; } 100% { opacity: .6; transform: translate(0, -44.3%) rotate(-24deg) scale(1, -1.15) translateX(4%); } }
+@keyframes spray3 { 0% { opacity: 0; transform: translate(0, -44.3%) rotate(14deg) scale(.1, -.06); } 30% { opacity: .5; } 100% { opacity: .45; transform: translate(0, -44.3%) rotate(8deg) scale(1.1, -1.2) translateX(3%); } }
+/* the cloud billows over the whole screen, then clears onto the plate */
+.haze { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 1.5s cubic-bezier(.3,.6,.3,1);
+  background: radial-gradient(ellipse 80% 70% at 60% 36%, rgba(255,232,186,.92), rgba(222,180,108,.82) 45%, rgba(92,64,26,.9) 85%, rgba(30,20,8,.95)); }
+.stage.billow .mists { transform: scale(3.6); filter: blur(16px) brightness(1.25); }
+.stage.billow .swrap { transform: translate(-50%, -43%) scale(1.22); }
+.stage.billow::before { opacity: .4; transition: opacity 1.6s ease; }
+.stage.billow .haze { opacity: 1; }
 .stage.lit .simg { filter: brightness(1) contrast(1.06) saturate(1.05); }
 .stage.lit .beam { opacity: 1; animation: none; }
 /* sparkles on the crystal */
@@ -101,13 +121,11 @@ html.locked .p-hint { opacity: 0; }
 .glints i::after { transform: translate(-50%, -50%) rotate(90deg); }
 .stage.lit .glints i { animation: glint 1.6s ease-in-out infinite; }
 @keyframes glint { 0%, 100% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; } 40% { transform: translate(-50%, -50%) scale(1) rotate(20deg); opacity: 1; } 70% { transform: translate(-50%, -50%) scale(.4) rotate(40deg); opacity: .6; } }
-.stage.walk .swrap { transform: translate(-50%, -43%) scale(2.1); opacity: 0; }
-.stage.walk::before { opacity: 0; transition: opacity 1.4s ease .4s; }
-.stage.walk .cface { opacity: 0; }
-.stage.pull { pointer-events: none; }
-.stage.gone { opacity: 0; transition: opacity .7s ease; }
+.stage.spray .cface { opacity: 0; transition: opacity .9s cubic-bezier(.3,.6,.3,1); }
+.stage.lit { pointer-events: none; }
+.stage.gone { opacity: 0; transition: opacity 1.5s cubic-bezier(.4,.2,.3,1); }
 
-/* the words: above and below the silk */
+/* the words: above and below the bottle */
 .cface { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; pointer-events: none;
   padding: calc(54px + env(safe-area-inset-top, 0px)) 20px calc(30px + env(safe-area-inset-bottom, 0px)); transition: opacity 1s ease; }
 .ctop, .cbot { display: flex; flex-direction: column; align-items: center; gap: 6px; transition: opacity .9s ease, transform .9s ease; }
@@ -124,8 +142,9 @@ html.locked .p-hint { opacity: 0; }
 .c-guest { font-family: var(--f-names); font-size: clamp(30px, 7.4vw, 46px); line-height: 1.2; padding: 0 .12em; max-width: 92vw; }
 .c-hint { display: flex; align-items: center; gap: 12px; margin-top: 8px !important; font-family: var(--f-caps); font-size: 11px; letter-spacing: .3em; color: var(--gold-soft); text-shadow: 0 2px 10px rgba(0,0,0,.95); }
 .c-hint span { animation: breathe 2.6s ease-in-out infinite; } .c-hint i { width: 30px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); } .c-hint i:last-child { transform: scaleX(-1); }
-.stage.pull .ctop { opacity: 0; transform: translateY(-14px); }
-.stage.pull .cbot { opacity: 0; transform: translateY(14px); }
+@media (max-width: 440px) { .c-hint { letter-spacing: .18em; font-size: 10.5px; gap: 8px; } .c-hint span { white-space: nowrap; } .c-hint i { width: 14px; flex: none; } }
+.stage.lit .ctop { opacity: 0; transform: translateY(-14px); }
+.stage.lit .cbot { opacity: 0; transform: translateY(14px); }
 #burst { position: fixed; inset: 0; z-index: 47; width: 100%; height: 100%; pointer-events: none; }
 
 /* ---------- inside: black marble under a dark veil, gold dust ---------- */
@@ -288,6 +307,22 @@ html.locked .p-hint { opacity: 0; }
 
 /* gold foil text inside sections keeps its gold (the .part p color must not win) */
 .part p.foil, .part p.foil-l { color: transparent; }
+
+/* itinerary · D (big times, centered) */
+@keyframes itFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-3px) rotate(3deg); } }
+.timeline .dot::after { width: 30px; height: 30px; background: url("img/diamante.webp") center / contain no-repeat; filter: drop-shadow(0 2px 3px rgba(0,0,0,.6)) drop-shadow(0 0 8px rgba(255,255,255,.35)); animation: itFloat 4.6s ease-in-out infinite; transform-origin: 50% 50%; box-shadow: none; border-radius: 0; }
+.timeline li:nth-child(2) .dot::after { animation-delay: -.9s; } .timeline li:nth-child(3) .dot::after { animation-delay: -1.8s; } .timeline li:nth-child(4) .dot::after { animation-delay: -2.7s; } .timeline li:nth-child(5) .dot::after { animation-delay: -3.6s; } .timeline li:nth-child(6) .dot::after { animation-delay: -4.2s; }
+.timeline.it-d { max-width: 460px; margin-top: 16px; }
+.timeline.it-d li { display: flex; flex-direction: column; align-items: center; min-height: 0; }
+.timeline.it-d time { order: 1; font-family: var(--f-caps); font-size: clamp(30px, 7vw, 40px); line-height: 1.12; letter-spacing: 0; padding: 0 .14em; text-align: center; background: var(--foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 2px 3px rgba(0,0,0,.6)); animation: foil 9s ease-in-out infinite alternate; }
+.timeline.it-d span { order: 2; padding: 0; margin-top: 4px; text-align: center; font-family: var(--f-caps); font-size: 13px; letter-spacing: .26em; padding-left: .26em; text-transform: uppercase; line-height: 1.6; }
+.timeline.it-d .dot { order: 3; height: auto; margin: 18px 0 16px; }
+.timeline.it-d .dot::before { display: none; }
+.timeline.it-d li:last-child .dot { display: none; }
+.timeline.it-d time { font-weight: 500; letter-spacing: .06em; }
+.p-deco { display: block; width: 56%; height: auto; margin: 2% 0; filter: drop-shadow(0 2px 3px rgba(0,0,0,.6)); }
+.deco-div { display: block; width: min(64%, 320px); height: auto; filter: drop-shadow(0 2px 3px rgba(0,0,0,.6)); }
+.part h2::after { width: 170px; height: 27px; margin-top: 12px; background: url("img/divisor-deco.webp") center / contain no-repeat; filter: drop-shadow(0 2px 2px rgba(0,0,0,.55)); }
 </style>
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 
@@ -296,13 +331,18 @@ html.locked .p-hint { opacity: 0; }
   <button type="button" id="lang-en" aria-pressed="false">EN</button>
 </div>
 
-<!-- the stage: something hidden under ivory silk -->
+<!-- the stage: the crystal bottle in the dark; tap it and it sprays golden mist -->
 <section class="stage" id="stage" aria-label="Invitación al lanzamiento de Aurum" data-en-label="Invitation to the launch of Aurum">
   <div class="swrap" aria-hidden="true">
     <div class="simg"></div>
     <span class="beam"></span>
+    <span class="rim"></span>
+    <span class="sweep"></span>
+    <span class="ring"></span>
+    <div class="mists"><img class="mist m3" src="img/bruma.webp" alt="" width="1600" height="1067"><img class="mist m2" src="img/bruma.webp" alt="" width="1600" height="1067"><img class="mist m1" src="img/bruma.webp" alt="" width="1600" height="1067"></div>
     <div class="glints"><i style="left:52%;top:10%;animation-delay:0s"></i><i style="left:30%;top:52%;animation-delay:.35s"></i><i style="left:70%;top:44%;animation-delay:.7s"></i><i style="left:48%;top:72%;animation-delay:1s"></i><i style="left:62%;top:26%;animation-delay:1.25s"></i></div>
   </div>
+  <span class="haze" aria-hidden="true"></span>
   <div class="cface">
     <div class="ctop">
       <p class="c-eye" data-en="A NEW ERA IS ABOUT TO BE REVEALED">UNA NUEVA ERA ESTÁ POR REVELARSE</p>
@@ -313,7 +353,7 @@ html.locked .p-hint { opacity: 0; }
     <div class="cbot">
       <p class="c-para" data-en="FOR">PARA</p>
       <p class="c-guest foil" id="guestName" data-en="a very special guest">un invitado muy especial</p>
-      <p class="c-hint"><i></i><span data-en="TAP THE SILK TO DISCOVER">TOCA LA SEDA PARA DESCUBRIR</span><i></i></p>
+      <p class="c-hint"><i></i><span data-en="TAP THE BOTTLE TO REVEAL IT">TOCA EL FRASCO PARA DESCUBRIRLO</span><i></i></p>
     </div>
   </div>
 </section>
@@ -333,7 +373,7 @@ html.locked .p-hint { opacity: 0; }
       <p class="p-caps" data-en="LAUNCH">LANZAMIENTO</p>
       <h1 class="p-name foil">AURUM</h1>
       <p class="p-house">Maison Lumière</p>
-      <span class="p-rule" aria-hidden="true"><i></i><b></b><i></i></span>
+      <img class="p-deco" src="img/divisor-deco.webp" alt="">
       <p class="p-date">14 · 10 · 2027</p>
     </div>
     <p class="p-hint"><a href="#invitacion" data-en="THE INVITATION ↓">LA INVITACIÓN ↓</a></p>
@@ -346,7 +386,7 @@ html.locked .p-hint { opacity: 0; }
       <p class="k-line" data-en="is honored to invite you to the unveiling of its new fragrance">tiene el honor de invitarle a la presentación de su nueva fragancia</p>
       <p class="k-name foil">AURUM</p>
       <p class="k-sub" data-en="EAU DE PARFUM">EAU DE PARFUM</p>
-      <span class="gold-rule" aria-hidden="true"><i></i><b></b><i></i></span>
+      <img class="deco-div" src="img/divisor-deco.webp" alt="">
       <p class="k-date" data-en="Thursday, October 14th">Jueves 14 de octubre</p>
       <p class="k-small" data-en-html="TWO THOUSAND TWENTY-SEVEN<br>AT SEVEN THIRTY IN THE EVENING">DOS MIL VEINTISIETE<br>A LAS SIETE Y MEDIA DE LA NOCHE</p>
       <p class="k-small">GALERÍA LUMIÈRE<br>POLANCO · CIUDAD DE MÉXICO</p>
@@ -410,7 +450,7 @@ html.locked .p-hint { opacity: 0; }
     <section class="part">
       <div class="txt">
         <h2 class="foil" data-en="Programme">Programa</h2>
-        <ol class="timeline">
+        <ol class="timeline it-d">
           <li><time>7:30 pm</time><i class="dot"></i><span data-en="Reception">Recepción</span></li>
           <li><time>8:15 pm</time><i class="dot"></i><span data-en="Presentation">Presentación</span></li>
           <li><time>8:30 pm</time><i class="dot"></i><span data-en="The reveal">La revelación</span></li>
@@ -460,13 +500,13 @@ html.locked .p-hint { opacity: 0; }
   var para = q && q.get('para');
   if (para) { var gn = document.getElementById('guestName'); gn.textContent = para.slice(0, 60); gn.removeAttribute('data-en'); }
 
-  // the silk: placed in the photo so it rests on the pedestal over the bottle
+  // the bottle is the button (the .swrap is aria-hidden, so the button sits on the stage, over the same spot)
   var swrap = document.querySelector('.swrap');
-  var silk = document.createElement('button');
-  silk.className = 'silk'; silk.type = 'button'; silk.id = 'silk';
-  silk.setAttribute('aria-label', 'Descubrir la sorpresa'); silk.setAttribute('data-en-label', 'Reveal the surprise');
-  silk.innerHTML = '<img src="img/tela.webp" alt="" width="607" height="1000">';
-  swrap.appendChild(silk);
+  var bottle = document.createElement('button');
+  bottle.className = 'bottle'; bottle.type = 'button'; bottle.id = 'bottle';
+  bottle.setAttribute('aria-label', 'Descubrir el perfume'); bottle.setAttribute('data-en-label', 'Reveal the perfume');
+  swrap.removeAttribute('aria-hidden'); swrap.appendChild(bottle);
+  [].forEach.call(swrap.querySelectorAll('.simg,.beam,.rim,.sweep,.ring,.mists,.glints'), function (el) { el.setAttribute('aria-hidden', 'true'); });
 
   // ---------- music: Ludovico Einaudi "Experience" through the YouTube player; starts with the first tap ----------
   var SONGS = ['1e9B31FLT-s', 'O9wjmEhMKFw', '2MHsDNV9lgY'], song = 0, yt = null, ytReady = false, wantPlay = false, playing = false;
@@ -497,44 +537,47 @@ html.locked .p-hint { opacity: 0; }
     if (opened) return; opened = true;
     startMusic();
     if (reduce) { stage.remove(); present.classList.add('opened'); enterWorld(); return; }
-    stage.classList.add('pull');
-    setTimeout(function () {
-      stage.classList.add('lit');
-      var g = document.querySelector('.glints').getBoundingClientRect();
-      burst(g.left + g.width * .5, g.top + g.height * .12, 40, .45, 1.5);
-      burst(g.left + g.width * .5, g.top + g.height * .55, 50, .5, 1.6);
-    }, 1350);
-    setTimeout(function () { stage.classList.add('walk'); present.classList.add('opened'); }, 3300);
-    setTimeout(enterWorld, 4200);
-    setTimeout(function () { stage.classList.add('gone'); }, 5200);
-    setTimeout(function () { stage.remove(); }, 5900);
+    // 0s light on, 0.6s spray, 1.8s the cloud billows, 2.7s it clears onto the plate
+    stage.classList.add('lit');
+    setTimeout(function () { stage.classList.add('spray'); spray(); }, 600);
+    setTimeout(function () { stage.classList.add('billow'); }, 1800);
+    setTimeout(function () { present.classList.add('opened'); stage.classList.add('gone'); }, 2700);
+    setTimeout(enterWorld, 3500);
+    setTimeout(function () { stage.remove(); }, 4400);
   }
   function enterWorld() { root.classList.remove('locked'); var y = q && parseInt(q.get('y') || '', 10); if (y) { root.style.scrollBehavior = 'auto'; var el = q.get('el') ? document.querySelectorAll(q.get('el'))[y - 1] : null; window.scrollTo(0, el ? el.getBoundingClientRect().top + scrollY : y); } }
-  silk.addEventListener('click', function (e) { e.stopPropagation(); reveal(); });
+  bottle.addEventListener('click', function (e) { e.stopPropagation(); reveal(); });
   stage.addEventListener('click', reveal);
   document.getElementById('replay').addEventListener('click', function () { window.scrollTo(0, 0); location.reload(); });
 
-  // gold glints bursting off the crystal
-  function burst(x0, y0, n, power, slow) {
-    if (reduce) return;
-    var cv = document.getElementById('burst'), c = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1), W = innerWidth, H = innerHeight, P = [], t0 = performance.now();
+  // tiny gold droplets flying out of the atomizer along the spray, drifting and slowly falling
+  function nozzle() { var r = swrap.getBoundingClientRect(); return { x: r.left + r.width * .562, y: r.top + r.height * .31, w: r.width }; }
+  function spray(freezeAt) {
+    var cv = document.getElementById('burst'), c = cv.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1), W = innerWidth, H = innerHeight, P = [], t0 = performance.now(), N = nozzle(), sc = Math.max(.6, Math.min(1.4, N.w / 500));
     if (cv.width !== W * dpr) { cv.width = W * dpr; cv.height = H * dpr; }
     c.setTransform(dpr, 0, 0, dpr, 0, 0);
-    for (var i = 0; i < n; i++) { var a = rnd(0, 6.283), v = rnd(1.5, 8) * power; P.push({ x: x0 + rnd(-30, 30), y: y0 + rnd(-30, 30), vx: Math.cos(a) * v, vy: Math.sin(a) * v - rnd(0, 1), r: rnd(.7, 2.1), life: rnd(1100, 2000) * slow, star: Math.random() < .35, tw: rnd(4, 10) }); }
-    function f(now) {
-      var t = now - t0, alive = false; c.clearRect(0, 0, W, H);
+    function emit(t) { var a = -.16 + rnd(-.32, .3), v = rnd(2.2, 7.5) * sc; P.push({ x: N.x, y: N.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: rnd(.5, 1.7), born: t, life: rnd(1300, 2600), ph: rnd(0, 6.28), tw: rnd(3, 8) }); }
+    function step(p, t) { var age = t - p.born; p.vx *= .972; p.vy = p.vy * .972 + .012; p.x += p.vx + Math.sin(age / 260 + p.ph) * .25; p.y += p.vy + Math.cos(age / 330 + p.ph) * .18; }
+    function draw(t) {
+      c.clearRect(0, 0, W, H); var alive = false;
       for (var i = 0; i < P.length; i++) {
-        var p = P[i], k = t / p.life; if (k >= 1) continue; alive = true;
-        p.x += p.vx / slow; p.y += p.vy / slow - .12; p.vx *= .965; p.vy *= .965;
-        var a = (1 - k) * (.55 + .45 * Math.sin(t / 1000 * p.tw));
-        var g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4); g.addColorStop(0, 'rgba(255,248,226,' + a + ')'); g.addColorStop(.35, 'rgba(240,200,120,' + a * .85 + ')'); g.addColorStop(1, 'rgba(240,200,120,0)');
-        c.fillStyle = g; c.beginPath(); c.arc(p.x, p.y, p.r * 4, 0, 6.283); c.fill();
-        if (p.star) { var L = p.r * 6 * (1 - k); c.strokeStyle = 'rgba(255,240,200,' + a + ')'; c.lineWidth = .9; c.beginPath(); c.moveTo(p.x - L, p.y); c.lineTo(p.x + L, p.y); c.moveTo(p.x, p.y - L); c.lineTo(p.x, p.y + L); c.stroke(); }
+        var p = P[i], k = (t - p.born) / p.life; if (k >= 1 || k < 0) continue; alive = true;
+        var a = Math.min(1, k * 6) * (1 - k) * (.6 + .4 * Math.sin(t / 1000 * p.tw + p.ph));
+        var g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3.4); g.addColorStop(0, 'rgba(255,246,220,' + a + ')'); g.addColorStop(.4, 'rgba(238,196,118,' + a * .8 + ')'); g.addColorStop(1, 'rgba(238,196,118,0)');
+        c.fillStyle = g; c.beginPath(); c.arc(p.x, p.y, p.r * 3.4, 0, 6.283); c.fill();
       }
-      if (alive) requestAnimationFrame(f); else c.clearRect(0, 0, W, H);
+      return alive;
+    }
+    if (freezeAt) { for (var t = 0; t <= freezeAt; t += 16) { if (t < 1100) for (var e = 0; e < 5; e++) emit(t); for (var i = 0; i < P.length; i++) step(P[i], t); } draw(freezeAt); return; }
+    if (reduce) return;
+    function f(now) {
+      var t = now - t0;
+      if (t < 1100) for (var e = 0; e < 5; e++) emit(t);
+      for (var i = 0; i < P.length; i++) step(P[i], t);
+      if (draw(t) || t < 1100) requestAnimationFrame(f); else c.clearRect(0, 0, W, H);
     }
     requestAnimationFrame(f);
-    setTimeout(function () { P.length = 0; c.clearRect(0, 0, W, H); }, 2100 * slow + 400);
+    setTimeout(function () { P.length = 0; c.clearRect(0, 0, W, H); }, 4200);
   }
 
   // ---------- fine gold dust floating slowly in the spotlight ----------
@@ -615,10 +658,12 @@ html.locked .p-hint { opacity: 0; }
   var saved = 'es'; try { saved = localStorage.getItem('ilusion-lang') || 'es'; } catch (e) {}
   setLang(saved === 'en' ? 'en' : 'es');
 
-  // ?abrir=1 opens straight away; ?vista=sobre keeps the silk on (it is covered by default)
+  // ?abrir=1 opens straight away; ?vista=sobre shows the closed bottle in the dark (also the default)
   if (q && q.get('abrir') === '1') setTimeout(reveal, 300);
-  // ?mitad=1 freezes the silk mid-whisk and the light on (only for checking the look)
-  if (q && q.get('mitad') === '1') { stage.classList.add('pull', 'lit'); silk.style.animation = 'whisk 1.7s cubic-bezier(.5,0,.25,1) forwards'; silk.style.animationDelay = '-0.9s'; silk.style.animationPlayState = 'paused'; }
+  // ?mitad=1 freezes the moment mid-spray, light on (only for checking the look)
+  if (q && q.get('mitad') === '1') { opened = true; stage.classList.add('lit', 'spray'); [].forEach.call(stage.querySelectorAll('.mist, .sweep, .simg, .beam, .ctop, .cbot, .cface'), function (el) { el.style.transition = 'none'; });
+    [['m1', -0.9], ['m2', -0.75], ['m3', -0.6]].forEach(function (m) { var el = stage.querySelector('.mist.' + m[0]); el.style.animationDelay = m[1] + 's'; el.style.animationPlayState = 'paused'; });
+    setTimeout(function () { spray(900); }, 400); }
   // ?desde=N (screenshots only): start the open page at section N, hiding what comes before
   if (q && q.get('desde')) { var all = [present, document.getElementById('invitacion')].concat([].slice.call(document.querySelectorAll('.flow > *'))), n = parseInt(q.get('desde'), 10) || 0; all.slice(0, n).forEach(function (el) { el.style.display = 'none'; }); parts.forEach(function (s) { s.classList.remove('wait'); }); }
   // ?abierto=1 shows the open page without the animation

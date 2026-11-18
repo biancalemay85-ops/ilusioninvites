@@ -221,7 +221,7 @@ img[src$="esquina.webp"] { -webkit-mask-image: linear-gradient(to right, transpa
 .trad li { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .trad li b { font-weight: 500; font-size: 22px; color: var(--ink); }
 .trad li span { font-size: 17px; color: var(--ink-soft); font-style: italic; }
-.trad li::before { content: ""; width: 20px; height: 20px; margin-bottom: 4px; background: url("img/cristal-1.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,236,190,.9)); animation: twinkle 3.6s ease-in-out infinite; }
+.trad li::before { content: ""; width: 22px; height: 22px; margin-bottom: 4px; background: url("img/mariposa-rosa.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,236,190,.9)); animation: twinkle 3.6s ease-in-out infinite; }
 .trad li:nth-child(2)::before { animation-delay: 1.2s; } .trad li:nth-child(3)::before { animation-delay: 2.4s; }
 @media (max-width: 640px) { .night { grid-template-columns: 1fr; } .archf { width: 76%; margin: 0 auto; } }
 
@@ -290,6 +290,35 @@ img[src$="esquina.webp"] { -webkit-mask-image: linear-gradient(to right, transpa
   .o-sub { font-size: 19px; }
   .o-eye { font-size: 11px; letter-spacing: .3em; max-width: 26ch; }
 }
+
+/* ---------- itinerary · own style for this design (layout D) ---------- */
+.timeline { --tl-mk: url("img/mariposa-rosa.webp"); --tl-foil: linear-gradient(100deg, #7A5A2A 0%, #B8914F 22%, #8A6632 40%, #D4B57A 54%, #8A6632 70%, #B08A4C 88%, #7A5A2A 100%); }
+.divider { display: block; width: min(70vw, 420px); height: auto; margin: 0 auto; position: relative; z-index: 3; opacity: 1; filter: drop-shadow(0 3px 4px rgba(110,80,50,.25)); }
+.divider.slim { width: min(56vw, 340px); }
+.timeline .tl-t { }
+@keyframes tlFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-4px) rotate(3deg); } }
+.timeline.tl-d { max-width: 440px; align-items: center; margin-top: 14px; }
+.timeline.tl-d li { display: flex; flex-direction: column; align-items: center; min-height: 0; text-align: center; }
+.timeline.tl-d li + li::before { content: ""; display: block; width: 34px; height: 34px; margin: 16px auto 10px; background: var(--tl-mk) center / contain no-repeat; filter: drop-shadow(0 3px 4px rgba(90,64,40,.28)); animation: tlFloat 4.5s ease-in-out infinite; }
+.timeline.tl-d li:nth-child(odd)::before { animation-delay: -2s; }
+.timeline.tl-d .dot { display: none; }
+.timeline.tl-d time { text-shadow: none; font-family: var(--f-names); font-size: clamp(36px, 10vw, 44px); line-height: 1.15; letter-spacing: 0; text-transform: none; padding: 0 .16em; text-align: center;
+  background: var(--tl-foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 9s ease-in-out infinite alternate; }
+.timeline.tl-d span { padding: 0; margin-top: 2px; font-family: var(--f-caps); font-size: 13px; letter-spacing: .26em; padding-left: .26em; line-height: 1.5; text-transform: uppercase; color: var(--ink-soft); text-align: center; }
+@media (max-width: 520px) { .timeline.tl-d span { font-size: 11.5px; letter-spacing: .2em; } }
+
+/* corner flowers stay fully inside the screen (never cut by the edge) */
+.m.l, .m.r { --x: 1.5vw !important; }
+.m:not(.bm) { --w: min(22vw, 320px) !important; }
+@media (max-width: 640px) {
+  .m:not(.bm) { --w: 22vw !important; --x: 2vw !important; --mw: 110px !important; }
+}
+
+/* flowers stay fully inside the screen (never cut by the edge) */
+.foot .corner-end { right: 1.5vw; bottom: 0; width: min(40vw, 340px); }
+@media (max-width: 640px) {
+  .pflor { width: 32% !important; } .pflor.tl { left: -4% !important; top: -4% !important; } .pflor.br { right: -4% !important; bottom: -4% !important; }
+}
 </style>
 
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
@@ -350,7 +379,7 @@ img[src$="esquina.webp"] { -webkit-mask-image: linear-gradient(to right, transpa
       <p class="p-caps">BABY SHOWER</p>
       <p class="p-pre" data-en="We're waiting for">Esperamos a</p>
       <h1 class="p-names"><span class="foil">Valeria</span></h1>
-      <img class="pfl" src="img/filigrana.webp" alt="">
+      <img class="pfl" src="img/divisor-perlas.webp" alt="">
       <p class="p-date">17 · 04 · 2027</p>
       <p class="p-honor" data-en="in honor of Fernanda">en honor a Fernanda</p>
     </div>
@@ -413,14 +442,14 @@ img[src$="esquina.webp"] { -webkit-mask-image: linear-gradient(to right, transpa
         </div>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
+    <img class="divider" src="img/divisor-perlas.webp" alt="">
 
     <section class="part">
       <div class="m l" data-speed=".12" style="--w:26vw;--top:6%;--rot:-6deg;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
       <div class="m r bm" data-speed=".09" style="--w:8vw;--mw:110px;--top:54%;--x:6vw"><span class="bfly" style="--hd:6s;--fd:3s;--fdl:-2s;--r0:-14deg;--r1:2deg"><img src="img/mariposa-1.webp" alt=""></span></div>
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
-        <ol class="timeline">
+        <ol class="timeline tl-d">
           <li><time>5:00 pm</time><i class="dot"></i><span data-en="Welcome">Bienvenida</span></li>
           <li><time>5:30 pm</time><i class="dot"></i><span data-en="Tea &amp; treats">Té y bocadillos</span></li>
           <li><time>6:15 pm</time><i class="dot"></i><span data-en="Games">Juegos</span></li>
@@ -487,7 +516,7 @@ img[src$="esquina.webp"] { -webkit-mask-image: linear-gradient(to right, transpa
 
     <footer class="foot">
       <img class="corner-end" src="img/esquina.webp" alt="">
-      <img class="divider" src="img/divisor.webp" alt="" style="width:min(60vw,380px)">
+      <img class="divider slim" src="img/divisor-perlas.webp" alt="">
       <p class="tag foil">#EsperandoAValeria</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="SEE THE GLASS DOME AGAIN">VER LA CAMPANA OTRA VEZ</button>
@@ -625,9 +654,12 @@ img[src$="esquina.webp"] { -webkit-mask-image: linear-gradient(to right, transpa
     if (reduce) return;
     var world = document.getElementById('world');
     for (var i = 0; i < 6; i++) {
-      var img = new Image(), s = rnd(30, 50);
+      // petals fall only along the side margins so they never pass over the text
+      var narrow = window.innerWidth < 760, s = narrow ? rnd(22, 32) : rnd(30, 46), left = i % 2;
+      var x = narrow ? (left ? rnd(0, 4) : rnd(91, 95)) : (left ? rnd(2, 16) : rnd(80, 94));
+      var img = new Image();
       img.src = pick(); img.alt = ''; img.className = 'fall';
-      img.style.cssText = 'width:' + s + 'px;left:' + rnd(3, 94) + '%;animation-duration:' + rnd(16, 28).toFixed(1) + 's;animation-delay:-' + rnd(0, 26).toFixed(1) + 's;--dx:' + rnd(-18, 18).toFixed(0) + 'vw;--r:' + rnd(-500, 500).toFixed(0) + 'deg';
+      img.style.cssText = 'width:' + s + 'px;left:' + x.toFixed(1) + '%;animation-duration:' + rnd(16, 28).toFixed(1) + 's;animation-delay:-' + rnd(0, 26).toFixed(1) + 's;--dx:' + (narrow ? rnd(-1.5, 1.5) : rnd(-4, 4)).toFixed(1) + 'vw;--r:' + rnd(-500, 500).toFixed(0) + 'deg';
       world.appendChild(img);
     }
   }

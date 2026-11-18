@@ -196,7 +196,7 @@ html.locked .p-hint { opacity: 0; }
 .trad li { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .trad li b { font-weight: 500; font-size: 22px; color: var(--ink); }
 .trad li span { font-size: 17px; color: var(--ink-soft); font-style: italic; }
-.trad li::before { content: ""; width: 20px; height: 20px; margin-bottom: 4px; background: url("img/cristal-1.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,226,170,.9)); animation: twinkle 3.6s ease-in-out infinite; }
+.trad li::before { content: ""; width: 22px; height: 22px; margin-bottom: 4px; background: url("img/olivo.webp") center / contain no-repeat; filter: drop-shadow(0 0 5px rgba(255,226,170,.9)); animation: twinkle 3.6s ease-in-out infinite; }
 .trad li:nth-child(2)::before { animation-delay: 1.2s; } .trad li:nth-child(3)::before { animation-delay: 2.4s; }
 .velas { width: clamp(110px, 18vw, 150px); height: auto; filter: drop-shadow(0 12px 12px rgba(90,55,25,.28)); }
 @media (max-width: 640px) { .night { grid-template-columns: 1fr; } .archf { width: 76%; margin: 0 auto; } }
@@ -272,6 +272,41 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
 
 /* gold foil text inside sections keeps its gold (the .part p color must not win) */
 .part p.foil, .part p.foil-l { color: transparent; }
+
+/* ---------- itinerary · own style for this design (layout C) ---------- */
+.timeline { --tl-mk: url("img/olivo.webp"); --tl-foil: linear-gradient(100deg, #7A5A2A 0%, #B8914F 22%, #8A6632 40%, #D4B57A 54%, #8A6632 70%, #B08A4C 88%, #7A5A2A 100%); }
+.divider { display: block; width: min(70vw, 420px); height: auto; margin: 0 auto; position: relative; z-index: 3; opacity: 1; filter: drop-shadow(0 3px 4px rgba(110,80,50,.25)); }
+.divider.slim { width: min(56vw, 340px); }
+.timeline .tl-t { }
+@keyframes tlFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-4px) rotate(3deg); } }
+.timeline.tl-c { max-width: 540px; margin-top: 18px; }
+.timeline.tl-c li { display: grid; grid-template-columns: 1fr 46px 1fr; grid-template-rows: auto auto; min-height: 0; padding: 12px 0; }
+.timeline.tl-c .dot { grid-column: 2; grid-row: 1 / span 2; height: auto; align-self: stretch; }
+.timeline.tl-c .dot::before { top: -12px; bottom: -12px; }
+@media (max-width: 520px) { .timeline.tl-c .dot::before { top: -10px; bottom: -10px; } }
+.timeline.tl-c li:first-child .dot::before { top: 50% !important; } .timeline.tl-c li:last-child .dot::before { bottom: 50% !important; }
+.timeline.tl-c .dot::after { width: 30px; height: 30px; border-radius: 0; box-shadow: none; background: var(--tl-mk) center / contain no-repeat; filter: drop-shadow(0 3px 4px rgba(90,64,40,.28)); animation: tlFloat 4.5s ease-in-out infinite; }
+.timeline.tl-c time { text-shadow: none; grid-row: 1; align-self: end; font-family: var(--f-names); font-size: 32px; line-height: 1.15; letter-spacing: 0; text-transform: none; padding: 0 .16em; white-space: nowrap;
+  background: var(--tl-foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 9s ease-in-out infinite alternate; }
+.timeline.tl-c span { grid-row: 2; align-self: start; padding: 0; font-family: var(--f-caps); font-size: 12.5px; letter-spacing: .16em; line-height: 1.45; text-transform: uppercase; color: var(--ink); }
+.timeline.tl-c li:nth-child(odd) time, .timeline.tl-c li:nth-child(odd) span { grid-column: 1; text-align: right; justify-self: end; margin-right: 14px; }
+.timeline.tl-c li:nth-child(even) time, .timeline.tl-c li:nth-child(even) span { grid-column: 3; text-align: left; justify-self: start; margin-left: 14px; }
+@media (max-width: 520px) {
+  .timeline.tl-c li { grid-template-columns: 1fr 38px 1fr; padding: 10px 0; }
+  .timeline.tl-c time { font-size: 27px; }
+  .timeline.tl-c span { font-size: 10.5px; letter-spacing: .12em; }
+  .timeline.tl-c li:nth-child(odd) time, .timeline.tl-c li:nth-child(odd) span { margin-right: 8px; }
+  .timeline.tl-c li:nth-child(even) time, .timeline.tl-c li:nth-child(even) span { margin-left: 8px; }
+}
+
+/* flowers stay fully inside the screen (never cut by the edge) */
+.m.l, .m.r { --x: 1.5vw !important; }
+.m:not(.bm) { --w: min(22vw, 320px) !important; }
+@media (max-width: 640px) { .m:not(.bm) { --w: 22vw !important; --x: 2vw !important; --mw: 110px !important; } }
+.foot .corner-end { right: 1.5vw; bottom: 0; width: min(40vw, 340px); }
+@media (max-width: 640px) {
+  .pflor { width: 32% !important; } .pflor.tl { left: -4% !important; top: -4% !important; } .pflor.br { right: -4% !important; bottom: -4% !important; }
+}
 </style>
 
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
@@ -319,7 +354,7 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
       <div class="pwin"><img src="img/cena.webp" alt="Una mesa larga bajo un olivo al atardecer en la Toscana" data-en-alt="A long table under an olive tree at sunset in Tuscany" width="733" height="1100"></div>
       <p class="p-caps" data-en="60 YEARS">60 AÑOS</p>
       <h1 class="p-names"><span class="foil">Elena</span></h1>
-      <img class="pfl" src="img/filigrana.webp" alt="">
+      <img class="pfl" src="img/divisor-olivo.webp" alt="">
       <p class="p-date">23 · 10 · 2027</p>
     </div>
     <p class="p-hint"><a href="#detalles" data-en="MY INVITATION ↓">MI INVITACIÓN ↓</a></p>
@@ -377,13 +412,13 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
         </div>
       </div>
     </section>
-    <img class="divider" src="img/divisor.webp" alt="">
+    <img class="divider" src="img/divisor-olivo.webp" alt="">
 
     <section class="part">
       <div class="m l" data-speed=".12" style="--w:26vw;--top:6%;--rot:-6deg;--x:-6vw"><img src="img/esquina.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
-        <ol class="timeline">
+        <ol class="timeline tl-c">
           <li><time>6:00 pm</time><i class="dot"></i><span data-en="Welcome wine">Bienvenida con vino</span></li>
           <li><time>7:30 pm</time><i class="dot"></i><span data-en="Dinner under the olive tree">Cena bajo el olivo</span></li>
           <li><time>9:00 pm</time><i class="dot"></i><span data-en="Toast">Brindis</span></li>
@@ -449,7 +484,7 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
 
     <footer class="foot">
       <img class="corner-end" src="img/esquina.webp" alt="">
-      <img class="divider" src="img/divisor.webp" alt="" style="width:min(60vw,380px)">
+      <img class="divider slim" src="img/divisor-olivo.webp" alt="">
       <p class="tag foil">#Los60deElena</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="SEE THE DOOR AGAIN">VER LA PUERTA OTRA VEZ</button>

@@ -286,6 +286,22 @@ html.locked .p-hint { opacity: 0; }
 
 /* gold foil text inside sections keeps its gold (the .part p color must not win) */
 .part p.foil, .part p.foil-l { color: transparent; }
+
+/* ---------- itinerary · own style for this design (layout D) ---------- */
+.timeline { --tl-mk: url("img/llave-oro.webp"); --tl-foil: var(--foil); }
+.divider { display: block; width: min(70vw, 420px); height: auto; margin: 0 auto; position: relative; z-index: 3; opacity: 1; filter: drop-shadow(0 4px 10px rgba(0,0,0,.6)); }
+.divider.slim { width: min(56vw, 340px); }
+.timeline .tl-t { }
+@keyframes tlFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-4px) rotate(3deg); } }
+.timeline.tl-d { max-width: 440px; align-items: center; margin-top: 14px; }
+.timeline.tl-d li { display: flex; flex-direction: column; align-items: center; min-height: 0; text-align: center; }
+.timeline.tl-d li + li::before { content: ""; display: block; width: 30px; height: 30px; margin: 16px auto 10px; background: var(--tl-mk) center / contain no-repeat; filter: drop-shadow(0 3px 6px rgba(0,0,0,.55)) drop-shadow(0 0 8px rgba(255,225,160,.25)); animation: tlFloat 4.5s ease-in-out infinite; }
+.timeline.tl-d li:nth-child(odd)::before { animation-delay: -2s; }
+.timeline.tl-d .dot { display: none; }
+.timeline.tl-d time { text-shadow: none; font-family: var(--f-names); font-size: clamp(36px, 10vw, 44px); line-height: 1.15; letter-spacing: 0; text-transform: none; padding: 0 .16em; text-align: center;
+  background: var(--tl-foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 9s ease-in-out infinite alternate; }
+.timeline.tl-d span { padding: 0; margin-top: 2px; font-family: var(--f-caps); font-size: 13px; letter-spacing: .26em; padding-left: .26em; line-height: 1.5; text-transform: uppercase; color: var(--ink-soft); text-align: center; }
+@media (max-width: 520px) { .timeline.tl-d span { font-size: 11.5px; letter-spacing: .2em; } }
 </style>
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 
@@ -399,10 +415,12 @@ html.locked .p-hint { opacity: 0; }
       </div>
     </section>
 
+    <img class="divider" src="img/divisor-deco.webp" alt="">
+
     <section class="part">
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
-        <ol class="timeline">
+        <ol class="timeline tl-d">
           <li><time>8:00 pm</time><i class="dot"></i><span data-en="Welcome cocktail">Cóctel de bienvenida</span></li>
           <li><time>9:00 pm</time><i class="dot"></i><span data-en="Dinner">Cena</span></li>
           <li><time>10:00 pm</time><i class="dot"></i><span data-en="Toast">Brindis</span></li>
@@ -444,7 +462,7 @@ html.locked .p-hint { opacity: 0; }
 
     <footer class="foot">
       <img class="fkey" src="img/llave.webp" alt="" width="620" height="700" loading="lazy">
-      <p class="tag foil">#Los50deRicardo</p>
+      <img class="divider slim" src="img/divisor-deco.webp" alt="">      <p class="tag foil">#Los50deRicardo</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="OPEN THE GARAGE AGAIN">ABRIR EL GARAJE OTRA VEZ</button>
     </footer>

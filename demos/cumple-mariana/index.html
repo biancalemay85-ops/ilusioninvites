@@ -297,6 +297,27 @@ html.locked .p-hint { opacity: 0; }
 
 /* gold foil text inside sections keeps its gold (the .part p color must not win) */
 .part p.foil, .part p.foil-l { color: transparent; }
+
+/* ---------- itinerary · own style for this design (layout B) ---------- */
+.timeline { --tl-mk: url("img/citrino.webp"); --tl-foil: var(--foil); }
+.divider { display: block; width: min(70vw, 420px); height: auto; margin: 0 auto; position: relative; z-index: 3; opacity: 1; filter: drop-shadow(0 4px 10px rgba(0,0,0,.6)); }
+.divider.slim { width: min(56vw, 340px); }
+.timeline .tl-t { }
+@keyframes tlFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-4px) rotate(3deg); } }
+.timeline.tl-b { gap: 12px; max-width: 440px; margin-top: 18px; }
+.timeline.tl-b li { display: flex; align-items: center; gap: 14px; min-height: 0; padding: 12px 26px 12px 14px; border-radius: 999px; background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 45%, transparent), inset 0 1px 0 rgba(255,255,255,.12), 0 12px 26px -18px rgba(0,0,0,.7); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.timeline.tl-b .dot { order: -1; flex: none; width: 28px; height: 28px; }
+.timeline.tl-b .dot::before { content: none; }
+.timeline.tl-b .dot::after { width: 28px; height: 28px; border-radius: 0; box-shadow: none; background: var(--tl-mk) center / contain no-repeat; filter: drop-shadow(0 3px 6px rgba(0,0,0,.55)) drop-shadow(0 0 8px rgba(255,225,160,.25)); animation: tlFloat 4.5s ease-in-out infinite; }
+.timeline.tl-b time { flex: none; min-width: 5.6em; text-align: left; padding: 0 14px 0 0; border-right: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); }
+.timeline.tl-b span { padding: 0; font-size: 20px; line-height: 1.25; }
+@media (max-width: 520px) {
+  .timeline.tl-b li { display: grid; grid-template-columns: 28px 1fr; column-gap: 14px; row-gap: 1px; border-radius: 26px; padding: 11px 22px 11px 14px; }
+  .timeline.tl-b .dot { grid-row: 1 / span 2; grid-column: 1; align-self: center; }
+  .timeline.tl-b time { grid-column: 2; border-right: 0; padding: 0; min-width: 0; font-size: 12px; letter-spacing: .14em; }
+  .timeline.tl-b span { grid-column: 2; font-size: 18.5px; }
+}
 </style>
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 
@@ -416,11 +437,13 @@ html.locked .p-hint { opacity: 0; }
       </div>
     </section>
 
+    <img class="divider" src="img/divisor-luces.webp" alt="">
+
     <section class="part">
       <div class="m r" data-speed=".12" style="--w:20vw;--top:6%;--fx:-1"><img src="img/esquina.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
-        <ol class="timeline">
+        <ol class="timeline tl-b">
           <li><time>8:30 pm</time><i class="dot"></i><span data-en="Champagne welcome">Bienvenida con champaña</span></li>
           <li><time>9:30 pm</time><i class="dot"></i><span data-en="Dinner">Cena</span></li>
           <li><time>10:30 pm</time><i class="dot"></i><span data-en="Toast">Brindis</span></li>
@@ -465,7 +488,7 @@ html.locked .p-hint { opacity: 0; }
     </section>
 
     <footer class="foot">
-      <p class="tag foil">#Los40deMariana</p>
+      <img class="divider slim" src="img/divisor-luces.webp" alt="">      <p class="tag foil">#Los40deMariana</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="RIDE THE ELEVATOR AGAIN">VER EL ELEVADOR OTRA VEZ</button>
     </footer>

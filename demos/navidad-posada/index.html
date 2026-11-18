@@ -273,6 +273,25 @@ html.locked .p-hint { opacity: 0; }
   .cvel.r { right: -6%; top: -7%; width: 20%; } .cvel.l { left: -6%; bottom: -7%; width: 17%; }
   .duo { gap: 22px; }
 }
+
+/* itinerary · B (glass pills) */
+@keyframes itFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-3px) rotate(3deg); } }
+.timeline .dot::after { width: 30px; height: 30px; background: url("img/estrella-oro.webp") center / contain no-repeat; filter: drop-shadow(0 2px 3px rgba(6,6,20,.55)) drop-shadow(0 0 8px rgba(255,214,140,.45)); animation: itFloat 4.6s ease-in-out infinite; transform-origin: 50% 50%; box-shadow: none; border-radius: 0; }
+.timeline li:nth-child(2) .dot::after { animation-delay: -.9s; } .timeline li:nth-child(3) .dot::after { animation-delay: -1.8s; } .timeline li:nth-child(4) .dot::after { animation-delay: -2.7s; } .timeline li:nth-child(5) .dot::after { animation-delay: -3.6s; } .timeline li:nth-child(6) .dot::after { animation-delay: -4.2s; }
+.timeline.it-b { gap: 12px; max-width: 440px; margin-top: 18px; }
+.timeline.it-b li { display: flex; align-items: center; gap: 14px; min-height: 0; padding: 11px 26px 11px 14px; border-radius: 999px; background: linear-gradient(135deg, rgba(40,40,82,.62), rgba(18,20,44,.66)); box-shadow: inset 0 0 0 1px rgba(230,190,120,.42), inset 0 1px 0 rgba(255,255,255,.12), 0 14px 28px -20px rgba(0,0,0,.6); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.timeline.it-b .dot { order: -1; flex: none; width: 34px; height: 34px; }
+.timeline.it-b .dot::before { display: none; }
+.timeline.it-b time { flex: none; min-width: 5.4em; text-align: left; padding: 0 14px 0 0; border-right: 1px solid rgba(230,190,120,.38); }
+.timeline.it-b span { flex: 1; padding: 0; text-align: left; line-height: 1.25; }
+@media (max-width: 520px) {
+  .timeline.it-b li { display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; row-gap: 1px; border-radius: 24px; padding: 10px 20px 10px 12px; }
+  .timeline.it-b .dot { grid-column: 1; grid-row: 1 / span 2; }
+  .timeline.it-b time { grid-column: 2; grid-row: 1; border: 0; padding: 0; min-width: 0; font-size: 12px; }
+  .timeline.it-b span { grid-column: 2; grid-row: 2; font-size: 18px; }
+}
+.fili { width: min(76vw, 400px); margin: -14px auto 18px; opacity: 1; filter: drop-shadow(0 0 10px rgba(255,200,120,.35)) drop-shadow(0 3px 4px rgba(0,0,0,.5)); }
+.gem.star { filter: drop-shadow(0 3px 4px rgba(6,6,20,.55)) drop-shadow(0 0 8px rgba(255,214,140,.5)); }
 </style>
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 
@@ -335,7 +354,7 @@ html.locked .p-hint { opacity: 0; }
 
   <main class="flow" id="detalles">
     <section class="part palabras">
-      <img class="fili" src="img/filigrana.webp" alt="" width="900" height="183">
+      <img class="fili" src="img/divisor-luces.webp" alt="" width="1400" height="418">
       <div class="txt">
         <p class="caps" data-en="A FEW WORDS">UNAS PALABRAS</p>
         <p class="quote" data-en="“Christmas is best when the door is open and the table is full. This year we want to sing the litany, share the ponche and break the piñata with you.”">“La Navidad sabe mejor con la puerta abierta y la mesa llena. Este año queremos cantar la letanía, compartir el ponche y romper la piñata contigo.”</p>
@@ -365,8 +384,7 @@ html.locked .p-hint { opacity: 0; }
         <h2 class="foil" data-en="Save the date">Reserva la fecha</h2>
         <p class="big-date">18 · 12 · 2027</p>
         <div class="cristal">
-          <span class="gem" style="left:-12px;top:-14px;width:30px;animation-delay:.6s"><img src="img/cristal-3.webp" alt=""></span>
-          <span class="gem" style="right:-10px;bottom:-12px;width:24px;animation-delay:2s"><img src="img/cristal-9.webp" alt=""></span>
+          <span class="gem star" style="left:-14px;top:-16px;width:34px;animation-delay:.6s"><img src="img/estrella-oro.webp" alt=""></span>
           <p class="caps" data-en="ONLY">FALTAN</p>
           <div class="count" aria-label="Cuenta regresiva" data-en-label="Countdown">
             <div><strong id="cd-d">0</strong><span data-en="DAYS">DÍAS</span></div>
@@ -397,7 +415,7 @@ html.locked .p-hint { opacity: 0; }
       <div class="m l" data-speed=".12" style="--w:12vw;--top:6%;--x:4vw"><img src="img/velas.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil" data-en="Program">Programa</h2>
-        <ol class="timeline">
+        <ol class="timeline it-b">
           <li><time>7:00 pm</time><i class="dot"></i><span data-en="Procession and litany">Peregrinación y letanía</span></li>
           <li><time>7:30 pm</time><i class="dot"></i><span data-en="Asking for posada">Pedir posada</span></li>
           <li><time>8:00 pm</time><i class="dot"></i><span data-en="Ponche and tamales">Ponche y tamales</span></li>
@@ -433,8 +451,7 @@ html.locked .p-hint { opacity: 0; }
       <div class="txt">
         <h2 class="foil" data-en="RSVP">Confirma</h2>
         <div class="cristal pass">
-          <span class="gem" style="left:-12px;top:-12px;width:30px;animation-delay:.4s"><img src="img/cristal-1.webp" alt=""></span>
-          <span class="gem" style="right:-10px;top:40%;width:22px;animation-delay:1.8s"><img src="img/cristal-9.webp" alt=""></span>
+          <span class="gem star" style="left:-14px;top:-16px;width:34px;animation-delay:.4s"><img src="img/estrella-oro.webp" alt=""></span>
           <p class="caps" data-en="THIS INVITATION IS VALID FOR">ESTA INVITACIÓN ES VÁLIDA PARA</p>
           <strong data-en="4 guests">4 personas</strong>
           <p data-en="Please let us know before December 10th, 2027.">Por favor confírmanos antes del 10 de diciembre de 2027.</p>

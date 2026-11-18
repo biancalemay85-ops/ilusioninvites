@@ -156,7 +156,29 @@ button { font: inherit; color: inherit; }
 .count strong { font-size: clamp(26px, 7vw, 34px) !important; }
 .count::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 150px; height: 10px; transform: translateX(-50%);
   background: radial-gradient(circle, rgba(196,145,138,.85) 0 3px, transparent 3.5px) center / 10px 10px no-repeat, linear-gradient(90deg, transparent, rgba(196,145,138,.85) 40%, transparent 46%, transparent 54%, rgba(196,145,138,.85) 60%, transparent) center / 100% 1px no-repeat; }
+
+/* ---------- blush satin ribbon divider (real ribbon photo) ---------- */
+.ribbon-div { display: block; width: min(70vw, 340px); height: auto; margin: 6px auto; filter: drop-shadow(0 3px 4px rgba(94,70,64,.18)); }
+.card-rib { width: 58%; margin: 2% auto; }
+/* ---------- itinerary · "línea": a string of tiny pearls, a pearl at each moment ---------- */
+.timeline.it-a .dot::before { width: 8px; margin-left: -4px; background: url("img/perla.webp") center top / 7px 7px; background-repeat: no-repeat space; opacity: .95; }
+.timeline.it-a .dot::after { width: 18px; height: 18px; border-radius: 0; background: url("img/perla.webp") center / contain no-repeat; box-shadow: none; filter: drop-shadow(0 2px 2px rgba(94,70,64,.3)); }
+.timeline.it-a li { grid-template-columns: 92px 26px 1fr; min-height: 58px; }
+
+/* music: the couple's song through YouTube's own player; small gold button to pause/play */
+#yt { position: fixed; left: 0; bottom: 0; width: 2px; height: 2px; opacity: 0; pointer-events: none; z-index: -1; }
+.music { position: fixed; z-index: 60; right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 48px; height: 48px; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 30%, #F7E4B4, #D6A963 80%); box-shadow: inset 0 1px 0 rgba(255,250,235,.8), 0 8px 18px -6px rgba(110,70,30,.55), 0 0 0 4px rgba(255,255,255,.35); opacity: 0; transform: scale(.6); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.music.show { opacity: 1; transform: none; }
+.music .bars { display: flex; align-items: flex-end; gap: 3px; height: 16px; }
+.music .bars i { width: 3px; height: 100%; border-radius: 2px; background: #5A3E1C; transform-origin: bottom; animation: mEq 1s ease-in-out infinite; }
+.music .bars i:nth-child(2) { animation-delay: -.35s; } .music .bars i:nth-child(3) { animation-delay: -.7s; } .music .bars i:nth-child(4) { animation-delay: -.2s; }
+.music.paused .bars i { animation: none; transform: scaleY(.3); }
+@keyframes mEq { 0%,100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
 </style>
+<div id="yt" aria-hidden="true"><div id="ytp"></div></div>
+<button class="music paused" id="music" type="button" aria-label="Música: reproducir" data-en-label="Music: play" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -199,7 +221,7 @@ button { font: inherit; color: inherit; }
       <p class="c-caps" data-en-html="WITH THE BLESSING OF GOD<br>AND OUR PARENTS">CON LA BENDICIÓN DE DIOS<br>Y DE NUESTROS PADRES</p>
       <h1 class="c-names"><span>Camila</span><span class="amp">&amp;</span><span>Sebastián</span></h1>
       <p class="c-line" data-en="are getting married">nos casamos</p>
-      <div class="pearls" aria-hidden="true"><i></i><i></i><i></i></div>
+      <img class="ribbon-div card-rib" src="img/divisor-liston.webp" alt="">
       <p class="c-date" data-en="SATURDAY · APRIL 24 · 2027">SÁBADO · 24 · ABRIL · 2027</p>
       <p class="c-caps" data-en-html="FOUR O'CLOCK IN THE AFTERNOON<br>JARDÍN LOS OLIVOS · SAN MIGUEL DE ALLENDE">A LAS CUATRO DE LA TARDE<br>JARDÍN LOS OLIVOS · SAN MIGUEL DE ALLENDE</p>
     </div>
@@ -239,7 +261,7 @@ button { font: inherit; color: inherit; }
   <section class="sheet">
     <p class="quote" data-en="&ldquo;Love is patient, love is kind. It always protects, always trusts, always hopes.&rdquo;">&ldquo;El amor es paciente, es bondadoso. Todo lo disculpa, todo lo cree, todo lo espera.&rdquo;</p>
     <p class="small">1 Corintios 13</p>
-    <div class="pearls" aria-hidden="true"><i></i><i></i><i></i></div>
+    <img class="ribbon-div" src="img/divisor-liston.webp" alt="">
     <p class="caps" data-en="OUR PARENTS">NUESTROS PADRES</p>
     <div class="duo">
       <div><p class="small" data-en="Bride's parents">Padres de la novia</p><b>Fernando Ortiz</b><b>Gabriela Luna</b></div>
@@ -287,7 +309,7 @@ button { font: inherit; color: inherit; }
 
   <section class="sheet">
     <h2 data-en="Schedule">Itinerario</h2>
-    <ol class="timeline">
+    <ol class="timeline it-a">
       <li><time>4:00 pm</time><i class="dot"></i><span data-en="Ceremony">Ceremonia</span></li>
       <li><time>6:30 pm</time><i class="dot"></i><span data-en="Cocktail in the garden">Cóctel en el jardín</span></li>
       <li><time>7:30 pm</time><i class="dot"></i><span data-en="Grand entrance">Entrada de los novios</span></li>
@@ -322,6 +344,7 @@ button { font: inherit; color: inherit; }
   </section>
 
   <footer class="foot">
+    <img class="ribbon-div" src="img/divisor-liston.webp" alt="" style="width:min(62vw,300px)">
     <p class="tag">#CamilaYSebastián</p>
     <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
   </footer>
@@ -533,6 +556,36 @@ button { font: inherit; color: inherit; }
   document.getElementById('lang-en').addEventListener('click', function () { setLang('en'); });
   var saved = 'es'; try { saved = localStorage.getItem('ilusion-lang') || 'es'; } catch (e) {}
   setLang(saved === 'en' ? 'en' : 'es');
+})();
+</script>
+<script>
+/* music: All of Me (John Legend). Starts with the first tap (the opening tap); falls back to the next video if one can't play */
+(function () {
+  var SONGS = ['450p7goxZqg', '0put0_a--Ng'], song = 0, yt = null, ytReady = false, wantPlay = false, playing = false;
+  var mbtn = document.getElementById('music');
+  var prev = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function () {
+    if (prev) try { prev(); } catch (e) {}
+    yt = new YT.Player('ytp', { width: 2, height: 2, videoId: SONGS[0],
+      playerVars: { autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, loop: 1, playlist: SONGS[0], rel: 0 },
+      events: {
+        onReady: function () { ytReady = true; if (wantPlay) startMusic(); },
+        onStateChange: function (e) { playing = e.data === 1; mbtn.classList.toggle('paused', !playing); mbtn.setAttribute('aria-pressed', String(playing)); },
+        onError: function () { if (song < SONGS.length - 1) { song++; yt.loadVideoById(SONGS[song]); if (!wantPlay) yt.pauseVideo(); } }
+      } });
+  };
+  var t = document.createElement('script'); t.src = 'https://www.youtube.com/iframe_api'; t.async = true; document.head.appendChild(t);
+  function startMusic() {
+    wantPlay = true; mbtn.classList.add('show');
+    if (!ytReady) return;
+    try { yt.setVolume(0); yt.playVideo(); var v = 0, f = setInterval(function () { v += 4; yt.setVolume(Math.min(70, v)); if (v >= 70) clearInterval(f); }, 140); } catch (e) {}
+  }
+  function first(e) { if (e.target.closest && e.target.closest('#music, .lang, [data-lang], [id^=lang], [id^=ilu-]')) return; document.removeEventListener('pointerdown', first, true); startMusic(); }
+  document.addEventListener('pointerdown', first, true);
+  mbtn.addEventListener('click', function () {
+    if (!ytReady) { startMusic(); return; }
+    if (playing) yt.pauseVideo(); else { yt.setVolume(70); yt.playVideo(); }
+  });
 })();
 </script>
 

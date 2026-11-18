@@ -286,6 +286,14 @@ html.locked .p-hint { opacity: 0; }
 /* gold foil text inside sections keeps its gold (the .part p color must not win) */
 .part p.foil, .part p.foil-l { color: transparent; }
 .txt .foil { text-shadow: none; }
+
+/* itinerary · A (line) with themed markers */
+@keyframes itFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-3px) rotate(3deg); } }
+.timeline .dot::after { width: 28px; height: 28px; background: url("img/estrella-dije.webp") center / contain no-repeat; filter: drop-shadow(0 2px 3px rgba(0,0,0,.6)) drop-shadow(0 0 7px rgba(255,214,140,.4)); animation: itFloat 4.6s ease-in-out infinite; transform-origin: 50% 50%; box-shadow: none; border-radius: 0; }
+.timeline li:nth-child(2) .dot::after { animation-delay: -.9s; } .timeline li:nth-child(3) .dot::after { animation-delay: -1.8s; } .timeline li:nth-child(4) .dot::after { animation-delay: -2.7s; } .timeline li:nth-child(5) .dot::after { animation-delay: -3.6s; } .timeline li:nth-child(6) .dot::after { animation-delay: -4.2s; }
+.timeline li { min-height: 66px; }
+.p-fil { width: 58%; margin: 3% 0 2%; filter: drop-shadow(0 0 6px rgba(255,255,255,.25)) drop-shadow(0 2px 3px rgba(0,0,0,.6)); }
+.foot .fil { width: 220px; margin-bottom: 14px; filter: drop-shadow(0 0 6px rgba(255,255,255,.25)) drop-shadow(0 2px 3px rgba(0,0,0,.6)); }
 </style>
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 
@@ -329,7 +337,7 @@ html.locked .p-hint { opacity: 0; }
       <div class="pwin"><img src="img/salon.webp" alt="El salón de la gala en verde esmeralda y oro, con candelabros y escenario" data-en-alt="The gala ballroom in emerald and gold, with chandeliers and a stage" width="733" height="1100"></div>
       <p class="p-caps" data-en="ANNUAL GALA 2027">GALA ANUAL 2027</p>
       <h1 class="p-name foil">Grupo Altavista</h1>
-      <img class="p-fil" src="img/filigrana.webp" alt="" width="900" height="183">
+      <img class="p-fil" src="img/divisor-diamantes.webp" alt="" width="1400" height="120">
       <p class="p-date">26 · 11 · 2027</p>
     </div>
     <p class="p-hint"><a href="#invitacion" data-en="THE INVITATION ↓">LA INVITACIÓN ↓</a></p>
@@ -407,7 +415,7 @@ html.locked .p-hint { opacity: 0; }
     <section class="part">
       <div class="txt">
         <h2 class="foil" data-en="Programme">Programa</h2>
-        <ol class="timeline">
+        <ol class="timeline it-a">
           <li><time>8:00 pm</time><i class="dot"></i><span data-en="Welcome cocktail">Cóctel de bienvenida</span></li>
           <li><time>8:45 pm</time><i class="dot"></i><span data-en="Words from the Board">Mensaje de la Dirección</span></li>
           <li><time>9:00 pm</time><i class="dot"></i><span data-en="Gala dinner">Cena de gala</span></li>
@@ -439,7 +447,7 @@ html.locked .p-hint { opacity: 0; }
     </section>
 
     <footer class="foot">
-      <img class="fil" src="img/filigrana.webp" alt="" width="900" height="183" loading="lazy">
+      <img class="fil" src="img/divisor-diamantes.webp" alt="" width="1400" height="120" loading="lazy">
       <p class="tag foil">#GalaAltavista2027</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="COME IN AGAIN">ENTRAR OTRA VEZ</button>

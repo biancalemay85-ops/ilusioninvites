@@ -275,6 +275,19 @@ html.locked .p-hint { opacity: 0; }
 
 /* gold foil text inside sections keeps its gold (the .part p color must not win) */
 .part p.foil, .part p.foil-l { color: transparent; }
+
+/* silver star-and-moon chain as the divider (real jewelry photo) */
+.orn-img { display: block; width: 64%; height: auto; margin: 1.5% auto 2%; filter: drop-shadow(0 0 6px rgba(200,222,255,.45)) drop-shadow(0 2px 2px rgba(0,0,0,.45)); }
+.orn-img.sec { width: min(70vw, 380px); margin: 4px auto 6px; }
+/* ---------- itinerary · "línea": thin silver line, a sapphire at each moment ---------- */
+.timeline.it-a .dot::before { width: 1.5px; margin-left: -.75px; }
+.timeline.it-a .dot::after { width: 20px; height: 26px; background-image: url("img/zafiro.webp"); filter: brightness(1.35) saturate(1.15) drop-shadow(0 0 7px rgba(170,205,255,.85)) drop-shadow(0 0 2px rgba(255,255,255,.6)); }
+/* side flowers never bleed off the screen edge */
+.m.l { left: max(14px, var(--x, 14px)); } .m.r { right: max(14px, var(--x, 14px)); }
+@media (max-width: 640px) {
+  .m, .m.small, .m.l, .m.r { --x: 6px !important; }
+  .cfl.tl { left: -4%; } .cfl.br { right: -4%; }
+}
 </style>
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 
@@ -313,7 +326,7 @@ html.locked .p-hint { opacity: 0; }
       <img class="ptiara" src="img/tiara.webp" alt="" width="800" height="645">
       <p class="p-caps" data-en="MY QUINCEAÑERA">MIS XV AÑOS</p>
       <h1 class="p-name foil">Renata</h1>
-      <span class="orn" aria-hidden="true"><i></i><img src="img/cristal-1.webp" alt=""><i></i></span>
+      <img class="orn-img" src="img/divisor-estrellas.webp" alt="">
       <p class="p-date">12 · 06 · 2027</p>
     </div>
     <p class="p-hint"><a href="#invitacion" data-en="MY INVITATION ↓">MI INVITACIÓN ↓</a></p>
@@ -328,7 +341,7 @@ html.locked .p-hint { opacity: 0; }
       <p class="k-caps" data-en-html="WITH THE BLESSING OF GOD<br>AND MY PARENTS">CON LA BENDICIÓN DE DIOS<br>Y DE MIS PADRES</p>
       <p class="k-name foil">Renata</p>
       <p class="k-line" data-en="invites you to celebrate the magical night of her fifteen years">te invita a celebrar la noche mágica de sus quince años</p>
-      <span class="orn" aria-hidden="true" style="width:46%"><i></i><img src="img/cristal-1.webp" alt="" style="width:5cqw"><i></i></span>
+      <img class="orn-img" src="img/divisor-estrellas.webp" alt="" style="width:58%">
       <p class="k-date" data-en="Saturday, June 12th">Sábado 12 de junio</p>
       <p class="k-small" data-en-html="TWO THOUSAND TWENTY-SEVEN<br>AT SEVEN IN THE EVENING">DOS MIL VEINTISIETE<br>A LAS SIETE DE LA NOCHE</p>
       <p class="k-small">MONTERREY<br>NUEVO LEÓN, MÉXICO</p>
@@ -412,7 +425,8 @@ html.locked .p-hint { opacity: 0; }
       <div class="m l" data-speed=".12" style="--w:22vw;--top:6%;--x:-4vw"><img src="img/esquina.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil" data-en="Schedule">Itinerario</h2>
-        <ol class="timeline">
+        <img class="orn-img sec" src="img/divisor-estrellas.webp" alt="">
+        <ol class="timeline it-a">
           <li><time>7:00 pm</time><i class="dot"></i><span data-en="Mass">Misa</span></li>
           <li><time>9:00 pm</time><i class="dot"></i><span data-en="Reception">Recepción</span></li>
           <li><time>10:00 pm</time><i class="dot"></i><span data-en="Waltz">Vals</span></li>
@@ -461,6 +475,7 @@ html.locked .p-hint { opacity: 0; }
 
     <footer class="foot">
       <img class="corner-end" src="img/esquina.webp" alt="">
+      <img class="orn-img sec" src="img/divisor-estrellas.webp" alt="" style="position:relative;z-index:2">
       <p class="tag foil">#XVRenata</p>
       <p class="made" data-en="MADE WITH ILUSIÓN · ILUSIÓN INVITES">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
       <button class="replay" id="replay" type="button" data-en="SEE THE CURTAIN AGAIN">VER EL TELÓN OTRA VEZ</button>
