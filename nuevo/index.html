@@ -546,6 +546,13 @@ html, body { overflow-x: clip; }
 .pack .amt { margin: 14px 0 6px; display: flex; align-items: baseline; gap: 6px; }
 .pack .price { font: 500 clamp(36px, 3.6vw, 46px)/1 var(--f-serif); color: var(--ink); }
 .pack .curl { font: 500 11px var(--f-caps); letter-spacing: .2em; color: var(--ink3); }
+/* launch offer on Esencial: crossed-out price, new price, savings */
+.pack.promo { padding-top: 64px; }
+.pack .promo-rib { background: linear-gradient(135deg, #B23A48, #D9646F); color: #fff; box-shadow: 0 6px 16px -6px rgba(178,58,72,.6); }
+.was { font-size: .52em; font-weight: 400; color: var(--ink3); text-decoration: line-through; text-decoration-color: rgba(178,58,72,.75); text-decoration-thickness: 1.5px; margin-right: .3em; vertical-align: .25em; }
+.pack .save { margin: 0 0 4px; padding: 4px 12px; border-radius: 999px; background: rgba(178,58,72,.08); color: #A23441; font: 500 13px var(--f-body, sans-serif); letter-spacing: .02em; }
+.pack .save:empty { display: none; }
+.pk-pr .was { font-size: .85em; vertical-align: 0; }
 .pack ul { list-style: none; margin: 14px 0 24px; padding: 16px 0 0; border-top: 1px solid rgba(182,138,78,.22); display: flex; flex-direction: column; gap: 9px; width: 100%; text-align: left; }
 .pack li { position: relative; padding-left: 20px; font-size: 14.5px; color: var(--ink2); line-height: 1.45; }
 .pack li::before { content: ""; position: absolute; left: 2px; top: .5em; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold); }
@@ -811,9 +818,11 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     <div class="wrap">
       <div class="head"><span class="eyebrow" data-en="PACKAGES">PAQUETES</span><h2 id="pk-title" data-en-html="Choose your <em>ilusión</em>">Elige tu <em>ilusión</em></h2><img class="divisor" src="img/divisor.webp" alt="" width="720" height="60" loading="lazy"><p data-en="Every package includes a design made for you and a link ready to share. Choose how much magic you want.">Todos incluyen un diseño hecho para ti y un link listo para compartir. Tú eliges cuánta magia quieres.</p></div>
       <div class="packs">
-        <article class="pack">
+        <article class="pack promo">
+          <span class="ribbon promo-rib" data-en="40% OFF · LAUNCH OFFER">40% OFF · OFERTA DE LANZAMIENTO</span>
           <h3>Esencial</h3><span class="tag" data-en="The complete invitation">La invitación completa</span>
           <p class="amt"><b class="price" data-p="0"></b><small class="curl"></small></p>
+          <p class="save" data-save="0"></p>
           <ul>
             <li data-en="Envelope with a wax seal that opens">Sobre con sello de cera que se abre</li>
             <li data-en="Music and photo gallery">Música y galería de fotos</li>
@@ -1885,12 +1894,20 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
   /* package prices: one place to change them. Spanish shows pesos, English shows Canadian dollars (or the visitor's choice) */
   (function () {
     var PRICES = { MXN: [1990, 3490, 4990, 7490], CAD: [119, 249, 349, 549] };
+    // launch offer: package index -> % off (Esencial 40%)
+    var PROMO = { 0: 40 };
+    function deal(c, i) { var p = PRICES[c][i], pct = PROMO[i]; if (!pct) return null; var n = p * (1 - pct / 100); n = c === 'MXN' ? Math.round(n / 10) * 10 : Math.round(n); return { was: p, now: n, save: p - n, pct: pct }; }
     var chosen = null;
     function cur() { return chosen || (document.documentElement.lang === 'en' ? 'CAD' : 'MXN'); }
     function fmt(n) { return '$' + n.toLocaleString('en-US'); }
     function paint() {
       var c = cur();
-      document.querySelectorAll('[data-p]').forEach(function (el) { el.textContent = fmt(PRICES[c][+el.getAttribute('data-p')]) + (el.classList.contains('price-from') ? ' ' + c : ''); });
+      document.querySelectorAll('[data-p]').forEach(function (el) {
+        var i = +el.getAttribute('data-p'), d = deal(c, i), tail = el.classList.contains('price-from') ? ' ' + c : '';
+        if (d) el.innerHTML = '<s class="was">' + fmt(d.was) + '</s>' + fmt(d.now) + tail; else el.textContent = fmt(PRICES[c][i]) + tail;
+      });
+      var en = document.documentElement.lang === 'en';
+      document.querySelectorAll('[data-save]').forEach(function (el) { var d = deal(c, +el.getAttribute('data-save')); el.textContent = d ? (en ? 'You save ' : 'Ahorras ') + fmt(d.save) + ' ' + c + (en ? ' · limited time' : ' · por tiempo limitado') : ''; });
       document.querySelectorAll('.pack .curl, .xa-price .curl, .pk-o .curl').forEach(function (el) { el.textContent = c; });
       document.querySelectorAll('.cur button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-cur') === c)); });
     }
