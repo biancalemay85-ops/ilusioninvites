@@ -573,7 +573,7 @@ html.locked .world { visibility: hidden; }
   var q = new URLSearchParams(location.search), c = q.get('c') || 'bodas', d = q.get('d') || 'jardin-blanco';
   var en = false; try { en = localStorage.getItem('ilu-lang') === 'en'; } catch (e) {}
   var nav = document.getElementById('ilu-nav'), back = document.getElementById('ilu-back'), cta = document.getElementById('ilu-cta');
-  back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/crear/?c=' + c + '&d=' + d;
+  back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/?evento=' + c + '&diseno=' + encodeURIComponent('Jardín Blanco') + '#imagina';
   back.querySelector('span').textContent = en ? 'Back' : 'Volver'; cta.textContent = en ? 'I want one like this ✨' : 'Quiero una así ✨';
   back.addEventListener('click', function (e) { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {} });
   nav.hidden = false;

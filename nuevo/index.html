@@ -460,6 +460,9 @@ html, body { overflow-x: clip; }
 .im-nav .btn { min-width: 170px; margin-left: auto; }
 .im-reset { display: block; margin: 14px auto 0; border: 0; background: none; padding: 6px 10px; font: italic 400 15px var(--f-serif); color: var(--ink3, #9A877F); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .im-reset[hidden] { display: none; }
+.im-dis { margin: -2px auto 12px; width: fit-content; max-width: 100%; padding: 7px 16px; border-radius: 999px; background: rgba(182,138,78,.1); box-shadow: inset 0 0 0 1px rgba(182,138,78,.3); font-size: 14px; color: var(--ink2, #6F6155); text-align: center; }
+.im-dis b { font-family: var(--f-serif, serif); font-style: italic; font-weight: 500; color: var(--ink, #3A2A26); }
+.im-dis[hidden] { display: none; }
 .im-note { margin: 12px 0 0; text-align: center; font-size: 13px; color: var(--ink3); }
 .im-more { margin: 10px 0 0; text-align: center; }
 .im-more a { font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(182,138,78,.4); padding-bottom: 2px; }
@@ -744,7 +747,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     </nav>
     <div class="actions">
       <div class="lang" role="group" aria-label="Idioma"><button type="button" id="es" aria-pressed="true">ES</button><button type="button" id="en" aria-pressed="false">EN</button></div>
-      <a class="btn btn-gold btn-sm" href="crear/" data-en="Create my invitation">Crear mi invitación</a>
+      <a class="btn btn-gold btn-sm" href="#imagina" data-en="Create my invitation">Crear mi invitación</a>
     </div>
   </div>
 </header>
@@ -783,7 +786,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         </ol>
       </div>
       <div class="ctas">
-        <a class="btn btn-gold" href="crear/" data-en="Start my invitation">Empezar mi invitación</a>
+        <a class="btn btn-gold" href="#imagina" data-en="Start my invitation">Empezar mi invitación</a>
         <a class="btn btn-line" href="#paquetes" data-en="See packages">Ver paquetes</a>
         <a class="btn btn-line" href="#eventos" data-en="See collections">Ver colecciones</a>
       </div>
@@ -1086,6 +1089,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         <form class="im-q" id="im-form" novalidate>
           <ol class="im-prog" id="im-prog"></ol>
           <p class="im-no" id="im-no" aria-live="polite"></p>
+          <p class="im-dis" id="im-dis" hidden><span data-en="Chosen design:">Diseño elegido:</span> <b id="im-dis-n"></b></p>
           <fieldset class="im-step" data-k="evento"><legend tabindex="-1" data-en-html="What are you <em>celebrating</em>?">¿Qué <em>celebras</em>?</legend><p class="im-hint" data-en="Choose your event.">Elige tu evento.</p><div class="opts c2 ev" data-opts="evento"></div></fieldset>
           <fieldset class="im-step" data-k="ambiente"><legend tabindex="-1" data-en-html="How do you imagine the <em>atmosphere</em>?">¿Cómo imaginas el <em>ambiente</em>?</legend><p class="im-hint" data-en="The feeling you want your guests to have when they open it.">Lo que quieres que sientan tus invitados al abrirla.</p><div class="opts c2" data-opts="ambiente"></div>
             <div class="fields im-idea"><label class="full"><span data-en="Something else in mind? Tell us in a few words">¿Tienes algo más en mente? Cuéntanos en pocas palabras</span><textarea id="im-idea" name="idea" maxlength="300" rows="2" placeholder="Ej. elegante pero divertido, con detalles dorados y mucha luz…" data-en-ph="E.g. elegant but fun, with gold details and lots of light…"></textarea></label></div>
@@ -1480,14 +1484,30 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       ]
     };
     var KEYS = ['evento', 'ambiente', 'color', 'incluir', 'detalles'];
-    var st = { step: 0, evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [], contacto: '', correo: '', whatsapp: '', mensaje: '', texto: '', paquete: '', aviso: '' };
+    var st = { step: 0, diseno: '', evento: '', ambiente: '', color: '', incluir: [], nombres: '', fecha: '', ciudad: '', sueno: '', idea: '', extra: '', codigos: [], contacto: '', correo: '', whatsapp: '', mensaje: '', texto: '', paquete: '', aviso: '' };
     // unfinished answers are kept for 12 hours, then the form starts fresh
     try { var sv = JSON.parse(localStorage.getItem('ilu-imagina') || 'null'); if (sv && typeof sv === 'object' && Date.now() - (+sv.t || 0) < 432e5) { for (var k in st) if (k in sv) st[k] = sv[k]; } else localStorage.removeItem('ilu-imagina'); } catch (e) {}
     if (!Array.isArray(st.incluir)) st.incluir = [];
     if (!Array.isArray(st.codigos)) st.codigos = [];
     var fotos = []; // {file, url, tipo: 'inv' = to use in the invitation, 'insp' = color inspiration}
     function nFotos(t) { return fotos.filter(function (f) { return f.tipo === t; }).length; }
+    // coming from a collection, a demo or the XV page: ?evento=xv-anos&diseno=Rosa%20Roja&paquete=ilusion
+    try {
+      var qp = new URLSearchParams(location.search), qe = qp.get('evento') || qp.get('c');
+      var qev = qe && Q.evento.filter(function (o) { return o.v === qe || o.slug === qe; })[0];
+      if (qev) {
+        var qdn = String(qp.get('diseno') || '').slice(0, 60);
+        if (st.evento !== qev.v || (st.diseno || '') !== qdn) {
+          for (var qk in st) st[qk] = Array.isArray(st[qk]) ? [] : '';
+          st.step = 1;
+        }
+        st.evento = qev.v; st.diseno = qdn;
+        var qpk = qp.get('paquete'); if (qpk && Q.paquete.some(function (o) { return o.v === qpk; })) st.paquete = qpk;
+      }
+    } catch (e) {}
     st.step = Math.max(0, Math.min(4, +st.step || 0));
+    function paintDis() { var b = document.getElementById('im-dis'); if (b) { b.hidden = !st.diseno; document.getElementById('im-dis-n').textContent = st.diseno || ''; } }
+    setTimeout(paintDis, 0);
     function save() { try { localStorage.setItem('ilu-imagina', JSON.stringify(Object.assign({ t: Date.now() }, st))); } catch (e) {} showReset(); }
     function showReset() { var b = document.getElementById('im-reset'); if (b) b.hidden = !(st.step || st.evento || st.ambiente || st.color || st.incluir.length || st.codigos.length || st.nombres || st.idea || st.extra || st.sueno || st.mensaje || st.texto || st.paquete); }
     function L() { return document.documentElement.lang === 'en' ? 'en' : 'es'; }
@@ -1567,6 +1587,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       out.push(en ? 'Hi Ilusión Invites ✨ I imagined my invitation:' : 'Hola Ilusión Invites ✨ Imaginé mi invitación:');
       if (ev) out.push((en ? '• Event: ' : '• Celebración: ') + ev[l][0]);
       if (mo) out.push((en ? '• Atmosphere: ' : '• Ambiente: ') + mo[l][0]);
+      if (st.diseno) out.push((en ? '• Design: ' : '• Diseño: ') + st.diseno);
       if (st.idea) out.push((en ? '• In mind: ' : '• Tengo en mente: ') + st.idea);
       if (co) out.push((en ? '• Colors: ' : '• Colores: ') + co[l][0]);
       if (st.codigos.length) out.push((en ? '• Color codes: ' : '• Códigos de color: ') + st.codigos.join(', '));
@@ -1804,7 +1825,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     refCode();
     function payload(list) {
       var l = L(), ev = find(Q.evento, st.evento), mo = find(Q.ambiente, st.ambiente), co = find(Q.color, st.color);
-      return { idioma: l, evento: ev ? ev[l][0] : '', ambiente: mo ? mo[l][0] : '', idea: st.idea, color: co ? co[l][0] : '', codigos: st.codigos,
+      return { idioma: l, evento: ev ? ev[l][0] : '', ambiente: mo ? mo[l][0] : '', idea: (st.diseno ? (l === 'en' ? 'Design: ' : 'Diseño: ') + st.diseno + (st.idea ? '\n' : '') : '') + (st.idea || ''), color: co ? co[l][0] : '', codigos: st.codigos,
         incluir: st.incluir.map(function (v) { var o = find(Q.incluir, v); return o ? o[l][0] : v; }), extra: st.extra, quien_celebra: st.nombres,
         fecha_evento: st.fecha, ciudad: st.ciudad, sueno: st.sueno, mensaje: (find(Q.mensaje, st.mensaje) || { es: [''], en: [''] })[l][0], mensaje_texto: st.texto, paquete: (find(Q.paquete, st.paquete) || { es: [''], en: [''] })[l][0], aviso: (find(Q.aviso, st.aviso) || { es: [''], en: [''] })[l][0], contacto: st.contacto, correo: st.correo, whatsapp: st.whatsapp,
         web: ($('im-web') || {}).value || '', ref: refCode(), fotos: list.filter(Boolean) };

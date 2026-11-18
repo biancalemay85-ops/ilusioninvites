@@ -1,5 +1,5 @@
 """Builds the public (GitHub Pages) copies from the artifact pages. Run: python3 build.py"""
-import os
+import os, json
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = 'https://ilusioninvites.com'
 PAGES = [
@@ -46,7 +46,7 @@ DEMO_NAV = """
   var q = new URLSearchParams(location.search), c = q.get('c') || '__COL__', d = q.get('d') || '__DIS__';
   var en = false; try { en = localStorage.getItem('ilu-lang') === 'en'; } catch (e) {}
   var nav = document.getElementById('ilu-nav'), back = document.getElementById('ilu-back'), cta = document.getElementById('ilu-cta');
-  back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/crear/?c=' + c + '&d=' + d;
+  back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/?evento=' + c + '&diseno=' + encodeURIComponent('__DISN__') + '#imagina';
   back.querySelector('span').textContent = en ? 'Back' : 'Volver'; cta.textContent = en ? 'I want one like this ✨' : 'Quiero una así ✨';
   back.addEventListener('click', function (e) { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {} });
   nav.hidden = false;
@@ -83,6 +83,7 @@ html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-p
 </script>
 </div>
 """
+DIS_NAMES = {d['id']: d['nombre'] for c in json.load(open(os.path.join(HERE, '..', 'website', 'colecciones.json'), encoding='utf-8'))['colecciones'] for d in c.get('disenos', [])}
 DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas'), 'demos/boda-regina-emilio': ('bodas', 'perla-cristal'), 'demos/xv-valentina': ('xv-anos', 'rosa-roja'), 'demos/xv-renata': ('xv-anos', 'noche-zafiro'), 'demos/xv-ximena': ('xv-anos', 'jardin-jade'), 'demos/cumple-ricardo': ('cumpleanos', 'clasico-67'), 'demos/cumple-mariana': ('cumpleanos', 'noche-champana'), 'demos/cumple-elena': ('cumpleanos', 'cena-toscana'), 'demos/baby-nube': ('baby-shower', 'nube-algodon'), 'demos/baby-mariposas': ('baby-shower', 'jardin-mariposas'), 'demos/baby-luna': ('baby-shower', 'bajo-la-luna')}
 # pages with their own link preview (shown when the link is shared on WhatsApp, iMessage, Instagram...)
 OG = {
@@ -128,7 +129,7 @@ for src, out, title, desc in PAGES:
 '''
     os.makedirs(os.path.join(HERE, out), exist_ok=True)
     if out in DEMO_INFO:
-        body += DEMO_NAV.replace('__COL__', DEMO_INFO[out][0]).replace('__DIS__', DEMO_INFO[out][1])
+        body += DEMO_NAV.replace('__COL__', DEMO_INFO[out][0]).replace('__DIS__', DEMO_INFO[out][1]).replace('__DISN__', DIS_NAMES.get(DEMO_INFO[out][1], ''))
         body += FREEZE
     open(os.path.join(HERE, out, 'index.html'), 'w', encoding='utf-8').write(head + body + '\n</body>\n</html>\n')
     print('built', out or '(root)')
