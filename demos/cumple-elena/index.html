@@ -269,6 +269,9 @@ html.still *, html.still *::before, html.still *::after { transition: none !impo
   .o-guest { font-size: 28px; max-width: 100%; }
   .o-hint { letter-spacing: .2em; }
 }
+
+/* gold foil text inside sections keeps its gold (the .part p color must not win) */
+.part p.foil, .part p.foil-l { color: transparent; }
 </style>
 
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>

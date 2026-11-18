@@ -339,6 +339,9 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
   .fc { width: 92px; } .fc.tl { left: -20px; top: -24px; } .fc.br { right: -20px; bottom: -24px; }
   .cristal { padding-top: 46px; padding-bottom: 42px; }
 }
+
+/* gold foil text inside sections keeps its gold (the .part p color must not win) */
+.part p.foil, .part p.foil-l { color: transparent; }
 </style>
 
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
