@@ -109,7 +109,7 @@ OG = {
     'demos/cumple-hadas': ('Lucía cumple 8 ✨', 'Sábado 18 de septiembre de 2027 · Valle de Bravo. Toca el frasco para abrirlo.', 'img/compartir.jpg', 'img/objeto.webp', '#2A2240'),
     'demos/cumple-espacio': ('Mateo cumple 7 🚀', 'Sábado 13 de marzo de 2027 · San Pedro Garza García. Toca el cohete para despegar.', 'img/compartir.jpg', 'img/objeto.webp', '#0B1530'),
     'demos/cumple-dino': ('Santiago cumple 5 🦕', 'Sábado 24 de abril de 2027 · Cuernavaca. Toca el huevo para abrirlo.', 'img/compartir.jpg', 'img/objeto.webp', '#F1E6D2'),
-    'demos/boda-jardin-blanco': ('Boda de Ana Sofía & Emiliano 🤍', 'Sábado 5 de junio de 2027 · Querétaro. Toca el sello y cruza el arco del jardín.', 'img/compartir.jpg', 'img/sello-rosas.webp', '#F6F1E8'),
+    'demos/boda-jardin-blanco': ('Boda de Ana Sofía & Emiliano 🤍', 'Sábado 5 de junio de 2027 · Querétaro. Toca el lazo y cruza el arco del jardín.', 'img/compartir.jpg', 'img/sello-rosas.webp', '#F6F1E8'),
     'demos/boda-isabella-julian': ('Boda de Isabella & Julián ❤️', 'Sábado 16 de octubre de 2027 · Guadalajara. Toca el sello para abrir tu invitación.', 'img/compartir.jpg', 'img/sello-cisnes.webp', '#3A0E18'),
     'demos/empresa-gala': ('Gala Anual 2027 · Grupo Altavista ✨', 'Viernes 26 de noviembre de 2027 · Ciudad de México. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/cordon.webp', '#071A14'),
     'demos/empresa-lanzamiento': ('Maison Lumière presenta AURUM ✨', 'Jueves 14 de octubre de 2027 · Polanco, CDMX. Toca para descubrir.', 'img/compartir.jpg', 'img/producto.webp', '#060606'),

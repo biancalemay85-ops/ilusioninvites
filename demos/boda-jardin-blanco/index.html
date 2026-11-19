@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Invitación de boda de ejemplo: Jardín Blanco.">
 <meta property="og:title" content="Boda de Ana Sofía & Emiliano 🤍">
-<meta property="og:description" content="Sábado 5 de junio de 2027 · Querétaro. Toca el sello y cruza el arco del jardín.">
+<meta property="og:description" content="Sábado 5 de junio de 2027 · Querétaro. Toca el lazo y cruza el arco del jardín.">
 <meta property="og:image" content="https://ilusioninvites.com/demos/boda-jardin-blanco/img/compartir.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -25,7 +25,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&display=swap">
 <style>
-/* Layout: a garden entrance. A white-rose arch with two sheer curtains held by the couple's ivory wax seal; tapping the seal lifts it, the curtains drift apart and we walk through the arch into a layered scene: silk at the back, the textured invitation card in the middle, real rose cut-outs in front (the nearest ones out of focus), all moving at different depths. Detail cards follow, each with a flower peeking from a corner. Single light theme on purpose: ivory, champagne gold, leaf green. */
+/* Layout: a garden entrance. A white-rose arch with two sheer curtains tied with an ivory satin bow; tapping the bow unties it, the curtains drift apart and we walk through the arch into a layered scene: silk at the back, the textured invitation card in the middle, real rose cut-outs in front (the nearest ones out of focus), all moving at different depths. Detail cards follow, each with a flower peeking from a corner. Single light theme on purpose: ivory, champagne gold, leaf green. */
 :root {
   color-scheme: light;
   --silk: #EFE9E0;
@@ -95,18 +95,18 @@ html.locked.reveal .world { visibility: visible; }
 .walk .g-glow { opacity: 1; }
 .g-pet { position: absolute; inset: 0; z-index: 6; width: 100%; height: 100%; pointer-events: none; }
 
-/* the couple's ivory wax seal holds the curtains; it lifts away with a warm glow (never cracks) */
-.seal { position: absolute; left: 50%; top: 47%; width: 17.5%; aspect-ratio: 1; z-index: 4; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 50%; transform: translate(-50%, -50%);
-  filter: drop-shadow(2px 6px 6px rgba(80,58,30,.42)) drop-shadow(0 1px 1px rgba(80,58,30,.35)); -webkit-tap-highlight-color: transparent;
+/* an ivory satin bow ties the curtains together; tapping it unties it and it drifts down and fades */
+.seal { position: absolute; left: 50%; top: 47.5%; width: 21%; aspect-ratio: 640 / 578; z-index: 4; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 50%; transform: translate(-50%, -50%);
+  filter: drop-shadow(2px 7px 7px rgba(80,58,30,.34)) drop-shadow(0 1px 1px rgba(80,58,30,.25)); -webkit-tap-highlight-color: transparent;
   transition: transform 1.4s cubic-bezier(.3,.1,.2,1), opacity 1.1s ease .25s, filter 1.3s ease; }
-.seal::before { content: ""; position: absolute; inset: -16%; border-radius: 50%; border: 1px solid rgba(169,132,76,.75); animation: ring 2.6s ease-out infinite; }
+.seal::before { content: ""; position: absolute; inset: -14% -8%; border-radius: 50%; border: 1px solid rgba(169,132,76,.75); animation: ring 2.6s ease-out infinite; }
 .seal::after { content: ""; position: absolute; inset: -34%; border-radius: 50%; background: radial-gradient(circle, rgba(255,250,236,.75), rgba(255,250,236,0) 65%); z-index: -1; animation: breathe 3s ease-in-out infinite; }
 @keyframes ring { 0% { transform: scale(.8); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
 .seal-img { position: absolute; inset: 0; display: block; container-type: inline-size; }
 .seal-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .smono { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 500 15cqw/1 var(--f-caps); white-space: nowrap; color: rgba(150,122,88,.78); text-shadow: 0 -1px 0 rgba(255,255,255,.9), 0 1px 1px rgba(90,66,40,.45); }
 .smono i { font-style: normal; font-size: .55em; vertical-align: .3em; margin: 0 .06em; }
-.lift .seal { transform: translate(-50%, -95%) scale(1.16); opacity: 0; filter: drop-shadow(0 0 16px rgba(255,236,190,.95)) drop-shadow(0 0 36px rgba(255,226,170,.6)); }
+.lift .seal { transform: translate(-50%, -20%) rotate(-7deg) scale(.86); opacity: 0; filter: drop-shadow(0 0 14px rgba(255,236,190,.9)); }
 .lift .seal::before, .lift .seal::after { animation: none; opacity: 0; }
 
 /* words above and below the arch, each on a soft light veil */
@@ -329,8 +329,8 @@ html.locked.reveal .world { visibility: visible; }
     <div class="g-curt l" aria-hidden="true"><img src="img/cortina.webp" alt=""></div>
     <div class="g-curt r" aria-hidden="true"><img src="img/cortina.webp" alt=""></div>
     <img class="g-front" src="img/arco-frente.webp" alt="">
-    <button class="seal" id="seal" type="button" aria-label="Abrir el sello y entrar al jardín" data-en-label="Open the seal and enter the garden">
-      <span class="seal-img"><img src="img/sello-rosas.webp" alt=""><span class="smono" aria-hidden="true">A<i>&amp;</i>E</span></span>
+    <button class="seal" id="seal" type="button" aria-label="Desatar el lazo y entrar al jardín" data-en-label="Untie the bow and enter the garden">
+      <span class="seal-img"><img src="img/lazo.webp" alt=""></span>
     </button>
   </div>
   <div class="g-glow" aria-hidden="true"></div>
@@ -343,7 +343,7 @@ html.locked.reveal .world { visibility: visible; }
   <div class="g-bot">
     <p class="addr-label" data-en="FOR">PARA</p>
     <p class="addr-name foil" id="guestName" data-en="a very special guest">un invitado muy especial</p>
-    <p class="intro-hint"><i></i><span data-en="TAP THE SEAL TO OPEN">TOCA EL SELLO PARA ABRIR</span><i></i></p>
+    <p class="intro-hint"><i></i><span data-en="TAP THE BOW TO ENTER">TOCA EL LAZO PARA ENTRAR</span><i></i></p>
   </div>
 </section>
 
