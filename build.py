@@ -41,6 +41,38 @@ PAGES = [
     ('../website/pedido-xv.html', 'pedido-xv', 'Pedido XV Años · Ilusión Invites',
      'Llena los datos de los XV años y armamos su invitación digital.'),
 ]
+# guests can ask for WhatsApp reminders right where they confirm (Gala and Experiencia packages)
+REMIND = """
+<style>
+.ilu-rem{display:inline-flex;align-items:center;gap:9px;margin:4px auto 14px;padding:10px 16px 10px 12px;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 32%,transparent);background:color-mix(in srgb,currentColor 6%,transparent);color:inherit;font:inherit;font-size:.92em;line-height:1.25;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;transition:background .25s,border-color .25s}
+.ilu-rem i{flex:none;position:relative;width:34px;height:20px;border-radius:999px;background:color-mix(in srgb,currentColor 22%,transparent);transition:background .25s}
+.ilu-rem i::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .25s}
+.ilu-rem[aria-pressed=true]{border-color:color-mix(in srgb,currentColor 55%,transparent);background:color-mix(in srgb,currentColor 12%,transparent)}
+.ilu-rem[aria-pressed=true] i{background:#3FA266}
+.ilu-rem[aria-pressed=true] i::after{transform:translateX(14px)}
+.ilu-rem-w{display:flex;justify-content:center}
+</style>
+<script>
+(function () {
+  var a = document.getElementById('rsvp'); if (!a) return;
+  var T = { es: ['Quiero recordatorios por WhatsApp', 'Y quiero recibir recordatorios por WhatsApp 🔔'], en: ['Send me WhatsApp reminders', 'And I would like WhatsApp reminders 🔔'] };
+  var w = document.createElement('div'); w.className = 'ilu-rem-w';
+  var b = document.createElement('button'); b.type = 'button'; b.className = 'ilu-rem'; b.setAttribute('aria-pressed', 'false');
+  b.innerHTML = '<i aria-hidden="true"></i><span></span>'; w.appendChild(b);
+  var row = a.closest('.row') || a; row.parentNode.insertBefore(w, row);
+  var L = function () { return document.documentElement.lang === 'en' ? 'en' : 'es'; };
+  var paint = function () { b.querySelector('span').textContent = T[L()][0]; };
+  b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+  new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); paint();
+  // the guest's own message carries the yes, so the reminder list only has people who asked for it
+  a.addEventListener('click', function () {
+    try { var u = new URL(a.href), t = (u.searchParams.get('text') || '').split('\\n').filter(function (x) { return x.indexOf('🔔') < 0; }).join('\\n');
+      u.searchParams.set('text', b.getAttribute('aria-pressed') === 'true' ? t + '\\n' + T[L()][1] : t); a.href = u.toString(); } catch (e) {}
+  }, true);
+})();
+</script>
+"""
+
 DEMO_NAV = """
 <div id="ilu-nav" hidden>
 <style>
@@ -161,6 +193,7 @@ for src, out, title, desc in PAGES:
     if out in DEMO_INFO:
         body += DEMO_NAV.replace('__COL__', DEMO_INFO[out][0]).replace('__DIS__', DEMO_INFO[out][1]).replace('__DISN__', DIS_NAMES.get(DEMO_INFO[out][1], ''))
         body += FREEZE
+        body += REMIND
     open(os.path.join(HERE, out, 'index.html'), 'w', encoding='utf-8').write(head + body + '\n</body>\n</html>\n')
     print('built', out or '(root)')
 
