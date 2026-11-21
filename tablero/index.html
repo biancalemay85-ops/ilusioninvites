@@ -58,6 +58,9 @@
   #toast { position: fixed; left: 50%; bottom: 20px; transform: translate(-50%, 30px); opacity: 0; transition: .3s; background: var(--plum); color: #F6EDE4; padding: 10px 18px; border-radius: 99px; z-index: 20; font-size: 14px; }
   #toast.on { opacity: 1; transform: translate(-50%, 0); }
   @media (max-width: 640px) { header { flex-wrap: wrap; } #q { order: 3; width: 100%; } .board { grid-auto-columns: 84vw; scroll-snap-type: x mandatory; } .col { scroll-snap-align: start; } dl { grid-template-columns: 100px 1fr; } }
+details.fi { margin-top: 12px; } details.fi summary { cursor: pointer; color: var(--gold); font-size: 14px; }
+  details.fi pre { white-space: pre-wrap; font: 400 13.5px/1.5 Jost, sans-serif; background: #fff; border-radius: 10px; padding: 12px; box-shadow: inset 0 0 0 1px var(--line); max-height: 60vh; overflow: auto; }
+  .card .tag.fi { background: #EFE3F0; color: #5A2442; }
 .refnote { margin: 0; font-size: 14px; color: #6F5A4E; background: #FBF3E4; border-radius: 8px; padding: 8px 10px; }
 </style>
 </head>
@@ -95,13 +98,13 @@
       var cards = list.filter(function (o) { return (o.etapa || 'consulta') === s[0]; }).sort(function (a, b) { return String(b.recibido).localeCompare(String(a.recibido)); });
       return '<section class="col"><h2>' + esc(s[1]) + ' <b>' + cards.length + '</b></h2>' + (cards.length ? cards.map(function (o) {
         var when = o.fecha_evento ? 'Evento ' + esc(o.fecha_evento) : 'Recibido ' + esc(String(o.recibido).slice(0, 10));
-        return '<button class="card" data-id="' + esc(o.pedido) + '"><small>' + esc(o.pedido) + ' · ' + when + '</small><b>' + esc(o.quien_celebra || o.contacto) + '</b><span>' + esc(o.evento || '') + (o.ciudad ? ' · ' + esc(o.ciudad) : '') + '</span>' + (o.entrega_estimada ? '<br><span class="tag">Lista el ' + esc(o.entrega_estimada) + '</span>' : '') + (/whatsapp|ambos|both/i.test(o.aviso || '') ? '<br><span class="tag wa">Prefiere WhatsApp</span>' : '') + (o.referido ? '<br><span class="tag">Recomendada por ' + esc(o.referido) + '</span>' : '') + '</button>';
+        return '<button class="card" data-id="' + esc(o.pedido) + '"><small>' + esc(o.pedido) + ' · ' + when + '</small><b>' + esc(o.quien_celebra || o.contacto) + '</b><span>' + esc(o.evento || '') + (o.ciudad ? ' · ' + esc(o.ciudad) : '') + '</span>' + (o.entrega_estimada ? '<br><span class="tag">Lista el ' + esc(o.entrega_estimada) + '</span>' : '') + (/whatsapp|ambos|both/i.test(o.aviso || '') ? '<br><span class="tag wa">Prefiere WhatsApp</span>' : '') + (o.referido ? '<br><span class="tag">Recomendada por ' + esc(o.referido) + '</span>' : '') + (o.ficha ? '<br><span class="tag fi">Ficha completa ✓</span>' : '') + '</button>';
       }).join('') : '<p class="empty">—</p>') + '</section>';
     }).join('');
   }
   function digits(s) { return String(s || '').replace(/\D/g, ''); }
   // WhatsApp needs the country code: 10 digits alone = Mexico (52) or Canada/US (1) by the client's language
-  function waNum(o) { var d = digits(o.whatsapp); if (d.length === 10) d = (o.idioma === 'en' ? '1' : '52') + d; return d.length >= 11 ? d : ''; }
+  function waNum(o) { var d = digits(o.whatsapp); if (d.length === 10) d = (o.idioma === 'en' || o.moneda === 'CAD' ? '1' : '52') + d; return d.length >= 11 ? d : ''; }
   var moved = '';
   function open(o) {
     cur = o;
@@ -114,6 +117,7 @@
         (wa ? '<a class="btn ghost wa" id="wa-btn" target="_blank" rel="noopener" href="https://wa.me/' + wa + '?text=' + encodeURIComponent('Hola ' + String(o.contacto || '').split(' ')[0] + ', te escribe Ilusión Invites sobre tu pedido ' + o.pedido + ' ✨') + '">WhatsApp</a>' : '') +
         (o.correo ? '<a class="btn ghost" href="mailto:' + esc(o.correo) + '?subject=' + encodeURIComponent('Tu pedido ' + o.pedido + ' · Ilusión Invites') + '">Correo</a>' : '') +
         (o.carpeta ? '<a class="btn ghost" target="_blank" href="' + esc(o.carpeta) + '">Carpeta en Drive</a>' : '') + '</div></div>' +
+      (o.ficha ? '<div class="sec"><h4>Ficha completa</h4><p class="phh" id="fi-when">Cargando respuestas…</p><div class="contact"><button class="btn" id="fi-ai" disabled>Copiar para crear la invitación</button><button class="btn ghost" id="fi-copy" disabled>Copiar todo</button></div><details class="fi"><summary>Ver todas las respuestas</summary><pre id="fi-txt"></pre></details></div>' : '') +
       (o.fotos > 0 ? '<div class="sec"><h4>Fotos (' + esc(o.fotos) + ')</h4><div id="ph"><p class="empty">Cargando fotos…</p></div></div>' : '') +
       '<div class="sec"><h4>Seguimiento</h4><div class="f">' +
         '<label class="full">Etapa<select id="e-etapa">' + opts + '</select></label>' +
@@ -140,11 +144,18 @@
       b.textContent = 'WhatsApp · aviso de «' + stageName(o.etapa) + '»';
       if (moved === o.pedido) { moved = ''; b.classList.add('pulse'); var n = document.createElement('p'); n.className = 'wa-note'; n.textContent = (/whatsapp|ambos|both/i.test(o.aviso || '') ? 'Prefiere WhatsApp: ' : '') + 'toca el botón verde para mandarle este aviso por WhatsApp.'; b.parentNode.after(n); b.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
     }).catch(function () {});
+    if (o.ficha) api('ficha', { fid: o.ficha }).then(function (r) {
+      if (cur !== o) return; var t = r.data.texto || '';
+      $('fi-txt').textContent = t; $('fi-when').textContent = 'Última versión: ' + r.data.actualizado + ' · ' + t.split('\n').length + ' renglones';
+      var ai = 'Crea la invitación de Ilusión Invites para el pedido ' + o.pedido + ' con esta ficha. Las fotos del cliente están en: ' + (r.data.carpeta || o.carpeta) + '\n\n' + t;
+      var cp = function (b, txt, ok) { b.disabled = false; b.onclick = function () { (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () { toast(ok); }, function () { var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); toast(ok); }); }; };
+      cp($('fi-ai'), ai, 'Copiado ✓ Pégalo en tu chat con Claude'); cp($('fi-copy'), t, 'Respuestas copiadas ✓');
+    }).catch(function (e) { var el = $('fi-when'); if (el) el.textContent = 'No se pudo cargar la ficha: ' + e.message; });
     if (o.fotos > 0) api('photos', { carpeta: o.carpeta }).then(function (r) { var el = $('ph'); if (el && cur === o) el.innerHTML = photoGroups(r.data); }).catch(function () { var el = $('ph'); if (el) el.innerHTML = '<p class="empty">No se pudieron cargar las fotos. Ábrelas en la carpeta de Drive.</p>'; });
   }
   function photoGroups(ps) {
     var one = function (p) { return '<a target="_blank" rel="noopener" href="' + esc(p.url) + '" style="background-image:url(\'' + esc(p.thumb) + '\')" title="' + esc(p.name) + '"></a>'; };
-    var g = [['inv', 'Para usar en la invitación'], ['insp', 'Inspiración de colores y estilo']].map(function (k) {
+    var g = [['portada', 'Foto de portada'], ['galeria', 'Galería de la invitación'], ['video', 'Para el video de la pantalla'], ['inv', 'Para usar en la invitación'], ['insp', 'Inspiración de colores y estilo'], ['otras', 'Otras']].map(function (k) {
       var list = ps.filter(function (p) { return (p.tipo || 'insp') === k[0]; });
       return list.length ? '<p class="phh">' + k[1] + ' · ' + list.length + '</p><div class="ph">' + list.map(one).join('') + '</div>' : '';
     }).join('');

@@ -106,11 +106,64 @@ details.paste textarea{margin-top:8px}
 .prog .track div{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .4s}
 .send{flex:none;border:0;border-radius:99px;padding:14px 22px;font:500 15.5px 'Jost';color:#fff;background:var(--plum);cursor:pointer;box-shadow:0 10px 20px -12px var(--plum)}
 .send[disabled]{opacity:.55}
-.done{display:none;text-align:center;padding:30px 10px}
+.done{display:none;text-align:center;padding:30px 0 10px}
 .done.on{display:block}
-.done h2{font:italic 500 38px/1.1 'Cormorant Garamond',serif;margin:8px 0}
-.done p{color:var(--soft);margin:0 0 6px}
-.done button{margin-top:14px;border:0;background:none;color:var(--gold);font:500 15px 'Jost';cursor:pointer}
+.done h2{font:italic 500 40px/1.1 'Cormorant Garamond',serif;margin:8px 0 4px}
+.done .sub{color:var(--soft);margin:0 0 4px;font-size:15.5px}
+.done .num{display:inline-block;margin:8px 0 0;font:600 12px 'Cinzel',serif;letter-spacing:.2em;color:var(--gold)}
+.next{text-align:left;background:var(--card);border-radius:24px;padding:20px 18px 8px;margin:20px 0 6px;box-shadow:0 0 0 1px var(--line),0 22px 36px -28px rgba(70,40,20,.4)}
+.next h3{margin:0 0 4px;font:italic 500 27px/1.1 'Cormorant Garamond',serif}
+.next .pkn{margin:0 0 14px;color:var(--soft);font-size:14px}
+.next ol{list-style:none;margin:0;padding:0;counter-reset:n}
+.next li{position:relative;padding:0 0 14px 42px;counter-increment:n;font-size:15px;line-height:1.4}
+.next li::before{content:counter(n);position:absolute;left:0;top:-2px;width:28px;height:28px;border-radius:50%;background:var(--bg2);color:var(--gold);font:600 13px/28px 'Cinzel',serif;text-align:center}
+.next li small{display:block;color:var(--soft);font-size:13px;margin-top:2px}
+.next .warn{background:#F8EFE3;border-radius:12px;padding:10px 12px;font-size:14px;color:var(--soft);margin:0 0 14px}
+.done button{margin-top:10px;border:0;background:none;color:var(--gold);font:500 15px 'Jost';cursor:pointer}
+/* date + time pickers */
+.pickf{display:flex;align-items:center;gap:10px;width:100%;min-height:50px;padding:12px 15px;border:1px solid var(--line);border-radius:14px;background:var(--bg);font:400 16px 'Jost',sans-serif;color:var(--ink);text-align:left;cursor:pointer}
+.pickf span{flex:1;min-width:0}
+.pickf span.ph{color:#B3A39A}
+.pickf svg{flex:none;width:20px;height:20px;color:var(--gold)}
+.pickf:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.f.miss .pickf{box-shadow:0 0 0 2px rgba(160,65,75,.35)}
+.row .pickf{min-height:42px;padding:8px 10px;font-size:15px;border-radius:12px;gap:6px}
+.row .pickf svg{width:16px;height:16px}
+.veil{position:fixed;inset:0;background:rgba(58,42,38,.38);opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
+.veil.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:440px;margin:0 auto;background:var(--card);border-radius:28px 28px 0 0;padding:16px 18px max(18px,env(safe-area-inset-bottom));box-shadow:0 -20px 50px -20px rgba(60,30,10,.4);transform:translateY(105%);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.sheet.on{transform:none}
+.sheet:not(.on){visibility:hidden;transition:transform .32s,visibility 0s .32s}
+@media (min-width:700px){.sheet{bottom:50%;border-radius:28px;transform:translateY(60%) scale(.96);opacity:0;transition:.25s}.sheet.on{transform:translateY(50%);opacity:1}}
+.sheet .grab{width:42px;height:4px;border-radius:9px;background:var(--line);margin:0 auto 12px}
+.sheet .tt{font:600 11.5px 'Cinzel',serif;letter-spacing:.26em;color:var(--gold);text-align:center;margin:0 0 4px}
+.sheet .big{font:italic 500 34px/1.1 'Cormorant Garamond',serif;text-align:center;margin:0 0 12px;min-height:38px}
+.cal-h{display:flex;align-items:center;justify-content:space-between;margin:0 0 6px}
+.cal-h b{font:italic 600 24px 'Cormorant Garamond',serif;text-transform:capitalize}
+.cal-h button{width:40px;height:40px;border:0;border-radius:50%;background:var(--bg);color:var(--ink);font-size:20px;cursor:pointer}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.cal i{font-style:normal;font:600 10.5px 'Cinzel',serif;letter-spacing:.1em;color:var(--soft);padding:6px 0}
+.cal button{aspect-ratio:1;max-height:46px;border:0;border-radius:50%;background:none;font:400 16px 'Jost';color:var(--ink);cursor:pointer}
+.cal button.today{box-shadow:inset 0 0 0 1.5px var(--gold2)}
+.cal button.on{background:var(--plum);color:#fff}
+.cal button[disabled]{color:#CFC3BB;cursor:default}
+.tgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:0 0 12px}
+.tgrid button{border:0;border-radius:12px;padding:10px 0;background:var(--bg);font:400 16px 'Jost';color:var(--ink);cursor:pointer;box-shadow:inset 0 0 0 1px var(--line)}
+.tgrid button.on{background:var(--plum);color:#fff;box-shadow:none}
+.tlab{font-size:12.5px;color:var(--soft);margin:0 0 6px}
+.ampm{display:flex;gap:6px;margin:0 0 14px}
+.ampm button{flex:1;border:0;border-radius:99px;padding:11px;background:var(--bg);font:500 15px 'Jost';color:var(--ink);cursor:pointer;box-shadow:inset 0 0 0 1px var(--line)}
+.ampm button.on{background:var(--plum);color:#fff;box-shadow:none}
+.sh-b{display:flex;gap:10px;margin-top:10px}
+.sh-b button{flex:1;border:0;border-radius:99px;padding:14px;font:500 15.5px 'Jost';cursor:pointer}
+.sh-b .ok{background:var(--plum);color:#fff}
+.sh-b .clr{background:none;color:var(--soft);flex:none;padding:14px 10px}
+/* "Otro": room to say what */
+.otro{margin-top:8px}
+/* photos: drag from the computer */
+.pickbtn .dt{display:none}
+@media (hover:hover) and (pointer:fine){.pickbtn .dt{display:inline}}
+.f.drag .pickbtn{border-color:var(--plum);background:#F6EDF2}
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;transition:.3s;pointer-events:none;max-width:88vw;text-align:center;z-index:9}
 .toast.on{opacity:1;transform:translateX(-50%)}
 [hidden]{display:none!important}
@@ -141,9 +194,10 @@ details.paste textarea{margin-top:8px}
 
   <div class="done" id="done">
     <img class="seal" src="../fotos/img/sello-ilusion-oro.webp" alt="">
-    <h2>¡Gracias! 🤍</h2>
-    <p>Recibimos tu información.</p>
-    <p id="done-p">En menos de 24 horas te escribimos para confirmar tu paquete y enviarte los datos del anticipo.</p>
+    <h2 id="done-t">¡Gracias! 🤍</h2>
+    <p class="sub" id="done-s">Recibimos tu información.</p>
+    <span class="num" id="done-n"></span>
+    <div class="next"><h3>Lo que sigue</h3><p class="pkn" id="done-pk"></p><p class="warn" id="done-w" hidden></p><ol id="done-l"></ol></div>
     <button type="button" id="again">Volver para completar o corregir</button>
   </div>
 </main>
@@ -153,6 +207,8 @@ details.paste textarea{margin-top:8px}
 </div></div>
 <div class="toast" id="toast"></div>
 <input type="file" id="file" accept="image/*" multiple hidden>
+<div class="veil" id="veil"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
 <script>
 (function () {
   var ENDPOINT = window.ILU_ORDER_ENDPOINT || 'https://script.google.com/macros/s/AKfycbwLSkVg670lTXk73S5B_zP-ay8Kpwj7xFRDBXJPta3QF27T_Jy1zRBG3t_n2oZhiuc/exec';
@@ -193,6 +249,8 @@ details.paste textarea{margin-top:8px}
     otra: { n: 'Otra celebración', short: 'Otra', h: 'sobre tu evento', quien: '¿Quién celebra?', ph: 'Tu nombre o el de la familia', falta: 'quién celebra', rel: ['Yo celebro', 'Familiar', 'Amigo(a)', 'Organizador(a)'], demos: [],
       it: ['Llegada', 'Comida', 'Fiesta', 'Fin'], ent: ['Al empezar', 'Otro momento'], son: ['En la invitación', 'Durante el evento'] }
   };
+  // choosing one of these opens a box to say which
+  var OTRO = { 'Otro': '¿Cuál? Escríbelo aquí', 'Otra': '¿Cuál? Escríbelo aquí', 'Otro momento': '¿En qué momento?', 'Temático': '¿Qué tema? Ej. años 20, hawaiano, vaquero…', 'Quiero otras fechas': '¿Cuándo quieres los recordatorios?' };
   var EVK = ['boda', 'xv', 'cumple', 'baby', 'navidad', 'nuevo', 'empresa', 'otra'];
   var SLUG = { bodas: 'boda', 'xv-anos': 'xv', cumpleanos: 'cumple', 'baby-shower': 'baby', 'ano-nuevo': 'nuevo', empresas: 'empresa', otras: 'otra' };
 
@@ -290,7 +348,7 @@ details.paste textarea{margin-top:8px}
 
   var $ = function (id) { return document.getElementById(id); };
   var R = function (x) { return typeof x === 'function' ? x() : x; };
-  var st = { v: {}, fid: '', fotos: {}, enviado: '', pk: '', ev: '', ini: {} };
+  var st = { v: {}, fid: '', fotos: {}, enviado: '', pk: '', ev: '', ini: {}, pedido: '' };
   try { var sv = JSON.parse(localStorage.getItem(KEY) || 'null'); if (sv) st = Object.assign(st, sv); } catch (e) {}
   // someone who started on the first XV link (ficha/xv) keeps everything
   if (!localStorage.getItem(KEY)) try { var old = JSON.parse(localStorage.getItem('ilu-ficha-xv') || 'null'); if (old) { st = Object.assign(st, old, { pk: 'experiencia', ev: 'xv', ini: { itinerario: 'xv' } }); } } catch (e) {}
@@ -355,7 +413,10 @@ details.paste textarea{margin-top:8px}
     var w = document.createElement('div'); w.className = 'f'; w.dataset.k = k;
     var lab = esc(label) + (o.req ? ' <em>*</em>' : '');
     var hint = hintT ? '<span class="hint">' + esc(hintT) + '</span>' : '';
-    if (/^(text|tel|email|date|time|number)$/.test(type)) {
+    if (type === 'date' || type === 'time') {
+      w.innerHTML = '<span class="lab" id="l-' + k + '">' + lab + '</span>' + hint;
+      w.appendChild(pickField(type, function () { return st.v[k] || ''; }, function (v) { st.v[k] = v; w.classList.remove('miss'); save(); }, label));
+    } else if (/^(text|tel|email|number)$/.test(type)) {
       w.innerHTML = '<label for="i-' + k + '">' + lab + '</label>' + hint + '<input id="i-' + k + '" type="' + type + '"' + (ph ? ' placeholder="' + esc(ph) + '"' : '') + (o.ac ? ' autocomplete="' + o.ac + '"' : '') + (type === 'number' ? ' inputmode="numeric" min="0"' : '') + '>';
       var inp = w.querySelector('input'); inp.value = st.v[k] || '';
       inp.addEventListener('input', function () { st.v[k] = inp.value; w.classList.remove('miss'); save(); });
@@ -365,8 +426,15 @@ details.paste textarea{margin-top:8px}
       ta.addEventListener('input', function () { st.v[k] = ta.value; save(); });
     } else if (type === 'chips' || type === 'multi') {
       var opts = R(o.o);
-      w.innerHTML = '<span class="lab">' + lab + '</span>' + hint + '<div class="chips">' + opts.map(function (x) { return '<button type="button">' + esc(x) + '</button>'; }).join('') + '</div>';
-      var paint = function () { var cur = st.v[k]; w.querySelectorAll('button').forEach(function (b) { var on = type === 'multi' ? (cur || []).indexOf(b.textContent) > -1 : cur === b.textContent; b.setAttribute('aria-pressed', String(on)); }); };
+      var hasOtro = opts.some(function (x) { return OTRO[x]; });
+      w.innerHTML = '<span class="lab">' + lab + '</span>' + hint + '<div class="chips">' + opts.map(function (x) { return '<button type="button">' + esc(x) + '</button>'; }).join('') + '</div>' + (hasOtro ? '<input type="text" class="otro" hidden>' : '');
+      var ot = w.querySelector('.otro');
+      if (ot) { ot.value = st.v[k + '_otro'] || ''; ot.addEventListener('input', function () { st.v[k + '_otro'] = ot.value; save(); }); }
+      var paint = function () {
+        var cur = st.v[k], pick = null;
+        w.querySelectorAll('.chips button').forEach(function (b) { var on = type === 'multi' ? (cur || []).indexOf(b.textContent) > -1 : cur === b.textContent; b.setAttribute('aria-pressed', String(on)); if (on && OTRO[b.textContent]) pick = b.textContent; });
+        if (ot) { var was = ot.hidden; ot.hidden = !pick; if (pick) ot.placeholder = OTRO[pick]; if (was && pick) ot.focus(); }
+      };
       w.querySelector('.chips').addEventListener('click', function (e) {
         var b = e.target.closest('button'); if (!b) return; var x = b.textContent;
         if (type === 'multi') { var a = (st.v[k] || []).slice(), i = a.indexOf(x); if (i > -1) a.splice(i, 1); else a.push(x); st.v[k] = a; }
@@ -395,6 +463,7 @@ details.paste textarea{margin-top:8px}
         st.v[k].forEach(function (r, ri) {
           var row = document.createElement('div'); row.className = 'row'; row.style.gridTemplateColumns = tmpl;
           o.cols.forEach(function (c, ci) {
+            if (c[2] === 'time') { row.appendChild(pickField('time', function () { return st.v[k][ri][ci] || ''; }, function (v) { st.v[k][ri][ci] = v; save(); }, (r[0] || c[1]) + ': hora', 'Hora')); return; }
             var inp = document.createElement('input'); inp.type = c[2]; inp.value = r[ci] || ''; inp.setAttribute('aria-label', c[1]);
             if (o.stack) inp.placeholder = o.ph[ci]; else if (o.ph && ri === 0) inp.placeholder = o.ph[ci];
             if (c[2] === 'number') { inp.inputMode = 'numeric'; inp.min = '0'; }
@@ -420,11 +489,74 @@ details.paste textarea{margin-top:8px}
       };
       draw();
     } else if (type === 'photos') {
-      w.innerHTML = '<span class="lab">' + lab + '</span>' + hint + '<button type="button" class="pickbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Elegir fotos</button><div class="photos"></div><div class="count"></div>';
+      w.innerHTML = '<span class="lab">' + lab + '</span>' + hint + '<button type="button" class="pickbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Elegir fotos<span class="dt">&nbsp;o arrastrarlas aquí</span></button><div class="photos"></div><div class="count"></div>';
       w.querySelector('.pickbtn').onclick = function () { pickFor = { g: o.g, max: o.max, w: w }; $('file').multiple = o.max > 1; $('file').click(); };
+      var dn = 0;
+      w.addEventListener('dragenter', function (e) { e.preventDefault(); dn++; w.classList.add('drag'); });
+      w.addEventListener('dragover', function (e) { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+      w.addEventListener('dragleave', function () { if (--dn <= 0) { dn = 0; w.classList.remove('drag'); } });
+      w.addEventListener('drop', function (e) { e.preventDefault(); dn = 0; w.classList.remove('drag'); upload({ g: o.g, max: o.max, w: w }, Array.prototype.filter.call(e.dataTransfer.files || [], function (f) { return /^image\//.test(f.type); })); });
       countPhotos(w, o.g);
     }
     return w;
+  }
+
+  /* ---------- date + time pickers (our own, so they look the same on every phone) ---------- */
+  var MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  var ICON = { date: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="4"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>', time: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>' };
+  function fmtDate(v) { var m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(v || ''); if (!m) return ''; var d = new Date(+m[1], m[2] - 1, +m[3]); var t = d.toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); return t.charAt(0).toUpperCase() + t.slice(1); }
+  function fmtTime(v) { var m = /^(\d\d):(\d\d)$/.exec(v || ''); if (!m) return ''; var h = +m[1]; return ((h % 12) || 12) + ':' + m[2] + (h < 12 ? ' AM' : ' PM'); }
+  function pickField(type, get, set, title, ph) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'pickf'; b.setAttribute('aria-label', title);
+    var paint = function () { var v = get(), t = type === 'date' ? fmtDate(v) : fmtTime(v); b.innerHTML = '<span' + (t ? '' : ' class="ph"') + '>' + esc(t || ph || (type === 'date' ? 'Elegir fecha' : 'Elegir hora')) + '</span>' + ICON[type]; };
+    b.onclick = function () { (type === 'date' ? openDate : openTime)(get(), function (v) { set(v); paint(); }, title); };
+    paint(); return b;
+  }
+  var sheetDone = null;
+  function sheetOpen(html) { var sh = $('sheet'); sh.innerHTML = '<div class="grab"></div>' + html; sh.classList.add('on'); $('veil').classList.add('on'); }
+  function sheetClose() { $('sheet').classList.remove('on'); $('veil').classList.remove('on'); sheetDone = null; }
+  $('veil').onclick = sheetClose;
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('sheet').classList.contains('on')) sheetClose(); });
+  function openDate(v, cb, title) {
+    var now = new Date(), sel = /^(\d{4})-(\d\d)-(\d\d)$/.exec(v || ''), y = sel ? +sel[1] : now.getFullYear(), m = sel ? sel[2] - 1 : now.getMonth();
+    var iso = function (yy, mm, dd) { return yy + '-' + ('0' + (mm + 1)).slice(-2) + '-' + ('0' + dd).slice(-2); };
+    var todayIso = iso(now.getFullYear(), now.getMonth(), now.getDate());
+    function draw() {
+      var first = (new Date(y, m, 1).getDay() + 6) % 7, days = new Date(y, m + 1, 0).getDate(), cells = '';
+      for (var i = 0; i < first; i++) cells += '<span></span>';
+      for (var d = 1; d <= days; d++) { var id = iso(y, m, d); cells += '<button type="button" data-d="' + id + '" class="' + (id === v ? 'on' : '') + (id === todayIso ? ' today' : '') + '"' + (id < todayIso ? ' disabled' : '') + '>' + d + '</button>'; }
+      sheetOpen('<p class="tt">' + esc(title.toUpperCase()) + '</p><p class="big">' + esc(fmtDate(v) || 'Elige el día') + '</p>' +
+        '<div class="cal-h"><button type="button" data-n="-1" aria-label="Mes anterior">‹</button><b>' + MES[m] + ' ' + y + '</b><button type="button" data-n="1" aria-label="Mes siguiente">›</button></div>' +
+        '<div class="cal"><i>L</i><i>M</i><i>M</i><i>J</i><i>V</i><i>S</i><i>D</i>' + cells + '</div>' +
+        '<div class="sh-b"><button type="button" class="clr">Borrar</button><button type="button" class="ok">Listo</button></div>');
+      var sh = $('sheet');
+      sh.querySelectorAll('[data-n]').forEach(function (b) { b.onclick = function () { m += +b.dataset.n; if (m < 0) { m = 11; y--; } if (m > 11) { m = 0; y++; } draw(); }; });
+      sh.querySelectorAll('[data-d]').forEach(function (b) { b.onclick = function () { v = b.dataset.d; cb(v); sheetClose(); }; });
+      sh.querySelector('.clr').onclick = function () { cb(''); sheetClose(); };
+      sh.querySelector('.ok').onclick = sheetClose;
+    }
+    draw();
+  }
+  function openTime(v, cb, title) {
+    var mm = /^(\d\d):(\d\d)$/.exec(v || ''), H = mm ? +mm[1] : null, M = mm ? +mm[2] : 0;
+    var h12 = H == null ? null : ((H % 12) || 12), pm = H == null ? true : H >= 12;
+    function val() { return h12 == null ? '' : ('0' + ((h12 % 12) + (pm ? 12 : 0))).slice(-2) + ':' + ('0' + M).slice(-2); }
+    function draw() {
+      var hs = '', ms = '';
+      for (var h = 1; h <= 12; h++) hs += '<button type="button" data-h="' + h + '" class="' + (h === h12 ? 'on' : '') + '">' + h + '</button>';
+      for (var q = 0; q < 60; q += 5) ms += '<button type="button" data-m="' + q + '" class="' + (q === M && h12 != null ? 'on' : '') + '">:' + ('0' + q).slice(-2) + '</button>';
+      sheetOpen('<p class="tt">' + esc(title.toUpperCase()) + '</p><p class="big">' + esc(fmtTime(val()) || 'Elige la hora') + '</p>' +
+        '<div class="ampm"><button type="button" data-p="0" class="' + (!pm ? 'on' : '') + '">AM · mañana</button><button type="button" data-p="1" class="' + (pm ? 'on' : '') + '">PM · tarde y noche</button></div>' +
+        '<p class="tlab">Hora</p><div class="tgrid">' + hs + '</div><p class="tlab">Minutos</p><div class="tgrid">' + ms + '</div>' +
+        '<div class="sh-b"><button type="button" class="clr">Borrar</button><button type="button" class="ok">Listo</button></div>');
+      var sh = $('sheet');
+      sh.querySelectorAll('[data-h]').forEach(function (b) { b.onclick = function () { h12 = +b.dataset.h; cb(val()); draw(); }; });
+      sh.querySelectorAll('[data-m]').forEach(function (b) { b.onclick = function () { M = +b.dataset.m; if (h12 == null) h12 = 12; cb(val()); draw(); }; });
+      sh.querySelectorAll('[data-p]').forEach(function (b) { b.onclick = function () { pm = b.dataset.p === '1'; if (h12 != null) cb(val()); draw(); }; });
+      sh.querySelector('.clr').onclick = function () { cb(''); sheetClose(); };
+      sh.querySelector('.ok').onclick = sheetClose;
+    }
+    draw();
   }
 
   /* ---------- photos: upload as soon as they are chosen ---------- */
@@ -439,10 +571,12 @@ details.paste textarea{margin-top:8px}
     });
   }
   function ensureFicha() { return st.fid ? Promise.resolve(st.fid) : sendDatos().then(function () { return st.fid; }); }
-  $('file').onchange = function () {
-    var files = Array.prototype.slice.call(this.files || []); this.value = '';
-    if (!files.length || !pickFor) return;
-    var P = pickFor, left = P.max - (st.fotos[P.g] || 0);
+  // a photo dropped outside a photo box should not open in the browser
+  window.addEventListener('dragover', function (e) { e.preventDefault(); }); window.addEventListener('drop', function (e) { e.preventDefault(); });
+  $('file').onchange = function () { var files = Array.prototype.slice.call(this.files || []); this.value = ''; if (pickFor && files.length) upload(pickFor, files); };
+  function upload(P, files) {
+    if (!files.length) { toast('Solo se pueden subir fotos (JPG, PNG o HEIC).'); return; }
+    var left = P.max - (st.fotos[P.g] || 0);
     if (left <= 0 && P.max === 1) left = 1; // replacing the cover is fine
     if (left <= 0) { toast('Ya enviaste las ' + P.max + ' fotos de esta parte.'); return; }
     if (files.length > left) { toast('Aquí van máximo ' + P.max + '. Tomamos las primeras ' + left + '.'); files = files.slice(0, left); }
@@ -462,7 +596,7 @@ details.paste textarea{margin-top:8px}
       return Promise.all([next(), next()]);
     }).catch(function () { jobs.forEach(function (j) { j.d.className = 'err'; j.d.querySelector('i').textContent = '!'; }); toast('Sin conexión. Inténtalo otra vez en un momento.'); })
       .then(function () { busy--; progress(); });
-  };
+  }
 
   /* ---------- progress (only the questions of the chosen package) ---------- */
   function filled(f) {
@@ -498,12 +632,15 @@ details.paste textarea{margin-top:8px}
         if (f[1] === 'rows') {
           var rows = (v || []).filter(function (r) { return r.some(function (c) { return String(c).trim(); }); });
           out.push(lab + ':' + (rows.length ? '' : ' —'));
-          rows.forEach(function (r) { out.push('  · ' + r.map(function (c) { return String(c).trim() || '—'; }).join(' | ')); });
+          rows.forEach(function (r) { out.push('  · ' + r.map(function (c, ci) { var t = String(c).trim(); return (f[3].cols[ci][2] === 'time' ? fmtTime(t) : t) || '—'; }).join(' | ')); });
           if (f[0] === 'invitados' && rows.length) { var seats = rows.reduce(function (a, r) { return a + (parseInt(r[2], 10) || 0); }, 0); out.push('  ' + rows.length + ' invitaciones · ' + seats + ' lugares'); }
           return;
         }
         if (Array.isArray(v)) v = v.join(', ');
-        out.push(lab + ': ' + (String(v || '').trim() || '—'));
+        if (f[1] === 'date' && v) v = fmtDate(v) + ' (' + v + ')';
+        if (f[1] === 'time' && v) v = fmtTime(v);
+        var ot = String(st.v[f[0] + '_otro'] || '').trim();
+        out.push(lab + ': ' + (String(v || '').trim() || '—') + (ot ? ' → ' + ot : ''));
       });
       out.push('');
     });
@@ -521,14 +658,43 @@ details.paste textarea{margin-top:8px}
     if (miss) { miss.scrollIntoView({ behavior: 'smooth', block: 'center' }); toast('Solo falta tu nombre, tu WhatsApp y ' + C.E.falta + '.'); return; }
     var btn = $('send'); btn.disabled = true; btn.textContent = 'Enviando…';
     var pct = progress();
-    sendDatos().then(function () { return post({ ficha: 'fin', fid: st.fid, parcial: pct < 60 }); }).then(function (r) {
+    sendDatos().then(function () { return post({ ficha: 'fin', fid: st.fid, parcial: pct < 60, resumen: { paquete: pkName(), evento_n: C.E.n, pais: st.v.pais || '' } }); }).then(function (r) {
       if (!r.ok) throw 0;
-      st.enviado = new Date().toLocaleString('es-MX', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); save();
-      $('done-p').textContent = pkO().help ? 'En menos de 24 horas te escribimos con el paquete ideal para tu evento.' : 'En menos de 24 horas te escribimos para confirmar tu paquete y enviarte los datos del anticipo.';
-      ['head', 'chosen', 'steps', 'help-note'].forEach(function (id) { $(id).hidden = true; }); form.hidden = true; $('done').classList.add('on'); window.scrollTo({ top: 0, behavior: 'smooth' });
+      st.enviado = new Date().toLocaleString('es-MX', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); if (r.pedido) st.pedido = r.pedido; save();
+      thanks(pct);
     }).catch(function () { toast('No se pudo enviar. Revisa tu conexión e inténtalo otra vez. Tus respuestas siguen guardadas.'); })
       .then(function () { btn.disabled = false; btn.textContent = 'Enviar'; progress(); });
   };
+  // the thank-you says exactly what comes next for the package they chose and what they already sent
+  function thanks(pct) {
+    var p = pkO(), lvl = p.help ? -1 : p.lvl, first = String(st.v.contacto || '').trim().split(/\s+/)[0];
+    var guests = (st.v.invitados || []).filter(function (r) { return String(r[0] || '').trim(); }).length;
+    var fotos = (st.fotos.portada || 0) + (st.fotos.galeria || 0);
+    $('done-t').textContent = '¡Gracias' + (first ? ', ' + first : '') + '! 🤍';
+    $('done-s').textContent = 'Recibimos tu información para ' + (p.help ? 'tu ' + C.E.n.toLowerCase() : 'tu paquete ' + p.n) + '.';
+    $('done-n').textContent = st.pedido ? 'PEDIDO ' + st.pedido : '';
+    $('done-pk').textContent = p.help ? C.E.n + ' · paquete por definir' : 'Paquete ' + p.n + ' · ' + C.E.n;
+    $('done-w').hidden = pct >= 60; $('done-w').textContent = 'Te faltan algunas respuestas. Vuelve cuando quieras, complétalas y envíalo otra vez: se actualiza lo mismo.';
+    var L = [];
+    if (lvl < 0) {
+      L.push(['En menos de 24 horas te escribimos por WhatsApp con el paquete ideal para tu evento.', 'Con lo que nos contaste vemos qué te conviene más.']);
+      L.push(['Cuando lo elijas, aquí mismo aparecen las preguntas que falten.', 'Tus respuestas se quedan guardadas.']);
+    } else {
+      L.push(['En menos de 24 horas te escribimos por WhatsApp para confirmar tu paquete.', 'Te enviamos el total y los datos para el anticipo.']);
+      L.push(['Diseñamos tu invitación' + (fotos ? ' con tus fotos' : '') + ' y te mandamos la primera versión.', fotos ? '' : 'Si aún no subiste tus fotos, puedes agregarlas aquí cuando quieras.']);
+      if (lvl >= 1) L.push([guests ? 'Preparamos el link de cada familia (' + guests + (guests === 1 ? ' invitación' : ' invitaciones') + ') con sus lugares y su mensaje listo para WhatsApp.' : 'Cuando tengas tu lista de invitados, agrégala aquí para preparar el link de cada familia.', 'También tu lista de confirmados en vivo.']);
+      if (lvl >= 1) L.push(['Creamos tu video invitación en vertical y cuadrado.', '']);
+      if (lvl >= 2) L.push(['Preparamos tus recordatorios por WhatsApp y tus 3 imprimibles: letrero, números de mesa y menú.', '']);
+      if (lvl >= 3) {
+        L.push(['Escribimos tu canción personalizada y te la mandamos para escucharla.', '']);
+        L.push(['Creamos el video para la pantalla grande' + ((st.fotos.video || 0) ? ' con tus fotos' : '') + '.', (st.fotos.video || 0) ? '' : 'Sube de 15 a 30 fotos aquí cuando las tengas.']);
+        L.push(['Te entregamos el QR para que tus invitados suban sus fotos, tu papelería y tus 3 reels.', '']);
+      }
+      L.push([lvl >= 1 ? 'Ajustamos todo hasta que te encante y te entregamos tu link listo para compartir.' : 'Te entregamos tu link listo para compartir por WhatsApp.', '']);
+    }
+    $('done-l').innerHTML = L.map(function (x) { return '<li>' + esc(x[0]) + (x[1] ? '<small>' + esc(x[1]) + '</small>' : '') + '</li>'; }).join('');
+    ['head', 'chosen', 'steps', 'help-note'].forEach(function (id) { $(id).hidden = true; }); form.hidden = true; $('bar').hidden = true; $('done').classList.add('on'); window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   $('again').onclick = function () { $('done').classList.remove('on'); $('head').hidden = false; build(); };
 
   paintPick();
