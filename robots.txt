@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /pedido-xv/
 Sitemap: https://ilusioninvites.com/sitemap.xml
+Disallow: /i/
+Disallow: /lista/
+Disallow: /fotos/
