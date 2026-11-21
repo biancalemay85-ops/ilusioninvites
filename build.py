@@ -41,6 +41,54 @@ PAGES = [
     ('../website/pedido-xv.html', 'pedido-xv', 'Pedido XV Años · Ilusión Invites',
      'Llena los datos de los XV años y armamos su invitación digital.'),
 ]
+# "Agregar a mi calendario": the guest's own phone reminds them (1 day and 2 hours before) with the address. Free, no lists.
+import re, urllib.parse
+def cal_data(html, title):
+    m = re.search(r'new Date\((\d{4}),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)', html)
+    if not m: return None
+    y, mo, d, h, mi = [int(x) for x in m.groups()]
+    q = re.search(r'maps/search/\?api=1&(?:amp;)?query=([^"&<]+)', html)
+    place = urllib.parse.unquote(q.group(1)) if q else ''
+    return {'t': title.replace(' · Ilusión Invites', ''), 'start': '%04d%02d%02dT%02d%02d00' % (y, mo + 1, d, h, mi), 'place': place,
+            'map': 'https://www.google.com/maps/search/?api=1&query=' + urllib.parse.quote(place) if place else ''}
+
+CAL = """
+<style>
+.ilu-cal-w{display:flex;justify-content:center;margin-top:12px}
+.ilu-cal{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 32%,transparent);background:none;color:inherit;font:inherit;font-size:.92em;cursor:pointer;text-decoration:none}
+.ilu-cal svg{width:18px;height:18px;flex:none}
+</style>
+<script>
+(function () {
+  var C = __CAL__, a = document.getElementById('rsvp'); if (!a) return;
+  var T = { es: ['Agregar a mi calendario', 'Mañana es el evento. Te esperamos.', 'En 2 horas empieza. Te esperamos.', 'Invitación'], en: ['Add to my calendar', 'The celebration is tomorrow.', 'It starts in 2 hours.', 'Invitation'] };
+  var L = function () { return document.documentElement.lang === 'en' ? 'en' : 'es'; };
+  var w = document.createElement('div'); w.className = 'ilu-cal-w';
+  w.innerHTML = '<a class="ilu-cal" href="#" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="4"/><path d="M8 3v4M16 3v4M3.5 10h17M12 13v4M10 15h4"/></svg><span></span></a>';
+  var row = a.closest('.row') || a; row.parentNode.insertBefore(w, row.nextSibling);
+  var b = w.querySelector('a'), paint = function () { b.querySelector('span').textContent = T[L()][0]; };
+  new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); paint();
+  function end() { var s = C.start, d = new Date(+s.slice(0, 4), +s.slice(4, 6) - 1, +s.slice(6, 8), +s.slice(9, 11) + 5, +s.slice(11, 13)); var p = function (n) { return ('0' + n).slice(-2); }; return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + 'T' + p(d.getHours()) + p(d.getMinutes()) + '00'; }
+  var url = location.href.split('#')[0].split('?')[0];
+  b.addEventListener('click', function (e) {
+    e.preventDefault(); e.stopPropagation();
+    var l = L(), info = T[l][3] + ': ' + url + (C.map ? '\\n' + C.map : '');
+    if (/iPhone|iPad|Macintosh/.test(navigator.userAgent)) {
+      // Apple calendars keep the two alerts inside the file
+      var x = function (s) { return String(s).replace(/([,;\\\\])/g, '\\\\$1').replace(/\\n/g, '\\\\n'); };
+      var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Ilusion Invites//ES', 'BEGIN:VEVENT', 'UID:' + C.start + '-' + url.length + '@ilusioninvites.com', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
+        'DTSTART:' + C.start, 'DTEND:' + end(), 'SUMMARY:' + x(C.t), 'LOCATION:' + x(C.place), 'DESCRIPTION:' + x(info), 'URL:' + url,
+        'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:' + x(T[l][1]), 'END:VALARM',
+        'BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY', 'DESCRIPTION:' + x(T[l][2]), 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\\r\\n');
+      location.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+    } else {
+      window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(C.t) + '&dates=' + C.start + '/' + end() + '&ctz=America/Mexico_City&location=' + encodeURIComponent(C.place) + '&details=' + encodeURIComponent(info), '_blank', 'noopener');
+    }
+  }, true);
+})();
+</script>
+"""
+
 # guests can ask for WhatsApp reminders right where they confirm (Gala and Experiencia packages)
 REMIND = """
 <style>
@@ -194,6 +242,8 @@ for src, out, title, desc in PAGES:
         body += DEMO_NAV.replace('__COL__', DEMO_INFO[out][0]).replace('__DIS__', DEMO_INFO[out][1]).replace('__DISN__', DIS_NAMES.get(DEMO_INFO[out][1], ''))
         body += FREEZE
         body += REMIND
+        cal = cal_data(body, title)
+        if cal: body += CAL.replace('__CAL__', json.dumps(cal, ensure_ascii=False))
     open(os.path.join(HERE, out, 'index.html'), 'w', encoding='utf-8').write(head + body + '\n</body>\n</html>\n')
     print('built', out or '(root)')
 
