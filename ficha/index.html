@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tu pedido · Ilusión Invites</title>
+<meta name="description" content="Elige tu paquete y cuéntanos todo lo que necesitamos para crear tu invitación y las piezas de tu evento.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Tu pedido · Ilusión Invites ✨">
+<meta property="og:description" content="Elige tu paquete y llénalo con calma: se guarda en tu celular y puedes enviarlo por partes.">
+<meta property="og:image" content="https://ilusioninvites.com/nuevo/img/ilusion-logo.jpg">
+<meta name="theme-color" content="#FBF6EF">
+<link rel="icon" href="../fotos/img/sello-ilusion-oro.webp">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#FBF6EF;--bg2:#F3E9DC;--card:#FFFDF9;--ink:#3A2A26;--soft:#7E6A60;--gold:#B68A4E;--gold2:#E3CDA4;--plum:#5A2442;--line:rgba(120,90,60,.16);--ok:#5E8B6A;--bad:#A0414B}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:radial-gradient(ellipse 100% 40% at 50% 0%,var(--bg2),var(--bg) 70%) fixed;color:var(--ink);font:400 16px/1.45 'Jost',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:620px;margin:0 auto;padding:max(26px,env(safe-area-inset-top)) 16px 120px}
+header{text-align:center;margin-bottom:18px}
+.seal{width:84px;height:84px;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(60,30,10,.2))}
+.eyebrow{font:600 12px 'Cinzel',serif;letter-spacing:.32em;padding-left:.32em;color:var(--gold);margin:10px 0 4px}
+h1{font:italic 500 42px/1.05 'Cormorant Garamond',serif;margin:0 0 10px}
+.intro{font:500 20px/1.35 'Cormorant Garamond',serif;color:var(--soft);max-width:470px;margin:0 auto}
+.tips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:14px 0 0;padding:0;list-style:none;font-size:13.5px;color:var(--soft)}
+.tips li::before{content:'✓ ';color:var(--gold)}
+/* start: package + event */
+.pick h3{font:italic 500 26px/1.15 'Cormorant Garamond',serif;margin:4px 0 10px}
+.pick h3 b{font:600 12px 'Cinzel',serif;color:var(--gold);letter-spacing:.14em;margin-right:8px}
+.pks{display:grid;gap:10px;margin:0 0 20px}
+.pk{position:relative;display:block;width:100%;border:0;text-align:left;font:inherit;color:var(--ink);background:var(--bg);border-radius:18px;padding:15px 16px 13px;box-shadow:inset 0 0 0 1px var(--line);cursor:pointer}
+.pk b{display:block;font:italic 600 25px/1.1 'Cormorant Garamond',serif}
+.pk small{display:block;color:var(--soft);font-size:13.5px;margin:1px 0 6px}
+.pk ul{margin:0;padding:0;list-style:none;font-size:13.5px;line-height:1.5;color:var(--ink)}
+.pk li::before{content:'✦ ';color:var(--gold);font-size:11px}
+.pk .rib{display:block;margin:0 0 3px;font:600 10px 'Cinzel',serif;letter-spacing:.16em;color:var(--gold)}
+.pk[aria-pressed=true]{background:#fff;box-shadow:0 0 0 2.5px var(--plum),0 16px 26px -20px var(--plum)}
+.pk[aria-pressed=true]::after{content:'✓';position:absolute;bottom:13px;right:14px;width:26px;height:26px;border-radius:50%;background:var(--plum);color:#fff;font:600 14px/26px 'Jost';text-align:center}
+.pk.help{padding:12px 16px;text-align:center;color:var(--soft)}
+.pk.help b{font:500 15px 'Jost';color:var(--ink)}
+.pk.help[aria-pressed=true]::after{bottom:auto;top:50%;margin-top:-13px}
+.go{display:block;width:100%;margin:6px 0 16px;border:0;border-radius:99px;padding:15px;font:500 16px 'Jost';color:#fff;background:var(--plum);cursor:pointer;box-shadow:0 10px 20px -12px var(--plum)}
+.go[disabled]{opacity:.45;cursor:default}
+.chosen{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:18px;padding:12px 16px;margin:0 0 4px;box-shadow:0 0 0 1px var(--line)}
+.chosen div{flex:1;min-width:0;font-size:14px;color:var(--soft);line-height:1.35}
+.chosen div b{display:block;color:var(--ink);font:italic 600 21px/1.15 'Cormorant Garamond',serif}
+.chosen button,.linkbtn{flex:none;border:0;background:none;color:var(--gold);font:500 14.5px 'Jost';cursor:pointer;padding:8px 2px}
+.note{background:#F8EFE3;border-radius:14px;padding:11px 14px;font-size:14px;color:var(--soft);margin:0 0 16px}
+nav.steps{position:sticky;top:0;z-index:5;margin:14px -16px 14px;padding:10px 16px;background:rgba(251,246,239,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.steps::-webkit-scrollbar{display:none}
+nav.steps a{flex:none;display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:99px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line);color:var(--ink);text-decoration:none;font-size:13.5px;white-space:nowrap}
+nav.steps a i{font-style:normal;font-size:11px;color:var(--soft)}
+nav.steps a.done{box-shadow:inset 0 0 0 1.5px var(--gold2)}
+nav.steps a.done i{color:var(--gold)}
+section.sec{background:var(--card);border-radius:24px;padding:22px 18px 8px;margin:0 0 16px;box-shadow:0 0 0 1px var(--line),0 22px 36px -28px rgba(70,40,20,.4);scroll-margin-top:64px}
+section.sec h2{display:flex;align-items:baseline;gap:10px;margin:0 0 4px;font:italic 500 30px/1.1 'Cormorant Garamond',serif}
+section.sec h2 b{font:600 13px 'Cinzel',serif;color:var(--gold);letter-spacing:.1em}
+section.sec .why{margin:0 0 14px;color:var(--soft);font-size:14px}
+.f{margin:0 0 18px}
+.f>label,.f>.lab{display:block;font-weight:500;font-size:15px;margin:0 0 6px}
+.f>label em,.f>.lab em{font-style:normal;color:var(--bad)}
+.hint{display:block;font-size:13px;color:var(--soft);margin:-3px 0 7px}
+input[type=text],input[type=tel],input[type=email],input[type=date],input[type=time],input[type=number],textarea{width:100%;font:400 16px 'Jost',sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 13px;outline:none;-webkit-appearance:none;appearance:none;min-height:46px}
+textarea{min-height:84px;resize:vertical;line-height:1.4}
+input:focus,textarea:focus{border-color:var(--gold);background:#fff}
+.f.miss input,.f.miss textarea,.f.miss .chips{box-shadow:0 0 0 2px rgba(160,65,75,.35);border-radius:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:0;border-radius:99px;padding:10px 15px;font:400 15px 'Jost';background:var(--bg);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line);cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--plum);color:#fff;box-shadow:none}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cards button{position:relative;border:0;padding:0;border-radius:16px;overflow:hidden;background:var(--bg2);cursor:pointer;text-align:left;box-shadow:inset 0 0 0 1px var(--line);font:inherit;color:var(--ink)}
+.cards button img{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover}
+.cards button span{display:block;padding:8px 10px 10px;font-size:14px;line-height:1.25}
+.cards button a{font-size:12.5px;color:var(--gold)}
+.cards button.other{display:flex;align-items:center;justify-content:center;min-height:100px;text-align:center}
+.cards button[aria-pressed=true]{box-shadow:0 0 0 3px var(--plum)}
+.cards button[aria-pressed=true]::after{content:'✓';position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:var(--plum);color:#fff;font:600 14px/26px 'Jost';text-align:center}
+.rows{width:100%}
+.row{display:grid;gap:6px;align-items:center;margin-bottom:6px}
+.row input{min-height:42px;padding:9px 10px;font-size:15px;min-width:0;width:100%}
+.rows.stack .row{padding:8px 0 10px;border-bottom:1px solid var(--line);margin:0}
+.rows.stack .row input:first-child{grid-column:1/-1}
+.row .x{border:0;background:none;color:var(--soft);font-size:20px;width:30px;height:40px;cursor:pointer}
+.rowhead{display:grid;gap:6px;font-size:12px;color:var(--soft);margin:0 0 4px;padding-left:2px}
+.add{border:0;background:none;color:var(--gold);font:500 15px 'Jost';padding:8px 2px;cursor:pointer}
+details.paste{margin:6px 0 0}
+details.paste summary{cursor:pointer;color:var(--gold);font-size:14.5px}
+details.paste textarea{margin-top:8px}
+.photos{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}
+.photos div{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--bg2)}
+.photos img{width:100%;height:100%;object-fit:cover}
+.photos div i{position:absolute;right:4px;bottom:4px;width:20px;height:20px;border-radius:50%;font:600 12px/20px 'Jost';font-style:normal;text-align:center;color:#fff;background:var(--ok)}
+.photos div.wait i{background:rgba(0,0,0,.35)}
+.photos div.wait i::after{content:'…'}
+.photos div.err i{background:var(--bad)}
+.pickbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;border-radius:14px;border:1.5px dashed var(--gold2);background:var(--bg);color:var(--ink);font:500 15.5px 'Jost';cursor:pointer}
+.pickbtn svg{width:22px;height:22px;color:var(--gold)}
+.count{font-size:13px;color:var(--soft);margin-top:6px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:rgba(255,253,249,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 16px max(12px,env(safe-area-inset-bottom))}
+.bar .in{max-width:620px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.prog{flex:1;min-width:0}
+.prog b{display:block;font-weight:500;font-size:14px}
+.prog span{display:block;font-size:12.5px;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog .track{height:5px;border-radius:9px;background:var(--bg2);margin-top:5px;overflow:hidden}
+.prog .track div{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .4s}
+.send{flex:none;border:0;border-radius:99px;padding:14px 22px;font:500 15.5px 'Jost';color:#fff;background:var(--plum);cursor:pointer;box-shadow:0 10px 20px -12px var(--plum)}
+.send[disabled]{opacity:.55}
+.done{display:none;text-align:center;padding:30px 10px}
+.done.on{display:block}
+.done h2{font:italic 500 38px/1.1 'Cormorant Garamond',serif;margin:8px 0}
+.done p{color:var(--soft);margin:0 0 6px}
+.done button{margin-top:14px;border:0;background:none;color:var(--gold);font:500 15px 'Jost';cursor:pointer}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;transition:.3s;pointer-events:none;max-width:88vw;text-align:center;z-index:9}
+.toast.on{opacity:1;transform:translateX(-50%)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header id="head">
+    <img class="seal" src="../fotos/img/sello-ilusion-oro.webp" alt="">
+    <p class="eyebrow" id="h-eye">TU PEDIDO</p>
+    <h1 id="h-t">Cuéntanos<br>qué necesitas</h1>
+    <p class="intro" id="h-i">Elige tu paquete y te pedimos solo la información que ese paquete necesita.</p>
+    <ul class="tips"><li>Se guarda solo en este celular</li><li>Puedes enviarlo por partes</li><li>Lo que no sepas, déjalo vacío</li></ul>
+  </header>
+
+  <section class="sec pick" id="pick">
+    <h3><b>1</b>¿Qué paquete quieres?</h3>
+    <div class="pks" id="pks"></div>
+    <h3><b>2</b>¿Qué celebras?</h3>
+    <div class="chips" id="evs" style="margin-bottom:20px"></div>
+    <button type="button" class="go" id="go" disabled>Continuar</button>
+  </section>
+
+  <div class="chosen" id="chosen" hidden><div id="chosen-t"></div><button type="button" id="change">Cambiar</button></div>
+  <nav class="steps" id="steps" hidden></nav>
+  <p class="note" id="help-note" hidden>Llena lo que sepas y te recomendamos el paquete ideal para tu evento. Si después eliges otro paquete, aquí mismo aparecen las preguntas que falten.</p>
+  <form id="form" autocomplete="on" onsubmit="return false" hidden></form>
+
+  <div class="done" id="done">
+    <img class="seal" src="../fotos/img/sello-ilusion-oro.webp" alt="">
+    <h2>¡Gracias! 🤍</h2>
+    <p>Recibimos tu información.</p>
+    <p id="done-p">En menos de 24 horas te escribimos para confirmar tu paquete y enviarte los datos del anticipo.</p>
+    <button type="button" id="again">Volver para completar o corregir</button>
+  </div>
+</main>
+<div class="bar" id="bar" hidden><div class="in">
+  <div class="prog"><b id="pb">0% completo</b><span id="ps">Se guarda solo mientras escribes</span><div class="track"><div id="pt"></div></div></div>
+  <button type="button" class="send" id="send">Enviar</button>
+</div></div>
+<div class="toast" id="toast"></div>
+<input type="file" id="file" accept="image/*" multiple hidden>
+<script>
+(function () {
+  var ENDPOINT = window.ILU_ORDER_ENDPOINT || 'https://script.google.com/macros/s/AKfycbwLSkVg670lTXk73S5B_zP-ay8Kpwj7xFRDBXJPta3QF27T_Jy1zRBG3t_n2oZhiuc/exec';
+  var KEY = 'ilu-ficha';
+  var DEMO = 'https://ilusioninvites.com/demos/';
+
+  /* ---------- packages: lvl decides which questions appear ---------- */
+  var PK = [
+    { v: 'esencial', lvl: 0, n: 'Esencial', s: 'La invitación completa', inc: ['Sobre con sello de cera que se abre', 'Música y galería de fotos', 'Itinerario, mapa y cuenta regresiva', 'Mesa de regalos y vestimenta', 'Confirmación por WhatsApp'] },
+    { v: 'ilusion', lvl: 1, n: 'Ilusión', s: 'Tus invitados, consentidos', rib: 'EL FAVORITO', inc: ['Todo lo de Esencial', 'Link por invitado con sus lugares', 'Lista de confirmados en vivo', 'Video invitación (vertical y cuadrado)', 'Bilingüe: español, inglés o los dos'] },
+    { v: 'gala', lvl: 2, n: 'Gala', s: 'Cero estrés', inc: ['Todo lo de Ilusión', 'Recordatorios por WhatsApp', '3 imprimibles: letrero, números de mesa y menú'] },
+    { v: 'experiencia', lvl: 3, n: 'Experiencia Ilusión', short: 'Experiencia', s: 'Todo tu evento, un mismo sueño', rib: 'EL PAQUETE COMPLETO', inc: ['Todo lo de Gala', 'Tu canción personalizada', 'Video para la pantalla grande', 'Fotos de invitados con QR + 3 reels', 'Papelería completa de tu evento'] },
+    { v: 'ayuda', lvl: 0, n: 'Aún no sé', short: 'Por definir', s: 'Ayúdenme a elegir', help: 1 }
+  ];
+
+  /* ---------- events: the words and options that change per celebration ---------- */
+  var EV = {
+    boda: { n: 'Boda', h: 'sobre su boda', quien: 'Nombres de los novios, como van en la invitación', ph: 'Ana Sofía & Emiliano', falta: 'los nombres de los novios', rel: ['Novia', 'Novio', 'Mamá o papá', 'Organizador(a)'],
+      demos: [['Perla y Cristal', 'boda-regina-emilio'], ['Jardín Blanco', 'boda-jardin-blanco'], ['Terciopelo Vino', 'boda-isabella-julian'], ['Encaje y Perlas', 'boda-camila-sebastian']],
+      it: ['Ceremonia', 'Recepción', 'Entrada de los novios', 'Primer baile', 'Brindis', 'Cena', 'Pastel', 'Fiesta', 'Fin'], ent: ['Al llegar los novios', 'Antes del primer baile', 'Durante la cena', 'Otro momento'], son: ['En la invitación', 'En su entrada', 'En el primer baile'] },
+    xv: { n: 'XV Años', h: 'sobre tus XV', quien: 'Nombre de la quinceañera, tal como va en la invitación', ph: 'Valentina', falta: 'el nombre de la quinceañera', rel: ['Mamá', 'Papá', 'Ella misma', 'Otro familiar', 'Organizador(a)'],
+      demos: [['Rosa Roja', 'xv-valentina'], ['Noche de Zafiro', 'xv-renata'], ['Jardín de Jade', 'xv-ximena']],
+      it: ['Misa', 'Recepción', 'Entrada de la quinceañera', 'Vals', 'Brindis', 'Cena', 'Baile sorpresa', 'Pastel', 'Fiesta', 'Fin'], ent: ['Al llegar ella', 'Antes del vals', 'Otro momento'], son: ['En la invitación', 'En su entrada', 'En el vals'] },
+    cumple: { n: 'Cumpleaños', h: 'sobre tu fiesta', quien: 'Nombre de quien cumple años', ph: 'Mariana', falta: 'el nombre de quien cumple años', rel: ['Yo cumplo', 'Pareja', 'Hijo(a)', 'Mamá o papá', 'Amigo(a)', 'Organizador(a)'],
+      demos: [['Noche de Champaña', 'cumple-mariana'], ['Cena en la Toscana', 'cumple-elena'], ['Abanico de Encaje', 'cumple-abanico'], ['Disco Glam', 'cumple-disco'], ['Clásico 67', 'cumple-ricardo'], ['Noche de Whisky', 'cumple-whisky'], ['Hoyo 18', 'cumple-golf'], ['Carrusel Mágico', 'cumple-carrusel'], ['Jardín de Hadas', 'cumple-hadas'], ['Misión Espacial', 'cumple-espacio'], ['Expedición Dino', 'cumple-dino']],
+      it: ['Llegada', 'Brindis', 'Cena', 'Pastel', 'Fiesta', 'Fin'], ent: ['Al empezar', 'Antes del pastel', 'Otro momento'], son: ['En la invitación', 'En su entrada', 'En el pastel'] },
+    baby: { n: 'Baby Shower', h: 'sobre tu baby shower', quien: 'Nombre de la mamá (y del papá, si va)', ph: 'Paola y Luis', falta: 'el nombre de la mamá', rel: ['Mamá', 'Papá', 'Abuela', 'Amiga', 'Organizador(a)'],
+      demos: [['Nube de Algodón', 'baby-nube'], ['Jardín de Mariposas', 'baby-mariposas'], ['Bajo la Luna', 'baby-luna']],
+      it: ['Llegada', 'Juegos', 'Comida', 'Abrir regalos', 'Pastel', 'Fin'], ent: ['Al empezar', 'Antes de abrir regalos', 'Otro momento'], son: ['En la invitación', 'Durante el baby shower'] },
+    navidad: { n: 'Posada · Navidad', short: 'Navidad', h: 'sobre tu celebración', quien: 'Familia o anfitriones', ph: 'Familia Ruiz', falta: 'el nombre de la familia o anfitriones', rel: ['Anfitrión(a)', 'Familiar', 'Organizador(a)'],
+      demos: [['Posada Tradicional', 'navidad-posada'], ['Noche de Paz', 'navidad-noche-paz'], ['Navidad en el Bosque', 'navidad-bosque']],
+      it: ['Llegada', 'Posada', 'Cena', 'Piñata', 'Intercambio de regalos', 'Fin'], ent: ['Al empezar', 'Durante la cena', 'Otro momento'], son: ['En la invitación', 'Durante la cena'] },
+    nuevo: { n: 'Año Nuevo', h: 'sobre tu celebración', quien: 'Anfitriones', ph: 'Familia Ortega', falta: 'el nombre de los anfitriones', rel: ['Anfitrión(a)', 'Familiar', 'Organizador(a)'], demos: [],
+      it: ['Llegada', 'Cena', 'Brindis', 'Cuenta regresiva', 'Fiesta', 'Fin'], ent: ['Al empezar', 'Antes de la cuenta regresiva', 'Otro momento'], son: ['En la invitación', 'En la cuenta regresiva'] },
+    empresa: { n: 'Evento de empresa', short: 'Empresa', h: 'sobre tu evento', quien: 'Nombre de la empresa', ph: 'Grupo Altavista', falta: 'el nombre de la empresa', rel: ['Dirección', 'Recursos humanos', 'Marketing', 'Organizador(a)'],
+      demos: [['Gala Esmeralda', 'empresa-gala'], ['El Gran Lanzamiento', 'empresa-lanzamiento'], ['25 Años', 'empresa-aniversario']],
+      it: ['Registro', 'Bienvenida', 'Cena', 'Presentación o premiación', 'Fiesta', 'Fin'], ent: ['Al empezar', 'Antes de la presentación', 'Otro momento'], son: ['En la invitación', 'En la presentación'] },
+    otra: { n: 'Otra celebración', short: 'Otra', h: 'sobre tu evento', quien: '¿Quién celebra?', ph: 'Tu nombre o el de la familia', falta: 'quién celebra', rel: ['Yo celebro', 'Familiar', 'Amigo(a)', 'Organizador(a)'], demos: [],
+      it: ['Llegada', 'Comida', 'Fiesta', 'Fin'], ent: ['Al empezar', 'Otro momento'], son: ['En la invitación', 'Durante el evento'] }
+  };
+  var EVK = ['boda', 'xv', 'cumple', 'baby', 'navidad', 'nuevo', 'empresa', 'otra'];
+  var SLUG = { bodas: 'boda', 'xv-anos': 'xv', cumpleanos: 'cumple', 'baby-shower': 'baby', 'ano-nuevo': 'nuevo', empresas: 'empresa', otras: 'otra' };
+
+  /* ---------- the questions. o.pk = lowest package that needs it, o.ev = only these events. Text can depend on the event (C.e) or package (C.l) ---------- */
+  var C = { e: 'xv', E: EV.xv, l: 0 };
+  var ev = function () { var a = arguments; return function () { return Array.prototype.indexOf.call(a, C.e) > -1; }; };
+  var by = function (m, d) { return function () { return m[C.e] != null ? m[C.e] : d; }; };
+  var S = [
+    { id: 'tu', t: 'Tú y tu evento', why: 'Para saber a quién escribirle y cómo van los nombres.', f: [
+      ['contacto', 'text', 'Tu nombre completo', { req: 1, ac: 'name' }],
+      ['relacion', 'chips', 'Tú eres…', { o: function () { return C.E.rel; } }],
+      ['whatsapp', 'tel', 'Tu WhatsApp', { req: 1, ph: '+52 33 1234 5678', ac: 'tel' }],
+      ['correo', 'email', 'Tu correo', { ph: 'nombre@correo.com', ac: 'email' }],
+      ['pais', 'chips', 'País', { o: ['México', 'Canadá', 'Estados Unidos'] }],
+      ['festejada', 'text', function () { return C.E.quien; }, { req: 1, ph: function () { return C.E.ph; } }],
+      ['evento_nombre', 'text', 'Nombre del evento', { when: ev('empresa'), ph: 'Gala Anual 2027' }],
+      ['motivo', 'text', '¿Qué celebran?', { when: ev('otra'), ph: 'Aniversario, graduación, bautizo…' }],
+      ['edad', 'number', '¿Cuántos años cumple?', { when: ev('cumple') }],
+      ['bebe', 'text', 'Nombre del bebé (si ya lo tienen)', { when: ev('baby') }],
+      ['sexo', 'chips', '¿Niño o niña?', { when: ev('baby'), o: ['Niño', 'Niña', 'Gemelos', 'Es sorpresa', 'Revelación en la fiesta'] }],
+      ['apodo', 'text', '¿Cómo le dicen? (opcional)', { when: ev('xv') }],
+      ['papas', 'textarea', by({ xv: 'Nombres de los papás, como van en la invitación', boda: 'Padres de los novios (opcional)' }), { when: ev('xv', 'boda') }],
+      ['padrinos', 'textarea', 'Padrinos', { when: ev('xv', 'boda'), hint: by({ boda: 'Uno por línea: tipo y nombres. Ej. Anillos: Juan y Ana Pérez' }, 'Uno por línea: tipo y nombres. Ej. Velación: Juan y Ana Pérez') }],
+      ['corte', 'textarea', 'Chambelanes y damas (opcional)', { when: ev('xv') }],
+      ['idioma', 'chips', 'Idioma de la invitación', { o: function () { return C.l >= 1 ? ['Español', 'Inglés', 'Los dos'] : ['Español', 'Inglés']; }, hint: function () { return C.l >= 1 ? '' : 'En los dos idiomas viene desde el paquete Ilusión.'; } }],
+      ['frase', 'textarea', by({ xv: 'Frase, poema o versículo (opcional)', empresa: 'Mensaje para los invitados (opcional)' }, 'Frase o mensaje especial (opcional)')]
+    ] },
+    { id: 'evento', t: 'El evento', why: 'Fecha, lugares y horarios para el mapa, la cuenta regresiva y el itinerario.', f: [
+      ['fecha', 'date', 'Fecha del evento'],
+      ['cer_tipo', 'chips', 'Tipo de ceremonia', { when: ev('boda'), o: ['Religiosa', 'Civil', 'Las dos', 'Simbólica'] }],
+      ['misa_lugar', 'text', by({ xv: 'Misa: iglesia', boda: 'Ceremonia: lugar' }), { when: ev('xv', 'boda') }],
+      ['misa_dir', 'text', by({ xv: 'Misa: dirección', boda: 'Ceremonia: dirección' }), { when: ev('xv', 'boda') }],
+      ['misa_hora', 'time', by({ xv: 'Misa: hora', boda: 'Ceremonia: hora' }), { when: ev('xv', 'boda') }],
+      ['rec_lugar', 'text', by({ xv: 'Recepción: salón', boda: 'Recepción: lugar' }, 'Lugar del evento')],
+      ['rec_dir', 'text', by({ xv: 'Recepción: dirección', boda: 'Recepción: dirección' }, 'Dirección')],
+      ['rec_hora', 'time', by({ xv: 'Recepción: hora', boda: 'Recepción: hora' }, 'Hora de inicio')],
+      ['mapas', 'textarea', 'Links de Google Maps (opcional)', { hint: 'En Google Maps abre el lugar → Compartir → Copiar vínculo, y pégalo aquí.' }],
+      ['fin_hora', 'time', 'Hora de término'],
+      ['vestimenta', 'chips', 'Código de vestimenta', { o: ['Formal', 'Etiqueta', 'Cóctel', 'Casual elegante', 'Casual', 'Temático', 'Otro'] }],
+      ['color_reservado', 'text', by({ xv: 'Color reservado para la quinceañera (opcional)', boda: 'Color reservado para la novia (opcional)' }), { when: ev('xv', 'boda'), ph: by({ boda: 'Ej. nadie de blanco' }, 'Ej. nadie de rosa') }],
+      ['ninos', 'chips', '¿Se admiten niños?', { when: function () { return C.e !== 'empresa'; }, o: ['Sí', 'No', 'Solo de la familia'] }],
+      ['confirmar_antes', 'date', 'Fecha límite para confirmar'],
+      ['regalos', 'textarea', 'Mesa de regalos (links)', { when: function () { return C.e !== 'empresa' && C.e !== 'nuevo'; }, hint: 'Liverpool, Amazon, etc.' }],
+      ['sobres', 'chips', 'Lluvia de sobres', { when: ev('xv', 'boda', 'cumple'), o: ['Sí', 'No'] }],
+      ['hashtag', 'text', 'Hashtag del evento (opcional)', { ph: by({ boda: '#AnaYEmiliano', empresa: '#GalaAltavista' }, '#XVdeValentina') }],
+      ['itinerario', 'rows', 'Itinerario', { hint: 'Pon la hora de cada momento. Borra los que no tengan con la ×.', cols: [['momento', 'Momento', 'text', '1fr'], ['hora', 'Hora', 'time', '110px']], init: function () { return C.E.it.map(function (m) { return [m, '']; }); }, addLabel: '+ Agregar momento' }]
+    ] },
+    { id: 'diseno', t: 'Diseño y fotos', why: 'Las fotos se suben en cuanto las eliges. Mándalas con buena luz y sin filtros.', f: [
+      ['diseno', 'cards', 'Diseño que te gustó', { o: function () { return C.E.demos.concat([[C.E.demos.length ? 'Otro, quiero platicarlo' : 'Quiero platicar mi idea', '']]); } }],
+      ['vestido', 'text', by({ xv: 'Color del vestido', boda: 'Color del vestido de la novia (opcional)' }), { when: ev('xv', 'boda') }],
+      ['colores', 'text', by({ empresa: 'Colores de la marca' }, 'Colores del evento')],
+      ['tema', 'textarea', by({ empresa: 'Estilo o detalles que quieren' }, 'Tema o detalles que te gustan'), { ph: by({ boda: 'Flores blancas, velas, dorado…', empresa: 'Elegante, moderno, con el logo en dorado…', baby: 'Ositos, nubes, mariposas…' }, 'Mariposas, flores, corona, estrellas…') }],
+      ['f_portada', 'photos', by({ empresa: 'Logo de la empresa' }, 'Foto de portada'), { g: 'portada', max: 1, hint: by({ xv: '1 foto de ella, vertical y nítida.', boda: '1 foto de ustedes, vertical y nítida.', baby: '1 foto de la pancita o de los papás (opcional).', empresa: 'En la mejor calidad que tengas. Si lo tienes en PDF o PNG, mándalo también por WhatsApp.' }, '1 foto vertical y nítida.') }],
+      ['f_galeria', 'photos', by({ empresa: 'Fotos para la invitación (opcional)' }, 'Fotos para la galería de la invitación'), { g: 'galeria', max: 12, hint: '6 a 12 fotos.' }],
+      ['f_video', 'photos', 'Fotos para el video de la pantalla grande', { pk: 3, g: 'video', max: 30, hint: by({ xv: '15 a 30 fotos, de bebé a hoy, en orden si puedes.', boda: '15 a 30 fotos de su historia, en orden si pueden.', empresa: '15 a 30 fotos del equipo, logros o productos.' }, '15 a 30 fotos, en orden si puedes.') }],
+      ['cancion_inv', 'text', function () { return C.l >= 3 ? 'Canción para la invitación mientras está lista tu canción (opcional)' : 'Canción para la invitación'; }, { hint: function () { return C.l >= 3 ? '' : 'Nombre y artista. Si no tienes una, elegimos una que combine.'; } }]
+    ] },
+    { id: 'cancion', t: 'Tu canción', why: 'Escribimos una canción original con sus nombres y su historia. Entre más nos cuentes, más suya será.', f: [
+      ['c_estilo', 'multi', 'Estilo', { pk: 3, o: ['Balada', 'Pop', 'Banda', 'Mariachi', 'Regional', 'Reggaetón suave', 'Otro'] }],
+      ['c_idioma', 'chips', 'Idioma', { pk: 3, o: ['Español', 'Inglés', 'Los dos'] }],
+      ['c_voz', 'chips', 'Voz que canta', { pk: 3, o: ['Mujer', 'Hombre', 'Me da igual'] }],
+      ['c_palabras', 'text', by({ xv: '¿Cómo es ella en 3 palabras?', boda: '¿Cómo son como pareja, en 3 palabras?', empresa: '¿Cómo es su empresa en 3 palabras?', baby: '¿Qué sienten por la llegada del bebé, en 3 palabras?', navidad: '¿Cómo es su familia en 3 palabras?', nuevo: '¿Qué desean para el año nuevo, en 3 palabras?' }, '¿Cómo es quien celebra, en 3 palabras?'), { pk: 3 }],
+      ['c_gustos', 'textarea', by({ boda: 'Su historia: cómo se conocieron y lo que les gusta', empresa: 'Lo que los hace especiales: valores, logros, equipo' }, 'Lo que le gusta'), { pk: 3, hint: by({ boda: '', empresa: '' }, 'Música, deporte, mascotas, comida, series, sueños…') }],
+      ['c_personas', 'textarea', 'Personas que quieres mencionar', { pk: 3 }],
+      ['c_recuerdo', 'textarea', 'Un recuerdo o momento especial', { pk: 3 }],
+      ['c_donde', 'multi', '¿Dónde sonará?', { pk: 3, o: function () { return C.E.son; } }]
+    ] },
+    { id: 'invitados', t: 'Invitados', why: function () { return C.l >= 1 ? 'Cada familia recibe su propio link con su nombre y sus lugares, y su mensaje de WhatsApp listo.' : 'Tus invitados confirman con un toque y te llega su mensaje por WhatsApp.'; }, f: [
+      ['rsvp_tel', 'tel', '¿A qué WhatsApp llegan las confirmaciones?', { hint: 'Si es el tuyo, déjalo vacío.' }],
+      ['invitados', 'rows', 'Lista de invitados', { pk: 1, hint: 'Una fila por familia o persona que recibe la invitación.', cols: [['nombre', 'Nombre en el sobre', 'text', '1fr'], ['whatsapp', 'WhatsApp', 'tel', '120px'], ['lugares', 'Lugares', 'number', '62px']], init: function () { return [['', '', ''], ['', '', ''], ['', '', '']]; }, addLabel: '+ Agregar familia', paste: 1, stack: 1, ph: ['Nombre en el sobre (ej. Familia López)', 'WhatsApp', 'Lugares'] }],
+      ['total', 'number', 'Total de invitados esperados']
+    ] },
+    { id: 'dia', t: 'El día del evento', why: function () { return C.l >= 3 ? 'Video para la pantalla, álbum de fotos con QR, papelería y recordatorios.' : 'Tus recordatorios y tus 3 imprimibles: letrero, números de mesa y menú.'; }, f: [
+      ['pantalla', 'chips', '¿El lugar tiene pantalla o proyector?', { pk: 3, o: ['Sí', 'No', 'No sé'] }],
+      ['pantalla_forma', 'chips', 'Forma de la pantalla', { pk: 3, o: ['Horizontal', 'Vertical', 'No sé'] }],
+      ['pantalla_conexion', 'text', '¿Cómo se conecta el video?', { pk: 3, hint: 'USB, laptop o HDMI. Pregúntalo al lugar o al DJ.' }],
+      ['pantalla_cuando', 'multi', '¿Cuándo se proyecta el video?', { pk: 3, o: function () { return C.E.ent; } }],
+      ['album_ve', 'chips', '¿Quién puede ver el álbum de fotos de los invitados?', { pk: 3, o: ['Solo la familia', 'Todos los invitados'] }],
+      ['album_videos', 'chips', '¿Los invitados pueden subir videos cortos?', { pk: 3, o: ['Sí', 'No'] }],
+      ['album_hasta', 'chips', '¿Hasta cuándo pueden subir fotos?', { pk: 3, o: ['Esa noche', '3 días después', '7 días después'] }],
+      ['mesas', 'number', 'Número de mesas', { pk: 2 }],
+      ['letrero_texto', 'text', 'Texto del letrero de bienvenida', { pk: 2, ph: by({ boda: 'Bienvenidos a la boda de Ana Sofía & Emiliano' }, 'Bienvenidos a los XV de Valentina') }],
+      ['letrero_medida', 'text', 'Medida del letrero', { pk: 2, ph: 'Ej. 60 × 90 cm' }],
+      ['menu', 'textarea', 'Texto del menú', { pk: 2 }],
+      ['papeleria', 'multi', 'Más papelería que quieres', { pk: 3, o: ['Tarjetas con QR', 'Marco para fotos', 'Agradecimientos', 'Etiquetas para recuerdos', 'Otra'] }],
+      ['marco_texto', 'text', 'Texto o hashtag del marco para Instagram', { pk: 3 }],
+      ['imprime', 'text', '¿Dónde vas a imprimir y para qué fecha necesitas los archivos?', { pk: 2 }],
+      ['recordatorios', 'chips', 'Recordatorios por WhatsApp: 1 semana, 1 día y 2 horas antes', { pk: 2, o: ['Así está bien', 'Quiero otras fechas'] }]
+    ] },
+    { id: 'fin', t: 'Para terminar', why: 'Con esto planeamos tus entregas.', f: [
+      ['entrega', 'date', '¿Para cuándo necesitas la invitación lista para enviar?'],
+      ['notas', 'textarea', '¿Algo más que debamos saber?']
+    ] }
+  ];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var R = function (x) { return typeof x === 'function' ? x() : x; };
+  var st = { v: {}, fid: '', fotos: {}, enviado: '', pk: '', ev: '', ini: {} };
+  try { var sv = JSON.parse(localStorage.getItem(KEY) || 'null'); if (sv) st = Object.assign(st, sv); } catch (e) {}
+  // someone who started on the first XV link (ficha/xv) keeps everything
+  if (!localStorage.getItem(KEY)) try { var old = JSON.parse(localStorage.getItem('ilu-ficha-xv') || 'null'); if (old) { st = Object.assign(st, old, { pk: 'experiencia', ev: 'xv', ini: { itinerario: 'xv' } }); } } catch (e) {}
+  var qp = new URLSearchParams(location.search);
+  var qpk = qp.get('paquete'), qev = qp.get('evento'); qev = SLUG[qev] || qev;
+  if (qpk && PK.some(function (p) { return p.v === qpk; })) st.pk = qpk;
+  if (qev && EV[qev]) st.ev = qev;
+  if (qp.get('n') && !st.v.festejada) st.v.festejada = qp.get('n');
+  if (qp.get('diseno') && !st.v.diseno) st.v.diseno = qp.get('diseno');
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} progress(); }
+  function toast(t) { var el = $('toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(function () { el.classList.remove('on'); }, 2600); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function pkO() { return PK.filter(function (p) { return p.v === st.pk; })[0]; }
+  function vis(f) { var o = f[3] || {}; return (o.pk || 0) <= C.l && (!o.when || o.when()); }
+  function secs() { return S.map(function (s) { return { s: s, f: s.f.filter(vis) }; }).filter(function (x) { return x.f.length; }); }
+
+  /* ---------- step 1: package + event ---------- */
+  $('pks').innerHTML = PK.map(function (p) {
+    return '<button type="button" class="pk' + (p.help ? ' help' : '') + '" data-v="' + p.v + '">' + (p.rib ? '<span class="rib">' + p.rib + '</span>' : '') + '<b>' + esc(p.n) + '</b>' + (p.help ? '<small style="margin:2px 0 0">' + esc(p.s) + '</small>' : '<small>' + esc(p.s) + '</small><ul>' + p.inc.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>') + '</button>';
+  }).join('');
+  $('evs').innerHTML = EVK.map(function (k) { return '<button type="button" data-v="' + k + '">' + esc(EV[k].n) + '</button>'; }).join('');
+  function paintPick() {
+    document.querySelectorAll('#pks .pk').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === st.pk)); });
+    document.querySelectorAll('#evs button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === st.ev)); });
+    $('go').disabled = !(st.pk && st.ev);
+  }
+  $('pks').onclick = function (e) { var b = e.target.closest('.pk'); if (!b) return; st.pk = b.dataset.v; save(); paintPick(); };
+  $('evs').onclick = function (e) { var b = e.target.closest('button'); if (!b) return; st.ev = b.dataset.v; save(); paintPick(); };
+  $('go').onclick = function () { if (!(st.pk && st.ev)) return; build(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  $('change').onclick = function () { $('pick').hidden = false; $('chosen').hidden = true; $('steps').hidden = true; $('form').hidden = true; $('bar').hidden = true; $('help-note').hidden = true; header(true); paintPick(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+
+  function header(start) {
+    var p = pkO();
+    if (start || !p) { $('h-eye').textContent = 'TU PEDIDO'; $('h-t').innerHTML = 'Cuéntanos<br>qué necesitas'; $('h-i').textContent = 'Elige tu paquete y te pedimos solo la información que ese paquete necesita.'; return; }
+    $('h-eye').textContent = (p.help ? 'TU PEDIDO' : p.n.toUpperCase()) + ' · ' + C.E.n.toUpperCase();
+    $('h-t').innerHTML = 'Cuéntanos todo<br>' + esc(C.E.h);
+    $('h-i').textContent = ['Con esta información creamos tu invitación.', 'Con esta información creamos tu invitación, tu video invitación y el link de cada invitado.', 'Con esta información creamos tu invitación, los links de tus invitados, tus recordatorios y tus imprimibles.', 'Con esta información creamos tu invitación, tu canción, tu video y todas las piezas de tu evento.'][p.help ? 0 : p.lvl];
+    if (p.help) $('h-i').textContent = 'Con lo básico de tu evento te recomendamos el paquete ideal.';
+  }
+
+  /* ---------- step 2: the questions for that package ---------- */
+  var form = $('form');
+  function build() {
+    var p = pkO(); C.e = st.ev; C.E = EV[st.ev]; C.l = p.lvl;
+    header(false);
+    $('pick').hidden = true; $('chosen').hidden = false; $('steps').hidden = false; form.hidden = false; $('bar').hidden = false; $('help-note').hidden = !p.help;
+    $('chosen-t').innerHTML = '<b>' + esc(p.help ? 'Paquete por definir' : p.n) + '</b>' + esc(C.E.n);
+    form.innerHTML = '';
+    var list = secs();
+    list.forEach(function (x, si) {
+      var el = document.createElement('section'); el.className = 'sec'; el.id = 's-' + x.s.id;
+      el.innerHTML = '<h2><b>' + (si + 1) + '</b>' + esc(x.s.t) + '</h2><p class="why">' + esc(R(x.s.why)) + '</p>';
+      x.f.forEach(function (f) { el.appendChild(field(f)); });
+      form.appendChild(el);
+    });
+    $('steps').innerHTML = list.map(function (x, i) { return '<a href="#s-' + x.s.id + '" data-s="' + x.s.id + '">' + (i + 1) + '. ' + esc(x.s.t) + ' <i></i></a>'; }).join('');
+    save();
+  }
+
+  function field(f) {
+    var k = f[0], type = f[1], label = R(f[2]), o = f[3] || {}, ph = R(o.ph), hintT = R(o.hint);
+    var w = document.createElement('div'); w.className = 'f'; w.dataset.k = k;
+    var lab = esc(label) + (o.req ? ' <em>*</em>' : '');
+    var hint = hintT ? '<span class="hint">' + esc(hintT) + '</span>' : '';
+    if (/^(text|tel|email|date|time|number)$/.test(type)) {
+      w.innerHTML = '<label for="i-' + k + '">' + lab + '</label>' + hint + '<input id="i-' + k + '" type="' + type + '"' + (ph ? ' placeholder="' + esc(ph) + '"' : '') + (o.ac ? ' autocomplete="' + o.ac + '"' : '') + (type === 'number' ? ' inputmode="numeric" min="0"' : '') + '>';
+      var inp = w.querySelector('input'); inp.value = st.v[k] || '';
+      inp.addEventListener('input', function () { st.v[k] = inp.value; w.classList.remove('miss'); save(); });
+    } else if (type === 'textarea') {
+      w.innerHTML = '<label for="i-' + k + '">' + lab + '</label>' + hint + '<textarea id="i-' + k + '"' + (ph ? ' placeholder="' + esc(ph) + '"' : '') + '></textarea>';
+      var ta = w.querySelector('textarea'); ta.value = st.v[k] || '';
+      ta.addEventListener('input', function () { st.v[k] = ta.value; save(); });
+    } else if (type === 'chips' || type === 'multi') {
+      var opts = R(o.o);
+      w.innerHTML = '<span class="lab">' + lab + '</span>' + hint + '<div class="chips">' + opts.map(function (x) { return '<button type="button">' + esc(x) + '</button>'; }).join('') + '</div>';
+      var paint = function () { var cur = st.v[k]; w.querySelectorAll('button').forEach(function (b) { var on = type === 'multi' ? (cur || []).indexOf(b.textContent) > -1 : cur === b.textContent; b.setAttribute('aria-pressed', String(on)); }); };
+      w.querySelector('.chips').addEventListener('click', function (e) {
+        var b = e.target.closest('button'); if (!b) return; var x = b.textContent;
+        if (type === 'multi') { var a = (st.v[k] || []).slice(), i = a.indexOf(x); if (i > -1) a.splice(i, 1); else a.push(x); st.v[k] = a; }
+        else st.v[k] = st.v[k] === x ? '' : x;
+        paint(); save();
+      });
+      paint();
+    } else if (type === 'cards') {
+      w.innerHTML = '<span class="lab">' + lab + '</span>' + hint + '<div class="cards">' + R(o.o).map(function (x) {
+        return x[1] ? '<button type="button" data-v="' + esc(x[0]) + '"><img src="../demos/' + x[1] + '/img/compartir.jpg" alt="" loading="lazy"><span>' + esc(x[0]) + '<br><a href="' + DEMO + x[1] + '/" target="_blank" rel="noopener">Ver diseño ↗</a></span></button>'
+          : '<button type="button" class="other" data-v="' + esc(x[0]) + '"><span>' + esc(x[0]) + '</span></button>';
+      }).join('') + '</div>';
+      var pc = function () { w.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(st.v[k] === b.dataset.v)); }); };
+      w.querySelector('.cards').addEventListener('click', function (e) { if (e.target.closest('a')) return; var b = e.target.closest('button'); if (!b) return; st.v[k] = st.v[k] === b.dataset.v ? '' : b.dataset.v; pc(); save(); });
+      pc();
+    } else if (type === 'rows') {
+      var tmpl = o.stack ? '1fr 84px 30px' : o.cols.map(function (c) { return c[3]; }).join(' ') + ' 30px';
+      w.innerHTML = '<span class="lab">' + lab + '</span>' + hint + (o.stack ? '' : '<div class="rowhead" style="grid-template-columns:' + tmpl + '">' + o.cols.map(function (c) { return '<span>' + esc(c[1]) + '</span>'; }).join('') + '<span></span></div>') + '<div class="rows' + (o.stack ? ' stack' : '') + '"></div><button type="button" class="add">' + esc(o.addLabel) + '</button>' +
+        (o.paste ? '<details class="paste"><summary>¿Tienes la lista en Excel o en tus notas? Pégala aquí</summary><span class="hint" style="margin-top:8px">Una familia por línea: nombre, WhatsApp, lugares. Por ejemplo: Familia López, 33 1234 5678, 4</span><textarea placeholder="Familia López, 33 1234 5678, 4&#10;Tía Carmen, 33 8765 4321, 2"></textarea><button type="button" class="add">Agregar a la lista</button></details>' : '');
+      // a fresh itinerary follows the event; once a time is typed it stays as the client left it
+      var untouched = !st.v[k] || !st.v[k].some(function (r) { return r.slice(1).some(function (c) { return String(c).trim(); }); });
+      if (!st.v[k] || (untouched && st.ini[k] && st.ini[k] !== C.e)) { st.v[k] = o.init(); st.ini[k] = C.e; }
+      var box = w.querySelector('.rows');
+      var draw = function () {
+        box.innerHTML = '';
+        st.v[k].forEach(function (r, ri) {
+          var row = document.createElement('div'); row.className = 'row'; row.style.gridTemplateColumns = tmpl;
+          o.cols.forEach(function (c, ci) {
+            var inp = document.createElement('input'); inp.type = c[2]; inp.value = r[ci] || ''; inp.setAttribute('aria-label', c[1]);
+            if (o.stack) inp.placeholder = o.ph[ci]; else if (o.ph && ri === 0) inp.placeholder = o.ph[ci];
+            if (c[2] === 'number') { inp.inputMode = 'numeric'; inp.min = '0'; }
+            inp.addEventListener('input', function () { st.v[k][ri][ci] = inp.value; save(); });
+            row.appendChild(inp);
+          });
+          var x = document.createElement('button'); x.type = 'button'; x.className = 'x'; x.textContent = '×'; x.setAttribute('aria-label', 'Quitar fila');
+          x.onclick = function () { st.v[k].splice(ri, 1); draw(); save(); };
+          row.appendChild(x); box.appendChild(row);
+        });
+      };
+      w.querySelector('.add').onclick = function () { st.v[k].push(o.cols.map(function () { return ''; })); draw(); save(); var ins = box.querySelectorAll('.row:last-child input'); if (ins[0]) ins[0].focus(); };
+      if (o.paste) w.querySelector('details .add').onclick = function () {
+        var ta = w.querySelector('details textarea'), lines = ta.value.split(/\n+/).map(function (l) { return l.trim(); }).filter(Boolean), n = 0;
+        st.v[k] = st.v[k].filter(function (r) { return r.some(function (c) { return String(c).trim(); }); });
+        lines.forEach(function (l) {
+          var p = l.split(/\t|;|,(?=\s*[+\d(])|,\s*(?=\d+\s*$)/).map(function (s) { return s.trim(); });
+          var name = p[0] || '', tel = '', seats = '';
+          p.slice(1).forEach(function (s) { var dg = s.replace(/\D/g, ''); if (dg.length >= 7 && !tel) tel = s; else if (dg && dg.length <= 2 && !seats) seats = dg; });
+          if (name) { st.v[k].push([name, tel, seats]); n++; }
+        });
+        ta.value = ''; draw(); save(); toast(n + (n === 1 ? ' familia agregada' : ' familias agregadas'));
+      };
+      draw();
+    } else if (type === 'photos') {
+      w.innerHTML = '<span class="lab">' + lab + '</span>' + hint + '<button type="button" class="pickbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Elegir fotos</button><div class="photos"></div><div class="count"></div>';
+      w.querySelector('.pickbtn').onclick = function () { pickFor = { g: o.g, max: o.max, w: w }; $('file').multiple = o.max > 1; $('file').click(); };
+      countPhotos(w, o.g);
+    }
+    return w;
+  }
+
+  /* ---------- photos: upload as soon as they are chosen ---------- */
+  var pickFor = null, busy = 0;
+  function countPhotos(w, g) { var n = st.fotos[g] || 0; w.querySelector('.count').textContent = n ? n + (n === 1 ? ' foto enviada ✓' : ' fotos enviadas ✓') : ''; }
+  function post(body) { return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) }).then(function (r) { return r.json(); }); }
+  function shrink(f) {
+    return createImageBitmap(f).then(function (bmp) {
+      var k = Math.min(1, 2400 / Math.max(bmp.width, bmp.height)), w = Math.round(bmp.width * k), h = Math.round(bmp.height * k);
+      var c = document.createElement('canvas'); c.width = w; c.height = h; var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.drawImage(bmp, 0, 0, w, h);
+      return c.toDataURL('image/jpeg', 0.9);
+    });
+  }
+  function ensureFicha() { return st.fid ? Promise.resolve(st.fid) : sendDatos().then(function () { return st.fid; }); }
+  $('file').onchange = function () {
+    var files = Array.prototype.slice.call(this.files || []); this.value = '';
+    if (!files.length || !pickFor) return;
+    var P = pickFor, left = P.max - (st.fotos[P.g] || 0);
+    if (left <= 0 && P.max === 1) left = 1; // replacing the cover is fine
+    if (left <= 0) { toast('Ya enviaste las ' + P.max + ' fotos de esta parte.'); return; }
+    if (files.length > left) { toast('Aquí van máximo ' + P.max + '. Tomamos las primeras ' + left + '.'); files = files.slice(0, left); }
+    var grid = P.w.querySelector('.photos');
+    var jobs = files.map(function (f) { var d = document.createElement('div'); d.className = 'wait'; d.innerHTML = '<img alt=""><i></i>'; d.querySelector('img').src = URL.createObjectURL(f); grid.appendChild(d); return { f: f, d: d }; });
+    busy++; progress();
+    ensureFicha().then(function (fid) {
+      var i = 0;
+      function next() {
+        if (i >= jobs.length) return Promise.resolve();
+        var j = jobs[i++];
+        return shrink(j.f).then(function (data) { return post({ ficha: 'foto', fid: fid, grupo: P.g, name: P.g + '-' + Date.now() + '.jpg', data: data }); })
+          .then(function (r) { if (!r.ok) throw 0; j.d.className = ''; j.d.querySelector('i').textContent = '✓'; st.fotos[P.g] = (st.fotos[P.g] || 0) + 1; save(); countPhotos(P.w, P.g); })
+          .catch(function () { j.d.className = 'err'; j.d.querySelector('i').textContent = '!'; toast('Una foto no se pudo enviar. Revisa tu señal y elígela otra vez.'); })
+          .then(next);
+      }
+      return Promise.all([next(), next()]);
+    }).catch(function () { jobs.forEach(function (j) { j.d.className = 'err'; j.d.querySelector('i').textContent = '!'; }); toast('Sin conexión. Inténtalo otra vez en un momento.'); })
+      .then(function () { busy--; progress(); });
+  };
+
+  /* ---------- progress (only the questions of the chosen package) ---------- */
+  function filled(f) {
+    var v = st.v[f[0]];
+    if (f[1] === 'photos') return (st.fotos[f[3].g] || 0) > 0;
+    if (f[1] === 'rows') return (v || []).some(function (r) { return r.slice(1).some(function (c) { return String(c).trim(); }); }) || (f[0] === 'invitados' && (v || []).some(function (r) { return String(r[0]).trim(); }));
+    if (Array.isArray(v)) return v.length > 0;
+    return !!String(v || '').trim();
+  }
+  function progress() {
+    if (form.hidden) return 0;
+    var all = 0, got = 0;
+    secs().forEach(function (x) {
+      var a = 0, g = 0; x.f.forEach(function (f) { a++; if (filled(f)) g++; }); all += a; got += g;
+      var link = document.querySelector('nav.steps a[data-s="' + x.s.id + '"]'); if (link) { link.querySelector('i').textContent = g + '/' + a; link.classList.toggle('done', g >= Math.ceil(a * 0.6)); }
+    });
+    var pct = all ? Math.round(got / all * 100) : 0;
+    $('pb').textContent = pct + '% completo'; $('pt').style.width = pct + '%';
+    $('ps').textContent = busy ? 'Enviando fotos… no cierres la página' : (st.enviado ? 'Último envío: ' + st.enviado : 'Se guarda solo mientras escribes');
+    $('send').disabled = !!busy;
+    return pct;
+  }
+
+  /* ---------- send ---------- */
+  function pkName() { var p = pkO(); return p ? (p.help ? 'Paquete por definir' : p.n) : ''; }
+  function texto() {
+    var out = ['FICHA · ' + pkName() + ' · ' + C.E.n + ' · ' + (st.v.festejada || '') + (st.v.fecha ? ' · ' + st.v.fecha : ''), ''];
+    secs().forEach(function (x, si) {
+      out.push('== ' + (si + 1) + '. ' + x.s.t.toUpperCase() + ' ==');
+      x.f.forEach(function (f) {
+        var v = st.v[f[0]], lab = R(f[2]);
+        if (f[1] === 'photos') { out.push(lab + ': ' + (st.fotos[f[3].g] || 0) + ' fotos'); return; }
+        if (f[1] === 'rows') {
+          var rows = (v || []).filter(function (r) { return r.some(function (c) { return String(c).trim(); }); });
+          out.push(lab + ':' + (rows.length ? '' : ' —'));
+          rows.forEach(function (r) { out.push('  · ' + r.map(function (c) { return String(c).trim() || '—'; }).join(' | ')); });
+          if (f[0] === 'invitados' && rows.length) { var seats = rows.reduce(function (a, r) { return a + (parseInt(r[2], 10) || 0); }, 0); out.push('  ' + rows.length + ' invitaciones · ' + seats + ' lugares'); }
+          return;
+        }
+        if (Array.isArray(v)) v = v.join(', ');
+        out.push(lab + ': ' + (String(v || '').trim() || '—'));
+      });
+      out.push('');
+    });
+    return out.join('\n');
+  }
+  function sendDatos() {
+    var p = pkO(), datos = Object.assign({ _paquete: pkName(), _evento: C.E.n }, st.v);
+    return post({ ficha: 'datos', fid: st.fid, datos: datos, texto: texto(),
+      resumen: { evento: (C.E.short || C.E.n) + ' · ' + (p.short || p.n), festejada: st.v.festejada || '', contacto: st.v.contacto || '', whatsapp: st.v.whatsapp || '', correo: st.v.correo || '', fecha: st.v.fecha || '' } })
+      .then(function (r) { if (!r.ok) throw new Error(r.error || 'error'); st.fid = r.fid; save(); });
+  }
+  $('send').onclick = function () {
+    var need = ['contacto', 'whatsapp', 'festejada'], miss = null;
+    need.forEach(function (k) { var w = document.querySelector('.f[data-k="' + k + '"]'); if (!String(st.v[k] || '').trim()) { w.classList.add('miss'); miss = miss || w; } });
+    if (miss) { miss.scrollIntoView({ behavior: 'smooth', block: 'center' }); toast('Solo falta tu nombre, tu WhatsApp y ' + C.E.falta + '.'); return; }
+    var btn = $('send'); btn.disabled = true; btn.textContent = 'Enviando…';
+    var pct = progress();
+    sendDatos().then(function () { return post({ ficha: 'fin', fid: st.fid, parcial: pct < 60 }); }).then(function (r) {
+      if (!r.ok) throw 0;
+      st.enviado = new Date().toLocaleString('es-MX', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); save();
+      $('done-p').textContent = pkO().help ? 'En menos de 24 horas te escribimos con el paquete ideal para tu evento.' : 'En menos de 24 horas te escribimos para confirmar tu paquete y enviarte los datos del anticipo.';
+      ['head', 'chosen', 'steps', 'help-note'].forEach(function (id) { $(id).hidden = true; }); form.hidden = true; $('done').classList.add('on'); window.scrollTo({ top: 0, behavior: 'smooth' });
+    }).catch(function () { toast('No se pudo enviar. Revisa tu conexión e inténtalo otra vez. Tus respuestas siguen guardadas.'); })
+      .then(function () { btn.disabled = false; btn.textContent = 'Enviar'; progress(); });
+  };
+  $('again').onclick = function () { $('done').classList.remove('on'); $('head').hidden = false; build(); };
+
+  paintPick();
+  if (st.pk && st.ev) build(); else header(true);
+})();
+</script>
+</body>
+</html>

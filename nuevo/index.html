@@ -560,6 +560,9 @@ html, body { overflow-x: clip; }
 .pack .btn { margin-top: auto; width: 100%; }
 .pk-note { text-align: center; margin: 30px 0 0; font-size: 14px; color: var(--ink3); }
 .pk-note a { color: var(--gold); text-underline-offset: 3px; }
+.pk-note.pk-full { margin-top: 12px; font-size: 15px; }
+.xa-go { margin-top: 16px; }
+.im-done .d-full { margin-top: 2px; }
 @media (max-width: 860px) { .packs { grid-template-columns: minmax(0, 1fr); max-width: 400px; } .pack.star { order: -1; } }
 .pack.top { background: linear-gradient(180deg, #FFFCF6, #F6ECDD); box-shadow: inset 0 0 0 1px rgba(182,138,78,.45), 0 40px 60px -44px rgba(90,60,40,.5); }
 .pack.top .ribbon { background: linear-gradient(180deg, #FFFFFF, #F1E4CF); box-shadow: inset 0 0 0 1px rgba(182,138,78,.5); }
@@ -858,6 +861,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         </article>
       </div>
       <p class="pk-note"><a href="https://wa.me/16048391163?text=Hola%20Ilusi%C3%B3n%20Invites%20%E2%9C%A8%20quiero%20cotizar%20algo%20especial" target="_blank" rel="noopener" data-en="Need something special? Ask us">¿Necesitas algo especial? Pregúntanos</a></p>
+      <p class="pk-note pk-full"><a href="/ficha/" data-en="Already know which package you want? Fill in your full order (form in Spanish) →">¿Ya sabes qué paquete quieres? Llena tu pedido completo aquí →</a></p>
     </div>
   </section>
 
@@ -882,6 +886,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             <li data-en="A personal video with your proposal">Un video personal con tu propuesta</li>
           </ul>
           <p class="xa-price"><span data-en="from">desde</span> <b class="price" data-p="3"></b> <small class="curl"></small></p>
+          <a class="btn btn-gold btn-sm xa-go" href="/ficha/?paquete=experiencia" data-en="Order the Ilusión Experience">Pedir la Experiencia Ilusión</a>
         </div>
         <span class="xu-orn" aria-hidden="true"><i></i><b></b><i></i></span>
       <div class="xs" id="xs">
@@ -1162,6 +1167,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
               <li><i>2</i><span data-en="Within 24 hours we write to you by WhatsApp or email with your proposal.">En menos de 24 horas te escribimos por WhatsApp o correo con tu propuesta.</span></li>
               <li><i>3</i><span data-en="We design your invitation and adjust it until you love it.">Diseñamos tu invitación y la ajustamos hasta que te encante.</span></li>
             </ol>
+            <a class="btn btn-gold btn-sm d-full" id="im-done-full" href="/ficha/" data-en="Get ahead: fill in all your details (in Spanish)">Adelántate: llena toda tu información</a>
             <a class="btn btn-line btn-sm" id="im-done-wa" href="#" target="_blank" rel="noopener" data-en="In a hurry? Message us on WhatsApp">¿Tienes prisa? Escríbenos por WhatsApp</a>
           </div>
           <p class="im-err" id="im-err" hidden></p>
@@ -1864,6 +1870,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
         if (!r || !r.ok) throw new Error((r && r.error) || 'save');
         var msg = (en ? 'Hi Ilusión Invites ✨ I just sent my order ' : 'Hola Ilusión Invites ✨ Acabo de enviar mi pedido ') + r.pedido + '\n' + message().split('\n').slice(1, -1).map(function (x) { return /^• (Tengo \d+ foto|I have \d+ photo)/.test(x) ? (en ? '• My photos are already in the order' : '• Mis fotos ya están en el pedido') : x; }).join('\n') + '\n' + (en ? 'Can you help me create it?' : '¿Me ayudan a crearla?');
         $('im-done-wa').href = 'https://wa.me/16048391163?text=' + encodeURIComponent(msg);
+        $('im-done-full').href = '/ficha/?' + new URLSearchParams({ paquete: st.paquete || 'ayuda', evento: st.evento || '', n: st.nombres || '', diseno: st.diseno || '' }).toString();
         var first = String(st.contacto || '').trim().split(/\s+/)[0];
         $('im-done-n').textContent = (en ? 'ORDER ' : 'PEDIDO ') + r.pedido;
         $('im-done-t').innerHTML = (en ? 'Thank you' : '¡Gracias') + (first ? ', ' + e2(first) : '') + (en ? '! <em>We received it</em>' : '! <em>Ya lo recibimos</em>');
