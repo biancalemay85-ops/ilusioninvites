@@ -382,6 +382,23 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
 .rs-mail input { width: 100%; min-height: 46px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(217,178,111,.7); background: rgba(255,240,236,.1); color: var(--ivory); font: 17px var(--f-display); text-align: center; }
 .rs-mail input::placeholder { color: rgba(255,230,220,.5); }
 .rs-mail small { font-size: 15px; font-style: italic; color: var(--ink-soft); text-align: center; }
+
+/* v3: one clean bouquet, tucked into the corner */
+.pram { position: absolute; z-index: 9; width: 44%; right: -6%; bottom: -6%; height: auto; pointer-events: none; transform: rotate(-8deg); filter: drop-shadow(3px 10px 12px rgba(25,0,12,.55)); }
+.foot .corner-end.ram { transform: rotate(-6deg); width: min(38vw, 280px); right: -3vw; bottom: -1vw; filter: drop-shadow(-3px 10px 12px rgba(25,0,12,.5)); }
+/* v3: gallery */
+.galeria { width: min(100% - 16px, 540px); margin: 14px auto 0; display: flex; flex-direction: column; gap: 16px; }
+.galeria figure { margin: 0; cursor: zoom-in; }
+.galeria .archf-wrap { width: min(70%, 320px); margin: 0 auto 6px !important; }
+.galeria .fila { display: grid; gap: 14px; }
+.galeria .par { grid-template-columns: 1fr 1fr; }
+.galeria .mix { grid-template-columns: 3fr 5fr; row-gap: 8px; }
+.galeria .mat { height: 100%; padding: 7px; border-radius: 16px; background: linear-gradient(160deg, rgba(255,236,226,.12), rgba(255,236,226,.03)); border: 1px solid rgba(232,196,128,.45); box-shadow: 0 18px 30px -18px rgba(0,0,0,.7); }
+.galeria .mat img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; }
+.galeria .ancho .mat img { aspect-ratio: 4 / 3; }
+.galeria .alto .mat img { aspect-ratio: auto; height: 0; min-height: 100%; }
+.galeria .galcap { grid-column: 2; margin: 0; text-align: center; }
+@media (max-width: 640px) { .galeria { gap: 12px; } .galeria .fila { gap: 10px; } .galeria .mat { padding: 5px; border-radius: 13px; } .galeria .mat img { border-radius: 9px; } }
 </style>
 
 <script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
@@ -430,15 +447,12 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
       <h1 class="p-names"><span class="foil gname">Bianca</span></h1>
       <img class="pfl" src="img/filigrana.webp" alt="">
       <p class="p-date">22 · 11 · 2026</p>
-      <img class="prose tl" src="img/esquina-rubor.webp" alt="">
-      <img class="prose br" src="img/esquina-rubor.webp" alt="">
+      <img class="pram" src="img/ramillete.webp" alt="">
     </div>
     <p class="p-hint"><a href="#scene">MI INVITACIÓN ↓</a></p>
   </section>
 
   <section class="scene pre" id="scene" aria-label="Invitación a los XV años de Bianca">
-    <div class="corner" aria-hidden="true"><img src="img/esquina-rubor.webp" alt=""></div>
-    <div class="corner br" aria-hidden="true"><img src="img/esquina-rubor.webp" alt=""></div>
     <div class="stage" id="stage">
       <div class="layer l-paper" data-depth="-0.06"><div class="in" style="transition-delay:.1s"></div></div>
       <div class="layer l-glass" data-depth="0">
@@ -464,7 +478,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
       <div class="layer l-flower f-tr" data-depth="-0.16"><img class="in" src="img/rosa-fiusha.webp" alt="" style="transition-delay:.7s"></div>
       <div class="layer l-flower f-bl" data-depth="0.2"><img class="in" src="img/dalia-rosa.webp" alt="" style="transition-delay:.8s"></div>
       <div class="layer l-flower f-br" data-depth="0.36"><img class="in" src="img/ranunculo-coral.webp" alt="" style="transition-delay:.35s"></div>
-      <div class="layer l-flower f-front" data-depth="0.6"><img class="in" src="img/ranunculo-coral.webp" alt="" style="transition-delay:.3s"></div>
+      <div class="layer l-flower f-front" data-depth="0.6"><img class="in" src="img/rosa-marfil.webp" alt="" style="transition-delay:.3s"></div>
     </div>
     <p class="hint"><a href="#detalles">DESLIZA PARA VER MÁS ↓</a></p>
   </section>
@@ -472,7 +486,6 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
   <main class="flow" id="detalles">
     <section class="part padres">
       <div class="m l" data-speed=".14" style="--w:26vw;--top:10%;--rot:-8deg"><img src="img/ranunculo-coral.webp" alt=""></div>
-      <div class="m r small" data-speed=".1" style="--w:18vw;--top:56%;--rot:14deg"><img src="img/rosa-rubor.webp" alt=""></div>
       <div class="txt">
         <img class="chand" src="img/candelabro-cristal.webp" alt="" width="408" height="540">
         <p class="caps">CON LA BENDICIÓN DE DIOS Y DE MIS PAPÁS</p>
@@ -488,27 +501,29 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
     </section>
 
     <section class="part noche">
-      <div class="m r small" data-speed=".1" style="--w:18vw;--top:4%;--rot:16deg;--x:-3vw"><img src="img/dalia-rosa.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil">Mis momentos</h2>
         <p class="lead">Flores, coronas y mariposas: así soñé esta noche, y así quiero vivirla contigo.</p>
-        <div class="fotos" id="fotos">
-          <figure class="g-l"><div class="jewel"><img src="fotos/g2.webp" alt="Bianca" loading="lazy"></div></figure>
+        <div class="galeria" id="fotos">
           <figure class="archf-wrap"><div class="archf"><img class="ph" src="fotos/g1.webp" alt="Bianca" loading="lazy"><img class="fr" src="img/marco-arco.webp" alt="" width="547" height="900" loading="lazy"></div></figure>
-          <figure class="g-r"><div class="jewel"><img src="fotos/g3.webp" alt="Bianca" loading="lazy" style="object-position:58% 30%"></div></figure>
-          <figure class="g-l2"><div class="jewel"><img src="fotos/g4.webp" alt="Bianca" loading="lazy"></div></figure>
-          <figure class="ancho g-r2"><div class="jewel"><img src="fotos/familia.webp" alt="Bianca con sus papás" loading="lazy"></div><figcaption class="caps">CON MIS PAPÁS</figcaption></figure>
+          <div class="fila par">
+            <figure><div class="mat"><img src="fotos/g2.webp" alt="Bianca" loading="lazy"></div></figure>
+            <figure><div class="mat"><img src="fotos/g3.webp" alt="Bianca" loading="lazy" style="object-position:58% 30%"></div></figure>
+          </div>
+          <div class="fila mix">
+            <figure class="alto"><div class="mat"><img src="fotos/g4.webp" alt="Bianca" loading="lazy"></div></figure>
+            <figure class="ancho"><div class="mat"><img src="fotos/familia.webp" alt="Bianca con sus papás" loading="lazy"></div></figure>
+            <p class="caps galcap">CON MIS PAPÁS</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="part">
-      <div class="m l" data-speed=".16" style="--w:26vw;--top:4%;--rot:-12deg"><img src="img/ranunculo-coral.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil">Reserva la fecha</h2>
         <p class="big-date">22 · 11 · 2026</p>
         <div class="cristal">
-          <img class="fc tl" src="img/esquina-rubor.webp" alt="">
           <span class="gem" style="right:-10px;bottom:-12px;width:24px;animation-delay:2s"><img src="img/cristal-11.webp" alt=""></span>
           <p class="caps">FALTAN</p>
           <div class="count" aria-label="Cuenta regresiva">
@@ -523,7 +538,6 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
     </section>
 
     <section class="part">
-      <div class="m r" data-speed=".15" style="--w:24vw;--top:6%;--rot:16deg;--fx:-1"><img src="img/rosa-rubor.webp" alt=""></div>
       <div class="m l" data-speed=".1" style="--w:20vw;--top:50%;--rot:-8deg"><img src="img/dalia-rosa.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil">Dónde</h2>
@@ -548,7 +562,6 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
     <img class="divider" src="img/filigrana.webp" alt="">
 
     <section class="part">
-      <div class="m r small" data-speed=".09" style="--w:18vw;--top:12%;--rot:-14deg;--x:-2vw"><img src="img/ranunculo-coral.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil">Itinerario</h2>
         <ol class="timeline it-d">
@@ -561,7 +574,6 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
     </section>
 
     <section class="part">
-      <div class="m l" data-speed=".12" style="--w:22vw;--top:8%;--rot:-150deg;--x:-4vw"><img src="img/rosa-rubor.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil">Código de vestimenta</h2>
         <p class="caps">FORMAL</p>
@@ -570,7 +582,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
     </section>
 
     <section class="part">
-      <div class="m r" data-speed=".1" style="--w:22vw;--top:10%;--rot:-30deg"><img src="img/dalia-rosa.webp" alt=""></div>
+      <div class="m r" data-speed=".1" style="--w:22vw;--top:10%;--rot:-30deg"><img src="img/rosa-marfil.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil">Mesa de regalos</h2>
         <p class="lead">Tu presencia es mi mejor regalo. Si deseas tener un detalle conmigo, habrá lluvia de sobres el día de la fiesta.</p>
@@ -578,12 +590,9 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
     </section>
 
     <section class="part">
-      <div class="m l" data-speed=".1" style="--w:24vw;--top:12%;--rot:14deg;--fx:-1"><img src="img/ranunculo-coral.webp" alt=""></div>
       <div class="txt">
         <h2 class="foil">Confirma</h2>
         <div class="cristal pass">
-          <img class="fc tl" src="img/esquina-rubor.webp" alt="">
-          <img class="fc br" src="img/esquina-rubor.webp" alt="">
           <p class="caps">ESTA INVITACIÓN ES VÁLIDA PARA</p>
           <strong id="seats">tu familia</strong>
           <p>Por favor confírmame lo antes posible.</p>
@@ -609,7 +618,7 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
     </section>
 
     <footer class="foot">
-      <img class="corner-end" src="img/esquina-rubor.webp" alt="">
+      <img class="corner-end ram" src="img/ramillete.webp" alt="">
       <img class="divider" src="img/filigrana.webp" alt="" style="width:min(60vw,380px)">
       <p class="tag foil">#XVBianca</p>
       <p class="made">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
