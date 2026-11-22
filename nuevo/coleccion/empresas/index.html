@@ -585,7 +585,7 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
       }).join('');
       document.getElementById('cm-sum').innerHTML = en2 ? 'Ilusión is with you at <b>' + nIl + ' moments</b> along the way.' : 'Ilusión está ' + (pl ? 'con ustedes' : 'contigo') + ' en <b>' + nIl + ' momentos</b> de este camino.';
       var A = CM.app, IC = ['M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2', 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21v-1a6 6 0 0 1 12 0v1M16 3.5a4 4 0 0 1 0 7.5M22 21v-1a6 6 0 0 0-4-5.6', 'M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1.5v1M12 17.5v1M3.5 10h1M19.5 10h1M6 21h12M12 18.5V21', 'M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2zM9 8h6M9 12h6M9 16h3', 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2', 'M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z'];
-      document.getElementById('app-eye').textContent = 'AGENDA ILUSIÓN';
+      document.getElementById('app-eye').textContent = en2 ? 'ILUSIÓN PLANNER' : 'AGENDA ILUSIÓN';
       document.getElementById('app-h').innerHTML = A.titulo;
       document.getElementById('app-p').textContent = A.texto;
       document.getElementById('app-feat').innerHTML = A.funciones.map(function (f, i) { return '<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + IC[i] + '"/></svg><b>' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></li>'; }).join('');
@@ -593,7 +593,7 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
       var pdf = document.getElementById('app-pdf'); pdf.href = '../../listas/' + CM.pdf; pdf.textContent = en2 ? 'Download the free checklist' : 'Descargar la lista gratis';
       document.getElementById('app-note').innerHTML = (en2 ? 'Included in the Ilusión Experience, with your colors and your event. It saves to your home screen and opens like an app. ' : 'Viene incluida en la Experiencia Ilusión, con ' + (pl ? 'sus' : 'tus') + ' colores y ' + (pl ? 'su' : 'tu') + ' evento. Se guarda en ' + (pl ? 'su' : 'tu') + ' pantalla de inicio y se abre como una app. ') + '<a href="' + WA + encodeURIComponent(A.msg) + '" target="_blank" rel="noopener">' + (en2 ? 'I want mine →' : (pl ? 'Queremos la nuestra →' : 'Quiero la mía →')) + '</a>';
       var ck = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-      document.getElementById('app-scr').innerHTML = '<div class="as-top"><img src="' + SEAL + '" alt="">AGENDA ILUSIÓN<i></i></div>' +
+      document.getElementById('app-scr').innerHTML = '<div class="as-top"><img src="' + SEAL + '" alt="">' + (en2 ? 'ILUSIÓN PLANNER' : 'AGENDA ILUSIÓN') + '<i></i></div>' +
         '<div class="as-hero"><small>' + esc(A.evento.toUpperCase()) + '</small><b class="as-name">' + esc(A.nombre) + '</b>' +
         '<div class="as-ring"><div><b>128</b><small>' + (en2 ? 'DAYS TO GO' : 'DÍAS') + '</small></div></div><div class="as-prog">' + (en2 ? '18 of 42 done' : '18 de 42 listos') + '</div></div>' +
         '<div class="as-stats"><div><b>86</b><small>' + (en2 ? 'confirmed' : 'confirmados') + '</small></div><div><b>24</b><small>' + (en2 ? 'pending' : 'pendientes') + '</small></div><div><b>12</b><small>' + (en2 ? 'tables' : 'mesas') + '</small></div></div>' +
