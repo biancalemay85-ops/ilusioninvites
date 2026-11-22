@@ -11,6 +11,9 @@ data = json.load(open(os.path.join(HERE, '../website/colecciones.json'), encodin
 cols = data['colecciones']
 tpl = open(os.path.join(HERE, '../website/coleccion-plantilla.html'), encoding='utf-8').read()
 
+camino = json.load(open(os.path.join(HERE, '../website/camino.json'), encoding='utf-8'))
+for c in cols:
+    if c['slug'] in camino: c['camino'] = camino[c['slug']]
 lite = [{k: c.get(k, '') for k in ('slug', 'frame', 'img', 'deco', 'decoPos', 'es', 'en')} for c in cols]
 # link each collection to its "experiencia" page when that page exists
 for c in cols:
