@@ -200,7 +200,7 @@
     var fecha = '';
     if (d.inicio) {
       var dt = new Date(d.inicio), tz = { timeZone: 'America/Mexico_City' };
-      fecha = dt.toLocaleDateString('es-MX', Object.assign({ weekday: 'long', day: 'numeric', month: 'long' }, tz));
+      fecha = dt.toLocaleDateString('es-MX', Object.assign({ weekday: 'long', day: 'numeric', month: 'long' }, tz)).replace(',', '');
       $('when').textContent = fecha.charAt(0).toUpperCase() + fecha.slice(1) + ' · ' + dt.toLocaleTimeString('es-MX', Object.assign({ hour: 'numeric', minute: '2-digit' }, tz)).replace(/\s?([ap])\.?\s?m\.?/i, ' $1m').toLowerCase();
     }
 
@@ -217,7 +217,7 @@
     }).join('') || '<p class="lead">Aún no hay invitados en tu lista.</p>';
     function mensaje(g) {
       var nom = String(g.n).split(' ')[0];
-      return '¡Hola, ' + nom + '! 🤍 Con mucho cariño te invitamos a ' + (titulo.charAt(0).toLowerCase() + titulo.slice(1)) + (fecha ? ', el ' + fecha : '') + '. Esta es tu invitación, con ' +
+      return '¡Hola, ' + nom + '! 🤍 Con mucho cariño te invitamos a ' + (/^XV\b/.test(titulo) ? 'los ' + titulo : titulo.charAt(0).toLowerCase() + titulo.slice(1)) + (fecha ? ', el ' + fecha : '') + '. Esta es tu invitación, con ' +
         (g.l === 1 ? 'tu lugar' : 'tus ' + g.l + ' lugares') + '. Ábrela y confírmanos desde ahí:\n' + link + '?i=' + g.c;
     }
     guests.forEach(function (g, i) {
