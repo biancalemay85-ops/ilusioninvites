@@ -5,3 +5,4 @@ Sitemap: https://ilusioninvites.com/sitemap.xml
 Disallow: /i/
 Disallow: /lista/
 Disallow: /fotos/
+Disallow: /entrega/
