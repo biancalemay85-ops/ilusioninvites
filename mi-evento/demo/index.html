@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mi Evento · Ilusión</title>
+<title>Agenda Ilusión</title>
 <meta name="robots" content="noindex">
 <meta name="description" content="Tu evento en un solo lugar: pendientes mes por mes, invitados, mesas, proveedores y el plan del día.">
 <meta name="theme-color" content="#FCF3F4" id="tc">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Mi Evento">
+<meta name="apple-mobile-web-app-title" content="Agenda">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Jost:wght@400;500;600&display=swap">
 <style>
-/* Mi Evento: the client's event app. One base planner, themed per client (colors + event type), sections switched on per package. */
+/* Agenda Ilusión (was "Mi Evento"): the client's event app. One base planner, themed per client (colors + event type), sections switched on per package. */
 :root {
   --bg: #FCF3F4; --bg2: #F4DDE3; --ink: #4A2633; --accent: #B8798A;
   --card: color-mix(in srgb, var(--bg) 35%, #fff);
@@ -233,7 +233,7 @@ main { width: 100%; max-width: 780px; margin: 0 auto; padding: 18px 16px calc(va
 <div class="app" id="app">
   <header class="top">
     <img src="icon-seal.webp" alt="">
-    <div class="brand"><b>MI EVENTO</b><span id="topName"></span></div>
+    <div class="brand"><b>AGENDA ILUSIÓN</b><span id="topName"></span></div>
     <span class="days" id="topDays"></span>
     <button class="fab" type="button" data-a="studio"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.6L12 15l-1.8-4.4L5.5 9l4.7-1.4z M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg><span>Personalizar</span></button>
   </header>
@@ -444,7 +444,7 @@ V.inicio = function () {
   }
   var ms = MODS().filter(function (m) { return m[0] !== 'inicio' && on(m[0]); });
   if (ms.length) h += '<p class="sec-t">TU EVENTO</p><div class="tiles">' + ms.map(function (m) { return '<a class="tile" href="#' + m[0] + '">' + ic(m[0]) + m[1] + '</a>'; }).join('') + '</div>';
-  h += '<div class="card install" id="install" style="margin-top:14px"><div class="grow"><b>Ten Mi Evento en tu pantalla de inicio</b><p class="small" style="margin:2px 0 0">Se abre como una app, sin buscar el link.</p></div><button class="btn btn-gold btn-sm" type="button" data-a="install">Instalar</button></div>';
+  h += '<div class="card install" id="install" style="margin-top:14px"><div class="grow"><b>Ten tu Agenda Ilusión en tu pantalla de inicio</b><p class="small" style="margin:2px 0 0">Se abre como una app, sin buscar el link.</p></div><button class="btn btn-gold btn-sm" type="button" data-a="install">Instalar</button></div>';
   return h;
 };
 V.pendientes = function () {
@@ -688,7 +688,7 @@ var A = {
 };
 function studio() {
   var c = S.cfg;
-  openSheet('<h2>Personalizar</h2><p class="note">Solo para el equipo Ilusión: así armamos la app de cada cliente según su evento, sus colores y su paquete.</p>' +
+  openSheet('<h2>Personalizar</h2><p class="note">Así armamos la Agenda de cada cliente: con su evento, sus colores favoritos y las secciones de su paquete. ¡Pruébalo!</p>' +
     '<p class="sec-t" style="margin-top:0">EVENTO</p><div class="seg">' + [['xv', 'XV años'], ['boda', 'Boda']].map(function (o) { return '<button type="button" class="' + (c.tipo === o[0] ? 'on' : '') + '" data-a="stTipo" data-id="' + o[0] + '">' + o[1] + '</button>'; }).join('') + '</div>' +
     '<div class="f"><label for="s_n">' + (c.tipo === 'xv' ? 'Nombre de la quinceañera' : 'Nombres de los novios') + '</label><input id="s_n" data-ch="stF" data-id="nombre" value="' + esc(c.nombre) + '"></div>' +
     '<div><div class="f"><label for="s_f">Fecha y hora</label><input id="s_f" type="datetime-local" data-ch="stF" data-id="fecha" value="' + esc(c.fecha) + '"></div><div class="f"><label for="s_l">Lugar</label><input id="s_l" data-ch="stF" data-id="lugar" value="' + esc(c.lugar) + '"></div></div>' +

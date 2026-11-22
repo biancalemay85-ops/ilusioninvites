@@ -1,6 +1,6 @@
 {
- "name": "Mi Evento · Ilusión",
- "short_name": "Mi Evento",
+ "name": "Agenda Ilusión",
+ "short_name": "Agenda",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",

@@ -278,7 +278,7 @@ button.phone { display: block; border: 0; cursor: pointer; font: inherit; color:
   .cm-card li { font-size: 14.5px; }
 }
 
-/* ===== Mi Evento app teaser ===== */
+/* ===== Agenda Ilusión app teaser (Experiencia package) ===== */
 .app-in { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(30px, 5vw, 70px); align-items: center; }
 .app-txt { display: flex; flex-direction: column; gap: 12px; padding: clamp(22px, 3vw, 36px); border-radius: 30px; background: color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent), 0 30px 60px -40px rgba(60,35,30,.4); }
 .app-txt .eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 500 12px var(--f-caps); letter-spacing: .36em; color: var(--accent); }
@@ -294,6 +294,7 @@ button.phone { display: block; border: 0; cursor: pointer; font: inherit; color:
 .app-feat span { font-size: 14px; line-height: 1.45; color: var(--ink2); }
 .app-txt .btns { justify-content: flex-start; }
 .app-note { color: var(--ink2); font-size: 13.5px; max-width: 52ch; }
+.app-note a { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; white-space: nowrap; }
 .app-vis { position: relative; display: grid; place-items: center; padding: 20px 0; }
 .app-glow { position: absolute; inset: 6% 8%; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--soft) 90%, #fff) 0%, transparent 68%); filter: blur(10px); }
 .app-phone { position: relative; width: min(300px, 78vw); aspect-ratio: 9 / 19; padding: 10px; border-radius: 46px; background: linear-gradient(160deg, #3a2e33, #15100f 55%, #2a2024); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.12), 0 50px 70px -40px rgba(40,20,25,.7), 0 0 0 1px rgba(0,0,0,.4); transform: rotate(-2deg); animation: phoneFloat 7s ease-in-out infinite; }
@@ -416,7 +417,7 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
     </div>
   </section>
 
-  <!-- planning journey + Mi Evento app (XV and weddings only; data from website/camino.json) -->
+  <!-- planning journey + Agenda Ilusión app (XV and weddings only; data from website/camino.json) -->
   <section class="sec cm" id="camino" hidden>
     <div class="wrap">
       <div class="head rv"><span class="eyebrow" id="cm-eye"></span><h2 id="cm-h"></h2><p id="cm-p"></p>
@@ -433,7 +434,7 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
         <h2 id="app-h"></h2>
         <p id="app-p"></p>
         <ul class="app-feat" id="app-feat"></ul>
-        <div class="btns"><a class="btn btn-gold" id="app-go" href="#" target="_blank" rel="noopener"></a><a class="btn btn-line" id="app-pdf" href="#" download></a></div>
+        <div class="btns"><a class="btn btn-gold" id="app-go" href="#"></a><a class="btn btn-line" id="app-pdf" href="#" download></a></div>
         <small class="app-note" id="app-note"></small>
       </div>
       <div class="app-vis rv" aria-hidden="true">
@@ -569,7 +570,7 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
       document.getElementById('mas-vis').href = C.experiencia;
       ['mas-i1', 'mas-i2', 'mas-i3'].forEach(function (id, i) { document.getElementById(id).src = '../../img/' + C.expImgs[i] + '.webp'; });
     }
-    // planning journey + Mi Evento teaser (only collections with data in camino.json)
+    // planning journey + Agenda Ilusión teaser (only collections with data in camino.json)
     var CM = C.camino && (C.camino[lang] || C.camino.es);
     document.getElementById('camino').hidden = document.getElementById('app').hidden = !CM;
     if (CM) {
@@ -584,15 +585,15 @@ footer { text-align: center; padding-block: 40px calc(env(safe-area-inset-bottom
       }).join('');
       document.getElementById('cm-sum').innerHTML = en2 ? 'Ilusión is with you at <b>' + nIl + ' moments</b> along the way.' : 'Ilusión está ' + (pl ? 'con ustedes' : 'contigo') + ' en <b>' + nIl + ' momentos</b> de este camino.';
       var A = CM.app, IC = ['M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2', 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21v-1a6 6 0 0 1 12 0v1M16 3.5a4 4 0 0 1 0 7.5M22 21v-1a6 6 0 0 0-4-5.6', 'M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1.5v1M12 17.5v1M3.5 10h1M19.5 10h1M6 21h12M12 18.5V21', 'M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2zM9 8h6M9 12h6M9 16h3', 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2', 'M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z'];
-      document.getElementById('app-eye').textContent = en2 ? 'COMING SOON · THE ILUSIÓN APP' : 'MUY PRONTO · LA APP DE ILUSIÓN';
+      document.getElementById('app-eye').textContent = 'AGENDA ILUSIÓN';
       document.getElementById('app-h').innerHTML = A.titulo;
       document.getElementById('app-p').textContent = A.texto;
       document.getElementById('app-feat').innerHTML = A.funciones.map(function (f, i) { return '<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + IC[i] + '"/></svg><b>' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></li>'; }).join('');
-      var go2 = document.getElementById('app-go'); go2.href = WA + encodeURIComponent(A.msg); go2.textContent = en2 ? 'Tell me when it’s out' : (pl ? 'Avísennos cuando salga' : 'Avísame cuando salga');
+      var go2 = document.getElementById('app-go'); go2.href = '/mi-evento/demo/'; go2.textContent = en2 ? 'Try it (demo in Spanish)' : (pl ? 'Pruébenla' : 'Pruébala');
       var pdf = document.getElementById('app-pdf'); pdf.href = '../../listas/' + CM.pdf; pdf.textContent = en2 ? 'Download the free checklist' : 'Descargar la lista gratis';
-      document.getElementById('app-note').textContent = en2 ? 'It will save to your home screen and open like an app, in Spanish or English. Until then, the PDF checklist is free.' : 'Se guardará en ' + (pl ? 'su' : 'tu') + ' pantalla de inicio y se abrirá como una app, en español o inglés. Mientras sale, la lista en PDF es gratis.';
+      document.getElementById('app-note').innerHTML = (en2 ? 'Included in the Ilusión Experience, with your colors and your event. It saves to your home screen and opens like an app. ' : 'Viene incluida en la Experiencia Ilusión, con ' + (pl ? 'sus' : 'tus') + ' colores y ' + (pl ? 'su' : 'tu') + ' evento. Se guarda en ' + (pl ? 'su' : 'tu') + ' pantalla de inicio y se abre como una app. ') + '<a href="' + WA + encodeURIComponent(A.msg) + '" target="_blank" rel="noopener">' + (en2 ? 'I want mine →' : (pl ? 'Queremos la nuestra →' : 'Quiero la mía →')) + '</a>';
       var ck = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-      document.getElementById('app-scr').innerHTML = '<div class="as-top"><img src="' + SEAL + '" alt="">MI EVENTO<i></i></div>' +
+      document.getElementById('app-scr').innerHTML = '<div class="as-top"><img src="' + SEAL + '" alt="">AGENDA ILUSIÓN<i></i></div>' +
         '<div class="as-hero"><small>' + esc(A.evento.toUpperCase()) + '</small><b class="as-name">' + esc(A.nombre) + '</b>' +
         '<div class="as-ring"><div><b>128</b><small>' + (en2 ? 'DAYS TO GO' : 'DÍAS') + '</small></div></div><div class="as-prog">' + (en2 ? '18 of 42 done' : '18 de 42 listos') + '</div></div>' +
         '<div class="as-stats"><div><b>86</b><small>' + (en2 ? 'confirmed' : 'confirmados') + '</small></div><div><b>24</b><small>' + (en2 ? 'pending' : 'pendientes') + '</small></div><div><b>12</b><small>' + (en2 ? 'tables' : 'mesas') + '</small></div></div>' +

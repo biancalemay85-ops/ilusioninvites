@@ -663,6 +663,35 @@ html, body { overflow-x: clip; }
 .xb-go { min-width: min(280px, 100%); max-width: 100%; white-space: normal; text-align: center; }
 .xb-note { margin: 12px 0 0; font-size: 13px; color: var(--ink3); }
 
+/* Agenda Ilusión: the planner app, part of the Experiencia package */
+.xu-ag { display: inline-flex; align-items: center; gap: 10px; margin: 16px auto 0; padding: 8px 18px 8px 8px; border-radius: 999px; text-decoration: none; color: var(--ink); font-size: 15px; background: linear-gradient(180deg, #FFFDF8, #FBF1E1); box-shadow: inset 0 0 0 1px rgba(182,138,78,.55), 0 10px 22px -16px rgba(120,80,30,.5); transition: transform .3s; }
+.xu-ag:hover { transform: translateY(-2px); }
+.xu-ag { max-width: 100%; box-sizing: border-box; }
+.xu-ag img { width: 30px; height: 30px; object-fit: contain; flex: none; }
+.xu-ag b { font-weight: 600; color: #8A6230; }
+.ag { scroll-margin-top: 90px; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(26px, 4vw, 56px); align-items: center; margin: clamp(22px, 3vw, 34px) 0 10px; padding: clamp(22px, 3.4vw, 44px); border-radius: 26px; text-align: left; background: linear-gradient(180deg, rgba(255,252,246,.92), rgba(246,236,221,.8)); box-shadow: inset 0 0 0 1px rgba(182,138,78,.4), 0 30px 60px -44px rgba(90,60,30,.45); }
+.ag-vis { position: relative; width: min(420px, 100%); margin: 0 auto; aspect-ratio: 1 / 1.08; container-type: inline-size; }
+.ag-ph { position: absolute; top: 0; width: 50%; padding: 1.6cqw; border-radius: 7cqw; background: linear-gradient(145deg, #3b3236, #121012 40%, #2a2326 70%, #0d0b0c); box-shadow: 0 0 0 1px rgba(182,138,78,.45), 0 5cqw 8cqw -4cqw rgba(60,35,25,.6); }
+.ag-ph img { display: block; width: 100%; height: auto; border-radius: 5.6cqw; }
+.ag-ph.a { left: 4%; transform: rotate(-5deg); z-index: 2; animation: agFloat 6s ease-in-out infinite alternate; }
+.ag-ph.b { right: 4%; top: 6%; transform: rotate(5deg); animation: agFloat 7s ease-in-out -2s infinite alternate; }
+.ag-sw { position: absolute; left: 50%; bottom: 0; translate: -50% 0; display: flex; gap: 2.2cqw; padding: 2cqw 3cqw; border-radius: 99px; background: rgba(255,253,248,.95); box-shadow: inset 0 0 0 1px rgba(182,138,78,.4), 0 2cqw 4cqw -2cqw rgba(60,35,25,.45); z-index: 3; }
+.ag-sw i { width: 5.4cqw; height: 5.4cqw; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 2px rgba(255,255,255,.75); }
+.ag-txt { display: flex; flex-direction: column; gap: 10px; }
+.ag-txt h3 { margin: 0; font: 500 clamp(30px, 3.4vw, 44px)/1.05 var(--f-serif); color: var(--ink); } .ag-txt h3 em { font-style: italic; }
+.ag-scr { font: 400 clamp(24px, 2.6vw, 32px)/1.1 var(--f-script); color: var(--gold); }
+.ag-txt p { margin: 0; color: var(--ink2); }
+.ag-pts { list-style: none; margin: 6px 0 4px; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; }
+.ag-pts li { position: relative; padding-left: 18px; display: flex; flex-direction: column; gap: 2px; }
+.ag-pts li::before { content: ""; position: absolute; left: 1px; top: .5em; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold); }
+.ag-pts b { font: 500 17px var(--f-serif); color: var(--ink); } .ag-pts span { font-size: 14px; color: var(--ink2); }
+.ag-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 6px; }
+.ag-cta small { font-size: 13px; color: var(--ink3); }
+@keyframes agFloat { from { translate: 0 0; } to { translate: 0 -1.4cqw; } }
+@media (max-width: 860px) { .ag { grid-template-columns: minmax(0, 1fr); } .ag-vis { width: min(360px, 100%); } }
+@media (max-width: 520px) { .ag-pts { grid-template-columns: 1fr; } .xu-ag { font-size: 14px; text-align: left; } .ag .eyebrow { font-size: 10.5px; letter-spacing: .22em; } }
+@media (prefers-reduced-motion: reduce) { .ag-ph { animation: none; } }
+
 /* guest photo QR: the star feature of the Experiencia Ilusión */
 .qf { --qa: #B68A4E; --qp: #FFFCF6; --qp2: #F6ECDD; --qk: #3A2A26; --qk3: #9A877F; transition: background .6s; display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: clamp(26px, 4vw, 56px); align-items: center; margin: clamp(30px, 4vw, 50px) 0 10px; padding: clamp(18px, 3vw, 34px); border-radius: 26px; background: linear-gradient(180deg, color-mix(in srgb, var(--qp) 92%, transparent), color-mix(in srgb, var(--qp2) 80%, transparent)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--qa) 40%, transparent), 0 30px 60px -44px rgba(90,60,30,.45); }
 .qf-vis { position: relative; width: min(620px, 100%); aspect-ratio: 1.05; container-type: inline-size; }
@@ -885,6 +914,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             <li data-en="Full printables for your event">Papelería completa de tu evento</li>
             <li data-en="A personal video with your proposal">Un video personal con tu propuesta</li>
           </ul>
+          <a class="xu-ag" href="#agenda"><img src="img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><span data-en-html="Includes <b>Agenda Ilusión</b>, your app to plan your whole event">Incluye <b>Agenda Ilusión</b>, tu app para planear todo tu evento</span></a>
           <p class="xa-price"><span data-en="from">desde</span> <b class="price" data-p="3"></b> <small class="curl"></small></p>
           <a class="btn btn-gold btn-sm xa-go" href="/ficha/?paquete=experiencia" data-en="Order the Ilusión Experience">Pedir la Experiencia Ilusión</a>
         </div>
@@ -1084,6 +1114,26 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
             </div></div>
           </div>
           <div class="qf-cap"><span class="eyebrow" data-en="ONLY IN THE ILUSIÓN EXPERIENCE">EXCLUSIVO DE LA EXPERIENCIA ILUSIÓN</span><h3 data-en-html="Guest photos <em>with QR</em>">Fotos de invitados <em>con QR</em></h3></div>
+        </div>
+        <div class="ag" id="agenda">
+          <div class="ag-vis" aria-hidden="true">
+            <div class="ag-ph a"><img src="img/agenda-xv.webp" alt="" width="600" height="1298" loading="lazy"></div>
+            <div class="ag-ph b"><img src="img/agenda-boda.webp" alt="" width="600" height="1298" loading="lazy"></div>
+            <span class="ag-sw"><i style="--c:#C98A9B"></i><i style="--c:#2F6B55"></i><i style="--c:#7A2135"></i><i style="--c:#24406B"></i><i style="--c:#9C86B8"></i></span>
+          </div>
+          <div class="ag-txt">
+            <span class="eyebrow" data-en="ONLY IN THE ILUSIÓN EXPERIENCE">EXCLUSIVO DE LA EXPERIENCIA ILUSIÓN</span>
+            <h3>Agenda <em>Ilusión</em></h3>
+            <span class="ag-scr" data-en="Your whole event in one place">Todo tu evento en un solo lugar</span>
+            <p data-en="Your app to plan everything from your phone, made with your colors and your event. The month-by-month checklist comes ready: you just tick things off.">Tu app para planear todo desde el celular, hecha con tus colores y tu evento. La lista mes por mes ya viene hecha: solo vas palomeando.</p>
+            <ul class="ag-pts">
+              <li><b data-en="Countdown">Cuenta regresiva</b><span data-en="Days, hours and minutes to your big day">Días, horas y minutos para tu gran día</span></li>
+              <li><b data-en="Month-by-month checklist">Lista mes por mes</b><span data-en="Add what you need, delete what you don't">Agrega lo que necesitas, borra lo que no</span></li>
+              <li><b data-en="Guests and tables">Invitados y mesas</b><span data-en="Live confirmations and your seating plan">Confirmaciones en vivo y tu acomodo</span></li>
+              <li><b data-en="Budget and vendors">Presupuesto y proveedores</b><span data-en="Payments, deposits and contacts">Pagos, anticipos y contactos</span></li>
+            </ul>
+            <div class="ag-cta"><a class="btn btn-gold" href="/mi-evento/demo/" data-en="Try it (demo in Spanish)">Pruébala</a><small data-en="It installs on your phone like an app">Se instala en tu celular como una app</small></div>
+          </div>
         </div>
         <div class="xb">
           <a class="btn btn-gold xb-go" id="xb-more" href="experiencia/bodas/"></a>

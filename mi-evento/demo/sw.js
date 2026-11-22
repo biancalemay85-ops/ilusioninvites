@@ -1,5 +1,5 @@
-// Mi Evento: works offline after the first visit; always tries the network first so updates show right away.
-const C = 'mi-evento-v1';
+// Agenda Ilusión: works offline after the first visit; always tries the network first so updates show right away.
+const C = 'agenda-v2';
 self.addEventListener('install', e => { self.skipWaiting(); e.waitUntil(caches.open(C).then(c => c.addAll(['./', 'manifest.json', 'icon-seal.webp', 'icon-192.png']))); });
 self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
 self.addEventListener('fetch', e => {
