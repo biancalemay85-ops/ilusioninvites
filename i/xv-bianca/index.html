@@ -892,6 +892,14 @@ html.locked .p-hint, html.locked .scene .hint { opacity: 0; }
     var em = document.getElementById('rs-correo').value.trim(); ok.hidden = false; ok.textContent = ans === 'si' ? '¡Gracias! Tu lugar quedó apartado.' + (/@/.test(em) ? ' Revisa tu correo: ahí te llegan los recordatorios.' : '') : 'Gracias por avisarme. ¡Te voy a extrañar!';
   });
   paint();
+  if (code && !guest && /^[a-z0-9]{3,12}$/.test(code)) {
+    fetch(API, { method: 'POST', body: JSON.stringify({ quien: 1, evento: EVENTO, codigo: code }), credentials: 'omit' }).then(function (r) { return r.json(); }).then(function (g) {
+      if (!g.ok) return;
+      guest = g; who = g.n; gnEl.textContent = g.n; seats = g.l; n = seats;
+      document.getElementById('seats').textContent = seats + (seats === 1 ? ' persona' : ' personas');
+      paint();
+    }).catch(function () {});
+  }
 
   // butterflies flying up the page
   function butterflies() {

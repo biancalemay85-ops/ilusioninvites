@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Tu entrega · Ilusión Invites</title>
-<link rel="icon" href="/img/ilusion-logo.jpg">
+<link rel="icon" href="/nuevo/img/sello-ilusion-oro.webp">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Pinyon+Script&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* The client's delivery page (paquete Ilusión). Opens with ?e=<evento>&k=<key>; everything comes from the order system,
@@ -19,7 +19,7 @@
   a { color: inherit; }
 
   .hero { text-align: center; padding: 6px 4px 18px; }
-  .hero img.seal { width: 74px; height: 74px; border-radius: 50%; object-fit: cover; box-shadow: 0 10px 24px -12px rgba(75,21,53,.6); }
+  .hero img.seal { width: 104px; height: auto; filter: drop-shadow(0 10px 14px rgba(120,80,30,.28)); }
   .eyebrow { margin: 14px 0 0; font-size: 11.5px; letter-spacing: .3em; color: var(--gold); text-transform: uppercase; }
   h1 { margin: 2px 0 0; font: 400 clamp(42px, 12vw, 60px)/1.08 'Pinyon Script', cursive; color: var(--plum); }
   .when { font-variant-numeric: lining-nums; margin: 6px 0 0; font: 500 19px/1.3 'Cormorant Garamond', serif; color: var(--ink2); }
@@ -49,6 +49,16 @@
   .guest small { color: var(--ink3); font-size: 13px; }
   .guest .st { float: right; margin-left: 8px; padding: 3px 10px; border-radius: 99px; font-size: 12px; font-weight: 500; white-space: nowrap; }
   .st.si { background: #E3F4E8; color: #1E6B3A; } .st.no { background: #F8E3E6; color: #8A2B3A; } .st.pen { background: #F3E6D2; color: #7A5A2E; }
+  .addb { margin-top: 12px; background: #fff; color: var(--plum); box-shadow: inset 0 0 0 1.5px var(--plum); }
+  .addf { margin-top: 12px; background: #fff; border-radius: 16px; padding: 16px 14px; box-shadow: inset 0 0 0 1px var(--line); }
+  .addf label { display: block; font-size: 13px; color: var(--ink2); margin: 0 0 6px; }
+  .addf input { width: 100%; font: 400 16px Jost, sans-serif; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); margin-bottom: 14px; }
+  .addf input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .step { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .step button { width: 42px; height: 42px; border-radius: 50%; border: 0; background: var(--paper); box-shadow: inset 0 0 0 1px var(--line); font: 500 20px Jost; color: var(--plum); cursor: pointer; }
+  .step output { min-width: 28px; text-align: center; font: 600 26px 'Cormorant Garamond', serif; font-variant-numeric: lining-nums; }
+  .aerr { margin: 10px 0 0; color: #8A2B3A; font-size: 13.5px; text-align: center; }
+  .guest.new { box-shadow: inset 0 0 0 2px var(--gold); }
   .general { margin-top: 12px; font-size: 13.5px; color: var(--ink2); text-align: center; }
   .general button { border: 0; background: none; color: var(--gold); font: 500 13.5px Jost; cursor: pointer; text-decoration: underline; padding: 4px; }
 
@@ -86,8 +96,8 @@
 <body>
 <main>
   <header class="hero">
-    <img class="seal" src="/img/ilusion-logo.jpg" alt="Ilusión Invites">
-    <p class="eyebrow">Tu paquete está listo</p>
+    <img class="seal" src="/nuevo/img/sello-ilusion-oro.webp" alt="Ilusión Invites">
+    <p class="eyebrow" id="paq">Tu paquete está listo</p>
     <h1 id="t">Tu evento</h1>
     <p class="when" id="when"></p>
     <p class="intro">Aquí tienes todo lo de tu evento en un solo lugar. Guarda este link: lo puedes abrir cuando quieras.</p>
@@ -108,13 +118,24 @@
       <p class="lead">Así la verán tus invitados. Ábrela y revisa que todo esté perfecto.</p>
       <img class="cover" id="cover" alt="" hidden>
       <a class="btn" id="verInv" target="_blank" rel="noopener">Ver mi invitación</a>
+      <div class="row"><button class="btn alt" type="button" id="cpInv">Copiar link</button><button class="btn alt" type="button" id="shInv">Compartir</button></div>
+      <p class="note">Este link es general, sin nombre: ideal para grupos o redes. Para cada invitado usa el paso 2.</p>
     </section>
 
     <section id="s-env">
       <div class="sh"><span class="num">2</span><h2>Envíala a cada invitado</h2></div>
       <p class="lead">Cada invitado tiene su propio link con su nombre y sus lugares. Toca <b>WhatsApp</b>, elige el contacto y envía. El mensaje ya va escrito.</p>
       <div id="guests"></div>
-      <p class="general">¿Quieres un link sin nombre, para redes? <button type="button" id="cpGen">Copiar link general</button></p>
+      <button class="btn addb" type="button" id="addOpen">＋ Agregar invitado</button>
+      <form class="addf" id="addF" hidden>
+        <label for="addN">Nombre (familia o persona)</label>
+        <input id="addN" type="text" maxlength="80" autocomplete="off" placeholder="Ej. Familia Hernández" required>
+        <label>Lugares para esta invitación</label>
+        <div class="step"><button type="button" id="addM" aria-label="Menos">−</button><output id="addL">2</output><button type="button" id="addP" aria-label="Más">＋</button></div>
+        <div class="row"><button class="btn alt" type="button" id="addX">Cancelar</button><button class="btn" type="submit" id="addS">Agregar</button></div>
+        <p class="aerr" id="addE" hidden></p>
+      </form>
+      <p class="general">¿Prefieres mandar un link general, sin nombre? <button type="button" id="cpGen">Copiar link general</button></p>
     </section>
 
     <section id="s-lis">
@@ -194,6 +215,7 @@
     if (!d.ok) throw new Error(d.error || 'Sin respuesta');
     var link = d.link || ('https://ilusioninvites.com/i/' + ev + '/');
     var titulo = d.titulo || 'Tu evento';
+    if (d.paquete) $('paq').textContent = 'Tu paquete ' + d.paquete + ' está listo';
     $('t').textContent = titulo; document.title = titulo + ' · Tu entrega';
 
     // date, in the event's own time zone
@@ -206,23 +228,48 @@
 
     // 1. invitation
     $('verInv').href = link;
+    $('cpInv').addEventListener('click', function () { copy(link, 'Link copiado'); });
+    if (navigator.share) $('shInv').addEventListener('click', function () { navigator.share({ title: titulo, text: titulo, url: link }).catch(function () {}); });
+    else $('shInv').hidden = true;
     var cover = $('cover'); cover.onload = function () { cover.hidden = false; }; cover.src = link + 'img/compartir.jpg';
 
     // 2. one card per guest
     var guests = d.invitados || [];
-    $('guests').innerHTML = guests.map(function (g, i) {
-      var s = st(g), pill = s === 'si' ? 'Confirmó · ' + g.personas : s === 'no' ? 'No va' : 'Sin responder';
-      return '<div class="guest"><span class="st ' + s + '">' + pill + '</span><b>' + esc(g.n) + '</b><small>' + g.l + (g.l === 1 ? ' lugar' : ' lugares') + '</small>' +
-        '<div class="row"><a class="btn wa" data-wa="' + i + '" target="_blank" rel="noopener">WhatsApp</a><button class="btn alt" type="button" data-cp="' + i + '">Copiar mensaje</button></div></div>';
-    }).join('') || '<p class="lead">Aún no hay invitados en tu lista.</p>';
     function mensaje(g) {
-      var nom = String(g.n).split(' ')[0];
+      var nom = /^(familia|fam\.|los|las|sr\.?|sra\.?)\s/i.test(g.n) ? g.n : String(g.n).split(' ')[0];
       return '¡Hola, ' + nom + '! 🤍 Con mucho cariño te invitamos a ' + (/^XV\b/.test(titulo) ? 'los ' + titulo : titulo.charAt(0).toLowerCase() + titulo.slice(1)) + (fecha ? ', el ' + fecha : '') + '. Esta es tu invitación, con ' +
         (g.l === 1 ? 'tu lugar' : 'tus ' + g.l + ' lugares') + '. Ábrela y confírmanos desde ahí:\n' + link + '?i=' + g.c;
     }
-    guests.forEach(function (g, i) {
-      document.querySelector('[data-wa="' + i + '"]').href = 'https://wa.me/?text=' + encodeURIComponent(mensaje(g));
-      document.querySelector('[data-cp="' + i + '"]').addEventListener('click', function () { copy(mensaje(g), 'Mensaje copiado'); });
+    function card(g, isNew) {
+      var s = st(g), pill = s === 'si' ? 'Confirmó · ' + g.personas : s === 'no' ? 'No va' : 'Sin responder';
+      var el = document.createElement('div'); el.className = 'guest' + (isNew ? ' new' : '');
+      el.innerHTML = '<span class="st ' + s + '">' + pill + '</span><b>' + esc(g.n) + '</b><small>' + g.l + (g.l === 1 ? ' lugar' : ' lugares') + '</small>' +
+        '<div class="row"><a class="btn wa" target="_blank" rel="noopener">WhatsApp</a><button class="btn alt" type="button">Copiar mensaje</button></div>';
+      el.querySelector('a').href = 'https://wa.me/?text=' + encodeURIComponent(mensaje(g));
+      el.querySelector('button').addEventListener('click', function () { copy(mensaje(g), 'Mensaje copiado'); });
+      return el;
+    }
+    guests.forEach(function (g) { $('guests').appendChild(card(g)); });
+
+    // add a guest: the order system gives them their own code, and their card is ready to send
+    var addL = 2;
+    function showAdd(on) { $('addF').hidden = !on; $('addOpen').hidden = on; $('addE').hidden = true; if (on) { $('addN').value = ''; addL = 2; $('addL').textContent = addL; $('addN').focus(); } }
+    $('addOpen').addEventListener('click', function () { showAdd(true); });
+    $('addX').addEventListener('click', function () { showAdd(false); });
+    $('addM').addEventListener('click', function () { addL = Math.max(1, addL - 1); $('addL').textContent = addL; });
+    $('addP').addEventListener('click', function () { addL = Math.min(20, addL + 1); $('addL').textContent = addL; });
+    $('addF').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nm = $('addN').value.trim(); if (!nm) { $('addN').focus(); return; }
+      $('addS').disabled = true; $('addS').textContent = 'Agregando…';
+      fetch(API, { method: 'POST', body: JSON.stringify({ lista: 1, agregar: 1, evento: ev, k: key, n: nm, l: addL }), credentials: 'omit' }).then(function (r) { return r.json(); }).then(function (r) {
+        if (!r.ok) throw new Error(r.error || 'No se pudo agregar');
+        var g = { c: r.c, n: r.n, l: r.l, asiste: '', personas: 0 }; guests.push(g);
+        var el = card(g, true); $('guests').appendChild(el); showAdd(false);
+        $('n-pen').textContent = +$('n-pen').textContent + 1;
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' }); toast('¡Listo! Ya puedes enviarle su invitación');
+      }).catch(function (err) { $('addE').textContent = err.message; $('addE').hidden = false; })
+        .then(function () { $('addS').disabled = false; $('addS').textContent = 'Agregar'; });
     });
     $('cpGen').addEventListener('click', function () { copy(link, 'Link copiado'); });
 
