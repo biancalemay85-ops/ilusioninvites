@@ -1,0 +1,11 @@
+{
+ "_nota": "Extras of the delivery page for this event (Gala and Experiencia packages). Files live next to this file.",
+ "agenda": "https://ilusioninvites.com/mi-evento/xv-bianca/",
+ "marco": { "link": "https://ilusioninvites.com/marco/?e=xv-bianca.5p6y79", "tarjeta": "letrero-marco-5x7.pdf" },
+ "imprimibles": [
+  { "t": "Letrero de bienvenida", "d": "18 × 24 in · para caballete en la entrada", "img": "prev-bienvenida.jpg", "pdf": "letrero-bienvenida-18x24.pdf" },
+  { "t": "Números de mesa 1 a 5", "d": "5 × 7 in · un archivo con las 5 mesas", "img": "prev-mesas.jpg", "pdf": "mesas-1-a-5-5x7.pdf" },
+  { "t": "Tarjeta del marco para fotos", "d": "5 × 7 in · imprime una para cada mesa", "img": "prev-marco.jpg", "pdf": "letrero-marco-5x7.pdf" },
+  { "t": "Letrero del álbum de fotos", "d": "5 × 7 in · imprime una para cada mesa", "img": "prev-album.jpg", "pdf": "letrero-qr-5x7.pdf" }
+ ]
+}

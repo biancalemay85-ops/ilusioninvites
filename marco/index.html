@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Tómate una foto con mi marco · Ilusión Invites</title>
+<meta name="theme-color" content="#3A0F20">
+<link rel="icon" href="../nuevo/img/sello-ilusion-oro-s.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500&family=Pinyon+Script&display=swap">
+<style>
+/* Photo frame for guests: scan the QR at the table, take or choose a photo, it comes out with the event's frame.
+   Then share it, save it, or send it to the event album. Link: /marco/?e=<evento>.<album code> */
+:root { --bg: #3A0F20; --bg2: #5A1A31; --gold: #E3C17F; --ink: #F8EEE4; --ink2: rgba(248,238,228,.75); }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { min-height: 100svh; background: radial-gradient(ellipse 90% 60% at 50% 30%, var(--bg2), var(--bg) 75%); color: var(--ink); font: 400 16px/1.5 'Jost', system-ui, sans-serif; display: flex; justify-content: center; }
+.w { width: 100%; max-width: 520px; padding: 22px 16px calc(28px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.eye { margin: 6px 0 0; font: 500 11.5px 'Cinzel', serif; letter-spacing: .32em; padding-left: .32em; color: var(--gold); }
+h1 { margin: -4px 0 0; font: 400 clamp(46px, 13vw, 64px)/1.1 'Pinyon Script', cursive; background: linear-gradient(100deg, #B8894A, #F3D99C 25%, #C99A55 45%, #FFF0C8 55%, #C99A55 70%, #EBCB86 90%); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 12px 4px; }
+.lead { margin: -6px 0 0; font: italic 500 19px 'Cormorant Garamond', serif; color: var(--ink2); }
+.stage { position: relative; width: 100%; border-radius: 18px; overflow: hidden; box-shadow: 0 0 0 1px rgba(227,193,127,.45), 0 26px 50px -24px rgba(0,0,0,.7); background: #2a0a16; }
+.stage canvas, .stage img { display: block; width: 100%; height: auto; }
+.stage img { position: absolute; inset: 0; opacity: 0; } /* the result as an <img> on top, so a long press saves it on iPhone */
+.stage.done img { opacity: 1; }
+.busy { position: absolute; inset: 0; display: none; place-items: center; background: rgba(30,6,14,.55); font: 500 12px 'Cinzel', serif; letter-spacing: .25em; color: var(--gold); }
+.stage.working .busy { display: grid; }
+.btns { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.btn { appearance: none; border: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 12px 18px; border-radius: 999px; font: 600 15.5px 'Jost', sans-serif; text-decoration: none; }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.gold { background: linear-gradient(180deg, #F7E4B4, #EBC988 34%, #D6A963 70%, #C4914D); color: #3A2210; box-shadow: inset 0 1px 0 rgba(255,250,235,.8), 0 12px 26px -12px rgba(0,0,0,.6); }
+.line { background: rgba(255,255,255,.06); color: var(--ink); box-shadow: inset 0 0 0 1.5px rgba(227,193,127,.6); }
+.btn[disabled] { opacity: .55; cursor: default; }
+.hint { margin: 0; font-size: 13.5px; color: var(--ink2); }
+.ok { margin: 0; font-size: 14.5px; color: #CDEBC9; min-height: 1.3em; }
+.ok.bad { color: #FFC9C9; }
+[hidden] { display: none !important; }
+.foot { margin-top: 8px; font: 500 10px 'Cinzel', serif; letter-spacing: .3em; color: rgba(227,193,127,.65); text-decoration: none; }
+.bad-ev { margin-top: 30vh; font: italic 500 22px 'Cormorant Garamond', serif; color: var(--ink2); }
+</style></head><body>
+<main class="w" id="app">
+  <p class="eye" id="eye"></p>
+  <h1 id="nombre"></h1>
+  <p class="lead" id="lead"></p>
+  <div class="stage" id="stage"><canvas id="cv" width="1080" height="1350" aria-label=""></canvas><img id="res" alt=""><div class="busy" id="busy"></div></div>
+  <div class="btns" id="pickBtns">
+    <button class="btn gold" type="button" id="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2.5"/><circle cx="12" cy="12.5" r="3.6"/><path d="M8.5 6l1.4-2h4.2l1.4 2"/></svg><span id="tCam"></span></button>
+    <button class="btn line" type="button" id="gal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-9 9"/></svg><span id="tGal"></span></button>
+  </div>
+  <div class="btns" id="doneBtns" hidden>
+    <button class="btn gold" type="button" id="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7.5 7.5L12 3l4.5 4.5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span id="tShare"></span></button>
+    <div class="row">
+      <a class="btn line" id="save" download="foto-con-marco.jpg"><span id="tSave"></span></a>
+      <button class="btn line" type="button" id="again"><span id="tAgain"></span></button>
+    </div>
+    <button class="btn line" type="button" id="album" hidden><span id="tAlbum"></span></button>
+    <p class="ok" id="msg" aria-live="polite"></p>
+    <p class="hint" id="tHint"></p>
+  </div>
+  <a class="foot" href="https://ilusioninvites.com/" target="_blank" rel="noopener">ILUSIÓN INVITES</a>
+  <input type="file" id="fCam" accept="image/*" capture="user" hidden>
+  <input type="file" id="fGal" accept="image/*" hidden>
+</main>
+<script>
+(function () {
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwLSkVg670lTXk73S5B_zP-ay8Kpwj7xFRDBXJPta3QF27T_Jy1zRBG3t_n2oZhiuc/exec'; // order system (album part)
+  // one entry per event: names, date and the invitation's own pieces (velvet, gold corners, bouquet, butterfly)
+  var EVS = {
+    'xv-bianca': { nombre: 'Bianca', eye: 'MIS XV AÑOS', eyeEn: 'MY QUINCEAÑERA', corto: 'XV AÑOS', fecha: '22 · 11 · 2026', tag: '#XVBianca', img: '../i/xv-bianca/img/', fondo: 'terciopelo.webp', esquina: 'esquina-oro.webp', ramo: 'ramillete.webp', mariposa: 'mariposa-rosa.webp', tinte: 'rgba(40,4,16,.42)' }
+  };
+  var q = (new URLSearchParams(location.search).get('e') || '').split('.'), EV = q[0], CODE = q[1] || '', E = EVS[EV];
+  var en = /^en/i.test(navigator.language || '') && !/^es/i.test(navigator.language || '');
+  var T = en ? { lead: 'Take a photo with my frame', cam: 'Take a photo', gal: 'Choose from my gallery', share: 'Share', save: 'Save', again: 'Another photo', album: 'Send to the party album', hint: 'On iPhone you can also press and hold the photo to save it.', ph: 'YOUR PHOTO HERE', work: 'PREPARING…', sending: 'Sending…', sent: 'It is in the album. Thank you! ✨', fail: 'It could not be sent. Check your signal and try again.', closed: 'The album is closed.', bad: 'This link is not complete. Scan the QR at your table again.' }
+             : { lead: 'Tómate una foto con mi marco', cam: 'Tomar foto', gal: 'Elegir de mi galería', share: 'Compartir', save: 'Guardar', again: 'Otra foto', album: 'Enviarla al álbum de la fiesta', hint: 'En iPhone también puedes dejar presionada la foto para guardarla.', ph: 'TU FOTO AQUÍ', work: 'PREPARANDO…', sending: 'Enviando…', sent: 'Ya está en el álbum. ¡Gracias! ✨', fail: 'No se pudo enviar. Revisa tu señal e inténtalo otra vez.', closed: 'El álbum ya cerró.', bad: 'Este link no está completo. Vuelve a escanear el QR de tu mesa.' };
+  function $(id) { return document.getElementById(id); }
+  if (!E) { $('app').innerHTML = '<p class="bad-ev">' + T.bad + '</p>'; return; }
+  document.documentElement.lang = en ? 'en' : 'es';
+  document.title = (en ? 'Take a photo with my frame · ' : 'Tómate una foto con mi marco · ') + E.nombre;
+  $('eye').textContent = en ? E.eyeEn : E.eye; $('nombre').textContent = E.nombre; $('lead').textContent = T.lead;
+  [['tCam', 'cam'], ['tGal', 'gal'], ['tShare', 'share'], ['tSave', 'save'], ['tAgain', 'again'], ['tAlbum', 'album'], ['tHint', 'hint'], ['busy', 'work']].forEach(function (p) { $(p[0]).textContent = T[p[1]]; });
+  if (CODE) $('album').hidden = false;
+
+  var cv = $('cv'), cx = cv.getContext('2d'), W = 1080, H = 1350;
+  var WIN = { x: 64, y: 64, w: W - 128, h: 1010, r: 26 }; // the photo window; the band below holds the name
+  function load(src) { return new Promise(function (res) { var i = new Image(); i.onload = function () { res(i); }; i.onerror = function () { res(null); }; i.src = src; }); }
+  var A = {};
+  var ready = Promise.all([
+    load(E.img + E.fondo), load(E.img + E.esquina), load(E.img + E.ramo), load(E.img + E.mariposa),
+    document.fonts ? Promise.all(['400 120px "Pinyon Script"', '500 30px "Cinzel"', 'italic 500 40px "Cormorant Garamond"'].map(function (f) { return document.fonts.load(f); })) : 0
+  ]).then(function (r) { A.fondo = r[0]; A.esquina = r[1]; A.ramo = r[2]; A.mariposa = r[3]; });
+
+  function rr(x, y, w, h, r) { cx.beginPath(); cx.moveTo(x + r, y); cx.arcTo(x + w, y, x + w, y + h, r); cx.arcTo(x + w, y + h, x, y + h, r); cx.arcTo(x, y + h, x, y, r); cx.arcTo(x, y, x + w, y, r); cx.closePath(); }
+  function goldFill(x0, x1) { var g = cx.createLinearGradient(x0, 0, x1, 0); [[0, '#B8894A'], [.25, '#F3D99C'], [.45, '#C99A55'], [.55, '#FFF0C8'], [.7, '#C99A55'], [.9, '#EBCB86'], [1, '#D9B26F']].forEach(function (s) { g.addColorStop(s[0], s[1]); }); return g; }
+  function draw(photo) {
+    cx.clearRect(0, 0, W, H);
+    // velvet background like the invitation
+    if (A.fondo) { var k = Math.max(W / A.fondo.width, H / A.fondo.height); cx.drawImage(A.fondo, (W - A.fondo.width * k) / 2, (H - A.fondo.height * k) / 2, A.fondo.width * k, A.fondo.height * k); } else { cx.fillStyle = '#4A1529'; cx.fillRect(0, 0, W, H); }
+    cx.fillStyle = E.tinte; cx.fillRect(0, 0, W, H);
+    // the photo, cover-fit inside the window
+    cx.save(); rr(WIN.x, WIN.y, WIN.w, WIN.h, WIN.r); cx.clip();
+    if (photo) {
+      var s = Math.max(WIN.w / photo.width, WIN.h / photo.height), pw = photo.width * s, ph = photo.height * s;
+      cx.drawImage(photo, WIN.x + (WIN.w - pw) / 2, WIN.y + (WIN.h - ph) * 0.35, pw, ph); // keep faces: lean to the top
+    } else {
+      cx.fillStyle = 'rgba(255,240,230,.06)'; cx.fillRect(WIN.x, WIN.y, WIN.w, WIN.h);
+      cx.fillStyle = 'rgba(227,193,127,.75)'; cx.font = '500 30px "Cinzel"'; cx.textAlign = 'center'; cx.textBaseline = 'middle';
+      if (cx.letterSpacing !== undefined) cx.letterSpacing = '8px';
+      cx.fillText(T.ph, W / 2, WIN.y + WIN.h / 2); if (cx.letterSpacing !== undefined) cx.letterSpacing = '0px';
+    }
+    cx.restore();
+    // gold lines: around the photo and around the whole piece
+    cx.strokeStyle = 'rgba(227,193,127,.9)'; cx.lineWidth = 4; rr(WIN.x, WIN.y, WIN.w, WIN.h, WIN.r); cx.stroke();
+    cx.strokeStyle = 'rgba(227,193,127,.55)'; cx.lineWidth = 2; rr(26, 26, W - 52, H - 52, 20); cx.stroke();
+    if (A.esquina) {
+      var c = 132;
+      [[18, 18, 1, 1], [W - 18, 18, -1, 1], [18, H - 18, 1, -1], [W - 18, H - 18, -1, -1]].forEach(function (p) { cx.save(); cx.translate(p[0], p[1]); cx.scale(p[2], p[3]); cx.drawImage(A.esquina, 0, 0, c, c * A.esquina.height / A.esquina.width); cx.restore(); });
+    }
+    // name band
+    cx.textAlign = 'center'; cx.textBaseline = 'alphabetic';
+    cx.font = '400 128px "Pinyon Script"'; var nw = cx.measureText(E.nombre).width;
+    cx.shadowColor = 'rgba(20,0,6,.55)'; cx.shadowOffsetY = 3; cx.shadowBlur = 6;
+    cx.fillStyle = goldFill(W / 2 - nw / 2, W / 2 + nw / 2); cx.fillText(E.nombre, W / 2 - 70, 1204);
+    cx.shadowColor = 'transparent';
+    cx.font = '500 26px "Cinzel"'; cx.fillStyle = '#E8C88B'; if (cx.letterSpacing !== undefined) cx.letterSpacing = '6px';
+    cx.fillText((E.corto || E.eye) + '  ·  ' + E.fecha, W / 2 - 70, 1266); if (cx.letterSpacing !== undefined) cx.letterSpacing = '0px';
+    // one butterfly on the photo's top corner, one bouquet tucked into the lower right
+    if (A.mariposa) { cx.save(); cx.translate(WIN.x + 40, WIN.y + 34); cx.rotate(-0.25); cx.shadowColor = 'rgba(0,0,0,.4)'; cx.shadowBlur = 10; cx.shadowOffsetY = 6; cx.drawImage(A.mariposa, -50, -37, 100, 100 * A.mariposa.height / A.mariposa.width); cx.restore(); }
+    if (A.ramo) { var rw = 280, rh = rw * A.ramo.height / A.ramo.width; cx.save(); cx.translate(W - 128, H - 124); cx.rotate(-0.14); cx.shadowColor = 'rgba(25,0,12,.6)'; cx.shadowBlur = 24; cx.shadowOffsetX = 6; cx.shadowOffsetY = 16; cx.drawImage(A.ramo, -rw / 2, -rh / 2, rw, rh); cx.restore(); }
+  }
+  ready.then(function () { draw(null); });
+
+  var blob = null, url = null;
+  function useFile(f) {
+    if (!f) return;
+    var st = $('stage'); st.classList.add('working'); st.classList.remove('done'); $('msg').textContent = '';
+    ready.then(function () { return createImageBitmap(f).catch(function () { return load(URL.createObjectURL(f)); }); }).then(function (img) {
+      draw(img);
+      return new Promise(function (res) { cv.toBlob(res, 'image/jpeg', 0.92); });
+    }).then(function (b) {
+      blob = b; if (url) URL.revokeObjectURL(url); url = URL.createObjectURL(b);
+      $('res').src = url; $('save').href = url; $('save').download = 'XV-' + E.nombre + '-marco.jpg';
+      st.classList.remove('working'); st.classList.add('done');
+      $('pickBtns').hidden = true; $('doneBtns').hidden = false; $('album').disabled = false;
+      var canShare = false; try { canShare = !!(navigator.canShare && navigator.canShare({ files: [new File([b], 'foto.jpg', { type: 'image/jpeg' })] })); } catch (e) {}
+      $('share').hidden = !canShare;
+      st.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }).catch(function () { st.classList.remove('working'); $('msg').textContent = T.fail; });
+  }
+  $('cam').onclick = function () { $('fCam').click(); };
+  $('gal').onclick = function () { $('fGal').click(); };
+  $('fCam').onchange = $('fGal').onchange = function () { var f = this.files && this.files[0]; this.value = ''; useFile(f); };
+  $('again').onclick = function () { $('stage').classList.remove('done'); draw(null); $('doneBtns').hidden = true; $('pickBtns').hidden = false; window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  $('share').onclick = function () {
+    if (!blob) return;
+    var file = new File([blob], 'XV-' + E.nombre + '.jpg', { type: 'image/jpeg' });
+    navigator.share({ files: [file], text: E.tag }).catch(function () {});
+  };
+  $('album').onclick = function () {
+    if (!blob || !CODE) return;
+    var b = $('album'), m = $('msg'); b.disabled = true; m.className = 'ok'; m.textContent = T.sending;
+    new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(String(r.result).split(',')[1]); }; r.onerror = rej; r.readAsDataURL(blob); })
+      .then(function (data) { return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ album: 1, accion: 'subir', evento: EV, code: CODE, de: 'Marco', tipo: 'image/jpeg', data: data }) }); })
+      .then(function (r) { return r.json(); })
+      .then(function (r) { if (r && r.ok) { m.textContent = T.sent; } else { m.className = 'ok bad'; m.textContent = r && r.error === 'cerrado' ? T.closed : T.fail; b.disabled = false; } })
+      .catch(function () { m.className = 'ok bad'; m.textContent = T.fail; b.disabled = false; });
+  };
+})();
+</script>
+</body></html>

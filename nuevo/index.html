@@ -1514,6 +1514,8 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
           en: ['Ilusión', 'The invitation + your guests taken care of', ['Everything in Esencial', 'A link per guest with their seats', 'Live list of confirmations', 'Video invitation (vertical + square)', 'Bilingual: Spanish, English or both', 'Adjustments until you love it']] },
         { v: 'gala', p: 2, es: ['Gala', 'Todo, cero estrés', ['Todo lo de Ilusión', 'Recordatorios automáticos por WhatsApp', '3 imprimibles: letrero, números de mesa y menú']],
           en: ['Gala', 'Everything, zero stress', ['Everything in Ilusión', 'Automatic WhatsApp reminders', '3 printables: welcome sign, table numbers and menu']] },
+        { v: 'experiencia', p: 3, es: ['Experiencia Ilusión', 'Todo tu evento, un mismo sueño', ['Todo lo de Gala', 'Agenda Ilusión: tu app para planear', 'Tu canción personalizada', 'Video para la pantalla grande', 'Fotos de invitados con QR + marco', 'Papelería completa: letrero, mesas y más']],
+          en: ['Ilusión Experience', 'Your whole event, one dream', ['Everything in Gala', 'Ilusión Planner: your planning app', 'Your personalized song', 'Video for the big screen', 'Guest photos with QR + frame', 'Full printables: sign, tables and more']] },
         { v: 'ayuda', es: ['Aún no sé', 'Ayúdenme a elegir'], en: ['Not sure yet', 'Help me choose'] }
       ],
       mensaje: [
@@ -1911,6 +1913,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       err.hidden = true;
       var okMail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.correo || ''), okWa = String(st.whatsapp || '').replace(/\D/g, '').length >= 8;
       var needWa = st.aviso === 'whatsapp' || st.aviso === 'ambos', needMail = st.aviso !== 'whatsapp' || (st.correo && !okMail);
+      if (!st.paquete) { err.textContent = en ? 'Please choose a package (or "Not sure yet") so we know exactly what to prepare.' : 'Elige tu paquete (o "Aún no sé") para saber exactamente qué preparar.'; err.hidden = false; var pk = document.querySelector('[data-opts="paquete"]'); if (pk) pk.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
       if (needWa && !okWa) { err.textContent = en ? 'Please add your WhatsApp number (with area code) so we can message you.' : 'Agrega tu número de WhatsApp (con lada) para poder escribirte.'; err.hidden = false; $('im-whatsapp').focus(); return; }
       if (needMail && !okMail) { err.textContent = en ? 'Please add your email so we can send you updates.' : 'Agrega tu correo para poder avisarte de tu pedido.'; err.hidden = false; $('im-correo').focus(); return; }
       send.classList.add('busy'); send.textContent = en ? 'Saving your order…' : 'Guardando tu pedido…';

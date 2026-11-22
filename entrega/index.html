@@ -8,7 +8,7 @@
 <link rel="icon" href="/nuevo/img/sello-ilusion-oro.webp">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Pinyon+Script&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* The client's delivery page (paquete Ilusión). Opens with ?e=<evento>&k=<key>; everything comes from the order system,
+  /* The client's delivery page (Ilusión, Gala and Experiencia packages). Opens with ?e=<evento>&k=<key>; everything comes from the order system,
      so the same page works for every client. Files (videos, sign) are looked for in /i/<evento>/entregables/. */
   :root { --bg: #F6EDE4; --paper: #FBF5EC; --ink: #3A2A26; --ink2: #6E5B54; --ink3: #8E7B73; --gold: #A87D43; --line: rgba(182,138,78,.32);
     --plum: #4B1535; --plum2: #6B2450; --wa: #1E7A45; }
@@ -70,6 +70,15 @@
   .qrwrap { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
   #qr { flex: none; width: 128px; height: 128px; background: #fff; border-radius: 12px; padding: 8px; box-shadow: inset 0 0 0 1px var(--line); }
   #qr img, #qr svg { width: 100%; height: 100%; display: block; }
+  .qrbox { flex: none; width: 128px; height: 128px; background: #fff; border-radius: 12px; padding: 8px; box-shadow: inset 0 0 0 1px var(--line); }
+  .qrbox svg { width: 100%; height: 100%; display: block; }
+  #s-age .steps { margin-top: 12px; }
+  .imp { display: flex; gap: 14px; align-items: center; background: #fff; border-radius: 16px; padding: 12px; box-shadow: inset 0 0 0 1px var(--line); margin-top: 10px; }
+  .imp img { flex: none; width: 76px; height: 106px; object-fit: cover; border-radius: 8px; background: #4A1529; box-shadow: 0 6px 14px -8px rgba(40,10,20,.6); }
+  .imp div { flex: 1; min-width: 0; }
+  .imp b { display: block; font: 600 19px/1.2 'Cormorant Garamond', serif; }
+  .imp small { display: block; color: var(--ink3); font-size: 13px; margin: 2px 0 10px; }
+  .imp .btn { padding: 10px 12px; font-size: 14px; }
   .qrwrap p { margin: 0; color: var(--ink2); font-size: 14px; }
   .note { margin: 10px 0 0; font-size: 13px; color: var(--ink3); text-align: center; }
 
@@ -109,12 +118,14 @@
     <nav class="nav">
       <a href="#s-inv"><span>💌</span>Invitación</a>
       <a href="#s-env"><span>📲</span>Enviar</a>
+      <a href="#s-age" id="nAge" hidden><span>📅</span>Agenda</a>
       <a href="#s-fot"><span>📷</span>Fotos</a>
+      <a href="#s-imp" id="nImp" hidden><span>🖨️</span>Imprimir</a>
       <a href="#s-vid"><span>🎬</span>Videos</a>
     </nav>
 
     <section id="s-inv">
-      <div class="sh"><span class="num">1</span><h2>Tu invitación</h2></div>
+      <div class="sh"><span class="num"></span><h2>Tu invitación</h2></div>
       <p class="lead">Así la verán tus invitados. Ábrela y revisa que todo esté perfecto.</p>
       <img class="cover" id="cover" alt="" hidden>
       <a class="btn" id="verInv" target="_blank" rel="noopener">Ver mi invitación</a>
@@ -123,7 +134,7 @@
     </section>
 
     <section id="s-env">
-      <div class="sh"><span class="num">2</span><h2>Envíala a cada invitado</h2></div>
+      <div class="sh"><span class="num"></span><h2>Envíala a cada invitado</h2></div>
       <p class="lead">Cada invitado tiene su propio link con su nombre y sus lugares. Toca <b>WhatsApp</b>, elige el contacto y envía. El mensaje ya va escrito.</p>
       <div id="guests"></div>
       <button class="btn addb" type="button" id="addOpen">＋ Agregar invitado</button>
@@ -139,7 +150,7 @@
     </section>
 
     <section id="s-lis">
-      <div class="sh"><span class="num">3</span><h2>Quién va a venir</h2></div>
+      <div class="sh"><span class="num"></span><h2>Quién va a venir</h2></div>
       <p class="lead">Cuando tus invitados confirman desde su invitación, aparecen aquí al momento.</p>
       <div class="tot">
         <div><b id="n-per">0</b><span>Personas</span></div>
@@ -149,8 +160,20 @@
       <a class="btn" id="verLista" target="_blank" rel="noopener">Ver la lista completa</a>
     </section>
 
+    <section id="s-age" hidden>
+      <div class="sh"><span class="num"></span><h2>Tu Agenda Ilusión</h2></div>
+      <p class="lead">Tu app para planear todo con los colores de tu evento: cuenta regresiva, pendientes mes por mes, invitados en vivo, mesas, proveedores y el plan del día.</p>
+      <a class="btn" id="verAge" target="_blank" rel="noopener">Abrir mi Agenda</a>
+      <ul class="steps">
+        <li><b>iPhone:</b> ábrela en Safari, toca Compartir y luego “Agregar a inicio”.</li>
+        <li><b>Android:</b> ábrela en Chrome y toca “Instalar app”.</li>
+        <li>Quien confirme desde su invitación aparece solo en tu lista de invitados.</li>
+      </ul>
+      <p class="note">Lo que anotes en tu Agenda se guarda en tu celular.</p>
+    </section>
+
     <section id="s-fot" hidden>
-      <div class="sh"><span class="num">4</span><h2>Álbum de fotos</h2></div>
+      <div class="sh"><span class="num"></span><h2>Álbum de fotos</h2></div>
       <div class="qrwrap">
         <div id="qr" aria-label="Código QR del álbum"></div>
         <p>Tus invitados escanean este código con la cámara del celular y suben sus fotos y videos de la fiesta. <b>No necesitan descargar nada.</b></p>
@@ -163,8 +186,24 @@
       <p class="note" id="albNote"></p>
     </section>
 
+    <section id="s-mar" hidden>
+      <div class="sh"><span class="num"></span><h2>Marco para fotos</h2></div>
+      <div class="qrwrap">
+        <div class="qrbox" id="qrM" aria-label="Código QR del marco"></div>
+        <p>Tus invitados escanean este código, se toman una foto y sale con el marco de tu evento, lista para compartir. <b>También pueden mandarla a tu álbum.</b></p>
+      </div>
+      <a class="btn" id="dlMar" target="_blank" rel="noopener" hidden>Descargar tarjeta para las mesas</a>
+      <a class="btn alt" id="verMar" target="_blank" rel="noopener" style="margin-top:8px">Probar el marco</a>
+    </section>
+
+    <section id="s-imp" hidden>
+      <div class="sh"><span class="num"></span><h2>Imprimibles</h2></div>
+      <p class="lead">Con el mismo diseño de tu invitación, listos para tu imprenta. Descarga el PDF y llévalo así, en el tamaño que dice cada uno.</p>
+      <div id="imps"></div>
+    </section>
+
     <section id="s-vid" hidden>
-      <div class="sh"><span class="num" id="vnum">5</span><h2>Video invitación</h2></div>
+      <div class="sh"><span class="num"></span><h2>Video invitación</h2></div>
       <p class="lead">Para tus estados de WhatsApp, Instagram y Facebook. Va sin música para que agregues tu canción favorita al subirlo.</p>
       <div class="vids">
         <div class="vid" id="v1" hidden><video id="vv" muted playsinline controls preload="metadata"></video><p>Vertical · estados y Reels</p><a class="btn alt" id="dv" download>Descargar</a></div>
@@ -173,7 +212,7 @@
     </section>
 
     <section id="s-rec">
-      <div class="sh"><span class="num" id="rnum">6</span><h2>Recordatorios automáticos</h2></div>
+      <div class="sh"><span class="num"></span><h2>Recordatorios automáticos</h2></div>
       <p class="lead">No tienes que hacer nada. Nosotros nos encargamos:</p>
       <ul class="steps">
         <li>Quien confirma que sí va puede dejar su correo y recibe su confirmación al momento.</li>
@@ -206,6 +245,11 @@
     function fallback() { var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} ta.remove(); }
   }
   function exists(url) { return fetch(url, { method: 'HEAD', cache: 'no-store' }).then(function (r) { return r.ok; }, function () { return false; }); }
+  // number the visible sections in order, and fit the menu to how many there are
+  function renum() {
+    var n = 1; document.querySelectorAll('#all section').forEach(function (sec) { if (!sec.hidden) sec.querySelector('.num').textContent = n++; });
+    var k = document.querySelectorAll('.nav a:not([hidden])').length; document.querySelector('.nav').style.gridTemplateColumns = 'repeat(' + (k > 4 ? 3 : k) + ', 1fr)';
+  }
   function st(r) { return r.asiste === 'si' ? 'si' : r.asiste === 'no' ? 'no' : 'pen'; }
 
   if (!ev || !key) { $('msg').textContent = 'Abre esta página con el link que te enviamos.'; return; }
@@ -295,15 +339,35 @@
       n = 5;
     }
 
+    // extras for Gala and Experiencia: the planner app, the photo frame, the printables (from entregables/entrega.json)
+    fetch(link + 'entregables/entrega.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(function (x) {
+      if (!x) return;
+      if (x.agenda) { $('verAge').href = x.agenda; $('s-age').hidden = false; $('nAge').hidden = false; }
+      if (x.marco) {
+        $('verMar').href = x.marco.link; $('s-mar').hidden = false;
+        if (window.qrcode) { var qm = qrcode(0, 'M'); qm.addData(x.marco.link); qm.make(); $('qrM').innerHTML = qm.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }
+        if (x.marco.tarjeta) { $('dlMar').href = link + 'entregables/' + x.marco.tarjeta; $('dlMar').hidden = false; }
+      }
+      if (x.imprimibles && x.imprimibles.length) {
+        $('imps').innerHTML = x.imprimibles.map(function (p) {
+          return '<div class="imp">' + (p.img ? '<img src="' + esc(link + 'entregables/' + p.img) + '" alt="" loading="lazy">' : '') + '<div><b>' + esc(p.t) + '</b><small>' + esc(p.d || '') + '</small>' +
+            '<a class="btn alt" href="' + esc(link + 'entregables/' + p.pdf) + '" target="_blank" rel="noopener">Descargar PDF</a></div></div>';
+        }).join('');
+        $('s-imp').hidden = false; $('nImp').hidden = false;
+      }
+      renum();
+    });
+
     // 5. videos (only if they're there)
     var vv = link + 'entregables/video-invitacion-vertical.mp4', vc = link + 'entregables/video-invitacion-cuadrado.mp4';
     Promise.all([exists(vv), exists(vc)]).then(function (r) {
       if (r[0]) { $('vv').src = vv + '#t=0.5'; $('dv').href = vv; $('v1').hidden = false; }
       if (r[1]) { $('vc').src = vc + '#t=0.5'; $('dc').href = vc; $('v2').hidden = false; }
-      if (r[0] || r[1]) { $('s-vid').hidden = false; $('vnum').textContent = n; n++; }
-      $('rnum').textContent = n;
+      if (r[0] || r[1]) $('s-vid').hidden = false;
+      renum();
     });
 
+    renum();
     $('msg').hidden = true; $('all').hidden = false;
   }).catch(function (e) { $('msg').textContent = 'No se pudo abrir tu entrega (' + e.message + '). Revisa tu link o escríbenos.'; });
 })();

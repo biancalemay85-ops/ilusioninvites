@@ -303,8 +303,8 @@ input:focus, textarea:focus { outline: none; border-color: var(--gold); box-shad
 
   var SECTIONS = [
     { title: L('La invitación', 'The invitation'), sub: L('Cómo te la imaginas.', 'How you picture it.'), fields: [
-      { id: 'paquete', type: 'chips', label: L('Paquete', 'Package'), options: [
-        { v: 'esencial', l: L('Esencial', 'Essential') }, { v: 'ilusion', l: L('Ilusión', 'Ilusión') }, { v: 'gala', l: L('Gala', 'Gala') }, { v: 'nose', l: L('Aún no sé', 'Not sure yet') } ] },
+      { id: 'paquete', type: 'chips', req: true, label: L('Paquete', 'Package'), options: [
+        { v: 'esencial', l: L('Esencial', 'Essential') }, { v: 'ilusion', l: L('Ilusión', 'Ilusión') }, { v: 'gala', l: L('Gala', 'Gala') }, { v: 'experiencia', l: L('Experiencia Ilusión (todo)', 'Ilusión Experience (everything)') }, { v: 'nose', l: L('Aún no sé', 'Not sure yet') } ] },
       { id: 'idioma', type: 'chips', label: L('Idioma (Español e inglés)', 'Language (Spanish and English)'), options: [
         { v: 'es', l: L('Español', 'Spanish') }, { v: 'en', l: L('Inglés', 'English') }, { v: 'ambos', l: L('Los dos, con botón', 'Both, with a button') } ] },
       { id: 'diseno', type: 'chips', wide: true, label: L('Estilo de diseño', 'Design style'), hint: L('Puedes ver ejemplos en nuestra página e Instagram.', 'You can see examples on our website and Instagram.'), options: [

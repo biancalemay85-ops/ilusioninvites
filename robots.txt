@@ -7,3 +7,4 @@ Disallow: /lista/
 Disallow: /fotos/
 Disallow: /entrega/
 Disallow: /mi-evento/
+Disallow: /marco/

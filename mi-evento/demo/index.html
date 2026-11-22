@@ -227,6 +227,7 @@ main { width: 100%; max-width: 780px; margin: 0 auto; padding: 18px 16px calc(va
 .install { display: none; }
 .install.show { display: flex; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+.pv-img { display: block; width: 100%; aspect-ratio: 5 / 7; object-fit: cover; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 8px 18px -10px rgba(40,10,20,.55); }
 </style>
 </head>
 <body>
@@ -249,7 +250,9 @@ main { width: 100%; max-width: 780px; margin: 0 auto; padding: 18px 16px calc(va
 (function () {
 'use strict';
 var CAMINO = {"xv": [["12 meses o más", "Las grandes decisiones", ["Fecha y presupuesto: quién paga qué", "Número aproximado de invitados", "Apartar salón, jardín o hacienda", "Iglesia para la misa de acción de gracias", "Tema y colores", "Fotógrafo y video (son los primeros que se llenan)", "Elegir padrinos y chambelanes"]], ["9 a 6 meses", "El equipo", ["Banquete y prueba de menú", "DJ o grupo, y luces", "El vestido: empiezan las pruebas", "Coreógrafo para el vals y el baile sorpresa", "Sesión de fotos", "*Lista de invitados con teléfonos y lugares"]], ["5 a 3 meses", "Los detalles", ["*Enviar la invitación, un link para cada familia", "*Video invitación para tus redes", "*Código de vestimenta dentro de tu invitación", "Flores, decoración y centros de mesa", "Pastel y mesa de dulces", "Ensayos del vals y trajes de los chambelanes", "Tiara, última muñeca, zapatos y anillo"]], ["2 meses", "Los invitados", ["*Confirmaciones en vivo y recordatorios automáticos", "*Tu canción personalizada", "Prueba de peinado y maquillaje", "Canciones: entrada, vals y la playlist", "Confirmar lo que hace cada padrino", "Última prueba del vestido"]], ["1 mes", "Los números finales", ["*Número final de invitados: tu lista ya lo tiene", "*Letrero de bienvenida, números de mesa y menú", "*Video de entrada para la pantalla", "Acomodo de mesas", "Plan del día, hora por hora", "Confirmar a cada proveedor y su hora de llegada"]], ["La última semana", "Respira", ["*Recordatorio a tus invitados un día antes, con el mapa", "Pagos finales y sobres para propinas", "Ensayo en la iglesia y en el salón", "Kit de emergencia: costurero, seguros, cargador", "Darle a alguien el plan del día y los teléfonos"]], ["El gran día", "Disfrútalo", ["*QR en cada mesa para el álbum de fotos", "*Marco para Instagram para tus invitados", "Que otra persona conteste el teléfono, no tú"]], ["Después", "Los recuerdos", ["*Todas las fotos de tus invitados en un solo álbum", "*Tarjetas de agradecimiento con tu estilo", "Devolver lo rentado y pagar lo último"]]], "boda": [["12 meses o más", "Las grandes decisiones", ["Fecha y presupuesto: quién paga qué", "Número aproximado de invitados", "Apartar salón, jardín o hacienda", "Iglesia y juez civil", "Tema y colores", "Fotógrafo y video (son los primeros que se llenan)", "Elegir padrinos, damas y caballeros"]], ["9 a 6 meses", "El equipo", ["Banquete y prueba de menú", "DJ o grupo, y luces", "El vestido de novia y el traje", "Hotel para los invitados de fuera", "Sesión de fotos de compromiso y mesa de regalos", "*Lista de invitados con teléfonos y lugares"]], ["5 a 3 meses", "Los detalles", ["*Enviar la invitación, un link para cada familia", "*Video invitación para sus redes", "*Código de vestimenta dentro de su invitación", "Flores, decoración y centros de mesa", "Pastel y mesa de dulces", "Anillos, lazo y arras", "Trámites civiles y pláticas prematrimoniales"]], ["2 meses", "Los invitados", ["*Confirmaciones en vivo y recordatorios automáticos", "*Su canción personalizada", "Prueba de peinado y maquillaje", "Canciones: entrada, primer baile y la playlist", "Lecturas y lectores para la misa", "Confirmar lo que hace cada padrino"]], ["1 mes", "Los números finales", ["*Número final de invitados: su lista ya lo tiene", "*Letrero de bienvenida, números de mesa y menú", "*Video de entrada para la pantalla", "Acomodo de mesas", "Plan del día, hora por hora", "Confirmar a cada proveedor y su hora de llegada"]], ["La última semana", "Respiren", ["*Recordatorio a sus invitados un día antes, con el mapa", "Pagos finales y sobres para propinas", "Ensayo en la iglesia", "Kit de emergencia: costurero, seguros, cargador", "Darle a alguien el plan del día y los teléfonos"]], ["El gran día", "Disfrútenlo", ["*QR en cada mesa para el álbum de fotos", "*Marco para Instagram para sus invitados", "Que otra persona conteste el teléfono, no ustedes"]], ["Después", "Los recuerdos", ["*Todas las fotos de sus invitados en un solo álbum", "*Tarjetas de agradecimiento con su estilo", "Devolver lo rentado y pagar lo último", "Cambio de documentos, si lo desean"]]]};
-var SEAL = 'icon-seal.webp', KEY = 'mi-evento-demo-v1', WA = 'https://wa.me/';
+/* a client's own app: the build puts window.CLIENTE = {id, v, cfg, mesas, dia, impr, album, videos, lista} in the page */
+var CL = window.CLIENTE || null, EQUIPO = /[?&]equipo=1/.test(location.search);
+var SEAL = 'icon-seal.webp', KEY = CL ? 'agenda-' + CL.id : 'mi-evento-demo-v1', WA = 'https://wa.me/';
 
 /* ---------- sections (modules) ---------- */
 var ICON = {
@@ -373,7 +376,23 @@ function seed(tipo, keep) {
 }
 function load() { try { var t = localStorage.getItem(KEY); return t ? JSON.parse(t) : null; } catch (e) { return null; } }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
-var S = load() || seed('xv');
+function etapaDe(f) { var d = (new Date(f) - Date.now()) / 864e5, m = d / 30.44; return d < -1 ? 7 : d < 1 ? 6 : d < 7 ? 5 : m < 1.5 ? 4 : m < 2.5 ? 3 : m < 5.5 ? 2 : m < 9.5 ? 1 : 0; }
+function clienteSeed() {
+  var s = seed(CL.cfg.tipo);
+  Object.assign(s.cfg, CL.cfg);
+  s.invitados = []; s.prov = []; s.padrinos = []; s.presupuesto = 0; s.regalos = { mesa: '', lista: [] };
+  s.corte.ensayos = []; s.corte.gente = []; s.musica = { momentos: [], si: [], no: [], pedidas: [] };
+  s.mesas = (CL.mesas || []).map(function (m, i) { return { id: 'm' + (i + 1), n: m[0], cap: m[1] }; });
+  s.dia = (CL.dia || []).map(function (d) { return { id: uid(), h: d[0], t: d[1], q: d[2] }; });
+  var et = etapaDe(CL.cfg.fecha); s.tareas.forEach(function (t) { t.ok = t.il || t.e < et; }); // past stages and what Ilusión takes care of start as done
+  clienteSync(s);
+  return s;
+}
+// what we deliver can change (new files, package): refresh it without touching what the client wrote
+function clienteSync(s) { s.v = CL.v; s.cfg.paquete = CL.cfg.paquete; s.cfg.mods = CL.cfg.mods; s.impr = (CL.impr || []).map(function (p, i) { return { id: 'p' + i, n: p[0], est: p[1] ? 'listo' : 'diseno', url: p[1] || '', det: p[2] || '', img: p[3] || '' }; }); }
+var S = load();
+if (!S) S = CL ? clienteSeed() : seed('xv');
+else if (CL && S.v !== CL.v) { clienteSync(S); save(); }
 var UI = { fp: 'todo', fi: 'todos', q: '' };
 
 /* ---------- helpers ---------- */
@@ -392,7 +411,7 @@ function toast(t) { var el = document.getElementById('toast'); el.textContent = 
 function copy(t, msg) { (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { toast(msg || 'Copiado'); }, function () { var a = document.createElement('textarea'); a.value = t; document.body.appendChild(a); a.select(); try { document.execCommand('copy'); toast(msg || 'Copiado'); } catch (e) {} a.remove(); }); }
 function waLink(tel, msg) { var n = String(tel || '').replace(/\D/g, ''); if (n.length === 10) n = '52' + n; return WA + n + '?text=' + encodeURIComponent(msg); }
 function invLink(g) { return 'https://ilusioninvites.com/i/demo/?i=' + g.code; }
-function album() { return 'https://ilusioninvites.com/fotos/?e=demo'; }
+function album() { return CL && CL.album ? CL.album.subir : 'https://ilusioninvites.com/fotos/?e=demo'; }
 function head(eye, title, sub) { return '<div class="page-h"><span class="eyebrow">' + eye + '</span><h1>' + title + '</h1>' + (sub ? '<p class="muted">' + sub + '</p>' : '') + '</div>'; }
 function addBtn(act, label, id) { return '<button class="add" type="button" data-a="' + act + '"' + (id != null ? ' data-id="' + id + '"' : '') + '>' + ic('plus') + label + '</button>'; }
 var CHECK = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
@@ -558,8 +577,9 @@ V.musica = function () {
 V.imprimibles = function () {
   var c = S.cfg, h = head('LISTOS PARA IMPRIMIR', 'Imprimibles', 'Con la misma letra dorada y colores de tu invitación. Descárgalos o mándalos a tu imprenta.');
   h += '<div class="pieces">' + S.impr.map(function (p) {
-    return '<div class="card piece"><div class="pv"><small>' + esc(p.n.toUpperCase()) + '</small><b>' + esc(c.nombre) + '</b><small>' + fecha(c.fecha, { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase() + '</small></div><b style="display:block;font-weight:500;font-size:14px">' + esc(p.n) + '</b>' +
-      (p.est === 'listo' ? '<button class="btn btn-line btn-sm" type="button" style="margin-top:8px" data-a="demo">' + ic('down') + 'Descargar</button>' : '<span class="pill pend" style="margin-top:10px">En diseño</span>') + '</div>';
+    return '<div class="card piece">' + (p.img ? '<img class="pv-img" src="' + esc(p.img) + '" alt="" loading="lazy">' : '<div class="pv"><small>' + esc(p.n.toUpperCase()) + '</small><b>' + esc(c.nombre) + '</b><small>' + fecha(c.fecha, { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase() + '</small></div>') + '<b style="display:block;font-weight:500;font-size:14px">' + esc(p.n) + '</b>' +
+      (p.det ? '<small class="small" style="display:block">' + esc(p.det) + '</small>' : '') +
+      (p.est === 'listo' ? (p.url ? '<a class="btn btn-line btn-sm" style="margin-top:8px" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + ic('down') + 'Descargar</a>' : '<button class="btn btn-line btn-sm" type="button" style="margin-top:8px" data-a="demo">' + ic('down') + 'Descargar</button>') : '<span class="pill pend" style="margin-top:10px">En diseño</span>') + '</div>';
   }).join('') + '</div>';
   return h;
 };
@@ -568,8 +588,10 @@ V.album = function () {
   var q = '';
   try { var qr = qrcode(0, 'M'); qr.addData(album()); qr.make(); q = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); } catch (e) {}
   h += '<div class="card" style="text-align:center"><div class="qr">' + q + '</div><p class="small" style="margin:0 0 6px">' + album().replace('https://', '') + '</p>' +
-    '<div class="kv" style="text-align:left"><div><small>Fotos</small><b>' + (diff() > 0 ? 0 : 248) + '</b></div><div><small>Videos</small><b>' + (diff() > 0 ? 0 : 31) + '</b></div></div>' +
-    '<p class="small" style="margin:10px 0 0">' + (diff() > 0 ? 'El álbum se abre el día del evento.' : '') + '</p><div class="btns" style="justify-content:center"><button class="btn btn-gold" type="button" data-a="demo">Ver el álbum</button><button class="btn btn-line" type="button" data-a="demo">' + ic('down') + 'Letrero con QR</button></div></div>';
+    (CL ? '' : '<div class="kv" style="text-align:left"><div><small>Fotos</small><b>' + (diff() > 0 ? 0 : 248) + '</b></div><div><small>Videos</small><b>' + (diff() > 0 ? 0 : 31) + '</b></div></div>') +
+    (CL && CL.album ? '' : '<p class="small" style="margin:10px 0 0">' + (diff() > 0 ? 'El álbum se abre el día del evento.' : '') + '</p>') + '<div class="btns" style="justify-content:center">' +
+    (CL && CL.album ? '<a class="btn btn-gold" href="' + esc(CL.album.ver) + '" target="_blank" rel="noopener">Ver el álbum</a>' + (CL.album.letrero ? '<a class="btn btn-line" href="' + esc(CL.album.letrero) + '" target="_blank" rel="noopener">' + ic('down') + 'Letrero con QR</a>' : '') + (CL.album.marco ? '<a class="btn btn-line" href="' + esc(CL.album.marco) + '" target="_blank" rel="noopener">Marco para fotos</a>' : '')
+      : '<button class="btn btn-gold" type="button" data-a="demo">Ver el álbum</button><button class="btn btn-line" type="button" data-a="demo">' + ic('down') + 'Letrero con QR</button>') + '</div></div>';
   return h;
 };
 V.regalos = function () {
@@ -591,8 +613,10 @@ V.gracias = function () {
 };
 V.videos = function () {
   var c = S.cfg, h = head('PARA TUS REDES', 'Videos', 'Tu video invitación en vertical (estados, Reels, TikTok) y en cuadrado (feed y chats).');
-  h += '<div class="pieces">' + [['VERTICAL · 9:16', ''], ['CUADRADO · 1:1', ' sq']].concat(on('album') ? [['VIDEO DE ENTRADA', ' sq']] : []).map(function (v) {
-    return '<div class="card piece"><div class="pv ancho' + v[1] + '"><small>' + (c.tipo === 'xv' ? 'MIS XV AÑOS' : 'NOS CASAMOS') + '</small><b>' + esc(c.nombre) + '</b></div><b style="display:block;font-weight:500;font-size:13px">' + v[0] + '</b><button class="btn btn-line btn-sm" type="button" style="margin-top:8px" data-a="demo">' + ic('down') + 'Descargar</button></div>';
+  var VS = CL && CL.videos ? CL.videos : [['VERTICAL · 9:16', ''], ['CUADRADO · 1:1', ' sq']].concat(on('album') ? [['VIDEO DE ENTRADA', ' sq']] : []);
+  h += '<div class="pieces">' + VS.map(function (v) {
+    return '<div class="card piece"><div class="pv ancho' + v[1] + '"><small>' + (c.tipo === 'xv' ? 'MIS XV AÑOS' : 'NOS CASAMOS') + '</small><b>' + esc(c.nombre) + '</b></div><b style="display:block;font-weight:500;font-size:13px">' + v[0] + '</b>' +
+      (v[2] ? '<a class="btn btn-line btn-sm" style="margin-top:8px" href="' + esc(v[2]) + '" target="_blank" rel="noopener">' + ic('down') + 'Descargar</a>' : '<button class="btn btn-line btn-sm" type="button" style="margin-top:8px" data-a="demo">' + ic('down') + 'Descargar</button>') + '</div>';
   }).join('') + '</div>';
   return h;
 };
@@ -741,6 +765,21 @@ function render() {
 }
 addEventListener('hashchange', function () { closeSheet(); render(); });
 setInterval(function () { var c = document.getElementById('cd'); if (c) c.innerHTML = cdHTML(); }, 30000);
+// a client's app: "Personalizar" is only for our team (?equipo=1), and the guest list follows the live RSVPs
+if (CL && !EQUIPO) { var fab = document.querySelector('.fab'); if (fab) fab.remove(); }
+if (CL && CL.lista) {
+  fetch('https://script.google.com/macros/s/AKfycbwLSkVg670lTXk73S5B_zP-ay8Kpwj7xFRDBXJPta3QF27T_Jy1zRBG3t_n2oZhiuc/exec', { method: 'POST', body: JSON.stringify({ lista: 1, evento: CL.lista.e, k: CL.lista.k }), credentials: 'omit' })
+    .then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.ok) return;
+      (d.invitados || []).forEach(function (g) {
+        var est = g.asiste === 'si' ? 'si' : g.asiste === 'no' ? 'no' : '';
+        var mine = S.invitados.filter(function (x) { return x.code === g.c; })[0];
+        if (!mine) { mine = { id: uid(), n: g.n, l: g.l, est: '', p: 0, mesa: '', tel: '', code: g.c }; S.invitados.push(mine); }
+        mine.n = g.n; mine.l = g.l; mine.est = est; mine.p = est === 'si' ? (g.personas || g.l) : 0;
+      });
+      save(); render();
+    }).catch(function () {});
+}
 
 /* install as an app */
 var deferred = null;
