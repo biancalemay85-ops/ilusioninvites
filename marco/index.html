@@ -67,6 +67,9 @@ h1 { margin: -4px 0 0; font: 400 clamp(46px, 13vw, 64px)/1.1 'Pinyon Script', cu
   // one entry per event: names, date and the invitation's own pieces (velvet, gold corners, bouquet, butterfly)
   var EVS = {
     'xv-bianca': { nombre: 'Bianca', eye: 'MIS XV AÑOS', eyeEn: 'MY QUINCEAÑERA', corto: 'XV AÑOS', fecha: '22 · 11 · 2026', tag: '#XVBianca', img: '../i/xv-bianca/img/', fondo: 'terciopelo.webp', esquina: 'esquina-oro.webp', ramo: 'ramillete.webp', mariposa: 'mariposa-rosa.webp', tinte: 'rgba(40,4,16,.42)' }
+,
+    // public sample for marketing and for showing clients: /marco/?e=muestra-xv
+    'muestra-xv': { nombre: 'Valentina', eye: 'MIS XV AÑOS', eyeEn: 'MY QUINCEAÑERA', corto: 'XV AÑOS', fecha: '20 · 03 · 2027', tag: '#XVValentina', img: '../i/xv-bianca/img/', fondo: 'terciopelo.webp', esquina: 'esquina-oro.webp', ramo: 'ramillete.webp', mariposa: 'mariposa-rosa.webp', tinte: 'rgba(40,4,16,.42)' }
   };
   var q = (new URLSearchParams(location.search).get('e') || '').split('.'), EV = q[0], CODE = q[1] || '', E = EVS[EV];
   var en = /^en/i.test(navigator.language || '') && !/^es/i.test(navigator.language || '');
