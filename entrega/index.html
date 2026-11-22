@@ -350,7 +350,7 @@
       }
       if (x.imprimibles && x.imprimibles.length) {
         $('imps').innerHTML = x.imprimibles.map(function (p) {
-          return '<div class="imp">' + (p.img ? '<img src="' + esc(link + 'entregables/' + p.img) + '" alt="" loading="lazy">' : '') + '<div><b>' + esc(p.t) + '</b><small>' + esc(p.d || '') + '</small>' +
+          return '<div class="imp">' + (p.img ? '<img src="' + esc(link + 'entregables/' + p.img) + '" alt="">' : '') + '<div><b>' + esc(p.t) + '</b><small>' + esc(p.d || '') + '</small>' +
             '<a class="btn alt" href="' + esc(link + 'entregables/' + p.pdf) + '" target="_blank" rel="noopener">Descargar PDF</a></div></div>';
         }).join('');
         $('s-imp').hidden = false; $('nImp').hidden = false;
