@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://ilusioninvites.com/i/posada-panamericano/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A1E3C">
-
+<link rel="icon" href="img/panamericano-logo.png">
 <!-- Sample posada invitation prepared by Ilusión Invites for Panamericano's year-end party (sample data).
      Published at the user's request on a hidden address: noindex, not linked, not in the sitemap.
      Source: marketing/panamericano/posada-2026/ (edit there, then copy here). -->
@@ -179,6 +179,9 @@ footer .sample{margin:8px auto 0;max-width:250px;line-height:1.5;font:500 10px M
   background:rgba(6,18,38,.72);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(195,201,209,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 #pause svg{width:15px;height:15px}#pause .pl{display:none}html.frozen #pause .pa{display:none}html.frozen #pause .pl{display:block}
 html.frozen *,html.frozen *::before,html.frozen *::after{animation-play-state:paused!important}
+#snd{position:fixed;z-index:70;right:calc(max(14px,env(safe-area-inset-right)) + 54px);bottom:calc(14px + env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;
+  background:rgba(6,18,38,.72);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(195,201,209,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#snd svg{width:18px;height:18px}#snd .off{display:none}#snd[aria-pressed=false] .on{display:none}#snd[aria-pressed=false] .off{display:block}
 @media (min-width:900px){section{padding:90px 16px}.hero{padding-top:110px}}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
 </style></head>
@@ -295,6 +298,7 @@ html.frozen *,html.frozen *::before,html.frozen *::after{animation-play-state:pa
   </footer>
 </div>
 
+<button id="snd" type="button" aria-label="Silenciar sonido" aria-pressed="true"><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/></svg></button>
 <button id="pause" type="button" aria-label="Pausar animación" aria-pressed="false"><svg class="pa" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg><svg class="pl" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
 
 <script>
@@ -378,6 +382,63 @@ var CONFIG = {
   for (i = 0; i < 50; i++) { var t = document.createElement('i'); t.className = 'tk' + (i % 5 ? '' : ' big'); t.style.transform = 'translate(-50%,-50%) rotate(' + (i * 7.2) + 'deg) translateY(calc(var(--d) * -.148))'; dial.appendChild(t); }
   for (i = 0; i < 10; i++) { var n = document.createElement('span'); n.className = 'nm'; n.textContent = i * 10; n.style.transform = 'translate(-50%,-50%) rotate(' + (i * 36) + 'deg) translateY(calc(var(--d) * -.112))'; dial.appendChild(n); }
 
+  // ---------- sound: every effect is synthesised here (no files), plus "Noche de paz" on nylon guitar (img/noche-de-paz.m4a, made from scratch, public-domain melody)
+  var SND = (function () {
+    var ctx = null, out, mus, noiseBuf, musicBuf = null, musicArr = null, musicSrc = null, on = true, wantMusic = false;
+    fetch('img/noche-de-paz.m4a').then(function (r) { return r.arrayBuffer(); }).then(function (b) { musicArr = b; decode(); }).catch(function () {});
+    function decode() { if (!ctx || !musicArr || musicBuf) return; var a = musicArr; musicArr = null; ctx.decodeAudioData(a, function (b) { musicBuf = b; if (wantMusic) startMusic(); }, function () {}); }
+    function init() {
+      if (ctx) return;
+      try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {} // iPhone: play even with the silent switch on
+      var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+      ctx = new AC(); out = ctx.createGain(); out.gain.value = on ? 1 : 0;
+      var comp = ctx.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 3; out.connect(comp); comp.connect(ctx.destination);
+      mus = ctx.createGain(); mus.gain.value = 0; mus.connect(out);
+      var b = ctx.createBuffer(1, 1, 22050), s = ctx.createBufferSource(); s.buffer = b; s.connect(out); s.start(0); // unlock (iOS)
+      if (ctx.resume) ctx.resume();
+      noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate); var d = noiseBuf.getChannelData(0); for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      decode();
+    }
+    function env(g, t, a, peak, dec) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec); }
+    function noise(t, dur, type, f0, f1, q, peak) {
+      var s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+      s.buffer = noiseBuf; s.loop = true; f.type = type; f.Q.value = q; f.frequency.setValueAtTime(f0, t); if (f1) f.frequency.exponentialRampToValueAtTime(f1, t + dur);
+      env(g, t, Math.min(.01, dur / 4), peak, dur); s.connect(f); f.connect(g); g.connect(out); s.start(t, Math.random() * .5); s.stop(t + dur + .05);
+    }
+    function tone(t, f0, f1, dur, peak, type) {
+      var o = ctx.createOscillator(), g = ctx.createGain(); o.type = type || 'sine';
+      o.frequency.setValueAtTime(f0, t); if (f1 !== f0) o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+      env(g, t, .004, peak, dur); o.connect(g); g.connect(out); o.start(t); o.stop(t + dur + .05);
+    }
+    // CSS cubic-bezier, to place each click where the dial really is
+    function bez(x1, y1, x2, y2) { return function (p) { var lo = 0, hi = 1, s, x; for (var k = 0; k < 24; k++) { s = (lo + hi) / 2; x = 3 * (1 - s) * (1 - s) * s * x1 + 3 * (1 - s) * s * s * x2 + s * s * s; if (x < p) lo = s; else hi = s; } return 3 * (1 - s) * (1 - s) * s * y1 + 3 * (1 - s) * s * s * y2 + s * s * s; }; }
+    var dialEase = bez(.45, 0, .25, 1);
+    function tick(t, g) { noise(t, .014, 'bandpass', 4200, 0, 5, .22 * g); tone(t, 2900, 2700, .025, .035 * g); }
+    function clunk(t, g) { tone(t, 120, 46, .24, .55 * g); noise(t, .06, 'lowpass', 1400, 300, 1, .35 * g); tick(t, 1.3 * g); }
+    return {
+      init: init,
+      dial: function (deg, ms) { if (!ctx) return; var t0 = ctx.currentTime + .02, step = 7.2, last = 0, n = 200;
+        for (var i = 1; i <= n; i++) { var p = i / n, y = dialEase(p) * Math.abs(deg); if (y - last >= step) { last += step; tick(t0 + p * ms / 1000, .55 + .45 * Math.random()); } } },
+      set: function () { if (ctx) clunk(ctx.currentTime + .01, .7); },
+      ok: function () { if (!ctx) return; var t = ctx.currentTime + .02; tone(t, 1318, 1318, .09, .12); tone(t + .14, 1760, 1760, .14, .12); },
+      wheel: function () { if (!ctx) return; var t = ctx.currentTime + .02; for (var i = 0; i < 9; i++) tick(t + .08 + i * .085, .8); noise(t, .95, 'bandpass', 500, 900, 2.5, .14); clunk(t + .92, .6); },
+      bolts: function () { if (!ctx) return; var t = ctx.currentTime + .02; noise(t, .55, 'bandpass', 1500, 380, 2, .3); for (var i = 0; i < 8; i++) clunk(t + .5 + i * .022 + Math.random() * .02, .38); tone(t + .55, 70, 38, .6, .5); },
+      door: function () { if (!ctx) return; var t = ctx.currentTime + .02;
+        noise(t, 2.2, 'lowpass', 220, 120, .7, .55);                       // heavy rumble
+        var o = ctx.createOscillator(), f = ctx.createBiquadFilter(), g = ctx.createGain(), l = ctx.createOscillator(), lg = ctx.createGain();
+        o.type = 'sawtooth'; o.frequency.setValueAtTime(66, t); o.frequency.linearRampToValueAtTime(52, t + 1.9); l.frequency.value = 5.5; lg.gain.value = 2.2; l.connect(lg); lg.connect(o.frequency);
+        f.type = 'lowpass'; f.frequency.value = 420; env(g, t, .35, .07, 1.6); o.connect(f); f.connect(g); g.connect(out); o.start(t); l.start(t); o.stop(t + 2.1); l.stop(t + 2.1);  // low metal groan
+        noise(t + .4, 1.6, 'bandpass', 380, 1700, .9, .16);               // air rushing in
+        clunk(t + 1.85, .45); },
+      chime: function () { if (!ctx) return; var t = ctx.currentTime + .02; [1046.5, 1318.5, 1568, 2093].forEach(function (f, i) { tone(t + i * .11, f, f, 2.2, .07); tone(t + i * .11, f * 2.76, f * 2.76, .5, .015); }); },
+      music: function () { wantMusic = true; if (ctx && musicBuf) startMusic(); },
+      toggle: function () { if (!ctx) { on = true; init(); wantMusic = true; if (musicBuf) startMusic(); return true; } on = !on; if (ctx) { out.gain.setTargetAtTime(on ? 1 : 0, ctx.currentTime, .08); if (on) { if (ctx.resume) ctx.resume(); if (wantMusic && !musicSrc && musicBuf) startMusic(); } } return on; },
+      pause: function (fr) { if (!ctx) return; if (fr && ctx.suspend) ctx.suspend(); else if (!fr && ctx.resume) ctx.resume(); }
+    };
+    function startMusic() { if (musicSrc || !musicBuf) return; musicSrc = ctx.createBufferSource(); musicSrc.buffer = musicBuf; musicSrc.loop = true; musicSrc.connect(mus);
+      var t = ctx.currentTime + .05; musicSrc.start(t); mus.gain.setValueAtTime(0.0001, t); mus.gain.exponentialRampToValueAtTime(.6, t + 2.5); }
+  })();
+
   // ---------- opening ----------
   var vault = $('#vault'), door = $('#door'), wheel = $('#wheel'), code = $('#code'), readout = $('#readout'), page = $('#page'), flash = $('#flash');
   var started = false, wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
@@ -388,25 +449,26 @@ var CONFIG = {
     // the number under the red mark at the top: the dial turns so that "num" sits at 0°
     var target = -num * 3.6, curMod = ((rot % 360) + 360) % 360, tMod = ((target % 360) + 360) % 360, d;
     if (dir > 0) { d = (tMod - curMod + 360) % 360; rot += d + 360 * extra; } else { d = (curMod - tMod + 360) % 360; rot -= d + 360 * extra; }
+    SND.dial(d + 360 * extra, ms);
     dial.style.transitionDuration = ms + 'ms'; dial.style.transform = 'rotate(' + rot + 'deg)';
     return wait(ms + 120);
   }
   async function open() {
-    if (started) return; started = true; vault.classList.add('started');
+    if (started) return; started = true; vault.classList.add('started'); SND.init();
     var C3 = C.COMBINACION, shown = ['– –', '– –', '– –'];
-    await turnTo(+C3[0], 1, 1, 1300); buzz(20); shown[0] = C3[0]; code.textContent = shown.join(' · ');
-    await turnTo(+C3[1], -1, 1, 1200); buzz(20); shown[1] = C3[1]; code.textContent = shown.join(' · ');
-    await turnTo(+C3[2], 1, 0, 900); buzz(20); shown[2] = C3[2]; code.textContent = shown.join(' · ');
-    await wait(250); readout.classList.add('ok'); buzz([30, 40, 30]);
+    await turnTo(+C3[0], 1, 1, 1300); buzz(20); SND.set(); shown[0] = C3[0]; code.textContent = shown.join(' · ');
+    await turnTo(+C3[1], -1, 1, 1200); buzz(20); SND.set(); shown[1] = C3[1]; code.textContent = shown.join(' · ');
+    await turnTo(+C3[2], 1, 0, 900); buzz(20); SND.set(); shown[2] = C3[2]; code.textContent = shown.join(' · ');
+    await wait(250); readout.classList.add('ok'); buzz([30, 40, 30]); SND.ok();
     await wait(500);
-    wheel.style.transform = 'rotate(145deg)'; await wait(900);
+    wheel.style.transform = 'rotate(145deg)'; SND.wheel(); await wait(900);
     B.forEach(function (b) { var ang = +b.dataset.a; b.style.transform = 'rotate(' + (ang + 180) + 'deg) translateY(40%) translateY(calc(var(--d) * .27))'; });
-    buzz(60); await wait(800);
-    vault.classList.add('open'); document.getElementById('stage').classList.add('open');
+    SND.bolts(); buzz(60); await wait(800);
+    vault.classList.add('open'); document.getElementById('stage').classList.add('open'); SND.door();
     $$('.v-top,.v-bot').forEach(function (e) { e.style.opacity = 0; });
     await wait(1500);
     var st = document.getElementById('stage'); st.style.transition = 'transform 1.4s cubic-bezier(.6,0,.4,1)'; st.style.transform = 'scale(3.2)';
-    flash.animate([{ opacity: 0 }, { opacity: .9 }, { opacity: 0 }], { duration: 1400, easing: 'ease-in-out' });
+    flash.animate([{ opacity: 0 }, { opacity: .9 }, { opacity: 0 }], { duration: 1400, easing: 'ease-in-out' }); SND.chime(); setTimeout(SND.music, 600);
     await wait(700);
     document.body.classList.remove('locked'); page.classList.add('on'); vault.classList.add('gone'); startLights();
     await wait(1100); vault.style.display = 'none';
@@ -452,7 +514,9 @@ var CONFIG = {
   }
   if (q.get('abierto')) startLights();
   var pb = $('#pause');
-  pb.addEventListener('click', function () { frozen = !frozen; document.documentElement.classList.toggle('frozen', frozen); pb.setAttribute('aria-pressed', String(frozen)); pb.setAttribute('aria-label', frozen ? 'Continuar animación' : 'Pausar animación'); });
+  var sb = $('#snd');
+  sb.addEventListener('click', function () { var o = SND.toggle(); sb.setAttribute('aria-pressed', String(o)); sb.setAttribute('aria-label', o ? 'Silenciar sonido' : 'Activar sonido'); });
+  pb.addEventListener('click', function () { frozen = !frozen; SND.pause(frozen); document.documentElement.classList.toggle('frozen', frozen); pb.setAttribute('aria-pressed', String(frozen)); pb.setAttribute('aria-label', frozen ? 'Continuar animación' : 'Pausar animación'); });
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) pb.click();
 })();
 </script>
