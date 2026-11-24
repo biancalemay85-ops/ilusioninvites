@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Posada de Fin de Año 2026 · Panamericano</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Algo muy valioso te espera. Toca la bóveda para abrir tu invitación a la Posada de Fin de Año 2026.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Posada de Fin de Año 2026 · Panamericano 🎄">
+<meta property="og:description" content="Algo muy valioso te espera. Toca la bóveda para abrir tu invitación.">
+<meta property="og:image" content="https://ilusioninvites.com/i/posada-panamericano/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://ilusioninvites.com/i/posada-panamericano/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A1E3C">
+
+<!-- Sample posada invitation prepared by Ilusión Invites for Panamericano's year-end party (sample data).
+     Published at the user's request on a hidden address: noindex, not linked, not in the sitemap.
+     Source: marketing/panamericano/posada-2026/ (edit there, then copy here). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap">
+<style>
+:root{
+  --navy:#0A1E3C; --navy2:#061226; --navy3:#12305C; --red:#C10230; --red2:#8E0122; --blue:#005588;
+  --steel:#C3C9D1; --steel2:#8C949F; --ink:#F4F1EA; --ink2:#C9CFDA; --warm:#F0C77E; --warm2:#C9954A;
+  --d:min(76vw,46vh,440px);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--navy2);color:var(--ink);font-family:Montserrat,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden;height:100vh}
+img{max-width:100%;display:block}
+button{font:inherit}
+
+/* ---------- the vault (opening) ---------- */
+#vault{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,2.6vh,26px);
+  padding:max(18px,env(safe-area-inset-top)) 16px max(18px,env(safe-area-inset-bottom));
+  background:radial-gradient(ellipse at 50% 46%,#1B3560 0%,#0C2246 38%,#06132A 72%,#030A17 100%);overflow:hidden;transition:opacity 1s ease}
+#vault::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 2px,transparent 2px 7px);pointer-events:none}
+#vault.gone{opacity:0;pointer-events:none}
+.v-top,.v-bot{position:relative;text-align:center;z-index:2;transition:opacity .6s ease}
+.v-logo{height:clamp(30px,4.6vh,40px);width:auto;margin:0 auto 12px}
+.v-eye{margin:0;font:600 clamp(10px,1.4vh,12px)/1.4 Montserrat;letter-spacing:.32em;color:var(--ink2)}
+.v-title{margin:6px 0 0;font:italic 600 clamp(30px,5.2vh,46px)/1 'Cormorant Garamond',serif;color:var(--ink)}
+.v-title b{font-style:normal;font-weight:600;color:var(--warm)}
+.v-para{margin:0;font:600 clamp(10px,1.3vh,11px) Montserrat;letter-spacing:.34em;color:var(--ink2)}
+.v-guest{margin:6px 0 0;font:italic 600 clamp(24px,3.8vh,32px)/1.1 'Cormorant Garamond',serif;color:var(--warm)}
+.v-hint{margin:14px 0 0;display:inline-flex;align-items:center;gap:10px;font:600 10.5px Montserrat;letter-spacing:.26em;color:var(--ink2)}
+.v-hint i{width:7px;height:7px;border-radius:50%;background:var(--warm);box-shadow:0 0 10px var(--warm);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.started .v-hint{opacity:0}
+
+.stage{position:relative;width:var(--d);height:var(--d);perspective:1400px;flex:none;z-index:1;margin:calc(var(--d)*.08) 0}
+/* the frame set into the wall */
+.frame{position:absolute;inset:-9%;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,#2a3442 60%,transparent 61%),
+    conic-gradient(from 210deg,#6f7884,#c9ced6,#7d8691,#e3e7ec,#6b737e,#b9c0c9,#6f7884);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.8),0 0 0 2px rgba(0,0,0,.4),inset 0 0 0 3px rgba(255,255,255,.18),inset 0 0 30px rgba(0,0,0,.6)}
+.frame .rv{position:absolute;left:50%;top:50%;width:3.2%;height:3.2%;margin:-1.6%;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff,#b6bdc6 40%,#5d6570 75%);box-shadow:0 1px 2px rgba(0,0,0,.6)}
+/* the dark hole behind the door, with the posada glowing inside */
+.hole{position:absolute;inset:-1%;border-radius:50%;overflow:hidden;background:#140a04;box-shadow:inset 0 0 40px 10px rgba(0,0,0,.85)}
+.hole img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;filter:brightness(.75) saturate(1.1);transform:scale(1.15);transition:filter 1.6s ease,transform 2.4s ease}
+.hole::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 50px 18px rgba(0,0,0,.8)}
+.open .hole img{filter:brightness(1.05) saturate(1.15);transform:scale(1)}
+/* the door */
+.door{position:absolute;inset:0;border-radius:50%;transform-origin:-4% 50%;transform-style:preserve-3d;transition:transform 1.9s cubic-bezier(.55,.05,.25,1);cursor:pointer;
+  background:
+    radial-gradient(circle at 34% 26%,rgba(255,255,255,.55),rgba(255,255,255,0) 38%),
+    conic-gradient(from 200deg,rgba(255,255,255,.22),rgba(0,0,0,.18),rgba(255,255,255,.3),rgba(0,0,0,.22),rgba(255,255,255,.2),rgba(0,0,0,.15),rgba(255,255,255,.22)),
+    repeating-radial-gradient(circle at 50% 50%,#b3bac3 0 1px,#c2c8cf 1px 2.2px,#a9b0b9 2.2px 3.1px);
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.55),inset 0 -14px 30px rgba(0,0,0,.35),inset 0 10px 24px rgba(255,255,255,.25),0 22px 40px -12px rgba(0,0,0,.7)}
+.open .door{transform:rotateY(-112deg)}
+.door .r1{position:absolute;inset:9%;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(0,0,0,.18),0 0 0 2px rgba(255,255,255,.45),inset 0 6px 14px rgba(0,0,0,.18)}
+.door .r2{position:absolute;inset:22%;border-radius:50%;
+  background:repeating-radial-gradient(circle,#aeb5be 0 1px,#bfc5cc 1px 2px);box-shadow:inset 0 3px 8px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.5),0 0 0 4px rgba(0,0,0,.15)}
+/* locking bolts (chrome cylinders reaching into the frame) */
+.bolt{position:absolute;left:50%;top:50%;width:7%;height:15%;margin-left:-3.5%;transform-origin:50% 0;
+  border-radius:40% 40% 18% 18%/22% 22% 10% 10%;
+  background:linear-gradient(90deg,#646c77,#e8ecf0 35%,#ffffff 48%,#a8b0ba 70%,#5a626d);box-shadow:0 2px 4px rgba(0,0,0,.5);transition:transform .7s cubic-bezier(.6,0,.3,1)}
+/* brand plate */
+.plate{position:absolute;z-index:3;left:50%;top:10.5%;width:52%;transform:translateX(-50%);padding:3.2% 4%;border-radius:999px;
+  background:linear-gradient(180deg,#183a6a,#0b2148);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35),0 0 0 3px #9aa3ae,0 4px 8px rgba(0,0,0,.45)}
+.plate img{width:100%;height:auto}
+/* the wheel handle */
+.wheel{position:absolute;inset:16%;transition:transform 1s cubic-bezier(.5,0,.3,1)}
+.spoke{position:absolute;left:50%;top:50%;width:100%;height:5%;margin:-2.5% 0 0 -50%;border-radius:99px;
+  background:linear-gradient(180deg,#f4f6f8,#9aa2ad 55%,#5d6570);box-shadow:0 3px 5px rgba(0,0,0,.45)}
+.spoke::before,.spoke::after{content:"";position:absolute;top:50%;width:11%;aspect-ratio:1;border-radius:50%;transform:translateY(-50%);
+  background:radial-gradient(circle at 35% 30%,#fff,#c9ced6 35%,#6b737e 80%);box-shadow:0 3px 5px rgba(0,0,0,.5)}
+.spoke::before{left:-3%}.spoke::after{right:-3%}
+/* combination dial */
+.dial{position:absolute;inset:33%;border-radius:50%;background:radial-gradient(circle at 40% 32%,#24447a,#0b2148 60%,#06142c);
+  box-shadow:0 0 0 3px #d5dae0,0 0 0 6px #7c8590,0 6px 12px rgba(0,0,0,.6);transition:transform .9s cubic-bezier(.45,0,.25,1)}
+.dial .tk{position:absolute;left:50%;top:50%;width:calc(var(--d)*.004);height:calc(var(--d)*.022);background:rgba(255,255,255,.7)}
+.dial .tk.big{height:calc(var(--d)*.032);width:calc(var(--d)*.006);background:#fff}
+.dial .nm{position:absolute;left:50%;top:50%;font:700 calc(var(--d)*.026)/1 Montserrat;color:#fff;white-space:nowrap}
+.knob{position:absolute;inset:40.5%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#cfd4da 40%,#717a85 85%);box-shadow:0 4px 8px rgba(0,0,0,.55)}
+.mark{position:absolute;left:50%;top:30.5%;width:0;height:0;margin-left:-2.2%;border-left:calc(var(--d)*.022) solid transparent;border-right:calc(var(--d)*.022) solid transparent;border-top:calc(var(--d)*.034) solid var(--red);filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))}
+.readout{position:absolute;left:50%;bottom:10%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;
+  background:#04101f;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25),0 0 0 2px #8f98a3;font:700 calc(var(--d)*.04)/1 Montserrat;letter-spacing:.12em;color:#ff5a76;white-space:nowrap}
+.readout .led{width:calc(var(--d)*.022);height:calc(var(--d)*.022);border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red)}
+.readout.ok{color:#7dffb0}.readout.ok .led{background:#34d67a;box-shadow:0 0 10px #34d67a}
+.flash{position:absolute;inset:0;z-index:60;background:radial-gradient(circle,#fff6dc,#f0c77e 40%,rgba(240,199,126,0) 70%);opacity:0;pointer-events:none}
+
+/* ---------- the invitation ---------- */
+.page{position:relative;opacity:0;transition:opacity 1.2s ease}
+.page.on{opacity:1}
+.lights{position:fixed;left:0;right:0;top:0;width:100%;height:120px;z-index:5;pointer-events:none}
+section{position:relative;padding:72px 16px;max-width:640px;margin:0 auto;text-align:center}
+.hero{padding-top:84px;max-width:none}
+.hero .logo{height:38px;width:auto;margin:0 auto 22px}
+.eyebrow{margin:0;font:600 11px Montserrat;letter-spacing:.34em;color:var(--ink2)}
+.h1{margin:10px auto 0;max-width:12em;font:italic 600 clamp(42px,11.5vw,76px)/.98 'Cormorant Garamond',serif;text-wrap:balance}
+.h1 span{display:block;font-style:normal;font:800 clamp(15px,4.2vw,22px) Montserrat;letter-spacing:.28em;color:var(--warm);margin-top:12px}
+.date-pill{display:inline-flex;gap:10px;align-items:center;margin-top:20px;padding:10px 20px;border-radius:999px;border:1px solid rgba(240,199,126,.45);font:600 13px Montserrat;letter-spacing:.18em;color:var(--ink)}
+.date-pill i{width:5px;height:5px;border-radius:50%;background:var(--red)}
+.scene{position:relative;width:min(100%,520px);margin:34px auto 0;border-radius:220px 220px 26px 26px;overflow:hidden;aspect-ratio:9/13;
+  box-shadow:0 0 0 1px rgba(240,199,126,.5),0 0 0 7px rgba(10,30,60,.9),0 0 0 8.5px rgba(195,201,209,.55),0 40px 70px -30px rgba(0,0,0,.9)}
+.scene img{width:100%;height:100%;object-fit:cover}
+.scene-cap{margin:18px 0 0;font:600 10.5px/1.6 Montserrat;letter-spacing:.28em;color:var(--ink2)}
+/* papel picado divider in brand colours */
+.picado{display:flex;justify-content:center;gap:6px;height:56px;margin:0 auto;max-width:640px;padding:0 16px;position:relative}
+.picado::before{content:"";position:absolute;left:8%;right:8%;top:3px;height:1.5px;background:rgba(244,241,234,.5)}
+.picado i{flex:1;max-width:46px;margin-top:4px;-webkit-mask:var(--m) center top/100% 100% no-repeat;mask:var(--m) center top/100% 100% no-repeat;opacity:.92;transform-origin:50% 0;animation:sway 4.5s ease-in-out infinite}
+.picado i:nth-child(3n+1){background:var(--red)}.picado i:nth-child(3n+2){background:#F4F1EA}.picado i:nth-child(3n){background:var(--blue)}
+.picado i:nth-child(odd){animation-delay:-2s}
+@keyframes sway{50%{transform:rotate(2.5deg)}}
+.card{position:relative;padding:34px 22px;border-radius:26px;background:linear-gradient(180deg,rgba(23,48,90,.75),rgba(10,26,52,.85));
+  box-shadow:inset 0 0 0 1px rgba(195,201,209,.28),0 30px 50px -30px rgba(0,0,0,.8)}
+.card::before{content:"";position:absolute;inset:7px;border-radius:20px;border:1px solid rgba(240,199,126,.22);pointer-events:none}
+.h2{margin:0 0 6px;font:italic 600 clamp(34px,9vw,46px)/1 'Cormorant Garamond',serif;color:var(--warm)}
+.caps{margin:0;font:600 11px Montserrat;letter-spacing:.3em;color:var(--ink2)}
+.lead{margin:14px auto 0;max-width:30em;font:400 15.5px/1.65 Montserrat;color:var(--ink)}
+.quote{margin:18px auto 0;max-width:28em;font:italic 500 clamp(21px,5.4vw,26px)/1.35 'Cormorant Garamond',serif;color:var(--ink)}
+.sign{margin:18px 0 0;font:600 12px Montserrat;letter-spacing:.22em;color:var(--warm)}
+.team{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px auto 0;max-width:30em;padding:0;list-style:none}
+.team li{padding:7px 14px;border-radius:999px;font:600 11px Montserrat;letter-spacing:.14em;color:var(--ink);background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(195,201,209,.3)}
+.count{display:flex;justify-content:center;gap:10px;margin:22px 0 0}
+.count div{width:72px;padding:14px 0 10px;border-radius:16px;background:linear-gradient(180deg,#0b1d3a,#061226);box-shadow:inset 0 0 0 1px rgba(195,201,209,.35),0 10px 18px -10px rgba(0,0,0,.8)}
+.count b{display:block;font:700 26px/1 Montserrat;color:#fff;font-variant-numeric:tabular-nums}
+.count span{display:block;margin-top:6px;font:600 9px Montserrat;letter-spacing:.22em;color:var(--ink2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:999px;text-decoration:none;font:700 12px Montserrat;letter-spacing:.18em;cursor:pointer;border:0}
+.btn-line{color:var(--ink);background:transparent;box-shadow:inset 0 0 0 1.5px rgba(244,241,234,.55)}
+.btn-red{color:#fff;background:linear-gradient(180deg,#d8143f,var(--red) 55%,var(--red2));box-shadow:0 14px 26px -12px rgba(193,2,48,.8),inset 0 1px 0 rgba(255,255,255,.3)}
+.btn svg{width:18px;height:18px}
+.row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+.place .time{margin:14px 0 0;font:700 30px Montserrat;color:#fff}
+.place .name{margin:6px 0 0;font:italic 600 28px 'Cormorant Garamond',serif;color:var(--ink)}
+.place .addr{margin:4px 0 0;font:400 14px Montserrat;color:var(--ink2)}
+.timeline{list-style:none;margin:24px auto 0;padding:0;max-width:24em;text-align:left;position:relative}
+.timeline::before{content:"";position:absolute;left:86px;top:8px;bottom:8px;width:1.5px;background:linear-gradient(180deg,transparent,rgba(240,199,126,.6),transparent)}
+.timeline li{display:flex;align-items:center;gap:14px;padding:11px 0}
+.timeline time{width:72px;flex:none;text-align:right;font:700 14px Montserrat;color:var(--warm)}
+.timeline .dot{flex:none;width:11px;height:11px;border-radius:50%;background:#0A1E3C;box-shadow:0 0 0 2px var(--warm);position:relative;z-index:1}
+.timeline span{font:500 15px/1.35 Montserrat;color:var(--ink)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.duo div{padding:18px 12px;border-radius:18px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(195,201,209,.25)}
+.duo b{display:block;font:700 11px Montserrat;letter-spacing:.2em;color:var(--warm)}
+.duo p{margin:8px 0 0;font:500 14px/1.45 Montserrat;color:var(--ink)}
+/* RSVP: an access badge */
+.badge{position:relative;max-width:340px;margin:24px auto 0;padding:26px 22px 24px;border-radius:24px;text-align:center;
+  background:linear-gradient(160deg,#f6f4ef,#dfe3e8 60%,#c9ced6);color:#0A1E3C;box-shadow:0 30px 50px -24px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.8)}
+.badge::before{content:"";position:absolute;left:50%;top:12px;width:56px;height:8px;margin-left:-28px;border-radius:99px;background:#9aa3ae;box-shadow:inset 0 2px 3px rgba(0,0,0,.35)}
+.badge .bh{margin:12px -22px 16px;padding:10px 0;background:linear-gradient(90deg,var(--red2),var(--red),var(--red2));color:#fff;font:800 11px Montserrat;letter-spacing:.3em}
+.badge .bn{margin:0;font:italic 600 30px/1.1 'Cormorant Garamond',serif;color:#0A1E3C}
+.badge .bv{margin:10px 0 0;font:600 11px Montserrat;letter-spacing:.2em;color:#4a5568}
+.badge .bv b{color:var(--red)}
+.badge .bd{margin:12px 0 0;font:500 13px Montserrat;color:#3d4757}
+.badge .btn{margin-top:18px;width:100%}
+.badge .barcode{height:28px;margin:16px auto 0;width:70%;background:repeating-linear-gradient(90deg,#0A1E3C 0 2px,transparent 2px 4px,#0A1E3C 4px 5px,transparent 5px 8px,#0A1E3C 8px 11px,transparent 11px 12px);opacity:.8}
+footer{padding:50px 16px calc(110px + env(safe-area-inset-bottom));text-align:center}
+footer .logo{height:30px;width:auto;margin:0 auto 14px;opacity:.9}
+footer .made{margin:14px 0 0;font:600 10px Montserrat;letter-spacing:.3em;color:var(--ink2)}
+footer .sample{margin:8px auto 0;max-width:250px;line-height:1.5;font:500 10px Montserrat;letter-spacing:.12em;color:rgba(201,207,218,.6)}
+.replay{margin-top:18px;background:none;border:0;color:var(--warm);font:600 10.5px Montserrat;letter-spacing:.26em;text-decoration:underline;text-underline-offset:5px;cursor:pointer}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
+.reveal.in{opacity:1;transform:none}
+#pause{position:fixed;z-index:70;right:max(14px,env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;
+  background:rgba(6,18,38,.72);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(195,201,209,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#pause svg{width:15px;height:15px}#pause .pl{display:none}html.frozen #pause .pa{display:none}html.frozen #pause .pl{display:block}
+html.frozen *,html.frozen *::before,html.frozen *::after{animation-play-state:paused!important}
+@media (min-width:900px){section{padding:90px 16px}.hero{padding-top:110px}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style></head>
+<body class="locked">
+
+<div id="vault" role="button" tabindex="0" aria-label="Abrir la invitación">
+  <div class="v-top">
+    <img class="v-logo" data-logo alt="Panamericano">
+    <p class="v-eye" data-t="eyebrowVault"></p>
+    <p class="v-title" data-html="titleVault"></p>
+  </div>
+  <div class="stage" id="stage">
+    <div class="frame" id="frame"></div>
+    <div class="hole"><img data-scene alt=""></div>
+    <div class="door" id="door">
+      <div class="r1"></div>
+      <div id="bolts"></div>
+      <div class="r2"></div>
+      <div class="plate"><img data-logo alt=""></div>
+      <div class="wheel" id="wheel" style="transform:rotate(45deg)"><div class="spoke"></div><div class="spoke" style="transform:rotate(90deg)"></div></div>
+      <div class="dial" id="dial"></div>
+      <div class="knob"></div>
+      <div class="mark"></div>
+      <div class="readout" id="readout"><span class="led"></span><span id="code">– – · – – · – –</span></div>
+    </div>
+  </div>
+  <div class="v-bot">
+    <p class="v-para">PARA</p>
+    <p class="v-guest" id="vGuest"></p>
+    <p class="v-hint"><i></i><span>TOCA LA BÓVEDA PARA ABRIR</span><i></i></p>
+  </div>
+  <div class="flash" id="flash"></div>
+</div>
+
+<canvas class="lights" id="lights" aria-hidden="true"></canvas>
+
+<div class="page" id="page">
+  <section class="hero">
+    <img class="logo" data-logo alt="Panamericano">
+    <p class="eyebrow" data-t="eyebrowHero"></p>
+    <h1 class="h1"><span style="all:unset;display:block" data-t="eventScript"></span><span data-t="eventCaps"></span></h1>
+    <div class="date-pill"><span data-t="dateShort"></span><i></i><span data-t="timeText"></span></div>
+    <div class="scene reveal"><img data-scene alt="Bóveda decorada para la posada, con luces, papel picado y piñata"></div>
+    <p class="scene-cap" data-t="sceneCap"></p>
+  </section>
+
+  <div class="picado" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+  <section class="reveal">
+    <div class="card">
+      <p class="caps">UN MENSAJE DE LA DIRECCIÓN</p>
+      <p class="quote" data-t="message"></p>
+      <ul class="team" id="team"></ul>
+      <p class="sign" data-t="signature"></p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2 class="h2">Reserva la fecha</h2>
+    <p class="caps" data-t="dateLong"></p>
+    <div class="count" aria-label="Cuenta regresiva"><div><b id="cd-d">0</b><span>DÍAS</span></div><div><b id="cd-h">0</b><span>HRS</span></div><div><b id="cd-m">0</b><span>MIN</span></div><div><b id="cd-s">0</b><span>SEG</span></div></div>
+    <div class="row"><a class="btn btn-line" id="cal" href="#" target="_blank" rel="noopener">AGREGAR AL CALENDARIO</a></div>
+  </section>
+
+  <section class="reveal place">
+    <div class="card">
+      <h2 class="h2">Dónde</h2>
+      <p class="caps">POSADA DE FIN DE AÑO</p>
+      <p class="time" data-t="timeText"></p>
+      <p class="name" data-t="venue"></p>
+      <p class="addr" data-t="address"></p>
+      <div class="row"><a class="btn btn-line" id="map" href="#" target="_blank" rel="noopener">VER MAPA</a></div>
+    </div>
+  </section>
+
+  <div class="picado" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+  <section class="reveal">
+    <h2 class="h2">Programa</h2>
+    <p class="caps">LA NOCHE</p>
+    <ol class="timeline" id="program"></ol>
+  </section>
+
+  <section class="reveal">
+    <div class="card">
+      <h2 class="h2">Vestimenta</h2>
+      <p class="caps" data-t="dressCaps"></p>
+      <p class="lead" data-t="dressText"></p>
+      <div class="duo">
+        <div><b>INTERCAMBIO</b><p data-t="exchange"></p></div>
+        <div><b>ACOMPAÑANTE</b><p data-t="plusOne"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="confirma">
+    <h2 class="h2">Confirma</h2>
+    <p class="caps">TU PASE DE ACCESO</p>
+    <div class="badge">
+      <div class="bh" data-t="badgeHead"></div>
+      <p class="bn" id="bName"></p>
+      <p class="bv">VÁLIDO PARA <b id="bSeats"></b></p>
+      <p class="bd" data-t="rsvpBy"></p>
+      <a class="btn btn-red" id="rsvp" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>CONFIRMAR POR WHATSAPP</a>
+      <div class="barcode" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <footer>
+    <img class="logo" data-logo alt="Panamericano">
+    <p class="made">HECHO CON ILUSIÓN · ILUSIÓN INVITES</p>
+    <p class="sample" data-t="sampleNote"></p>
+    <button class="replay" id="replay" type="button">ABRIR LA BÓVEDA OTRA VEZ</button>
+  </footer>
+</div>
+
+<button id="pause" type="button" aria-label="Pausar animación" aria-pressed="false"><svg class="pa" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg><svg class="pl" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+
+<script>
+/* ===================== CONFIG · DATOS DE EJEMPLO =====================
+   Cambia aquí los datos reales del evento (todo lo demás se llena solo). */
+var CONFIG = {
+  EMPRESA: 'Panamericano',
+  LOGO: 'img/panamericano-logo.png',          // logo blanco (para fondo azul)
+  ESCENA: 'img/boveda-posada.jpg',
+  EVENTO: 'Posada de Fin de Año',
+  ANIO: '2026',
+  FECHA: [2026, 11, 18, 19, 0],               // año, mes (0 = enero), día, hora, minuto → viernes 18 de diciembre de 2026, 7:00 pm
+  DURACION_HORAS: 6,
+  COMBINACION: ['18', '12', '26'],            // la clave que gira la bóveda (la fecha)
+  LUGAR: 'Salón por confirmar',
+  DIRECCION: 'Ciudad de México',
+  MAPA: 'Ciudad de México',                   // lo que se busca en Google Maps
+  MENSAJE: '“Este año cuidaron lo más valioso de miles de clientes, kilómetro a kilómetro y turno tras turno. Hoy toca cuidarnos entre nosotros: ponche, piñata y todo el equipo reunido. ¡Gracias por tanto!”',
+  FIRMA: 'LA DIRECCIÓN',
+  EQUIPO: ['Custodios', 'Operadores', 'Bóveda', 'Procesamiento', 'Oficinas', 'Sucursales'],
+  PROGRAMA: [['7:00 pm', 'Bienvenida y ponche'], ['7:30 pm', 'Mensaje de la Dirección'], ['8:00 pm', 'Cena'], ['9:00 pm', 'Piñata y rifa'], ['9:45 pm', 'Reconocimientos al equipo'], ['10:30 pm', 'Intercambio y baile']],
+  VESTIMENTA: ['CASUAL NAVIDEÑO', '¡Trae tu suéter navideño! Habrá premio al más original.'],
+  INTERCAMBIO: 'Un regalo de $300 MXN · te avisamos a quién le toca',
+  ACOMPANANTES: 1,
+  CONFIRMAR_ANTES: '11 de diciembre',
+  WHATSAPP: '',                               // número del organizador (solo dígitos, con lada). Vacío = el invitado elige el chat
+  INVITADO: 'todo el equipo',
+  NOTA: 'Invitación de ejemplo con datos de muestra · preparada por Ilusión Invites'
+};
+/* ===================================================================== */
+(function () {
+  var C = CONFIG, $ = function (s) { return document.querySelector(s); }, $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var q = new URLSearchParams(location.search), guest = (q.get('para') || q.get('i') || '').trim() || C.INVITADO;
+  var MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  var DIA = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  var F = C.FECHA, when = new Date(F[0], F[1], F[2], F[3], F[4]);
+  var h12 = function (h, m) { return ((h % 12) || 12) + ':' + ('0' + m).slice(-2) + (h < 12 ? ' am' : ' pm'); };
+  var seats = 1 + (+C.ACOMPANANTES || 0);
+  var T = {
+    eyebrowVault: (C.EVENTO + ' ' + C.ANIO).toUpperCase(),
+    titleVault: 'Algo <b>muy valioso</b><br>te espera',
+    eyebrowHero: C.EMPRESA.toUpperCase() + ' INVITA A',
+    eventScript: C.EVENTO, eventCaps: 'NAVIDAD ' + C.ANIO,
+    dateShort: ('0' + F[2]).slice(-2) + ' · ' + ('0' + (F[1] + 1)).slice(-2) + ' · ' + F[0],
+    timeText: h12(F[3], F[4]),
+    dateLong: (DIA[when.getDay()] + ' ' + F[2] + ' de ' + MES[F[1]] + ' de ' + F[0]).toUpperCase(),
+    sceneCap: 'ESTE AÑO, LA BÓVEDA GUARDA LA FIESTA',
+    message: C.MENSAJE, signature: C.FIRMA,
+    venue: C.LUGAR, address: C.DIRECCION,
+    dressCaps: C.VESTIMENTA[0], dressText: C.VESTIMENTA[1],
+    exchange: C.INTERCAMBIO,
+    plusOne: C.ACOMPANANTES ? 'Puedes traer a ' + (C.ACOMPANANTES == 1 ? 'una persona' : C.ACOMPANANTES + ' personas') + ' · avísanos al confirmar' : 'Evento solo para colaboradores',
+    badgeHead: 'ACCESO AUTORIZADO',
+    rsvpBy: 'Confirma antes del ' + C.CONFIRMAR_ANTES + '.',
+    sampleNote: C.NOTA
+  };
+  $$('[data-t]').forEach(function (e) { e.textContent = T[e.getAttribute('data-t')]; });
+  $$('[data-html]').forEach(function (e) { e.innerHTML = T[e.getAttribute('data-html')]; });
+  $$('[data-logo]').forEach(function (e) { e.src = C.LOGO; });
+  $$('[data-scene]').forEach(function (e) { e.src = C.ESCENA; });
+  document.title = C.EVENTO + ' ' + C.ANIO + ' · ' + C.EMPRESA;
+  $('#vGuest').textContent = guest; $('#bName').textContent = guest; $('#bSeats').textContent = seats + (seats == 1 ? ' PERSONA' : ' PERSONAS');
+  $('#team').innerHTML = C.EQUIPO.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+  $('#program').innerHTML = C.PROGRAMA.map(function (p) { return '<li><time>' + p[0] + '</time><i class="dot"></i><span>' + p[1] + '</span></li>'; }).join('');
+  // links
+  var pad = function (n) { return ('0' + n).slice(-2); }, end = new Date(when.getTime() + C.DURACION_HORAS * 36e5);
+  var stamp = function (d) { return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + 'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00'; };
+  $('#cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(C.EVENTO + ' ' + C.ANIO + ' · ' + C.EMPRESA) + '&dates=' + stamp(when) + '/' + stamp(end) + '&ctz=America/Mexico_City&location=' + encodeURIComponent(C.LUGAR + ', ' + C.DIRECCION);
+  $('#map').href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(C.MAPA);
+  var msg = 'Hola, confirmo mi asistencia a la ' + C.EVENTO + ' ' + C.ANIO + ' de ' + C.EMPRESA + (guest !== C.INVITADO ? '. Soy ' + guest : '') + ' 🎄';
+  $('#rsvp').href = 'https://wa.me/' + (C.WHATSAPP || '') + '?text=' + encodeURIComponent(msg);
+  // countdown
+  (function tick() { var s = Math.max(0, (when - new Date()) / 1000); $('#cd-d').textContent = Math.floor(s / 86400); $('#cd-h').textContent = Math.floor(s % 86400 / 3600); $('#cd-m').textContent = Math.floor(s % 3600 / 60); $('#cd-s').textContent = Math.floor(s % 60); setTimeout(tick, 1000); })();
+
+  // ---------- build the vault parts ----------
+  var frame = $('#frame'), i;
+  for (i = 0; i < 24; i++) { var r = document.createElement('i'); r.className = 'rv'; var a = i / 24 * Math.PI * 2; r.style.transform = 'translate(' + (Math.cos(a) * 46.6) * 1 + '%,' + (Math.sin(a) * 46.6) + '%)'; r.style.left = (50 + Math.cos(a) * 46.5) + '%'; r.style.top = (50 + Math.sin(a) * 46.5) + '%'; r.style.transform = 'none'; frame.appendChild(r); }
+  var bolts = $('#bolts'), B = [];
+  for (i = 0; i < 8; i++) { var b = document.createElement('i'); b.className = 'bolt'; var ang = i * 45 + 22.5; b.dataset.a = ang; b.style.transform = 'rotate(' + (ang + 180) + 'deg) translateY(40%) translateY(calc(var(--d) * .37))'; bolts.appendChild(b); B.push(b); }
+  var dial = $('#dial');
+  for (i = 0; i < 50; i++) { var t = document.createElement('i'); t.className = 'tk' + (i % 5 ? '' : ' big'); t.style.transform = 'translate(-50%,-50%) rotate(' + (i * 7.2) + 'deg) translateY(calc(var(--d) * -.148))'; dial.appendChild(t); }
+  for (i = 0; i < 10; i++) { var n = document.createElement('span'); n.className = 'nm'; n.textContent = i * 10; n.style.transform = 'translate(-50%,-50%) rotate(' + (i * 36) + 'deg) translateY(calc(var(--d) * -.112))'; dial.appendChild(n); }
+
+  // ---------- opening ----------
+  var vault = $('#vault'), door = $('#door'), wheel = $('#wheel'), code = $('#code'), readout = $('#readout'), page = $('#page'), flash = $('#flash');
+  var started = false, wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  var buzz = function (p) { try { navigator.vibrate && navigator.vibrate(p); } catch (e) {} };
+  function setDial(num, dir, ms) { dial.style.transitionDuration = ms + 'ms'; cur += dir * (((dir > 0 ? (360 - num * 3.6 - (cur % 360 + 360) % 360) : (num * 3.6 * -1 - ((cur % 360) - 360) % 360)) % 360 + 360) % 360 + 360) * 0 ; }
+  var rot = 0;
+  function turnTo(num, dir, extra, ms) {
+    // the number under the red mark at the top: the dial turns so that "num" sits at 0°
+    var target = -num * 3.6, curMod = ((rot % 360) + 360) % 360, tMod = ((target % 360) + 360) % 360, d;
+    if (dir > 0) { d = (tMod - curMod + 360) % 360; rot += d + 360 * extra; } else { d = (curMod - tMod + 360) % 360; rot -= d + 360 * extra; }
+    dial.style.transitionDuration = ms + 'ms'; dial.style.transform = 'rotate(' + rot + 'deg)';
+    return wait(ms + 120);
+  }
+  async function open() {
+    if (started) return; started = true; vault.classList.add('started');
+    var C3 = C.COMBINACION, shown = ['– –', '– –', '– –'];
+    await turnTo(+C3[0], 1, 1, 1300); buzz(20); shown[0] = C3[0]; code.textContent = shown.join(' · ');
+    await turnTo(+C3[1], -1, 1, 1200); buzz(20); shown[1] = C3[1]; code.textContent = shown.join(' · ');
+    await turnTo(+C3[2], 1, 0, 900); buzz(20); shown[2] = C3[2]; code.textContent = shown.join(' · ');
+    await wait(250); readout.classList.add('ok'); buzz([30, 40, 30]);
+    await wait(500);
+    wheel.style.transform = 'rotate(145deg)'; await wait(900);
+    B.forEach(function (b) { var ang = +b.dataset.a; b.style.transform = 'rotate(' + (ang + 180) + 'deg) translateY(40%) translateY(calc(var(--d) * .27))'; });
+    buzz(60); await wait(800);
+    vault.classList.add('open'); document.getElementById('stage').classList.add('open');
+    $$('.v-top,.v-bot').forEach(function (e) { e.style.opacity = 0; });
+    await wait(1500);
+    var st = document.getElementById('stage'); st.style.transition = 'transform 1.4s cubic-bezier(.6,0,.4,1)'; st.style.transform = 'scale(3.2)';
+    flash.animate([{ opacity: 0 }, { opacity: .9 }, { opacity: 0 }], { duration: 1400, easing: 'ease-in-out' });
+    await wait(700);
+    document.body.classList.remove('locked'); page.classList.add('on'); vault.classList.add('gone'); startLights();
+    await wait(1100); vault.style.display = 'none';
+  }
+  vault.addEventListener('click', open);
+  vault.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  $('#replay').addEventListener('click', function () { location.href = location.pathname + location.search; });
+  if (q.get('abierto')) { started = true; vault.style.display = 'none'; document.body.classList.remove('locked'); page.classList.add('on'); }
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12 });
+  $$('.reveal').forEach(function (e) { io.observe(e); });
+
+  // papel picado cut-outs (mask), drawn once
+  var pp = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 50"><path fill-rule="evenodd" d="M0 0h40v42l-4 8-4-8-4 8-4-8-4 8-4-8-4 8-4-8-4 8-4-8z M20 9a4 4 0 1 0 .01 0z M8 18l4 4-4 4-4-4z M32 18l4 4-4 4-4-4z M20 20l7 7-7 7-7-7z M20 24l3 3-3 3-3-3z M10 33h4v3h-4z M26 33h4v3h-4z M17 39h6v2h-6z"/></svg>');
+  $$('.picado i').forEach(function (e) { e.style.setProperty('--m', 'url("' + pp + '")'); });
+
+  // warm string lights at the top (canvas), paused with the pause button
+  var cv = $('#lights'), cx = cv.getContext('2d'), frozen = false, running = false;
+  function startLights() { if (running) return; running = true; requestAnimationFrame(draw); }
+  function draw(t) {
+    if (!frozen) {
+      var w = cv.clientWidth, h = cv.clientHeight, dpr = Math.min(2, devicePixelRatio || 1);
+      if (cv.width !== w * dpr) { cv.width = w * dpr; cv.height = h * dpr; }
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0); cx.clearRect(0, 0, w, h);
+      var fade = Math.max(0, 1 - scrollY / 500); cv.style.opacity = fade;
+      if (fade > 0) {
+        [[0, 18, 46], [1, 8, 30]].forEach(function (L) {
+          var n = Math.max(9, Math.round(w / 34)), sag = L[2];
+          cx.strokeStyle = 'rgba(30,30,30,.7)'; cx.lineWidth = 1; cx.beginPath();
+          for (var k = 0; k <= 40; k++) { var x = k / 40 * w, y = L[1] + Math.sin(k / 40 * Math.PI) * sag; k ? cx.lineTo(x, y) : cx.moveTo(x, y); } cx.stroke();
+          for (var j = 0; j < n; j++) {
+            var u = (j + .5 + L[0] * .5) / n, x2 = u * w, y2 = L[1] + Math.sin(u * Math.PI) * sag + 7, tw = .65 + .35 * Math.sin(t / 700 + j * 1.7 + L[0]);
+            var col = j % 3 === 0 ? '255,90,110' : j % 3 === 1 ? '255,214,140' : '150,200,255';
+            var g = cx.createRadialGradient(x2, y2, 0, x2, y2, 16); g.addColorStop(0, 'rgba(' + col + ',' + (.55 * tw) + ')'); g.addColorStop(1, 'rgba(' + col + ',0)');
+            cx.fillStyle = g; cx.beginPath(); cx.arc(x2, y2, 16, 0, 7); cx.fill();
+            cx.fillStyle = 'rgba(' + col + ',' + (.75 + .25 * tw) + ')'; cx.beginPath(); cx.ellipse(x2, y2, 3.2, 4.4, 0, 0, 7); cx.fill();
+          }
+        });
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  if (q.get('abierto')) startLights();
+  var pb = $('#pause');
+  pb.addEventListener('click', function () { frozen = !frozen; document.documentElement.classList.toggle('frozen', frozen); pb.setAttribute('aria-pressed', String(frozen)); pb.setAttribute('aria-label', frozen ? 'Continuar animación' : 'Pausar animación'); });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) pb.click();
+})();
+</script>
+</body></html>
