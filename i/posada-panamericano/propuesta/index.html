@@ -137,6 +137,18 @@ p{margin:0 0 10px;color:var(--ink2)}
 .pref{margin-top:10px;font-size:13px;color:var(--ink2)}
 .pref b{color:var(--ink);font-weight:500}
 .fine{margin-top:14px;font-size:11.5px;color:#9a8a7a;text-align:center}
+/* page 2: choice note, options list + small collage */
+.choose{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;margin:14px 0 0;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#FFF6E3,#F7E6C4);box-shadow:inset 0 0 0 1.5px var(--gold2)}
+.choose svg{width:26px;height:26px;color:var(--navy)}
+.choose p{margin:0;font-size:14.5px;color:var(--ink)}
+.choose b{font-weight:600}
+.pick{display:grid;gap:16px;margin-top:16px}
+@media (min-width:700px){.pick{grid-template-columns:1.05fr 1fr;align-items:start}}
+.pick .journey{margin-top:0;grid-template-columns:1fr!important}
+.collage{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.collage figure{margin:0}
+.collage img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px}
+.collage figcaption{margin-top:4px;font:600 9.5px/1.3 Cinzel,serif;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;text-align:center}
 .print-only{display:none}
 /* PDF: four letter pages */
 @page{size:letter;margin:0}
@@ -155,7 +167,13 @@ p{margin:0 0 10px;color:var(--ink2)}
   .hero{height:540px}
   .tools .shot{aspect-ratio:auto;height:372px}.mods{gap:7px}.mod{padding:9px 12px}
   .year{margin-top:16px}.next{margin-top:14px}.fine{margin-top:10px}
-  .ph{max-width:180px}.ph-cap span{max-width:180px}
+  .ph{max-width:138px}.ph-cap span{max-width:138px}
+  .band{padding:20px 44px 20px}.band .top{margin-bottom:10px}.band .meta{margin-top:8px}
+  .page:first-child .pad{padding-top:18px}
+  .tools .shot{height:400px}
+  .collage img{aspect-ratio:4/3}.year{margin-top:14px}
+  .gift{margin-bottom:12px;padding:12px 16px}.sample{margin-top:8px}.live{margin-top:14px}.why{margin-top:14px}
+  .pick{grid-template-columns:1.05fr 1fr}
   .next{grid-template-columns:1.3fr 1fr}
   .live .btn,.cta .btn.web{display:none}
   .print-only{display:block}
@@ -165,7 +183,7 @@ p{margin:0 0 10px;color:var(--ink2)}
 <body>
 <div class="doc">
 
-<!-- ================= PAGE 1 · THE OFFER ================= -->
+<!-- ================= PAGE 1 · OFFER + THE INVITATION ================= -->
 <div class="page">
   <header class="band">
     <div class="top">
@@ -182,25 +200,11 @@ p{margin:0 0 10px;color:var(--ink2)}
   <div class="pad">
     <div class="gift">
       <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M2.5 9h19M12 9v11.5M12 9c-1-3-5-5-6-2.5S9 9 12 9Zm0 0c1-3 5-5 6-2.5S15 9 12 9Z"/></svg></div>
-      <div><b>Su Gala 2026, de cortesía. Toda la experiencia.</b><p>No solo la invitación: también la lista, las mesas, la entrada y los detalles de la noche. Queremos que lo vivan con su equipo y, si les gusta, platicamos de trabajar juntos en 2027.</p></div>
+      <div><b>Su Gala 2026, de cortesía. Toda la experiencia.</b><p>No solo la invitación: también lo que elijan para la noche, como la lista, las mesas, la entrada y los detalles. Queremos que lo vivan con su equipo y, si les gusta, platicamos de trabajar juntos en 2027.</p></div>
     </div>
 
-    <div class="hero">
-      <figure class="shot big"><img src="img/m-letrero.jpg" alt="Letrero de bienvenida de la Gala de Fin de Año 2026 con el logo de Panamericano"><figcaption>LETRERO DE BIENVENIDA<span>Lo primero que ven al llegar</span></figcaption></figure>
-      <div class="col">
-        <figure class="shot"><img src="img/m-pantalla.jpg" alt="Pantalla del salón con la bienvenida a la gala"><figcaption>PANTALLA DEL SALÓN</figcaption></figure>
-        <figure class="shot"><img style="object-position:50% 72%" src="img/m-mesa.jpg" alt="Número de mesa con el logo de Panamericano"><figcaption>NÚMEROS DE MESA</figcaption></figure>
-      </div>
-    </div>
-    <p class="cap-note">Ejemplos con su marca y datos de muestra. Todo se ajusta a su gala.</p>
 
-  </div>
-</div>
-
-<!-- ================= PAGE 2 · THE INVITATION ================= -->
-<div class="page">
-  <div class="pad">
-    <p class="eyebrow"><span class="num">1</span>Antes de la gala</p>
+    <p class="eyebrow"><span class="num">1</span>La invitación</p>
     <h2>Una invitación <em>a la altura de su noche</em></h2>
     <p>Llega por WhatsApp con el nombre de cada colaborador. Al tocarla se abre una bóveda, con sonido, y adentro está su gala: fecha, lugar, programa, vestimenta y el botón para confirmar.</p>
 
@@ -236,29 +240,42 @@ p{margin:0 0 10px;color:var(--ink2)}
       <div><b>Orgullo</b><span>su marca y su profesión, en una noche de gala</span></div>
     </div>
 
-    <p class="eyebrow" style="margin-top:26px">Toda la experiencia, de cortesía</p>
-    <div class="journey" id="journey" style="margin-top:8px"></div>
   </div>
 </div>
 
-<!-- ================= PAGE 3 · THE NIGHT ================= -->
+<!-- ================= PAGE 2 · THE NIGHT (a short menu of options, small photos) ================= -->
 <div class="page">
   <div class="pad">
     <p class="eyebrow"><span class="num">2</span>La noche</p>
     <h2>Su marca <em>en cada detalle</em></h2>
-    <p>Todo con la misma imagen de la invitación, para que la gala se vea de principio a fin como una sola noche.</p>
-    <div class="gal">
-      <figure class="shot"><img src="img/m-menu.jpg" alt="Menú de gala en el plato"><figcaption>MENÚ DE GALA<span>En cada lugar de la mesa</span></figcaption></figure>
-      <figure class="shot cap-top"><img src="img/m-marco.jpg" alt="Foto de invitados con el marco de la gala"><figcaption>MARCO PARA FOTOS<span>Cada foto sale con su logo</span></figcaption></figure>
-      
-      <figure class="shot"><img src="img/m-diploma.jpg" alt="Reconocimiento con el logo de Panamericano"><figcaption>RECONOCIMIENTOS<span>Para los años de servicio y los mejores del año</span></figcaption></figure>
-      <figure class="shot wide"><img src="img/m-plan.jpg" alt="Tablero de plan de mesas"><figcaption>PLAN DE MESAS<span>En la entrada, y también en el celular de cada invitado</span></figcaption></figure>
-      <figure class="shot"><img src="img/m-qr.jpg" alt="Letrero con QR para compartir fotos"><figcaption>ÁLBUM CON QR<span>Todos suben sus fotos de la noche</span></figcaption></figure>
+    <p>Además de la invitación, podemos vestir su gala con la misma imagen, de principio a fin.</p>
+    <div class="choose">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6.5A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-13A1.5 1.5 0 0 1 5.5 4H15"/></svg>
+      <p><b>Ustedes eligen.</b> Esto es un menú de ideas, no un paquete: pueden quedarse solo con la invitación o sumar únicamente lo que les sirva para su gala.</p>
+    </div>
+    <div class="pick">
+      <div class="journey" id="journey"></div>
+      <div class="collage">
+        <figure><img src="img/m-letrero.jpg" alt="Letrero de bienvenida"><figcaption>Letrero de bienvenida</figcaption></figure>
+        <figure><img src="img/m-mesa.jpg" style="object-position:50% 75%" alt="Número de mesa"><figcaption>Números de mesa</figcaption></figure>
+        <figure><img src="img/m-menu.jpg" alt="Menú de gala"><figcaption>Menú</figcaption></figure>
+        <figure><img src="img/m-plan.jpg" alt="Plan de mesas"><figcaption>Plan de mesas</figcaption></figure>
+        <figure><img src="img/m-pantalla.jpg" alt="Pantalla del salón"><figcaption>Pantalla del salón</figcaption></figure>
+        <figure><img src="img/m-diploma.jpg" alt="Reconocimiento"><figcaption>Reconocimientos</figcaption></figure>
+      </div>
+    </div>
+    <p class="cap-note">Fotos de ejemplo con su marca y datos de muestra.</p>
+
+    <div class="year">
+      <p class="eyebrow">Después de la gala</p>
+      <h2>Platicamos, <em>y planeamos 2027</em></h2>
+      <p>Una semana después les presentamos el reporte de su gala: cuántos confirmaron, cuántos llegaron y qué opinó el equipo. Si les gustó, armamos juntos el calendario del año con la misma imagen y una tarifa preferente para Panamericano:</p>
+      <ul><li>Aniversario de la empresa</li><li>Reconocimientos y premiaciones</li><li>Convenciones y juntas anuales</li><li>Eventos con clientes</li><li>Inauguraciones de sucursal</li><li>Gala de Fin de Año 2027</li></ul>
     </div>
   </div>
 </div>
 
-<!-- ================= PAGE 4 · THE COMMITTEE + AFTER ================= -->
+<!-- ================= PAGE 3 · THE COMMITTEE + AFTER ================= -->
 <div class="page">
   <div class="pad">
     <p class="eyebrow"><span class="num">3</span>Para el comité</p>
@@ -268,12 +285,6 @@ p{margin:0 0 10px;color:var(--ink2)}
       <div class="mods" id="mods"></div>
     </div>
 
-    <div class="year">
-      <p class="eyebrow">Después de la gala</p>
-      <h2>Platicamos, <em>y planeamos 2027</em></h2>
-      <p>Una semana después les presentamos el reporte de su gala: cuántos confirmaron, cuántos llegaron y qué opinó el equipo. Si les gustó, armamos juntos el calendario del año con la misma imagen y una tarifa preferente para Panamericano:</p>
-      <ul><li>Aniversario de la empresa</li><li>Reconocimientos y premiaciones</li><li>Convenciones y juntas anuales</li><li>Eventos con clientes</li><li>Inauguraciones de sucursal</li><li>Gala de Fin de Año 2027</li></ul>
-    </div>
 
     <div class="next">
       <div>
@@ -303,9 +314,9 @@ var TICK = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#F6E7C
 function ticks(items) { return items.map(function (t) { return '<li>' + TICK + '<span>' + t + '</span></li>'; }).join(''); }
 // the whole experience: before, the night, after
 var J = [
-  ['ANTES', 'Todos invitados, todos confirmados', ['Invitación con su logo y la bóveda', 'Lista del equipo y confirmaciones en vivo', 'Plan de mesas', 'Recordatorios por WhatsApp']],
-  ['LA NOCHE', 'Una gala que se ve de gala', ['Letrero, números de mesa y menú', 'Registro rápido en la puerta', 'Pantalla del salón y reconocimientos', 'Marco para fotos y álbum con QR']],
-  ['DESPUÉS', 'Un cierre que se recuerda', ['Agradecimiento a cada invitado', 'Encuesta de 30 segundos', 'Reporte para la Dirección', 'Reunión para planear 2027']]
+  ['ANTES', 'Todos invitados, todos confirmados', ['Lista del equipo y confirmaciones en vivo', 'Plan de mesas, también en su celular', 'Recordatorios por WhatsApp']],
+  ['LA NOCHE', 'Una gala que se ve de gala', ['Letrero de bienvenida, números de mesa y menú', 'Registro rápido en la puerta', 'Pantalla del salón y reconocimientos', 'Marco para fotos y álbum con QR']],
+  ['DESPUÉS', 'Un cierre que se recuerda', ['Agradecimiento a cada invitado', 'Encuesta de 30 segundos', 'Reporte para la Dirección']]
 ];
 document.getElementById('journey').innerHTML = J.map(function (j) { return '<div><h3>' + j[0] + '</h3><b>' + j[1] + '</b><ul>' + ticks(j[2]) + '</ul></div>'; }).join('');
 document.getElementById('inc').innerHTML = ticks(['Diseño exclusivo con su logo y colores', 'Apertura de bóveda animada, con sonido y música', 'El nombre de cada invitado en la bóveda', 'Mensaje de la Dirección al equipo', 'Fecha, cuenta regresiva y «Agregar al calendario»', 'Salón con mapa, programa y vestimenta', 'Confirmación en segundos por WhatsApp', 'Ajustes hasta que les encante']);
