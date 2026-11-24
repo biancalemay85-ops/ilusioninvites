@@ -3,17 +3,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Propuesta · Gala de Fin de Año 2026 · Panamericano</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Su invitación de gala, de cortesía. Y todo lo que podemos sumar para que la noche funcione sola. Preparada por Ilusión Invites.">
+<meta name="description" content="La Experiencia Ilusión completa para su Gala 2026, de cortesía: invitación, organización y cada detalle con su marca. Preparada por Ilusión Invites.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Propuesta · Gala de Fin de Año 2026 · Panamericano">
-<meta property="og:description" content="Su invitación de gala, de cortesía. Y todo lo que podemos sumar para la noche. Preparada por Ilusión Invites.">
+<meta property="og:description" content="La Experiencia Ilusión completa para su Gala 2026, de cortesía. Preparada por Ilusión Invites.">
 <meta property="og:image" content="https://ilusioninvites.com/i/posada-panamericano/propuesta/img/compartir.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A1E3C">
 <link rel="icon" href="img/sello-ilusion-oro.webp">
-<!-- Two-page proposal for Panamericano's year-end gala (sample invitation: ../).
-     Offer: the invitation for this first event is free (a pilot); event add-ons at a preferred rate; if they like it, a yearly partnership for 2027.
+<!-- Four-page proposal for Panamericano's year-end gala (sample invitation: ../).
+     Offer: the whole Ilusión experience for this first gala is free (invitation + organiser tools + branded printables, as files);
+     after the gala we meet to review results and plan 2027 together.
+     Mockup photos (img/m-*.jpg) are Seedream photos with the sample designs from scratchpad/mock/rotulos.html placed on them.
      Published at ilusioninvites.com/i/posada-panamericano/propuesta/ (noindex). Source: marketing/panamericano/propuesta/. PDF made by scratchpad/pp/prop-check.js. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap">
 <style>
@@ -30,6 +32,7 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--ink)
 h2{font-size:clamp(28px,5vw,36px);line-height:1.08;margin:6px 0 8px}
 h2 em,h1 em{font-style:italic;color:var(--gold);font-weight:500}
 p{margin:0 0 10px;color:var(--ink2)}
+.num{display:inline-grid;place-items:center;width:24px;height:24px;margin-right:9px;border-radius:50%;background:var(--navy);color:#F2D49A;font:600 11.5px/1 Jost;letter-spacing:0;vertical-align:1px}
 /* header band */
 .band{position:relative;background:var(--navy);color:#F4F1EA;padding:22px 20px 24px}
 @media (min-width:700px){.band{padding:28px 48px 30px}}
@@ -44,28 +47,47 @@ p{margin:0 0 10px;color:var(--ink2)}
 .band .eyebrow{color:#F2D49A}
 .band h1{font-size:clamp(34px,7vw,50px);line-height:1.02;color:#fff;font-weight:500;margin-top:6px}
 .band h1 em{color:#F2D49A}
-.band .sub{color:#C9CFDA;margin:10px 0 0;max-width:600px}
+.band .sub{color:#C9CFDA;margin:10px 0 0;max-width:620px}
 .band .meta{margin-top:14px;font-size:12px;color:#8F9BB0;letter-spacing:.03em}
 .stripe{height:5px;background:linear-gradient(90deg,var(--red) 0 33%,#fff 33% 66%,#005588 66%)}
 /* gift ribbon */
-.gift{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;margin:0 0 18px;padding:16px 18px;border-radius:20px;
+.gift{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;margin:0 0 16px;padding:16px 18px;border-radius:20px;
   background:linear-gradient(135deg,#FFF6E3,#F7E6C4);box-shadow:inset 0 0 0 1.5px var(--gold2)}
 .gift .ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#F2D49A}
 .gift .ic svg{width:26px;height:26px}
-.gift b{display:block;font:600 23px/1.15 'Cormorant Garamond',serif;color:var(--ink)}
+.gift b{display:block;font:600 24px/1.15 'Cormorant Garamond',serif;color:var(--ink)}
 .gift p{margin:4px 0 0;font-size:14.5px}
+/* photos */
+.shot{position:relative;margin:0;border-radius:16px;overflow:hidden;background:#1a1a1a}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;background:linear-gradient(180deg,transparent,rgba(5,12,26,.85));color:#fff;font:600 10px/1.3 Cinzel,serif;letter-spacing:.18em}
+.shot.cap-top figcaption{top:0;bottom:auto;padding:10px 12px 28px;background:linear-gradient(0deg,transparent,rgba(5,12,26,.8))}
+.shot figcaption span{display:block;margin-top:2px;font:400 12px/1.35 Jost;letter-spacing:0;color:#D5DAE3}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:10px;height:min(118vw,520px)}
+.hero .col{display:grid;gap:10px;grid-template-rows:1fr 1fr;min-height:0}
+.hero .shot{min-height:0}
+.cap-note{margin:8px 0 0;font-size:12px;color:#9a8a7a;text-align:center}
+/* journey */
+.journey{display:grid;gap:10px;margin-top:18px}
+@media (min-width:700px){.journey{grid-template-columns:repeat(3,1fr)}}
+.journey>div{padding:14px 14px 12px;border-radius:16px;background:var(--ivory);box-shadow:inset 0 0 0 1px var(--line)}
+.journey h3{font:600 11px Cinzel,serif;letter-spacing:.22em;color:var(--gold);margin:0 0 4px}
+.journey b{display:block;font:600 19px/1.15 'Cormorant Garamond',serif}
+.journey ul{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:5px}
+.journey li{display:flex;gap:8px;font-size:13.2px;line-height:1.35;color:var(--ink)}
+.journey li svg{flex:none;width:17px;height:17px;margin-top:1px}
 /* sample: phones + included */
-.sample{display:grid;gap:18px}
+.sample{display:grid;gap:18px;margin-top:14px}
 @media (min-width:700px){.sample{grid-template-columns:1.15fr 1fr;align-items:center}}
 .phones{display:flex;gap:9px;justify-content:center}
-.ph{flex:1 1 0;max-width:150px;border-radius:22px;padding:5px;background:linear-gradient(145deg,#3a3236,#151213 45%,#2d2629)}
+.ph{flex:1 1 0;max-width:165px;border-radius:22px;padding:5px;background:linear-gradient(145deg,#3a3236,#151213 45%,#2d2629)}
 .ph img{border-radius:18px;aspect-ratio:390/844;object-fit:cover;width:100%}
 .ph-cap{display:flex;gap:9px;justify-content:center;margin-top:8px}
-.ph-cap span{flex:1 1 0;max-width:150px;text-align:center;font:600 9.5px/1.35 Cinzel,serif;letter-spacing:.16em;color:var(--gold)}
+.ph-cap span{flex:1 1 0;max-width:165px;text-align:center;font:600 9.5px/1.35 Cinzel,serif;letter-spacing:.16em;color:var(--gold)}
 .inc{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:7px}
 .inc li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.35;color:var(--ink)}
-.inc li svg{flex:none;width:20px;height:20px;margin-top:0}
-.live{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;margin-top:18px;padding:14px 16px;border-radius:18px;background:var(--navy);color:#E8ECF2}
+.inc li svg{flex:none;width:20px;height:20px}
+.live{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;margin-top:22px;padding:14px 16px;border-radius:18px;background:var(--navy);color:#E8ECF2}
 .live #qr{width:92px;height:92px;background:#fff;border-radius:10px;padding:6px}
 .live #qr img{width:100%;height:100%}
 .live b{display:block;font:500 21px/1.15 'Cormorant Garamond',serif;color:#fff}
@@ -73,31 +95,36 @@ p{margin:0 0 10px;color:var(--ink2)}
 .live .url{font:500 13px Jost;color:#F2D49A}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font:600 12.5px Jost,sans-serif;letter-spacing:.06em;text-decoration:none;color:#3A2210;background:linear-gradient(180deg,#F7DDA4,#E2B26E 55%,#C4914D)}
 .btn.line{background:none;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(242,212,154,.6)}
-.why{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}
+.why{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:22px}
 @media (min-width:700px){.why{grid-template-columns:repeat(4,1fr)}}
 .why div{padding:12px 12px 10px;border-radius:14px;background:var(--ivory);box-shadow:inset 0 0 0 1px var(--line)}
 .why b{display:block;font:600 17px/1.15 'Cormorant Garamond',serif;color:var(--ink)}
 .why span{display:block;margin-top:3px;font-size:12.5px;line-height:1.35;color:var(--ink2)}
-/* add-ons */
-.mods{display:grid;gap:9px;margin-top:14px}
-@media (min-width:640px){.mods{grid-template-columns:1fr 1fr}}
-.mod{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:13px 14px;border-radius:16px;background:var(--ivory);box-shadow:inset 0 0 0 1px var(--line)}
-.mod .ic{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:inset 0 0 0 1px var(--gold2);color:var(--gold)}
-.mod .ic svg{width:18px;height:18px}
-.mod b{display:block;font:600 18px/1.15 'Cormorant Garamond',serif;color:var(--ink)}
-.mod p{margin:2px 0 0;font-size:13.2px;line-height:1.4}
-.pref{margin-top:10px;font-size:13px;color:var(--ink2)}
-.pref b{color:var(--ink);font-weight:500}
-/* 2027 */
-.year{margin-top:20px;padding:18px 18px 16px;border-radius:20px;background:var(--navy);color:#E8ECF2}
+/* gallery */
+.gal{display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:dense;gap:10px;margin-top:14px}
+.gal .shot{aspect-ratio:4/5}
+.gal .wide{grid-column:1/-1;aspect-ratio:16/9}
+@media (min-width:700px){.gal{grid-template-columns:repeat(3,1fr)}.gal .wide{grid-column:span 2;aspect-ratio:auto}}
+/* organiser tools */
+.tools{display:grid;gap:14px;margin-top:14px}
+@media (min-width:700px){.tools{grid-template-columns:1fr 1fr;align-items:start}}
+.tools .shot{aspect-ratio:4/5}
+.mods{display:grid;gap:8px}
+.mod{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:11px 13px;border-radius:15px;background:var(--ivory);box-shadow:inset 0 0 0 1px var(--line)}
+.mod .ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:inset 0 0 0 1px var(--gold2);color:var(--gold)}
+.mod .ic svg{width:17px;height:17px}
+.mod b{display:block;font:600 17.5px/1.15 'Cormorant Garamond',serif;color:var(--ink)}
+.mod p{margin:2px 0 0;font-size:13px;line-height:1.4}
+/* after the gala */
+.year{margin-top:18px;padding:18px 18px 16px;border-radius:20px;background:var(--navy);color:#E8ECF2}
 .year .eyebrow{color:#F2D49A}
-.year h2{color:#fff;font-size:clamp(24px,4.4vw,30px)}
+.year h2{color:#fff;font-size:clamp(25px,4.6vw,31px)}
 .year h2 em{color:#F2D49A}
 .year p{color:#C9CFDA;font-size:14px}
 .year ul{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:7px}
 .year li{padding:6px 12px;border-radius:999px;font-size:12.5px;color:#F4F1EA;box-shadow:inset 0 0 0 1px rgba(242,212,154,.45)}
 /* next step */
-.next{display:grid;gap:14px;margin-top:20px}
+.next{display:grid;gap:14px;margin-top:18px}
 @media (min-width:700px){.next{grid-template-columns:1.3fr 1fr;align-items:start}}
 .steps{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:8px;counter-reset:s}
 .steps li{position:relative;padding-left:34px;font-size:14px;color:var(--ink2);line-height:1.4}
@@ -107,36 +134,38 @@ p{margin:0 0 10px;color:var(--ink2)}
 .cta .btn{margin:6px 4px 0}
 .cta .btn.line{color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--gold)}
 .cta small{display:block;margin-top:10px;font-size:12px;color:var(--ink2)}
+.pref{margin-top:10px;font-size:13px;color:var(--ink2)}
+.pref b{color:var(--ink);font-weight:500}
 .fine{margin-top:14px;font-size:11.5px;color:#9a8a7a;text-align:center}
 .print-only{display:none}
-/* PDF: exactly two letter pages */
+/* PDF: four letter pages */
 @page{size:letter;margin:0}
 @media print{
   html,body{background:#fff;font-size:14px}
   .doc{max-width:none}
   .page{box-shadow:none;margin:0;height:11in;overflow:hidden}
   .page+.page{break-before:page}
-  .pad{padding:22px 44px}
+  .pad{padding:26px 44px}
   .band{padding:24px 44px 24px}
   .sample{grid-template-columns:1.15fr 1fr;align-items:center}
   .why{grid-template-columns:repeat(4,1fr)}
-  .mods{grid-template-columns:1fr 1fr}
+  .journey{grid-template-columns:repeat(3,1fr)}
+  .tools{grid-template-columns:1fr 1fr}
+  .gal{grid-template-columns:repeat(3,1fr);margin-top:16px}.gal .shot{aspect-ratio:3/4}.gal .wide,.gal .wide+.shot{aspect-ratio:auto;height:430px}
+  .hero{height:540px}
+  .tools .shot{aspect-ratio:auto;height:372px}.mods{gap:7px}.mod{padding:9px 12px}
+  .year{margin-top:16px}.next{margin-top:14px}.fine{margin-top:10px}
+  .ph{max-width:180px}.ph-cap span{max-width:180px}
   .next{grid-template-columns:1.3fr 1fr}
   .live .btn,.cta .btn.web{display:none}
   .print-only{display:block}
-  /* page 1 has room: bigger phones; page 2 is full: tighter cards */
-  .ph{max-width:172px}.ph-cap span{max-width:172px}
-  .gift{margin-bottom:24px}.live{margin-top:24px}.why{margin-top:22px}
-  .mods{gap:7px;margin-top:10px}.mod{padding:10px 12px}.mod p{font-size:12.4px;line-height:1.35}
-  .year{margin-top:14px;padding:14px 16px 13px}.year ul{margin-top:8px}
-  .next{margin-top:14px}.fine{margin-top:10px}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style></head>
 <body>
 <div class="doc">
 
-<!-- ================= PAGE 1 · THE INVITATION ================= -->
+<!-- ================= PAGE 1 · THE OFFER ================= -->
 <div class="page">
   <header class="band">
     <div class="top">
@@ -145,16 +174,35 @@ p{margin:0 0 10px;color:var(--ink2)}
     </div>
     <p class="eyebrow">Propuesta para el Comité organizador</p>
     <h1>Gala de Fin de Año <em>2026</em></h1>
-    <p class="sub">Una invitación digital a la altura de su noche de gala: elegante, con su marca, y que confirma por ustedes.</p>
-    <p class="meta">Propuesta PAN-2026-01 · 24 de noviembre de 2026</p>
+    <p class="sub">La Experiencia Ilusión completa para su noche de gala: la invitación, la organización y cada detalle con su marca.</p>
+    <p class="meta">Propuesta PAN-2026-02 · 24 de noviembre de 2026</p>
   </header>
   <div class="stripe"></div>
 
   <div class="pad">
     <div class="gift">
       <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M2.5 9h19M12 9v11.5M12 9c-1-3-5-5-6-2.5S9 9 12 9Zm0 0c1-3 5-5 6-2.5S15 9 12 9Z"/></svg></div>
-      <div><b>Su primer evento, de cortesía</b><p>La invitación de su Gala 2026 va por nuestra cuenta. Queremos que la vean funcionar con su equipo y, si les gusta, seguir acompañándolos.</p></div>
+      <div><b>Su Gala 2026, de cortesía. Toda la experiencia.</b><p>No solo la invitación: también la lista, las mesas, la entrada y los detalles de la noche. Queremos que lo vivan con su equipo y, si les gusta, platicamos de trabajar juntos en 2027.</p></div>
     </div>
+
+    <div class="hero">
+      <figure class="shot big"><img src="img/m-letrero.jpg" alt="Letrero de bienvenida de la Gala de Fin de Año 2026 con el logo de Panamericano"><figcaption>LETRERO DE BIENVENIDA<span>Lo primero que ven al llegar</span></figcaption></figure>
+      <div class="col">
+        <figure class="shot"><img src="img/m-pantalla.jpg" alt="Pantalla del salón con la bienvenida a la gala"><figcaption>PANTALLA DEL SALÓN</figcaption></figure>
+        <figure class="shot"><img style="object-position:50% 72%" src="img/m-mesa.jpg" alt="Número de mesa con el logo de Panamericano"><figcaption>NÚMEROS DE MESA</figcaption></figure>
+      </div>
+    </div>
+    <p class="cap-note">Ejemplos con su marca y datos de muestra. Todo se ajusta a su gala.</p>
+
+  </div>
+</div>
+
+<!-- ================= PAGE 2 · THE INVITATION ================= -->
+<div class="page">
+  <div class="pad">
+    <p class="eyebrow"><span class="num">1</span>Antes de la gala</p>
+    <h2>Una invitación <em>a la altura de su noche</em></h2>
+    <p>Llega por WhatsApp con el nombre de cada colaborador. Al tocarla se abre una bóveda, con sonido, y adentro está su gala: fecha, lugar, programa, vestimenta y el botón para confirmar.</p>
 
     <div class="sample">
       <div>
@@ -187,22 +235,43 @@ p{margin:0 0 10px;color:var(--ink2)}
       <div><b>Para turnos</b><span>la abren cuando pueden y se guarda en su calendario</span></div>
       <div><b>Orgullo</b><span>su marca y su profesión, en una noche de gala</span></div>
     </div>
+
+    <p class="eyebrow" style="margin-top:26px">Toda la experiencia, de cortesía</p>
+    <div class="journey" id="journey" style="margin-top:8px"></div>
   </div>
 </div>
 
-<!-- ================= PAGE 2 · THE NIGHT + 2027 ================= -->
+<!-- ================= PAGE 3 · THE NIGHT ================= -->
 <div class="page">
   <div class="pad">
-    <p class="eyebrow">Para la noche · opcional</p>
-    <h2>Y si quieren, <em>la noche funciona sola</em></h2>
-    <p>La invitación es el comienzo. Esto es lo que podemos sumar para que el comité llegue a la gala sin pendientes:</p>
-    <div class="mods" id="mods"></div>
-    <p class="pref"><b>Precio preferente para Panamericano</b> en los complementos: eligen solo lo que necesiten y les enviamos la cotización el mismo día.</p>
+    <p class="eyebrow"><span class="num">2</span>La noche</p>
+    <h2>Su marca <em>en cada detalle</em></h2>
+    <p>Todo con la misma imagen de la invitación, para que la gala se vea de principio a fin como una sola noche.</p>
+    <div class="gal">
+      <figure class="shot"><img src="img/m-menu.jpg" alt="Menú de gala en el plato"><figcaption>MENÚ DE GALA<span>En cada lugar de la mesa</span></figcaption></figure>
+      <figure class="shot cap-top"><img src="img/m-marco.jpg" alt="Foto de invitados con el marco de la gala"><figcaption>MARCO PARA FOTOS<span>Cada foto sale con su logo</span></figcaption></figure>
+      
+      <figure class="shot"><img src="img/m-diploma.jpg" alt="Reconocimiento con el logo de Panamericano"><figcaption>RECONOCIMIENTOS<span>Para los años de servicio y los mejores del año</span></figcaption></figure>
+      <figure class="shot wide"><img src="img/m-plan.jpg" alt="Tablero de plan de mesas"><figcaption>PLAN DE MESAS<span>En la entrada, y también en el celular de cada invitado</span></figcaption></figure>
+      <figure class="shot"><img src="img/m-qr.jpg" alt="Letrero con QR para compartir fotos"><figcaption>ÁLBUM CON QR<span>Todos suben sus fotos de la noche</span></figcaption></figure>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PAGE 4 · THE COMMITTEE + AFTER ================= -->
+<div class="page">
+  <div class="pad">
+    <p class="eyebrow"><span class="num">3</span>Para el comité</p>
+    <h2>La noche <em>funciona sola</em></h2>
+    <div class="tools">
+      <figure class="shot"><img src="img/m-registro.jpg" alt="Mesa de registro con tableta y lista de llegada"><figcaption>REGISTRO EN LA PUERTA<span>Lista de llegada en vivo</span></figcaption></figure>
+      <div class="mods" id="mods"></div>
+    </div>
 
     <div class="year">
-      <p class="eyebrow">Y después</p>
-      <h2>Su aliado para <em>todo 2027</em></h2>
-      <p>Si la gala les gusta, los acompañamos en sus eventos del año con la misma imagen y una tarifa preferente acordada desde hoy:</p>
+      <p class="eyebrow">Después de la gala</p>
+      <h2>Platicamos, <em>y planeamos 2027</em></h2>
+      <p>Una semana después les presentamos el reporte de su gala: cuántos confirmaron, cuántos llegaron y qué opinó el equipo. Si les gustó, armamos juntos el calendario del año con la misma imagen y una tarifa preferente para Panamericano:</p>
       <ul><li>Aniversario de la empresa</li><li>Reconocimientos y premiaciones</li><li>Convenciones y juntas anuales</li><li>Eventos con clientes</li><li>Inauguraciones de sucursal</li><li>Gala de Fin de Año 2027</li></ul>
     </div>
 
@@ -210,11 +279,11 @@ p{margin:0 0 10px;color:var(--ink2)}
       <div>
         <p class="eyebrow">Siguiente paso</p>
         <ol class="steps">
-          <li><b>Nos confirman</b> y nos envían fecha, salón, programa y su logo en alta resolución.</li>
-          <li><b>En 3 días hábiles</b> tienen su invitación lista para revisar.</li>
-          <li><b>La envían al equipo</b> 2 a 3 semanas antes de la gala.</li>
+          <li><b>Nos confirman</b> y nos envían fecha, salón, programa, la lista del equipo y su logo en alta resolución.</li>
+          <li><b>En 3 días hábiles</b> tienen su invitación lista para revisar; el resto queda listo una semana antes de la gala.</li>
+          <li><b>La envían al equipo</b> y el comité sigue las confirmaciones en vivo.</li>
         </ol>
-        <p class="pref" style="margin-top:10px">Para llegar al 18 de diciembre: confirmar a más tardar el <b>1 de diciembre</b>.</p>
+        <p class="pref">Para llegar al 18 de diciembre: confirmar a más tardar el <b>1 de diciembre</b>.</p>
       </div>
       <div class="cta">
         <p class="eyebrow">¿Hacemos su gala?</p>
@@ -223,7 +292,7 @@ p{margin:0 0 10px;color:var(--ink2)}
         <small>WhatsApp +1 604 839 1163<br>ilusioninvites@gmail.com · ilusioninvites.com</small>
       </div>
     </div>
-    <p class="fine">Ilusión Invites · Invitaciones digitales de lujo · México y Canadá. Los datos del equipo se usan solo para este evento. Logo y marca Panamericano usados solo para esta propuesta.</p>
+    <p class="fine">Ilusión Invites · Invitaciones digitales de lujo · México y Canadá. Los imprimibles se entregan como archivos listos para imprimir; la impresión no está incluida. Los datos del equipo se usan solo para este evento. Logo y marca Panamericano usados solo para esta propuesta; fotos de ejemplo.</p>
   </div>
 </div>
 
@@ -231,20 +300,23 @@ p{margin:0 0 10px;color:var(--ink2)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script>
 var TICK = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#F6E7C6" stroke="#C79A5E" stroke-width="1.2"/><path d="m7.2 12.4 3.1 3 6.5-6.6" fill="none" stroke="#9E6D46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-// the invitation itself (free for this first event)
-var INC = ['Diseño exclusivo con su logo y colores', 'Apertura de bóveda animada, con sonido y música', 'El nombre de cada invitado en la bóveda', 'Mensaje de la Dirección al equipo', 'Fecha, cuenta regresiva y «Agregar al calendario»', 'Salón con mapa, programa y vestimenta', 'Confirmación en segundos por WhatsApp', 'Ajustes hasta que les encante'];
-document.getElementById('inc').innerHTML = INC.map(function (t) { return '<li>' + TICK + '<span>' + t + '</span></li>'; }).join('');
-// optional add-ons for the night
+function ticks(items) { return items.map(function (t) { return '<li>' + TICK + '<span>' + t + '</span></li>'; }).join(''); }
+// the whole experience: before, the night, after
+var J = [
+  ['ANTES', 'Todos invitados, todos confirmados', ['Invitación con su logo y la bóveda', 'Lista del equipo y confirmaciones en vivo', 'Plan de mesas', 'Recordatorios por WhatsApp']],
+  ['LA NOCHE', 'Una gala que se ve de gala', ['Letrero, números de mesa y menú', 'Registro rápido en la puerta', 'Pantalla del salón y reconocimientos', 'Marco para fotos y álbum con QR']],
+  ['DESPUÉS', 'Un cierre que se recuerda', ['Agradecimiento a cada invitado', 'Encuesta de 30 segundos', 'Reporte para la Dirección', 'Reunión para planear 2027']]
+];
+document.getElementById('journey').innerHTML = J.map(function (j) { return '<div><h3>' + j[0] + '</h3><b>' + j[1] + '</b><ul>' + ticks(j[2]) + '</ul></div>'; }).join('');
+document.getElementById('inc').innerHTML = ticks(['Diseño exclusivo con su logo y colores', 'Apertura de bóveda animada, con sonido y música', 'El nombre de cada invitado en la bóveda', 'Mensaje de la Dirección al equipo', 'Fecha, cuenta regresiva y «Agregar al calendario»', 'Salón con mapa, programa y vestimenta', 'Confirmación en segundos por WhatsApp', 'Ajustes hasta que les encante']);
+// organiser tools
 var S = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
 var MODS = [
-  ['<svg ' + S + '><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 11.5l2 2 4-4"/></svg>', 'Lista de invitados y confirmaciones', 'Un link con el nombre de cada colaborador. El comité ve en vivo quién va, con cuántos acompañantes y alergias.'],
-  ['<svg ' + S + '><circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="1.6"/><circle cx="12" cy="20" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="20" cy="12" r="1.6"/></svg>', 'Plan de mesas', 'Acomodamos a los invitados por mesa y cada quien ve en su celular «¿cuál es mi mesa?». Números exactos para el salón.'],
-  ['<svg ' + S + '><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg>', 'Registro en la puerta', 'Cada pase «Acceso autorizado» lleva un código: entrada rápida y lista de llegada en tiempo real.'],
-  ['<svg ' + S + '><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16ZM10 20a2 2 0 0 0 4 0"/></svg>', 'Recordatorios por WhatsApp', 'Un día antes y el mismo día, con la hora y la dirección. Nadie se pierde la gala.'],
-  ['<svg ' + S + '><path d="M6 3h12v18l-6-3-6 3z"/><path d="M9 8h6M9 11h6"/></svg>', 'Imprimibles de gala', 'Letrero de bienvenida, números de mesa, menú, boletos de rifa y diplomas de reconocimiento, con la misma imagen.'],
-  ['<svg ' + S + '><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>', 'Pantalla y fotos', 'Video para la pantalla del salón, marco de fotos con su logo y un álbum donde todos suben sus fotos con un QR.'],
-  ['<svg ' + S + '><path d="M4 20l1.2-3.6A8 8 0 1 1 8 19Z"/><path d="M9 10h6M9 13.5h4"/></svg>', 'Al día siguiente', 'Mensaje de agradecimiento, encuesta de 30 segundos y un reporte para la Dirección: asistencia y opiniones.'],
-  ['<svg ' + S + '><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8Z"/></svg>', 'Toques especiales', 'Video de la Dirección, sección de reconocimientos, sorteo del intercambio o una versión por sede.']
+  ['<svg ' + S + '><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 11.5l2 2 4-4"/></svg>', 'Confirmaciones en vivo', 'El comité ve quién va, con cuántos acompañantes y alergias, sin perseguir a nadie.'],
+  ['<svg ' + S + '><circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="1.6"/><circle cx="12" cy="20" r="1.6"/><circle cx="4" cy="12" r="1.6"/><circle cx="20" cy="12" r="1.6"/></svg>', 'Plan de mesas', 'Cada quien ve «¿cuál es mi mesa?» en su celular, y el salón recibe números exactos.'],
+  ['<svg ' + S + '><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg>', 'Registro en la puerta', 'Cada pase lleva un código: entrada rápida y lista de llegada en tiempo real.'],
+  ['<svg ' + S + '><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16ZM10 20a2 2 0 0 0 4 0"/></svg>', 'Recordatorios por WhatsApp', 'Un día antes y el mismo día, con la hora y la dirección.'],
+  ['<svg ' + S + '><path d="M4 20l1.2-3.6A8 8 0 1 1 8 19Z"/><path d="M9 10h6M9 13.5h4"/></svg>', 'Al día siguiente', 'Agradecimiento, encuesta y un reporte de asistencia y opiniones para la Dirección.']
 ];
 document.getElementById('mods').innerHTML = MODS.map(function (m) { return '<div class="mod"><div class="ic">' + m[0] + '</div><div><b>' + m[1] + '</b><p>' + m[2] + '</p></div></div>'; }).join('');
 try { var q = qrcode(0, 'M'); q.addData(document.getElementById('demo').href); q.make(); document.getElementById('qr').innerHTML = q.createImgTag(5, 0); } catch (e) {}
