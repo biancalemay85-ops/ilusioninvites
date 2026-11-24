@@ -621,14 +621,16 @@ html:not(.locked) #fx { z-index: 3; }
 (function(){
   if (window.top !== window) return; /* inside the preview on the collection page: it has its own buttons */
   var q = new URLSearchParams(location.search), c = q.get('c') || 'cumpleanos', d = q.get('d') || 'carrusel-magico';
-  var en = false; try { en = localStorage.getItem('ilu-lang') === 'en'; } catch (e) {}
+  var lg = 'es'; try { lg = (q.get('lang') || localStorage.getItem('ilu-lang') || 'es').slice(0, 2); } catch (e) {} var en = lg === 'en', fr = lg === 'fr';
   var nav = document.getElementById('ilu-nav'), back = document.getElementById('ilu-back'), cta = document.getElementById('ilu-cta');
   back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/?evento=' + c + '&diseno=' + encodeURIComponent('Carrusel Mágico') + '#imagina';
-  back.querySelector('span').textContent = en ? 'Back' : 'Volver'; cta.textContent = en ? 'I want one like this ✨' : 'Quiero una así ✨';
+  back.querySelector('span').textContent = fr ? 'Retour' : en ? 'Back' : 'Volver'; cta.textContent = fr ? 'J’en veux une comme ça ✨' : en ? 'I want one like this ✨' : 'Quiero una así ✨';
+  if ('0' === '1') { back.href = '/empresas/#demos'; cta.href = '/empresas/#propuesta'; }
   back.addEventListener('click', function (e) { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {} });
   nav.hidden = false;
   var last = scrollY, shown = false;
-  setTimeout(function () { shown = true; cta.classList.remove('off'); }, 3500);
+  if ('0' === '1') shown = true; /* these demos have their own "scroll" hint at the bottom: the button waits for the guest to scroll */
+  else setTimeout(function () { shown = true; cta.classList.remove('off'); }, 3500);
   addEventListener('scroll', function () { if (!shown) return; var y = scrollY; if (y > last + 8) cta.classList.add('off'); else if (y < last - 8 || innerHeight + y >= document.documentElement.scrollHeight - 40) cta.classList.remove('off'); last = y; }, { passive: true });
 })();
 </script>
@@ -671,12 +673,12 @@ html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-p
 <script>
 (function () {
   var a = document.getElementById('rsvp'); if (!a) return;
-  var T = { es: ['Quiero recordatorios por WhatsApp', 'Y quiero recibir recordatorios por WhatsApp 🔔'], en: ['Send me WhatsApp reminders', 'And I would like WhatsApp reminders 🔔'] };
+  var T = { es: ['Quiero recordatorios por WhatsApp', 'Y quiero recibir recordatorios por WhatsApp 🔔'], en: ['Send me WhatsApp reminders', 'And I would like WhatsApp reminders 🔔'], fr: ['Je veux des rappels par WhatsApp', 'Et j’aimerais recevoir des rappels par WhatsApp 🔔'] };
   var w = document.createElement('div'); w.className = 'ilu-rem-w';
   var b = document.createElement('button'); b.type = 'button'; b.className = 'ilu-rem'; b.setAttribute('aria-pressed', 'false');
   b.innerHTML = '<i aria-hidden="true"></i><span></span>'; w.appendChild(b);
   var row = a.closest('.row') || a; row.parentNode.insertBefore(w, row);
-  var L = function () { return document.documentElement.lang === 'en' ? 'en' : 'es'; };
+  var L = function () { var l = document.documentElement.lang; return l === 'en' || l === 'fr' ? l : 'es'; };
   var paint = function () { b.querySelector('span').textContent = T[L()][0]; };
   b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
   new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); paint();

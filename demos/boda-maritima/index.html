@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Invitación de boda de ejemplo con tema marítimo. Maritime-themed wedding invitation sample.">
+<meta property="og:title" content="Claire & Mathieu · Halifax 2027 ⚓">
+<meta property="og:description" content="Saturday, August 21, 2027 · Halifax, Nova Scotia. Tap the seal to open your invitation.">
+<meta property="og:image" content="https://ilusioninvites.com/demos/boda-maritima/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Claire & Mathieu · Halifax 2027 ⚓">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://ilusioninvites.com/demos/boda-maritima/">
+<link rel="canonical" href="https://ilusioninvites.com/demos/boda-maritima/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0E1C33">
+<link rel="icon" href="/nuevo/img/ilusion-logo.jpg">
+<link rel="apple-touch-icon" href="/nuevo/img/ilusion-logo.jpg">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Claire &amp; Mathieu · Ilusión Invites</title>
+<meta name="description" content="Wedding invitation sample: Nautical-Maritime theme, navy, white and brass by the harbour.">
+<meta name="theme-color" content="#0E1C33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
+<link rel="preload" as="image" href="img/puerto.webp">
+<style>
+/* Nautical-Maritime wedding · navy, crisp white, brass, rope and sea glass.
+   One signature photo (the harbour at dusk) + two real objects (navy wax seal, rope knot). */
+:root {
+  --navy: #0E1C33; --navy-2: #16294A; --navy-ink: #1A2B47;
+  --white: #FBFAF6; --linen: #F3EEE4; --sand: #E6DCC8;
+  --brass: #B8924F; --brass-l: #E6C98C; --brass-d: #8A6A35;
+  --glass: #9CC3BA; --glass-d: #5E8F86;
+  --ink: #1A2B47; --ink-soft: #4C5B73;
+  --f-script: 'Pinyon Script', 'Snell Roundhand', cursive;
+  --f-head: 'Cormorant Garamond', Georgia, serif;
+  --f-caps: 'Cinzel', 'Trajan Pro', serif;
+  --f-body: 'Jost', 'Avenir Next', system-ui, sans-serif;
+  --slow: cubic-bezier(.45, .05, .2, 1);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+html { background: var(--navy); -webkit-text-size-adjust: 100%; }
+body { font: 300 17px/1.6 var(--f-body); color: var(--ink); background: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+html.locked, html.locked body { overflow: hidden; height: 100%; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; }
+.paused *, .paused *::before, .paused *::after { animation-play-state: paused !important; }
+
+/* brass foil text */
+.foil { background: linear-gradient(100deg, #9C7638 0%, #E9CF95 28%, #B8924F 50%, #F3DDA8 70%, #A07B3C 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.caps { font: 500 12.5px/1.5 var(--f-caps); letter-spacing: .26em; text-transform: uppercase; }
+
+/* ---------- top controls ---------- */
+.lang { position: fixed; z-index: 60; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); display: flex; padding: 3px; gap: 2px; border-radius: 999px; background: rgba(14, 28, 51, .55); box-shadow: inset 0 0 0 1px rgba(230, 201, 140, .45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.lang button { border: 0; background: transparent; min-width: 38px; min-height: 32px; padding: 0 9px; border-radius: 999px; font: 500 11.5px var(--f-caps); letter-spacing: .14em; color: #EADBB8; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: linear-gradient(180deg, #F1D79F, #C9A060); color: var(--navy); }
+.motion { position: fixed; z-index: 60; left: max(14px, env(safe-area-inset-left, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); width: 44px; height: 44px; border-radius: 50%; border: 0; display: grid; place-items: center; cursor: pointer; background: rgba(14, 28, 51, .62); color: #F1D79F; box-shadow: inset 0 0 0 1px rgba(230, 201, 140, .5), 0 8px 20px -10px rgba(0, 0, 0, .6); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.motion svg { width: 18px; height: 18px; }
+.lang, .motion { transition: opacity .5s ease, transform .5s ease; }
+.aside .lang { opacity: 0; transform: translateY(-14px); pointer-events: none; }
+.aside .motion { opacity: 0; transform: translateY(14px); pointer-events: none; }
+.motion .i-play { display: none; }
+.motion[aria-pressed="true"] .i-play { display: block; }
+.motion[aria-pressed="true"] .i-pause { display: none; }
+
+/* ---------- 1. the sealed envelope ---------- */
+.intro { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 70px 16px 40px; overflow: hidden;
+  background: radial-gradient(120% 80% at 50% 40%, rgba(40, 66, 108, .55), transparent 70%), var(--navy) url(img/lino.webp) center / 520px; background-blend-mode: normal, multiply; transition: opacity 1.3s var(--slow), transform 1.6s var(--slow); }
+.intro::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(130% 100% at 50% 50%, transparent 55%, rgba(4, 10, 22, .55)); }
+.intro.gone { opacity: 0; transform: scale(1.06); pointer-events: none; }
+.stage { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 22px; width: 100%; }
+.env-wrap { position: relative; width: min(84vw, 400px, 50svh); aspect-ratio: 5 / 7; perspective: 1400px; transition: transform 1.4s var(--slow); }
+.opening .env-wrap { transform: translateY(21%); }
+/* back of the envelope (seen when the flap opens): navy liner with a brass edge */
+.env-back { position: absolute; inset: 0; border-radius: 16px; background: var(--navy-2) url(img/lino.webp) center / 300px; background-blend-mode: multiply; box-shadow: 0 40px 70px -30px rgba(0, 0, 0, .8), 0 0 0 1px rgba(230, 201, 140, .25); }
+/* the card inside */
+.card { position: absolute; left: 5%; right: 5%; top: 4%; height: 90%; border-radius: 12px; background: var(--white) url(img/lino.webp) center / 340px; background-blend-mode: multiply; box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .5); display: flex; flex-direction: column; align-items: center; padding: 6% 8% 0; text-align: center; transition: transform 1.5s var(--slow); z-index: 1; }
+.card .win { width: 58%; aspect-ratio: 3 / 4; border-radius: 999px 999px 14px 14px; background: url(img/puerto-s.webp) center 30% / cover; box-shadow: 0 0 0 2px var(--white), 0 0 0 3px rgba(184, 146, 79, .8); }
+.card .nm { margin-top: 5%; font: 400 clamp(24px, 7vw, 32px)/1 var(--f-script); color: var(--navy-ink); }
+.opening .card { transform: translateY(-50%); }
+/* the front pocket: full sheet minus a V cut where the flap closes */
+.pocket { position: absolute; inset: 0; z-index: 2; border-radius: 16px; clip-path: polygon(0 0, 50% 47%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0) 40%), var(--white) url(img/lino.webp) center / 340px; background-blend-mode: normal, multiply; }
+/* the bottom fold of the envelope: a fine edge line, then the fold itself */
+.pocket::before, .pocket::after { content: ""; position: absolute; inset: 0; border-radius: 0 0 16px 16px; clip-path: polygon(0 100%, 0 99%, 44% 55%, 47.5% 52.6%, 50% 52%, 52.5% 52.6%, 56% 55%, 100% 99%, 100% 100%); }
+.pocket::before { background: rgba(26, 43, 71, .16); transform: translateY(-1.5px); }
+.pocket::after { background: linear-gradient(180deg, rgba(255, 255, 255, .45), rgba(255, 255, 255, 0) 45%), linear-gradient(180deg, rgba(26, 43, 71, .05), transparent 30%), var(--white) url(img/lino.webp) center / 340px; background-blend-mode: normal, normal, multiply; }
+.pocket .addr { z-index: 1; }
+.pocket .addr { position: absolute; left: 0; right: 0; bottom: 9%; text-align: center; padding: 0 10%; }
+.addr .caps { color: var(--brass-d); font-size: 11px; }
+.addr .who { font: 400 clamp(26px, 7.4vw, 34px)/1.15 var(--f-script); color: var(--navy-ink); margin: 4px 0 0; overflow-wrap: anywhere; }
+/* the flap: a linen front and a navy liner back, turning on its top edge */
+.flap { position: absolute; left: 0; right: 0; top: 0; height: 56%; z-index: 3; transform-origin: 50% 0; transform-style: preserve-3d; transition: transform 1.5s var(--slow), z-index 0s .75s; }
+.flap-f, .flap-b { position: absolute; inset: 0; border-radius: 16px 16px 0 0; -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  clip-path: polygon(0 6%, .6% 3%, 2% 1%, 4.9% 0, 95.1% 0, 98% 1%, 99.4% 3%, 100% 6%, 56% 92%, 53% 97%, 50% 98.5%, 47% 97%, 44% 92%); }
+.flap-f { background: linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, .1) 60%, rgba(26, 43, 71, .05)), var(--white) url(img/lino.webp) center / 340px; background-blend-mode: normal, multiply; }
+.flap-b { transform: rotateX(180deg); background: linear-gradient(0deg, rgba(230, 201, 140, .28), rgba(230, 201, 140, 0) 6%), linear-gradient(180deg, #2B4874, #1B3157), url(img/lino.webp) center / 300px; background-blend-mode: normal, multiply; }
+.flap .names { position: absolute; left: 0; right: 0; top: 15%; text-align: center; }
+.flap .caps { color: var(--brass-d); font-size: 10.5px; }
+.flap .nm { font: 400 clamp(30px, 9vw, 42px)/1.05 var(--f-script); color: var(--navy-ink); margin-top: 6px; }
+.flap-sh { position: absolute; left: 0; right: 0; top: 0; height: 56%; z-index: 2; filter: blur(5px); transition: opacity .6s; pointer-events: none; }
+.flap-sh i { position: absolute; inset: 0; transform: translateY(7px); background: rgba(8, 18, 36, .32); clip-path: polygon(0 6%, .6% 3%, 2% 1%, 4.9% 0, 95.1% 0, 98% 1%, 99.4% 3%, 100% 6%, 56% 92%, 53% 97%, 50% 98.5%, 47% 97%, 44% 92%); }
+.opening .flap { transform: rotateX(180deg); z-index: 0; }
+.opening .flap-sh { opacity: 0; }
+/* rope tie + navy wax seal at the point of the flap */
+.tie { position: absolute; z-index: 4; left: 50%; top: 52.5%; width: 86%; transform: translate(-50%, -50%); transition: transform 1.3s var(--slow) .35s, opacity 1s ease .35s; pointer-events: none; filter: drop-shadow(0 6px 6px rgba(10, 20, 40, .35)); }
+.opening .tie { transform: translate(40%, -50%) rotate(8deg); opacity: 0; }
+.seal { position: absolute; z-index: 5; left: 50%; top: 52.5%; width: 30%; aspect-ratio: 1; transform: translate(-50%, -50%); border: 0; padding: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; border-radius: 50%; filter: drop-shadow(0 10px 10px rgba(6, 14, 30, .5)); }
+.seal img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: transform 1.1s var(--slow), opacity .9s ease; }
+.seal .half-r { clip-path: polygon(52% 0, 100% 0, 100% 100%, 47% 100%, 51% 62%, 46% 40%); }
+.seal .half-l { clip-path: polygon(0 0, 52% 0, 46% 40%, 51% 62%, 47% 100%, 0 100%); }
+.seal::before { content: ""; position: absolute; inset: -16%; border-radius: 50%; box-shadow: 0 0 0 1.5px rgba(241, 215, 159, .7); animation: ring 3.6s ease-out infinite; }
+@keyframes ring { 0% { transform: scale(.8); opacity: 0; } 30% { opacity: .9; } 100% { transform: scale(1.35); opacity: 0; } }
+.seal:focus-visible { outline: 2px solid var(--brass-l); outline-offset: 8px; }
+.opening .seal::before { display: none; }
+.opening .seal .half-l { transform: translate(-30%, 40%) rotate(-24deg); opacity: 0; }
+.opening .seal .half-r { transform: translate(30%, 46%) rotate(20deg); opacity: 0; }
+.hint { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; color: #EADBB8; font: 500 11px var(--f-caps); letter-spacing: .3em; text-align: center; transition: opacity .6s; }
+.hint i { width: 28px; height: 1px; background: linear-gradient(90deg, transparent, #E6C98C); }
+.hint i:last-child { transform: scaleX(-1); }
+.opening .hint { opacity: 0; }
+
+/* ---------- 2. the harbour ---------- */
+.hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: var(--navy); color: var(--white); }
+.scene { position: absolute; left: 50%; top: 50%; width: max(100%, 56.25svh); aspect-ratio: 9 / 16; transform: translate(-50%, -50%); }
+.scene .ph { position: absolute; inset: 0; background: url(img/puerto.webp) center / cover; animation: drift 40s ease-in-out infinite alternate; transform-origin: 74% 40%; }
+@keyframes drift { from { transform: scale(1); } to { transform: scale(1.05); } }
+/* the lighthouse lamp: a warm glow and a slow, faint sweeping beam */
+.lamp { position: absolute; left: 74.6%; top: 39%; width: 0; height: 0; }
+.lamp::before { content: ""; position: absolute; left: -60px; top: -60px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 226, 160, .95) 0%, rgba(255, 200, 110, .35) 30%, transparent 70%); mix-blend-mode: screen; animation: glow 5s ease-in-out infinite; }
+.beam { position: absolute; left: 0; top: 0; width: 140vw; height: 70px; transform-origin: 0 50%; translate: 0 -50%; background: linear-gradient(90deg, rgba(255, 228, 170, .32), rgba(255, 228, 170, .08) 40%, transparent 75%); clip-path: polygon(0 46%, 100% 0, 100% 100%, 0 54%); filter: blur(3px); mix-blend-mode: screen; animation: sweep 14s ease-in-out infinite; opacity: .8; }
+@keyframes glow { 0%, 100% { opacity: .65; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.08); } }
+@keyframes sweep { 0% { transform: rotate(190deg); opacity: 0; } 15% { opacity: .8; } 50% { transform: rotate(160deg); opacity: .5; } 85% { opacity: .8; } 100% { transform: rotate(130deg); opacity: 0; } }
+.stars i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px rgba(255, 255, 255, .9); animation: tw 6s ease-in-out infinite; }
+@keyframes tw { 0%, 100% { opacity: .15; } 50% { opacity: .9; } }
+.hero::before { content: ""; position: absolute; inset: 0 0 auto; height: 48%; z-index: 1; background: linear-gradient(180deg, rgba(8, 16, 32, .55), rgba(8, 16, 32, .15) 70%, transparent); pointer-events: none; }
+.hero-txt { position: absolute; z-index: 2; left: 0; right: 0; top: calc(64px + env(safe-area-inset-top, 0px)); text-align: center; padding: 0 16px; }
+.hero-txt .dear { font: italic 400 19px/1.3 var(--f-head); color: #F4E7C8; margin: 0 0 12px; overflow-wrap: anywhere; }
+.hero-txt .caps { color: #EAD7AE; font-size: 11px; }
+.hero-txt h1 { margin: 6px 0 6px; font: 400 clamp(44px, 12.5vw, 92px)/1.05 var(--f-script); color: #FFFDF7; text-shadow: 0 2px 18px rgba(6, 14, 30, .6); }
+.hero-txt h1 .amp { font-family: var(--f-head); font-style: italic; font-size: .5em; color: var(--brass-l); padding: 0 .28em 0 .22em; vertical-align: .18em; }
+.hero-txt .date { font: 500 12px/1.9 var(--f-caps); letter-spacing: .28em; color: #F4E7C8; }
+.hero-txt .date b { display: block; font-weight: 500; color: #FFF; }
+.scroll { position: absolute; z-index: 2; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; color: #F4E7C8; font: 500 10.5px var(--f-caps); letter-spacing: .3em; text-decoration: none; text-shadow: 0 1px 8px rgba(0, 0, 0, .7); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.scroll::after { content: ""; width: 1px; height: 30px; background: linear-gradient(#F4E7C8, transparent); animation: drop 2.6s ease-in-out infinite; transform-origin: top; }
+@keyframes drop { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); opacity: 1; } 100% { opacity: 0; } }
+/* entrance after the envelope */
+.hero .hero-txt > * { opacity: 0; transform: translateY(14px); transition: opacity 1.4s ease, transform 1.4s var(--slow); }
+.shown .hero .hero-txt > * { opacity: 1; transform: none; }
+.shown .hero .hero-txt > :nth-child(2) { transition-delay: .25s; }
+.shown .hero .hero-txt > :nth-child(3) { transition-delay: .5s; }
+.shown .hero .hero-txt > :nth-child(4) { transition-delay: .8s; }
+
+/* wide screens: the harbour lives in a tall arched window, names beside it */
+@media (min-width: 900px) and (min-aspect-ratio: 1/1) {
+  .hero { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4vw; padding: 0 7vw; background: var(--navy) url(img/lino.webp) center / 520px; background-blend-mode: multiply; }
+  .hero::before { display: none; }
+  .hero .frame { position: relative; order: 2; height: 84svh; aspect-ratio: 9 / 16; border-radius: 999px 999px 22px 22px; overflow: hidden; box-shadow: 0 0 0 1px rgba(230, 201, 140, .6), 0 0 0 9px rgba(14, 28, 51, .9), 0 0 0 10px rgba(230, 201, 140, .35), 0 50px 90px -40px rgba(0, 0, 0, .9); }
+  .hero .scene { width: 100%; }
+  .hero-txt { position: relative; top: auto; text-align: center; }
+  .hero-txt h1 { font-size: clamp(64px, 7vw, 104px); }
+  .scroll { left: 7vw; translate: none; }
+  .beam { width: 60vh; }
+}
+
+/* ---------- 3. the details ---------- */
+main { position: relative; background: linear-gradient(rgba(252, 251, 247, .62), rgba(252, 251, 247, .62)), var(--white) url(img/lino.webp) center / 450px; background-blend-mode: normal, multiply; }
+main .foil { background-image: linear-gradient(100deg, #7A5A26 0%, #B8924F 30%, #8A6A35 52%, #C9A260 72%, #7A5A26 100%); }
+main .navyband .foil { background-image: linear-gradient(100deg, #9C7638 0%, #E9CF95 28%, #B8924F 50%, #F3DDA8 70%, #A07B3C 100%); }
+.part { position: relative; padding: 76px 22px; text-align: center; }
+.part > .in { max-width: 580px; margin: 0 auto; }
+.part h2 { margin: 0 0 6px; font: 500 clamp(34px, 9vw, 46px)/1.1 var(--f-head); }
+.part .sub { font: italic 400 19px/1.5 var(--f-head); color: var(--ink-soft); margin: 0 0 26px; }
+.part p { margin: 0 0 14px; }
+.knot { width: 150px; margin: 0 auto 22px; opacity: .95; }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 1.2s ease, transform 1.2s var(--slow); }
+.reveal.in-view { opacity: 1; transform: none; }
+
+.welcome .parents { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 26px 0; }
+.welcome .parents b { display: block; font: 500 19px/1.35 var(--f-head); color: var(--navy-ink); }
+.welcome .parents span { font-size: 13px; color: var(--ink-soft); letter-spacing: .04em; }
+.welcome .line { font: italic 400 22px/1.5 var(--f-head); color: var(--navy-ink); margin: 18px auto 0; max-width: 30ch; }
+
+.navyband { background: var(--navy) url(img/lino.webp) center / 520px; background-blend-mode: multiply; color: var(--white); }
+.navyband .sub { color: #D9CCAE; }
+.count { display: flex; justify-content: center; gap: 10px; margin: 8px 0 28px; }
+.count div { width: 74px; padding: 14px 0 10px; border-radius: 18px; background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .03)); box-shadow: inset 0 0 0 1px rgba(230, 201, 140, .38); }
+.count strong { display: block; font: 500 32px/1 var(--f-head); color: #FFF7E6; }
+.count span { font: 500 9.5px var(--f-caps); letter-spacing: .22em; color: #D9CCAE; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 26px; border-radius: 999px; text-decoration: none; font: 500 12.5px var(--f-caps); letter-spacing: .16em; cursor: pointer; border: 0; }
+.btn-line { color: var(--navy-ink); box-shadow: inset 0 0 0 1px rgba(138, 106, 53, .6); background: rgba(255, 255, 255, .5); }
+.navyband .btn-line { color: #F4E7C8; background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px rgba(230, 201, 140, .55); }
+.btn-brass { color: var(--navy); background: linear-gradient(180deg, #F6E2B0 0%, #E3C27F 40%, #C59A55 100%); box-shadow: inset 0 0 0 1px rgba(138, 106, 53, .35), 0 14px 26px -14px rgba(0, 0, 0, .6); }
+.row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+
+.where { display: grid; gap: 18px; margin-top: 8px; }
+.place { padding: 28px 22px 24px; border-radius: 26px; background: rgba(255, 255, 255, .62); box-shadow: inset 0 0 0 1px rgba(184, 146, 79, .35), 0 20px 40px -30px rgba(14, 28, 51, .4); }
+.place .caps { color: var(--brass-d); }
+.place .t { font: 500 30px/1.2 var(--f-head); color: var(--navy-ink); margin: 6px 0 4px; }
+.place .v { font: 500 19px/1.35 var(--f-head); margin: 0; }
+.place .s { color: var(--ink-soft); font-size: 15px; margin: 2px 0 16px; }
+@media (min-width: 720px) { .where { grid-template-columns: 1fr 1fr; } }
+
+/* the ship's log */
+.log { list-style: none; margin: 10px auto 0; padding: 0; max-width: 440px; text-align: left; position: relative; }
+.log::before { content: ""; position: absolute; left: 86px; top: 10px; bottom: 10px; width: 1px; background: linear-gradient(transparent, rgba(184, 146, 79, .7) 8%, rgba(184, 146, 79, .7) 92%, transparent); }
+.log li { position: relative; display: grid; grid-template-columns: 72px 1fr; gap: 30px; padding: 12px 0; }
+.log time { font: 500 14px/1.8 var(--f-caps); letter-spacing: .08em; color: var(--brass-d); text-align: right; white-space: nowrap; }
+.log li::after { content: ""; position: absolute; left: 81px; top: 20px; width: 11px; height: 11px; background: var(--brass); clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.log b { display: block; font: 500 21px/1.3 var(--f-head); color: var(--navy-ink); }
+.log span { font-size: 14.5px; color: var(--ink-soft); }
+
+.chips { display: flex; justify-content: center; gap: 14px; margin: 18px 0 22px; }
+.chips i { width: 38px; height: 38px; border-radius: 50%; box-shadow: 0 0 0 3px var(--white), 0 0 0 4px rgba(184, 146, 79, .55); }
+.note { font-size: 15.5px; color: var(--ink-soft); max-width: 34ch; margin: 0 auto 10px !important; }
+
+.stay { display: grid; gap: 14px; margin-top: 6px; }
+.stay > div { padding: 22px; border-radius: 22px; background: rgba(255, 255, 255, .6); box-shadow: inset 0 0 0 1px rgba(184, 146, 79, .3); }
+.stay b { display: block; font: 500 21px/1.3 var(--f-head); color: var(--navy-ink); }
+.stay span { font-size: 15px; color: var(--ink-soft); }
+.code { display: inline-block; margin-top: 8px; padding: 6px 14px; border-radius: 999px; font: 500 12px var(--f-caps); letter-spacing: .18em; color: var(--navy-ink); background: rgba(156, 195, 186, .35); }
+
+.pass { max-width: 440px; margin: 0 auto; padding: 34px 24px 28px; border-radius: 30px; background: var(--navy) url(img/lino.webp) center / 400px; background-blend-mode: multiply; color: var(--white); box-shadow: inset 0 0 0 1px rgba(230, 201, 140, .5), inset 0 0 0 7px var(--navy), inset 0 0 0 8px rgba(230, 201, 140, .25), 0 30px 60px -30px rgba(14, 28, 51, .7); }
+.pass .caps { color: #D9CCAE; font-size: 11px; }
+.pass strong { display: block; font: 400 52px/1.1 var(--f-script); color: #FFF7E6; margin: 6px 0 4px; }
+.pass p { color: #E8DDC4; font-size: 15px; }
+
+.foot { padding: 60px 22px calc(90px + env(safe-area-inset-bottom, 0px)); text-align: center; }
+.foot .tag { font: 400 40px/1.2 var(--f-script); margin: 0 0 12px; }
+.foot .made { font: 500 10.5px var(--f-caps); letter-spacing: .26em; color: var(--ink-soft); margin: 0 0 18px; }
+.replay { background: none; border: 0; cursor: pointer; font: 500 11px var(--f-caps); letter-spacing: .24em; color: var(--brass-d); text-decoration: underline; text-underline-offset: 5px; padding: 10px; }
+
+/* theme in a box */
+.box { background: var(--linen); padding: 70px 22px 80px; text-align: center; }
+.box .kick { font: 500 11px var(--f-caps); letter-spacing: .3em; color: var(--brass-d); }
+.box h2 { font: 500 clamp(30px, 8vw, 42px)/1.15 var(--f-head); margin: 8px 0 6px; color: var(--navy-ink); }
+.box .sub { font: italic 400 18px/1.5 var(--f-head); color: var(--ink-soft); margin: 0 auto 30px; max-width: 34ch; }
+.pieces { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 760px; margin: 0 auto; align-items: end; }
+@media (max-width: 599px) { .pieces { grid-template-columns: 1fr; gap: 26px; max-width: 400px; } }
+.piece figcaption { margin-top: 10px; font: 500 10.5px var(--f-caps); letter-spacing: .2em; color: var(--ink-soft); }
+.sign { position: relative; container-type: inline-size; border-radius: 20px; overflow: hidden; aspect-ratio: 3 / 4; background: var(--navy); }
+.sign img { width: 100%; height: 100%; object-fit: cover; }
+.sign .on { position: absolute; left: 33.5%; width: 33%; top: 17%; height: 34%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--navy-ink); }
+.sign .on small { font: 500 2cqw/1.4 var(--f-caps); letter-spacing: .2em; color: var(--brass-d); }
+.sign .on b { font: 400 5.6cqw/1.1 var(--f-script); margin: 1.4cqw 0; }
+.sign .on b span { display: block; }
+.sign .on > span { font: 500 1.8cqw var(--f-caps); letter-spacing: .18em; }
+.tcard { container-type: inline-size; aspect-ratio: 3 / 4; border-radius: 20px; display: grid; place-items: center; background: radial-gradient(120% 90% at 50% 30%, #22395F, var(--navy)); padding: 12%; }
+.tcard .paper { width: 100%; aspect-ratio: 5 / 7; border-radius: 12px; background: var(--white) url(img/lino.webp) center / 260px; background-blend-mode: multiply; box-shadow: inset 0 0 0 5px var(--white), inset 0 0 0 6px rgba(184, 146, 79, .7), 0 24px 40px -18px rgba(0, 0, 0, .7); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 10px; }
+.tcard img { width: 70%; margin-bottom: 6px; }
+.tcard small { font: 500 3.6cqw var(--f-caps); letter-spacing: .3em; color: var(--brass-d); }
+.tcard b { font: 500 22cqw/1 var(--f-head); color: var(--navy-ink); }
+.tcard em { display: block; margin-top: 3cqw; font: italic 400 5cqw/1.2 var(--f-head); color: var(--ink-soft); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01s !important; transition-delay: 0s !important; }
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('locked'); if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+
+<div class="lang" role="group" aria-label="Language / Langue / Idioma">
+  <button type="button" data-l="en" aria-pressed="true">EN</button>
+  <button type="button" data-l="fr" aria-pressed="false">FR</button>
+  <button type="button" data-l="es" aria-pressed="false">ES</button>
+</div>
+<button class="motion" id="motion" type="button" aria-pressed="false" aria-label="Pause the motion" data-fr-label="Mettre l'animation en pause" data-es-label="Pausar el movimiento">
+  <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg>
+  <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.2-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+</button>
+
+<!-- 1. sealed envelope: nothing else shows until it is opened -->
+<section class="intro" id="intro" aria-label="Sealed invitation">
+  <div class="stage">
+    <div class="env-wrap">
+      <div class="env-back"></div>
+      <div class="card" aria-hidden="true"><div class="win"></div><p class="nm"><span data-c="bride"></span> &amp; <span data-c="groom"></span></p></div>
+      <div class="pocket">
+        <div class="addr">
+          <p class="caps" data-fr="POUR" data-es="PARA">FOR</p>
+          <p class="who" id="who" data-fr="une personne très spéciale" data-es="alguien muy especial">a very special guest</p>
+        </div>
+      </div>
+      <div class="flap-sh"><i></i></div>
+      <div class="flap">
+        <div class="flap-f"><div class="names">
+          <p class="caps" data-fr="LE MARIAGE DE" data-es="LA BODA DE">THE WEDDING OF</p>
+          <p class="nm"><span data-c="bride"></span> &amp; <span data-c="groom"></span></p>
+        </div></div>
+        <div class="flap-b"></div>
+      </div>
+      <img class="tie" src="img/cuerda.webp" alt="">
+      <button class="seal" id="seal" type="button" aria-label="Break the seal and open the invitation" data-fr-label="Briser le sceau et ouvrir l'invitation" data-es-label="Romper el sello y abrir la invitación">
+        <img class="half-l" src="img/sello.webp" alt=""><img class="half-r" src="img/sello.webp" alt="">
+      </button>
+    </div>
+    <p class="hint"><i></i><span data-fr="TOUCHEZ LE SCEAU" data-es="TOCA EL SELLO">TAP THE SEAL</span><i></i></p>
+  </div>
+</section>
+
+<!-- 2. the harbour at dusk -->
+<header class="hero" id="top">
+  <div class="frame">
+    <div class="scene" aria-hidden="true">
+      <div class="ph"></div>
+      <div class="stars" id="stars"></div>
+      <div class="lamp"><div class="beam"></div></div>
+    </div>
+  </div>
+  <div class="hero-txt">
+    <p class="dear" id="dear" hidden></p>
+    <p class="caps" data-fr="ENSEMBLE AVEC LEURS FAMILLES" data-es="JUNTO CON SUS FAMILIAS">TOGETHER WITH THEIR FAMILIES</p>
+    <h1><span data-c="bride"></span><span class="amp">&amp;</span><span data-c="groom"></span></h1>
+    <p class="date"><b data-c="dateLong"></b><span data-c="cityCaps"></span></p>
+  </div>
+  <a class="scroll" href="#bienvenue" data-fr="DÉFILEZ" data-es="DESLIZA">SCROLL</a>
+</header>
+
+<main id="main">
+  <section class="part welcome" id="bienvenue">
+    <div class="in reveal">
+      <img class="knot" src="img/cuerda.webp" alt="">
+      <p class="caps" style="color:var(--brass-d)" data-fr="AVEC LA BÉNÉDICTION DE NOS PARENTS" data-es="CON LA BENDICIÓN DE NUESTROS PADRES">WITH THE BLESSING OF OUR PARENTS</p>
+      <div class="parents">
+        <div><b data-c="parentsBride"></b><span data-fr="Parents de la mariée" data-es="Padres de la novia">Parents of the bride</span></div>
+        <div><b data-c="parentsGroom"></b><span data-fr="Parents du marié" data-es="Padres del novio">Parents of the groom</span></div>
+      </div>
+      <p data-fr="ont la joie de vous inviter à célébrer leur mariage au bord de la mer." data-es="tienen el gusto de invitarte a celebrar su boda junto al mar.">request the pleasure of your company as they marry by the sea.</p>
+      <p class="line" data-fr="« Peu importe où la marée nous mène, nous choisissons de naviguer ensemble. »" data-es="“Lleve a donde lleve la marea, elegimos navegar juntos.”">“Wherever the tide may take us, we choose to sail together.”</p>
+    </div>
+  </section>
+
+  <section class="part navyband">
+    <div class="in reveal">
+      <h2 class="foil" data-fr="Avant le grand départ" data-es="Para zarpar juntos">Until we set sail</h2>
+      <p class="sub" data-c="dateLong2"></p>
+      <div class="count" aria-label="Countdown" data-fr-label="Compte à rebours" data-es-label="Cuenta regresiva">
+        <div><strong id="cd-d">0</strong><span data-fr="JOURS" data-es="DÍAS">DAYS</span></div>
+        <div><strong id="cd-h">0</strong><span data-fr="H" data-es="HRS">HRS</span></div>
+        <div><strong id="cd-m">0</strong><span data-fr="MIN" data-es="MIN">MIN</span></div>
+        <div><strong id="cd-s">0</strong><span data-fr="SEC" data-es="SEG">SEC</span></div>
+      </div>
+      <div class="row"><a class="btn btn-line" id="cal" target="_blank" rel="noopener" href="#" data-fr="Ajouter au calendrier" data-es="Agregar al calendario">Add to calendar</a></div>
+    </div>
+  </section>
+
+  <section class="part" id="lieu">
+    <div class="in reveal">
+      <h2 class="foil" data-fr="Où" data-es="Dónde">Where</h2>
+      <p class="sub" data-c="city"></p>
+      <div class="where">
+        <div class="place">
+          <p class="caps" data-fr="CÉRÉMONIE" data-es="CEREMONIA">CEREMONY</p>
+          <p class="t" data-c="timeCeremony"></p>
+          <p class="v" data-c="venue"></p>
+          <p class="s" data-fr="Sur la pelouse, au bord de l'eau" data-es="En el jardín, a la orilla del agua">On the lawn, by the water</p>
+          <div class="row"><a class="btn btn-line map" target="_blank" rel="noopener" href="#" data-fr="Voir la carte" data-es="Ver mapa">View map</a></div>
+        </div>
+        <div class="place">
+          <p class="caps" data-fr="RÉCEPTION" data-es="RECEPCIÓN">RECEPTION</p>
+          <p class="t" data-c="timeReception"></p>
+          <p class="v" data-c="venue"></p>
+          <p class="s" data-fr="La grande salle, vue sur le port" data-es="El gran salón, con vista al puerto">The Pavilion hall, overlooking the harbour</p>
+          <div class="row"><a class="btn btn-line map" target="_blank" rel="noopener" href="#" data-fr="Voir la carte" data-es="Ver mapa">View map</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="journal" style="padding-top:20px">
+    <div class="in reveal">
+      <h2 class="foil" data-fr="Journal de bord" data-es="Bitácora del día">The ship's log</h2>
+      <p class="sub" data-fr="Le déroulement de la journée" data-es="Así navegaremos el día">How the day will sail</p>
+      <ol class="log">
+        <li><time data-t="15:30"></time><div><b data-fr="Embarquement" data-es="Abordaje">All aboard</b><span data-fr="Limonade de bienvenue sur la pelouse" data-es="Limonada de bienvenida en el jardín">Welcome lemonade on the lawn</span></div></li>
+        <li><time data-t="16:00"></time><div><b data-fr="La cérémonie" data-es="La ceremonia">The ceremony</b><span data-fr="Face à la mer" data-es="Frente al mar">Facing the sea</span></div></li>
+        <li><time data-t="17:00"></time><div><b data-fr="Cocktail à l'heure dorée" data-es="Cóctel en la hora dorada">Cocktails at golden hour</b><span data-fr="Huîtres et mousseux de la Nouvelle-Écosse" data-es="Ostiones y vino espumoso de Nueva Escocia">Oysters and Nova Scotia sparkling wine</span></div></li>
+        <li><time data-t="18:30"></time><div><b data-fr="Le souper" data-es="La cena">Dinner</b><span data-fr="Dans la grande salle du Pavillon" data-es="En el gran salón del Pabellón">In the Pavilion hall</span></div></li>
+        <li><time data-t="20:30"></time><div><b data-fr="Première danse" data-es="Primer baile">First dance</b><span data-fr="Puis la piste est à vous" data-es="Y después, la pista es suya">Then the floor is yours</span></div></li>
+        <li><time data-t="22:30"></time><div><b data-fr="Bouchées de minuit" data-es="Antojo de medianoche">Late-night bites</b><span data-fr="Guédilles au homard" data-es="Rollitos de langosta">Lobster rolls</span></div></li>
+        <li><time data-t="23:30"></time><div><b data-fr="Retour au port" data-es="Regreso a puerto">Back to port</b><span data-fr="Navette vers le centre-ville" data-es="Transporte al centro de la ciudad">Shuttle to downtown hotels</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="part navyband">
+    <div class="in reveal">
+      <h2 class="foil" data-fr="Tenue" data-es="Código de vestimenta">Dress code</h2>
+      <p class="sub" data-fr="Chic côtier" data-es="Formal costero">Coastal formal</p>
+      <div class="chips" aria-hidden="true"><i style="background:#16294A;box-shadow:0 0 0 3px #0E1C33,0 0 0 4px rgba(230,201,140,.55)"></i><i style="background:#FBFAF6;box-shadow:0 0 0 3px #0E1C33,0 0 0 4px rgba(230,201,140,.55)"></i><i style="background:#9CC3BA;box-shadow:0 0 0 3px #0E1C33,0 0 0 4px rgba(230,201,140,.55)"></i><i style="background:#E6DCC8;box-shadow:0 0 0 3px #0E1C33,0 0 0 4px rgba(230,201,140,.55)"></i></div>
+      <p class="note" style="color:#E8DDC4" data-fr="Marine, blanc, vert verre de mer et sable sont les bienvenus. Le lin est parfait." data-es="Azul marino, blanco, verde vidrio de mar y arena son bienvenidos. El lino es perfecto.">Navy, white, sea-glass green and sand are welcome. Linen is perfect.</p>
+      <p class="note" style="color:#E8DDC4" data-fr="La cérémonie a lieu sur la pelouse : talons larges ou chaussures plates. Apportez une petite veste, la brise du large est fraîche après le coucher du soleil." data-es="La ceremonia es sobre el pasto: mejor tacón ancho o zapato bajo. Trae algo para cubrirte, la brisa del mar refresca al atardecer.">The ceremony is on the lawn: block heels or flats. Bring a light wrap, the sea breeze turns cool after sunset.</p>
+    </div>
+  </section>
+
+  <section class="part" id="sejour">
+    <div class="in reveal">
+      <h2 class="foil" data-fr="Où dormir" data-es="Dónde hospedarte">Where to stay</h2>
+      <p class="sub" data-fr="Pour nos invités qui viennent de loin" data-es="Para quienes vienen de lejos">For our guests coming from away</p>
+      <div class="stay">
+        <div><b data-c="hotel"></b><span data-fr="Un bloc de chambres est réservé à cinq minutes à pied du Pavillon." data-es="Apartamos un bloque de habitaciones a cinco minutos caminando del Pabellón.">A block of rooms is held five minutes' walk from the Pavilion.</span><br><span class="code" data-c="hotelCode"></span></div>
+        <div><b data-fr="Navette du retour" data-es="Transporte de regreso">Ride home</b><span data-fr="Une navette partira du Pavillon vers les hôtels du centre-ville dès 23 h 30." data-es="Un transporte saldrá del Pabellón hacia los hoteles del centro a partir de las 11:30 pm.">A shuttle leaves the Pavilion for downtown hotels from 11:30 PM.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" style="padding-top:20px">
+    <div class="in reveal">
+      <h2 class="foil" data-fr="Cadeaux" data-es="Regalos">Gifts</h2>
+      <p data-fr="Votre présence est notre plus beau cadeau. Si vous souhaitez nous gâter, une boîte à souhaits vous attendra à la réception, ou vous pouvez contribuer à notre voyage de noces sur la côte du Portugal." data-es="Tu presencia es nuestro mejor regalo. Si deseas tener un detalle, habrá una caja de sobres en la recepción, o puedes aportar a nuestra luna de miel en la costa de Portugal.">Your presence is our greatest gift. If you wish to spoil us, a wishing well will be at the reception, or you can contribute to our honeymoon on the coast of Portugal.</p>
+    </div>
+  </section>
+
+  <section class="part" id="rsvp-part">
+    <div class="in reveal">
+      <h2 class="foil" data-fr="Réponse" data-es="Confirma">RSVP</h2>
+      <p class="sub" data-fr="Dites-nous si vous montez à bord" data-es="Cuéntanos si te subes a bordo">Let us know if you'll come aboard</p>
+      <div class="pass">
+        <p class="caps" data-fr="CETTE INVITATION EST VALABLE POUR" data-es="ESTA INVITACIÓN ES VÁLIDA PARA">THIS INVITATION IS VALID FOR</p>
+        <strong id="seats"></strong>
+        <p id="rsvpby"></p>
+        <div class="row"><a class="btn btn-brass" id="rsvp" target="_blank" rel="noopener" href="#" data-fr="Répondre sur WhatsApp" data-es="Confirmar por WhatsApp">Reply on WhatsApp</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <img class="knot" src="img/cuerda.webp" alt="" style="width:120px">
+    <p class="tag foil" data-c="hashtag"></p>
+    <p class="made" data-fr="FAIT AVEC ILUSIÓN · ILUSIÓN INVITES" data-es="HECHO CON ILUSIÓN · ILUSIÓN INVITES">MADE WITH ILUSIÓN · ILUSIÓN INVITES</p>
+    <button class="replay" id="replay" type="button" data-fr="REVOIR L'ENVELOPPE" data-es="VER EL SOBRE OTRA VEZ">SEE THE ENVELOPE AGAIN</button>
+  </footer>
+
+  <!-- sample only: the same theme carried to the printed pieces -->
+  <section class="box" id="theme-box">
+    <p class="kick" data-fr="LE THÈME COMPLET" data-es="TODO EL TEMA">THEME IN A BOX</p>
+    <h2 data-fr="Du faire-part jusqu'aux tables" data-es="De la invitación a las mesas">From the invitation to the tables</h2>
+    <p class="sub" data-fr="Le même style marin sur l'affiche de bienvenue, les numéros de table et les menus." data-es="El mismo estilo marino en el letrero de bienvenida, los números de mesa y los menús.">The same nautical look on the welcome sign, table numbers and menus.</p>
+    <div class="pieces">
+      <figure class="piece" style="margin:0">
+        <div class="sign" id="sign"><img src="img/letrero.webp" alt=""><div class="on" id="sign-on"><small data-fr="BIENVENUE AU MARIAGE DE" data-es="BIENVENIDOS A LA BODA DE">WELCOME TO THE WEDDING OF</small><b><span data-c="bride"></span><span>&amp;</span><span data-c="groom"></span></b><span data-c="dateShort"></span></div></div>
+        <figcaption data-fr="AFFICHE DE BIENVENUE" data-es="LETRERO DE BIENVENIDA">WELCOME SIGN</figcaption>
+      </figure>
+      <figure class="piece" style="margin:0">
+        <div class="tcard"><div class="paper"><img src="img/cuerda.webp" alt=""><small data-fr="TABLE" data-es="MESA">TABLE</small><b>7</b><em data-fr="Le Phare" data-es="El Faro">The Lighthouse</em></div></div>
+        <figcaption data-fr="NUMÉRO DE TABLE" data-es="NÚMERO DE MESA">TABLE NUMBER</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  // ---------- everything that changes per couple ----------
+  var CONFIG = {
+    bride: 'Claire', groom: 'Mathieu',
+    parentsBride: 'Isabelle & Marc Thibodeau', parentsGroom: 'Nathalie & Pierre Leblanc',
+    date: [2027, 7, 21, 16, 0],               // year, month (0 = January), day, hour, minute: Saturday, August 21, 2027, 4:00 PM
+    reception: [17, 30],
+    venue: 'Harbourfront Pavilion',            // fictional venue
+    city: { en: 'Halifax, Nova Scotia', fr: 'Halifax, Nouvelle-Écosse', es: 'Halifax, Nueva Escocia' },
+    mapQuery: 'Halifax Waterfront, Halifax, Nova Scotia',
+    hotel: 'The Harbourview Hotel', hotelCode: 'CLAIREMATHIEU',
+    hashtag: '#ClaireEtMathieu',
+    rsvpBy: [2027, 6, 1],                      // July 1, 2027
+    whatsapp: '',                              // couple's number, digits only (empty = the guest picks the chat)
+    seats: 2,                                  // default seats; a guest link can change it
+    guests: {                                  // ?i=<code> → personal name and seats
+      'r7k2': { name: 'Famille Robichaud', seats: 4 },
+      'm3p9': { name: 'Sarah & James', seats: 2 }
+    },
+    music: ''                                  // licensed song file, empty = no music
+  };
+
+  var root = document.documentElement;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var q = new URLSearchParams(location.search);
+  var guest = null, code = q.get('i');
+  if (code && CONFIG.guests[code]) guest = CONFIG.guests[code];
+  else if (q.get('para')) guest = { name: q.get('para').slice(0, 60) };
+  var seats = (guest && guest.seats) || CONFIG.seats;
+
+  // ---------- dates in three languages ----------
+  var D = CONFIG.date, when = new Date(D[0], D[1], D[2], D[3], D[4]);
+  var LOC = { en: 'en-CA', fr: 'fr-CA', es: 'es-MX' };
+  function longDate(l, d) { var s = d.toLocaleDateString(LOC[l], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); return l === 'en' ? s : s.charAt(0).toUpperCase() + s.slice(1); }
+  function hhmm(l, h, m) {
+    if (l === 'fr') return h + ' h' + (m ? ' ' + ('0' + m).slice(-2) : '');
+    var ap = h >= 12 ? 'PM' : 'AM', hh = h % 12 || 12, mm = ':' + ('0' + m).slice(-2);
+    return l === 'en' ? hh + mm + ' ' + ap : hh + mm + ' ' + (h >= 12 ? 'p. m.' : 'a. m.');
+  }
+  function fill(l) {
+    var cfg = {
+      bride: CONFIG.bride, groom: CONFIG.groom, parentsBride: CONFIG.parentsBride, parentsGroom: CONFIG.parentsGroom,
+      venue: CONFIG.venue, hotel: CONFIG.hotel, hashtag: CONFIG.hashtag,
+      hotelCode: { en: 'Code ', fr: 'Code ', es: 'Código ' }[l] + CONFIG.hotelCode,
+      city: CONFIG.city[l], cityCaps: CONFIG.city[l].toUpperCase(),
+      dateLong: when.toLocaleDateString(LOC[l], { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).toUpperCase(),
+      dateLong2: longDate(l, when) + ' · ' + hhmm(l, D[3], D[4]),
+      dateShort: when.toLocaleDateString(LOC[l], { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase(),
+      timeCeremony: hhmm(l, D[3], D[4]), timeReception: hhmm(l, CONFIG.reception[0], CONFIG.reception[1])
+    };
+    document.querySelectorAll('[data-c]').forEach(function (el) { el.textContent = cfg[el.getAttribute('data-c')]; });
+    document.querySelectorAll('time[data-t]').forEach(function (t) { var p = t.getAttribute('data-t').split(':'); t.textContent = hhmm(l, +p[0], +p[1]); });
+    var n = seats, S = { en: [' guest', ' guests'], fr: [' personne', ' personnes'], es: [' persona', ' personas'] }[l];
+    document.getElementById('seats').textContent = n + S[n === 1 ? 0 : 1];
+    var by = new Date(CONFIG.rsvpBy[0], CONFIG.rsvpBy[1], CONFIG.rsvpBy[2]).toLocaleDateString(LOC[l], { day: 'numeric', month: 'long', year: 'numeric' });
+    if (l === 'fr') by = by.replace(/^1 /, '1er ');
+    document.getElementById('rsvpby').textContent = { en: 'Kindly reply before ' + by + '.', fr: 'Merci de répondre avant le ' + by + '.', es: 'Por favor confirma antes del ' + by + '.' }[l];
+    var who = guest ? guest.name : '';
+    var names = CONFIG.bride + (l === 'fr' ? ' et ' : l === 'es' ? ' y ' : ' & ') + CONFIG.groom;
+    var msg = { en: 'Hello! ' + (who ? who + ' here. ' : '') + 'I\'m happy to confirm for ' + names + '\'s wedding (' + seats + ').',
+                fr: 'Bonjour! ' + (who ? 'Ici ' + who + '. ' : '') + 'Je confirme avec joie ma présence au mariage de ' + names + ' (' + seats + ').',
+                es: '¡Hola! ' + (who ? 'Soy ' + who + '. ' : '') + 'Confirmo con gusto mi asistencia a la boda de ' + names + ' (' + seats + ').' }[l];
+    document.getElementById('rsvp').href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg);
+    if (guest) {
+      var dear = document.getElementById('dear'); dear.hidden = false;
+      // gender-neutral greeting in each language
+      dear.textContent = { en: 'Dear ' + guest.name + ',', fr: guest.name + ', nous vous attendons', es: guest.name + (guest.seats > 1 ? ', los esperamos' : ', te esperamos') }[l];
+    }
+  }
+
+  // maps and calendar
+  var map = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(CONFIG.mapQuery);
+  document.querySelectorAll('.map').forEach(function (a) { a.href = map; });
+  function stamp(d) { var p = function (n) { return ('0' + n).slice(-2); }; return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + 'T' + p(d.getHours()) + p(d.getMinutes()) + '00'; }
+  document.getElementById('cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(CONFIG.bride + ' & ' + CONFIG.groom) +
+    '&dates=' + stamp(when) + '/' + stamp(new Date(when.getTime() + 8 * 3600e3)) + '&ctz=America/Halifax&location=' + encodeURIComponent(CONFIG.venue + ', ' + CONFIG.mapQuery);
+
+  // ---------- English / French / Spanish ----------
+  var nodes = [].slice.call(document.querySelectorAll('[data-fr], [data-es]'));
+  nodes.forEach(function (el) { el.setAttribute('data-en', el.innerHTML); });
+  var labels = [].slice.call(document.querySelectorAll('[data-fr-label]'));
+  labels.forEach(function (el) { el.setAttribute('data-en-label', el.getAttribute('aria-label')); });
+  var btns = [].slice.call(document.querySelectorAll('.lang button'));
+  function setLang(l) {
+    nodes.forEach(function (el) { var v = el.getAttribute('data-' + l); if (v != null) el.innerHTML = v; });
+    labels.forEach(function (el) { var v = el.getAttribute('data-' + l + '-label'); if (v) el.setAttribute('aria-label', v); });
+    btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-l') === l)); });
+    if (guest) document.getElementById('who').textContent = guest.name;
+    root.lang = l;
+    fill(l);
+    try { localStorage.setItem('ilu-maritima-lang', l); } catch (e) {}
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-l')); }); });
+  var start = q.get('lang');
+  if (!/^(en|fr|es)$/.test(start || '')) { try { start = localStorage.getItem('ilu-maritima-lang'); } catch (e) {} }
+  if (!/^(en|fr|es)$/.test(start || '')) { var nl = (navigator.language || 'en').slice(0, 2); start = nl === 'fr' || nl === 'es' ? nl : 'en'; }
+  setLang(start);
+
+  // ---------- stars in the dusk sky ----------
+  var st = document.getElementById('stars');
+  for (var i = 0; i < 18; i++) { var s = document.createElement('i'); s.style.left = (4 + Math.random() * 92) + '%'; s.style.top = (2 + Math.random() * 24) + '%'; s.style.animationDelay = (-Math.random() * 6) + 's'; s.style.opacity = .3; st.appendChild(s); }
+
+  // ---------- music + pause (one button pauses all motion) ----------
+  var audio = CONFIG.music ? new Audio(CONFIG.music) : null;
+  if (audio) { audio.loop = true; audio.volume = .6; }
+  var motion = document.getElementById('motion');
+  motion.addEventListener('click', function () {
+    var p = motion.getAttribute('aria-pressed') !== 'true';
+    motion.setAttribute('aria-pressed', String(p)); root.classList.toggle('paused', p);
+    if (audio) { if (p) audio.pause(); else audio.play().catch(function () {}); }
+  });
+
+  // ---------- open the envelope ----------
+  var intro = document.getElementById('intro'), seal = document.getElementById('seal');
+  function open() {
+    if (intro.classList.contains('opening')) return;
+    intro.classList.add('opening');
+    if (audio && motion.getAttribute('aria-pressed') !== 'true') audio.play().catch(function () {});
+    var t = reduce ? 50 : 3300;
+    setTimeout(function () {
+      intro.classList.add('gone'); root.classList.remove('locked'); root.classList.add('shown'); scrollTo(0, 0);
+      setTimeout(function () { intro.hidden = true; }, reduce ? 10 : 1400);
+    }, t);
+  }
+  seal.addEventListener('click', open);
+  document.getElementById('replay').addEventListener('click', function () {
+    scrollTo(0, 0); root.classList.add('locked'); root.classList.remove('shown');
+    intro.hidden = false; intro.classList.remove('gone'); intro.classList.remove('opening');
+  });
+
+  // ---------- details fade up as you scroll ----------
+  var rev = [].slice.call(document.querySelectorAll('.reveal'));
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } }); }, { threshold: .12 });
+    rev.forEach(function (r) { io.observe(r); });
+  } else rev.forEach(function (r) { r.classList.add('in-view'); });
+
+  // ---------- countdown ----------
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function count() {
+    var s = Math.max(0, Math.floor((when - Date.now()) / 1000));
+    document.getElementById('cd-d').textContent = Math.floor(s / 86400);
+    document.getElementById('cd-h').textContent = pad(Math.floor(s % 86400 / 3600));
+    document.getElementById('cd-m').textContent = pad(Math.floor(s % 3600 / 60));
+    document.getElementById('cd-s').textContent = pad(s % 60);
+  }
+  count(); setInterval(count, 1000);
+
+  // the language pills and pause button step aside while reading, and come back when scrolling up or at the top
+  var lastY = 0;
+  addEventListener('scroll', function () {
+    var y = scrollY, hero = innerHeight * .6;
+    if (y < hero || y < lastY - 6) root.classList.remove('aside'); else if (y > lastY + 6) root.classList.add('aside');
+    lastY = y;
+  }, { passive: true });
+
+  // test hook for screenshots
+  window.__open = open;
+})();
+</script>
+</body>
+</html>
+
+<div id="ilu-nav" hidden>
+<style>
+#ilu-back,#ilu-cta{position:fixed;z-index:2147483000;display:inline-flex;align-items:center;gap:8px;min-height:40px;border-radius:999px;text-decoration:none;font:500 13px/1 Jost,"Avenir Next",system-ui,sans-serif;letter-spacing:.03em;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:opacity .5s ease,transform .5s ease;-webkit-font-smoothing:antialiased}
+#ilu-back{top:calc(12px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));padding:0 15px 0 11px;background:rgba(255,252,246,.88);color:#3A2A26;box-shadow:0 8px 20px -10px rgba(40,25,20,.5),inset 0 0 0 1px rgba(182,138,78,.45)}
+#ilu-back svg{width:16px;height:16px}
+#ilu-cta{left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);padding:0 22px;min-height:46px;font-weight:600;font-size:14px;color:#3A2210;background:linear-gradient(180deg,#F7E4B4 0%,#EBC988 34%,#D6A963 70%,#C4914D 100%);box-shadow:inset 0 0 0 1px rgba(170,120,55,.3),0 12px 26px -12px rgba(110,70,30,.65),0 0 22px rgba(236,204,140,.5);white-space:nowrap}
+#ilu-cta.off{opacity:0;transform:translate(-50%,24px);pointer-events:none}
+@media (prefers-reduced-motion: reduce){#ilu-back,#ilu-cta{transition:none}}
+</style>
+<a id="ilu-back" href="/nuevo/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Volver</span></a>
+<a id="ilu-cta" class="off" href="/nuevo/crear/">Quiero una así ✨</a>
+</div>
+<script>
+(function(){
+  if (window.top !== window) return; /* inside the preview on the collection page: it has its own buttons */
+  var q = new URLSearchParams(location.search), c = q.get('c') || 'bodas', d = q.get('d') || 'boda-maritima';
+  var lg = 'es'; try { lg = (q.get('lang') || localStorage.getItem('ilu-lang') || 'es').slice(0, 2); } catch (e) {} var en = lg === 'en', fr = lg === 'fr';
+  var nav = document.getElementById('ilu-nav'), back = document.getElementById('ilu-back'), cta = document.getElementById('ilu-cta');
+  back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/?evento=' + c + '&diseno=' + encodeURIComponent('Boda Marítima') + '#imagina';
+  back.querySelector('span').textContent = fr ? 'Retour' : en ? 'Back' : 'Volver'; cta.textContent = fr ? 'J’en veux une comme ça ✨' : en ? 'I want one like this ✨' : 'Quiero una así ✨';
+  if ('0' === '1') { back.href = '/empresas/#demos'; cta.href = '/empresas/#propuesta'; }
+  back.addEventListener('click', function (e) { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {} });
+  nav.hidden = false;
+  var last = scrollY, shown = false;
+  if ('1' === '1') shown = true; /* these demos have their own "scroll" hint at the bottom: the button waits for the guest to scroll */
+  else setTimeout(function () { shown = true; cta.classList.remove('off'); }, 3500);
+  addEventListener('scroll', function () { if (!shown) return; var y = scrollY; if (y > last + 8) cta.classList.add('off'); else if (y < last - 8 || innerHeight + y >= document.documentElement.scrollHeight - 40) cta.classList.remove('off'); last = y; }, { passive: true });
+})();
+</script>
+
+<style>
+.ilu-rem{display:inline-flex;align-items:center;gap:9px;margin:4px auto 14px;padding:10px 16px 10px 12px;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 32%,transparent);background:color-mix(in srgb,currentColor 6%,transparent);color:inherit;font:inherit;font-size:.92em;line-height:1.25;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent;transition:background .25s,border-color .25s}
+.ilu-rem i{flex:none;position:relative;width:34px;height:20px;border-radius:999px;background:color-mix(in srgb,currentColor 22%,transparent);transition:background .25s}
+.ilu-rem i::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .25s}
+.ilu-rem[aria-pressed=true]{border-color:color-mix(in srgb,currentColor 55%,transparent);background:color-mix(in srgb,currentColor 12%,transparent)}
+.ilu-rem[aria-pressed=true] i{background:#3FA266}
+.ilu-rem[aria-pressed=true] i::after{transform:translateX(14px)}
+.ilu-rem-w{display:flex;justify-content:center}
+</style>
+<script>
+(function () {
+  var a = document.getElementById('rsvp'); if (!a) return;
+  var T = { es: ['Quiero recordatorios por WhatsApp', 'Y quiero recibir recordatorios por WhatsApp 🔔'], en: ['Send me WhatsApp reminders', 'And I would like WhatsApp reminders 🔔'], fr: ['Je veux des rappels par WhatsApp', 'Et j’aimerais recevoir des rappels par WhatsApp 🔔'] };
+  var w = document.createElement('div'); w.className = 'ilu-rem-w';
+  var b = document.createElement('button'); b.type = 'button'; b.className = 'ilu-rem'; b.setAttribute('aria-pressed', 'false');
+  b.innerHTML = '<i aria-hidden="true"></i><span></span>'; w.appendChild(b);
+  var row = a.closest('.row') || a; row.parentNode.insertBefore(w, row);
+  var L = function () { var l = document.documentElement.lang; return l === 'en' || l === 'fr' ? l : 'es'; };
+  var paint = function () { b.querySelector('span').textContent = T[L()][0]; };
+  b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+  new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); paint();
+  // the guest's own message carries the yes, so the reminder list only has people who asked for it
+  a.addEventListener('click', function () {
+    try { var u = new URL(a.href), t = (u.searchParams.get('text') || '').split('\n').filter(function (x) { return x.indexOf('🔔') < 0; }).join('\n');
+      u.searchParams.set('text', b.getAttribute('aria-pressed') === 'true' ? t + '\n' + T[L()][1] : t); a.href = u.toString(); } catch (e) {}
+  }, true);
+})();
+</script>
+
+</body>
+</html>

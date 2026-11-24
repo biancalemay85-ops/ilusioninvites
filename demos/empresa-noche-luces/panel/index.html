@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Panel de ejemplo para el organizador: asistencia, encuesta y contactos. Sample organizer dashboard.">
+<meta property="og:title" content="Results report · Corporate Night ✨">
+<meta property="og:description" content="Sample organizer report: attendance, check-in, survey, photo shares and leads. By Ilusión Invites.">
+<meta property="og:image" content="https://ilusioninvites.com/demos/empresa-noche-luces/panel/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Results report · Corporate Night ✨">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://ilusioninvites.com/demos/empresa-noche-luces/panel/">
+<link rel="canonical" href="https://ilusioninvites.com/demos/empresa-noche-luces/panel/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B1626">
+<link rel="icon" href="/nuevo/img/ilusion-logo.jpg">
+<link rel="apple-touch-icon" href="/nuevo/img/ilusion-logo.jpg">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Results report · Corporate Night</title>
+<meta name="description" content="Sample organizer report: RSVPs, check-in, survey, photo-frame shares and follow-up leads from one corporate event.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --page: #F3EEE4; --surface: #FCFAF6; --ink: #14223A; --ink2: #4A5568; --muted: #7D7869;
+  --grid: #E6E1D6; --axis: #CFC8BA; --ring: rgba(20,34,58,.10);
+  --s1: #2B5FA8; --s2: #B07420; --s3: #1F8A70; --other: #C9C4B8;
+  --neg: #C0443E; --mid: #D6D1C6; --good: #0C7A0C;
+  --night: #0B1626; --gold: #D9B26E; --gold2: #F3D9A0;
+  --foil: linear-gradient(100deg, #A87B3E 0%, #F3D9A0 22%, #C99A55 45%, #FFF0C8 62%, #B88848 82%, #E8C483 100%);
+  --sans: Jost, "Avenir Next", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 400 15px/1.55 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* header */
+header { position: relative; overflow: hidden; color: #F7F0E4; background: radial-gradient(ellipse at 80% -20%, #26446E 0%, #142640 45%, var(--night) 100%); padding: 18px 16px 30px; }
+header::after { content: ""; position: absolute; inset: 0; pointer-events: none; background:
+  radial-gradient(circle at 12% 30%, rgba(255,214,150,.22) 0 2px, transparent 3px), radial-gradient(circle at 22% 70%, rgba(255,214,150,.16) 0 2px, transparent 3px),
+  radial-gradient(circle at 64% 22%, rgba(255,214,150,.2) 0 2px, transparent 3px), radial-gradient(circle at 88% 64%, rgba(255,214,150,.18) 0 2px, transparent 3px),
+  radial-gradient(circle at 46% 86%, rgba(255,214,150,.14) 0 2px, transparent 3px); }
+.wrap { max-width: 1160px; margin: 0 auto; position: relative; z-index: 1; }
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.sample { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(243,217,160,.14); box-shadow: inset 0 0 0 1px rgba(243,217,160,.45); font: 500 11px/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--gold2); }
+.sample svg { width: 14px; height: 14px; }
+.lang { display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(217,178,110,.35); }
+.lang button { border: 0; background: none; min-width: 38px; height: 32px; border-radius: 999px; font: 500 12px/1 var(--sans); letter-spacing: .08em; color: rgba(247,240,228,.78); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--foil); color: #2A1C0C; }
+.wm { margin-top: 26px; font: 600 13px/1 Cinzel, serif; letter-spacing: .36em; color: #F7F0E4; }
+.wm small { color: var(--gold2); font-size: 10px; letter-spacing: .5em; margin-left: .4em; }
+h1 { margin: 12px 0 6px; font: 500 clamp(32px, 7vw, 52px)/1.05 "Cormorant Garamond", serif; }
+h1 em { font-style: italic; background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.meta { color: rgba(247,240,228,.78); font-size: 14px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid rgba(217,178,110,.6); background: rgba(217,178,110,.08); color: #F7F0E4; font: 500 14px/1 var(--sans); cursor: pointer; text-decoration: none; }
+.btn.gold { border: 0; background: var(--foil); color: #2A1C0C; }
+.btn svg { width: 17px; height: 17px; }
+/* section nav */
+nav.jump { position: sticky; top: 0; z-index: 20; background: rgba(243,238,228,.92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--grid); }
+nav.jump .wrap { display: flex; gap: 4px; overflow-x: auto; padding: 8px 16px; scrollbar-width: none; }
+nav.jump a { flex: none; padding: 8px 14px; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: 14px; color: var(--ink2); }
+nav.jump a:hover { background: rgba(20,34,58,.06); }
+main { padding: 8px 16px 40px; }
+section.blk { max-width: 1160px; margin: 0 auto; padding-top: 34px; }
+.sh { display: flex; align-items: baseline; gap: 12px; margin: 0 0 14px; }
+.sh h2 { margin: 0; font: 600 30px/1.1 "Cormorant Garamond", serif; }
+.sh span { font-size: 13px; color: var(--muted); }
+.grid { display: grid; gap: 14px; }
+.card { background: var(--surface); border-radius: 14px; padding: 18px; box-shadow: 0 0 0 1px var(--ring), 0 12px 24px -20px rgba(20,34,58,.35); min-width: 0; }
+.card h3 { margin: 0; font: 600 15px/1.3 var(--sans); }
+.card .sub { margin: 2px 0 12px; font-size: 13px; color: var(--muted); }
+.chead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.tv { flex: none; border: 1px solid var(--grid); background: none; border-radius: 999px; padding: 4px 10px; font-size: 12px; color: var(--ink2); cursor: pointer; }
+.tv[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+/* figures */
+.hero { display: grid; gap: 14px; }
+.herofig { display: flex; flex-direction: column; justify-content: center; }
+.herofig .lab { font-size: 14px; color: var(--ink2); }
+.herofig .big { font: 600 clamp(56px, 13vw, 84px)/1 var(--sans); letter-spacing: -.02em; }
+.herofig .of { font-size: 15px; color: var(--ink2); margin-top: 6px; }
+.meter { position: relative; height: 8px; border-radius: 99px; background: #D5E1F2; margin-top: 14px; overflow: hidden; }
+.meter i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 99px; background: var(--s1); }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tile .lab { font-size: 13px; color: var(--ink2); }
+.tile .val { margin-top: 4px; font: 600 30px/1.1 var(--sans); letter-spacing: -.01em; }
+.tile .val small { font-size: 15px; font-weight: 500; color: var(--ink2); margin-left: 2px; }
+.tile .note { margin-top: 4px; font-size: 12.5px; color: var(--muted); }
+.up { color: var(--good); font-weight: 500; }
+/* charts */
+.chart { position: relative; width: 100%; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { font-family: var(--sans); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 13px; color: var(--ink2); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+.mk { cursor: default; outline: none; }
+.mk:hover, .mk:focus-visible { filter: brightness(1.12) saturate(1.05); }
+.mk:focus-visible { stroke: var(--ink); stroke-width: 2px; }
+#tip { position: fixed; z-index: 50; pointer-events: none; min-width: 120px; max-width: 240px; padding: 9px 11px; border-radius: 10px; background: #fff; color: var(--ink); box-shadow: 0 0 0 1px var(--ring), 0 14px 30px -12px rgba(20,34,58,.45); font-size: 13px; opacity: 0; transition: opacity .12s; }
+#tip.on { opacity: 1; }
+#tip .tt { color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+#tip .row { display: flex; align-items: center; gap: 8px; }
+#tip .row b { font-size: 16px; font-weight: 600; }
+#tip .row i { width: 14px; height: 2px; border-radius: 2px; flex: none; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+.tbl th, .tbl td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--grid); }
+.tbl th { font-weight: 500; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+.tbl td.n, .tbl th.n { text-align: right; }
+.tview[hidden] { display: none; }
+/* comments */
+.quotes { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.quotes li { padding: 12px 14px; border-radius: 10px; background: #F6F1E7; font: italic 500 18px/1.35 "Cormorant Garamond", serif; color: var(--ink); }
+.quotes li small { display: block; margin-top: 4px; font: 400 12px/1.3 var(--sans); color: var(--muted); font-style: normal; }
+/* sponsor callout */
+.callout { display: grid; gap: 4px; padding: 16px; border-radius: 12px; background: linear-gradient(135deg, rgba(243,217,160,.4), rgba(243,217,160,.14)); box-shadow: inset 0 0 0 1px rgba(176,116,32,.35); }
+.callout b { font-size: 15px; }
+.callout span { font-size: 13.5px; color: var(--ink2); }
+/* leads */
+.leadbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.leadbar .btn { color: var(--ink); border-color: rgba(176,116,32,.5); background: rgba(243,217,160,.2); }
+.scroller { overflow-x: auto; max-height: 520px; overflow-y: auto; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--grid); }
+.scroller .tbl { min-width: 720px; }
+.scroller thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+.ck { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: rgba(12,122,12,.12); color: var(--good); text-align: center; line-height: 18px; font-size: 12px; font-weight: 600; }
+footer { max-width: 1160px; margin: 30px auto 0; padding: 22px 16px 50px; border-top: 1px solid var(--grid); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 13px; }
+footer b { font: 600 11px/1 Cinzel, serif; letter-spacing: .26em; color: var(--ink2); }
+@media (min-width: 760px) {
+  header { padding: 22px 28px 36px; }
+  main { padding: 8px 28px 40px; }
+  .hero { grid-template-columns: 1.1fr 2fr; }
+  .tiles { grid-template-columns: repeat(4, 1fr); }
+  .hero .tiles { grid-template-columns: 1fr 1fr; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: 2fr 1fr; }
+  .span2 { grid-column: span 2; }
+}
+@media print {
+  @page { margin: 14mm; }
+  body { background: #fff; font-size: 12px; }
+  header { color: var(--ink); background: none; padding: 0 0 12px; border-bottom: 2px solid var(--ink); }
+  header::after, .lang, .actions, nav.jump, .tv, .leadbar .btn, #tip { display: none !important; }
+  .wm, .wm small, .meta { color: var(--ink); }
+  h1 em { color: #8F6430; background: none; }
+  .sample { color: #8F6430; box-shadow: inset 0 0 0 1px #8F6430; background: none; }
+  .card { box-shadow: 0 0 0 1px #ddd; break-inside: avoid; }
+  section.blk { break-inside: auto; padding-top: 18px; }
+  .scroller { max-height: none; overflow: visible; box-shadow: none; }
+  .scroller .tbl { min-width: 0; font-size: 10.5px; }
+  .hero { grid-template-columns: 1.1fr 2fr; } .tiles { grid-template-columns: repeat(4, 1fr); } .hero .tiles { grid-template-columns: 1fr 1fr; }
+  .g2 { grid-template-columns: 1fr 1fr; } .g3 { grid-template-columns: 2fr 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <span class="sample"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><span data-k="sample">Sample report · fictional data</span></span>
+      <div class="lang" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">EN</button><button type="button" data-l="fr" aria-pressed="false">FR</button><button type="button" data-l="es" aria-pressed="false">ES</button></div>
+    </div>
+    <div class="wm"><span data-c="WM1">HARBOURLINE</span><small data-c="WM2">GROUP</small></div>
+    <h1><span data-k="h1a">Results report</span> · <em data-k="event">Corporate Night</em></h1>
+    <div class="meta" id="meta">Garden of Lights · Thursday, December 10, 2026 · Prepared by Ilusión Invites</div>
+    <div class="actions">
+      <button class="btn gold" type="button" id="pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg><span data-k="pdf">Download PDF report</span></button>
+      <button class="btn csv" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v14H4zM4 10h16M4 15h16M10 5v14"/></svg><span data-k="csv">Export leads (CSV)</span></button>
+    </div>
+  </div>
+</header>
+<nav class="jump" aria-label="Sections"><div class="wrap">
+  <a href="#resumen" data-k="nOver">Overview</a><a href="#antes" data-k="nBefore">Before</a><a href="#dia" data-k="nDay">On the night</a><a href="#despues" data-k="nAfter">After</a><a href="#leads" data-k="nLeads">Leads</a>
+</div></nav>
+
+<main>
+  <section class="blk" id="resumen" aria-labelledby="h-over">
+    <div class="sh"><h2 id="h-over" data-k="nOver">Overview</h2></div>
+    <div class="hero">
+      <div class="card herofig">
+        <div class="lab" data-k="attended">Guests who came</div>
+        <div class="big" id="fAtt">187</div>
+        <div class="of" id="fAttOf">of 204 confirmed · 92% show-up rate</div>
+        <div class="meter" role="img" id="mAtt"><i style="width:92%"></i></div>
+      </div>
+      <div class="tiles">
+        <div class="card tile"><div class="lab" data-k="tOpened">Opened the invitation</div><div class="val" id="vOpened">96%</div><div class="note" id="nOpened">231 of 240 invited</div></div>
+        <div class="card tile"><div class="lab" data-k="tAccepted">Said yes</div><div class="val" id="vAcc">178</div><div class="note" id="nAcc">+26 plus-ones = 204 guests</div></div>
+        <div class="card tile"><div class="lab" data-k="tSurvey">Guest rating</div><div class="val" id="vRate">4.8<small>/5</small></div><div class="note" id="nRate">142 survey replies</div></div>
+        <div class="card tile"><div class="lab" data-k="tLeads">Asked for a meeting</div><div class="val" id="vLeads">38</div><div class="note" data-k="tLeadsN">Warm leads for your sales team</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="antes" aria-labelledby="h-before">
+    <div class="sh"><h2 id="h-before" data-k="nBefore">Before</h2><span data-k="beforeSub">Invitations sent November 12</span></div>
+    <div class="grid g3">
+      <div class="card span-auto">
+        <div class="chead"><div><h3 data-k="cLine">Yes replies, day by day</h3><p class="sub" data-k="cLineSub">Total invitations accepted, counting up to the event</p></div><button class="tv" type="button" data-t="line" aria-pressed="false" data-k="table">Table</button></div>
+        <div class="chart" id="chLine"></div>
+        <div class="tview" id="tv-line" hidden></div>
+      </div>
+      <div class="card">
+        <div class="chead"><div><h3 data-k="cSeg">Replies</h3><p class="sub" data-k="cSegSub">240 invitations</p></div><button class="tv" type="button" data-t="seg" aria-pressed="false" data-k="table">Table</button></div>
+        <div class="chart" id="chSeg"></div>
+        <div class="tview" id="tv-seg" hidden></div>
+        <div class="chead" style="margin-top:22px"><div><h3 data-k="cFun">From invitation to yes</h3></div><button class="tv" type="button" data-t="fun" aria-pressed="false" data-k="table">Table</button></div>
+        <div class="chart" id="chFun" style="margin-top:8px"></div>
+        <div class="tview" id="tv-fun" hidden></div>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card">
+        <div class="chead"><div><h3 data-k="cDiet">Dietary needs</h3><p class="sub" data-k="cDietSub">Guests, sent to the caterer automatically</p></div><button class="tv" type="button" data-t="diet" aria-pressed="false" data-k="table">Table</button></div>
+        <div class="chart" id="chDiet"></div>
+        <div class="tview" id="tv-diet" hidden></div>
+      </div>
+      <div class="tiles" style="grid-template-columns:1fr 1fr">
+        <div class="card tile"><div class="lab" data-k="tWalk">Signed up for the guided walk</div><div class="val">96</div><div class="note" data-k="tWalkN">47% of guests</div></div>
+        <div class="card tile"><div class="lab" data-k="tPlus">Plus-ones</div><div class="val">26</div><div class="note" data-k="tPlusN">Names known before the night</div></div>
+        <div class="card tile"><div class="lab" data-k="tRem">Reminder</div><div class="val">+33</div><div class="note" data-k="tRemN">yes replies in the 2 days after the reminder</div></div>
+        <div class="card tile"><div class="lab" data-k="tCal">Added it to their calendar</div><div class="val">151</div><div class="note" data-k="tCalN">Their own phone reminded them</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="dia" aria-labelledby="h-day">
+    <div class="sh"><h2 id="h-day" data-k="nDay">On the night</h2><span data-k="daySub">QR entry passes scanned at the door</span></div>
+    <div class="grid g3">
+      <div class="card">
+        <div class="chead"><div><h3 data-k="cArr">Arrivals every 15 minutes</h3><p class="sub" data-k="cArrSub">Guests checked in, by time of arrival</p></div><button class="tv" type="button" data-t="arr" aria-pressed="false" data-k="table">Table</button></div>
+        <div class="chart" id="chArr"></div>
+        <div class="tview" id="tv-arr" hidden></div>
+      </div>
+      <div class="tiles" style="grid-template-columns:1fr">
+        <div class="card tile"><div class="lab" data-k="tIn">Checked in</div><div class="val">187<small id="of204">/ 204</small></div><div class="meter" role="img" id="mIn"><i style="width:91.7%"></i></div></div>
+        <div class="card tile"><div class="lab" data-k="tSpeed">Average time at the door</div><div class="val">4<small data-k="sec">s</small></div><div class="note" data-k="tSpeedN">No paper list, no line</div></div>
+        <div class="card tile"><div class="lab" data-k="tWalked">Joined the 8:00 guided walk</div><div class="val">81</div><div class="note" data-k="tWalkedN">of 96 who signed up</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="despues" aria-labelledby="h-after">
+    <div class="sh"><h2 id="h-after" data-k="nAfter">After</h2><span data-k="afterSub">Thank-you message and survey sent the next morning</span></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="chead"><div><h3 data-k="cStars">How guests rated the evening</h3><p class="sub" data-k="cStarsSub">142 replies · average 4.8 out of 5</p></div><button class="tv" type="button" data-t="stars" aria-pressed="false" data-k="table">Table</button></div>
+        <div class="chart" id="chStars"></div>
+        <div class="tview" id="tv-stars" hidden></div>
+      </div>
+      <div class="card">
+        <div class="chead"><div><h3 data-k="cNps">Would they recommend us?</h3><p class="sub" data-k="cNpsSub">Net Promoter Score</p></div><button class="tv" type="button" data-t="nps" aria-pressed="false" data-k="table">Table</button></div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin:-2px 0 10px"><span style="font:600 44px/1 var(--sans)">+75</span><span class="sub" style="margin:0" data-k="npsNote">Excellent (above +50)</span></div>
+        <div class="chart" id="chNps"></div>
+        <div class="tview" id="tv-nps" hidden></div>
+      </div>
+      <div class="card">
+        <h3 data-k="cQuotes">What guests said</h3><p class="sub" data-k="cQuotesSub">From the survey</p>
+        <ul class="quotes" id="quotes"></ul>
+      </div>
+      <div class="card">
+        <div class="chead"><div><h3 data-k="cShares">Photo-frame shares</h3><p class="sub" data-k="cSharesSub">Photos taken with the event frame and shared, by app</p></div><button class="tv" type="button" data-t="shares" aria-pressed="false" data-k="table">Table</button></div>
+        <div class="chart" id="chShares"></div>
+        <div class="tview" id="tv-shares" hidden></div>
+        <div class="callout" style="margin-top:14px"><b id="reach">About 86,000 views</b><span data-k="reachN">Your logo travelled in 1,240 shared photos. This is the number to show your sponsors.</span></div>
+        <div class="tiles" style="grid-template-columns:1fr 1fr;margin-top:14px">
+          <div class="tile"><div class="lab" data-k="tAlbum">Photos in the shared album</div><div class="val">1,486</div><div class="note" data-k="tAlbumN">from 164 guests</div></div>
+          <div class="tile"><div class="lab" data-k="tBack">Want to come next year</div><div class="val">96%</div><div class="note" data-k="tBackN">of survey replies</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="leads" aria-labelledby="h-leads">
+    <div class="sh"><h2 id="h-leads" data-k="nLeads">Leads</h2><span data-k="leadsSub">Guests who ticked “I'd like a follow-up meeting”</span></div>
+    <div class="card">
+      <div class="leadbar"><div><h3 id="leadCount">38 follow-up requests</h3><p class="sub" style="margin:2px 0 0" data-k="leadsHint">Sorted by company. Hand this list to your sales team the next morning.</p></div>
+        <button class="btn csv" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg><span data-k="csv">Export leads (CSV)</span></button></div>
+      <div class="scroller" tabindex="0" role="region" aria-labelledby="leadCount"><table class="tbl" id="leadTbl"></table></div>
+    </div>
+  </section>
+</main>
+<footer><span><b id="credit">ILUSIÓN INVITES</b></span><span id="foot">Sample report · fictional company, people and numbers</span></footer>
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+/* ===== event + company (same keys as the invitation) ===== */
+var CFG = {
+  COMPANY: 'Harbourline Group', WM1: 'HARBOURLINE', WM2: 'GROUP',
+  VENUE: { en: 'Garden of Lights', fr: 'Jardin de lumières', es: 'Jardín de Luces' },
+  DATE: '2026-12-10', UTC_OFFSET: '-04:00', TZ: 'America/Halifax',
+  CREDIT: 'Ilusión Invites',
+  NOTE: { en: 'Sample report · fictional company, people and numbers', fr: 'Rapport exemple · entreprise, personnes et chiffres fictifs', es: 'Reporte de ejemplo · empresa, personas y cifras ficticias' }
+};
+/* ===== the numbers (fictional) ===== */
+var D = {
+  invited: 240, opened: 231, accepted: 178, declined: 39, pending: 23, plus: 26, confirmed: 204, checkedIn: 187,
+  daily: [38, 24, 12, 6, 5, 4, 3, 3, 2, 2, 1, 1, 19, 14, 6, 4, 3, 2, 8, 12, 3, 2, 1, 1, 0, 1, 0, 1], dailyStart: '2026-11-12', reminder: '2026-11-24', deadline: '2026-12-01',
+  diet: [['vegetarian', 18], ['gluten', 11], ['allergy', 9], ['vegan', 6], ['halal', 4]],
+  arrivals: [['18:15', 8], ['18:30', 46], ['18:45', 52], ['19:00', 38], ['19:15', 21], ['19:30', 12], ['19:45', 6], ['20:00', 4]],
+  stars: [[5, 118], [4, 20], [3, 3], [2, 1], [1, 0]],
+  nps: { pro: 112, pas: 24, det: 6 },
+  shares: [['Instagram', 612], ['WhatsApp', 298], ['Facebook', 187], ['LinkedIn', 143]]
+};
+
+var T = {
+  en: { sample: 'Sample report · fictional data', h1a: 'Results report', event: 'Corporate Night', prepared: 'Prepared by {CREDIT}', pdf: 'Download PDF report', csv: 'Export leads (CSV)',
+    nOver: 'Overview', nBefore: 'Before', nDay: 'On the night', nAfter: 'After', nLeads: 'Leads',
+    attended: 'Guests who came', attOf: 'of {c} confirmed · {p} show-up rate', tOpened: 'Opened the invitation', opOf: '{a} of {b} invited', tAccepted: 'Said yes', accN: '+{p} plus-ones = {c} guests',
+    tSurvey: 'Guest rating', rateN: '{n} survey replies', tLeads: 'Asked for a meeting', tLeadsN: 'Warm leads for your sales team',
+    beforeSub: 'Invitations sent November 12', cLine: 'Yes replies, day by day', cLineSub: 'Invitations accepted so far, counting up to the event', table: 'Table', chart: 'Chart',
+    cSeg: 'Replies', cSegSub: '{n} invitations', yes: 'Yes', no: 'No', pending: 'No reply yet', cFun: 'From invitation to yes', fInv: 'Invited', fOpen: 'Opened', fRep: 'Replied', fYes: 'Said yes',
+    reminder: 'Reminder', deadline: 'Reply-by date', day: 'Day', value: 'Value', count: 'Guests', share: 'Share',
+    cDiet: 'Dietary needs', cDietSub: 'Guests, sent to the caterer automatically', vegetarian: 'Vegetarian', gluten: 'Gluten-free', allergy: 'Allergies', vegan: 'Vegan', halal: 'Halal',
+    tWalk: 'Signed up for the guided walk', tWalkN: '47% of guests', tPlus: 'Plus-ones', tPlusN: 'Names known before the night', tRem: 'Reminder', tRemN: 'yes replies in the 2 days after the reminder', tCal: 'Added it to their calendar', tCalN: 'Their own phone reminded them',
+    daySub: 'QR entry passes scanned at the door', cArr: 'Arrivals every 15 minutes', cArrSub: 'Guests checked in, by time of arrival', time: 'Time', peak: 'Peak',
+    tIn: 'Checked in', tSpeed: 'Average time at the door', sec: 's', tSpeedN: 'No paper list, no line', tWalked: 'Joined the guided walk', tWalkedN: 'of 96 who signed up',
+    afterSub: 'Thank-you message and survey sent the next morning', cStars: 'How guests rated the evening', cStarsSub: '{n} replies · average {a} out of 5', stars: '{n} stars', star1: '1 star',
+    cNps: 'Would they recommend you?', cNpsSub: 'Net Promoter Score', npsNote: 'Excellent (above +50)', pro: 'Promoters (9–10)', pas: 'Passives (7–8)', det: 'Detractors (0–6)',
+    cQuotes: 'What guests said', cQuotesSub: 'From the survey',
+    q: [['The light tunnel at night was magical, and the hot cider was perfect. Best client event we went to this year.', 'Director, Bluewater Capital'], ['Checking in with my phone took two seconds. Very well organized.', 'VP Operations, Northshore Freight'], ['Loved that the photos arrived the next morning. We shared them with our whole team.', 'Partner, Keel & Compass Advisors']],
+    cShares: 'Photo-frame shares', cSharesSub: 'Photos taken with the event frame and shared, by app', reach: 'About {n} views', reachN: 'Your logo travelled in {n} shared photos. This is the number to show your sponsors.',
+    tAlbum: 'Photos in the shared album', tAlbumN: 'from 164 guests', tBack: 'Want to come next year', tBackN: 'of survey replies',
+    leadsSub: 'Guests who ticked “I’d like a follow-up meeting”', leadCount: '{n} follow-up requests', leadsHint: 'Sorted by company. Hand this list to your sales team the next morning.',
+    hName: 'Name', hCompany: 'Company', hTitle: 'Title', hInterest: 'Wants to talk about', hEmail: 'Email', hIn: 'Came', hRate: 'Rating',
+    interests: ['Warehousing', 'Freight forwarding', 'Customs brokerage', 'A partnership', 'Port services'] },
+  fr: { sample: 'Rapport exemple · données fictives', h1a: 'Rapport de résultats', event: 'Soirée corporative', prepared: 'Préparé par {CREDIT}', pdf: 'Télécharger le rapport PDF', csv: 'Exporter les pistes (CSV)',
+    nOver: 'Aperçu', nBefore: 'Avant', nDay: 'Le soir même', nAfter: 'Après', nLeads: 'Pistes',
+    attended: 'Invités présents', attOf: 'sur {c} confirmés · taux de présence de {p}', tOpened: "Ont ouvert l'invitation", opOf: '{a} sur {b} invités', tAccepted: 'Ont dit oui', accN: '+{p} accompagnateurs = {c} invités',
+    tSurvey: 'Note des invités', rateN: '{n} réponses au sondage', tLeads: 'Ont demandé une rencontre', tLeadsN: 'Des pistes chaudes pour votre équipe des ventes',
+    beforeSub: 'Invitations envoyées le 12 novembre', cLine: 'Réponses « oui », jour après jour', cLineSub: "Invitations acceptées à ce jour, jusqu'à l'événement", table: 'Tableau', chart: 'Graphique',
+    cSeg: 'Réponses', cSegSub: '{n} invitations', yes: 'Oui', no: 'Non', pending: 'Sans réponse', cFun: "De l'invitation au oui", fInv: 'Invités', fOpen: 'Ont ouvert', fRep: 'Ont répondu', fYes: 'Ont dit oui',
+    reminder: 'Rappel', deadline: 'Date limite', day: 'Jour', value: 'Valeur', count: 'Invités', share: 'Part',
+    cDiet: 'Restrictions alimentaires', cDietSub: 'Invités, transmis automatiquement au traiteur', vegetarian: 'Végétarien', gluten: 'Sans gluten', allergy: 'Allergies', vegan: 'Végane', halal: 'Halal',
+    tWalk: 'Inscrits à la visite guidée', tWalkN: '47 % des invités', tPlus: 'Accompagnateurs', tPlusN: 'Noms connus avant la soirée', tRem: 'Rappel', tRemN: 'réponses « oui » dans les 2 jours suivant le rappel', tCal: "L'ont ajouté à leur calendrier", tCalN: 'Leur propre téléphone le leur a rappelé',
+    daySub: "Laissez-passer QR lus à l'entrée", cArr: 'Arrivées aux 15 minutes', cArrSub: "Invités enregistrés, selon l'heure d'arrivée", time: 'Heure', peak: 'Pointe',
+    tIn: 'Enregistrés', tSpeed: "Temps moyen à l'entrée", sec: 's', tSpeedN: 'Pas de liste papier, pas de file', tWalked: 'Ont fait la visite guidée', tWalkedN: 'sur 96 inscrits',
+    afterSub: 'Message de remerciement et sondage envoyés le lendemain matin', cStars: 'La note donnée à la soirée', cStarsSub: '{n} réponses · moyenne de {a} sur 5', stars: '{n} étoiles', star1: '1 étoile',
+    cNps: 'Vous recommanderaient-ils?', cNpsSub: 'Net Promoter Score (NPS)', npsNote: 'Excellent (plus de +50)', pro: 'Promoteurs (9–10)', pas: 'Passifs (7–8)', det: 'Détracteurs (0–6)',
+    cQuotes: 'Ce que les invités ont dit', cQuotesSub: 'Tiré du sondage',
+    q: [["Le tunnel de lumières le soir était magique, et le cidre chaud, parfait. Le plus bel événement client de l'année.", 'Directrice, Bluewater Capital'], ["L'enregistrement avec mon téléphone a pris deux secondes. Très bien organisé.", 'Vice-président aux opérations, Northshore Freight'], ['Les photos sont arrivées le lendemain matin. Nous les avons partagées avec toute notre équipe.', 'Associée, Keel & Compass Advisors']],
+    cShares: 'Partages du cadre photo', cSharesSub: "Photos prises avec le cadre de l'événement et partagées, par application", reach: 'Environ {n} vues', reachN: 'Votre logo a voyagé dans {n} photos partagées. C’est le chiffre à montrer à vos commanditaires.',
+    tAlbum: "Photos dans l'album partagé", tAlbumN: 'de 164 invités', tBack: "Veulent revenir l'an prochain", tBackN: 'des répondants',
+    leadsSub: 'Invités qui ont coché « J’aimerais une rencontre de suivi »', leadCount: '{n} demandes de rencontre', leadsHint: 'Triées par entreprise. Remettez cette liste à votre équipe des ventes le lendemain.',
+    hName: 'Nom', hCompany: 'Entreprise', hTitle: 'Poste', hInterest: 'Sujet souhaité', hEmail: 'Courriel', hIn: 'Présent', hRate: 'Note',
+    interests: ['Entreposage', 'Transitaire', 'Courtage en douane', 'Un partenariat', 'Services portuaires'] },
+  es: { sample: 'Reporte de ejemplo · datos ficticios', h1a: 'Reporte de resultados', event: 'Noche corporativa', prepared: 'Preparado por {CREDIT}', pdf: 'Descargar reporte PDF', csv: 'Exportar prospectos (CSV)',
+    nOver: 'Resumen', nBefore: 'Antes', nDay: 'La noche del evento', nAfter: 'Después', nLeads: 'Prospectos',
+    attended: 'Invitados que llegaron', attOf: 'de {c} confirmados · {p} de asistencia', tOpened: 'Abrieron la invitación', opOf: '{a} de {b} invitados', tAccepted: 'Dijeron que sí', accN: '+{p} acompañantes = {c} invitados',
+    tSurvey: 'Calificación', rateN: '{n} respuestas a la encuesta', tLeads: 'Pidieron una reunión', tLeadsN: 'Prospectos listos para su equipo de ventas',
+    beforeSub: 'Invitaciones enviadas el 12 de noviembre', cLine: 'Respuestas de “sí”, día por día', cLineSub: 'Invitaciones aceptadas hasta cada día, rumbo al evento', table: 'Tabla', chart: 'Gráfica',
+    cSeg: 'Respuestas', cSegSub: '{n} invitaciones', yes: 'Sí', no: 'No', pending: 'Sin respuesta', cFun: 'De la invitación al sí', fInv: 'Invitados', fOpen: 'La abrieron', fRep: 'Respondieron', fYes: 'Dijeron que sí',
+    reminder: 'Recordatorio', deadline: 'Fecha límite', day: 'Día', value: 'Valor', count: 'Invitados', share: 'Parte',
+    cDiet: 'Restricciones alimentarias', cDietSub: 'Invitados, enviados al banquete automáticamente', vegetarian: 'Vegetariana', gluten: 'Sin gluten', allergy: 'Alergias', vegan: 'Vegana', halal: 'Halal',
+    tWalk: 'Se anotaron al recorrido guiado', tWalkN: '47 % de los invitados', tPlus: 'Acompañantes', tPlusN: 'Nombres conocidos antes del evento', tRem: 'Recordatorio', tRemN: 'respuestas de “sí” en los 2 días después del recordatorio', tCal: 'Lo agregaron a su calendario', tCalN: 'Su propio teléfono les recordó',
+    daySub: 'Pases QR escaneados en la entrada', cArr: 'Llegadas cada 15 minutos', cArrSub: 'Invitados registrados, por hora de llegada', time: 'Hora', peak: 'Pico',
+    tIn: 'Registrados', tSpeed: 'Tiempo promedio en la entrada', sec: 's', tSpeedN: 'Sin lista en papel, sin filas', tWalked: 'Hicieron el recorrido guiado', tWalkedN: 'de 96 anotados',
+    afterSub: 'Mensaje de agradecimiento y encuesta enviados a la mañana siguiente', cStars: 'Cómo calificaron la velada', cStarsSub: '{n} respuestas · promedio de {a} de 5', stars: '{n} estrellas', star1: '1 estrella',
+    cNps: '¿Le recomendarían?', cNpsSub: 'Net Promoter Score (NPS)', npsNote: 'Excelente (más de +50)', pro: 'Promotores (9–10)', pas: 'Pasivos (7–8)', det: 'Detractores (0–6)',
+    cQuotes: 'Lo que dijeron los invitados', cQuotesSub: 'De la encuesta',
+    q: [['El túnel de luces de noche fue mágico y la sidra caliente, perfecta. El mejor evento para clientes del año.', 'Directora, Bluewater Capital'], ['Registrarme con el teléfono tomó dos segundos. Muy bien organizado.', 'Vicepresidente de Operaciones, Northshore Freight'], ['Las fotos llegaron a la mañana siguiente. Las compartimos con todo nuestro equipo.', 'Socia, Keel & Compass Advisors']],
+    cShares: 'Fotos compartidas con el marco', cSharesSub: 'Fotos tomadas con el marco del evento y compartidas, por app', reach: 'Cerca de {n} vistas', reachN: 'Su logo viajó en {n} fotos compartidas. Esta es la cifra para mostrar a sus patrocinadores.',
+    tAlbum: 'Fotos en el álbum compartido', tAlbumN: 'de 164 invitados', tBack: 'Quieren volver el próximo año', tBackN: 'de quienes respondieron',
+    leadsSub: 'Invitados que marcaron “Me gustaría una reunión de seguimiento”', leadCount: '{n} solicitudes de reunión', leadsHint: 'Ordenadas por empresa. Entregue esta lista a su equipo de ventas a la mañana siguiente.',
+    hName: 'Nombre', hCompany: 'Empresa', hTitle: 'Puesto', hInterest: 'Quiere hablar de', hEmail: 'Correo', hIn: 'Llegó', hRate: 'Calificación',
+    interests: ['Almacenaje', 'Agente de carga', 'Agente aduanal', 'Una alianza', 'Servicios portuarios'] }
+};
+var LOC = { en: 'en-CA', fr: 'fr-CA', es: 'es-MX' };
+
+/* 38 fictional follow-up requests */
+var LEADS = (function () {
+  var F = ['Andrea', 'Michael', 'Priya', 'Daniel', 'Sophie', 'Marc', 'Olivia', 'Ethan', 'Chloé', 'Liam', 'Hannah', 'Gabriel', 'Maya', 'Noah', 'Isabelle', 'Lucas', 'Grace', 'Owen', 'Amélie', 'Ryan', 'Fatima', 'Jacob', 'Nadia', 'Samuel', 'Leah', 'Victor', 'Emily', 'Tariq', 'Camille', 'Ben', 'Julia', 'Alexandre', 'Rachel', 'Kevin', 'Mei', 'Patrick', 'Sara', 'Luc'];
+  var S = ['Clarke', 'MacDonald', 'Raman', 'Boudreau', 'Leblanc', 'Gauthier', 'MacLeod', 'Fraser', 'Cormier', 'Chisholm', 'Doucet', 'Arsenault', 'Patel', 'Sutherland', 'Landry', 'Comeau', 'Murphy', 'Campbell', 'Thibodeau', 'MacKenzie', 'Haddad', 'Rossi', 'Khan', 'Robichaud', 'Grant', 'Nguyen', 'Walsh', 'Aziz', 'Bélanger', 'Morrison', 'Ferreira', 'Poirier', 'Stewart', 'Wong', 'Chen', "O'Neill", 'Duarte', 'Richard'];
+  var C = ['Bluewater Capital', 'Northshore Freight', 'Keel & Compass Advisors', 'Tidewater Health', 'Atlantic Ridge Energy', 'Seabright Developments', 'Halyard Insurance', 'Lantern Bay Foods', 'Driftwood Analytics', 'Bedrock Construction', 'Saltmarsh Media', 'Fogline Software'];
+  var Ti = ['CEO', 'Director, Partnerships', 'VP Operations', 'Supply Chain Manager', 'Procurement Lead', 'Chief Financial Officer', 'Logistics Director', 'Head of Strategy', 'Operations Manager', 'Managing Partner'];
+  var out = [];
+  for (var i = 0; i < 38; i++) {
+    var co = C[(i * 7) % C.length], f = F[i], s = S[(i * 5) % S.length];
+    out.push({ name: f + ' ' + s, company: co, title: Ti[(i * 3) % Ti.length], interest: (i * 11) % 5, email: (f + '.' + s).toLowerCase().normalize('NFD').replace(/[̀-ͯ']/g, '') + '@' + co.toLowerCase().replace(/[^a-z]/g, '') + '.example', came: i % 9 !== 4, rate: i % 6 === 2 ? 4 : 5 });
+  }
+  return out.sort(function (a, b) { return a.company.localeCompare(b.company) || a.name.localeCompare(b.name); });
+})();
+
+(function () {
+  var q = new URLSearchParams(location.search), L = q.get('lang'); try { L = L || localStorage.getItem('nl-lang'); } catch (e) {} if (!T[L]) L = 'en';
+  var $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var NS = 'http://www.w3.org/2000/svg';
+  function t(k, x) { var s = T[L][k] != null ? T[L][k] : T.en[k]; return typeof s === 'string' ? s.replace(/\{(\w+)\}/g, function (m, n) { return x && x[n] != null ? x[n] : (n === 'CREDIT' ? CFG.CREDIT : m); }) : s; }
+  function N(n, o) { return new Intl.NumberFormat(LOC[L], o).format(n); }
+  function P(n) { return N(n, { style: 'percent', maximumFractionDigits: 0 }); }
+  function day(iso, o) { var s = new Intl.DateTimeFormat(LOC[L], Object.assign({ timeZone: CFG.TZ }, o || { day: 'numeric', month: 'short' })).format(new Date(iso + 'T12:00:00' + CFG.UTC_OFFSET)); return L === 'fr' ? s.replace(/(^|\s)1 (?=[a-zé])/, '$11er ') : s; }
+  function hm(h) { return new Intl.DateTimeFormat(LOC[L], { timeZone: CFG.TZ, hour: 'numeric', minute: '2-digit' }).format(new Date(CFG.DATE + 'T' + h + ':00' + CFG.UTC_OFFSET)); }
+  function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function txt(x, y, s, attrs, parent) { var e = el('text', Object.assign({ x: x, y: y }, attrs || {}), parent); e.textContent = s; return e; }
+  var css = function (v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); };
+  var measure = (function () { var c = document.createElement('canvas').getContext('2d'); return function (s, f) { c.font = f; return c.measureText(s).width; }; })();
+
+  /* tooltip: value first, label after; fed with textContent only */
+  var tip = $('#tip');
+  function showTip(evOrEl, title, rows) {
+    tip.innerHTML = ''; var h = document.createElement('div'); h.className = 'tt'; h.textContent = title; tip.appendChild(h);
+    rows.forEach(function (r) { var d = document.createElement('div'); d.className = 'row'; var i = document.createElement('i'); i.style.background = r.c; var b = document.createElement('b'); b.textContent = r.v; var s = document.createElement('span'); s.textContent = r.l || ''; d.appendChild(i); d.appendChild(b); d.appendChild(s); tip.appendChild(d); });
+    var x, y; if (evOrEl.clientX != null) { x = evOrEl.clientX; y = evOrEl.clientY; } else { var bb = evOrEl.getBoundingClientRect(); x = bb.left + bb.width / 2; y = bb.top; }
+    tip.classList.add('on'); var w = tip.offsetWidth, hh = tip.offsetHeight;
+    tip.style.left = Math.max(8, Math.min(innerWidth - w - 8, x - w / 2)) + 'px'; tip.style.top = Math.max(8, y - hh - 14) + 'px';
+  }
+  function hideTip() { tip.classList.remove('on'); }
+  function hover(node, title, rows) {
+    node.setAttribute('tabindex', '0'); node.classList.add('mk'); node.setAttribute('role', 'img');
+    node.setAttribute('aria-label', title + ': ' + rows.map(function (r) { return r.v + ' ' + (r.l || ''); }).join(', '));
+    node.addEventListener('pointermove', function (e) { showTip(e, title, rows); }); node.addEventListener('pointerleave', hideTip);
+    node.addEventListener('focus', function () { showTip(node, title, rows); }); node.addEventListener('blur', hideTip);
+  }
+  /* bar with a 4px rounded data-end, square at the baseline */
+  function hbarPath(x, y, w, h) { var r = Math.min(4, w); return 'M' + x + ',' + y + 'H' + (x + w - r) + 'Q' + (x + w) + ',' + y + ' ' + (x + w) + ',' + (y + r) + 'V' + (y + h - r) + 'Q' + (x + w) + ',' + (y + h) + ' ' + (x + w - r) + ',' + (y + h) + 'H' + x + 'Z'; }
+  function vbarPath(x, y, w, h) { var r = Math.min(4, h); return 'M' + x + ',' + (y + h) + 'V' + (y + r) + 'Q' + x + ',' + y + ' ' + (x + r) + ',' + y + 'H' + (x + w - r) + 'Q' + (x + w) + ',' + y + ' ' + (x + w) + ',' + (y + r) + 'V' + (y + h) + 'Z'; }
+
+  function tableView(id, head, rows) {
+    var box = $('#tv-' + id); box.innerHTML = ''; var tb = document.createElement('table'); tb.className = 'tbl';
+    var tr = document.createElement('tr'); head.forEach(function (h, i) { var th = document.createElement('th'); th.textContent = h; if (i) th.className = 'n'; tr.appendChild(th); }); var th0 = document.createElement('thead'); th0.appendChild(tr); tb.appendChild(th0);
+    var bd = document.createElement('tbody'); rows.forEach(function (r) { var tr2 = document.createElement('tr'); r.forEach(function (c, i) { var td = document.createElement('td'); td.textContent = c; if (i) td.className = 'n'; tr2.appendChild(td); }); bd.appendChild(tr2); }); tb.appendChild(bd); box.appendChild(tb);
+  }
+
+  /* horizontal bars, one series */
+  function hbars(host, data, opt) {
+    host.innerHTML = ''; var W = host.clientWidth, bh = 18, gap = 14, lw = opt.labelW || Math.min(130, W * .36), vw = 52, H = data.length * (bh + gap) - gap + 4;
+    var max = opt.max || Math.max.apply(null, data.map(function (d) { return d[1]; })), sv = el('svg', { viewBox: '0 0 ' + W + ' ' + H, height: H, role: 'group', 'aria-label': opt.title }, host);
+    data.forEach(function (d, i) {
+      var y = i * (bh + gap) + 2, w = Math.max(d[1] ? 2 : 0, (W - lw - vw) * d[1] / max);
+      txt(lw - 10, y + bh / 2 + 4.5, d[0], { 'text-anchor': 'end', fill: css('--ink2'), 'font-size': 13 }, sv);
+      var hit = el('g', {}, sv); el('rect', { x: lw, y: y - gap / 2, width: W - lw, height: bh + gap, fill: 'transparent' }, hit);
+      if (w) el('path', { d: hbarPath(lw, y, w, bh), fill: opt.color || css('--s1') }, hit);
+      txt(lw + w + 6, y + bh / 2 + 4.5, opt.fmt ? opt.fmt(d[1]) : N(d[1]), { fill: css('--ink'), 'font-size': 13, 'font-weight': 500 }, sv);
+      hover(hit, d[0], [{ v: opt.fmt ? opt.fmt(d[1]) : N(d[1]), l: opt.unit || '', c: opt.color || css('--s1') }]);
+    });
+    el('line', { x1: lw, x2: lw, y1: 0, y2: H, stroke: css('--axis'), 'stroke-width': 1 }, sv);
+  }
+
+  /* tall segmented bar: one whole split into parts */
+  function seg(host, parts, total) {
+    host.innerHTML = ''; var W = host.clientWidth, H = 28, sv = el('svg', { viewBox: '0 0 ' + W + ' ' + H, height: H, role: 'group' }, host), x = 0, gapPx = 2;
+    var vis = parts.filter(function (p) { return p.v > 0; }), avail = W - gapPx * (vis.length - 1);
+    vis.forEach(function (p, i) {
+      var w = avail * p.v / total, g = el('g', {}, sv);
+      el('rect', { x: x, y: 0, width: w, height: H, rx: 4, fill: p.c }, g);
+      var lab = P(p.v / total), f = '600 12px Jost';
+      if (measure(lab, f) + 16 < w) txt(x + 8, H / 2 + 4.5, lab, { fill: p.ink || '#fff', 'font-size': 12, 'font-weight': 600 }, g);
+      hover(g, p.l, [{ v: N(p.v) + ' · ' + lab, l: '', c: p.c }]);
+      x += w + gapPx;
+    });
+    var lg = document.createElement('div'); lg.className = 'legend';
+    parts.forEach(function (p) { var s = document.createElement('span'), i = document.createElement('i'); i.style.background = p.c; s.appendChild(i); s.appendChild(document.createTextNode(p.l + ' · ' + N(p.v))); lg.appendChild(s); });
+    host.appendChild(lg);
+  }
+
+  /* columns, one series; label only the peak */
+  function cols(host, data, opt) {
+    host.innerHTML = ''; var W = host.clientWidth, H = 230, padL = 34, padB = 26, padT = 22, pw = W - padL, ph = H - padB - padT;
+    var max = Math.ceil(Math.max.apply(null, data.map(function (d) { return d[1]; })) / 20) * 20, sv = el('svg', { viewBox: '0 0 ' + W + ' ' + H, height: H, role: 'group', 'aria-label': opt.title }, host);
+    for (var k = 0; k <= max; k += max / 4) { var y = padT + ph - ph * k / max; el('line', { x1: padL, x2: W, y1: y, y2: y, stroke: k ? css('--grid') : css('--axis'), 'stroke-width': 1 }, sv); txt(padL - 8, y + 4, N(k), { 'text-anchor': 'end', fill: css('--muted'), 'font-size': 11, style: 'font-variant-numeric: tabular-nums' }, sv); }
+    var band = pw / data.length, bw = Math.min(24, band * .62), lw0 = Math.max.apply(null, data.map(function (d) { return measure(opt.x(d), '400 11px Jost'); })), step = Math.ceil((lw0 + 10) / band), peak = data.reduce(function (a, d, i) { return d[1] > data[a][1] ? i : a; }, 0);
+    data.forEach(function (d, i) {
+      var x = padL + band * i + (band - bw) / 2, h = ph * d[1] / max, y = padT + ph - h, g = el('g', {}, sv);
+      el('rect', { x: padL + band * i, y: padT, width: band, height: ph, fill: 'transparent' }, g);
+      el('path', { d: vbarPath(x, y, bw, h), fill: css('--s1') }, g);
+      if (i === peak) txt(x + bw / 2, y - 7, opt.peakLabel(d), { 'text-anchor': 'middle', fill: css('--ink'), 'font-size': 12, 'font-weight': 500 }, sv);
+      if (i % step === 0) txt(x + bw / 2, H - 8, opt.x(d), { 'text-anchor': 'middle', fill: css('--muted'), 'font-size': 11 }, sv);
+      hover(g, opt.x(d), [{ v: N(d[1]), l: opt.unit, c: css('--s1') }]);
+    });
+  }
+
+  /* line + area wash, crosshair that snaps to the nearest day */
+  function line(host, vals, opt) {
+    host.innerHTML = ''; var W = host.clientWidth, H = 250, padL = 36, padR = 40, padB = 26, padT = 26, pw = W - padL - padR, ph = H - padB - padT;
+    var max = Math.ceil(Math.max.apply(null, vals) / 50) * 50, n = vals.length, X = function (i) { return padL + pw * i / (n - 1); }, Y = function (v) { return padT + ph - ph * v / max; };
+    var sv = el('svg', { viewBox: '0 0 ' + W + ' ' + H, height: H, role: 'img', 'aria-label': opt.title }, host), c1 = css('--s1');
+    for (var k = 0; k <= max; k += 50) { el('line', { x1: padL, x2: W - padR, y1: Y(k), y2: Y(k), stroke: k ? css('--grid') : css('--axis'), 'stroke-width': 1 }, sv); txt(padL - 8, Y(k) + 4, N(k), { 'text-anchor': 'end', fill: css('--muted'), 'font-size': 11, style: 'font-variant-numeric: tabular-nums' }, sv); }
+    opt.marks.forEach(function (m) { var x = X(m.i); el('line', { x1: x, x2: x, y1: padT - 6, y2: padT + ph, stroke: css('--axis'), 'stroke-width': 1 }, sv); txt(x + 5, padT - 10, m.l, { fill: css('--ink2'), 'font-size': 11, 'text-anchor': m.i > n * .7 ? 'end' : 'start', dx: m.i > n * .7 ? -10 : 0 }, sv); });
+    var pts = vals.map(function (v, i) { return X(i) + ',' + Y(v); }).join(' ');
+    el('polygon', { points: X(0) + ',' + Y(0) + ' ' + pts + ' ' + X(n - 1) + ',' + Y(0), fill: c1, 'fill-opacity': .1 }, sv);
+    el('polyline', { points: pts, fill: 'none', stroke: c1, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, sv);
+    el('circle', { cx: X(n - 1), cy: Y(vals[n - 1]), r: 4, fill: c1, stroke: css('--surface'), 'stroke-width': 2 }, sv);
+    txt(X(n - 1) + 9, Y(vals[n - 1]) + 4, N(vals[n - 1]), { fill: css('--ink'), 'font-size': 13, 'font-weight': 600 }, sv);
+    [0, 7, 14, 21, n - 1].forEach(function (i) { txt(X(i), H - 8, opt.x(i), { 'text-anchor': i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle', fill: css('--muted'), 'font-size': 11 }, sv); });
+    var hair = el('line', { y1: padT, y2: padT + ph, stroke: css('--ink2'), 'stroke-width': 1, opacity: 0 }, sv), dot = el('circle', { r: 4, fill: c1, stroke: css('--surface'), 'stroke-width': 2, opacity: 0 }, sv);
+    var hit = el('rect', { x: padL, y: 0, width: pw, height: H, fill: 'transparent', tabindex: 0, class: 'mk' }, sv), cur = n - 1;
+    function at(i, ev) { cur = Math.max(0, Math.min(n - 1, i)); var x = X(cur); hair.setAttribute('x1', x); hair.setAttribute('x2', x); hair.setAttribute('opacity', 1); dot.setAttribute('cx', x); dot.setAttribute('cy', Y(vals[cur])); dot.setAttribute('opacity', 1);
+      var r = sv.getBoundingClientRect(), sc = r.width / W; showTip(ev || { clientX: r.left + x * sc, clientY: r.top + Y(vals[cur]) * sc }, opt.x(cur, true), [{ v: N(vals[cur]), l: opt.unit, c: c1 }]); }
+    hit.addEventListener('pointermove', function (e) { var r = sv.getBoundingClientRect(); at(Math.round(((e.clientX - r.left) * W / r.width - padL) / pw * (n - 1)), e); });
+    hit.addEventListener('pointerleave', function () { hideTip(); hair.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); });
+    hit.addEventListener('focus', function () { at(cur); }); hit.addEventListener('blur', function () { hideTip(); hair.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); });
+    hit.addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); at(cur + (e.key === 'ArrowRight' ? 1 : -1)); } });
+  }
+
+  function dayIso(i) { var d = new Date(D.dailyStart + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + i); return d.toISOString().slice(0, 10); }
+  function idxOf(iso) { return Math.round((new Date(iso + 'T12:00:00Z') - new Date(D.dailyStart + 'T12:00:00Z')) / 864e5); }
+
+  function render() {
+    document.documentElement.lang = L;
+    $$('[data-k]').forEach(function (e) { var s = t(e.dataset.k); if (typeof s === 'string') e.textContent = s; });
+    $$('[data-c]').forEach(function (e) { e.textContent = CFG[e.dataset.c]; });
+    $$('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.l === L)); });
+    var dateLong = day(CFG.DATE, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    $('#meta').textContent = [CFG.VENUE[L], dateLong.charAt(0).toUpperCase() + dateLong.slice(1), t('prepared')].join(' · ');
+    $('#credit').textContent = CFG.CREDIT.toUpperCase(); $('#foot').textContent = CFG.NOTE[L];
+    document.title = t('h1a') + ' · ' + t('event') + ' · ' + CFG.COMPANY;
+    var show = D.checkedIn / D.confirmed;
+    $('#fAtt').textContent = N(D.checkedIn); $('#fAttOf').textContent = t('attOf', { c: N(D.confirmed), p: P(show) });
+    $('#mAtt').setAttribute('aria-label', P(show)); $('#mIn').setAttribute('aria-label', P(show));
+    $('#vOpened').textContent = P(D.opened / D.invited); $('#nOpened').textContent = t('opOf', { a: N(D.opened), b: N(D.invited) });
+    $('#vAcc').textContent = N(D.accepted); $('#nAcc').textContent = t('accN', { p: N(D.plus), c: N(D.confirmed) });
+    var nStars = D.stars.reduce(function (a, s) { return a + s[1]; }, 0), avg = D.stars.reduce(function (a, s) { return a + s[0] * s[1]; }, 0) / nStars;
+    $('#vRate').firstChild.textContent = N(avg, { maximumFractionDigits: 1, minimumFractionDigits: 1 }); $('#nRate').textContent = t('rateN', { n: N(nStars) });
+    $('#vLeads').textContent = N(LEADS.length);
+    $('[data-k="cSegSub"]').textContent = t('cSegSub', { n: N(D.invited) });
+    $('[data-k="cStarsSub"]').textContent = t('cStarsSub', { n: N(nStars), a: N(avg, { maximumFractionDigits: 1, minimumFractionDigits: 1 }) });
+    var shares = D.shares.reduce(function (a, s) { return a + s[1]; }, 0);
+    $('#reach').textContent = t('reach', { n: N(86000) }); $('[data-k="reachN"]').textContent = t('reachN', { n: N(shares) });
+    $('#leadCount').textContent = t('leadCount', { n: N(LEADS.length) });
+
+    // before
+    var cum = [], s = 0; D.daily.forEach(function (v) { s += v; cum.push(s); });
+    line($('#chLine'), cum, { title: t('cLine'), unit: t('fYes').toLowerCase(), x: function (i, long) { return day(dayIso(i), long ? { weekday: 'short', day: 'numeric', month: 'short' } : undefined); },
+      marks: [{ i: idxOf(D.reminder), l: t('reminder') }, { i: idxOf(D.deadline), l: t('deadline') }] });
+    tableView('line', [t('day'), t('fYes')], cum.map(function (v, i) { return [day(dayIso(i)), N(v)]; }));
+    seg($('#chSeg'), [{ l: t('yes'), v: D.accepted, c: css('--s1') }, { l: t('no'), v: D.declined, c: css('--s2') }, { l: t('pending'), v: D.pending, c: css('--other'), ink: '#14223A' }], D.invited);
+    tableView('seg', ['', t('count'), t('share')], [[t('yes'), D.accepted], [t('no'), D.declined], [t('pending'), D.pending]].map(function (r) { return [r[0], N(r[1]), P(r[1] / D.invited)]; }));
+    var fun = [[t('fInv'), D.invited], [t('fOpen'), D.opened], [t('fRep'), D.accepted + D.declined], [t('fYes'), D.accepted]];
+    hbars($('#chFun'), fun, { title: t('cFun'), max: D.invited, labelW: 96 });
+    tableView('fun', ['', t('count'), t('share')], fun.map(function (r) { return [r[0], N(r[1]), P(r[1] / D.invited)]; }));
+    var diet = D.diet.map(function (d) { return [t(d[0]), d[1]]; });
+    hbars($('#chDiet'), diet, { title: t('cDiet'), unit: t('count').toLowerCase() });
+    tableView('diet', ['', t('count')], diet.map(function (r) { return [r[0], N(r[1])]; }));
+    // night
+    cols($('#chArr'), D.arrivals, { title: t('cArr'), unit: t('count').toLowerCase(), x: function (d) { return hm(d[0]); }, peakLabel: function (d) { return t('peak') + ' · ' + N(d[1]); } });
+    tableView('arr', [t('time'), t('count')], D.arrivals.map(function (d) { return [hm(d[0]), N(d[1])]; }));
+    $('#of204').textContent = ' / ' + N(D.confirmed);
+    // after
+    var stars = D.stars.map(function (s) { return [s[0] === 1 ? t('star1') : t('stars', { n: s[0] }), s[1]]; });
+    hbars($('#chStars'), stars, { title: t('cStars'), unit: t('count').toLowerCase(), labelW: 86 });
+    tableView('stars', ['', t('count'), t('share')], stars.map(function (r) { return [r[0], N(r[1]), P(r[1] / nStars)]; }));
+    var np = D.nps, nt = np.pro + np.pas + np.det;
+    seg($('#chNps'), [{ l: t('pro'), v: np.pro, c: css('--s1') }, { l: t('pas'), v: np.pas, c: css('--mid'), ink: '#14223A' }, { l: t('det'), v: np.det, c: css('--neg') }], nt);
+    tableView('nps', ['', t('count'), t('share')], [[t('pro'), np.pro], [t('pas'), np.pas], [t('det'), np.det]].map(function (r) { return [r[0], N(r[1]), P(r[1] / nt)]; }));
+    var qs = $('#quotes'); qs.innerHTML = ''; t('q').forEach(function (qq) { var li = document.createElement('li'); li.textContent = '“' + qq[0] + '”'; var sm = document.createElement('small'); sm.textContent = qq[1]; li.appendChild(sm); qs.appendChild(li); });
+    hbars($('#chShares'), D.shares, { title: t('cShares'), labelW: 92 });
+    tableView('shares', ['', t('count'), t('share')], D.shares.map(function (r) { return [r[0], N(r[1]), P(r[1] / shares)]; }));
+    // leads
+    var tb = $('#leadTbl'); tb.innerHTML = ''; var hd = document.createElement('thead'), tr = document.createElement('tr');
+    [t('hName'), t('hCompany'), t('hTitle'), t('hInterest'), t('hEmail'), t('hIn')].forEach(function (h) { var th = document.createElement('th'); th.textContent = h; tr.appendChild(th); }); hd.appendChild(tr); tb.appendChild(hd);
+    var bd = document.createElement('tbody'); LEADS.forEach(function (r) { var row = document.createElement('tr');
+      [r.name, r.company, r.title, t('interests')[r.interest], r.email].forEach(function (c) { var td = document.createElement('td'); td.textContent = c; row.appendChild(td); });
+      var td = document.createElement('td'); if (r.came) { var ck = document.createElement('span'); ck.className = 'ck'; ck.textContent = '✓'; ck.setAttribute('aria-label', '✓'); td.appendChild(ck); } else td.textContent = '–'; row.appendChild(td); bd.appendChild(row); });
+    tb.appendChild(bd);
+    $$('.tv').forEach(function (b) { b.textContent = t(b.getAttribute('aria-pressed') === 'true' ? 'chart' : 'table'); });
+  }
+
+  // table view toggles (the chart's accessible twin)
+  $$('.tv').forEach(function (b) { b.addEventListener('click', function () { var on = b.getAttribute('aria-pressed') !== 'true', id = b.dataset.t; b.setAttribute('aria-pressed', String(on)); $('#tv-' + id).hidden = !on; var ch = $('#tv-' + id).previousElementSibling; if (ch && ch.classList.contains('chart')) ch.hidden = on; b.textContent = t(on ? 'chart' : 'table'); }); });
+  $$('.lang button').forEach(function (b) { b.addEventListener('click', function () { L = b.dataset.l; try { localStorage.setItem('nl-lang', L); } catch (e) {} render(); }); });
+  // exports
+  function csv() {
+    var head = [t('hName'), t('hCompany'), t('hTitle'), t('hInterest'), t('hEmail'), t('hIn'), t('hRate')];
+    var rows = LEADS.map(function (r) { return [r.name, r.company, r.title, t('interests')[r.interest], r.email, r.came ? '1' : '0', r.rate]; });
+    var q2 = function (v) { v = String(v); return /[",\n;]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+    var body = '﻿' + [head].concat(rows).map(function (r) { return r.map(q2).join(','); }).join('\r\n');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([body], { type: 'text/csv;charset=utf-8' }));
+    a.download = CFG.WM1.toLowerCase() + '-' + CFG.DATE + '-leads.csv'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  $$('.csv').forEach(function (b) { b.addEventListener('click', csv); });
+  $('#pdf').addEventListener('click', function () { window.print(); });
+  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(render, 150); });
+  document.fonts.ready.then(render); render();
+})();
+</script>
+</body>
+</html>
+
+</body>
+</html>

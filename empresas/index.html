@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Invitaciones digitales de lujo para empresas: confirmaciones, registro con QR, encuesta y reporte de resultados. Luxury digital invitations for companies, in English, French and Spanish.">
+<meta property="og:title" content="Ilusión Invites · For companies">
+<meta property="og:description" content="Luxury digital invitations for corporate events: RSVP, QR check-in, next-day survey and a results report. English, French and Spanish.">
+<meta property="og:image" content="https://ilusioninvites.com/empresas/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ilusión Invites · For companies">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://ilusioninvites.com/empresas/">
+<link rel="canonical" href="https://ilusioninvites.com/empresas/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F6F1E8">
+<link rel="icon" href="/nuevo/img/ilusion-logo.jpg">
+<link rel="apple-touch-icon" href="/nuevo/img/ilusion-logo.jpg">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Ilusión Invites · Empresas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Corporate section (ilusioninvites.com/empresas/): same light brand as the home page, in Spanish, English and French.
+   Every text lives in the T dictionary at the bottom (es, en, fr). Images come from the public site (/nuevo/img, /demos). */
+:root {
+  color-scheme: light;
+  --ivory: #FBF6EF; --cream: #F4EBDF; --champagne: #E9D9C3; --navy: #22365A;
+  --ink: #3A2A26; --ink2: #6E5B54; --ink3: #9A877F; --gold: #B68A4E; --gold-l: #E9CF95;
+  --line: rgba(182,138,78,.28);
+  --card: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,251,245,.55));
+  --f-script: "Great Vibes", cursive; --f-caps: "Cinzel", "Trajan Pro", Georgia, serif; --f-serif: "Cormorant Garamond", Georgia, serif; --f-body: "Jost", "Avenir Next", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--ivory); color: var(--ink); font: 400 16px/1.6 var(--f-body); overflow-x: hidden; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+em { font-style: italic; color: #9C7038; }
+
+/* header (same look as the home page) */
+.top { position: fixed; z-index: 40; left: 0; right: 0; top: 0; padding-top: env(safe-area-inset-top, 0px); background: rgba(251,246,239,.86); -webkit-backdrop-filter: blur(14px) saturate(1.15); backdrop-filter: blur(14px) saturate(1.15); box-shadow: 0 1px 0 rgba(182,138,78,.22), 0 12px 30px rgba(90,60,40,.06); }
+.top .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 6px 22px; padding-block: 8px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { width: 46px; height: auto; filter: drop-shadow(0 4px 6px rgba(90,60,30,.25)); }
+.brand span { font: 500 10px var(--f-caps); letter-spacing: .34em; color: var(--gold); line-height: 1.3; }
+.links { display: flex; justify-content: center; align-items: center; gap: clamp(16px, 2.6vw, 36px); }
+.links a { position: relative; padding: 8px 0; text-decoration: none; color: var(--ink2); font: 500 11.5px var(--f-caps); letter-spacing: .24em; white-space: nowrap; }
+.links a::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: 3px; height: 1px; background: var(--gold); transition: left .4s ease, right .4s ease; }
+.links a:hover { color: var(--ink); }
+.links a:hover::after { left: 0; right: .24em; }
+.actions { display: flex; align-items: center; gap: 12px; }
+.lang { display: flex; border: 1px solid rgba(182,138,78,.45); border-radius: 999px; overflow: hidden; background: rgba(251,246,239,.6); }
+.lang button { border: 0; background: none; padding: 7px 11px; font: 500 12.5px var(--f-body); color: var(--ink2); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: #fff; }
+@media (max-width: 900px) { .top .wrap { grid-template-columns: 1fr auto; } .links { grid-column: 1 / -1; grid-row: 2; gap: 20px; } .links a { font-size: 10.5px; letter-spacing: .18em; } .brand span { display: none; } }
+@media (max-width: 600px) { .top .btn-sm { display: none; } .brand img { width: 40px; } .links { justify-content: space-between; gap: 6px; } .links a { font-size: 10px; letter-spacing: .12em; } .links .l-journey { display: none; } }
+
+/* buttons (the site's epoxy style) */
+.btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 26px; border-radius: 999px; font: 600 15px var(--f-body); letter-spacing: .04em; text-decoration: none; cursor: pointer; -webkit-font-smoothing: antialiased; transition: box-shadow .35s ease, transform .35s ease; text-align: center; }
+.btn:hover { transform: translateY(-1px); }
+.btn::before { content: ""; position: absolute; z-index: -1; left: 7%; right: 7%; top: 2px; height: 58%; border-radius: 999px; pointer-events: none; background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(255,255,255,.72) 0%, rgba(255,255,255,.22) 52%, rgba(255,255,255,0) 78%); }
+.btn-gold { border: 0; color: #3A2210; background: linear-gradient(180deg, #F7E4B4 0%, #EBC988 34%, #D6A963 70%, #C4914D 100%); box-shadow: inset 0 0 0 1px rgba(170,120,55,.30), inset 0 -8px 16px rgba(160,105,40,.22), 0 10px 24px -12px rgba(140,95,40,.55), 0 0 20px rgba(236,204,140,.45); }
+.btn-line { color: var(--ink); border: 1px solid rgba(182,138,78,.42); background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,250,242,.62)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), 0 8px 20px -12px rgba(120,85,45,.4); font-weight: 500; }
+.btn-sm { min-height: 40px; padding: 0 18px; font-size: 13.5px; }
+
+/* shared type */
+.eyebrow { display: block; font: 500 12px var(--f-caps); letter-spacing: .36em; color: var(--gold); }
+h1, h2, h3 { font-family: var(--f-serif); font-weight: 500; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(32px, 4.4vw, 54px); line-height: 1.08; margin-top: 10px; }
+.head { text-align: center; max-width: 760px; margin: 0 auto clamp(30px, 4vw, 52px); }
+.head p { margin: 14px auto 0; color: var(--ink2); max-width: 60ch; }
+.flour { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 16px auto 0; width: 160px; }
+.flour i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.flour i:last-child { background: linear-gradient(90deg, var(--gold), transparent); }
+.flour b { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
+section { position: relative; padding-block: clamp(64px, 9vw, 120px); }
+
+/* hero */
+.hero { padding-top: calc(112px + env(safe-area-inset-top, 0px)); padding-bottom: clamp(56px, 7vw, 96px); background: #F3ECE2 url("/nuevo/img/marmol.webp?v=2") center / cover no-repeat; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 30% 45%, rgba(253,250,245,.92), rgba(253,250,245,.55) 60%, rgba(253,250,245,.15) 100%); }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22%; background: linear-gradient(180deg, rgba(251,246,239,0), var(--ivory)); pointer-events: none; }
+.hero .wrap { position: relative; z-index: 2; display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+.hero h1 { font-size: clamp(40px, 5.4vw, 72px); line-height: 1.04; margin-top: 14px; }
+.hero h1 em { display: block; }
+.lead { margin: 20px 0 26px; max-width: 54ch; font-size: clamp(16px, 1.5vw, 18.5px); color: var(--ink2); }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.kinds { margin: 26px 0 0; font: 500 11px var(--f-caps); letter-spacing: .2em; color: var(--ink3); line-height: 2; }
+.personal { display: inline-block; margin-top: 14px; font-size: 14px; color: var(--ink2); text-decoration: none; border-bottom: 1px solid rgba(182,138,78,.5); padding-bottom: 1px; }
+.personal:hover { color: var(--ink); }
+.visual { position: relative; justify-self: center; width: min(100%, 470px); aspect-ratio: 4 / 5; }
+.arch { position: absolute; inset: 0 0 0 14%; border-radius: 999px 999px 26px 26px; overflow: hidden; padding: 9px; background: linear-gradient(140deg, #F3DFA9, #B68A4E 40%, #F3DFA9 60%, #9C7038); box-shadow: 0 40px 70px -40px rgba(60,35,15,.6); }
+.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; border-radius: 999px 999px 19px 19px; }
+.phone { position: absolute; left: 0; bottom: -4%; width: 42%; aspect-ratio: 1 / 2; border-radius: 30px; padding: 7px; background: linear-gradient(145deg, #4a4044, #151213 40%, #2d2629 70%, #0f0d0e); box-shadow: 0 0 0 1.5px rgba(233,207,149,.8), 0 30px 50px -20px rgba(30,15,5,.7); }
+.phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
+.chip { position: absolute; right: -2%; top: 16%; display: flex; align-items: center; gap: 10px; padding: 10px 16px 10px 12px; border-radius: 999px; background: rgba(255,252,246,.94); box-shadow: 0 14px 30px -14px rgba(60,35,15,.55), inset 0 0 0 1px rgba(182,138,78,.35); font-size: 13px; color: var(--ink); white-space: nowrap; }
+.chip b { font: 600 22px/1 var(--f-serif); color: #9C7038; }
+.chip i { width: 9px; height: 9px; border-radius: 50%; background: #3FA266; box-shadow: 0 0 0 4px rgba(63,162,102,.18); }
+.chip2 { top: auto; bottom: 22%; right: -4%; }
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .hero-txt { text-align: center; }
+  .lead { margin-inline: auto; }
+  .ctas { justify-content: center; }
+  .visual { width: min(100%, 400px); margin-top: 8px; }
+}
+@media (max-width: 600px) {
+  .hero { padding-top: calc(118px + env(safe-area-inset-top, 0px)); }
+  .ctas .btn { width: 100%; }
+  .visual { width: calc(100% - 20px); }
+  .chip { right: -10px; font-size: 12px; padding: 8px 12px 8px 10px; }
+  .chip b { font-size: 19px; }
+}
+
+/* why: business goals */
+.goals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.goal { position: relative; padding: 26px 24px 24px; border-radius: 24px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line), 0 20px 40px -30px rgba(90,60,30,.35); display: flex; flex-direction: column; gap: 8px; }
+.goal .n { font: italic 500 30px/1 var(--f-serif); color: var(--gold); }
+.goal h3 { font-size: 26px; line-height: 1.15; }
+.goal p { margin: 0; color: var(--ink2); font-size: 15px; }
+.goal .we { margin-top: auto; padding-top: 12px; font-size: 14.5px; color: var(--ink); }
+.goal .we small { display: block; font: 500 10px var(--f-caps); letter-spacing: .26em; color: var(--gold); margin-bottom: 3px; }
+@media (max-width: 960px) { .goals { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .goals { grid-template-columns: 1fr; } }
+
+/* journey */
+.journey { background: linear-gradient(180deg, var(--ivory), #F6EDE1 50%, var(--ivory)); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.step { border-radius: 26px; overflow: hidden; background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px var(--line), 0 24px 50px -34px rgba(90,60,30,.45); }
+.step .ph { aspect-ratio: 16 / 10; overflow: hidden; }
+.step .ph img { width: 100%; height: 100%; object-fit: cover; }
+.step .tx { padding: 22px 24px 26px; }
+.step .k { font: 500 11px var(--f-caps); letter-spacing: .3em; color: var(--gold); }
+.step h3 { font-size: 34px; line-height: 1.1; margin: 2px 0 10px; }
+ul.dia { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+ul.dia li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.45; color: var(--ink2); }
+ul.dia li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+@media (max-width: 900px) { .steps { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; } }
+
+/* unique + report */
+.uniq { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 40px; }
+.uq { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; align-items: start; }
+.uq .n { grid-row: span 2; font: italic 500 46px/0.9 var(--f-serif); background: linear-gradient(100deg, #9C7038 0%, #E9CF95 30%, #C29452 55%, #B68A4E 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: 4px; }
+.uq h3 { font-size: 25px; line-height: 1.15; }
+.uq p { margin: 0; color: var(--ink2); font-size: 15px; }
+@media (max-width: 960px) { .uniq { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .uniq { grid-template-columns: 1fr; gap: 26px; } }
+.report { margin: clamp(50px, 7vw, 80px) auto 0; max-width: 860px; border-radius: 28px; padding: clamp(22px, 3.5vw, 36px); background: linear-gradient(160deg, #FFFDF9, #F6ECDF); box-shadow: inset 0 0 0 1px rgba(182,138,78,.38), 0 34px 60px -40px rgba(80,50,20,.55); }
+.report .rh { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; margin-bottom: 18px; }
+.report .rh h3 { font-size: clamp(24px, 3vw, 32px); }
+.report .rh span { font-size: 12.5px; color: var(--ink3); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.stat { border-radius: 18px; padding: 16px 16px 14px; background: rgba(255,255,255,.8); box-shadow: inset 0 0 0 1px rgba(182,138,78,.22); }
+.stat b { display: block; font: 600 clamp(32px, 4vw, 42px)/1 var(--f-serif); color: var(--ink); }
+.stat b small { font-size: .5em; color: var(--ink3); font-weight: 500; }
+.stat span { display: block; margin-top: 6px; font-size: 13.5px; line-height: 1.35; color: var(--ink2); }
+.report .more { display: inline-block; margin-top: 18px; font-size: 14.5px; color: #8A6232; text-decoration: none; border-bottom: 1px solid rgba(182,138,78,.5); }
+@media (max-width: 700px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* packages */
+.packs { background: radial-gradient(ellipse 60% 50% at 50% 40%, #F6ECDF, rgba(246,236,223,0) 75%), var(--ivory); }
+.pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+.pk { position: relative; display: flex; flex-direction: column; padding: 30px 26px 26px; border-radius: 28px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line), 0 24px 50px -36px rgba(90,60,30,.45); }
+.pk.feat { background: linear-gradient(180deg, #FFFDF8, #F8EEDF); box-shadow: inset 0 0 0 1.5px rgba(182,138,78,.7), 0 36px 60px -34px rgba(110,75,30,.55); }
+.pk .badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); padding: 5px 16px; border-radius: 999px; font: 500 10.5px var(--f-caps); letter-spacing: .24em; color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); white-space: nowrap; box-shadow: 0 6px 14px -6px rgba(140,95,40,.6); }
+.pk h3 { font-size: 34px; line-height: 1.05; text-align: center; }
+.pk .tag { margin: 8px 0 0; text-align: center; color: var(--ink2); font-size: 15px; min-height: 3em; }
+.pk .q { margin: 14px auto 18px; font: 500 11px var(--f-caps); letter-spacing: .26em; color: var(--gold); text-align: center; }
+.pk ul.dia { margin-bottom: 24px; }
+.pk .btn { margin-top: auto; width: 100%; }
+@media (max-width: 960px) { .pk-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; gap: 30px; } .pk .tag { min-height: 0; } }
+
+/* partners */
+.partner { overflow: hidden; }
+.partner::before { content: ""; position: absolute; inset: 0; background: url("/nuevo/img/empresas-salon-ancho.webp") center / cover; opacity: .22; -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent); }
+.partner .box { position: relative; max-width: 1040px; margin: 0 auto; padding: clamp(28px, 5vw, 56px); border-radius: 32px; background: rgba(251,246,239,.9); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: inset 0 0 0 1px rgba(182,138,78,.4), 0 40px 80px -50px rgba(60,35,15,.6); }
+.opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 4px 0 28px; }
+.opt { padding: 20px 20px 18px; border-radius: 20px; background: rgba(255,255,255,.75); box-shadow: inset 0 0 0 1px rgba(182,138,78,.25); }
+.opt h3 { font-size: 24px; line-height: 1.15; margin-bottom: 6px; }
+.opt p { margin: 0; font-size: 14.5px; color: var(--ink2); }
+.partner .cta { text-align: center; }
+@media (max-width: 860px) { .opts { grid-template-columns: 1fr; } }
+
+/* demos */
+.demos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 3vw, 36px) clamp(14px, 3vw, 30px); max-width: 980px; margin: 0 auto; }
+.demo { text-decoration: none; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+.demo .scr { position: relative; width: min(100%, 230px); aspect-ratio: 1 / 2; border-radius: 30px; padding: 7px; background: linear-gradient(145deg, #4a4044, #151213 40%, #2d2629 70%, #0f0d0e); box-shadow: 0 0 0 1.5px rgba(233,207,149,.7), 0 26px 44px -26px rgba(40,20,5,.7); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+.demo:hover .scr { transform: translateY(-6px); }
+.demo .scr > img, .demo .scr > .mock { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
+.demo .new { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); padding: 4px 12px; border-radius: 999px; font: 500 10px var(--f-caps); letter-spacing: .22em; color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); white-space: nowrap; }
+.demo .dn { font: 500 22px/1.15 var(--f-serif); color: var(--ink); }
+.demo .ds { font-size: 13.5px; line-height: 1.35; color: var(--ink2); max-width: 26ch; }
+.demo u { text-decoration: none; font: 500 10.5px var(--f-caps); letter-spacing: .22em; color: var(--gold); }
+/* placeholder screens for the new demos */
+.mock { overflow: hidden; display: flex; flex-direction: column; }
+.mock.dash { background: linear-gradient(180deg, #FFFDF9, #F3E8DA); padding: 50px 12px 12px; gap: 8px; text-align: left; }
+.mock.dash .t { font: 500 8.5px var(--f-caps); letter-spacing: .22em; color: var(--gold); }
+.mock.dash .h { font: 600 17px/1.1 var(--f-serif); color: var(--ink); }
+.mock.dash .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.mock.dash .tiles div { border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px rgba(182,138,78,.25); padding: 8px 8px 6px; font-size: 9px; line-height: 1.2; color: var(--ink2); }
+.mock.dash .tiles div b { display: block; font: 600 20px/1 var(--f-serif); color: var(--ink); }
+.mock.dash .bar { height: 7px; border-radius: 99px; background: rgba(182,138,78,.18); overflow: hidden; }
+.mock.dash .bar i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #D6A963, #B68A4E); }
+.mock.dash .row { display: flex; justify-content: space-between; font-size: 9px; color: var(--ink2); }
+.mock.dash .lead-l { border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px rgba(182,138,78,.2); padding: 7px 8px; font-size: 9px; line-height: 1.5; color: var(--ink2); }
+.mock.dash .lead-l b { color: var(--ink); font-weight: 500; }
+.mock.lights { background: radial-gradient(circle at 20% 18%, rgba(255,214,140,.55) 0 2px, transparent 3px), radial-gradient(circle at 70% 12%, rgba(255,230,170,.6) 0 2px, transparent 3px), radial-gradient(circle at 84% 34%, rgba(255,205,120,.5) 0 3px, transparent 4px), radial-gradient(circle at 12% 46%, rgba(190,220,255,.5) 0 2px, transparent 3px), radial-gradient(circle at 60% 78%, rgba(255,214,140,.45) 0 3px, transparent 4px), radial-gradient(circle at 30% 88%, rgba(190,220,255,.45) 0 2px, transparent 3px), radial-gradient(ellipse at 50% 100%, #2B3E66, #101A33 60%, #0A1022); align-items: center; justify-content: center; gap: 8px; padding: 16px; text-align: center; }
+.mock.lights img { width: 46%; height: auto; border-radius: 0; filter: drop-shadow(0 8px 14px rgba(0,0,0,.5)); }
+.mock.lights small { font: 500 8px var(--f-caps); letter-spacing: .3em; color: #E9CF95; }
+.mock.lights em { font: 400 30px/1 var(--f-script); color: #F3DFA9; }
+.mock.sea { background: linear-gradient(180deg, #E8EEF2 0%, #F7F3EA 55%, #EFE5D3 100%); align-items: center; justify-content: center; gap: 10px; padding: 16px; text-align: center; }
+.mock.sea img { width: 52%; height: auto; border-radius: 0; filter: drop-shadow(0 8px 10px rgba(20,40,70,.3)); }
+.mock.sea small { font: 500 8px var(--f-caps); letter-spacing: .3em; color: #22365A; }
+.mock.sea em { font: 400 26px/1 var(--f-script); color: #22365A; }
+@media (max-width: 760px) { .demos-grid { grid-template-columns: repeat(2, 1fr); } .demo .dn { font-size: 19px; } }
+
+/* proposal form */
+.form-sec { background: linear-gradient(180deg, var(--ivory), #F6EDE1); }
+form { max-width: 820px; margin: 0 auto; padding: clamp(22px, 4vw, 40px); border-radius: 30px; background: rgba(255,255,255,.8); box-shadow: inset 0 0 0 1px rgba(182,138,78,.35), 0 34px 60px -44px rgba(80,50,20,.55); display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
+.f { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.f.full { grid-column: 1 / -1; }
+.f label, .f .lb { font: 500 10.5px var(--f-caps); letter-spacing: .22em; color: var(--ink2); }
+.f input:not([type=checkbox]), .f select, .f textarea { width: 100%; font: 400 16px var(--f-body); color: var(--ink); padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(182,138,78,.38); background: #FFFDF9; -webkit-appearance: none; appearance: none; }
+.f select { background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%); background-position: calc(100% - 20px) 55%, calc(100% - 15px) 55%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 38px; }
+.f textarea { min-height: 110px; resize: vertical; }
+.f input:focus, .f select:focus, .f textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(214,169,99,.25); }
+.checks { display: flex; flex-wrap: wrap; gap: 8px; }
+.checks label { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; border: 1px solid rgba(182,138,78,.38); background: #FFFDF9; font: 400 14.5px var(--f-body); letter-spacing: 0; color: var(--ink); cursor: pointer; }
+.checks input { width: 17px; height: 17px; accent-color: #B68A4E; margin: 0; flex: none; }
+.send { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 6px; }
+.err { grid-column: 1 / -1; margin: 0; text-align: center; color: #9A3B3B; font-size: 14.5px; min-height: 1.4em; }
+@media (max-width: 640px) { form { grid-template-columns: 1fr; } .send .btn { width: 100%; } }
+
+/* faq */
+.qs { max-width: 780px; margin: 0 auto; display: grid; gap: 12px; }
+.qs details { border-radius: 20px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
+.qs summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 22px; font: 500 21px/1.25 var(--f-serif); }
+.qs summary::-webkit-details-marker { display: none; }
+.qs summary::after { content: ""; flex: none; width: 9px; height: 9px; border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold); transform: rotate(45deg) translateY(-3px); transition: transform .3s; }
+.qs details[open] summary::after { transform: rotate(-135deg) translateY(-2px); }
+.qs details p { margin: 0; padding: 0 22px 20px; color: var(--ink2); }
+
+footer { padding-block: 34px calc(env(safe-area-inset-bottom, 0px) + 34px); text-align: center; font-size: 13px; color: var(--ink3); letter-spacing: .1em; display: grid; gap: 10px; justify-items: center; }
+footer img { width: 58px; }
+footer a { color: var(--ink2); letter-spacing: .02em; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .demo .scr, .btn { transition: none; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/nuevo/" aria-label="Ilusión Invites"><img src="/nuevo/img/sello-ilusion-oro-s.webp" alt="" width="140" height="139"><span data-t="brandSub">EMPRESAS</span></a>
+    <nav class="links" data-ta="navAria">
+      <a href="#por-que" data-t="nWhy">Por qué</a>
+      <a class="l-journey" href="#recorrido" data-t="nJourney">Recorrido</a>
+      <a href="#paquetes" data-t="nPk">Paquetes</a>
+      <a href="#demos" data-t="nDemos">Demos</a>
+      <a href="#propuesta" data-t="nContact">Contacto</a>
+    </nav>
+    <div class="actions">
+      <div class="lang" role="group" aria-label="Idioma / Language / Langue"><button type="button" data-l="es" aria-pressed="false">ES</button><button type="button" data-l="en" aria-pressed="false">EN</button><button type="button" data-l="fr" aria-pressed="false">FR</button></div>
+      <a class="btn btn-gold btn-sm" href="#propuesta" data-t="ctaTop">Pedir propuesta</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div class="hero-txt">
+        <span class="eyebrow" data-t="hEye"></span>
+        <h1 data-t="hH1"></h1>
+        <p class="lead" data-t="hLead"></p>
+        <div class="ctas">
+          <a class="btn btn-gold" href="#demos" data-t="hB1"></a>
+          <a class="btn btn-line" href="#propuesta" data-t="hB2"></a>
+        </div>
+        <p class="kinds" data-t="hKinds"></p>
+        <a class="personal" href="/nuevo/" data-t="hPersonal"></a>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <div class="arch"><img src="/nuevo/img/hero-gala-empresa.webp" alt="" width="1600" height="2133"></div>
+        <div class="phone"><img src="/nuevo/img/disenos/empresa-gala.webp" alt="" width="520" height="1040"></div>
+        <div class="chip"><i></i><b>248</b><span data-t="chip1"></span></div>
+        <div class="chip chip2"><b>4.8</b><span data-t="chip2"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="por-que">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-t="wEye"></span><h2 data-t="wH2"></h2><div class="flour" aria-hidden="true"><i></i><b></b><i></i></div><p data-t="wP"></p></div>
+      <div class="goals" id="goals"></div>
+    </div>
+  </section>
+
+  <section class="journey" id="recorrido">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-t="jEye"></span><h2 data-t="jH2"></h2><div class="flour" aria-hidden="true"><i></i><b></b><i></i></div><p data-t="jP"></p></div>
+      <div class="steps">
+        <article class="step"><div class="ph"><img src="/nuevo/img/exp-empresas-pieza.webp" alt=""></div><div class="tx"><span class="k">I</span><h3 data-t="j1"></h3><ul class="dia" data-list="j1L"></ul></div></article>
+        <article class="step"><div class="ph"><img src="/nuevo/img/exp-empresas-pantalla.webp" alt=""></div><div class="tx"><span class="k">II</span><h3 data-t="j2"></h3><ul class="dia" data-list="j2L"></ul></div></article>
+        <article class="step"><div class="ph"><img src="/nuevo/img/exp-empresas-selfie.webp" alt="" style="object-position:50% 22%"></div><div class="tx"><span class="k">III</span><h3 data-t="j3"></h3><ul class="dia" data-list="j3L"></ul></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="unico">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-t="uEye"></span><h2 data-t="uH2"></h2><div class="flour" aria-hidden="true"><i></i><b></b><i></i></div></div>
+      <div class="uniq" id="uniq"></div>
+      <div class="report">
+        <div class="rh"><div><span class="eyebrow" data-t="rEye"></span><h3 data-t="rH"></h3></div><span data-t="rNote"></span></div>
+        <div class="stats">
+          <div class="stat"><b>92<small>%</small></b><span data-t="r1"></span></div>
+          <div class="stat"><b>4.8<small>/5</small></b><span data-t="r2"></span></div>
+          <div class="stat"><b>37</b><span data-t="r3"></span></div>
+          <div class="stat"><b>412</b><span data-t="r4"></span></div>
+        </div>
+        <a class="more" href="/demos/empresa-noche-luces/panel/" data-t="rMore"></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="packs" id="paquetes">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-t="pEye"></span><h2 data-t="pH2"></h2><div class="flour" aria-hidden="true"><i></i><b></b><i></i></div><p data-t="pP"></p></div>
+      <div class="pk-grid">
+        <article class="pk"><h3 data-t="p1"></h3><p class="tag" data-t="p1T"></p><p class="q" data-t="pQ"></p><ul class="dia" data-list="p1L"></ul><a class="btn btn-line" href="#propuesta" data-pk="1" data-t="pBtn"></a></article>
+        <article class="pk feat"><span class="badge" data-t="pBadge"></span><h3 data-t="p2"></h3><p class="tag" data-t="p2T"></p><p class="q" data-t="pQ"></p><ul class="dia" data-list="p2L"></ul><a class="btn btn-gold" href="#propuesta" data-pk="2" data-t="pBtn"></a></article>
+        <article class="pk"><h3 data-t="p3"></h3><p class="tag" data-t="p3T"></p><p class="q" data-t="pQ"></p><ul class="dia" data-list="p3L"></ul><a class="btn btn-line" href="#propuesta" data-pk="3" data-t="pBtn"></a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="partner" id="socios">
+    <div class="wrap">
+      <div class="box">
+        <div class="head"><span class="eyebrow" data-t="aEye"></span><h2 data-t="aH2"></h2><div class="flour" aria-hidden="true"><i></i><b></b><i></i></div><p data-t="aP"></p></div>
+        <div class="opts">
+          <div class="opt"><h3 data-t="a1"></h3><p data-t="a1P"></p></div>
+          <div class="opt"><h3 data-t="a2"></h3><p data-t="a2P"></p></div>
+          <div class="opt"><h3 data-t="a3"></h3><p data-t="a3P"></p></div>
+        </div>
+        <div class="cta"><a class="btn btn-gold" href="#propuesta" data-pk="4" data-t="aBtn"></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demos">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-t="dEye"></span><h2 data-t="dH2"></h2><div class="flour" aria-hidden="true"><i></i><b></b><i></i></div><p data-t="dP"></p></div>
+      <div class="demos-grid">
+        <a class="demo" href="/demos/empresa-noche-luces/">
+          <span class="scr"><img src="/nuevo/img/disenos/emp-noche.webp" alt="" loading="lazy"><span class="new" data-t="dNew"></span></span>
+          <b class="dn" data-t="d4"></b><span class="ds" data-t="d4T"></span><u data-t="dOpen"></u>
+        </a>
+        <a class="demo" href="/demos/empresa-noche-luces/panel/">
+          <span class="scr"><img src="/nuevo/img/disenos/emp-panel.webp" alt="" loading="lazy"><span class="new" data-t="dNew"></span></span>
+          <b class="dn" data-t="d5"></b><span class="ds" data-t="d5T"></span><u data-t="dOpen"></u>
+        </a>
+        <a class="demo" href="/demos/boda-maritima/">
+          <span class="scr"><img src="/nuevo/img/disenos/emp-mar.webp" alt="" loading="lazy"><span class="new" data-t="dNew"></span></span>
+          <b class="dn" data-t="d6"></b><span class="ds" data-t="d6T"></span><u data-t="dOpen"></u>
+        </a>
+        <a class="demo" href="/demos/empresa-gala/"><span class="scr"><img src="/nuevo/img/disenos/empresa-gala.webp" alt=""></span><b class="dn" data-t="d1"></b><span class="ds" data-t="d1T"></span><u data-t="dOpen"></u></a>
+        <a class="demo" href="/demos/empresa-lanzamiento/"><span class="scr"><img src="/nuevo/img/disenos/empresa-lanzamiento.webp" alt=""></span><b class="dn" data-t="d2"></b><span class="ds" data-t="d2T"></span><u data-t="dOpen"></u></a>
+        <a class="demo" href="/demos/empresa-aniversario/"><span class="scr"><img src="/nuevo/img/disenos/empresa-aniversario.webp" alt=""></span><b class="dn" data-t="d3"></b><span class="ds" data-t="d3T"></span><u data-t="dOpen"></u></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="form-sec" id="propuesta">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-t="fEye"></span><h2 data-t="fH2"></h2><div class="flour" aria-hidden="true"><i></i><b></b><i></i></div><p data-t="fP"></p></div>
+      <form id="form" novalidate>
+        <div class="f"><label for="f-name" data-t="fName"></label><input id="f-name" name="name" autocomplete="name"></div>
+        <div class="f"><label for="f-co" data-t="fCo"></label><input id="f-co" name="company" autocomplete="organization"></div>
+        <div class="f"><label for="f-mail" data-t="fMail"></label><input id="f-mail" name="email" type="email" autocomplete="email" inputmode="email"></div>
+        <div class="f"><label for="f-tel" data-t="fTel"></label><input id="f-tel" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div>
+        <div class="f"><label for="f-type" data-t="fType"></label><select id="f-type" name="type" data-opts="fTypes"></select></div>
+        <div class="f"><label for="f-date" data-t="fDate"></label><input id="f-date" name="date" type="month"></div>
+        <div class="f"><label for="f-guests" data-t="fGuests"></label><select id="f-guests" name="guests" data-opts="fGuestsO"></select></div>
+        <div class="f"><label for="f-pk" data-t="fPk"></label><select id="f-pk" name="package" data-opts="fPkO"></select></div>
+        <div class="f full"><span class="lb" data-t="fLangs"></span><div class="checks"><label><input type="checkbox" name="lg" value="es"><span data-t="lgEs"></span></label><label><input type="checkbox" name="lg" value="en"><span data-t="lgEn"></span></label><label><input type="checkbox" name="lg" value="fr"><span data-t="lgFr"></span></label></div></div>
+        <div class="f full"><label for="f-msg" data-t="fMsg"></label><textarea id="f-msg" name="message" data-tp="fMsgP"></textarea></div>
+        <p class="err" id="err" role="alert"></p>
+        <div class="send"><button class="btn btn-gold" type="button" id="sendWa" data-t="fWa"></button><button class="btn btn-line" type="button" id="sendMail" data-t="fMailBtn"></button></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="preguntas">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-t="qEye"></span><h2 data-t="qH2"></h2></div>
+      <div class="qs" id="qs"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <img src="/nuevo/img/sello-ilusion-oro-s.webp" alt="" width="140" height="139">
+  <span data-t="foot"></span>
+  <a href="/nuevo/" data-t="footLink"></a>
+</footer>
+
+<script>
+(function () {
+  /* every text on the page: [español, English, français] */
+  var T = {
+    brandSub: ["EMPRESAS", "FOR BUSINESS", "ENTREPRISES"],
+    navAria: ["Secciones", "Sections", "Sections"],
+    nWhy: ["Por qué", "Why", "Pourquoi"], nJourney: ["Recorrido", "Journey", "Parcours"], nPk: ["Paquetes", "Packages", "Forfaits"], nDemos: ["Demos", "Demos", "Démos"], nContact: ["Contacto", "Contact", "Contact"],
+    ctaTop: ["Pedir propuesta", "Get a proposal", "Obtenir une proposition"],
+
+    hEye: ["ILUSIÓN · EMPRESAS", "ILUSIÓN · FOR BUSINESS", "ILUSIÓN · ENTREPRISES"],
+    hH1: ["Tu evento es una inversión. <em>Que cada invitado cuente.</em>", "Your event is an investment. <em>Make every guest count.</em>", "Votre événement est un investissement. <em>Faites compter chaque invité.</em>"],
+    hLead: ["Invitaciones digitales de lujo con la imagen de tu marca: confirmaciones, registro en la puerta, encuesta al día siguiente y un reporte de resultados. Antes, durante y después del evento, en un solo link. En español, inglés y francés.",
+            "Luxury digital invitations in your brand: RSVPs, door check-in, a next-day survey and a results report. Before, during and after the event, all in one link. In English, French and Spanish.",
+            "Des invitations numériques haut de gamme à l'image de votre marque : confirmations, accueil à l'entrée, sondage le lendemain et rapport de résultats. Avant, pendant et après l'événement, dans un seul lien. En français, en anglais et en espagnol."],
+    hB1: ["Ver una demo en vivo", "See a live demo", "Voir une démo en direct"],
+    hB2: ["Pedir una propuesta", "Get a proposal", "Recevoir une proposition"],
+    hKinds: ["Galas · Lanzamientos · Congresos · Premiaciones · Fiestas de fin de año · Aniversarios", "Galas · Launches · Conferences · Awards · Holiday parties · Anniversaries", "Galas · Lancements · Congrès · Remises de prix · Fêtes de fin d'année · Anniversaires"],
+    hPersonal: ["¿Es una celebración personal? Ver bodas, XV y más&nbsp;→", "Planning a personal celebration? See weddings and more&nbsp;→", "Une célébration personnelle? Voir mariages et plus&nbsp;→"],
+    chip1: ["confirmados en vivo", "confirmed, live", "confirmés en direct"],
+    chip2: ["satisfacción", "satisfaction", "satisfaction"],
+
+    wEye: ["POR QUÉ LAS EMPRESAS HACEN EVENTOS", "WHY COMPANIES HOST EVENTS", "POURQUOI LES ENTREPRISES ORGANISENT DES ÉVÉNEMENTS"],
+    wH2: ["Ningún evento de empresa <em>es solo una fiesta</em>", "No company event <em>is just a party</em>", "Aucun événement d'entreprise <em>n'est qu'une fête</em>"],
+    wP: ["Detrás de cada gala hay una meta de negocio. Así ayudamos a cumplir cada una.", "Behind every gala there's a business goal. Here's how we help meet each one.", "Derrière chaque gala se cache un objectif d'affaires. Voici comment nous aidons à atteindre chacun."],
+    weLbl: ["Lo que hacemos", "What we do", "Ce que nous faisons"],
+    goals: [
+      [["Relaciones y ventas", "Una cena con clientes cierra lo que una junta no puede.", "Un botón «Me interesa» dentro de la invitación y una lista de contactos listos para tu equipo de ventas."],
+       ["Relationships & sales", "A dinner with clients closes what a meeting can't.", "An “I'm interested” button inside the invitation, and a list of warm leads for your sales team."],
+       ["Relations et ventes", "Un souper avec des clients conclut ce qu'une réunion ne peut pas.", "Un bouton « Ça m'intéresse » dans l'invitation et une liste de contacts chauds pour votre équipe des ventes."]],
+      [["Lanzamientos", "La emoción empieza antes de la revelación.", "Una invitación que se abre como un regalo, cuenta regresiva y la página de revelación esa misma noche."],
+       ["Launches", "Excitement starts before the reveal.", "An invitation that opens like a gift, a countdown, and the reveal page on the night."],
+       ["Lancements", "L'enthousiasme commence avant le dévoilement.", "Une invitation qui s'ouvre comme un cadeau, un compte à rebours et la page de dévoilement le soir même."]],
+      [["Marca y prensa", "Cada foto compartida es publicidad que no pagas.", "Un marco de fotos con tu marca que los invitados comparten en Instagram, y contamos cada vez que lo hacen."],
+       ["Brand & press", "Every shared photo is advertising you don't pay for.", "A branded photo frame guests share on Instagram, and we count every share."],
+       ["Marque et médias", "Chaque photo partagée est de la publicité gratuite.", "Un cadre photo à votre image que les invités partagent sur Instagram, et nous comptons chaque partage."]],
+      [["Reconocimiento y retención", "Los equipos que se sienten celebrados se quedan.", "Galas de premios con páginas de nominados, el programa de la noche y un agradecimiento personal a cada quien."],
+       ["Recognition & retention", "Teams who feel celebrated stay.", "Award nights with nominee pages, the evening's program and a personal thank-you to each person."],
+       ["Reconnaissance et rétention", "Les équipes qui se sentent célébrées restent.", "Des soirées de reconnaissance avec pages des finalistes, le programme de la soirée et un merci personnel à chacun."]],
+      [["Patrocinios y recaudación", "Los patrocinadores renuevan cuando ven resultados.", "Su logo en la invitación y en el marco de fotos, con un reporte de números reales para renovar."],
+       ["Sponsors & fundraising", "Sponsors renew when they see results.", "Their logo on the invitation and the photo frame, with a report of real numbers to help them renew."],
+       ["Commandites et collectes de fonds", "Les commanditaires renouvellent quand ils voient des résultats.", "Leur logo sur l'invitation et le cadre photo, avec un rapport de vrais chiffres pour faciliter le renouvellement."]],
+      [["Datos y opiniones", "Lo que no se mide no se puede mejorar.", "Una encuesta corta a la mañana siguiente y un reporte de resultados en una sola página."],
+       ["Data & feedback", "What you don't measure, you can't improve.", "A short survey the next morning and a one-page results report."],
+       ["Données et rétroaction", "Ce qui ne se mesure pas ne s'améliore pas.", "Un court sondage le lendemain matin et un rapport de résultats d'une page."]]
+    ],
+
+    jEye: ["UN SOLO LINK, TODO EL EVENTO", "ONE LINK, THE WHOLE EVENT", "UN SEUL LIEN, TOUT L'ÉVÉNEMENT"],
+    jH2: ["Del primer «estás invitado» <em>al último gracias</em>", "From the first “you're invited” <em>to the last thank-you</em>", "Du premier « vous êtes invité » <em>au dernier merci</em>"],
+    jP: ["El link que recibe tu invitado se transforma: primero es la invitación, la noche del evento es su guía y al día siguiente es el álbum y la encuesta.",
+         "The link your guest receives keeps changing: first it's the invitation, on the night it's their guide, and the next day it's the album and the survey.",
+         "Le lien que reçoit votre invité évolue : d'abord l'invitation, le soir même son guide, et le lendemain l'album et le sondage."],
+    j1: ["Antes", "Before", "Avant"], j2: ["Durante", "During", "Pendant"], j3: ["Después", "After", "Après"],
+    j1L: [["Invitación con tu marca que se abre como un sobre real", "Link personal para cada invitado, con su nombre", "Confirmación con datos de negocio: empresa, puesto, alimentación, sesión y acompañante", "Agregar al calendario y recordatorios", "Envío por correo y WhatsApp", "En español, inglés y francés", "Lista de asistentes en vivo"],
+          ["A branded invitation that opens like a real envelope", "A personal link for every guest, with their name", "RSVP with business details: company, title, dietary needs, session choice, plus-one", "Add to calendar and reminders", "Sent by email and WhatsApp", "In English, French and Spanish", "A live headcount"],
+          ["Une invitation à votre image qui s'ouvre comme une vraie enveloppe", "Un lien personnel pour chaque invité, à son nom", "Confirmation avec renseignements d'affaires : entreprise, poste, restrictions alimentaires, choix d'atelier, accompagnateur", "Ajout au calendrier et rappels", "Envoi par courriel et WhatsApp", "En français, en anglais et en espagnol", "Le nombre de confirmés en temps réel"]],
+    j2L: [["Registro con código QR en la puerta", "Programa digital de la noche", "«¿Cuál es mi mesa?» en el teléfono", "Marco de fotos con tu marca y tus patrocinadores"],
+          ["QR check-in at the door", "The evening's digital program", "“Find my table” on their phone", "A photo frame with your brand and your sponsors"],
+          ["Accueil par code QR à l'entrée", "Programme numérique de la soirée", "« Trouver ma table » sur le téléphone", "Un cadre photo avec votre marque et vos commanditaires"]],
+    j3L: [["Un agradecimiento al día siguiente", "Encuesta corta de satisfacción", "Álbum de fotos compartido", "Video resumen del evento", "Reporte de resultados en una página"],
+          ["A thank-you the next day", "A short satisfaction survey", "A shared photo album", "A recap video of the event", "A one-page results report"],
+          ["Un remerciement le lendemain", "Un court sondage de satisfaction", "Un album photo partagé", "Une vidéo récapitulative", "Un rapport de résultats d'une page"]],
+
+    uEye: ["LO QUE NADIE MÁS HACE", "WHAT NOBODY ELSE DOES", "CE QUE PERSONNE D'AUTRE NE FAIT"],
+    uH2: ["Más que una <em>invitación bonita</em>", "More than a <em>beautiful invitation</em>", "Plus qu'une <em>belle invitation</em>"],
+    uniq: [
+      [["Una invitación que vende", "Tus invitados pueden tocar «Me interesa» o «Quiero una reunión». Tu equipo de ventas recibe la lista al día siguiente."],
+       ["An invitation that sells", "Guests can tap “I'm interested” or “Book a meeting.” Your sales team gets the list the next day."],
+       ["Une invitation qui vend", "Vos invités peuvent toucher « Ça m'intéresse » ou « Prendre rendez-vous ». Votre équipe des ventes reçoit la liste le lendemain."]],
+      [["Reportes para patrocinadores", "Cuántas veces se vio su logo y cuántas fotos con su marca se compartieron. Números reales para vender el siguiente patrocinio."],
+       ["Sponsor reports", "How often their logo was seen and how many branded photos were shared. Real numbers to sell the next sponsorship."],
+       ["Rapports aux commanditaires", "Combien de fois leur logo a été vu et combien de photos à leur image ont été partagées. De vrais chiffres pour vendre la prochaine commandite."]],
+      [["Un link que se transforma", "La invitación se convierte en la guía de la noche y después en el álbum y la encuesta. Nadie descarga ninguna app."],
+       ["One link that transforms", "The invitation becomes the night's guide, then the album and the survey. Nobody downloads an app."],
+       ["Un lien qui se transforme", "L'invitation devient le guide de la soirée, puis l'album et le sondage. Personne n'a d'application à télécharger."]],
+      [["Resultados en 24 horas", "Asistencia, satisfacción, contactos y fotos compartidas en un reporte de una página, listo para tu dirección."],
+       ["Results in 24 hours", "Attendance, satisfaction, leads and photo shares in a one-page report, ready for your leadership team."],
+       ["Résultats en 24 heures", "Présences, satisfaction, contacts et partages de photos dans un rapport d'une page, prêt pour votre direction."]],
+      [["Trilingüe desde el inicio", "Español, inglés y francés en la misma invitación. Cada invitado la lee en su idioma, de Canadá a México."],
+       ["Trilingual from day one", "English, French and Spanish in the same invitation. Every guest reads it in their own language, from Canada to Mexico."],
+       ["Trilingue dès le départ", "Français, anglais et espagnol dans la même invitation. Chaque invité la lit dans sa langue, du Canada au Mexique."]],
+      [["Lujo de papel real, sin plantillas", "Sobres, sellos de cera y texturas con el aspecto de objetos reales. Cada diseño se hace para tu marca."],
+       ["Real-paper luxury, no templates", "Envelopes, wax seals and textures that look like real objects. Every design is made for your brand."],
+       ["Le luxe du vrai papier, sans gabarit", "Enveloppes, sceaux de cire et textures qui ont l'allure de vrais objets. Chaque design est créé pour votre marque."]]
+    ],
+    rEye: ["EJEMPLO DE REPORTE", "SAMPLE REPORT", "EXEMPLE DE RAPPORT"],
+    rH: ["Gala anual · a la mañana siguiente", "Annual gala · the next morning", "Gala annuel · le lendemain matin"],
+    rNote: ["Datos de ejemplo", "Sample data", "Données fictives"],
+    r1: ["de los confirmados asistió", "of confirmed guests attended", "des invités confirmés étaient présents"],
+    r2: ["satisfacción en la encuesta", "survey satisfaction", "satisfaction au sondage"],
+    r3: ["invitados pidieron una reunión", "guests asked for a meeting", "invités ont demandé un rendez-vous"],
+    r4: ["fotos con tu marca compartidas", "branded photos shared", "photos à votre image partagées"],
+    rMore: ["Ver el panel del organizador →", "See the organizer dashboard →", "Voir le tableau de bord de l'organisateur →"],
+
+    pEye: ["PAQUETES PARA EMPRESAS", "PACKAGES FOR COMPANIES", "FORFAITS POUR ENTREPRISES"],
+    pH2: ["Elige cuánto quieres <em>lucir y medir</em>", "Choose how much you want <em>to impress and measure</em>", "Choisissez jusqu'où <em>impressionner et mesurer</em>"],
+    pP: ["Cada evento es distinto, así que cotizamos según tu número de invitados, idiomas y fechas.", "Every event is different, so we quote based on your guest count, languages and dates.", "Chaque événement est unique : nous préparons une soumission selon le nombre d'invités, les langues et les dates."],
+    pQ: ["Cotización a la medida", "Custom quote", "Soumission sur mesure"],
+    pBadge: ["Recomendado", "Recommended", "Recommandé"],
+    pBtn: ["Pedir propuesta", "Get a proposal", "Obtenir une proposition"],
+    p1: ["Ejecutiva", "Executive", "Exécutive"],
+    p1T: ["La invitación perfecta para tu marca", "The perfect invitation for your brand", "L'invitation parfaite pour votre marque"],
+    p1L: [["Diseño con tu logo y colores", "Invitación que se abre como un sobre real", "Confirmación de asistencia en línea", "Lista de invitados descargable en Excel", "Mapa, agenda y código de vestimenta", "Uno o dos idiomas"],
+          ["Design with your logo and colours", "An invitation that opens like a real envelope", "Online RSVP", "Downloadable guest list in Excel", "Map, agenda and dress code", "One or two languages"],
+          ["Design avec votre logo et vos couleurs", "Une invitation qui s'ouvre comme une vraie enveloppe", "Confirmation de présence en ligne", "Liste des invités téléchargeable en Excel", "Carte, horaire et code vestimentaire", "Une ou deux langues"]],
+    p2: ["Evento Completo", "Full Event", "Événement complet"],
+    p2T: ["Todo el evento resuelto, de la invitación a la encuesta", "The whole event handled, from invitation to survey", "Tout l'événement pris en charge, de l'invitation au sondage"],
+    p2L: [["Todo lo de Ejecutiva", "Link personal para cada invitado", "Envío por correo y WhatsApp", "Recordatorios automáticos", "Registro con QR en la puerta", "Programa digital y «¿cuál es mi mesa?»", "Agradecimiento y encuesta al día siguiente", "Tres idiomas"],
+          ["Everything in Executive", "A personal link for every guest", "Sent by email and WhatsApp", "Automatic reminders", "QR check-in at the door", "Digital program and “find my table”", "Thank-you and survey the next day", "Three languages"],
+          ["Tout le forfait Exécutive", "Un lien personnel pour chaque invité", "Envoi par courriel et WhatsApp", "Rappels automatiques", "Accueil par QR à l'entrée", "Programme numérique et « trouver ma table »", "Remerciement et sondage le lendemain", "Trois langues"]],
+    p3: ["Experiencia de Marca", "Brand Experience", "Expérience de marque"],
+    p3T: ["Para eventos que deben dar resultados medibles", "For events that must deliver measurable results", "Pour les événements qui doivent livrer des résultats mesurables"],
+    p3L: [["Todo lo de Evento Completo", "Marco de fotos con tu marca y patrocinadores", "Álbum con las fotos de los invitados", "Video resumen para redes sociales", "Botón «Me interesa» y lista de contactos", "Reporte de resultados y para patrocinadores", "Una persona dedicada a tu evento"],
+          ["Everything in Full Event", "A photo frame with your brand and sponsors", "An album of your guests' photos", "A recap video for social media", "“I'm interested” button and lead list", "Results report and sponsor report", "One dedicated contact for your event"],
+          ["Tout le forfait Événement complet", "Cadre photo avec votre marque et vos commanditaires", "Album des photos de vos invités", "Vidéo récapitulative pour les réseaux sociaux", "Bouton « Ça m'intéresse » et liste de contacts", "Rapport de résultats et rapport aux commanditaires", "Une personne dédiée à votre événement"]],
+
+    aEye: ["PARA EMPRESAS DE EVENTOS Y SALONES", "FOR EVENT COMPANIES & VENUES", "POUR LES ENTREPRISES D'ÉVÉNEMENTS ET LES SALLES"],
+    aH2: ["¿Tú organizas los eventos? <em>Crezcamos juntos.</em>", "You run the events? <em>Let's grow together.</em>", "Vous organisez les événements? <em>Grandissons ensemble.</em>"],
+    aP: ["Si rentas espacios o decoración, o planeas eventos, tus clientes ya necesitan invitaciones. Agrégalas a lo que vendes sin contratar a nadie.",
+         "If you rent venues or décor, or plan events, your clients already need invitations. Add them to what you sell without hiring anyone.",
+         "Si vous louez des salles ou du décor, ou planifiez des événements, vos clients ont déjà besoin d'invitations. Ajoutez-les à votre offre sans embaucher personne."],
+    a1: ["Recomienda y gana", "Refer and earn", "Recommandez et gagnez"],
+    a1P: ["Nos presentas a tu cliente y recibes una comisión por cada pedido. Nosotros hacemos todo el trabajo.", "Introduce us to your client and earn a commission on every order. We do all the work.", "Vous nous présentez votre client et touchez une commission sur chaque commande. Nous faisons tout le travail."],
+    a2: ["Con tu marca", "Under your brand", "À votre image"],
+    a2P: ["Vende las invitaciones como tu propio servicio. Nosotros diseñamos detrás de cámaras, con tu nombre.", "Sell invitations as your own service. We design behind the scenes, under your name.", "Vendez les invitations comme votre propre service. Nous les concevons en coulisses, sous votre nom."],
+    a3: ["Tu tema, completo", "Your theme, complete", "Votre thème, au complet"],
+    a3P: ["Para cada tema de decoración que ofreces creamos la invitación, el letrero de bienvenida y los números de mesa a juego.", "For every décor theme you offer, we create the matching invitation, welcome sign and table numbers.", "Pour chaque thème de décor que vous offrez, nous créons l'invitation, l'affiche de bienvenue et les numéros de table assortis."],
+    aBtn: ["Hablemos de una alianza", "Let's talk partnership", "Parlons partenariat"],
+
+    dEye: ["DEMOS EN VIVO", "LIVE DEMOS", "DÉMOS EN DIRECT"],
+    dH2: ["Ábrelas como lo haría <em>tu invitado</em>", "Open them the way <em>your guests would</em>", "Ouvrez-les comme le feraient <em>vos invités</em>"],
+    dP: ["Toca cualquiera. Son ejemplos con empresas inventadas.", "Tap any of them. They're samples with fictional companies.", "Touchez-en une. Ce sont des exemples avec des entreprises fictives."],
+    dOpen: ["Abrir demo", "Open demo", "Ouvrir la démo"], dNew: ["Nuevo", "New", "Nouveau"],
+    d1: ["Gala Anual · Grupo Altavista", "Annual Gala · Grupo Altavista", "Gala annuel · Grupo Altavista"], d1T: ["Gala de premios", "Awards gala", "Gala de reconnaissance"],
+    d2: ["AURUM · Maison Lumière", "AURUM · Maison Lumière", "AURUM · Maison Lumière"], d2T: ["Lanzamiento de producto", "Product launch", "Lancement de produit"],
+    d3: ["25 años · Grupo Solaris", "25 years · Grupo Solaris", "25 ans · Grupo Solaris"], d3T: ["Aniversario de empresa", "Company anniversary", "Anniversaire d'entreprise"],
+    d4: ["Noche de Luces", "Night of Lights", "Nuit des lumières"], d4T: ["Noche corporativa en un jardín de luces", "A corporate night at a light garden", "Soirée d'entreprise dans un jardin de lumières"],
+    d5: ["Panel del organizador", "Organizer dashboard", "Tableau de bord"], d5T: ["Asistencia, encuesta y contactos en vivo", "Live attendance, survey and leads", "Présences, sondage et contacts en direct"],
+    d6: ["Boda marítima", "Maritime wedding", "Mariage maritime"], d6T: ["Un tema de decoración convertido en invitación", "A décor theme turned into an invitation", "Un thème de décor transformé en invitation"],
+    mT: ["PANEL EN VIVO", "LIVE DASHBOARD", "EN DIRECT"], mH: ["Noche de Luces", "Night of Lights", "Nuit des lumières"],
+    mA: ["confirmados", "confirmed", "confirmés"], mS: ["satisfacción", "satisfaction", "satisfaction"], mL: ["contactos", "leads", "contacts"], mP: ["fotos", "photos", "photos"],
+    mC: ["Llegadas", "Checked in", "Arrivées"], mLightsK: ["ESTÁS INVITADO", "YOU'RE INVITED", "VOUS ÊTES INVITÉ"],
+    mSea: ["NOS CASAMOS", "WE'RE GETTING MARRIED", "NOUS NOUS MARIONS"],
+
+    fEye: ["PIDE TU PROPUESTA", "GET YOUR PROPOSAL", "DEMANDEZ VOTRE PROPOSITION"],
+    fH2: ["Cuéntanos de <em>tu evento</em>", "Tell us about <em>your event</em>", "Parlez-nous de <em>votre événement</em>"],
+    fP: ["Te respondemos pronto con ideas y una cotización.", "We'll get back to you quickly with ideas and a quote.", "Nous vous répondrons rapidement avec des idées et une soumission."],
+    fName: ["Tu nombre", "Your name", "Votre nom"], fCo: ["Empresa u organización", "Company or organization", "Entreprise ou organisme"],
+    fMail: ["Correo", "Email", "Courriel"], fTel: ["Teléfono / WhatsApp", "Phone / WhatsApp", "Téléphone / WhatsApp"],
+    fType: ["Tipo de evento", "Event type", "Type d'événement"], fDate: ["Fecha aproximada", "Approximate date", "Date approximative"],
+    fGuests: ["Invitados", "Guests", "Invités"], fPk: ["Paquete", "Package", "Forfait"], fLangs: ["Idiomas de la invitación", "Invitation languages", "Langues de l'invitation"],
+    lgEs: ["Español", "Spanish", "Espagnol"], lgEn: ["Inglés", "English", "Anglais"], lgFr: ["Francés", "French", "Français"],
+    fMsg: ["Mensaje", "Message", "Message"],
+    fMsgP: ["¿Qué quieres lograr con este evento?", "What do you want this event to achieve?", "Que souhaitez-vous accomplir avec cet événement?"],
+    fTypes: [["Gala o premiación", "Lanzamiento de producto", "Congreso o conferencia", "Fiesta de fin de año", "Aniversario", "Evento para clientes", "Recaudación de fondos", "Soy empresa de eventos o salón", "Otro"],
+             ["Gala or awards", "Product launch", "Conference", "Holiday party", "Anniversary", "Client event", "Fundraiser", "I'm an event company or venue", "Other"],
+             ["Gala ou remise de prix", "Lancement de produit", "Congrès ou conférence", "Fête de fin d'année", "Anniversaire", "Événement clients", "Collecte de fonds", "Je suis une entreprise d'événements ou une salle", "Autre"]],
+    fGuestsO: [["Menos de 100", "100 – 300", "300 – 1,000", "Más de 1,000"], ["Under 100", "100 – 300", "300 – 1,000", "Over 1,000"], ["Moins de 100", "100 – 300", "300 – 1 000", "Plus de 1 000"]],
+    fPkO: [["Aún no sé", "Ejecutiva", "Evento Completo", "Experiencia de Marca", "Alianza para empresas de eventos"],
+           ["Not sure yet", "Executive", "Full Event", "Brand Experience", "Event company partnership"],
+           ["Je ne sais pas encore", "Exécutive", "Événement complet", "Expérience de marque", "Partenariat pour entreprises d'événements"]],
+    fWa: ["Enviar por WhatsApp", "Send via WhatsApp", "Envoyer par WhatsApp"], fMailBtn: ["Enviar por correo", "Send by email", "Envoyer par courriel"],
+    fErr: ["Escribe tu nombre, tu empresa y un correo o teléfono.", "Please add your name, company, and an email or phone.", "Indiquez votre nom, votre entreprise et un courriel ou un téléphone."],
+    fHi: ["Hola Ilusión Invites, quiero una propuesta para un evento de empresa.", "Hi Ilusión Invites, I'd like a proposal for a company event.", "Bonjour Ilusión Invites, j'aimerais recevoir une proposition pour un événement d'entreprise."],
+    fSubj: ["Propuesta para evento de empresa", "Proposal for a company event", "Proposition pour un événement d'entreprise"],
+
+    qEye: ["PREGUNTAS FRECUENTES", "FREQUENTLY ASKED QUESTIONS", "QUESTIONS FRÉQUENTES"],
+    qH2: ["Lo que nos preguntan <em>las empresas</em>", "What companies <em>ask us</em>", "Ce que les entreprises <em>nous demandent</em>"],
+    faq: [
+      [["¿Qué pasa con los datos de mis invitados?", "Son tuyos. Solo pedimos lo que tu evento necesita, no los compartimos con nadie y los borramos cuando tú lo pidas. Puedes descargar la lista completa en cualquier momento."],
+       ["What happens to my guests' data?", "It's yours. We only collect what your event needs, never share it, and delete it whenever you ask. You can download the full list at any time."],
+       ["Qu'advient-il des données de mes invités?", "Elles vous appartiennent. Nous recueillons seulement ce dont votre événement a besoin, nous ne les partageons jamais et nous les supprimons à votre demande. Vous pouvez télécharger la liste complète en tout temps."]],
+      [["¿Funciona con cientos o miles de invitados?", "Sí. Nos mandas tu lista en Excel y cada invitado recibe su propio link con su nombre. Para listas muy grandes planeamos el envío contigo."],
+       ["Does it work for hundreds or thousands of guests?", "Yes. Send us your list in Excel and every guest gets their own link with their name. For very large lists we plan the send-out with you."],
+       ["Est-ce que ça fonctionne pour des centaines ou des milliers d'invités?", "Oui. Envoyez-nous votre liste Excel et chaque invité reçoit son propre lien à son nom. Pour les très grandes listes, nous planifions l'envoi avec vous."]],
+      [["¿Puede llevar nuestro logo y colores?", "Sí. Diseñamos con tu logo, tus colores y tu tipografía, siguiendo tu guía de marca. También podemos incluir a tus patrocinadores."],
+       ["Can it carry our logo and colours?", "Yes. We design with your logo, colours and fonts, following your brand guidelines. We can include your sponsors too."],
+       ["Peut-elle porter notre logo et nos couleurs?", "Oui. Nous concevons avec votre logo, vos couleurs et vos polices, en respectant vos normes graphiques. Nous pouvons aussi inclure vos commanditaires."]],
+      [["¿Con cuánto tiempo hay que pedirla?", "Lo ideal es de 4 a 6 semanas antes del evento, para enviar la invitación con tiempo. Si es urgente, pregúntanos: muchas veces se puede."],
+       ["How much notice do you need?", "Ideally 4 to 6 weeks before the event, so the invitation goes out in time. If it's urgent, ask us: it's often possible."],
+       ["Quel délai faut-il prévoir?", "Idéalement de 4 à 6 semaines avant l'événement, pour que l'invitation parte à temps. Si c'est urgent, demandez-nous : c'est souvent possible."]],
+      [["¿De verdad está en francés?", "Sí. Cada invitación puede estar en español, inglés y francés, y el invitado cambia de idioma con un toque. Los textos se adaptan al francés de Canadá, no se traducen palabra por palabra."],
+       ["Is it really in French?", "Yes. Every invitation can be in English, French and Spanish, and guests switch language with one tap. The wording is adapted to Canadian French, not translated word for word."],
+       ["Est-ce vraiment en français?", "Oui. Chaque invitation peut être en français, en anglais et en espagnol, et l'invité change de langue d'un seul toucher. Les textes sont adaptés au français canadien, pas traduits mot à mot."]]
+    ],
+    foot: ["ILUSIÓN INVITES · MÉXICO & CANADÁ", "ILUSIÓN INVITES · MEXICO & CANADA", "ILUSIÓN INVITES · MEXIQUE & CANADA"],
+    footLink: ["Invitaciones para celebraciones personales", "Invitations for personal celebrations", "Invitations pour célébrations personnelles"],
+    title: ["Ilusión Invites · Empresas", "Ilusión Invites · For Business", "Ilusión Invites · Entreprises"]
+  };
+  var IDX = { es: 0, en: 1, fr: 2 }, lang = 'es';
+  function t(k) { return T[k][IDX[lang]]; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  function render() {
+    document.documentElement.lang = lang;
+    document.title = t('title');
+    document.querySelectorAll('[data-t]').forEach(function (el) { el.innerHTML = t(el.getAttribute('data-t')); });
+    document.querySelectorAll('[data-ta]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-ta'))); });
+    document.querySelectorAll('[data-tp]').forEach(function (el) { el.setAttribute('placeholder', t(el.getAttribute('data-tp'))); });
+    document.querySelectorAll('[data-list]').forEach(function (el) { el.innerHTML = t(el.getAttribute('data-list')).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join(''); });
+    document.querySelectorAll('[data-opts]').forEach(function (el) {
+      var v = el.selectedIndex; el.innerHTML = t(el.getAttribute('data-opts')).map(function (x, i) { return '<option value="' + i + '">' + esc(x) + '</option>'; }).join(''); el.selectedIndex = Math.max(0, v);
+    });
+    document.getElementById('goals').innerHTML = T.goals.map(function (g, i) { g = g[IDX[lang]];
+      return '<article class="goal"><span class="n">' + ['I', 'II', 'III', 'IV', 'V', 'VI'][i] + '</span><h3>' + esc(g[0]) + '</h3><p>' + esc(g[1]) + '</p><p class="we"><small>' + esc(t('weLbl')) + '</small>' + esc(g[2]) + '</p></article>'; }).join('');
+    document.getElementById('uniq').innerHTML = T.uniq.map(function (u, i) { u = u[IDX[lang]];
+      return '<div class="uq"><span class="n">0' + (i + 1) + '</span><h3>' + esc(u[0]) + '</h3><p>' + esc(u[1]) + '</p></div>'; }).join('');
+    var open = [].map.call(document.querySelectorAll('#qs details'), function (d) { return d.open; });
+    document.getElementById('qs').innerHTML = T.faq.map(function (q, i) { q = q[IDX[lang]];
+      return '<details' + (open[i] ? ' open' : '') + '><summary>' + esc(q[0]) + '</summary><p>' + esc(q[1]) + '</p></details>'; }).join('');
+    document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-l') === lang)); });
+    document.getElementById('err').textContent = '';
+  }
+  function setLang(l, save) {
+    lang = IDX.hasOwnProperty(l) ? l : 'en'; render();
+    if (save) { try { localStorage.setItem('ilu-lang', lang); } catch (e) {} }
+  }
+  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-l'), true); }); });
+
+  /* starting language: ?lang= → saved choice → the phone's language */
+  var q = (new URLSearchParams(location.search).get('lang') || '').toLowerCase(), saved = null;
+  try { saved = localStorage.getItem('ilu-lang'); } catch (e) {}
+  var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+  setLang(IDX.hasOwnProperty(q) ? q : IDX.hasOwnProperty(saved) ? saved : nav === 'fr' ? 'fr' : nav === 'es' ? 'es' : 'en', !!IDX[q] || q === 'es');
+
+  /* package buttons preselect the package in the form */
+  document.querySelectorAll('[data-pk]').forEach(function (a) { a.addEventListener('click', function () { document.getElementById('f-pk').selectedIndex = +a.getAttribute('data-pk'); }); });
+
+  /* proposal: builds a message for WhatsApp or email */
+  var F = document.getElementById('form');
+  function val(n) { var el = F.elements[n]; return el ? String(el.value || '').trim() : ''; }
+  function message() {
+    var name = val('name'), co = val('company'), mail = val('email'), tel = val('phone');
+    if (!name || !co || (!mail && !tel)) { document.getElementById('err').textContent = t('fErr'); return null; }
+    document.getElementById('err').textContent = '';
+    var L = function (k) { return t(k); }, sel = function (id) { var s = document.getElementById(id); return s.options[s.selectedIndex] ? s.options[s.selectedIndex].text : ''; };
+    var langs = [].filter.call(F.querySelectorAll('input[name=lg]'), function (c) { return c.checked; }).map(function (c) { return t({ es: 'lgEs', en: 'lgEn', fr: 'lgFr' }[c.value]); }).join(', ');
+    var lines = [t('fHi'), '',
+      L('fName') + ': ' + name, L('fCo') + ': ' + co,
+      mail ? L('fMail') + ': ' + mail : '', tel ? L('fTel') + ': ' + tel : '',
+      L('fType') + ': ' + sel('f-type'), val('date') ? L('fDate') + ': ' + val('date') : '',
+      L('fGuests') + ': ' + sel('f-guests'), L('fPk') + ': ' + sel('f-pk'),
+      langs ? L('fLangs') + ': ' + langs : '', val('message') ? '\n' + val('message') : ''];
+    return lines.filter(function (x) { return x !== ''; }).join('\n');
+  }
+  document.getElementById('sendWa').addEventListener('click', function () {
+    var m = message(); if (m) window.open('https://wa.me/16048391163?text=' + encodeURIComponent(m), '_blank', 'noopener');
+  });
+  document.getElementById('sendMail').addEventListener('click', function () {
+    var m = message(); if (m) location.href = 'mailto:ilusioninvites@gmail.com?subject=' + encodeURIComponent(t('fSubj') + ' · ' + val('company')) + '&body=' + encodeURIComponent(m);
+  });
+})();
+</script>
+
+</body>
+</html>

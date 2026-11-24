@@ -40,6 +40,17 @@ PAGES = [
      'Link por invitado, lista de confirmados, recordatorios, video de entrada, canción personalizada, marco para Instagram y papelería para tus XV.'),
     ('../website/pedido-xv.html', 'pedido-xv', 'Pedido XV Años · Ilusión Invites',
      'Llena los datos de los XV años y armamos su invitación digital.'),
+    # corporate section (Spanish, English and French) and its demos
+    ('../website/empresas.html', 'empresas', 'Ilusión Invites · Empresas · For Business · Entreprises',
+     'Invitaciones digitales de lujo para empresas: confirmaciones, registro con QR, encuesta y reporte de resultados. Luxury digital invitations for companies, in English, French and Spanish.'),
+    ('../demos/empresa-noche-luces/index.html', 'demos/empresa-noche-luces', 'Noche de Luces · Ilusión Invites',
+     'Evento de empresa de ejemplo: noche corporativa en un jardín de luces. Corporate night sample at a light garden.'),
+    ('../demos/empresa-noche-luces/panel.html', 'demos/empresa-noche-luces/panel', 'Panel del organizador · Ilusión Invites',
+     'Panel de ejemplo para el organizador: asistencia, encuesta y contactos. Sample organizer dashboard.'),
+    ('../demos/empresa-noche-luces/encuesta.html', 'demos/empresa-noche-luces/encuesta', 'Encuesta · Noche de Luces · Ilusión Invites',
+     'Encuesta de ejemplo para el día siguiente al evento. Sample next-day guest survey.'),
+    ('../demos/boda-maritima/index.html', 'demos/boda-maritima', 'Boda marítima · Ilusión Invites',
+     'Invitación de boda de ejemplo con tema marítimo. Maritime-themed wedding invitation sample.'),
 ]
 # "Agregar a mi calendario": the guest's own phone reminds them (1 day and 2 hours before) with the address. Free, no lists.
 import re, urllib.parse
@@ -103,12 +114,12 @@ REMIND = """
 <script>
 (function () {
   var a = document.getElementById('rsvp'); if (!a) return;
-  var T = { es: ['Quiero recordatorios por WhatsApp', 'Y quiero recibir recordatorios por WhatsApp 🔔'], en: ['Send me WhatsApp reminders', 'And I would like WhatsApp reminders 🔔'] };
+  var T = { es: ['Quiero recordatorios por WhatsApp', 'Y quiero recibir recordatorios por WhatsApp 🔔'], en: ['Send me WhatsApp reminders', 'And I would like WhatsApp reminders 🔔'], fr: ['Je veux des rappels par WhatsApp', 'Et j’aimerais recevoir des rappels par WhatsApp 🔔'] };
   var w = document.createElement('div'); w.className = 'ilu-rem-w';
   var b = document.createElement('button'); b.type = 'button'; b.className = 'ilu-rem'; b.setAttribute('aria-pressed', 'false');
   b.innerHTML = '<i aria-hidden="true"></i><span></span>'; w.appendChild(b);
   var row = a.closest('.row') || a; row.parentNode.insertBefore(w, row);
-  var L = function () { return document.documentElement.lang === 'en' ? 'en' : 'es'; };
+  var L = function () { var l = document.documentElement.lang; return l === 'en' || l === 'fr' ? l : 'es'; };
   var paint = function () { b.querySelector('span').textContent = T[L()][0]; };
   b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
   new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); paint();
@@ -138,14 +149,16 @@ DEMO_NAV = """
 (function(){
   if (window.top !== window) return; /* inside the preview on the collection page: it has its own buttons */
   var q = new URLSearchParams(location.search), c = q.get('c') || '__COL__', d = q.get('d') || '__DIS__';
-  var en = false; try { en = localStorage.getItem('ilu-lang') === 'en'; } catch (e) {}
+  var lg = 'es'; try { lg = (q.get('lang') || localStorage.getItem('ilu-lang') || 'es').slice(0, 2); } catch (e) {} var en = lg === 'en', fr = lg === 'fr';
   var nav = document.getElementById('ilu-nav'), back = document.getElementById('ilu-back'), cta = document.getElementById('ilu-cta');
   back.href = '/nuevo/coleccion/' + c + '/#disenos'; cta.href = '/nuevo/?evento=' + c + '&diseno=' + encodeURIComponent('__DISN__') + '#imagina';
-  back.querySelector('span').textContent = en ? 'Back' : 'Volver'; cta.textContent = en ? 'I want one like this ✨' : 'Quiero una así ✨';
+  back.querySelector('span').textContent = fr ? 'Retour' : en ? 'Back' : 'Volver'; cta.textContent = fr ? 'J’en veux une comme ça ✨' : en ? 'I want one like this ✨' : 'Quiero una así ✨';
+  if ('__CORP__' === '1') { back.href = '/empresas/#demos'; cta.href = '/empresas/#propuesta'; }
   back.addEventListener('click', function (e) { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {} });
   nav.hidden = false;
   var last = scrollY, shown = false;
-  setTimeout(function () { shown = true; cta.classList.remove('off'); }, 3500);
+  if ('__QUIET__' === '1') shown = true; /* these demos have their own "scroll" hint at the bottom: the button waits for the guest to scroll */
+  else setTimeout(function () { shown = true; cta.classList.remove('off'); }, 3500);
   addEventListener('scroll', function () { if (!shown) return; var y = scrollY; if (y > last + 8) cta.classList.add('off'); else if (y < last - 8 || innerHeight + y >= document.documentElement.scrollHeight - 40) cta.classList.remove('off'); last = y; }, { passive: true });
 })();
 </script>
@@ -178,7 +191,8 @@ html.ilu-frozen *,html.ilu-frozen *::before,html.ilu-frozen *::after{animation-p
 </div>
 """
 DIS_NAMES = {d['id']: d['nombre'] for c in json.load(open(os.path.join(HERE, '..', 'website', 'colecciones.json'), encoding='utf-8'))['colecciones'] for d in c.get('disenos', [])}
-DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas'), 'demos/boda-regina-emilio': ('bodas', 'perla-cristal'), 'demos/xv-valentina': ('xv-anos', 'rosa-roja'), 'demos/xv-renata': ('xv-anos', 'noche-zafiro'), 'demos/xv-ximena': ('xv-anos', 'jardin-jade'), 'demos/cumple-ricardo': ('cumpleanos', 'clasico-67'), 'demos/cumple-mariana': ('cumpleanos', 'noche-champana'), 'demos/cumple-elena': ('cumpleanos', 'cena-toscana'), 'demos/baby-nube': ('baby-shower', 'nube-algodon'), 'demos/baby-mariposas': ('baby-shower', 'jardin-mariposas'), 'demos/baby-luna': ('baby-shower', 'bajo-la-luna'), 'demos/empresa-gala': ('empresas', 'gala-esmeralda'), 'demos/empresa-lanzamiento': ('empresas', 'gran-lanzamiento'), 'demos/empresa-aniversario': ('empresas', 'aniversario-25'), 'demos/navidad-posada': ('navidad', 'posada-tradicional'), 'demos/navidad-noche-paz': ('navidad', 'noche-de-paz'), 'demos/navidad-bosque': ('navidad', 'navidad-bosque'), 'demos/cumple-whisky': ('cumpleanos', 'noche-whisky'), 'demos/cumple-golf': ('cumpleanos', 'hoyo-18'), 'demos/cumple-abanico': ('cumpleanos', 'abanico-encaje'), 'demos/cumple-disco': ('cumpleanos', 'disco-glam'), 'demos/cumple-carrusel': ('cumpleanos', 'carrusel-magico'), 'demos/cumple-hadas': ('cumpleanos', 'jardin-hadas'), 'demos/cumple-espacio': ('cumpleanos', 'mision-espacial'), 'demos/cumple-dino': ('cumpleanos', 'expedicion-dino')}
+DIS_NAMES.update({'boda-maritima': 'Boda Marítima', 'noche-luces': 'Noche de Luces'})  # demos shown on /empresas/, not in a collection
+DEMO_INFO = {'demos/boda-jardin-blanco': ('bodas', 'jardin-blanco'), 'demos/boda-isabella-julian': ('bodas', 'terciopelo-vino'), 'demos/boda-camila-sebastian': ('bodas', 'encaje-perlas'), 'demos/boda-regina-emilio': ('bodas', 'perla-cristal'), 'demos/xv-valentina': ('xv-anos', 'rosa-roja'), 'demos/xv-renata': ('xv-anos', 'noche-zafiro'), 'demos/xv-ximena': ('xv-anos', 'jardin-jade'), 'demos/cumple-ricardo': ('cumpleanos', 'clasico-67'), 'demos/cumple-mariana': ('cumpleanos', 'noche-champana'), 'demos/cumple-elena': ('cumpleanos', 'cena-toscana'), 'demos/baby-nube': ('baby-shower', 'nube-algodon'), 'demos/baby-mariposas': ('baby-shower', 'jardin-mariposas'), 'demos/baby-luna': ('baby-shower', 'bajo-la-luna'), 'demos/empresa-gala': ('empresas', 'gala-esmeralda'), 'demos/empresa-lanzamiento': ('empresas', 'gran-lanzamiento'), 'demos/empresa-aniversario': ('empresas', 'aniversario-25'), 'demos/navidad-posada': ('navidad', 'posada-tradicional'), 'demos/navidad-noche-paz': ('navidad', 'noche-de-paz'), 'demos/navidad-bosque': ('navidad', 'navidad-bosque'), 'demos/cumple-whisky': ('cumpleanos', 'noche-whisky'), 'demos/cumple-golf': ('cumpleanos', 'hoyo-18'), 'demos/cumple-abanico': ('cumpleanos', 'abanico-encaje'), 'demos/cumple-disco': ('cumpleanos', 'disco-glam'), 'demos/cumple-carrusel': ('cumpleanos', 'carrusel-magico'), 'demos/cumple-hadas': ('cumpleanos', 'jardin-hadas'), 'demos/cumple-espacio': ('cumpleanos', 'mision-espacial'), 'demos/cumple-dino': ('cumpleanos', 'expedicion-dino'), 'demos/empresa-noche-luces': ('empresas', 'noche-luces'), 'demos/boda-maritima': ('bodas', 'boda-maritima')}
 # pages with their own link preview (shown when the link is shared on WhatsApp, iMessage, Instagram...)
 OG = {
     'demos/cumple-whisky': ('Andrés cumple 40 🥃', 'Viernes 3 de septiembre de 2027 · San Pedro Garza García. Toca el vaso para servir.', 'img/compartir.jpg', 'img/vaso-lleno.webp', '#1E130C'),
@@ -206,9 +220,18 @@ OG = {
     'demos/xv-valentina': ('Mis XV Años · Valentina ✨', 'Sábado 13 de marzo de 2027 · Guadalajara. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#3A0A14'),
     'demos/xv-renata': ('Mis XV Años · Renata ✨', 'Sábado 12 de junio de 2027 · Monterrey. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#0B1E46'),
     'demos/xv-ximena': ('Mis XV Años · Ximena ✨', 'Sábado 9 de octubre de 2027 · San Miguel de Allende. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello.webp', '#EEF3EC'),
+    'demos/empresa-noche-luces': ('Corporate Night · Harbourline Group ✨', 'Thursday, December 10, 2026 · Garden of Lights. Tap to open your invitation. (Sample invitation by Ilusión Invites)', 'img/compartir.jpg', '/nuevo/img/ilusion-logo.jpg', '#0B1626'),
+    'demos/empresa-noche-luces/panel': ('Results report · Corporate Night ✨', 'Sample organizer report: attendance, check-in, survey, photo shares and leads. By Ilusión Invites.', 'img/compartir.jpg', '/nuevo/img/ilusion-logo.jpg', '#0B1626'),
+    'demos/boda-maritima': ('Claire & Mathieu · Halifax 2027 ⚓', 'Saturday, August 21, 2027 · Halifax, Nova Scotia. Tap the seal to open your invitation.', 'img/compartir.jpg', '/nuevo/img/ilusion-logo.jpg', '#0E1C33'),
+    'empresas': ('Ilusión Invites · For companies', 'Luxury digital invitations for corporate events: RSVP, QR check-in, next-day survey and a results report. English, French and Spanish.', 'img/compartir.jpg', '/nuevo/img/ilusion-logo.jpg', '#F6F1E8'),
     'demos/boda-regina-emilio': ('Regina & Emilio · Nos casamos ✨', 'Sábado 17 de abril de 2027 · San Miguel de Allende. Toca para abrir tu invitación.', 'img/compartir.jpg', 'img/sello-corona.webp', '#F3ECE2'),
 }
+# newer demos with their own pause button / calendar / RSVP form (and three languages)
+OWN_TOOLS = {'demos/empresa-noche-luces': ('pause', 'cal', 'rsvp'), 'demos/boda-maritima': ('pause', 'cal')}
+CORP_DEMOS = {'demos/empresa-noche-luces'}
 for src, out, title, desc in PAGES:
+    if not os.path.exists(os.path.join(HERE, src)):
+        print('skipped (not made yet)', out); continue
     sub = (out + '/') if out else ''
     body = open(os.path.join(HERE, src), encoding='utf-8').read()
     og = OG.get(out)
@@ -240,9 +263,11 @@ for src, out, title, desc in PAGES:
     os.makedirs(os.path.join(HERE, out), exist_ok=True)
     if out in DEMO_INFO:
         body += DEMO_NAV.replace('__COL__', DEMO_INFO[out][0]).replace('__DIS__', DEMO_INFO[out][1]).replace('__DISN__', DIS_NAMES.get(DEMO_INFO[out][1], ''))
-        body += FREEZE
-        body += REMIND
-        cal = cal_data(body, title)
+        own = OWN_TOOLS.get(out, ())
+        body = body.replace('__CORP__', '1' if out in CORP_DEMOS else '0').replace('__QUIET__', '1' if own else '0')
+        if 'pause' not in own: body += FREEZE
+        if 'rsvp' not in own: body += REMIND
+        cal = cal_data(body, title) if 'cal' not in own else None
         if cal: body += CAL.replace('__CAL__', json.dumps(cal, ensure_ascii=False))
     open(os.path.join(HERE, out, 'index.html'), 'w', encoding='utf-8').write(head + body + '\n</body>\n</html>\n')
     print('built', out or '(root)')

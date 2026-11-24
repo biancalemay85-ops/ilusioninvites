@@ -773,6 +773,12 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
 /* the menu logo is the gold seal alone (it already reads "Ilusión Invites") */
 .brand > span, .brand > b { display: none !important; }
 .brand img { width: 46px !important; }
+/* who it's for: personal celebrations (this page) or companies (/empresas/) */
+.aud { position: relative; z-index: 8; display: inline-flex; padding: 4px; margin: 0 auto 10px; border-radius: 999px; background: rgba(255,252,246,.75); box-shadow: inset 0 0 0 1px rgba(182,138,78,.4), 0 8px 20px -14px rgba(90,60,30,.5); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); text-shadow: none; }
+.aud > * { display: inline-flex; align-items: center; min-height: 36px; padding: 0 18px; border-radius: 999px; font: 500 11px var(--f-caps); letter-spacing: .2em; text-decoration: none; color: var(--ink2); white-space: nowrap; }
+.aud .aud-on { color: #3A2210; background: linear-gradient(180deg, #F7E4B4, #D6A963); }
+.aud a:hover { color: var(--ink); }
+@media (max-width: 560px) { .links .l-emp { display: none; } .aud > * { padding: 0 14px; font-size: 10.5px; } }
 </style>
 
 <header class="top" id="top">
@@ -782,6 +788,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
       <a href="#como" data-en="How it works">Cómo funciona</a>
       <a href="#eventos" data-en="Collections">Colecciones</a>
       <a href="#paquetes" data-en="Packages">Paquetes</a>
+      <a class="l-emp" href="/empresas/" data-en="For companies">Empresas</a>
       <a href="#contacto" data-en="Contact">Contacto</a>
     </nav>
     <div class="actions">
@@ -795,6 +802,7 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
   <section class="hero" id="inicio">
     <canvas id="dust" aria-hidden="true"></canvas>
     <div class="hero-in">
+      <nav class="aud" aria-label="Para quién" data-en-aria="Who it's for"><span class="aud-on" aria-current="page" data-en="Personal events">Celebraciones</span><a href="/empresas/" data-en="Companies">Empresas</a></nav>
       <div class="wm" id="wm" role="img" aria-label="Ilusión Invites">
         <div class="wm-seal"><img class="wm-img" src="img/sello-ilusion-oro.webp" alt="" width="760" height="752"><span class="wm-sh" aria-hidden="true"></span><span class="wm-gl" id="wmGl" aria-hidden="true"></span></div>
         <canvas class="wm-spark" id="wmSpark" aria-hidden="true"></canvas>
@@ -1408,12 +1416,11 @@ footer { padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); text
     var shw = document.getElementById('show'); if (shw) shw.setAttribute('aria-label', l === 'en' ? 'Collections' : 'Colecciones');
     document.getElementById('es').setAttribute('aria-pressed', String(l === 'es')); document.getElementById('en').setAttribute('aria-pressed', String(l === 'en'));
     renderPortals();
-    try { localStorage.setItem('ilu-lang', l); } catch (e) {}
   }
-  document.getElementById('es').addEventListener('click', function () { setLang('es'); });
-  document.getElementById('en').addEventListener('click', function () { setLang('en'); });
+  document.getElementById('es').addEventListener('click', function () { setLang('es'); try { localStorage.setItem('ilu-lang', 'es'); } catch (e) {} });
+  document.getElementById('en').addEventListener('click', function () { setLang('en'); try { localStorage.setItem('ilu-lang', 'en'); } catch (e) {} });
   var saved = null; try { saved = localStorage.getItem('ilu-lang'); } catch (e) {}
-  setLang(saved === 'en' ? 'en' : 'es');
+  setLang(saved === 'en' || saved === 'fr' ? 'en' : 'es');
 
   /* golden dust in the hero */
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
